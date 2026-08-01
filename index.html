@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script><!-- progressive enhancement: reveal-hiding only applies when JS runs -->
+<title>GRØD — Meetings, distilled. Nothing leaves your Mac.</title>
+<meta name="description" content="On-device meeting intelligence for the Mac. Recordings, transcripts, briefings, and a searchable memory of everyone you talk to — no cloud, no account, no bot in your call.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23D63A86' stroke-width='5'/%3E%3Cline x1='6' y1='28' x2='26' y2='4' stroke='%23232019' stroke-width='4'/%3E%3C/svg%3E">
+<!--
+  GRØD landing draft.
+  Palette = the app's Riso theme, verbatim from GROD/Sources/DesignSystem/Themes.swift
+  + the Overprint D2 teal pins from Toppings.swift. Type = Merriweather (titles) /
+  Inter (body), same pairing as the app.
+  Porting notes:
+  - Self-host both fonts when this moves to Astro (privacy-nice, faster; Google Fonts
+    is used here only so the draft opens anywhere).
+  - The waitlist button is a mailto by design — swap for your list provider's form.
+  - Screenshot placeholders: replace each .shot-placeholder with a real capture at
+    ~2x, keep the 16/10 frame.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Riso light palette — ThemeSpec `riso` */
+    --paper:#F6F1E6;
+    --surface:#E9E5DC;
+    --raised:#F3EFE6;
+    --hairline:#D9D3C6;
+    --ink:#232019;
+    --ink-2:#6C6759;
+    --magenta:#D63A86;       /* graphic ink only (ghosts, shot shadows) */
+    --magenta-deep:#B82E70;  /* text-safe magenta — 5.09:1 on paper */
+    --magenta-press:#A3275F; /* button hover/press — 6.19:1 on paper */
+    --teal:#2AA7C8;          /* risoTealLight — graphic ink only (halftone, bars, reg marks) */
+    --teal-text:#146D85;     /* text-safe teal — 5.24:1 on paper */
+    --positive:#4E7A44;
+
+    --serif:"Merriweather", Georgia, "Times New Roman", serif;
+    --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --inset:clamp(20px, 6vw, 84px);
+    --measure:34em;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  section{scroll-margin-top:64px} /* anchor jumps clear the sticky masthead */
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:clamp(1rem, .95rem + .3vw, 1.125rem);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--teal-text);color:var(--paper)}
+  a{color:inherit}
+
+  .wrap{max-width:1240px;margin:0 auto;padding-left:var(--inset);padding-right:var(--inset)}
+
+  /* ---------- shared type ---------- */
+  .eyebrow{
+    font-family:var(--sans);font-weight:650;
+    font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--teal-text);
+  }
+  .display{
+    font-family:var(--serif);
+    font-weight:900;
+    line-height:1.02;
+    letter-spacing:-.015em;
+    text-wrap:balance;
+  }
+  .body-copy{max-width:var(--measure);color:var(--ink-2)}
+  .body-copy strong{color:var(--ink);font-weight:600}
+
+  /* ---------- print furniture ---------- */
+  /* registration crosshair */
+  .reg{position:absolute;width:20px;height:20px;pointer-events:none;opacity:.75}
+  .reg::before,.reg::after{content:"";position:absolute;background:var(--teal)}
+  .reg::before{left:50%;top:0;width:1.5px;height:100%;transform:translateX(-50%)}
+  .reg::after{top:50%;left:0;height:1.5px;width:100%;transform:translateY(-50%)}
+
+  /* halftone dot fields — teal + magenta layers, multiply, elliptical fade */
+  .halftone{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply}
+  .halftone.teal{
+    background-image:radial-gradient(circle, var(--teal) 1.5px, transparent 1.6px);
+    background-size:13px 13px;
+    opacity:.42;
+  }
+  .halftone.magenta{
+    background-image:radial-gradient(circle, var(--magenta) 1.2px, transparent 1.3px);
+    background-size:17px 17px;
+    background-position:6px 4px;
+    opacity:.30;
+  }
+
+  /* overprint bar behind a word — the RisoOverprintBar treatment */
+  .overprint{position:relative;display:inline-block;white-space:nowrap}
+  .overprint::before{
+    content:"";position:absolute;z-index:-1;
+    left:-.08em;right:-.12em;top:.16em;bottom:.02em;
+    background:var(--teal);mix-blend-mode:multiply;
+    transform:rotate(-.6deg);
+  }
+
+  /* rubber stamp */
+  .stamp{
+    display:inline-block;
+    font-family:var(--sans);font-weight:700;
+    font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--magenta-deep);border:2px solid var(--magenta-deep);
+    padding:.55em 1em .5em;border-radius:4px;
+    transform:rotate(-5deg);
+    mix-blend-mode:multiply;
+  }
+
+  /* ---------- masthead ---------- */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:var(--paper);
+    padding:14px 0 12px;
+    border-bottom:1.5px solid var(--hairline);
+  }
+  .masthead{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .mark{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .mark svg{display:block}
+  .wordmark{font-family:var(--serif);font-weight:900;font-size:1.35rem;letter-spacing:.01em}
+  .beta-link{
+    font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;
+    border-bottom:2px solid var(--magenta);padding-bottom:2px;
+  }
+  .beta-link:hover{color:var(--magenta-deep)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:clamp(72px,12vh,150px) 0 clamp(72px,10vh,130px)}
+  .hero .halftone.teal{
+    inset:auto -10% -18% 34%;height:75%;
+    -webkit-mask:radial-gradient(75% 70% at 62% 58%, #000 0%, transparent 68%);
+            mask:radial-gradient(75% 70% at 62% 58%, #000 0%, transparent 68%);
+  }
+  .hero .halftone.magenta{
+    inset:auto -14% -24% 46%;height:70%;
+    -webkit-mask:radial-gradient(70% 65% at 60% 62%, #000 0%, transparent 66%);
+            mask:radial-gradient(70% 65% at 60% 62%, #000 0%, transparent 66%);
+  }
+  .hero h1{position:relative;font-size:clamp(3.1rem, 11.5vw, 9rem);margin:.35em 0 0}
+  .hero h1 .line{display:block;position:relative}
+  /* misregistered ghost prints behind the headline */
+  .misreg{position:relative;z-index:1}
+  .misreg .ghost{
+    position:absolute;inset:0;z-index:-1;
+    mix-blend-mode:multiply;pointer-events:none;user-select:none;
+  }
+  .misreg .ghost.g-teal{color:var(--teal);opacity:.38;transform:translate(3px,-3px)}
+  .misreg .ghost.g-mag{color:var(--magenta);opacity:.28;transform:translate(-3px,3px)}
+  .hero .quiet{color:var(--ink);font-weight:300;font-style:italic;letter-spacing:-.01em}
+  .hero .sub{margin-top:2.2em;max-width:36em;color:var(--ink-2)}
+  .hero .stamp-slot{position:absolute;top:clamp(8px,2vw,28px);right:0}
+  .hero .cta-row{margin-top:2.4em;display:flex;align-items:center;gap:1.6em;flex-wrap:wrap}
+  .hero .scroll-hint{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-block;
+    font-family:var(--sans);font-weight:700;font-size:1rem;letter-spacing:.02em;
+    color:var(--paper);background:var(--magenta-deep);
+    padding:1em 1.7em;border-radius:6px;text-decoration:none;
+    box-shadow:7px 7px 0 var(--teal);
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:hover{background:var(--magenta-press);transform:translate(3px,3px);box-shadow:4px 4px 0 var(--teal)}
+  .btn:active{transform:translate(7px,7px);box-shadow:0 0 0 var(--teal)}
+  .btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+  /* ---------- statements ---------- */
+  .statement{position:relative;padding:clamp(90px,14vh,180px) 0}
+  .statement + .statement{border-top:1.5px solid var(--hairline)}
+  .statement .num{
+    position:absolute;top:clamp(24px,4vh,48px);right:var(--inset);
+    font-family:var(--serif);font-weight:900;
+    font-size:clamp(4.5rem,14vw,11rem);line-height:1;
+    color:var(--surface);
+    -webkit-text-stroke:1.5px var(--hairline);
+    pointer-events:none;user-select:none;
+  }
+  .statement h2{font-size:clamp(2.5rem, 7.5vw, 5.4rem);margin:.4em 0 .5em;max-width:12em}
+  .statement .body-copy{margin-top:1em}
+  .statement .kicker{margin-top:1.4em;font-size:.92rem;color:var(--ink-2)}
+  .statement .kicker em{font-style:normal;color:var(--magenta-deep);font-weight:600}
+
+  /* the "three noes" stack */
+  .noes{margin:.4em 0 .2em;font-family:var(--serif);font-weight:900;line-height:1.04;letter-spacing:-.015em}
+  .noes span{display:block;font-size:clamp(2.9rem, 10.5vw, 8rem)}
+  .noes .n1{color:var(--ink)}
+  .noes .n2{color:var(--teal-text);mix-blend-mode:multiply}
+  .noes .n3{color:var(--magenta-deep);font-style:italic;mix-blend-mode:multiply}
+
+  /* huge glyph headline (⌘K) */
+  .glyph-head{font-size:clamp(5rem, 18vw, 13rem) !important;letter-spacing:0 !important}
+
+  /* ---------- screenshot placeholder frames ---------- */
+  .shot{
+    position:relative;margin-top:clamp(40px,6vh,72px);
+    background:var(--raised);
+    border:1.5px solid var(--ink);border-radius:10px;
+    box-shadow:12px 12px 0 var(--teal);
+    max-width:920px;
+  }
+  .shot.offset-m{box-shadow:12px 12px 0 var(--magenta)}
+  .shot .titlebar{
+    display:flex;gap:7px;align-items:center;
+    padding:12px 14px;border-bottom:1.5px solid var(--hairline);
+  }
+  .shot .titlebar i{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink-2);opacity:.55}
+  .shot-placeholder{
+    aspect-ratio:16/10;display:flex;flex-direction:column;gap:.6em;
+    align-items:center;justify-content:center;
+    margin:14px;border:1.5px dashed var(--hairline);border-radius:6px;
+    color:var(--ink-2);text-align:center;padding:1em;
+  }
+  .shot-placeholder .sp-label{
+    font-size:.72rem;font-weight:650;letter-spacing:.22em;text-transform:uppercase;
+  }
+  .shot-placeholder .sp-desc{font-size:.85rem;max-width:26em}
+
+  /* ---------- trust strip ---------- */
+  .trust{border-top:1.5px solid var(--ink);padding:clamp(70px,10vh,120px) 0}
+  .trust h2{font-size:clamp(2rem,5vw,3.4rem);margin:.4em 0 1.2em}
+  .trust ol{list-style:none;max-width:60em}
+  .trust li{
+    display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:1.5em;
+    padding:1.15em 0;border-top:1.5px solid var(--hairline);
+  }
+  .trust li:last-child{border-bottom:1.5px solid var(--hairline)}
+  .trust .t-label{
+    font-size:.72rem;font-weight:650;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--teal-text);padding-top:.35em;
+  }
+  .trust .t-claim{color:var(--ink)}
+  .trust .t-claim small{display:block;color:var(--ink-2);margin-top:.25em;font-size:.85rem}
+  .trust .coda{margin-top:1.6em;font-size:.9rem;color:var(--ink-2);font-style:italic}
+  .trust .coda-cta{margin-top:1.3em}
+
+  /* ---------- breathe ---------- */
+  .breathe{
+    position:relative;min-height:72vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;gap:1.4em;padding:14vh var(--inset);
+  }
+  .breathe .halftone.teal{
+    inset:auto 8% 6% 8%;height:34%;opacity:.22;
+    -webkit-mask:radial-gradient(60% 90% at 50% 100%, #000 0%, transparent 70%);
+            mask:radial-gradient(60% 90% at 50% 100%, #000 0%, transparent 70%);
+  }
+  .breathe p.zen{
+    font-family:var(--serif);font-weight:300;font-style:italic;
+    font-size:clamp(1.7rem, 4.4vw, 3rem);line-height:1.3;
+    max-width:20em;text-wrap:balance;
+  }
+  .breathe .cap{font-size:.85rem;color:var(--ink-2)}
+
+  /* ---------- waitlist ---------- */
+  .cta{
+    position:relative;border-top:1.5px solid var(--ink);
+    padding:clamp(90px,14vh,170px) 0;
+  }
+  .cta h2{font-size:clamp(2.7rem, 8vw, 6rem);max-width:10em;margin:.35em 0 .5em}
+  .cta .body-copy{margin-bottom:2.2em}
+  .cta .fineprint{margin-top:1.6em;font-size:.85rem;color:var(--ink-2);max-width:34em}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1.5px solid var(--hairline);padding:2.2em 0 3em}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:1.5em;flex-wrap:wrap}
+  .foot .fm{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:900}
+  .foot .tag{font-size:.85rem;color:var(--ink-2)}
+  .foot .stamp{font-size:.62rem;transform:rotate(-3deg)}
+
+  /* ---------- motion ---------- */
+  /* hiding is opt-in via the .js root class — no-JS visitors get the full static page */
+  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal.in{opacity:1;transform:none}
+  [data-para]{will-change:transform}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .js .reveal{opacity:1;transform:none;transition:none}
+    .btn{transition:none}
+  }
+
+  /* ---------- small screens ---------- */
+  @media (max-width:640px){
+    .statement .num{right:12px;font-size:4rem;top:18px}
+    .shot{box-shadow:7px 7px 0 var(--teal)}
+    .shot.offset-m{box-shadow:7px 7px 0 var(--magenta)}
+    .trust li{grid-template-columns:1fr;gap:.3em}
+    .hero .stamp-slot{position:static;margin-bottom:1.4em}
+    .misreg .ghost{display:none} /* ghosts get noisy at small sizes */
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="masthead">
+    <a class="mark" href="#" aria-label="GRØD home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="10" fill="none" stroke="#D63A86" stroke-width="5"/>
+        <line x1="6" y1="28" x2="26" y2="4" stroke="#232019" stroke-width="4"/>
+      </svg>
+      <span class="wordmark">GRØD</span>
+    </a>
+    <a class="beta-link" href="#beta">Request the beta</a>
+  </div>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="halftone teal" data-para="0.10" aria-hidden="true"></div>
+  <div class="halftone magenta" data-para="0.16" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative">
+    <span class="reg" style="top:-6px;left:-2px" aria-hidden="true"></span>
+    <div class="stamp-slot"><span class="stamp">100% on-device</span></div>
+    <p class="eyebrow reveal">On-device meeting intelligence for the Mac</p>
+    <h1 class="display">
+      <span class="line misreg reveal" data-drift>
+        <span class="ghost g-teal" aria-hidden="true">Meetings, distilled.</span>
+        <span class="ghost g-mag" aria-hidden="true">Meetings, distilled.</span>
+        Meetings, <span class="overprint">distilled.</span>
+      </span>
+      <span class="line quiet reveal">Nothing leaves your&nbsp;Mac.</span>
+    </h1>
+    <p class="sub reveal">
+      GRØD records both sides of your calls and turns each one into a briefing —
+      summary, decisions, action items, open questions — entirely on this machine.
+      It learns voices, remembers people, and answers questions across everything
+      you've ever discussed. <strong>No cloud. No account. No bot in your call.</strong>
+    </p>
+    <div class="cta-row reveal">
+      <a class="btn" href="#beta">Request the beta</a>
+      <span class="scroll-hint">Scroll — it's a short story&nbsp;↓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 01 · THE BRIEFING ======================= -->
+<section class="statement">
+  <span class="num" aria-hidden="true">01</span>
+  <div class="wrap">
+    <p class="eyebrow reveal">After the call</p>
+    <h2 class="display reveal">The value was never the&nbsp;transcript.</h2>
+    <p class="body-copy reveal">
+      Nobody re-reads an hour of talk. What you need is the distillation:
+      <strong>what was decided, what you owe, what's still open.</strong> The moment
+      your meeting ends, GRØD writes it — as one calm, editable document, with your
+      own notes woven in and never overwritten. Revert is always one click.
+    </p>
+    <p class="kicker reveal">Your notes stay yours. <em>The AI enriches; it never replaces.</em></p>
+    <figure class="shot reveal" data-para="0.045">
+      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · The briefing</span>
+        <span class="sp-desc">Meeting detail — summary, decisions, action items with owners, in the paper document view.</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= 02 · PRIVACY ======================= -->
+<section class="statement">
+  <span class="num" aria-hidden="true">02</span>
+  <div class="wrap" style="position:relative">
+    <span class="reg" style="top:34px;right:6px" aria-hidden="true"></span>
+    <p class="eyebrow reveal">Where your meetings go: nowhere</p>
+    <div class="noes" role="heading" aria-level="2">
+      <span class="n1 reveal">No cloud.</span>
+      <span class="n2 reveal">No account.</span>
+      <span class="n3 reveal">No bot in your call.</span>
+    </div>
+    <p class="body-copy reveal" style="margin-top:1.6em">
+      Nothing joins your meeting or announces itself. GRØD listens on your Mac —
+      your mic, plus the audio your conference app is already playing — so it works
+      with <strong>Zoom, Meet, Teams, a huddle, a browser tab, or a conversation
+      across the table.</strong> Capture, transcription, speaker separation, and
+      the intelligence all run on this machine. There is no
+      "we&nbsp;only&nbsp;send…" clause, because nothing is sent.
+    </p>
+    <p class="kicker reveal">A promise you can audit — <em>one file may open a network connection, and a test enforces it.</em></p>
+    <figure class="shot offset-m reveal" data-para="0.045">
+      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · Recording, quietly</span>
+        <span class="sp-desc">The floating pill over a live call — Zoom stays frontmost, GRØD stays out of the way.</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= 03 · PEOPLE ======================= -->
+<section class="statement">
+  <span class="num" aria-hidden="true">03</span>
+  <div class="wrap">
+    <p class="eyebrow reveal">The voice directory</p>
+    <h2 class="display reveal">Name a voice&nbsp;once.</h2>
+    <p class="body-copy reveal">
+      GRØD learns the voices you meet. Label a speaker one time and they're
+      recognized in <strong>every meeting — past and future.</strong> People become
+      a quiet directory of who you talk to: what's coming up, what you last
+      discussed, every conversation you've shared. Built on your Mac, staying on
+      your Mac.
+    </p>
+    <figure class="shot reveal" data-para="0.045">
+      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · People</span>
+        <span class="sp-desc">The person-first view — coming up, recent, and the full directory.</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= 04 · SEARCH ======================= -->
+<section class="statement">
+  <span class="num" aria-hidden="true">04</span>
+  <div class="wrap">
+    <p class="eyebrow reveal">Ask across everything</p>
+    <h2 class="display glyph-head reveal">⌘K</h2>
+    <p class="body-copy reveal">
+      One shortcut searches every meeting you've ever had — by keyword <strong>and</strong>
+      by meaning. Ask a question and get an answer with citations; click one and
+      land on the exact moment it was said. A knowledge base that compounds,
+      without a server in sight.
+    </p>
+    <figure class="shot offset-m reveal" data-para="0.045">
+      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · Universal search</span>
+        <span class="sp-desc">The ⌘K palette and the cross-meeting answer card, facets and all.</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= TRUST ======================= -->
+<section class="trust">
+  <div class="wrap">
+    <p class="eyebrow reveal">The receipts</p>
+    <h2 class="display reveal">Check us, don't trust&nbsp;us.</h2>
+    <ol>
+      <li class="reveal">
+        <span class="t-label">Network</span>
+        <span class="t-claim">Exactly one file in the app can open a connection — used only to download optional transcription models you ask for.
+          <small>Enforced by a source-scan test that fails the build if a second one appears.</small></span>
+      </li>
+      <li class="reveal">
+        <span class="t-label">Downloads</span>
+        <span class="t-claim">Every downloaded file is SHA-256-verified against a pinned release before it's trusted.
+          <small>HTTPS to two allowed domains; dependencies are forced offline too.</small></span>
+      </li>
+      <li class="reveal">
+        <span class="t-label">Deletion</span>
+        <span class="t-claim">"Recording removed" is only ever said after it's proven true.
+          <small>Optional 90-day auto-purge removes audio only — transcripts and notes always survive.</small></span>
+      </li>
+      <li class="reveal">
+        <span class="t-label">Telemetry</span>
+        <span class="t-claim">None. No analytics, no phone-home, no account to attach them to.
+          <small>Even local diagnostics use a closed vocabulary that cannot contain your content.</small></span>
+      </li>
+    </ol>
+    <p class="coda reveal">Every claim on this page survives an engineer reading the source.</p>
+    <p class="coda-cta reveal"><a class="beta-link" href="#beta">Convinced enough to try it? Request the beta →</a></p>
+  </div>
+</section>
+
+<!-- ======================= BREATHE ======================= -->
+<section class="breathe">
+  <div class="halftone teal" data-para="0.08" aria-hidden="true"></div>
+  <p class="eyebrow reveal">At the end of your day</p>
+  <p class="zen reveal">"Breathe — that was your last meeting today."</p>
+  <p class="cap reveal">GRØD's actual words when your afternoon empties. Calm is a feature.</p>
+</section>
+
+<!-- ======================= WAITLIST ======================= -->
+<section class="cta" id="beta">
+  <div class="wrap" style="position:relative">
+    <span class="reg" style="top:30px;right:4px" aria-hidden="true"></span>
+    <p class="eyebrow reveal">The beta</p>
+    <h2 class="display reveal">Breakfast is almost&nbsp;ready.</h2>
+    <p class="body-copy reveal">
+      GRØD is in pre-launch hardening — the bar for 1.0 is
+      <strong>"never loses a meeting, and a stranger can install it."</strong>
+      If you'd like an early bowl, say hello and we'll save you a seat at the table.
+    </p>
+    <a class="btn reveal" href="mailto:hello@grod.app?subject=GR%C3%98D%20beta%2C%20please&body=Save%20me%20a%20seat%20%E2%80%94%20I%27m%20on%20an%20Apple%20silicon%20Mac.">Request the beta →</a>
+    <p class="fineprint reveal">
+      No form, no tracker — the button is just email. Fitting, we thought.
+      You'll need an Apple silicon Mac on macOS 26 or later; briefings want
+      Apple&nbsp;Intelligence enabled, recording and transcription work regardless.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="fm">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="10" fill="none" stroke="#D63A86" stroke-width="5"/>
+        <line x1="6" y1="28" x2="26" y2="4" stroke="#232019" stroke-width="4"/>
+      </svg>
+      GRØD
+    </span>
+    <span class="tag">proper oats — on-device meeting intelligence</span>
+    <span class="stamp">Printed on-device</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reveals = document.querySelectorAll(".reveal");
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+    return; // no parallax, no drift — everything simply present
+  }
+
+  // Staggered reveals
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var siblings = el.parentElement ? el.parentElement.querySelectorAll(".reveal") : [el];
+      var index = Array.prototype.indexOf.call(siblings, el);
+      el.style.transitionDelay = Math.max(0, index) * 70 + "ms";
+      el.classList.add("in");
+      io.unobserve(el);
+    });
+  }, { threshold: 0.01, rootMargin: "0px 0px 18% 0px" });
+  reveals.forEach(function (el) { io.observe(el); });
+
+  // Parallax: elements drift against scroll by their distance from viewport centre.
+  var paras = Array.prototype.slice.call(document.querySelectorAll("[data-para]"));
+  var drifts = Array.prototype.slice.call(document.querySelectorAll("[data-drift]"));
+  var ticking = false;
+
+  function frame() {
+    ticking = false;
+    var vh = window.innerHeight;
+    paras.forEach(function (el) {
+      var r = el.parentElement.getBoundingClientRect();
+      var centreDelta = r.top + r.height / 2 - vh / 2;
+      var speed = parseFloat(el.getAttribute("data-para")) || 0;
+      el.style.transform = "translate3d(0," + (-centreDelta * speed).toFixed(1) + "px,0)";
+    });
+    // The hero print slips slightly out of register as you scroll — riso parallax.
+    drifts.forEach(function (el) {
+      var shift = Math.min(10, window.scrollY / 60);
+      var teal = el.querySelector(".g-teal");
+      var mag = el.querySelector(".g-mag");
+      if (teal) teal.style.transform = "translate(" + (3 + shift) + "px," + (-3 - shift * 0.6) + "px)";
+      if (mag) mag.style.transform = "translate(" + (-3 - shift * 0.8) + "px," + (3 + shift * 0.5) + "px)";
+    });
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(frame); }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  frame();
+})();
+</script>
+</body>
+</html>
