@@ -48,7 +48,7 @@
   }
 
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:clip} /* clip, not hidden: iOS ignores body overflow-x for touch panning */
   section{scroll-margin-top:76px}
   body{
     background:var(--paper);
