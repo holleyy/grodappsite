@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script><!-- progressive enhancement: reveal-hiding only applies when JS runs -->
+<title>GRØD — Every meeting, on the record. Not one word in the cloud.</title>
+<meta name="description" content="On-device meeting intelligence for the Mac. Recordings, transcripts, briefings, and a searchable memory of everyone you talk to — no cloud, no account, no bot in your call.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23D63A86' stroke-width='5'/%3E%3Cline x1='6' y1='28' x2='26' y2='4' stroke='%23232019' stroke-width='4'/%3E%3C/svg%3E">
+<!--
+  GRØD landing — ALTERNATE DRAFT A · "THE RECORD".
+  Direction: the page is a filed meeting record — mid-century office ephemera
+  (memo forms, carbon copies, index cards, rubber stamps, colophons) printed riso.
+  Inspirations: Present & Correct (office ephemera), Field Notes (colophon as brand),
+  Corita Kent (big cropped slogans), riso print culture throughout.
+
+  Same palette (Riso theme, verbatim from Themes.swift), same Merriweather/Inter
+  pairing, same content claims as index.html. One extension: a system mono stack
+  (--mono, no font download) for "filled-in" form values and file furniture —
+  the typewriter voice the form conceit needs. Drop it if it feels like drift.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Riso light palette — ThemeSpec `riso` */
+    --paper:#F6F1E6;
+    --surface:#E9E5DC;
+    --raised:#F3EFE6;
+    --hairline:#D9D3C6;
+    --ink:#232019;
+    --ink-2:#6C6759;
+    --magenta:#D63A86;       /* graphic ink only */
+    --magenta-deep:#B82E70;  /* text-safe magenta — 5.09:1 on paper */
+    --magenta-press:#A3275F; /* button hover/press — 6.19:1 on paper */
+    --teal:#2AA7C8;          /* graphic ink only */
+    --teal-text:#146D85;     /* text-safe teal — 5.24:1 on paper */
+    --positive:#4E7A44;
+
+    --serif:"Merriweather", Georgia, "Times New Roman", serif;
+    --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --inset:clamp(20px, 6vw, 84px);
+    --measure:34em;
+    --rule-teal:color-mix(in srgb, var(--teal) 30%, transparent); /* ledger ruling */
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  section{scroll-margin-top:72px}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:clamp(1rem, .95rem + .3vw, 1.125rem);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--teal-text);color:var(--paper)}
+  a{color:inherit}
+
+  .wrap{max-width:1240px;margin:0 auto;padding-left:var(--inset);padding-right:var(--inset)}
+
+  /* ---------- shared type ---------- */
+  .eyebrow{
+    font-weight:650;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--teal-text);
+  }
+  .display{
+    font-family:var(--serif);font-weight:900;line-height:1.04;
+    letter-spacing:-.015em;text-wrap:balance;
+  }
+  .body-copy{max-width:var(--measure);color:var(--ink-2)}
+  .body-copy strong{color:var(--ink);font-weight:600}
+  .filed{ /* "typed into the form" voice */
+    font-family:var(--mono);font-size:.82em;letter-spacing:.02em;color:var(--ink);
+  }
+
+  /* ---------- print furniture ---------- */
+  .reg{position:absolute;width:20px;height:20px;pointer-events:none;opacity:.75}
+  .reg::before,.reg::after{content:"";position:absolute;background:var(--teal)}
+  .reg::before{left:50%;top:0;width:1.5px;height:100%;transform:translateX(-50%)}
+  .reg::after{top:50%;left:0;height:1.5px;width:100%;transform:translateY(-50%)}
+
+  .halftone{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply}
+  .halftone.teal{
+    background-image:radial-gradient(circle, var(--teal) 1.5px, transparent 1.6px);
+    background-size:13px 13px;opacity:.42;
+  }
+  .halftone.magenta{
+    background-image:radial-gradient(circle, var(--magenta) 1.2px, transparent 1.3px);
+    background-size:17px 17px;background-position:6px 4px;opacity:.30;
+  }
+
+  .overprint{position:relative;display:inline-block;white-space:nowrap}
+  .overprint::before{
+    content:"";position:absolute;z-index:-1;
+    left:-.08em;right:-.12em;top:.16em;bottom:.02em;
+    background:var(--teal);mix-blend-mode:multiply;transform:rotate(-.6deg);
+  }
+
+  .stamp{
+    --rot:-5deg;
+    display:inline-block;font-weight:700;
+    font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--magenta-deep);border:2px solid var(--magenta-deep);
+    padding:.55em 1em .5em;border-radius:4px;
+    transform:rotate(var(--rot));mix-blend-mode:multiply;
+  }
+  .stamp.teal{--rot:3deg;color:var(--teal-text);border-color:var(--teal-text)}
+  .stamp.big{--rot:-7deg;font-size:.95rem;border-width:2.5px}
+
+  /* circular date-stamp (SVG sets its own colors) */
+  .round-stamp{--rot:-11deg;mix-blend-mode:multiply;transform:rotate(var(--rot))}
+
+  /* dotted tear line between file sections */
+  .tear{border:0;height:0;border-top:2px dashed var(--hairline);margin:0 var(--inset)}
+
+  /* ---------- masthead: the folder tab ---------- */
+  header{
+    position:sticky;top:0;z-index:60;background:var(--paper);
+    padding:16px 0 0;border-bottom:1.5px solid var(--ink);
+  }
+  .masthead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+  .mark{
+    display:flex;align-items:center;gap:11px;text-decoration:none;
+    background:var(--paper);border:1.5px solid var(--ink);border-bottom:0;
+    border-radius:10px 10px 0 0;padding:9px 18px 10px;margin-bottom:-1.5px;
+  }
+  .mark svg{display:block}
+  .wordmark{font-family:var(--serif);font-weight:900;font-size:1.3rem;letter-spacing:.01em}
+  .tab-note{
+    align-self:center;font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-2);
+  }
+  .beta-link{
+    font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;
+    border-bottom:2px solid var(--magenta);padding-bottom:8px;
+  }
+  .beta-link:hover{color:var(--magenta-deep)}
+
+  /* ---------- hero: the form header ---------- */
+  .hero{position:relative;padding:clamp(56px,9vh,110px) 0 clamp(72px,10vh,130px)}
+  .hero .halftone.teal{
+    inset:auto -10% -18% 40%;height:70%;
+    -webkit-mask:radial-gradient(75% 70% at 62% 58%, #000 0%, transparent 68%);
+            mask:radial-gradient(75% 70% at 62% 58%, #000 0%, transparent 68%);
+  }
+  .form-toprow{
+    display:flex;justify-content:space-between;gap:1em;flex-wrap:wrap;
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-2);
+    border-bottom:1.5px solid var(--hairline);padding-bottom:.9em;
+  }
+  .hero h1{position:relative;font-size:clamp(2.9rem, 10.2vw, 8rem);margin:.45em 0 0}
+  .hero h1 .line{display:block;position:relative}
+  .misreg{position:relative;z-index:1}
+  .misreg .ghost{
+    position:absolute;inset:0;z-index:-1;
+    mix-blend-mode:multiply;pointer-events:none;user-select:none;
+  }
+  .misreg .ghost.g-teal{color:var(--teal);opacity:.38;transform:translate(3px,-3px)}
+  .misreg .ghost.g-mag{color:var(--magenta);opacity:.28;transform:translate(-3px,3px)}
+  .hero .quiet{color:var(--ink);font-weight:300;font-style:italic;letter-spacing:-.01em}
+
+  /* filled-in form fields */
+  .form-fields{
+    margin-top:2.6em;display:grid;gap:1.1em 2.5em;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    max-width:56em;
+  }
+  .ff{border-bottom:1.5px solid var(--hairline);padding-bottom:.55em}
+  .ff .ff-label{
+    display:block;font-size:.66rem;font-weight:650;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--ink-2);margin-bottom:.45em;
+  }
+  .ff .filed{font-size:.9rem}
+
+  .hero .sub{margin-top:2.4em;max-width:36em;color:var(--ink-2)}
+  .hero .stamp-slot{
+    position:absolute;top:clamp(48px,7vw,84px);right:0;
+    display:flex;flex-direction:column;align-items:flex-end;gap:14px;
+  }
+  .hero .cta-row{margin-top:2.4em;display:flex;align-items:center;gap:1.6em;flex-wrap:wrap}
+  .hero .scroll-hint{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-block;font-weight:700;font-size:1rem;letter-spacing:.02em;
+    color:var(--paper);background:var(--magenta-deep);
+    padding:1em 1.7em;border-radius:6px;text-decoration:none;
+    box-shadow:7px 7px 0 var(--teal);
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:hover{background:var(--magenta-press);transform:translate(3px,3px);box-shadow:4px 4px 0 var(--teal)}
+  .btn:active{transform:translate(7px,7px);box-shadow:0 0 0 var(--teal)}
+  .btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+  /* ---------- statements (file sections) ---------- */
+  .statement{position:relative;padding:clamp(84px,13vh,170px) 0}
+  .statement h2{font-size:clamp(2.4rem, 7vw, 5rem);margin:.4em 0 .5em;max-width:13em}
+  .statement .body-copy{margin-top:1em}
+  .statement .kicker{margin-top:1.4em;font-size:.92rem;color:var(--ink-2)}
+  .statement .kicker em{font-style:normal;color:var(--magenta-deep);font-weight:600}
+  .exhibit-tag{ /* "Exhibit A" file label */
+    position:absolute;top:clamp(22px,4vh,44px);right:var(--inset);
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--ink-2);
+    border:1.5px solid var(--hairline);border-radius:4px;padding:.5em .9em;
+    background:var(--raised);
+  }
+
+  /* ---------- the memo sheet ---------- */
+  .memo{
+    position:relative;margin-top:clamp(40px,6vh,64px);max-width:760px;
+    background:var(--raised);border:1.5px solid var(--ink);border-radius:4px;
+    padding:2em 2.4em 2.4em 3.4em;
+    box-shadow:10px 12px 0 color-mix(in srgb, var(--teal) 40%, transparent);
+  }
+  .memo::after{ /* the carbon copy behind */
+    content:"cc: no one";
+    position:absolute;z-index:-1;left:16px;top:18px;right:-16px;bottom:-20px;
+    border:1.5px solid var(--teal);border-radius:4px;
+    transform:rotate(.5deg);mix-blend-mode:multiply;
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--teal-text);display:flex;align-items:flex-end;justify-content:flex-end;
+    padding:0 1em .6em 0;
+  }
+  .memo .hole{
+    position:absolute;left:16px;width:15px;height:15px;border-radius:50%;
+    background:var(--paper);border:1.5px solid var(--hairline);
+  }
+  .memo .hole.h1{top:26%}
+  .memo .hole.h2{top:72%}
+  .memo-head{border-bottom:2px solid var(--magenta);padding-bottom:1em;margin-bottom:1.2em}
+  .memo-head .m-title{
+    font-family:var(--serif);font-weight:900;font-size:1.05rem;letter-spacing:.14em;
+    text-transform:uppercase;margin-bottom:.9em;
+  }
+  .memo-head dl{display:grid;grid-template-columns:auto 1fr;gap:.3em 1.2em;font-size:.85rem}
+  .memo-head dt{
+    font-weight:650;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-2);padding-top:.25em;
+  }
+  .memo-head dd{font-family:var(--mono);font-size:.82rem;color:var(--ink)}
+  .memo-body{
+    font-size:.98rem;line-height:1.9;color:var(--ink-2);
+    background:repeating-linear-gradient(to bottom, transparent 0 calc(1.9em - 1px), var(--rule-teal) calc(1.9em - 1px) 1.9em);
+  }
+  .memo-body strong{color:var(--ink);font-weight:600}
+
+  /* ---------- the "three noes" stack ---------- */
+  .noes{margin:.4em 0 .2em;font-family:var(--serif);font-weight:900;line-height:1.04;letter-spacing:-.015em}
+  .noes span{display:block;font-size:clamp(2.9rem, 10.5vw, 8rem)}
+  .noes .n1{color:var(--ink)}
+  .noes .n2{color:var(--teal-text);mix-blend-mode:multiply}
+  .noes .n3{color:var(--magenta-deep);font-style:italic;mix-blend-mode:multiply}
+  .dist-stamp{margin-top:1.8em}
+
+  /* ---------- index cards ---------- */
+  .cards{
+    display:flex;gap:clamp(14px,2.5vw,28px);flex-wrap:wrap;
+    margin-top:clamp(36px,5vh,56px);align-items:flex-start;
+  }
+  .icard{
+    position:relative;flex:1 1 240px;max-width:330px;
+    background:var(--raised);border:1.5px solid var(--ink);border-radius:5px;
+    padding:1.2em 1.3em 1.5em;
+    box-shadow:6px 7px 0 color-mix(in srgb, var(--magenta) 35%, transparent);
+  }
+  .icard::before{ /* the index tab */
+    content:attr(data-tab);
+    position:absolute;top:-1.75em;left:14px;
+    font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink);background:var(--raised);
+    border:1.5px solid var(--ink);border-bottom:0;border-radius:6px 6px 0 0;
+    padding:.4em .9em .55em;
+  }
+  .icard:nth-child(2){transform:rotate(.8deg)}
+  .icard:nth-child(2)::before{left:auto;right:14px}
+  .icard:nth-child(3){transform:rotate(-.7deg)}
+  .icard:nth-child(3)::before{left:38%}
+  .icard h3{
+    font-family:var(--serif);font-weight:900;font-size:1.25rem;
+    border-bottom:2px solid var(--magenta);padding-bottom:.5em;margin-bottom:.7em;
+  }
+  .icard p{
+    font-size:.92rem;color:var(--ink-2);line-height:1.8;
+    background:repeating-linear-gradient(to bottom, transparent 0 calc(1.8em - 1px), var(--rule-teal) calc(1.8em - 1px) 1.8em);
+  }
+
+  /* huge glyph headline (⌘K) */
+  .glyph-head{font-size:clamp(5rem, 18vw, 13rem) !important;letter-spacing:0 !important}
+  .drawer-label{ /* card-catalog drawer pull under the glyph */
+    display:inline-flex;align-items:center;gap:.8em;
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink);border:1.5px solid var(--ink);border-radius:4px;
+    background:var(--raised);padding:.7em 1.1em;margin-top:.6em;
+  }
+  .drawer-label i{ /* the brass pull */
+    width:26px;height:9px;border:1.5px solid var(--ink);border-radius:5px;display:inline-block;
+  }
+
+  /* ---------- screenshot frames ---------- */
+  .shot{
+    position:relative;margin-top:clamp(40px,6vh,72px);
+    background:var(--raised);border:1.5px solid var(--ink);border-radius:10px;
+    box-shadow:12px 12px 0 var(--teal);max-width:920px;
+  }
+  .shot.offset-m{box-shadow:12px 12px 0 var(--magenta)}
+  .shot .titlebar{display:flex;gap:7px;align-items:center;padding:12px 14px;border-bottom:1.5px solid var(--hairline)}
+  .shot .titlebar i{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink-2);opacity:.55}
+  .shot-placeholder{
+    aspect-ratio:16/10;display:flex;flex-direction:column;gap:.6em;
+    align-items:center;justify-content:center;
+    margin:14px;border:1.5px dashed var(--hairline);border-radius:6px;
+    color:var(--ink-2);text-align:center;padding:1em;
+  }
+  .shot-placeholder .sp-label{font-size:.72rem;font-weight:650;letter-spacing:.22em;text-transform:uppercase}
+  .shot-placeholder .sp-desc{font-size:.85rem;max-width:26em}
+
+  /* ---------- the colophon ---------- */
+  .colophon{padding:clamp(80px,12vh,150px) 0}
+  .colo-box{
+    max-width:720px;margin:0 auto;text-align:center;
+    border:2px solid var(--ink);border-radius:4px;
+    padding:clamp(2.2em,5vw,3.6em) clamp(1.6em,4.5vw,3.2em);
+    position:relative;background:var(--raised);
+  }
+  .colo-box::before{ /* double rule, printer's style */
+    content:"";position:absolute;inset:7px;border:1px solid var(--ink);border-radius:2px;
+    pointer-events:none;
+  }
+  .colo-box h2{
+    font-family:var(--serif);font-weight:900;font-size:clamp(1.6rem,4vw,2.3rem);
+    letter-spacing:.22em;text-transform:uppercase;margin-bottom:.4em;
+  }
+  .colo-sub{font-size:.85rem;font-style:italic;color:var(--ink-2);margin-bottom:2.2em}
+  .colo-box ol{list-style:none;text-align:left;max-width:34em;margin:0 auto}
+  .colo-box li{
+    display:grid;grid-template-columns:2.2em 1fr;gap:1em;
+    padding:1.05em 0;border-top:1.5px solid var(--hairline);
+  }
+  .colo-box li:last-of-type{border-bottom:1.5px solid var(--hairline)}
+  .colo-num{
+    font-family:var(--mono);font-size:.78rem;color:var(--teal-text);
+    padding-top:.3em;font-style:italic;
+  }
+  .colo-claim{font-size:.95rem;color:var(--ink)}
+  .colo-claim small{display:block;color:var(--ink-2);margin-top:.3em;font-size:.82rem}
+  .colo-coda{margin-top:2em;font-size:.9rem;color:var(--ink-2);font-style:italic}
+  .colo-cta{margin-top:1.6em}
+  .colo-stamp{position:absolute;right:-18px;top:-22px}
+
+  /* ---------- breathe ---------- */
+  .breathe{
+    position:relative;min-height:66vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;gap:1.4em;padding:13vh var(--inset);
+  }
+  .breathe .halftone.teal{
+    inset:auto 8% 6% 8%;height:34%;opacity:.22;
+    -webkit-mask:radial-gradient(60% 90% at 50% 100%, #000 0%, transparent 70%);
+            mask:radial-gradient(60% 90% at 50% 100%, #000 0%, transparent 70%);
+  }
+  .breathe p.zen{
+    font-family:var(--serif);font-weight:300;font-style:italic;
+    font-size:clamp(1.7rem, 4.4vw, 3rem);line-height:1.3;max-width:20em;text-wrap:balance;
+  }
+  .breathe .cap{font-size:.85rem;color:var(--ink-2)}
+
+  /* ---------- waitlist ---------- */
+  .cta{position:relative;border-top:1.5px solid var(--ink);padding:clamp(90px,14vh,170px) 0}
+  .cta h2{font-size:clamp(2.7rem, 8vw, 6rem);max-width:10em;margin:.35em 0 .5em}
+  .cta .body-copy{margin-bottom:2.2em}
+  .cta .fineprint{margin-top:1.6em;font-size:.85rem;color:var(--ink-2);max-width:34em}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1.5px solid var(--hairline);padding:2.2em 0 3em}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:1.5em;flex-wrap:wrap}
+  .foot .fm{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:900}
+  .foot .tag{font-size:.85rem;color:var(--ink-2)}
+  .foot .stamp{font-size:.62rem;transform:rotate(-3deg)}
+
+  /* ---------- motion ---------- */
+  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal.in{opacity:1;transform:none}
+  /* stamps thump down rather than float up — landing on their natural rotation */
+  .js .thump{opacity:0;transform:scale(1.7) rotate(calc(var(--rot, 0deg) - 9deg));transition:opacity .35s ease-out, transform .45s cubic-bezier(.2,1.4,.4,1)}
+  .js .thump.in{opacity:1;transform:rotate(var(--rot, 0deg))}
+  [data-para]{will-change:transform}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .js .reveal,.js .thump{opacity:1;transform:none;transition:none}
+    .btn{transition:none}
+  }
+
+  /* ---------- small screens ---------- */
+  @media (max-width:640px){
+    .hero .stamp-slot{position:static;flex-direction:row;align-items:center;margin:1.6em 0 0;gap:20px}
+    .exhibit-tag{position:static;display:inline-block;margin-bottom:1.4em}
+    .memo{padding:1.6em 1.3em 1.8em 2.6em}
+    .memo::after{content:""}
+    .shot{box-shadow:7px 7px 0 var(--teal)}
+    .shot.offset-m{box-shadow:7px 7px 0 var(--magenta)}
+    .cards{margin-top:52px;gap:34px}
+    .icard:nth-child(2),.icard:nth-child(3){transform:none}
+    .misreg .ghost{display:none}
+    .colo-stamp{right:-6px}
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="masthead">
+    <a class="mark" href="#" aria-label="GRØD home">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="10" fill="none" stroke="#D63A86" stroke-width="5"/>
+        <line x1="6" y1="28" x2="26" y2="4" stroke="#232019" stroke-width="4"/>
+      </svg>
+      <span class="wordmark">GRØD</span>
+    </a>
+    <span class="tab-note" aria-hidden="true">Permanent file · kept at your desk</span>
+    <a class="beta-link" href="#beta">Request the beta</a>
+  </div>
+</header>
+
+<!-- ======================= HERO · THE FORM HEADER ======================= -->
+<section class="hero">
+  <div class="halftone teal" data-para="0.10" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative">
+    <span class="reg" style="top:-2px;left:-2px" aria-hidden="true"></span>
+
+    <div class="form-toprow" aria-hidden="true">
+      <span>Form GRD-01</span>
+      <span>Meeting record</span>
+      <span>Page 1 of 1</span>
+    </div>
+
+    <div class="stamp-slot" aria-hidden="true">
+      <svg class="round-stamp thump" width="128" height="128" viewBox="0 0 128 128">
+        <defs>
+          <path id="ring" d="M 64 64 m -47 0 a 47 47 0 1 1 94 0 a 47 47 0 1 1 -94 0"/>
+        </defs>
+        <circle cx="64" cy="64" r="58" fill="none" stroke="#B82E70" stroke-width="2.5"/>
+        <circle cx="64" cy="64" r="34" fill="none" stroke="#B82E70" stroke-width="1.5"/>
+        <text fill="#B82E70" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" letter-spacing="2.7">
+          <textPath href="#ring">RECORDED · TRANSCRIBED · FILED ·</textPath>
+        </text>
+        <text x="64" y="70" text-anchor="middle" fill="#B82E70" font-family="Merriweather, serif" font-size="17" font-weight="900">GRØD</text>
+      </svg>
+      <span class="stamp thump">100% on-device</span>
+    </div>
+
+    <p class="eyebrow reveal" style="margin-top:2.2em">On-device meeting intelligence for the Mac</p>
+    <h1 class="display">
+      <span class="line misreg reveal" data-drift>
+        <span class="ghost g-teal" aria-hidden="true">Every meeting, on the record.</span>
+        <span class="ghost g-mag" aria-hidden="true">Every meeting, on the record.</span>
+        Every meeting, on the <span class="overprint">record.</span>
+      </span>
+      <span class="line quiet reveal">Not one word in the&nbsp;cloud.</span>
+    </h1>
+
+    <div class="form-fields reveal">
+      <div class="ff"><span class="ff-label">Re:</span><span class="filed">every call you take</span></div>
+      <div class="ff"><span class="ff-label">Filed at:</span><span class="filed">~/your Mac — nowhere else</span></div>
+      <div class="ff"><span class="ff-label">cc:</span><span class="filed">no one</span></div>
+    </div>
+
+    <p class="sub reveal">
+      GRØD records both sides of your calls and files each one properly: a briefing
+      with the summary, the decisions, the action items, the open questions — typed
+      up the moment you hang up, entirely on this machine. It learns voices, keeps a
+      quiet directory of the people you meet, and answers questions across every
+      conversation on file. <strong>No cloud. No account. No bot in your call.</strong>
+    </p>
+    <div class="cta-row reveal">
+      <a class="btn" href="#beta">Request the beta</a>
+      <span class="scroll-hint">Scroll — the file is short&nbsp;↓</span>
+    </div>
+  </div>
+</section>
+
+<hr class="tear" aria-hidden="true">
+
+<!-- ======================= EXHIBIT A · THE MEMO ======================= -->
+<section class="statement">
+  <span class="exhibit-tag" aria-hidden="true">Exhibit A</span>
+  <div class="wrap">
+    <p class="eyebrow reveal">After the call</p>
+    <h2 class="display reveal">The minutes, typed before you stand&nbsp;up.</h2>
+    <p class="body-copy reveal">
+      Nobody re-reads an hour of talk. What you keep is the record:
+      <strong>what was decided, what you owe, what's still open.</strong> The moment
+      a meeting ends, GRØD writes the memo — one calm, editable document, with your
+      own notes woven in and never overwritten. Revert is always one click.
+    </p>
+    <p class="kicker reveal">Your notes stay yours. <em>The AI enriches; it never replaces.</em></p>
+
+    <div class="memo reveal" aria-hidden="true">
+      <span class="hole h1"></span><span class="hole h2"></span>
+      <div class="memo-head">
+        <p class="m-title">Memorandum</p>
+        <dl>
+          <dt>To</dt><dd>you</dd>
+          <dt>From</dt><dd>GRØD</dd>
+          <dt>Re</dt><dd>the 2:00 that just ended</dd>
+        </dl>
+      </div>
+      <p class="memo-body">
+        <strong>Decided:</strong> ship the riso theme as default. <strong>You owe:</strong>
+        pricing copy to Maja by Thursday. <strong>Still open:</strong> whether onboarding
+        mentions the voice directory. Your own note — <em>"ask about the Berlin
+        offsite"</em> — kept exactly where you typed it.
+      </p>
+    </div>
+
+    <figure class="shot reveal" data-para="0.045">
+      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · The briefing</span>
+        <span class="sp-desc">Meeting detail — summary, decisions, action items with owners, in the paper document view.</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= EXHIBIT B · DISTRIBUTION ======================= -->
+<section class="statement">
+  <span class="exhibit-tag" aria-hidden="true">Exhibit B</span>
+  <div class="wrap" style="position:relative">
+    <span class="reg" style="top:34px;right:6px" aria-hidden="true"></span>
+    <p class="eyebrow reveal">The distribution list</p>
+    <div class="noes" role="heading" aria-level="2">
+      <span class="n1 reveal">No cloud.</span>
+      <span class="n2 reveal">No account.</span>
+      <span class="n3 reveal">No bot in your call.</span>
+    </div>
+    <p class="body-copy reveal" style="margin-top:1.6em">
+      Nothing joins your meeting or announces itself. GRØD listens on your Mac —
+      your mic, plus the audio your conference app is already playing — so it works
+      with <strong>Zoom, Meet, Teams, a huddle, a browser tab, or a conversation
+      across the table.</strong> Capture, transcription, speaker separation, and the
+      intelligence all happen at this desk. The record never reaches a mailroom,
+      because the building doesn't have one.
+    </p>
+    <p class="kicker reveal">A promise you can audit — <em>one file may open a network connection, and a test enforces it.</em></p>
+    <p class="dist-stamp reveal"><span class="stamp big thump">Not for distribution</span></p>
+
+    <figure class="shot offset-m reveal" data-para="0.045">
+      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · Recording, quietly</span>
+        <span class="sp-desc">The floating pill over a live call — Zoom stays frontmost, GRØD stays out of the way.</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= EXHIBIT C · THE CARD INDEX ======================= -->
+<section class="statement">
+  <span class="exhibit-tag" aria-hidden="true">Exhibit C</span>
+  <div class="wrap">
+    <p class="eyebrow reveal">The card index</p>
+    <h2 class="display reveal">Name a voice&nbsp;once.</h2>
+    <p class="body-copy reveal">
+      GRØD learns the voices you meet. Label a speaker one time and they're
+      recognized in <strong>every meeting — past and future.</strong> People becomes
+      a card index of everyone you talk to: what's coming up, what you last
+      discussed, every conversation you've shared. Kept at your desk, like a good
+      rolodex.
+    </p>
+
+    <div class="cards">
+      <article class="icard reveal" data-tab="Voice">
+        <h3>Labeled once</h3>
+        <p>One name, typed by you. That's the whole ceremony.</p>
+      </article>
+      <article class="icard reveal" data-tab="Memory">
+        <h3>Recognized always</h3>
+        <p>Past meetings and future ones — the label reaches both directions.</p>
+      </article>
+      <article class="icard reveal" data-tab="On file">
+        <h3>A quiet directory</h3>
+        <p>Coming up, last discussed, every conversation you've shared.</p>
+      </article>
+    </div>
+
+    <figure class="shot reveal" data-para="0.045">
+      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · People</span>
+        <span class="sp-desc">The person-first view — coming up, recent, and the full directory.</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= EXHIBIT D · THE ARCHIVE ======================= -->
+<section class="statement">
+  <span class="exhibit-tag" aria-hidden="true">Exhibit D</span>
+  <div class="wrap">
+    <p class="eyebrow reveal">Ask the archive</p>
+    <h2 class="display glyph-head reveal">⌘K</h2>
+    <p class="reveal"><span class="drawer-label" aria-hidden="true"><i></i>Every meeting · A–Ø<i></i></span></p>
+    <p class="body-copy reveal" style="margin-top:1.6em">
+      One shortcut searches every meeting you've ever had — by keyword <strong>and</strong>
+      by meaning. Ask a question, get an answer with citations; click one and land
+      on the exact moment it was said. A filing cabinet that answers back, without
+      a server in sight.
+    </p>
+    <figure class="shot offset-m reveal" data-para="0.045">
+      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · Universal search</span>
+        <span class="sp-desc">The ⌘K palette and the cross-meeting answer card, facets and all.</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= THE COLOPHON ======================= -->
+<section class="colophon">
+  <div class="wrap">
+    <div class="colo-box reveal">
+      <span class="colo-stamp stamp teal thump" aria-hidden="true">Verified in source</span>
+      <h2>Colophon</h2>
+      <p class="colo-sub">Production notes, in the tradition of honest printers.</p>
+      <ol>
+        <li>
+          <span class="colo-num">i.</span>
+          <span class="colo-claim">Exactly one file in the app can open a network connection — used only to download optional transcription models you ask for.
+            <small>Enforced by a source-scan test that fails the build if a second one appears.</small></span>
+        </li>
+        <li>
+          <span class="colo-num">ii.</span>
+          <span class="colo-claim">Every downloaded file is SHA-256-verified against a pinned release before it's trusted.
+            <small>HTTPS to two allowed domains; dependencies are forced offline too.</small></span>
+        </li>
+        <li>
+          <span class="colo-num">iii.</span>
+          <span class="colo-claim">"Recording removed" is only ever said after it's proven true.
+            <small>Optional 90-day auto-purge removes audio only — transcripts and notes always survive.</small></span>
+        </li>
+        <li>
+          <span class="colo-num">iv.</span>
+          <span class="colo-claim">Telemetry: none. No analytics, no phone-home, no account to attach them to.
+            <small>Even local diagnostics use a closed vocabulary that cannot contain your content.</small></span>
+        </li>
+      </ol>
+      <p class="colo-coda">Every claim in this file survives an engineer reading the source.</p>
+      <p class="colo-cta"><a class="beta-link" href="#beta">Convinced enough to try it? Request the beta →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= END OF DAY ======================= -->
+<section class="breathe">
+  <div class="halftone teal" data-para="0.08" aria-hidden="true"></div>
+  <p class="eyebrow reveal">End of day · ledger closed</p>
+  <p class="zen reveal">"Breathe — that was your last meeting today."</p>
+  <p class="cap reveal">GRØD's actual words when your afternoon empties. Calm is a feature.</p>
+</section>
+
+<!-- ======================= WAITLIST ======================= -->
+<section class="cta" id="beta">
+  <div class="wrap" style="position:relative">
+    <span class="reg" style="top:30px;right:4px" aria-hidden="true"></span>
+    <p class="eyebrow reveal">The beta</p>
+    <h2 class="display reveal">Breakfast is almost&nbsp;ready.</h2>
+    <p class="body-copy reveal">
+      GRØD is in pre-launch hardening — the bar for 1.0 is
+      <strong>"never loses a meeting, and a stranger can install it."</strong>
+      If you'd like an early bowl, say hello and we'll save you a seat at the table.
+    </p>
+    <a class="btn reveal" href="mailto:hello@grod.app?subject=GR%C3%98D%20beta%2C%20please&body=Save%20me%20a%20seat%20%E2%80%94%20I%27m%20on%20an%20Apple%20silicon%20Mac.">Request the beta →</a>
+    <p class="fineprint reveal">
+      No form, no tracker — the button is just email. Fitting, we thought.
+      You'll need an Apple silicon Mac on macOS 26 or later; briefings want
+      Apple&nbsp;Intelligence enabled, recording and transcription work regardless.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="fm">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="10" fill="none" stroke="#D63A86" stroke-width="5"/>
+        <line x1="6" y1="28" x2="26" y2="4" stroke="#232019" stroke-width="4"/>
+      </svg>
+      GRØD
+    </span>
+    <span class="tag">proper oats — on-device meeting intelligence</span>
+    <span class="stamp">Printed on-device</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reveals = document.querySelectorAll(".reveal, .thump");
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var siblings = el.parentElement ? el.parentElement.querySelectorAll(".reveal, .thump") : [el];
+      var index = Array.prototype.indexOf.call(siblings, el);
+      el.style.transitionDelay = Math.max(0, index) * 70 + "ms";
+      el.classList.add("in");
+      io.unobserve(el);
+    });
+  }, { threshold: 0.01, rootMargin: "0px 0px 18% 0px" });
+  reveals.forEach(function (el) { io.observe(el); });
+
+  // Parallax + hero misregistration drift, as on the main draft.
+  var paras = Array.prototype.slice.call(document.querySelectorAll("[data-para]"));
+  var drifts = Array.prototype.slice.call(document.querySelectorAll("[data-drift]"));
+  var ticking = false;
+
+  function frame() {
+    ticking = false;
+    var vh = window.innerHeight;
+    paras.forEach(function (el) {
+      var r = el.parentElement.getBoundingClientRect();
+      var centreDelta = r.top + r.height / 2 - vh / 2;
+      var speed = parseFloat(el.getAttribute("data-para")) || 0;
+      el.style.transform = "translate3d(0," + (-centreDelta * speed).toFixed(1) + "px,0)";
+    });
+    drifts.forEach(function (el) {
+      var shift = Math.min(10, window.scrollY / 60);
+      var teal = el.querySelector(".g-teal");
+      var mag = el.querySelector(".g-mag");
+      if (teal) teal.style.transform = "translate(" + (3 + shift) + "px," + (-3 - shift * 0.6) + "px)";
+      if (mag) mag.style.transform = "translate(" + (-3 - shift * 0.8) + "px," + (3 + shift * 0.5) + "px)";
+    });
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(frame); }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  frame();
+})();
+</script>
+</body>
+</html>
