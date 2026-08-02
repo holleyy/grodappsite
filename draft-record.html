@@ -635,21 +635,26 @@
       <ol>
         <li>
           <span class="colo-num">i.</span>
+          <span class="colo-claim">There is no GRØD server. Nothing the app captures has anywhere of ours to go.
+            <small>Not for sync, not for analytics, not for anything.</small></span>
+        </li>
+        <li>
+          <span class="colo-num">ii.</span>
           <span class="colo-claim">Exactly one file in the app can open a network connection — used only to download optional transcription models you ask for.
             <small>Enforced by a source-scan test that fails the build if a second one appears.</small></span>
         </li>
         <li>
-          <span class="colo-num">ii.</span>
+          <span class="colo-num">iii.</span>
           <span class="colo-claim">Every downloaded file is SHA-256-verified against a pinned release before it's trusted.
             <small>HTTPS to two allowed domains; dependencies are forced offline too.</small></span>
         </li>
         <li>
-          <span class="colo-num">iii.</span>
+          <span class="colo-num">iv.</span>
           <span class="colo-claim">"Recording removed" is only ever said after it's proven true.
             <small>Optional 90-day auto-purge removes audio only — transcripts and notes always survive.</small></span>
         </li>
         <li>
-          <span class="colo-num">iv.</span>
+          <span class="colo-num">v.</span>
           <span class="colo-claim">Telemetry: none. No analytics, no phone-home, no account to attach them to.
             <small>Even local diagnostics use a closed vocabulary that cannot contain your content.</small></span>
         </li>

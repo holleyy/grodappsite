@@ -652,6 +652,15 @@
       <div class="clause reveal">
         <span class="cnum">6.1</span>
         <div>
+          <h3>Servers</h3>
+          <p>None. There is no GRØD server — nothing the app captures has anywhere of ours to go.
+            <small><b>Enforcement:</b> structural. Data cannot leak to infrastructure that does not exist.</small></p>
+        </div>
+        <span class="chip">Structural</span>
+      </div>
+      <div class="clause reveal">
+        <span class="cnum">6.2</span>
+        <div>
           <h3>Network</h3>
           <p>Exactly one file in the app can open a connection — used only to download optional transcription models you ask for.
             <small><b>Enforcement:</b> a source-scan test fails the build if a second one appears.</small></p>
@@ -659,7 +668,7 @@
         <span class="chip">Enforced</span>
       </div>
       <div class="clause reveal">
-        <span class="cnum">6.2</span>
+        <span class="cnum">6.3</span>
         <div>
           <h3>Downloads</h3>
           <p>Every downloaded file is SHA-256-verified against a pinned release before it's trusted.
@@ -668,7 +677,7 @@
         <span class="chip">Enforced</span>
       </div>
       <div class="clause reveal">
-        <span class="cnum">6.3</span>
+        <span class="cnum">6.4</span>
         <div>
           <h3>Deletion</h3>
           <p>"Recording removed" is only ever said after it's proven true.
@@ -677,7 +686,7 @@
         <span class="chip">Enforced</span>
       </div>
       <div class="clause reveal">
-        <span class="cnum">6.4</span>
+        <span class="cnum">6.5</span>
         <div>
           <h3>Telemetry</h3>
           <p>None. No analytics, no phone-home, no account to attach them to.
@@ -720,7 +729,7 @@
       <div><dt>Platform</dt><dd>Apple silicon Mac</dd></div>
       <div><dt>OS</dt><dd>macOS 26 or later</dd></div>
       <div><dt>Briefings</dt><dd>Apple Intelligence enabled <small>Recording and transcription work regardless.</small></dd></div>
-      <div><dt>Network required</dt><dd class="none">None <small style="color:var(--ink-2);font-weight:400">Optional model downloads only — see §6.1.</small></dd></div>
+      <div><dt>Network required</dt><dd class="none">None <small style="color:var(--ink-2);font-weight:400">Optional model downloads only — see §6.2.</small></dd></div>
     </dl>
 
     <a class="btn reveal" href="mailto:hello@grod.app?subject=GR%C3%98D%20beta%2C%20please&body=Save%20me%20a%20seat%20%E2%80%94%20I%27m%20on%20an%20Apple%20silicon%20Mac.">Request the beta →</a>
