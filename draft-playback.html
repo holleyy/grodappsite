@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script><!-- progressive enhancement: motion only applies when JS runs -->
+<title>GRØD: Recorded here. Kept here.</title>
+<meta name="description" content="On-device meeting intelligence for the Mac. Recordings, transcripts, briefings, and a searchable memory of everyone you talk to. No cloud, no account, no bot in your call.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23D63A86' stroke-width='5'/%3E%3Cline x1='6' y1='28' x2='26' y2='4' stroke='%23232019' stroke-width='4'/%3E%3C/svg%3E">
+<!--
+  GRØD landing, ALTERNATE DRAFT C, "THE PLAYBACK".
+  Direction: the page is one 46-minute recording. A two-ink misregistered
+  waveform runs down a left rail through the whole scroll; scroll is the
+  playhead (the masthead timecode counts along); the tape terminates at the
+  trust section: the signal ends on the page because it ends on the Mac.
+  Section seams are tape splices, annotated with timecodes.
+
+  Same palette (Riso theme, verbatim from Themes.swift), same Merriweather/Inter
+  pairing, same content claims as index.html. One extension: a system mono stack
+  (- - mono, no font download) used ONLY for genuine data: timecodes, the deck
+  counter, capture captions. Labels elsewhere get other treatments on purpose.
+  Waveform inking (ghost ahead of the playhead, full ink behind it) is decoration
+  and never gates content: with JS off or reduced motion, the tape prints fully.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Riso light palette — ThemeSpec `riso` */
+    --paper:#F6F1E6;
+    --surface:#E9E5DC;
+    --raised:#F3EFE6;
+    --hairline:#D9D3C6;
+    --ink:#232019;
+    --ink-2:#6C6759;
+    --magenta:#D63A86;       /* graphic ink only */
+    --magenta-deep:#B82E70;  /* text-safe magenta — 5.09:1 on paper */
+    --magenta-press:#A3275F; /* button hover/press — 6.19:1 on paper */
+    --teal:#2AA7C8;          /* graphic ink only */
+    --teal-text:#146D85;     /* text-safe teal — 5.24:1 on paper */
+    --positive:#4E7A44;
+
+    --serif:"Merriweather", Georgia, "Times New Roman", serif;
+    --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --inset:clamp(20px, 6vw, 84px);
+    --measure:34em;
+    --rail:64px;                                  /* tape width */
+    --railgap:clamp(28px, 4.5vw, 60px);           /* tape → copy */
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  section{scroll-margin-top:64px}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:clamp(1rem, .95rem + .3vw, 1.125rem);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--teal-text);color:var(--paper)}
+  a{color:inherit}
+
+  .wrap{max-width:1240px;margin:0 auto;padding-left:var(--inset);padding-right:var(--inset)}
+
+  /* ---------- shared type ---------- */
+  .display{
+    font-family:var(--serif);font-weight:900;line-height:1.04;
+    letter-spacing:-.015em;text-wrap:balance;
+  }
+  .body-copy{max-width:var(--measure);color:var(--ink-2)}
+  .body-copy strong{color:var(--ink);font-weight:600}
+  .tc{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--teal-text);white-space:nowrap}
+
+  /* ---------- print furniture ---------- */
+  .reg{position:absolute;width:20px;height:20px;pointer-events:none;opacity:.75}
+  .reg::before,.reg::after{content:"";position:absolute;background:var(--teal)}
+  .reg::before{left:50%;top:0;width:1.5px;height:100%;transform:translateX(-50%)}
+  .reg::after{top:50%;left:0;height:1.5px;width:100%;transform:translateY(-50%)}
+
+  .stamp{
+    display:inline-block;
+    font-weight:700;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--magenta-deep);border:2px solid var(--magenta-deep);
+    padding:.55em 1em .5em;border-radius:4px;
+    transform:rotate(-5deg);
+    mix-blend-mode:multiply;
+  }
+
+  /* halftone dot field (breathe backdrop) */
+  .halftone{position:absolute;pointer-events:none;mix-blend-mode:multiply}
+  .halftone.teal{
+    background-image:radial-gradient(circle, var(--teal) 1.5px, transparent 1.6px);
+    background-size:13px 13px;
+  }
+
+  /* ---------- deck (masthead) ---------- */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:var(--paper);
+    padding:13px 0 11px;
+    border-bottom:1.5px solid var(--hairline);
+  }
+  .masthead{display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
+  .mark{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .mark svg{display:block}
+  .wordmark{font-family:var(--serif);font-weight:900;font-size:1.35rem;letter-spacing:.01em}
+  .deckclock{
+    position:absolute;left:50%;transform:translateX(-50%);
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--ink-2);
+  }
+  .deckclock .side{color:var(--teal-text)}
+  .beta-link{
+    font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;
+    border-bottom:2px solid var(--magenta);padding-bottom:2px;
+  }
+  .beta-link:hover{color:var(--magenta-deep)}
+
+  /* ---------- the tape rail ---------- */
+  .row{position:relative}
+  .row .content{padding-left:calc(var(--rail) + var(--railgap))}
+  .rail{
+    position:absolute;top:0;bottom:0;left:0;width:var(--rail);
+    pointer-events:none;
+  }
+  .splice{
+    position:absolute;top:0;left:0;right:0;height:0;
+    border-top:2px dashed var(--hairline);
+  }
+  .splice .tc{position:absolute;top:-0.65em;left:calc(100% + 12px)}
+  .recdot{
+    display:inline-block;width:.55em;height:.55em;border-radius:50%;
+    background:var(--magenta);vertical-align:baseline;margin-right:.45em;
+  }
+  .wf-stack{
+    position:absolute;top:30px;bottom:0;left:0;right:0;
+    overflow:hidden;display:flex;flex-direction:column;
+  }
+  .wf{display:block;width:100%;height:auto;flex-shrink:0;overflow:visible}
+  .u-g{fill:var(--ink-2);opacity:.20}
+  .u-t{fill:var(--teal);mix-blend-mode:multiply;opacity:.85;transform:translate(1.5px,-2px)}
+  .u-m{fill:var(--magenta);mix-blend-mode:multiply;opacity:.7;transform:translate(-1.5px,2px)}
+  /* played portion: fully inked; ahead of the playhead: ghost. No JS = all ink. */
+  .wf-ink{clip-path:inset(0 0 calc(100% - var(--play,100%)) 0)}
+  .playhead{
+    position:absolute;left:-6px;right:-6px;top:var(--play,100%);height:0;
+    opacity:0;transition:opacity .4s ease;
+  }
+  .playhead::before{
+    content:"";position:absolute;left:0;right:0;top:-1.5px;height:3px;border-radius:2px;
+    background:var(--teal-text);opacity:.55;
+  }
+  .motion .playhead{opacity:1}
+
+  /* voice tags pinned to the tape (people section) */
+  .vtag{
+    position:absolute;left:calc(100% + 12px);
+    font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;
+    color:var(--magenta-deep);white-space:nowrap;
+  }
+
+  /* leader + flatline rail variants */
+  .rail.leader::after{
+    content:"";position:absolute;top:30px;bottom:0;left:50%;width:0;
+    border-left:2px dashed var(--hairline);transform:translateX(-1px);
+  }
+  .rail.flat::after{
+    content:"";position:absolute;top:30px;bottom:0;left:50%;width:3px;border-radius:2px;
+    background:var(--ink-2);opacity:.4;transform:translateX(-1.5px);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{min-height:calc(100svh - 56px);display:flex;align-items:center;
+    padding:clamp(48px,7vh,90px) 0}
+  .hero h1{font-size:clamp(2.9rem, 9.5vw, 7.6rem);position:relative}
+  .hero h1 .line{display:block;position:relative}
+  .misreg{position:relative;z-index:1}
+  .misreg .ghost{
+    position:absolute;inset:0;z-index:-1;
+    mix-blend-mode:multiply;pointer-events:none;user-select:none;
+  }
+  .misreg .ghost.g-teal{color:var(--teal);opacity:.38;transform:translate(3px,-3px)}
+  .misreg .ghost.g-mag{color:var(--magenta);opacity:.28;transform:translate(-3px,3px)}
+  .hero .quiet{color:var(--ink);font-weight:300;font-style:italic;letter-spacing:-.01em}
+  .hero .sub{margin-top:2em;max-width:33em;color:var(--ink-2)}
+  .hero .sub strong{color:var(--ink);font-weight:600}
+  .hero .cta-row{margin-top:2.2em;display:flex;align-items:center;gap:1.6em;flex-wrap:wrap}
+  .hero .stamp{margin-bottom:1.6em}
+  .playhint{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--ink-2)}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-block;
+    font-weight:700;font-size:1rem;letter-spacing:.02em;
+    color:var(--paper);background:var(--magenta-deep);
+    padding:1em 1.7em;border-radius:6px;text-decoration:none;
+    box-shadow:7px 7px 0 var(--teal);
+    transition:background .15s ease, transform .1s ease, box-shadow .1s ease;
+  }
+  .btn:hover{background:var(--magenta-press)}
+  .btn:active{transform:translate(7px,7px);box-shadow:0 0 0 var(--teal)}
+  .btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+  /* ---------- passages (sections on the tape) ---------- */
+  .passage{padding:clamp(80px,12vh,150px) 0}
+  .passage h2{font-size:clamp(2.2rem, 6.5vw, 4.8rem);margin:0 0 .5em;max-width:13em}
+  .passage .body-copy{margin-top:.4em}
+
+  /* ---------- contact prints (screenshot frames) ---------- */
+  .print{
+    margin-top:clamp(36px,5vh,60px);
+    max-width:860px;
+    background:var(--raised);
+    border:1.5px solid var(--ink);border-radius:8px;
+    padding:12px;
+    box-shadow:9px 9px 0 var(--teal);
+  }
+  .print.offset-m{box-shadow:9px 9px 0 var(--magenta)}
+  .shot-placeholder{
+    aspect-ratio:16/10;display:flex;flex-direction:column;gap:.6em;
+    align-items:center;justify-content:center;
+    border:1.5px dashed var(--hairline);border-radius:5px;
+    color:var(--ink-2);text-align:center;padding:1em;
+  }
+  .shot-placeholder .sp-label{
+    font-size:.72rem;font-weight:650;letter-spacing:.22em;text-transform:uppercase;
+  }
+  .shot-placeholder .sp-desc{font-size:.85rem;max-width:26em}
+  .print figcaption{
+    margin-top:10px;font-family:var(--mono);font-size:.68rem;
+    letter-spacing:.08em;color:var(--ink-2);
+  }
+
+  /* ---------- the archive (⌘K) ---------- */
+  .shelf{
+    margin-top:clamp(36px,5vh,60px);
+    display:flex;align-items:flex-start;gap:16px;
+  }
+  .strip{width:26px;flex-shrink:0;position:relative}
+  .strip svg{display:block;width:100%;height:auto;overflow:visible}
+  .strip.s-t use{fill:var(--teal);opacity:.55;mix-blend-mode:multiply}
+  .strip.s-m use{fill:var(--magenta);opacity:.45;mix-blend-mode:multiply}
+  .strip.found .f-t{fill:var(--teal);opacity:.9;mix-blend-mode:multiply;transform:translate(1.5px,-2px)}
+  .strip.found .f-m{fill:var(--magenta);opacity:.75;mix-blend-mode:multiply;transform:translate(-1.5px,2px)}
+  .strip.found .hit{
+    position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);
+    text-align:center;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;
+    color:var(--magenta-deep);white-space:nowrap;
+  }
+  .strip.found .hit::before{content:"▲";display:block;font-size:.7rem;margin-bottom:2px}
+  .kbig{
+    font-family:var(--serif);font-weight:900;font-size:clamp(3.4rem,9vw,7rem);
+    line-height:1;letter-spacing:0;
+  }
+
+  /* ---------- archive notes (trust) ---------- */
+  .notes{
+    max-width:64em;
+    border:2px solid var(--ink);border-radius:10px;
+    background:var(--raised);
+    overflow:hidden;
+  }
+  .notes-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:1em;flex-wrap:wrap;
+    padding:1.1em 1.6em;
+    border-bottom:2px solid var(--ink);
+    background:var(--surface);
+  }
+  .notes-head h2{font-size:clamp(1.7rem,4vw,2.6rem);margin:0}
+  .notes ol{list-style:none;padding:0 1.6em}
+  .notes li{
+    display:grid;grid-template-columns:minmax(110px,170px) 1fr;gap:1.5em;
+    padding:1.15em 0;
+  }
+  .notes li + li{border-top:1.5px solid var(--hairline)}
+  .t-label{
+    font-size:.72rem;font-weight:650;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--teal-text);padding-top:.35em;
+  }
+  .t-claim{color:var(--ink)}
+  .t-claim small{display:block;color:var(--ink-2);margin-top:.25em;font-size:.85rem}
+  .coda{
+    padding:1.3em 1.6em 1.5em;border-top:2px solid var(--ink);
+    font-size:.9rem;color:var(--ink-2);font-style:italic;
+  }
+  .coda a{font-style:normal}
+  .notes-outro{margin-top:1.6em}
+
+  /* ---------- breathe ---------- */
+  .breathe .content{
+    min-height:56vh;position:relative;
+    display:flex;flex-direction:column;justify-content:center;gap:1.4em;
+    padding-top:10vh;padding-bottom:10vh;
+  }
+  .breathe .halftone.teal{
+    inset:auto 0 0 0;height:36%;opacity:.2;
+    -webkit-mask:radial-gradient(60% 90% at 40% 100%, #000 0%, transparent 70%);
+            mask:radial-gradient(60% 90% at 40% 100%, #000 0%, transparent 70%);
+  }
+  .breathe p.zen{
+    font-family:var(--serif);font-weight:300;font-style:italic;
+    font-size:clamp(1.7rem, 4.4vw, 3rem);line-height:1.3;
+    max-width:20em;text-wrap:balance;position:relative;
+  }
+  .breathe .cap{font-size:.85rem;color:var(--ink-2);position:relative}
+
+  /* ---------- waitlist ---------- */
+  .cta{padding:clamp(90px,13vh,160px) 0;border-top:1.5px solid var(--ink)}
+  .cta h2{font-size:clamp(2.5rem, 7.5vw, 5.6rem);max-width:10em;margin:0 0 .5em}
+  .cta .body-copy{margin-bottom:2.2em}
+  .cta .fineprint{margin-top:1.6em;font-size:.85rem;color:var(--ink-2);max-width:34em}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1.5px solid var(--hairline);padding:2.6em 0 3em}
+  .foot{
+    display:flex;flex-direction:column;align-items:center;gap:.9em;text-align:center;
+  }
+  .foot .fm{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:900;font-size:1.1rem}
+  .foot .tag{font-size:.85rem;color:var(--ink-2)}
+  .foot .stamp{font-size:.62rem;transform:rotate(-3deg)}
+
+  /* ---------- motion ---------- */
+  /* Reveals slide only; content is never hidden. No JS or reduced motion = static. */
+  .js .reveal{transform:translateY(22px);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal.in{transform:none}
+  .motion .recdot{animation:recblink 1.6s steps(1) infinite}
+  @keyframes recblink{0%,70%{opacity:1}71%,100%{opacity:.25}}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .js .reveal{transform:none;transition:none}
+    .btn{transition:none}
+  }
+
+  /* ---------- small screens ---------- */
+  @media (max-width:680px){
+    :root{--rail:34px;--railgap:20px}
+    .deckclock{display:none}
+    .hero .stamp{margin-top:1.5em} /* clear the REC splice label */
+    .splice .tc{left:calc(100% + 8px);font-size:.6rem}
+    .vtag{display:none}
+    .print{box-shadow:6px 6px 0 var(--teal)}
+    .print.offset-m{box-shadow:6px 6px 0 var(--magenta)}
+    .notes li{grid-template-columns:1fr;gap:.3em}
+    .misreg .ghost{display:none}
+    .shelf{gap:10px}
+    .strip:nth-child(n+6){display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- one authored waveform pattern; every tape on the page reuses it -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wfb" viewBox="0 0 64 320">
+    <rect x="23" y="2"   width="18" height="4" rx="2"/><rect x="17" y="12"  width="30" height="4" rx="2"/>
+    <rect x="10" y="22"  width="44" height="4" rx="2"/><rect x="4"  y="32"  width="56" height="4" rx="2"/>
+    <rect x="13" y="42"  width="38" height="4" rx="2"/><rect x="21" y="52"  width="22" height="4" rx="2"/>
+    <rect x="8"  y="62"  width="48" height="4" rx="2"/><rect x="2"  y="72"  width="60" height="4" rx="2"/>
+    <rect x="15" y="82"  width="34" height="4" rx="2"/><rect x="24" y="92"  width="16" height="4" rx="2"/>
+    <rect x="12" y="102" width="40" height="4" rx="2"/><rect x="6"  y="112" width="52" height="4" rx="2"/>
+    <rect x="19" y="122" width="26" height="4" rx="2"/><rect x="10" y="132" width="44" height="4" rx="2"/>
+    <rect x="3"  y="142" width="58" height="4" rx="2"/><rect x="17" y="152" width="30" height="4" rx="2"/>
+    <rect x="25" y="162" width="14" height="4" rx="2"/><rect x="14" y="172" width="36" height="4" rx="2"/>
+    <rect x="7"  y="182" width="50" height="4" rx="2"/><rect x="1"  y="192" width="62" height="4" rx="2"/>
+    <rect x="11" y="202" width="42" height="4" rx="2"/><rect x="20" y="212" width="24" height="4" rx="2"/>
+    <rect x="5"  y="222" width="54" height="4" rx="2"/><rect x="13" y="232" width="38" height="4" rx="2"/>
+    <rect x="23" y="242" width="18" height="4" rx="2"/><rect x="9"  y="252" width="46" height="4" rx="2"/>
+    <rect x="2"  y="262" width="60" height="4" rx="2"/><rect x="16" y="272" width="32" height="4" rx="2"/>
+    <rect x="22" y="282" width="20" height="4" rx="2"/><rect x="10" y="292" width="44" height="4" rx="2"/>
+    <rect x="18" y="302" width="28" height="4" rx="2"/><rect x="7"  y="312" width="50" height="4" rx="2"/>
+  </symbol>
+</svg>
+
+<header class="wrap">
+  <div class="masthead">
+    <a class="mark" href="#" aria-label="GRØD home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="10" fill="none" stroke="#D63A86" stroke-width="5"/>
+        <line x1="6" y1="28" x2="26" y2="4" stroke="#232019" stroke-width="4"/>
+      </svg>
+      <span class="wordmark">GRØD</span>
+    </a>
+    <span class="deckclock" aria-hidden="true"><span class="side">SIDE A</span> · <span id="clock">00:00</span> / 46:12</span>
+    <a class="beta-link" href="#beta">Request the beta</a>
+  </div>
+</header>
+
+<!-- ======================= 00:00 · HERO ======================= -->
+<section class="hero">
+  <div class="wrap row" style="width:100%">
+    <div class="rail" aria-hidden="true">
+      <div class="splice"><span class="tc"><i class="recdot"></i>REC 00:00</span></div>
+      <div class="wf-stack">
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      </div>
+      <div class="wf-stack wf-ink">
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+        <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      </div>
+      <div class="playhead"></div>
+    </div>
+    <div class="content" style="position:relative">
+      <span class="reg" style="top:-14px;right:-6px" aria-hidden="true"></span>
+      <div><span class="stamp">100% on-device</span></div>
+      <h1 class="display">
+        <span class="line misreg reveal" data-drift>
+          <span class="ghost g-teal" aria-hidden="true">Recorded here.</span>
+          <span class="ghost g-mag" aria-hidden="true">Recorded here.</span>
+          Recorded here.
+        </span>
+        <span class="line quiet reveal">Kept here.</span>
+      </h1>
+      <p class="sub reveal">
+        GRØD captures both sides of every call on your Mac and turns the talk into
+        briefings, people, and answers. <strong>No cloud. No account. No bot in
+        your call.</strong>
+      </p>
+      <div class="cta-row reveal">
+        <a class="btn" href="#beta">Request the beta</a>
+        <span class="playhint" aria-hidden="true">▸ SCROLL TO PLAY</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 00:04 · RECORDING ======================= -->
+<section class="passage row wrap">
+  <div class="rail" aria-hidden="true">
+    <div class="splice"><span class="tc">00:04</span></div>
+    <div class="wf-stack">
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+    </div>
+    <div class="wf-stack wf-ink">
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+    </div>
+    <div class="playhead"></div>
+  </div>
+  <div class="content">
+    <h2 class="display reveal">No bot joins. Your Mac just&nbsp;listens.</h2>
+    <p class="body-copy reveal">
+      GRØD hears your mic, plus the audio your conference app is already playing.
+      <strong>Zoom, Meet, Teams, a huddle, a browser tab, or a conversation across
+      the table.</strong> Capture, transcription, and speaker separation all run
+      on this machine, and nothing announces itself to the room.
+    </p>
+    <figure class="print reveal" data-para="0.04">
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · Recording, quietly</span>
+        <span class="sp-desc">The floating pill over a live call. Zoom stays frontmost, GRØD stays out of the way.</span>
+      </div>
+      <figcaption>00:04 · captured on this Mac · sent nowhere</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= 00:31 · VOICES ======================= -->
+<section class="passage row wrap">
+  <div class="rail" aria-hidden="true">
+    <div class="splice"><span class="tc">00:31</span></div>
+    <span class="vtag" style="top:26%">MAJA ·</span>
+    <span class="vtag" style="top:58%">TOM ·</span>
+    <div class="wf-stack">
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+    </div>
+    <div class="wf-stack wf-ink">
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+    </div>
+    <div class="playhead"></div>
+  </div>
+  <div class="content">
+    <h2 class="display reveal">Name a voice&nbsp;once.</h2>
+    <p class="body-copy reveal">
+      Label a speaker one time and GRØD recognizes them in <strong>every meeting,
+      past and future.</strong> People become a quiet directory of who you talk to:
+      what's coming up, what you last discussed, every conversation you've shared.
+      Built on your Mac, staying on your Mac.
+    </p>
+    <figure class="print offset-m reveal" data-para="0.04">
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · People</span>
+        <span class="sp-desc">The person-first view: coming up, recent, and the full directory.</span>
+      </div>
+      <figcaption>voice directory · learned locally</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= 46:12 · THE BRIEFING ======================= -->
+<section class="passage row wrap">
+  <div class="rail" aria-hidden="true">
+    <div class="splice"><span class="tc">46:12 · CALL ENDS</span></div>
+    <div class="wf-stack">
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-g"/></svg>
+    </div>
+    <div class="wf-stack wf-ink">
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+      <svg class="wf" viewBox="0 0 64 320" aria-hidden="true"><use href="#wfb" class="u-t"/><use href="#wfb" class="u-m"/></svg>
+    </div>
+    <div class="playhead"></div>
+  </div>
+  <div class="content">
+    <h2 class="display reveal">The call ends. The briefing&nbsp;exists.</h2>
+    <p class="body-copy reveal">
+      Nobody re-reads an hour of talk. The moment a meeting ends, GRØD writes the
+      distillation: <strong>what was decided, what you owe, what's still open.</strong>
+      One calm, editable document, your own notes woven in and never overwritten.
+      Revert is one click.
+    </p>
+    <figure class="print reveal" data-para="0.04">
+      <div class="shot-placeholder">
+        <span class="sp-label">Screenshot · The briefing</span>
+        <span class="sp-desc">Meeting detail: summary, decisions, action items with owners, in the paper document view.</span>
+      </div>
+      <figcaption>46:12 → briefing.md · written before you stand up</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================= THE ARCHIVE · ⌘K ======================= -->
+<section class="passage row wrap">
+  <div class="rail" aria-hidden="true">
+    <div class="splice"><span class="tc">EVERY TAPE</span></div>
+    <div class="rail leader" style="position:absolute;inset:0"></div>
+  </div>
+  <div class="content">
+    <p class="kbig reveal" aria-hidden="true">⌘K</p>
+    <h2 class="display reveal" style="font-size:clamp(2rem,5.5vw,3.8rem)">Every tape, one&nbsp;question.</h2>
+    <p class="body-copy reveal">
+      One shortcut searches every meeting you've ever had, by keyword <strong>and</strong>
+      by meaning. Ask a question, get an answer with citations, click one, and land
+      on the exact moment it was said. A knowledge base that compounds, without a
+      server in sight.
+    </p>
+    <div class="shelf reveal" aria-hidden="true">
+      <div class="strip s-t"><svg viewBox="0 0 64 320"><use href="#wfb"/></svg></div>
+      <div class="strip s-m"><svg viewBox="0 0 64 320"><use href="#wfb"/></svg></div>
+      <div class="strip s-t"><svg viewBox="0 0 64 320"><use href="#wfb"/></svg></div>
+      <div class="strip found">
+        <svg viewBox="0 0 64 320"><use href="#wfb" class="f-t"/><use href="#wfb" class="f-m"/></svg>
+        <span class="hit">11 MAR · PRICING</span>
+      </div>
+      <div class="strip s-m"><svg viewBox="0 0 64 320"><use href="#wfb"/></svg></div>
+      <div class="strip s-t"><svg viewBox="0 0 64 320"><use href="#wfb"/></svg></div>
+      <div class="strip s-m"><svg viewBox="0 0 64 320"><use href="#wfb"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= END OF SIDE A · TRUST ======================= -->
+<section class="passage row wrap" style="padding-bottom:clamp(60px,9vh,110px)">
+  <div class="rail leader" aria-hidden="true">
+    <div class="splice"><span class="tc">END OF SIDE A</span></div>
+  </div>
+  <div class="content">
+    <div class="notes reveal">
+      <div class="notes-head">
+        <h2 class="display">Check us, don't trust&nbsp;us.</h2>
+        <span class="tc">ARCHIVE NOTES · SIDE A</span>
+      </div>
+      <ol>
+        <li>
+          <span class="t-label">Servers</span>
+          <span class="t-claim">None. There is no GRØD server; nothing the app captures has anywhere of ours to go.
+            <small>Not for sync, not for analytics, not for anything. You can't leak to infrastructure that doesn't exist.</small></span>
+        </li>
+        <li>
+          <span class="t-label">Network</span>
+          <span class="t-claim">Exactly one file in the app can open a connection, used only to download optional transcription models you ask for.
+            <small>Enforced by a source-scan test that fails the build if a second one appears.</small></span>
+        </li>
+        <li>
+          <span class="t-label">Downloads</span>
+          <span class="t-claim">Every downloaded file is SHA-256-verified against a pinned release before it's trusted.
+            <small>HTTPS to two allowed domains; dependencies are forced offline too.</small></span>
+        </li>
+        <li>
+          <span class="t-label">Deletion</span>
+          <span class="t-claim">"Recording removed" is only ever said after it's proven true.
+            <small>Optional 90-day auto-purge removes audio only; transcripts and notes always survive.</small></span>
+        </li>
+        <li>
+          <span class="t-label">Telemetry</span>
+          <span class="t-claim">None. No analytics, no phone-home, no account to attach them to.
+            <small>Even local diagnostics use a closed vocabulary that cannot contain your content.</small></span>
+        </li>
+      </ol>
+      <p class="coda">We can't show you the source, so we show you behavior: switch Wi-Fi off and GRØD keeps working; watch the network and nothing leaves.</p>
+    </div>
+    <p class="notes-outro reveal"><a class="beta-link" href="#beta">Convinced enough to try it? Request the beta →</a></p>
+  </div>
+</section>
+
+<!-- ======================= SILENCE · BREATHE ======================= -->
+<section class="breathe row wrap">
+  <div class="rail flat" aria-hidden="true">
+    <div class="splice"><span class="tc">SILENCE</span></div>
+  </div>
+  <div class="content">
+    <div class="halftone teal" aria-hidden="true"></div>
+    <p class="zen reveal">"Breathe — that was your last meeting today."</p>
+    <p class="cap reveal">GRØD's actual words when your afternoon empties. Calm is a feature.</p>
+  </div>
+</section>
+
+<!-- ======================= WAITLIST ======================= -->
+<section class="cta" id="beta">
+  <div class="wrap" style="position:relative">
+    <span class="reg" style="top:30px;right:4px" aria-hidden="true"></span>
+    <h2 class="display reveal">Save yourself a&nbsp;seat.</h2>
+    <p class="body-copy reveal">
+      GRØD is in pre-launch hardening. The bar for 1.0:
+      <strong>"never loses a meeting, and a stranger can install it."</strong>
+      If you'd like an early bowl, say hello and we'll keep a place at the table.
+    </p>
+    <a class="btn reveal" href="mailto:hello@grod.app?subject=GR%C3%98D%20beta%2C%20please&body=Save%20me%20a%20seat%20%E2%80%94%20I%27m%20on%20an%20Apple%20silicon%20Mac.">Request the beta →</a>
+    <p class="fineprint reveal">
+      No form, no tracker: the button is just email. Fitting, we thought.
+      You'll need an Apple silicon Mac on macOS 26 or later; briefings want
+      Apple&nbsp;Intelligence enabled, recording and transcription work regardless.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="fm">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="10" fill="none" stroke="#D63A86" stroke-width="5"/>
+        <line x1="6" y1="28" x2="26" y2="4" stroke="#232019" stroke-width="4"/>
+      </svg>
+      GRØD
+    </span>
+    <span class="tag">proper oats · on-device meeting intelligence</span>
+    <span class="stamp">Printed on-device</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reveals = document.querySelectorAll(".reveal");
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+    return; // tape stays fully inked, no playhead, no drift
+  }
+  document.documentElement.classList.add("motion");
+
+  // Staggered slide-in (transform only; nothing is ever invisible)
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var siblings = el.parentElement ? el.parentElement.querySelectorAll(".reveal") : [el];
+      var index = Array.prototype.indexOf.call(siblings, el);
+      el.style.transitionDelay = Math.max(0, index) * 70 + "ms";
+      el.classList.add("in");
+      io.unobserve(el);
+    });
+  }, { threshold: 0.01, rootMargin: "0px 0px 18% 0px" });
+  reveals.forEach(function (el) { io.observe(el); });
+
+  // The playhead: viewport centre, expressed per rail as --play.
+  var rails = Array.prototype.slice.call(document.querySelectorAll(".rail"));
+  var paras = Array.prototype.slice.call(document.querySelectorAll("[data-para]"));
+  var drifts = Array.prototype.slice.call(document.querySelectorAll("[data-drift]"));
+  var clock = document.getElementById("clock");
+  var TOTAL = 46 * 60 + 12; // the 46:12 call
+  var ticking = false;
+
+  function pad(n) { return (n < 100 ? ("0" + n).slice(-2) : n); }
+
+  function frame() {
+    ticking = false;
+    var vh = window.innerHeight;
+    var centre = vh * 0.5;
+
+    rails.forEach(function (rail) {
+      var r = rail.getBoundingClientRect();
+      if (r.height < 1) return;
+      var p = (centre - r.top) / r.height;
+      p = Math.max(0, Math.min(1, p));
+      rail.style.setProperty("--play", (p * 100).toFixed(2) + "%");
+    });
+
+    // deck counter follows overall progress
+    if (clock) {
+      var doc = document.documentElement;
+      var prog = window.scrollY / Math.max(1, doc.scrollHeight - vh);
+      var s = Math.round(Math.max(0, Math.min(1, prog)) * TOTAL);
+      clock.textContent = pad(Math.floor(s / 60)) + ":" + pad(s % 60);
+    }
+
+    paras.forEach(function (el) {
+      var r = el.parentElement.getBoundingClientRect();
+      var centreDelta = r.top + r.height / 2 - vh / 2;
+      var speed = parseFloat(el.getAttribute("data-para")) || 0;
+      el.style.transform = "translate3d(0," + (-centreDelta * speed).toFixed(1) + "px,0)";
+    });
+    drifts.forEach(function (el) {
+      var shift = Math.min(10, window.scrollY / 60);
+      var teal = el.querySelector(".g-teal");
+      var mag = el.querySelector(".g-mag");
+      if (teal) teal.style.transform = "translate(" + (3 + shift) + "px," + (-3 - shift * 0.6) + "px)";
+      if (mag) mag.style.transform = "translate(" + (-3 - shift * 0.8) + "px," + (3 + shift * 0.5) + "px)";
+    });
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(frame); }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  frame();
+})();
+</script>
+</body>
+</html>
