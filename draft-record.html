@@ -306,11 +306,20 @@
 
   /* ---------- screenshot frames ---------- */
   /* ---------- product captures ---------- */
+  /* Each capture bakes ~4.6% of transparent margin around the window (and a
+     deeper band below, where the cast shadow falls). Left as-is, the file's
+     edge — not the window's — lands on the column, so every shot reads a few
+     pixels indented from the type. These pulls put the window itself on the
+     column and let the shadow spill past it. */
   /* Each capture carries its own window chrome and cast shadow, and its
      margins are transparent, so it sits straight on the paper: no second
      frame, no offset block behind an object that is already lit. */
   .shot{position:relative;margin-top:clamp(40px,6vh,72px);max-width:940px}
-  .shot img{display:block;width:100%;height:auto}
+  .shot img{
+    display:block;height:auto;
+    width:110.06%;max-width:none;
+    margin:-3.41% 0 -5.5% -5.03%;
+  }
 
   /* ---------- the colophon ---------- */
   .colophon{padding:clamp(80px,12vh,150px) 0}
@@ -477,9 +486,30 @@
 
 <hr class="tear" aria-hidden="true">
 
-<!-- ======================= EXHIBIT A · THE MEMO ======================= -->
+<!-- ======================= EXHIBIT A · THE DAY SHEET ======================= -->
 <section class="statement">
   <span class="exhibit-tag" aria-hidden="true">Exhibit A</span>
+  <div class="wrap">
+    <p class="eyebrow reveal">On today's sheet</p>
+    <h2 class="display reveal">Nothing to file. It files&nbsp;itself.</h2>
+    <p class="body-copy reveal">
+      The ten o'clock is already on the sheet, with the one control that records it.
+      Everything under it has been written up and dated without you naming a single
+      file. <strong>No folders to invent, no titles to type, no end-of-day tidying.</strong>
+    </p>
+    <figure class="shot reveal" data-para="0.045">
+      <img src="shots/agenda.webp" width="1840" height="1242" loading="lazy" decoding="async"
+           alt="GRØD's agenda: the next meeting, a pilot guide review at 10:00, sits at the top with a record button, above a reverse-chronological list of recent meetings, each showing the opening line of its briefing.">
+    </figure>
+    <p class="filed reveal" style="margin-top:1.1em">sheet 1 of 1 · today, in order</p>
+  </div>
+</section>
+
+<hr class="tear" aria-hidden="true">
+
+<!-- ======================= EXHIBIT B · THE MEMO ======================= -->
+<section class="statement">
+  <span class="exhibit-tag" aria-hidden="true">Exhibit B</span>
   <div class="wrap">
     <p class="eyebrow reveal">After the call</p>
     <h2 class="display reveal">The minutes, typed before you stand&nbsp;up.</h2>
@@ -516,9 +546,9 @@
   </div>
 </section>
 
-<!-- ======================= EXHIBIT B · DISTRIBUTION ======================= -->
+<!-- ======================= EXHIBIT C · DISTRIBUTION ======================= -->
 <section class="statement">
-  <span class="exhibit-tag" aria-hidden="true">Exhibit B</span>
+  <span class="exhibit-tag" aria-hidden="true">Exhibit C</span>
   <div class="wrap" style="position:relative">
     <span class="reg" style="top:34px;right:6px" aria-hidden="true"></span>
     <p class="eyebrow reveal">The distribution list</p>
@@ -545,9 +575,9 @@
   </div>
 </section>
 
-<!-- ======================= EXHIBIT C · THE CARD INDEX ======================= -->
+<!-- ======================= EXHIBIT D · THE CARD INDEX ======================= -->
 <section class="statement">
-  <span class="exhibit-tag" aria-hidden="true">Exhibit C</span>
+  <span class="exhibit-tag" aria-hidden="true">Exhibit D</span>
   <div class="wrap">
     <p class="eyebrow reveal">The card index</p>
     <h2 class="display reveal">Name a voice&nbsp;once.</h2>
@@ -581,9 +611,9 @@
   </div>
 </section>
 
-<!-- ======================= EXHIBIT D · THE ARCHIVE ======================= -->
+<!-- ======================= EXHIBIT E · THE ARCHIVE ======================= -->
 <section class="statement">
-  <span class="exhibit-tag" aria-hidden="true">Exhibit D</span>
+  <span class="exhibit-tag" aria-hidden="true">Exhibit E</span>
   <div class="wrap">
     <p class="eyebrow reveal">Ask the archive</p>
     <h2 class="display glyph-head reveal">⌘K</h2>
