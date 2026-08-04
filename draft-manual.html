@@ -220,11 +220,20 @@
 
   /* ---------- screenshot frames + dimension callouts ---------- */
   /* ---------- product captures ---------- */
+  /* Each capture bakes ~4.6% of transparent margin around the window (and a
+     deeper band below, where the cast shadow falls). Left as-is, the file's
+     edge — not the window's — lands on the column, so every shot reads a few
+     pixels indented from the type. These pulls put the window itself on the
+     column and let the shadow spill past it. */
   /* Each capture carries its own window chrome and cast shadow, and its
      margins are transparent, so it sits straight on the paper: no second
      frame, no offset block behind an object that is already lit. */
   .shot{position:relative;margin-top:clamp(40px,6vh,72px);max-width:940px}
-  .shot img{display:block;width:100%;height:auto}
+  .shot img{
+    display:block;height:auto;
+    width:110.06%;max-width:none;
+    margin:-3.41% 0 -5.5% -5.03%;
+  }
   .shot-dim{margin-top:1.2em;max-width:920px}
 
   /* ---------- spec rows (voice registry) ---------- */
@@ -412,6 +421,14 @@
       <a class="btn" href="#beta">Request the beta</a>
       <span class="scroll-hint">Read the spec&nbsp;↓</span>
     </div>
+
+    <figure class="shot reveal" data-para="0.03" style="max-width:1080px">
+      <img src="shots/agenda.webp" width="1840" height="1242" decoding="async"
+           alt="GRØD's agenda: the next meeting, a pilot guide review at 10:00, sits at the top with a record button, above a reverse-chronological list of recent meetings, each showing the opening line of its briefing.">
+    </figure>
+    <p class="figcap reveal"><b>Fig. 1.1 — The operating view.</b> Sessions in reverse
+      chronology, each carrying the opening line of its own briefing; above them the next
+      session and the single control that starts it.</p>
   </div>
 </section>
 
