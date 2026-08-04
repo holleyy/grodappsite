@@ -16,8 +16,9 @@
   - Self-host both fonts when this moves to Astro (privacy-nice, faster; Google Fonts
     is used here only so the draft opens anywhere).
   - The waitlist button is a mailto by design — swap for your list provider's form.
-  - Screenshot placeholders: replace each .shot-placeholder with a real capture at
-    ~2x, keep the 16/10 frame.
+  - Captures live in shots/ as WebP at 1840px (2x for the ~920px column). They are
+    exported with transparent margins and their own window chrome, so they need no
+    frame: see the "product captures" rule.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -203,30 +204,12 @@
   /* huge glyph headline (⌘K) */
   .glyph-head{font-size:clamp(5rem, 18vw, 13rem) !important;letter-spacing:0 !important}
 
-  /* ---------- screenshot placeholder frames ---------- */
-  .shot{
-    position:relative;margin-top:clamp(40px,6vh,72px);
-    background:var(--raised);
-    border:1.5px solid var(--ink);border-radius:10px;
-    box-shadow:12px 12px 0 var(--teal);
-    max-width:920px;
-  }
-  .shot.offset-m{box-shadow:12px 12px 0 var(--magenta)}
-  .shot .titlebar{
-    display:flex;gap:7px;align-items:center;
-    padding:12px 14px;border-bottom:1.5px solid var(--hairline);
-  }
-  .shot .titlebar i{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink-2);opacity:.55}
-  .shot-placeholder{
-    aspect-ratio:16/10;display:flex;flex-direction:column;gap:.6em;
-    align-items:center;justify-content:center;
-    margin:14px;border:1.5px dashed var(--hairline);border-radius:6px;
-    color:var(--ink-2);text-align:center;padding:1em;
-  }
-  .shot-placeholder .sp-label{
-    font-size:.72rem;font-weight:650;letter-spacing:.22em;text-transform:uppercase;
-  }
-  .shot-placeholder .sp-desc{font-size:.85rem;max-width:26em}
+  /* ---------- product captures ---------- */
+  /* Each capture carries its own window chrome and cast shadow, and its
+     margins are transparent, so it sits straight on the paper: no second
+     frame, no offset block behind an object that is already lit. */
+  .shot{position:relative;margin-top:clamp(40px,6vh,72px);max-width:940px}
+  .shot img{display:block;width:100%;height:auto}
 
   /* ---------- trust strip ---------- */
   .trust{border-top:1.5px solid var(--ink);padding:clamp(70px,10vh,120px) 0}
@@ -295,8 +278,6 @@
   /* ---------- small screens ---------- */
   @media (max-width:640px){
     .statement .num{right:12px;font-size:4rem;top:18px}
-    .shot{box-shadow:7px 7px 0 var(--teal)}
-    .shot.offset-m{box-shadow:7px 7px 0 var(--magenta)}
     .trust li{grid-template-columns:1fr;gap:.3em}
     .hero .stamp-slot{position:static;margin-bottom:1.4em}
     .misreg .ghost{display:none} /* ghosts get noisy at small sizes */
@@ -361,11 +342,8 @@
     </p>
     <p class="kicker reveal">Your notes stay yours. <em>The AI enriches; it never replaces.</em></p>
     <figure class="shot reveal" data-para="0.045">
-      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="shot-placeholder">
-        <span class="sp-label">Screenshot · The briefing</span>
-        <span class="sp-desc">Meeting detail — summary, decisions, action items with owners, in the paper document view.</span>
-      </div>
+      <img src="shots/briefing.webp" width="1840" height="1242" loading="lazy" decoding="async"
+           alt="GRØD's meeting detail view: the enhanced briefing for a weekly product review, showing a story summary, a list of decisions, and a typed question answered with a citation to the moment at 3:02.">
     </figure>
   </div>
 </section>
@@ -390,12 +368,9 @@
       "we&nbsp;only&nbsp;send…" clause, because nothing is sent.
     </p>
     <p class="kicker reveal">A promise you can test — <em>run it in airplane mode, or put a network monitor on it.</em></p>
-    <figure class="shot offset-m reveal" data-para="0.045">
-      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="shot-placeholder">
-        <span class="sp-label">Screenshot · Recording, quietly</span>
-        <span class="sp-desc">The floating pill over a live call — Zoom stays frontmost, GRØD stays out of the way.</span>
-      </div>
+    <figure class="shot reveal" data-para="0.045">
+      <img src="shots/recording.webp" width="1840" height="1242" loading="lazy" decoding="async"
+           alt="GRØD recording a meeting: the capture dock rests at the foot of the meeting document with an eight-minute timer, a live level meter, and bookmark and pause controls.">
     </figure>
   </div>
 </section>
@@ -414,11 +389,8 @@
       your Mac.
     </p>
     <figure class="shot reveal" data-para="0.045">
-      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="shot-placeholder">
-        <span class="sp-label">Screenshot · People</span>
-        <span class="sp-desc">The person-first view — coming up, recent, and the full directory.</span>
-      </div>
+      <img src="shots/people.webp" width="1840" height="1242" loading="lazy" decoding="async"
+           alt="GRØD's People view: everyone coming up today listed with their meeting and time, one of them marked as not yet in People.">
     </figure>
   </div>
 </section>
@@ -435,12 +407,9 @@
       land on the exact moment it was said. A knowledge base that compounds,
       without a server in sight.
     </p>
-    <figure class="shot offset-m reveal" data-para="0.045">
-      <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="shot-placeholder">
-        <span class="sp-label">Screenshot · Universal search</span>
-        <span class="sp-desc">The ⌘K palette and the cross-meeting answer card, facets and all.</span>
-      </div>
+    <figure class="shot reveal" data-para="0.045">
+      <img src="shots/search.webp" width="1840" height="1242" loading="lazy" decoding="async"
+           alt="GRØD's search view: the query 'confidence ribbon decision' returns an answer drawn from past meetings, two matching people, and two meetings with the matched words highlighted.">
     </figure>
   </div>
 </section>

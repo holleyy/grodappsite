@@ -196,26 +196,12 @@
     font-style:italic;font-weight:900}
 
   /* hung prints (screenshot frames) */
-  .print{
-    margin-top:clamp(36px,5vh,60px);
-    max-width:860px;
-    background:var(--raised);
-    border:1.5px solid var(--ink);border-radius:8px;
-    padding:12px;
-    box-shadow:8px 8px 0 var(--teal);
-    transform:rotate(.5deg);
-  }
-  .print.tilt-l{transform:rotate(-.45deg);box-shadow:8px 8px 0 var(--magenta)}
-  .shot-placeholder{
-    aspect-ratio:16/10;display:flex;flex-direction:column;gap:.6em;
-    align-items:center;justify-content:center;
-    border:1.5px dashed var(--hairline);border-radius:5px;
-    color:var(--ink-2);text-align:center;padding:1em;
-  }
-  .shot-placeholder .sp-label{
-    font-size:.72rem;font-weight:650;letter-spacing:.22em;text-transform:uppercase;
-  }
-  .shot-placeholder .sp-desc{font-size:.85rem;max-width:26em}
+  /* ---------- product captures ---------- */
+  /* Each capture carries its own window chrome and cast shadow, and its
+     margins are transparent, so it sits straight on the paper: no second
+     frame, no offset block behind an object that is already lit. */
+  .print{margin-top:clamp(36px,5vh,60px);max-width:900px}
+  .print img{display:block;width:100%;height:auto}
   .print figcaption{
     margin-top:10px;font-family:var(--mono);font-size:.68rem;
     letter-spacing:.08em;color:var(--ink-2);
@@ -367,8 +353,6 @@
   @media (max-width:680px){
     .scene{left:-45%;width:200%}
     .sun{left:58%}
-    .print{box-shadow:6px 6px 0 var(--teal)}
-    .print.tilt-l{box-shadow:6px 6px 0 var(--magenta)}
     .island li{grid-template-columns:1fr;gap:.3em}
     .island{padding:.6em 1.2em 0}
     .island .coda{margin:0 -1.2em;padding:1.2em 1.2em 1.4em}
@@ -430,10 +414,8 @@
     transcription, and speaker separation all run on this machine.
   </p>
   <figure class="print reveal" data-para="0.04">
-    <div class="shot-placeholder">
-      <span class="sp-label">Screenshot · Recording, quietly</span>
-      <span class="sp-desc">The floating pill over a live call. Zoom stays frontmost, GRØD stays out of the way.</span>
-    </div>
+    <img src="shots/recording.webp" width="1840" height="1242" loading="lazy" decoding="async"
+         alt="GRØD recording a meeting: the capture dock rests at the foot of the meeting document with an eight-minute timer, a live level meter, and bookmark and pause controls.">
     <figcaption>09:02 · captured on this Mac · sent nowhere</figcaption>
   </figure>
 </section>
@@ -454,11 +436,9 @@
     One calm, editable document, your own notes woven in and never overwritten.
     Revert is one click.
   </p>
-  <figure class="print tilt-l reveal" data-para="0.04">
-    <div class="shot-placeholder">
-      <span class="sp-label">Screenshot · The briefing</span>
-      <span class="sp-desc">Meeting detail: summary, decisions, action items with owners, in the paper document view.</span>
-    </div>
+  <figure class="print reveal" data-para="0.04">
+    <img src="shots/briefing.webp" width="1840" height="1242" loading="lazy" decoding="async"
+         alt="GRØD's meeting detail view: the enhanced briefing for a weekly product review, showing a story summary, a list of decisions, and a typed question answered with a citation to the moment at 3:02.">
     <figcaption>09:47 · one page, written before you stand up</figcaption>
   </figure>
 </section>
@@ -479,10 +459,8 @@
     Built on your Mac, staying on your Mac.
   </p>
   <figure class="print reveal" data-para="0.04">
-    <div class="shot-placeholder">
-      <span class="sp-label">Screenshot · People</span>
-      <span class="sp-desc">The person-first view: coming up, recent, and the full directory.</span>
-    </div>
+    <img src="shots/people.webp" width="1840" height="1242" loading="lazy" decoding="async"
+         alt="GRØD's People view: everyone coming up today listed with their meeting and time, one of them marked as not yet in People.">
     <figcaption>13:30 · the directory, learned locally</figcaption>
   </figure>
 </section>
@@ -495,19 +473,17 @@
     16:15
   </span>
   <p class="h-title reveal">The half-remembered promise</p>
-  <p class="display q reveal">"What did we tell them about pricing in&nbsp;March?"</p>
+  <p class="display q reveal">"What did we decide about the confidence&nbsp;ribbon?"</p>
   <p class="body-copy reveal">
     ⌘K searches every meeting you've ever had, by keyword <strong>and</strong> by
     meaning. Ask a question, get an answer with citations, click one, and land on
     the exact moment it was said. A knowledge base that compounds, without a
     server in sight.
   </p>
-  <figure class="print tilt-l reveal" data-para="0.04">
-    <div class="shot-placeholder">
-      <span class="sp-label">Screenshot · Universal search</span>
-      <span class="sp-desc">The ⌘K palette and the cross-meeting answer card, facets and all.</span>
-    </div>
-    <figcaption>16:15 · found in 11 MAR · Pricing call</figcaption>
+  <figure class="print reveal" data-para="0.04">
+    <img src="shots/search.webp" width="1840" height="1242" loading="lazy" decoding="async"
+         alt="GRØD's search view: the query 'confidence ribbon decision' returns an answer drawn from past meetings, two matching people, and two meetings with the matched words highlighted.">
+    <figcaption>16:15 · found in 20 Mar · Confidence ribbon design critique</figcaption>
   </figure>
 </section>
 
@@ -634,8 +610,7 @@
       var r = el.parentElement.getBoundingClientRect();
       var centreDelta = r.top + r.height / 2 - vh / 2;
       var speed = parseFloat(el.getAttribute("data-para")) || 0;
-      var base = el.classList.contains("tilt-l") ? "rotate(-.45deg)" : "rotate(.5deg)";
-      el.style.transform = "translate3d(0," + (-centreDelta * speed).toFixed(1) + "px,0) " + base;
+      el.style.transform = "translate3d(0," + (-centreDelta * speed).toFixed(1) + "px,0)";
     });
   }
   function onScroll() {
