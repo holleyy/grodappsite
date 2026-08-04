@@ -138,7 +138,7 @@
   .beta-link:hover{color:var(--magenta-deep)}
 
   /* ---------- hero ---------- */
-  .hero{position:relative;padding:clamp(72px,12vh,150px) 0 clamp(72px,10vh,130px)}
+  .hero{position:relative;padding:clamp(72px,12vh,150px) 0 clamp(60px,8vh,100px)}
   .hero .halftone.teal{
     inset:auto -10% -18% 34%;height:75%;
     -webkit-mask:radial-gradient(75% 70% at 62% 58%, #000 0%, transparent 68%);
@@ -208,8 +208,34 @@
   /* Each capture carries its own window chrome and cast shadow, and its
      margins are transparent, so it sits straight on the paper: no second
      frame, no offset block behind an object that is already lit. */
+  /* Each capture bakes ~4.6% of transparent margin around the window (and a
+     deeper band below, where the cast shadow falls). Left as-is, the file's
+     edge — not the window's — lands on the column, so every shot reads a few
+     pixels indented from the type. These pulls put the window itself on the
+     column and let the shadow spill past it. */
   .shot{position:relative;margin-top:clamp(40px,6vh,72px);max-width:940px}
-  .shot img{display:block;width:100%;height:auto}
+  .shot img{
+    display:block;height:auto;
+    width:110.06%;max-width:none;
+    margin:-3.41% 0 -5.5% -5.03%;
+  }
+
+  /* The hero's artifact: the app's own home screen, set wider than the body
+     captures and overlapping the halftone bleed so it reads as a layer above
+     the print rather than another figure in the column. */
+  .hero-shot{
+    position:relative;z-index:1;
+    margin-top:clamp(52px,8vh,96px);
+    max-width:1080px;
+  }
+  .hero-shot img{
+    display:block;height:auto;
+    width:110.06%;max-width:none;
+    margin:-3.41% 0 -5.5% -5.03%;
+  }
+  .hero-shot figcaption{
+    margin-top:1.1em;font-size:.9rem;color:var(--ink-2);max-width:34em;
+  }
 
   /* ---------- trust strip ---------- */
   .trust{border-top:1.5px solid var(--ink);padding:clamp(70px,10vh,120px) 0}
@@ -325,6 +351,11 @@
       <a class="btn" href="#beta">Request the beta</a>
       <span class="scroll-hint">Scroll — it's a short story&nbsp;↓</span>
     </div>
+    <figure class="hero-shot reveal" data-para="0.03">
+      <img src="shots/agenda.webp" width="1840" height="1242" decoding="async"
+           alt="GRØD's agenda: the next meeting, a pilot guide review at 10:00, sits at the top with a record button, above a reverse-chronological list of recent meetings, each showing the opening line of its briefing.">
+      <figcaption>One button starts the next one. Everything behind it is already written&nbsp;up.</figcaption>
+    </figure>
   </div>
 </section>
 
