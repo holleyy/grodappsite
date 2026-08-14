@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-08-14T13:00:03.817Z",
+        "reason": "CLAUDE.md pins the Merriweather+Inter pairing ported from the app; confirmed by user in 2026-08-02 critique round"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(.2, 1.4, .4, 1)",
+        "createdAt": "2026-08-14T13:39:38.434Z",
+        "reason": "User confirmed the rubber-stamp thump easing on draft-record is intentional"
+      }
+    ]
+  }
+}

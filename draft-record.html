@@ -56,7 +56,7 @@
     font-size:clamp(1rem, .95rem + .3vw, 1.125rem);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    /* no overflow-x here: it would make body a scroll container and kill the sticky masthead; html's clip already handles it */
   }
   ::selection{background:var(--teal-text);color:var(--paper)}
   a{color:inherit}
@@ -407,7 +407,13 @@
     .cards{margin-top:52px;gap:34px}
     .icard:nth-child(2),.icard:nth-child(3){transform:none}
     .misreg .ghost{display:none}
-    .colo-stamp{right:-6px}
+    .tab-note{display:none}
+    /* CTA directly under the headline; the form furniture and sub follow */
+    .hero .wrap{display:flex;flex-direction:column}
+    .hero .cta-row{order:1}
+    .hero .form-fields{order:2}
+    .hero .sub{order:3}
+    .colo-stamp{right:8px;top:-14px}
   }
 </style>
 </head>
@@ -583,7 +589,7 @@
     <h2 class="display reveal">Name a voice&nbsp;once.</h2>
     <p class="body-copy reveal">
       GRØD learns the voices you meet. Label a speaker one time and they're
-      recognized in <strong>every meeting — past and future.</strong> People becomes
+      recognized in <strong>every meeting — past and future.</strong> People become
       a card index of everyone you talk to: what's coming up, what you last
       discussed, every conversation you've shared. Kept at your desk, like a good
       rolodex.
@@ -692,7 +698,8 @@
     </p>
     <a class="btn reveal" href="mailto:hello@grod.app?subject=GR%C3%98D%20beta%2C%20please&body=Save%20me%20a%20seat%20%E2%80%94%20I%27m%20on%20an%20Apple%20silicon%20Mac.">Request the beta →</a>
     <p class="fineprint reveal">
-      No form, no tracker — the button is just email. Fitting, we thought.
+      No form, no tracker — the button is just email
+      (<a href="mailto:hello@grod.app">hello@grod.app</a>). Fitting, we thought.
       You'll need an Apple silicon Mac on macOS 26 or later; briefings want
       Apple&nbsp;Intelligence enabled, recording and transcription work regardless.
     </p>
