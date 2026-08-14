@@ -312,6 +312,7 @@
   .cta h2{font-size:clamp(2.5rem, 7.5vw, 5.6rem);max-width:10em;margin:0 0 .5em}
   .cta .body-copy{margin-bottom:2.2em}
   .cta .fineprint{margin-top:1.6em;font-size:.85rem;color:var(--ink-2);max-width:34em}
+  .cta .fineprint a{-webkit-user-select:all;user-select:all} /* double-click grabs the whole address */
 
   /* ---------- footer ---------- */
   footer{border-top:1.5px solid var(--hairline);padding:2.6em 0 3em}
@@ -342,6 +343,8 @@
     .hero .stamp{margin-top:1.5em} /* clear the REC splice label */
     .splice .tc{left:calc(100% + 8px);font-size:.6rem}
     .vtag{display:none}
+    /* the tape has ended by the trust section: let the receipts escape the rail indent */
+    .notes{margin-left:calc(-1*(var(--rail) + var(--railgap)));margin-right:0}
     .notes li{grid-template-columns:1fr;gap:.3em}
     .misreg .ghost{display:none}
     .shelf{gap:10px}
@@ -677,6 +680,7 @@
       GRØD is in pre-launch hardening. The bar for 1.0:
       <strong>"never loses a meeting, and a stranger can install it."</strong>
       If you'd like an early bowl, say hello and we'll keep a place at the table.
+      The button opens your email app.
     </p>
     <a class="btn reveal" href="mailto:hello@grod.app?subject=GR%C3%98D%20beta%2C%20please&body=Save%20me%20a%20seat%20%E2%80%94%20I%27m%20on%20an%20Apple%20silicon%20Mac.">Request the beta →</a>
     <p class="fineprint reveal">

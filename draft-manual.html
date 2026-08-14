@@ -322,6 +322,7 @@
   .reqs dd small{display:block;color:var(--ink-2);margin-top:.2em;font-size:.85rem}
   .reqs dd.none{color:var(--magenta-deep);font-weight:600}
   .cta .fineprint{margin-top:1.6em;font-size:.85rem;color:var(--ink-2);max-width:34em}
+  .cta .fineprint a{-webkit-user-select:all;user-select:all} /* double-click grabs the whole address */
 
   /* ---------- title block footer ---------- */
   footer{padding:clamp(48px,7vh,80px) 0 3em}
@@ -348,8 +349,9 @@
   .foot-tag{margin-top:1.4em;font-size:.85rem;color:var(--ink-2)}
 
   /* ---------- motion ---------- */
-  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)}
-  .js .reveal.in{opacity:1;transform:none}
+  /* transform-only: content is never invisible if IO stalls (print, throttled render) */
+  .js .reveal{transform:translateY(26px);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal.in{transform:none}
   .js .diag .flow.drawable{transition:stroke-dashoffset 1.2s ease .25s}
   [data-para]{will-change:transform}
 
@@ -793,6 +795,7 @@
       GRØD is in pre-launch hardening — the bar for 1.0 is
       <strong>"never loses a meeting, and a stranger can install it."</strong>
       If you'd like in early, say hello and we'll save you a seat.
+      The button opens your email app.
     </p>
 
     <dl class="reqs reveal">
