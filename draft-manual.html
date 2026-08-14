@@ -57,7 +57,7 @@
     font-size:clamp(1rem, .95rem + .3vw, 1.125rem);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    /* no overflow-x here: it would make body a scroll container and kill the sticky masthead; html's clip already handles it */
   }
   ::selection{background:var(--teal-text);color:var(--paper)}
   a{color:inherit}
@@ -217,6 +217,15 @@
   .diag .nix{stroke:var(--magenta);stroke-width:5;stroke-linecap:round;mix-blend-mode:multiply}
   #arrI path{fill:var(--ink)}
   #arrT path{fill:var(--teal-text)}
+  #arrIm path{fill:var(--ink)}
+  #arrTm path{fill:var(--teal-text)}
+  /* stacked small-screen variant of the same figure (shown ≤640px); larger
+     in-SVG sizes hold labels at ≥11px effective when rendered ~340px wide */
+  .diag-m{display:none}
+  .diag-m .d-title{font-size:15px}
+  .diag-m .d-sub{font-size:13.5px}
+  .diag-m .d-big{font-size:17px}
+  .diag-m .d-note,.diag-m .d-warn{font-size:13.5px}
 
   /* ---------- screenshot frames + dimension callouts ---------- */
   /* ---------- product captures ---------- */
@@ -313,6 +322,7 @@
   .reqs dd small{display:block;color:var(--ink-2);margin-top:.2em;font-size:.85rem}
   .reqs dd.none{color:var(--magenta-deep);font-weight:600}
   .cta .fineprint{margin-top:1.6em;font-size:.85rem;color:var(--ink-2);max-width:34em}
+  .cta .fineprint a{-webkit-user-select:all;user-select:all} /* double-click grabs the whole address */
 
   /* ---------- title block footer ---------- */
   footer{padding:clamp(48px,7vh,80px) 0 3em}
@@ -339,8 +349,9 @@
   .foot-tag{margin-top:1.4em;font-size:.85rem;color:var(--ink-2)}
 
   /* ---------- motion ---------- */
-  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)}
-  .js .reveal.in{opacity:1;transform:none}
+  /* transform-only: content is never invisible if IO stalls (print, throttled render) */
+  .js .reveal{transform:translateY(26px);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal.in{transform:none}
   .js .diag .flow.drawable{transition:stroke-dashoffset 1.2s ease .25s}
   [data-para]{will-change:transform}
 
@@ -366,6 +377,8 @@
     .specrows div,.reqs div{grid-template-columns:1fr;gap:.3em}
     .misreg .ghost{display:none}
     .crops{display:none}
+    .diag:not(.diag-m){display:none}
+    .diag-m{display:block}
   }
 </style>
 </head>
@@ -515,6 +528,72 @@
         <line class="nix" x1="768" y1="330" x2="868" y2="402"/>
         <line class="nix" x1="868" y1="330" x2="768" y2="402"/>
         <text class="d-warn" x="820" y="428" text-anchor="middle">CLOUD — no route exists</text>
+      </svg>
+
+      <!-- same figure, stacked for small screens (swap happens in the ≤640px media query) -->
+      <svg class="diag diag-m" viewBox="0 0 400 860" role="img" aria-label="Signal-path diagram: mic and system audio flow into capture, transcription, briefing, and the archive, all inside your Mac. The only network path is an inbound, SHA-256-verified model download. The cloud has no route.">
+        <defs>
+          <marker id="arrIm" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z"/>
+          </marker>
+          <marker id="arrTm" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z"/>
+          </marker>
+          <pattern id="htm" width="9" height="9" patternUnits="userSpaceOnUse">
+            <circle cx="2.2" cy="2.2" r="1.2" style="fill:var(--teal);opacity:.28"/>
+          </pattern>
+        </defs>
+
+        <!-- trust boundary -->
+        <rect class="boundary" x="10" y="34" width="380" height="572" rx="14"/>
+        <text class="d-big" x="32" y="72">YOUR MAC</text>
+        <text class="d-sub" x="32" y="92">meeting-data boundary — audio,</text>
+        <text class="d-sub" x="32" y="110">transcripts, briefings never cross it</text>
+
+        <!-- sources -->
+        <rect class="box" x="28" y="132" width="166" height="56" rx="6"/>
+        <text class="d-title" x="111" y="156" text-anchor="middle">MIC</text>
+        <text class="d-sub" x="111" y="174" text-anchor="middle">your side</text>
+
+        <rect class="box" x="206" y="132" width="166" height="56" rx="6"/>
+        <text class="d-title" x="289" y="156" text-anchor="middle">SYSTEM AUDIO</text>
+        <text class="d-sub" x="289" y="174" text-anchor="middle">their side</text>
+
+        <!-- pipeline -->
+        <path class="flow" d="M111 188 V210 H200 V224" marker-end="url(#arrIm)"/>
+        <path class="flow" d="M289 188 V210 H200"/>
+        <rect class="box" x="100" y="232" width="200" height="56" rx="6"/>
+        <text class="d-title" x="200" y="256" text-anchor="middle">CAPTURE</text>
+        <text class="d-sub" x="200" y="274" text-anchor="middle">both sides</text>
+
+        <path class="flow" d="M200 288 V324" marker-end="url(#arrIm)"/>
+        <rect class="box" x="100" y="332" width="200" height="56" rx="6"/>
+        <text class="d-title" x="200" y="356" text-anchor="middle">TRANSCRIBE</text>
+        <text class="d-sub" x="200" y="374" text-anchor="middle">on-device models</text>
+
+        <path class="flow" d="M200 388 V424" marker-end="url(#arrIm)"/>
+        <rect class="box" x="100" y="432" width="200" height="56" rx="6"/>
+        <text class="d-title" x="200" y="456" text-anchor="middle">BRIEFING</text>
+        <text class="d-sub" x="200" y="474" text-anchor="middle">written, not sent</text>
+
+        <path class="flow" d="M200 488 V524" marker-end="url(#arrIm)"/>
+        <rect class="box" x="80" y="532" width="240" height="56" rx="6"/>
+        <rect x="80" y="532" width="240" height="56" rx="6" fill="url(#htm)" style="mix-blend-mode:multiply"/>
+        <text class="d-title" x="200" y="556" text-anchor="middle">ARCHIVE · ⌘K</text>
+        <text class="d-sub" x="200" y="574" text-anchor="middle">every meeting, searchable</text>
+
+        <!-- the one network path: inbound models -->
+        <path class="flow inbound" d="M200 650 V612" marker-end="url(#arrTm)"/>
+        <rect class="box" x="100" y="650" width="200" height="56" rx="6" style="stroke:var(--teal-text);stroke-dasharray:6 5"/>
+        <text class="d-title" x="200" y="674" text-anchor="middle" style="fill:var(--teal-text)">MODEL LIBRARY</text>
+        <text class="d-note" x="200" y="692" text-anchor="middle">2 pinned domains</text>
+        <text class="d-note" x="200" y="728" text-anchor="middle">inbound only · SHA-256 verified</text>
+
+        <!-- the cloud, crossed out -->
+        <path class="cloud" transform="translate(-618,415)" d="M782 388 a20 20 0 0 1 6 -39 a26 26 0 0 1 50 -8 a19 19 0 0 1 13 34 a14 14 0 0 1 -12 13 z"/>
+        <line class="nix" x1="150" y1="745" x2="250" y2="817"/>
+        <line class="nix" x1="250" y1="745" x2="150" y2="817"/>
+        <text class="d-warn" x="200" y="845" text-anchor="middle">CLOUD — no route exists</text>
       </svg>
       <figcaption class="figcap">
         <b>Fig. 2.1 — Signal path.</b> Audio enters from your mic and from the audio
@@ -716,6 +795,7 @@
       GRØD is in pre-launch hardening — the bar for 1.0 is
       <strong>"never loses a meeting, and a stranger can install it."</strong>
       If you'd like in early, say hello and we'll save you a seat.
+      The button opens your email app.
     </p>
 
     <dl class="reqs reveal">
@@ -727,7 +807,8 @@
 
     <a class="btn reveal" href="mailto:hello@grod.app?subject=GR%C3%98D%20beta%2C%20please&body=Save%20me%20a%20seat%20%E2%80%94%20I%27m%20on%20an%20Apple%20silicon%20Mac.">Request the beta →</a>
     <p class="fineprint reveal">
-      No form, no tracker — the button is just email. The only outbound request on
+      No form, no tracker — the button is just email
+      (<a href="mailto:hello@grod.app">hello@grod.app</a>). The only outbound request on
       this page is the one you write yourself. Fitting, we thought.
     </p>
   </div>

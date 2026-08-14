@@ -55,7 +55,7 @@
     font-size:clamp(1rem, .95rem + .3vw, 1.125rem);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    /* no overflow-x here: it would make body a scroll container and kill the sticky masthead; html's clip already handles it */
   }
   ::selection{background:var(--teal-text);color:var(--paper)}
   a{color:inherit}
@@ -281,6 +281,7 @@
   .cta h2{font-size:clamp(2.7rem, 8vw, 6rem);max-width:10em;margin:.35em 0 .5em}
   .cta .body-copy{margin-bottom:2.2em}
   .cta .fineprint{margin-top:1.6em;font-size:.85rem;color:var(--ink-2);max-width:34em}
+  .cta .fineprint a{-webkit-user-select:all;user-select:all} /* double-click grabs the whole address */
 
   /* ---------- footer ---------- */
   footer{border-top:1.5px solid var(--hairline);padding:2.2em 0 3em}
@@ -291,8 +292,9 @@
 
   /* ---------- motion ---------- */
   /* hiding is opt-in via the .js root class — no-JS visitors get the full static page */
-  .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)}
-  .js .reveal.in{opacity:1;transform:none}
+  /* transform-only: content is never invisible if IO stalls (print, throttled render) */
+  .js .reveal{transform:translateY(26px);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal.in{transform:none}
   [data-para]{will-change:transform}
 
   @media (prefers-reduced-motion: reduce){
@@ -500,10 +502,12 @@
       GRØD is in pre-launch hardening — the bar for 1.0 is
       <strong>"never loses a meeting, and a stranger can install it."</strong>
       If you'd like an early bowl, say hello and we'll save you a seat at the table.
+      The button opens your email app.
     </p>
     <a class="btn reveal" href="mailto:hello@grod.app?subject=GR%C3%98D%20beta%2C%20please&body=Save%20me%20a%20seat%20%E2%80%94%20I%27m%20on%20an%20Apple%20silicon%20Mac.">Request the beta →</a>
     <p class="fineprint reveal">
-      No form, no tracker — the button is just email. Fitting, we thought.
+      No form, no tracker — the button is just email
+      (<a href="mailto:hello@grod.app">hello@grod.app</a>). Fitting, we thought.
       You'll need an Apple silicon Mac on macOS 26 or later; briefings want
       Apple&nbsp;Intelligence enabled, recording and transcription work regardless.
     </p>

@@ -96,7 +96,7 @@
   }
 
   /* ---------- nav: a paper luggage tag over the sky ---------- */
-  header{position:absolute;top:0;left:0;right:0;z-index:40;padding:20px 0}
+  header{position:fixed;top:0;left:0;right:0;z-index:40;padding:20px 0}
   .masthead{display:flex;align-items:center;justify-content:space-between;gap:16px}
   .tagcard{
     display:flex;align-items:center;gap:12px;text-decoration:none;
@@ -169,6 +169,7 @@
   .dawn h1 .line{display:block}
   .dawn .quiet{font-weight:300;font-style:italic;letter-spacing:-.01em}
   .dawn .sub{margin-top:1.8em;max-width:30em;color:var(--ink);opacity:.85}
+  .dawn .cta-row{margin-top:2.2em}
   .dayhint{
     margin-top:2.4em;font-family:var(--mono);font-size:.68rem;
     letter-spacing:.16em;color:var(--ink-2);
@@ -315,6 +316,8 @@
   .btn:active{transform:translate(7px,7px);box-shadow:0 0 0 var(--teal)}
   .btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
   .ncta .fineprint{margin:1.8em auto 0;font-size:.85rem;color:var(--paper);opacity:.6;max-width:34em}
+  .ncta .fineprint a{-webkit-user-select:all;user-select:all} /* double-click grabs the whole address */
+  .ncta{scroll-margin-top:96px} /* #beta lands clear of the fixed luggage-tag header */
 
   /* ---------- nightfall footer: the sun sets behind the wordmark ---------- */
   .setting{position:relative;margin-top:clamp(40px,7vh,80px)}
@@ -402,6 +405,9 @@
     <p class="sub reveal">
       GRØD turns every call you take into a briefing, a memory, and an answer,
       without one word leaving this Mac.
+    </p>
+    <p class="cta-row reveal">
+      <a class="btn" href="#beta">Request the beta</a>
     </p>
     <p class="dayhint reveal" aria-hidden="true">THE DAY, HOUR BY HOUR ↓</p>
   </div>
@@ -565,22 +571,24 @@
 </section>
 
 <!-- ======================= NIGHT ======================= -->
-<section class="night" id="beta">
+<section class="night">
   <div class="stars" aria-hidden="true"></div>
   <div class="wrap nbreathe">
     <p class="zen reveal">"Breathe — that was your last meeting today."</p>
     <p class="cap reveal">GRØD's actual words when your afternoon empties. Calm is a feature.</p>
   </div>
-  <div class="wrap ncta">
+  <div class="wrap ncta" id="beta">
     <h2 class="display reveal">Tomorrow can start like&nbsp;this.</h2>
     <p class="body-copy reveal">
       GRØD is in pre-launch hardening. The bar for 1.0:
       <strong>"never loses a meeting, and a stranger can install it."</strong>
       If you'd like an early bowl, say hello and we'll keep a place at the table.
+      The button opens your email app.
     </p>
     <a class="btn reveal" href="mailto:hello@grod.app?subject=GR%C3%98D%20beta%2C%20please&body=Save%20me%20a%20seat%20%E2%80%94%20I%27m%20on%20an%20Apple%20silicon%20Mac.">Request the beta →</a>
     <p class="fineprint reveal">
-      No form, no tracker: the button is just email. Fitting, we thought.
+      No form, no tracker: the button is just email
+      (<a href="mailto:hello@grod.app">hello@grod.app</a>). Fitting, we thought.
       You'll need an Apple silicon Mac on macOS 26 or later; briefings want
       Apple&nbsp;Intelligence enabled, recording and transcription work regardless.
     </p>
