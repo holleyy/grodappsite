@@ -117,7 +117,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "482630c160";
+const BUILD_ID = "023c0306aa";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -185,8 +185,53 @@ const PALETTE_DATA = {
     ["BC3","b0bbdc","BC2","BL4"],
     ["DG0","8a5a3c","WD1","DG1"],
     ["DG1","b98357","DG0","WD4"],
-    ["LITLO","b9a07e","FT0","KRAFT2"]
-  ]
+    ["LITLO","b9a07e","FT0","KRAFT2"],
+    ["BK0","6b3b2e","WD0","BK1"],
+    ["BK1","8e4c37","BK0","BK2"],
+    ["BK2","ad6448","BK1","SK1"],
+    ["NI0","1f2238","OUT","NI1"],
+    ["NI1","2e3352","NI0","NI2"],
+    ["NI2","454a6c","NI1","NI3"],
+    ["NI3","646683","NI2","PL0"],
+    ["DU0","48344f","OUT","DU1"],
+    ["DU1","7a4f63","DU0","SS0"],
+    ["SS0","e8875f","DU1","SS1"],
+    ["SS1","f7b98f","SS0","SUN0"],
+    ["EV0","de9446","WD2","EV1"],
+    ["EV1","f7c46e","EV0","SUN0"],
+    ["NSK0","151b38","OUT","NSK1"],
+    ["NSK1","243262","NSK0","BL1"],
+    ["GL0","fff1bd","SUN0","WHITE"],
+    ["GL1","ff9b7c","RD3","RD4"],
+    ["GL2","a9d6ff","BL3","BL4"],
+    ["GY0","4f4a49","OUT","GY1"],
+    ["GY1","807873","GY0","GY2"],
+    ["GY2","aca39b","GY1","BG1"],
+    ["CO0","a8562a","WD0","CO1"],
+    ["CO1","e09a5c","CO0","SS1"],
+    ["CR0","d3bb94","LITLO","CR1"],
+    ["CR1","ecdfc4","CR0","CREAM"],
+    ["SM0","35302f","OUT","SM1"],
+    ["SM1","625b5a","SM0","GY1"]
+  ],
+  "lightSets": {
+    "_about": "Time of day for the Box Room (render/20_palette builds one LUT per set; the office keeps the base ramps). For each colour and light level, the base ramp's colour is transformed, then snapped to the nearest palette colour (redmean distance). Levels 0-2 (shade and ambient) use dim, levels 3-4 (sun or lamp) use lit; litFrom -1 takes levels 3-4 from the base one level down (lamps at night). Transforms apply mul (/256), then add, then mix [hex, weight/256]. The coats only snap within their own family and are never dimmed, so the board's cats read the same at any hour. fixed colours (the backdrop, skies, stars, bulbs) never change themselves; of them, only notLight (skies, stars, bulbs) are never used as light colours. materialFamilies (reds, blues, greens, skin, the dog, brass, the collection's coats) are never borrowed as light colours: a colour in one snaps only to the light colours or its own family. Each level is at least as bright as the one below.",
+    "board": { "dimStrength": 0.5, "about": "The board (its stone, kerb, pieces and cats) keeps the base ramps in the sun, the light its pieces were drawn for, and takes each set's dimming at half strength, so the hour shows round it without costing the puzzle any contrast." },
+    "coatFamilies": [["CTD", "CT0", "CT1", "CT2"], ["BC0", "BC1", "BC2", "BC3"]],
+    "fixed": ["OUT", "BG0", "BG1", "BG2", "SKY0", "SKY1", "SS0", "SS1", "EV1", "NSK0", "NSK1", "GL0", "GL1", "GL2"],
+    "notLight": ["SKY0", "SKY1", "NSK0", "NSK1", "GL0", "GL1", "GL2"],
+    "materialFamilies": [["RD0", "RD1", "RD2", "RD3", "RD4"], ["BL0", "BL1", "BL2", "BL3", "BL4"], ["PT0", "PT1", "PT2", "PT3"], ["SK0", "SK1", "SK2"], ["DG0", "DG1"], ["CD0", "CD1"], ["BR0", "BR1", "BR2", "BR3"], ["GY0", "GY1", "GY2"], ["CO0", "CO1"], ["CR0", "CR1"], ["SM0", "SM1"]],
+    "sets": {
+      "mon":   { "about": "bright morning: high, cool-white light", "lit": { "mix": ["eef1ea", 110] } },
+      "tue":   { "about": "late morning", "lit": { "mix": ["f2efe3", 75] } },
+      "wed":   { "about": "midday", "lit": { "mix": ["f6ecd8", 45] } },
+      "thu":   { "about": "early afternoon, warming", "lit": { "mix": ["f8ead0", 20] } },
+      "fri":   { "about": "golden afternoon: the base ramps, as in the office" },
+      "sat":   { "about": "low evening sun; the first lamp on", "dim": { "mul": [214, 200, 206], "add": [8, 0, 10] }, "lit": { "mul": [258, 232, 200] } },
+      "sun":   { "about": "sunset; lamps and string lights", "dim": { "mul": [176, 156, 180], "add": [16, 4, 22] }, "lit": { "mix": ["f08a5e", 105] } },
+      "night": { "about": "free play: lamps and the last of the daylight", "dim": { "mul": [104, 110, 140], "add": [8, 10, 28] }, "lit": { "mix": ["ffc77a", 80] }, "litFrom": -1 }
+    }
+  }
 }
 ;
 const SCENE_DATA = {
@@ -671,6 +716,89 @@ const LEVELS_DATA = {
       "minTurntables": 3
     }
   ]
+}
+;
+const BOXROOM_DATA = {
+  "_about": "Settings for the Box Room generator (src/sim/18_boxroom.js). World units: 1 tile = 16 wu; x runs from the left back wall (plane x = 0), y from the right back wall (plane y = 0), z is up. Sizes are [along x or along the wall, depth, height]. Chances are percentages. Light vectors are the sideways travel per 1 wu of drop, as a / 16 along x and b / 16 along y.",
+  "tile": 16,
+  "board": { "minW": 5, "maxW": 10, "minH": 4, "maxH": 8 },
+  "stackD": 24,
+  "wallH": 48,
+  "roof": { "pitchNum": 3, "pitchDen": 2, "run": 40, "rafterW": 3, "rafterSpacing": [32, 40] },
+  "margins": { "back2": 60, "front2": 40 },
+  "boxes": [
+    { "name": "S",  "len": 12, "dep": 10, "h": 10 },
+    { "name": "M",  "len": 16, "dep": 14, "h": 12 },
+    { "name": "L",  "len": 20, "dep": 18, "h": 13 },
+    { "name": "XL", "len": 24, "dep": 22, "h": 15 }
+  ],
+  "stacks": { "minBoxes": 2, "maxBoxes": 5, "profile": [64, 40], "spacing": [0, 2], "gaps": [1, 2], "gapW": [18, 30], "windowChance": 50, "windowZ": 30, "windowR": [6, 7] },
+  "variants": { "nudge": 12, "flap": 25, "string": 15, "label": 30, "paw": 15 },
+  "frontBoxes": [0, 3],
+  "skylights": { "byArea": [[24, 1], [48, 2], [80, 3]], "barW": 2, "virtualZ": 48, "minSunlit": 53, "coverTarget": 80 },
+  "lights": {
+    "mon":   { "a": 4,  "b": 7, "sun": true },
+    "tue":   { "a": 7,  "b": 7, "sun": true },
+    "wed":   { "a": 9,  "b": 6, "sun": true },
+    "thu":   { "a": 11, "b": 6, "sun": true },
+    "fri":   { "a": 14, "b": 7, "sun": true },
+    "sat":   { "a": 19, "b": 8, "sun": true, "lamps": 1 },
+    "sun":   { "a": 25, "b": 9, "sun": true, "lamps": 2, "string": true },
+    "night": { "a": 14, "b": 7, "sun": false, "lamps": 2, "string": true }
+  },
+  "props": {
+    "trolley":    { "size": [22, 12, 16] },
+    "coatStand":  { "size": [8, 8, 44] },
+    "mailbag":    { "size": [12, 10, 10], "againstStack": true },
+    "armchair":   { "size": [18, 18, 18] },
+    "gramophone": { "size": [12, 12, 18] },
+    "rug":        { "size": [26, 16, 1] }
+  },
+  "propCount": [2, 5],
+  "slots": {
+    "floorTall": { "size": [14, 14, 30] },
+    "floorLow":  { "size": [20, 12, 8] },
+    "bucket":    { "size": [10, 10, 10], "againstStack": true },
+    "stackTop":  { "count": 2, "size": [12, 8, 11] },
+    "blankets":  [2, 3]
+  },
+  "items": {
+    "jamJar":      { "size": [4, 4, 10],   "slot": "stackTop" },
+    "seedlings":   { "size": [12, 6, 6],   "slot": "stackTop" },
+    "fan":         { "size": [10, 8, 18],  "slot": "floorTall" },
+    "sleepingCat": { "size": [18, 8, 4],   "slot": "floorLow" },
+    "pumpkin":     { "size": [10, 10, 8],  "slot": "floorLow" },
+    "boxTree":     { "size": [14, 14, 30], "slot": "floorTall" },
+    "bucket":      { "size": [8, 8, 8],    "slot": "bucket" }
+  },
+  "seasons": {
+    "months": ["winter", "winter", "spring", "spring", "spring", "summer", "summer", "summer", "autumn", "autumn", "autumn", "december"],
+    "spring":   { "stackTop": ["jamJar", "seedlings"], "rainChance": 35 },
+    "summer":   { "floorTall": "fan", "floorLow": "sleepingCat", "openSkylight": true },
+    "autumn":   { "floorLow": "pumpkin", "blankets": true, "skylights": "leaves" },
+    "december": { "floorTall": "boxTree", "skylights": "snow", "bunting": true, "string": true },
+    "winter":   { "skylights": "snow", "blankets": true }
+  },
+  "lamps": { "count": [1, 2], "r": 5, "h": 8, "z": 44, "maxZ": 64, "pool": 56 },
+  "string": { "step": 6, "sag": 3, "colours": 3 },
+  "bunting": { "step": 8, "colours": 3 },
+  "naps": { "max": 12, "len": 12, "dep": 8, "h": 8, "poses": 3, "flatLen": 18, "loopFrames": 2880 },
+  "sampleCollection": ["greyTabby", "black", "white", "calico", "tortie", "cream", "siamese", "smoke", "greyTabby", "calico", "black", "cream", "tortie", "white"]
+}
+;
+const COATS_DATA = {
+  "_about": "The collection's coats (render/36_coats). Napping templates mark regions with letters: o body, O its light back, d its shaded underside, h head, H the head's light top, t tail, p paws, w chin and chest, e an open eye, z a closed one, n nose, i inner ear. A coat maps each letter to a palette colour; h, H, t and p fall back to o, O, o and o unless set. pattern: solid, tabby (stripes in s across the body, rings on the tail), calico (patches of the colours in patches over a white coat), tortie (mottled in mottle), points (Siamese: the colours in points for the face, ears, tail and paws). The board's ginger and blue are never used, so a collection cat on the stacks can't be taken for a puzzle cat.",
+  "coats": {
+    "greyTabby":  { "name": "grey tabby",    "pattern": "tabby",  "o": "GY1", "O": "GY2", "d": "GY0", "s": "GY0", "w": "WHITE", "e": "PT3", "z": "GY0", "n": "RD4", "i": "SK1" },
+    "black":      { "name": "black",         "pattern": "solid",  "o": "DEEP", "O": "COOL1", "d": "OUT", "w": "DEEP", "e": "BR3", "z": "COOL1", "n": "COOL1", "i": "COOL1" },
+    "white":      { "name": "white",         "pattern": "solid",  "o": "WHITE", "O": "WHITE", "d": "PAPSH", "w": "WHITE", "e": "BL3", "z": "PAPSH", "n": "RD4", "i": "RD4" },
+    "calico":     { "name": "calico",        "pattern": "calico", "o": "WHITE", "O": "WHITE", "d": "PAPSH", "w": "WHITE", "e": "PT3", "z": "DEEP", "n": "RD4", "i": "RD4", "patches": ["CO1", "DEEP"] },
+    "tortie":     { "name": "tortoiseshell", "pattern": "tortie", "o": "DEEP", "O": "COOL1", "d": "OUT", "w": "DEEP", "e": "EV0", "z": "OUT", "n": "COOL1", "i": "SK2", "mottle": ["CO0", "CO1", "DEEP", "COOL1"] },
+    "cream":      { "name": "cream",         "pattern": "tabby",  "o": "CR1", "O": "CREAM", "d": "CR0", "s": "CR0", "w": "WHITE", "e": "EV0", "z": "CR0", "n": "RD4", "i": "SK0" },
+    "siamese":    { "name": "Siamese",       "pattern": "points", "o": "CR1", "O": "CREAM", "d": "CR0", "w": "WD1", "e": "BL3", "z": "WD0", "n": "WD0", "i": "WD0", "points": { "h": "WD1", "H": "WD1", "t": "WD0", "p": "WD1" } },
+    "smoke":      { "name": "smoke",         "pattern": "solid",  "o": "SM1", "O": "GY1", "d": "SM0", "w": "PAPSH", "e": "EV0", "z": "SM0", "n": "SM0", "i": "SK2" }
+  },
+  "sample": ["greyTabby", "black", "white", "calico", "tortie", "cream", "siamese", "smoke", "greyTabby", "calico", "black", "cream", "tortie", "white"]
 }
 ;
 const DAILY_DATA = {
@@ -2257,47 +2385,907 @@ const DAILY = (function () {
 })();
 if (typeof module !== 'undefined' && module.exports) module.exports = DAILY;
 // ============================================================================
+// 18 BOX ROOM (pure; Node-exported): the attic where every generated level is
+// played. build(seed, w, h, date, mode, collection) returns plain data and draws
+// nothing; the renderer draws from it. Settings: src/data/boxroom.json.
+//  - World units as in the scene: 1 tile = 16 wu; x from the left back wall
+//    (plane x = 0), y from the right back wall (plane y = 0), z up. Every
+//    coordinate in the result is a whole number.
+//  - Same inputs, same room: a mulberry32 stream per part, never Math.random.
+//    The layout (stacks, gaps, props, slots, lamps, beams) depends only on the
+//    seed and the board size. The date picks the dressing items for the fixed
+//    slots, and the weekday (or free play) picks the light and the skylights.
+//  - What can hide a tile: the view ray is (1, 1, 1), so a point (x, y, z)
+//    hides the floor point (x - z, y - z). A box hides a tile only if that swept
+//    footprint reaches the tile's 12 x 6 px core (the same core the in-page
+//    check uses), which is a diamond |dx - dy| < 6, |dx + dy| < 6 on the floor.
+//  - Skylight light is stylised: each patch is the projection, along the day's
+//    light, of a virtual opening VZ wu up. Only things standing on the floor
+//    margins (props, dressing items, loose boxes, lamps) cast shadows into it;
+//    the stacks and walls don't. A point at height z is lit when its drop along
+//    the light, (x + a z, y + b z), lands in a patch. The drawn skylight sits in
+//    the roof band, upstream of its patch along the light.
+// Swift: struct BoxRoom: Codable, the same streams (UInt32 wrapping maths), the
+// same checks; tests/golden.json holds reference rooms and digests.
+// ============================================================================
+const BOXROOM = (function () {
+  const isNode = typeof module !== 'undefined' && module.exports;
+  const DY = isNode ? require('./17_daily.js') : DAILY;
+  const CFG = isNode ? require('../data/boxroom.json') : BOXROOM_DATA;
+  const T = CFG.tile, D = CFG.stackD, WALL_H = CFG.wallH;
+  const PITCH = CFG.roof.pitchNum / CFG.roof.pitchDen, RUN = CFG.roof.run;
+  const ROOF_TOP = WALL_H + RUN * CFG.roof.pitchNum / CFG.roof.pitchDen;
+  const VZ = CFG.skylights.virtualZ, BAR_W = CFG.skylights.barW, LIGHT_DEN = 16;
+  const CORE = 7;                                   // tile core half-size on the floor diagonals: 6 wu + 1 for rounding
+  const SETS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun', 'night'];
+  const SEASONS = ['spring', 'summer', 'autumn', 'december', 'winter'];
+  const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
+
+  // ---- random streams --------------------------------------------------------
+  function fmix(h) {                                 // murmur3 finaliser: seeds each stream
+    h ^= h >>> 16; h = Math.imul(h, 0x85ebca6b); h ^= h >>> 13; h = Math.imul(h, 0xc2b2ae35); h ^= h >>> 16;
+    return h >>> 0;
+  }
+  function rng(seed) {                               // mulberry32, as in render/21_core
+    let s = seed >>> 0;
+    const r = {
+      u32() {
+        s = (s + 0x6D2B79F5) | 0;
+        let t = s;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return (t ^ (t >>> 14)) >>> 0;
+      },
+      int(n) { return Math.floor(r.u32() * n / 4294967296); },        // 0 .. n-1 (exact: u32 * n < 2^53)
+      range(lo, hi) { return lo + r.int(hi - lo + 1); },              // lo .. hi
+      even(lo, hi) { return lo + 2 * r.int(((hi - lo) >> 1) + 1); },  // even steps from lo
+      chance(pct) { return r.int(100) < pct; },
+      shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = r.int(i + 1), t = a[i]; a[i] = a[j]; a[j] = t; } return a; },
+    };
+    return r;
+  }
+  const stream = (seed, k) => rng(fmix((seed ^ Math.imul(k, 0x9E3779B9)) >>> 0));
+  const ST = { MARGINS: 1, STACKS: 2, SLOTS: 3, PROPS: 4, ROOF: 5, FRONT: 6, NAPS: 7, LIGHT: 16 };
+
+  // ---- small geometry ----------------------------------------------------------
+  const ceilAt = (x, y) => WALL_H + PITCH * Math.min(x, y);           // underside of the two roof slopes
+  const overlap2 = (a, b, g) => a[0] < b[3] + g && b[0] < a[3] + g && a[1] < b[4] + g && b[1] < a[4] + g;
+  // On wall L (plane x = 0) u runs along y and v along x; on wall R (y = 0) u runs along x and v along y.
+  const wallBox = (wall, u0, u1, v0, v1, z0, z1) => (wall === 'L' ? [v0, u0, z0, v1, u1, z1] : [u0, v0, z0, u1, v1, z1]);
+
+  // Does the box [x0,y0,z0,x1,y1,z1] hide the core of any board tile? Returns the first tile [i, j] or null.
+  // The floor it hides is the footprint swept by (-z, -z) for z in [z0, z1]: a hexagon. Separating axes:
+  // x, y, x + y and x - y (the hexagon's and the core diamond's edge normals).
+  function hidesTile(B, bx) {
+    const hx0 = bx[0] - bx[5], hx1 = bx[3] - bx[2], hy0 = bx[1] - bx[5], hy1 = bx[4] - bx[2];
+    const hs0 = bx[0] + bx[1] - 2 * bx[5], hs1 = bx[3] + bx[4] - 2 * bx[2], hd0 = bx[0] - bx[4], hd1 = bx[3] - bx[1];
+    const i0 = Math.max(0, Math.ceil((hx0 - CORE - B.x - 8) / T)), i1 = Math.min(B.w - 1, Math.floor((hx1 + CORE - B.x - 8) / T));
+    const j0 = Math.max(0, Math.ceil((hy0 - CORE - B.y - 8) / T)), j1 = Math.min(B.h - 1, Math.floor((hy1 + CORE - B.y - 8) / T));
+    for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) {
+      const cx = B.x + 8 + i * T, cy = B.y + 8 + j * T;
+      if (!(hx0 < cx + CORE && cx - CORE < hx1 && hy0 < cy + CORE && cy - CORE < hy1)) continue;
+      if (!(hs0 < cx + cy + CORE && cx + cy - CORE < hs1)) continue;
+      if (!(hd0 < cx - cy + CORE && cx - cy - CORE < hd1)) continue;
+      return [i, j];
+    }
+    return null;
+  }
+
+  // ---- polygons (light patches) ----------------------------------------------------
+  const patchPoly = (p) => [[p.x, p.y], [p.x + p.e1[0], p.y + p.e1[1]], [p.x + p.e1[0] + p.e2[0], p.y + p.e1[1] + p.e2[1]], [p.x + p.e2[0], p.y + p.e2[1]]];
+  function polyArea(P) { let s = 0; for (let i = 0; i < P.length; i++) { const a = P[i], b = P[(i + 1) % P.length]; s += a[0] * b[1] - b[0] * a[1]; } return Math.abs(s) / 2; }
+  // Sutherland-Hodgman: clip polygon P against the convex polygon C.
+  function clipConvex(P, C) {
+    let sgn = 0; for (let i = 0; i < C.length; i++) { const a = C[i], b = C[(i + 1) % C.length]; sgn += a[0] * b[1] - b[0] * a[1]; }
+    let out = P;
+    for (let i = 0; i < C.length && out.length; i++) {
+      const a = C[i], b = C[(i + 1) % C.length], inp = out; out = [];
+      const side = (q) => ((b[0] - a[0]) * (q[1] - a[1]) - (b[1] - a[1]) * (q[0] - a[0])) * sgn;
+      for (let k = 0; k < inp.length; k++) {
+        const p = inp[k], q = inp[(k + 1) % inp.length], sp = side(p), sq = side(q);
+        if (sp >= 0) out.push(p);
+        if ((sp >= 0) !== (sq >= 0)) { const t = sp / (sp - sq); out.push([p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t]); }
+      }
+    }
+    return out;
+  }
+  const rectPoly = (x0, y0, x1, y1) => [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
+
+  // A point on the floor: inside patch p and not in the shadow of its frame bars?
+  function inPatch(p, x, y) {
+    const e1 = p.e1, e2 = p.e2, dx = x - p.x, dy = y - p.y, det = e1[0] * e2[1] - e1[1] * e2[0];
+    const s = (dx * e2[1] - dy * e2[0]) / det, t = (e1[0] * dy - e1[1] * dx) / det;
+    if (s < 0 || s >= 1 || t < 0 || t >= 1) return false;
+    const h1 = Math.abs(det) / Math.sqrt(e2[0] * e2[0] + e2[1] * e2[1]);   // patch width across the bars that run along e2
+    const h2 = Math.abs(det) / Math.sqrt(e1[0] * e1[0] + e1[1] * e1[1]);
+    for (let k = 1; k < p.panes[0]; k++) if (Math.abs(s - k / p.panes[0]) * h1 < BAR_W / 2) return false;
+    for (let k = 1; k < p.panes[1]; k++) if (Math.abs(t - k / p.panes[1]) * h2 < BAR_W / 2) return false;
+    return true;
+  }
+  // Is the floor point's path to the light (up along (-a, -b, 1) to height VZ) blocked by a box in occ?
+  function shaded(occ, x, y, a, b) {
+    for (let k = 0; k < occ.length; k++) {
+      const o = occ[k];
+      let t0 = Math.max(o[2], 1e-3), t1 = Math.min(o[5], VZ);
+      const ax0 = (x - o[3]) / a, ax1 = (x - o[0]) / a; if (ax0 > t0) t0 = ax0; if (ax1 < t1) t1 = ax1;
+      const ay0 = (y - o[4]) / b, ay1 = (y - o[1]) / b; if (ay0 > t0) t0 = ay0; if (ay1 < t1) t1 = ay1;
+      if (t0 < t1) return true;
+    }
+    return false;
+  }
+  // Fraction of the board in sunlight, by scanlines: exact along x, a row every `dy` wu (default 0.5). Each patch
+  // gives an interval on a row, less its own frame bars; shadows are the floor projections of the occluders
+  // along the light (convex hulls of their 8 corners).
+  function hull(P) {                                 // monotone chain, counter-clockwise
+    P = P.slice().sort((p, q) => p[0] - q[0] || p[1] - q[1]);
+    const cr = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]), lo = [], up = [];
+    for (const p of P) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], p) <= 0) lo.pop(); lo.push(p); }
+    for (let i = P.length - 1; i >= 0; i--) { const p = P[i]; while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], p) <= 0) up.pop(); up.push(p); }
+    return lo.slice(0, -1).concat(up.slice(0, -1));
+  }
+  function shadowOf(o, a, b) {
+    const z0 = Math.max(o[2], 0), z1 = Math.min(o[5], VZ), pts = [];
+    if (z1 <= z0) return null;
+    for (const z of [z0, z1]) for (const x of [o[0], o[3]]) for (const y of [o[1], o[4]]) pts.push([x + a * z, y + b * z]);
+    return hull(pts);
+  }
+  // Row maths without allocation: scratch interval buffers (pairs of x0, x1) reused for every row.
+  let rx0 = 0, rx1 = 0;
+  function polyRow(P, y) {                           // x-interval of convex polygon P on the line at y -> rx0, rx1
+    let x0 = Infinity, x1 = -Infinity;
+    for (let i = 0; i < P.length; i++) {
+      const p = P[i], q = P[(i + 1) % P.length];
+      if ((p[1] <= y && y < q[1]) || (q[1] <= y && y < p[1])) { const x = p[0] + (y - p[1]) * (q[0] - p[0]) / (q[1] - p[1]); if (x < x0) x0 = x; if (x > x1) x1 = x; }
+    }
+    rx0 = x0; rx1 = x1;
+    return x0 < x1;
+  }
+  function sortIv(buf, n) {                          // insertion sort of n intervals by start (n is small)
+    for (let i = 1; i < n; i++) {
+      const a0 = buf[2 * i], a1 = buf[2 * i + 1];
+      let j = i - 1;
+      while (j >= 0 && buf[2 * j] > a0) { buf[2 * j + 2] = buf[2 * j]; buf[2 * j + 3] = buf[2 * j + 1]; j--; }
+      buf[2 * j + 2] = a0; buf[2 * j + 3] = a1;
+    }
+  }
+  function measure(buf, n) {                         // total length of the union of n intervals
+    sortIv(buf, n);
+    let tot = 0, c0 = -Infinity, c1 = -Infinity;
+    for (let i = 0; i < n; i++) {
+      const a0 = buf[2 * i], a1 = buf[2 * i + 1];
+      if (a0 > c1) { if (c1 > c0) tot += c1 - c0; c0 = a0; c1 = a1; } else if (a1 > c1) c1 = a1;
+    }
+    return tot + (c1 > c0 ? c1 - c0 : 0);
+  }
+  function prepPatch(p) {
+    const e1 = p.e1, e2 = p.e2, det = e1[0] * e2[1] - e1[1] * e2[0];
+    return { p, poly: patchPoly(p), det, h1: Math.abs(det) / Math.sqrt(e2[0] * e2[0] + e2[1] * e2[1]), h2: Math.abs(det) / Math.sqrt(e1[0] * e1[0] + e1[1] * e1[1]),
+      y0: Math.min(p.y, p.y + e1[1], p.y + e2[1], p.y + e1[1] + e2[1]), y1: Math.max(p.y, p.y + e1[1], p.y + e2[1], p.y + e1[1] + e2[1]) };
+  }
+  const LIT = new Float64Array(64), CUT = new Float64Array(32), SHD = new Float64Array(64), BOTH = new Float64Array(512);
+  // Append to LIT (from index n) the pieces of row y that patch q lights, its frame bars removed. Returns the new n.
+  function patchRow(q, y, n) {
+    if (y < q.y0 || y >= q.y1 || !polyRow(q.poly, y)) return n;
+    const r0 = rx0, r1 = rx1, p = q.p;
+    let nc = 0;
+    // s(x) = sA x + sB and t(x) = tA x + tB along the row
+    const sA = p.e2[1] / q.det, sB = (-p.x * p.e2[1] - (y - p.y) * p.e2[0]) / q.det;
+    const tA = -p.e1[1] / q.det, tB = (p.e1[0] * (y - p.y) + p.e1[1] * p.x) / q.det;
+    for (let pass = 0; pass < 2; pass++) {
+      const A = pass ? tA : sA, Bc = pass ? tB : sB, np = p.panes[pass], d = BAR_W / 2 / (pass ? q.h2 : q.h1);
+      for (let k = 1; k < np; k++) {                 // where |A x + Bc - k / np| < d
+        const kk = k / np;
+        if (A === 0) { if (Math.abs(Bc - kk) < d) { CUT[2 * nc] = r0; CUT[2 * nc + 1] = r1; nc++; } continue; }
+        const u0 = (kk - d - Bc) / A, u1 = (kk + d - Bc) / A;
+        CUT[2 * nc] = u0 < u1 ? u0 : u1; CUT[2 * nc + 1] = u0 < u1 ? u1 : u0; nc++;
+      }
+    }
+    sortIv(CUT, nc);
+    let x = r0;
+    for (let i = 0; i < nc; i++) {
+      const c0 = CUT[2 * i], c1 = CUT[2 * i + 1];
+      if (c0 > x) { LIT[2 * n] = x; LIT[2 * n + 1] = c0 < r1 ? c0 : r1; n++; }
+      if (c1 > x) x = c1;
+      if (x >= r1) return n;
+    }
+    if (x < r1) { LIT[2 * n] = x; LIT[2 * n + 1] = r1; n++; }
+    return n;
+  }
+  function sunlitWith(B, patches, occ, a, b, dy) {
+    if (!patches.length) return 0;
+    dy = dy || 0.5;
+    const PP = patches.map(prepPatch), SH = [];
+    for (const o of occ) { const h = shadowOf(o, a, b); if (h) SH.push(h); }
+    const xL = B.x, xR = B.x + B.w * T, yT = B.y, yB = B.y + B.h * T;
+    let lit = 0, rows = 0;
+    for (let y = yT + dy / 2; y < yB; y += dy) {
+      rows++;
+      let n = 0;
+      for (let k = 0; k < PP.length; k++) n = patchRow(PP[k], y, n);
+      let m = 0;                                     // clip to the board
+      for (let i = 0; i < n; i++) {
+        const v0 = LIT[2 * i] > xL ? LIT[2 * i] : xL, v1 = LIT[2 * i + 1] < xR ? LIT[2 * i + 1] : xR;
+        if (v0 < v1) { LIT[2 * m] = v0; LIT[2 * m + 1] = v1; m++; }
+      }
+      if (!m) continue;
+      let ns = 0;
+      for (let k = 0; k < SH.length; k++) if (polyRow(SH[k], y)) { SHD[2 * ns] = rx0; SHD[2 * ns + 1] = rx1; ns++; }
+      let nb = 0;                                    // lit and not shaded = all - |lit ∩ shadow|
+      for (let i = 0; i < m && ns; i++) for (let j = 0; j < ns; j++) {
+        const u0 = LIT[2 * i] > SHD[2 * j] ? LIT[2 * i] : SHD[2 * j], u1 = LIT[2 * i + 1] < SHD[2 * j + 1] ? LIT[2 * i + 1] : SHD[2 * j + 1];
+        if (u0 < u1) { BOTH[2 * nb] = u0; BOTH[2 * nb + 1] = u1; nb++; }
+      }
+      lit += measure(LIT, m) - (nb ? measure(BOTH, nb) : 0);
+    }
+    return lit / (rows * (xR - xL));
+  }
+  // The patch lines that run along the tile grid (constant x or constant y) and their positions; none may sit
+  // within 3 wu of a tile line on the board, or it would read as a gap between tiles.
+  function gridLines(p) {
+    const out = [];
+    const ax = p.e1[0] === 0 ? 0 : 1;                // e1 runs along y (ax 0: the lines are constant x) or along x
+    for (let k = 0; k <= p.panes[1]; k++) {
+      const q = [p.x + p.e2[0] * k / p.panes[1], p.y + p.e2[1] * k / p.panes[1]];
+      out.push({ axis: ax === 0 ? 'x' : 'y', at: q[ax === 0 ? 0 : 1], from: q[ax === 0 ? 1 : 0], to: q[ax === 0 ? 1 : 0] + p.e1[ax === 0 ? 1 : 0] });
+    }
+    if (Math.abs(p.e2[ax === 0 ? 1 : 0]) < 4) {      // e2 nearly along the grid too
+      for (let k = 0; k <= p.panes[0]; k++) {
+        const q = [p.x + p.e1[0] * k / p.panes[0], p.y + p.e1[1] * k / p.panes[0]];
+        out.push({ axis: ax === 0 ? 'y' : 'x', at: q[ax === 0 ? 1 : 0], from: q[ax === 0 ? 0 : 1], to: q[ax === 0 ? 0 : 1] + p.e2[ax === 0 ? 0 : 1] });
+      }
+    }
+    return out;
+  }
+  function onGrid(B, p) {
+    for (const L of gridLines(p)) {
+      const base = L.axis === 'x' ? B.x : B.y, n = L.axis === 'x' ? B.w : B.h;
+      const o0 = L.axis === 'x' ? B.y : B.x, o1 = o0 + (L.axis === 'x' ? B.h : B.w) * T;
+      if (Math.max(L.from, L.to) <= o0 || Math.min(L.from, L.to) >= o1) continue;      // the line misses the board
+      for (let m = 0; m <= n; m++) if (Math.abs(L.at - (base + m * T)) < 3) return L;
+    }
+    return null;
+  }
+
+  // ---- inputs -------------------------------------------------------------------------
+  function seasonOf(date) { return CFG.seasons.months[+date.slice(5, 7) - 1]; }
+  function lightSetOf(date, mode) {
+    if (mode === 'free') return 'night';
+    if (mode === 'daily') return SETS[DY.weekday(date)];
+    throw new RangeError('mode must be daily or free: ' + mode);
+  }
+  function isRainy(date) {                           // the weather follows the date, not the seed: every room is wet that day
+    const sp = CFG.seasons[seasonOf(date)];
+    return !!sp.rainChance && fmix((DY.dayNumber(date) ^ 0x5bd1e995) >>> 0) % 100 < sp.rainChance;
+  }
+
+  // ---- layout: seed and board size only ---------------------------------------------------
+  function layout(seed, W, H) {
+    const rm = stream(seed, ST.MARGINS);
+    const mx0 = rm.chance(CFG.margins.back2) ? 2 : 1, my0 = rm.chance(CFG.margins.back2) ? 2 : 1;
+    const mx1 = rm.chance(CFG.margins.front2) ? 2 : 1, my1 = rm.chance(CFG.margins.front2) ? 2 : 1;
+    const B = { x: D + mx0 * T, y: D + my0 * T, w: W, h: H };
+    const L = { B, margins: [mx0, my0, mx1, my1], RX: B.x + (W + mx1) * T, RY: B.y + (H + my1) * T };
+    L.boardBox = [B.x, B.y, 0, B.x + W * T, B.y + H * T, 0];
+    stacks(L, stream(seed, ST.STACKS));
+    roof(L, stream(seed, ST.ROOF));
+    L.foot = [];                                     // floor footprints taken on the margins
+    frontBoxes(L, stream(seed, ST.FRONT));
+    slots(L, stream(seed, ST.SLOTS));
+    props(L, stream(seed, ST.PROPS));
+    return L;
+  }
+
+  function stacks(L, r) {
+    const SZ = CFG.boxes;
+    const use = [0, 1, 2, 3];
+    if (r.chance(50)) use.splice(use.indexOf([0, 2, 3][r.int(3)]), 1);   // 3 or 4 sizes; the medium box always stays
+    L.sizes = use.slice();
+    // 1 or 2 gaps showing the brick, away from the corner and the open ends
+    const gaps = [], nGaps = r.range(CFG.stacks.gaps[0], CFG.stacks.gaps[1]);
+    for (let k = 0; k < nGaps; k++) {
+      for (let tries = 0; tries < 12; tries++) {
+        const wall = r.int(2) ? 'L' : 'R', len = wall === 'L' ? L.RY : L.RX;
+        const w = r.even(CFG.stacks.gapW[0], CFG.stacks.gapW[1]), lo = D + 16, hi = len - 16 - w;
+        if (hi < lo) continue;
+        const u0 = r.even(lo, hi);
+        if (gaps.some((g) => g.wall === wall && u0 < g.u1 + 24 && g.u0 < u0 + w + 24)) continue;
+        const rr = r.range(CFG.stacks.windowR[0], CFG.stacks.windowR[1]);
+        const win = w >= 2 * rr + 6 && r.chance(CFG.stacks.windowChance) ? { u: u0 + (w >> 1), z: CFG.stacks.windowZ, r: rr } : null;
+        gaps.push({ wall, u0, u1: u0 + w, window: win });
+        break;
+      }
+    }
+    L.gaps = gaps;
+    L.boxes = []; L.columns = [];
+    for (const wall of ['R', 'L']) {
+      const len = wall === 'L' ? L.RY : L.RX, wg = gaps.filter((g) => g.wall === wall);
+      let u = wall === 'R' ? 0 : D;                  // the corner square belongs to wall R
+      for (;;) {
+        const g = wg.filter((q) => q.u1 > u).sort((p, q) => p.u0 - q.u0)[0];
+        if (g && u >= g.u0) { u = g.u1 + r.range(0, 2); continue; }
+        const limit = g ? g.u0 : len;
+        let s = use[r.int(use.length)];
+        if (u / len < 0.5 && s === use[0]) s = use[r.int(use.length)];     // bigger boxes near the corner
+        if (u + SZ[s].len > limit) { s = -1; for (let k = use.length - 1; k >= 0; k--) if (u + SZ[use[k]].len <= limit) { s = use[k]; break; } }
+        if (s < 0) { if (!g) break; u = g.u1 + r.range(0, 2); continue; }   // skip the gap, or the wall is full
+        column(L, r, wall, u, s, len);
+        u += SZ[s].len + r.range(CFG.stacks.spacing[0], CFG.stacks.spacing[1]);
+      }
+    }
+  }
+  function column(L, r, wall, u, s, len) {
+    const SZ = CFG.boxes, V = CFG.variants, use = L.sizes;
+    const t = (u + SZ[s].len / 2) / len;
+    const n = clamp(Math.floor(CFG.stacks.maxBoxes - 3 * t + r.int(100) / 100), CFG.stacks.minBoxes, CFG.stacks.maxBoxes);
+    const hmax = CFG.stacks.profile[0] - CFG.stacks.profile[1] * t;      // past the minimum, no box tops out above this
+    const col = { wall, u0: u, u1: u + SZ[s].len, boxes: [], top: -1, h: 0 };
+    let z = 0, pu0 = u, pu1 = u + SZ[s].len, pv0 = 0, pv1 = SZ[s].dep, ps = s;
+    for (let lvl = 0; lvl < n; lvl++) {
+      let placed = null;
+      const cands = lvl === 0 ? [s] : use.filter((k) => k <= ps).reverse();
+      const first = lvl === 0 ? 0 : r.int(Math.min(2, cands.length));          // the same size, or one smaller
+      for (let c = first; c < cands.length && !placed; c++) {
+        const b = SZ[cands[c]];
+        if (b.len > pu1 - pu0 || b.dep > D) continue;
+        const need = Math.max(0, Math.ceil((z + b.h + 1 - WALL_H) / PITCH));   // keeps the box under the slopes
+        let uk = pu0 + (pu1 - pu0 - b.len > 0 ? r.even(0, pu1 - pu0 - b.len) : 0);
+        let vk = lvl === 0 ? r.int(Math.min(2, D - b.dep) + 1) : pv0 + r.int(Math.max(0, Math.min(2, pv1 - pv0 - b.dep)) + 1);
+        if (vk < need) vk = need;
+        if (wall === 'R' && uk < need) uk = need;
+        if (uk + b.len > pu1 || vk + b.dep > D || (lvl > 0 && vk + b.dep > pv1 + 2)) continue;   // overhangs or leaves the band
+        if (lvl >= CFG.stacks.minBoxes && z + b.h > hmax) continue;                                    // keeps the silhouette
+        placed = { b, k: cands[c], uk, vk };
+      }
+      if (!placed) break;
+      const { b, k, uk, vk } = placed;
+      const bx = wallBox(wall, uk, uk + b.len, vk, vk + b.dep, z, z + b.h);
+      const label = r.chance(V.label) ? [2 + r.int(Math.max(1, b.len - 8)), 2 + r.int(Math.max(1, b.h - 6))] : null;
+      const box = { x0: bx[0], y0: bx[1], z0: bx[2], x1: bx[3], y1: bx[4], z1: bx[5], size: k, wall, col: L.columns.length, lvl,
+        nudge: lvl > 0 && r.chance(V.nudge), flap: 0, string: r.chance(V.string) ? 1 + r.int(3) : 0,
+        label, paw: !label && r.chance(V.paw) ? [2 + r.int(Math.max(1, b.len - 8)), 2 + r.int(Math.max(1, b.h - 6))] : null };
+      col.boxes.push(L.boxes.length); L.boxes.push(box);
+      z += b.h; pu0 = uk; pu1 = uk + b.len; pv0 = vk; pv1 = vk + b.dep; ps = k;
+    }
+    if (!col.boxes.length) return;
+    const top = L.boxes[col.boxes[col.boxes.length - 1]];
+    col.top = col.boxes[col.boxes.length - 1]; col.h = top.z1;
+    const flapH = Math.ceil(CFG.boxes[top.size].dep / 2);
+    if (r.chance(V.flap) && top.z1 + flapH + 1 <= ceilAt(top.x0, top.y0)) top.flap = 1 + r.int(4);   // which flap stands open
+    L.columns.push(col);
+  }
+
+  // Rafters on both slopes, a hip rafter, and 1 or 2 cross beams the lamps hang from.
+  function roof(L, r) {
+    const sp = CFG.roof.rafterSpacing[r.int(CFG.roof.rafterSpacing.length)];
+    const raf = (len) => { const out = []; for (let u = r.even(8, sp - 8); u < len - 4; u += sp) out.push(u); return out; };
+    L.rafters = { L: raf(L.RY), R: raf(L.RX), w: CFG.roof.rafterW, spacing: sp };
+    // lamps: over the back of the board, hung from beams high enough that nothing hides a tile
+    const B = L.B, nl = r.range(CFG.lamps.count[0], CFG.lamps.count[1]), LC = CFG.lamps;
+    L.beams = []; L.lamps = [];
+    const firstAlongY = r.int(2) === 1;
+    for (let k = 0; k < nl; k++) {
+      const alongY = k === 0 ? firstAlongY : !firstAlongY;                      // the second lamp takes the other axis
+      const at = (alongY ? B.x : B.y) + r.even(4, 24);
+      const span = alongY ? [B.y + 8, B.y + B.h * T - 8] : [B.x + 8, B.x + B.w * T - 8];
+      let pos = -1;
+      for (let tries = 0; tries < 8 && pos < 0; tries++) {
+        const p = r.even(span[0], span[1]);
+        if (L.lamps.every((l) => Math.abs((alongY ? l.y : l.x) - p) + Math.abs((alongY ? l.x : l.y) - at) >= 48)) pos = p;
+      }
+      if (pos < 0) continue;
+      const x = alongY ? at : pos, y = alongY ? pos : at;
+      let z0 = LC.z;
+      while (z0 <= LC.maxZ && hidesTile(B, [x - LC.r, y - LC.r, z0, x + LC.r, y + LC.r, z0 + LC.h])) z0 += 2;
+      if (z0 > LC.maxZ) continue;
+      L.beams.push({ alongY, at, z: ROOF_TOP, from: RUN, to: alongY ? L.RY : L.RX });
+      L.lamps.push({ x, y, z0, z1: z0 + LC.h, r: LC.r, beam: L.beams.length - 1, pool: LC.pool });
+    }
+    // string lights along the top edges of the roof band and under each beam (shown on Sundays, at night, in December)
+    const st = CFG.string, bulbs = [];
+    const run = (x0, y0, x1, y1, z) => {
+      const len = Math.abs(x1 - x0) + Math.abs(y1 - y0);
+      for (let d = 0, i = 0; d <= len; d += st.step, i++) {
+        const f = (d % 24) / 24, sag = Math.round(st.sag * 4 * f * (1 - f));
+        bulbs.push([x0 + Math.sign(x1 - x0) * d, y0 + Math.sign(y1 - y0) * d, z - sag, (bulbs.length) % st.colours]);
+      }
+    };
+    run(RUN, RUN + 4, RUN, L.RY - 4, ROOF_TOP - 3);
+    run(RUN + 4, RUN, L.RX - 4, RUN, ROOF_TOP - 3);
+    for (const b of L.beams) if (b.alongY) run(b.at, RUN + 4, b.at, L.RY - 4, b.z - 3); else run(RUN + 4, b.at, L.RX - 4, b.at, b.z - 3);
+    L.bulbs = bulbs;
+    const bu = CFG.bunting, flags = [];
+    for (let y = RUN + 4; y <= L.RY - 4; y += bu.step) flags.push([RUN, y, ROOF_TOP - 6, flags.length % bu.colours]);
+    for (let x = RUN + 4; x <= L.RX - 4; x += bu.step) flags.push([x, RUN, ROOF_TOP - 6, flags.length % bu.colours]);
+    L.flags = flags;
+  }
+
+  // ---- the floor margins ----------------------------------------------------------------
+  // Try to put a footprint w x d (x by y) of height h somewhere on the margins. against: touch a stack.
+  function placeFoot(L, r, w, d, h, against, tries) {
+    const B = L.B;
+    for (let n = 0; n < tries; n++) {
+      const swap = r.int(2) === 1, fw = swap ? d : w, fd = swap ? w : d;
+      let x0 = r.even(D, L.RX - fw), y0 = r.even(D, L.RY - fd);
+      if (against) {                                  // snap to the front of the left or right stacks
+        if (r.int(2)) x0 = D; else y0 = D;
+        const wall = x0 === D ? 'L' : 'R', u0 = wall === 'L' ? y0 : x0, u1 = u0 + (wall === 'L' ? fd : fw);
+        if (!L.columns.some((c) => c.wall === wall && Math.min(c.u1, u1) - Math.max(c.u0, u0) >= (u1 - u0) / 2)) continue;
+      }
+      const bx = [x0, y0, 0, x0 + fw, y0 + fd, h];
+      if (bx[3] > L.RX || bx[4] > L.RY) continue;
+      if (overlap2(bx, L.boardBox, 2)) continue;
+      if (L.foot.some((f) => overlap2(bx, f, 1))) continue;
+      if (hidesTile(B, bx)) continue;
+      return bx;
+    }
+    return null;
+  }
+  // Facing: towards the board's centre, along the longer axis to it.
+  function facing(L, bx) {
+    const cx = L.B.x + L.B.w * T / 2 - (bx[0] + bx[3]) / 2, cy = L.B.y + L.B.h * T / 2 - (bx[1] + bx[4]) / 2;
+    return Math.abs(cx) >= Math.abs(cy) ? (cx >= 0 ? 'R' : 'L') : (cy >= 0 ? 'D' : 'U');
+  }
+  function frontBoxes(L, r) {                        // loose boxes on the margins in front of the board: 1 high
+    const B = L.B, n = r.range(CFG.frontBoxes[0], CFG.frontBoxes[1]);
+    for (let k = 0; k < n; k++) {
+      const s = r.int(2), b = CFG.boxes[s];          // small or medium
+      const swap = r.int(2) === 1, fw = swap ? b.dep : b.len, fd = swap ? b.len : b.dep;
+      for (let tries = 0; tries < 16; tries++) {
+        const right = r.int(2) === 1;                 // the front-right margin (beyond x1) or the front-left (beyond y1)
+        const x0 = right ? r.even(B.x + B.w * T + 2, L.RX - fw) : r.even(D, L.RX - fw);
+        const y0 = right ? r.even(D, L.RY - fd) : r.even(B.y + B.h * T + 2, L.RY - fd);
+        const bx = [x0, y0, 0, x0 + fw, y0 + fd, b.h];
+        if (bx[3] > L.RX || bx[4] > L.RY || x0 < D || y0 < D) continue;
+        if (overlap2(bx, L.boardBox, 2) || L.foot.some((f) => overlap2(bx, f, 1)) || hidesTile(B, bx)) continue;
+        L.foot.push(bx);
+        L.boxes.push({ x0, y0, z0: 0, x1: bx[3], y1: bx[4], z1: b.h, size: s, wall: 'F', col: -1, lvl: 0, nudge: false,
+          flap: r.chance(CFG.variants.flap) ? 2 : 0,      // only the flap that hangs down the front: a standing one would add height
+          string: r.chance(CFG.variants.string) ? 1 + r.int(3) : 0,
+          label: r.chance(CFG.variants.label) ? [2 + r.int(Math.max(1, b.len - 8)), 2 + r.int(Math.max(1, b.h - 6))] : null, paw: null });
+        break;
+      }
+    }
+  }
+  // Fixed places for the seasonal dressing, so a season never moves anything else.
+  function slots(L, r) {
+    const S = CFG.slots, out = {};
+    for (const name of ['floorTall', 'floorLow', 'bucket']) {
+      const [w, d, h] = S[name].size, bx = placeFoot(L, r, w, d, h, !!S[name].againstStack, 160);
+      out[name] = bx ? { x0: bx[0], y0: bx[1], z0: 0, x1: bx[3], y1: bx[4], z1: bx[5] } : null;
+      if (bx) L.foot.push(bx);
+    }
+    // column tops: two for small things, a few for blankets, the rest are napping spots
+    const tops = L.columns.map((c, i) => i).filter((i) => !L.boxes[L.columns[i].top].flap);
+    r.shuffle(tops);
+    const [sw, sd, sh] = S.stackTop.size, N = CFG.naps;
+    // a w x d footprint (along the wall x out from it) on a column top: centred along the wall, at the front edge,
+    // where the roof is highest (and where cats like to lie)
+    const onTop = (c, w, d, h) => {
+      const b = L.boxes[c.top], cu = c.wall === 'L' ? (b.y0 + b.y1) >> 1 : (b.x0 + b.x1) >> 1, v1 = (c.wall === 'L' ? b.x1 : b.y1) - 1;
+      const bx = wallBox(c.wall, cu - (w >> 1), cu - (w >> 1) + w, v1 - d, v1, b.z1, b.z1 + h);
+      return { x0: bx[0], y0: bx[1], z0: bx[2], x1: bx[3], y1: bx[4], z1: bx[5], wall: c.wall, top: c.top };
+    };
+    const topFits = (c, w, d, h) => {
+      const b = L.boxes[c.top], len = c.wall === 'L' ? b.y1 - b.y0 : b.x1 - b.x0, dep = c.wall === 'L' ? b.x1 - b.x0 : b.y1 - b.y0;
+      if (len < w || dep < d + 1) return false;
+      const f = onTop(c, w, d, h);
+      return f.z1 + 1 <= ceilAt(f.x0, f.y0);
+    };
+    out.stackTop = [];
+    L.napSpots = [];
+    for (const i of tops) {
+      const c = L.columns[i];
+      if (out.stackTop.length < S.stackTop.count && topFits(c, sw, sd, sh)) { out.stackTop.push(onTop(c, sw, sd, sh)); continue; }
+      if (topFits(c, N.len, N.dep, N.h)) {
+        const s = onTop(c, N.len, N.dep, N.h);
+        L.napSpots.push({ x: (s.x0 + s.x1) >> 1, y: (s.y0 + s.y1) >> 1, z: s.z0, wall: c.wall, top: c.top,
+          dir: c.wall === 'L' ? (r.int(2) ? 'D' : 'U') : (r.int(2) ? 'R' : 'L') });
+      }
+    }
+    const nb = r.range(S.blankets[0], S.blankets[1]);
+    out.blankets = r.shuffle(L.columns.map((c) => c.top)).slice(0, nb).sort((a, b) => a - b);
+    L.slots = out;
+  }
+  function props(L, r) {
+    const kinds = r.shuffle(Object.keys(CFG.props).sort());
+    const want = r.range(CFG.propCount[0], CFG.propCount[1]);
+    L.props = [];
+    for (let pass = 0; pass < 2; pass++) {             // a second, more thorough pass if fewer than the minimum fit
+      for (const kind of kinds) {
+        if (L.props.length >= (pass === 0 ? want : CFG.propCount[0])) break;
+        if (L.props.some((p) => p.kind === kind)) continue;
+        const [w, d, h] = CFG.props[kind].size, bx = placeFoot(L, r, w, d, h, !!CFG.props[kind].againstStack, pass === 0 ? 40 : 400);
+        if (!bx) continue;
+        L.foot.push(bx);
+        L.props.push({ kind, x0: bx[0], y0: bx[1], z0: 0, x1: bx[3], y1: bx[4], z1: bx[5], dir: facing(L, bx) });
+      }
+    }
+  }
+
+  // ---- dressing: the date only, into the fixed slots ----------------------------------------
+  function dressing(L, date) {
+    const season = seasonOf(date), S = CFG.seasons[season], rain = isRainy(date), items = [];
+    const put = (kind, slot) => {
+      if (!slot) return;
+      const [w, d, h] = CFG.items[kind].size, sw = slot.x1 - slot.x0, sd = slot.y1 - slot.y0;
+      const swap = (sw >= sd) !== (w >= d), iw = swap ? d : w, id = swap ? w : d;     // lie the long way along the slot
+      const x0 = slot.x0 + ((sw - iw) >> 1), y0 = slot.y0 + ((sd - id) >> 1);
+      items.push({ kind, x0, y0, z0: slot.z0, x1: x0 + iw, y1: y0 + id, z1: slot.z0 + h });
+    };
+    if (S.floorTall) put(S.floorTall, L.slots.floorTall);
+    if (S.floorLow) put(S.floorLow, L.slots.floorLow);
+    if (S.stackTop) S.stackTop.forEach((k, i) => put(k, L.slots.stackTop[i]));
+    if (rain) put('bucket', L.slots.bucket);
+    return { season, rain, items, skylights: rain ? 'rain' : S.skylights || null, openSkylight: !!S.openSkylight,
+      blankets: S.blankets ? L.slots.blankets.slice() : [], bunting: !!S.bunting, string: !!S.string };
+  }
+
+  // ---- light: the weekday (or night), the skylights and their patches ------------------------
+  function occluders(L, dress) {
+    const occ = [];
+    for (const b of L.boxes) if (b.wall === 'F') occ.push([b.x0, b.y0, b.z0, b.x1, b.y1, b.z1]);
+    for (const p of L.props) occ.push([p.x0, p.y0, p.z0, p.x1, p.y1, p.z1]);
+    for (const it of dress.items) if (it.z0 === 0) occ.push([it.x0, it.y0, it.z0, it.x1, it.y1, it.z1]);
+    for (const l of L.lamps) if (l.z0 < VZ) occ.push([l.x - l.r, l.y - l.r, l.z0, l.x + l.r, l.y + l.r, l.z1]);
+    return occ;
+  }
+  function bays(L, wall) {                          // the gaps between rafters where the roof band is full height
+    const R = L.rafters[wall], len = wall === 'L' ? L.RY : L.RX, out = [];
+    const starts = R.concat([len]);
+    for (let k = 0; k < starts.length; k++) {
+      const u0 = (k === 0 ? 0 : R[k - 1] + L.rafters.w) + 3, u1 = starts[k] - 3;
+      if (u0 >= RUN + 2 && u1 - u0 >= 16) out.push({ wall, u0, u1 });
+    }
+    return out;
+  }
+  function lighting(L, dress, seed, set) {
+    const S = CFG.lights[set], a = S.a / LIGHT_DEN, b = S.b / LIGHT_DEN, B = L.B, SK = CFG.skylights;
+    const area = B.w * B.h;
+    let n = 3; for (const [lim, k] of SK.byArea) if (area <= lim) { n = k; break; }   // more only if the light falls short
+    const free = { L: bays(L, 'L'), R: bays(L, 'R') };
+    const takeBay = (wall, u) => {                     // the free bay nearest u on the wall, else on the other wall
+      for (const w of [wall, wall === 'L' ? 'R' : 'L']) {
+        const list = free[w]; if (!list.length) continue;
+        let best = 0;
+        for (let i = 1; i < list.length; i++) if (Math.abs((list[i].u0 + list[i].u1) / 2 - u) < Math.abs((list[best].u0 + list[best].u1) / 2 - u)) best = i;
+        return list.splice(best, 1)[0];
+      }
+      return null;
+    };
+    const sky = (bay, vc, panes) => {
+      const v0 = clamp(2 * Math.round(vc / 2) - 12, 4, RUN - 20), v1 = Math.min(RUN - 4, v0 + 24);   // even, so z is whole
+      return { wall: bay.wall, u0: bay.u0, u1: bay.u1, v0, v1, z0: WALL_H + v0 * PITCH, z1: WALL_H + v1 * PITCH, panes, open: false, patch: -1 };
+    };
+    const r = stream(seed, ST.LIGHT + SETS.indexOf(set));
+    const skylights = [], patches = [];
+    if (!S.sun) {                                     // night: the skylights show the sky, no patches
+      for (let k = 0; k < n; k++) {
+        const wall = r.int(2) ? 'L' : 'R', bay = takeBay(wall, r.int(wall === 'L' ? L.RY : L.RX));
+        if (bay) skylights.push(sky(bay, r.range(14, RUN - 14), [bay.u1 - bay.u0 >= 24 ? 2 : 1, 2]));
+      }
+      return { set, a: S.a, b: S.b, sun: false, skylights, patches, sunlit: 0 };
+    }
+    const occ = occluders(L, dress), boardPoly = rectPoly(B.x, B.y, B.x + B.w * T, B.y + B.h * T);
+    const floorPoly = rectPoly(D, D, L.RX, L.RY), need = SK.coverTarget / 100 * area * T * T;
+    const shadows = [];                               // the shadows on the board, for scoring places
+    for (const o of occ) { const h = shadowOf(o, a, b); if (h) { const c = clipConvex(h, boardPoly); if (c.length >= 3) shadows.push(c); } }
+    let best = null;
+    for (let round = 0, scale = 1; round < 24; round++, scale *= 1.15) {
+      if (round % 8 === 0 && round) { if (n === 3) break; n++; scale = 1; }   // falling short: one more skylight
+      const ps = [];
+      for (let k = 0; k < n; k++) {
+        const wall = r.int(Math.round((a + b) * 16)) < Math.round(a * 16) ? 'L' : 'R';   // mostly through the slope the light crosses
+        const la = wall === 'L' ? a : b, lb = wall === 'L' ? b : a;
+        const stretch = 1 + PITCH * la, shear = lb * PITCH / stretch;
+        const aspect = clamp(0.8 * stretch / (1 + 0.25 * PITCH), 0.7, 2.2) * (0.85 + r.int(31) / 100);
+        const want = need / n * scale;
+        const along = wall === 'L' ? B.h * T : B.w * T, across = wall === 'L' ? B.w * T : B.h * T;
+        const Wd = Math.min(along, Math.max(16, Math.round(Math.sqrt(want / aspect))));
+        const Hd = Math.min(across, Math.max(16, Math.round(want / Wd)));
+        const e1 = wall === 'L' ? [0, Wd] : [Wd, 0];
+        const e2 = wall === 'L' ? [Hd, Math.round(Hd * shear)] : [Math.round(Hd * shear), Hd];
+        const panes = [Wd >= 40 ? 2 : 1, Hd >= 40 ? 2 : 1];
+        let pick = null, pickScore = -Infinity;
+        for (let c = 0; c < 24; c++) {
+          const cx = r.range(B.x, B.x + B.w * T), cy = r.range(B.y, B.y + B.h * T);
+          const p = { x: Math.round(cx - (e1[0] + e2[0]) / 2), y: Math.round(cy - (e1[1] + e2[1]) / 2), e1, e2, panes, wall };
+          if (onGrid(B, p)) continue;
+          const poly = patchPoly(p), on = clipConvex(poly, boardPoly);
+          let score = polyArea(on) - 0.5 * (polyArea(poly) - polyArea(clipConvex(poly, floorPoly)));
+          if (on.length >= 3) for (const sh of shadows) score -= polyArea(clipConvex(sh, on));
+          for (const q of ps) score -= 1.5 * polyArea(clipConvex(poly, patchPoly(q)));
+          if (score > pickScore) { pickScore = score; pick = p; }
+        }
+        if (pick && pickScore > 0) ps.push(pick);
+      }
+      const f = sunlitWith(B, ps, occ, a, b, 1);
+      if (!best || f > best.f) best = { ps, f };
+      if (f * 100 >= SK.minSunlit) break;
+    }
+    for (const p of best.ps) {                        // the drawn skylight: upstream of the patch's centre, in the roof band
+      const cx = p.x + (p.e1[0] + p.e2[0]) / 2, cy = p.y + (p.e1[1] + p.e2[1]) / 2;
+      const la = p.wall === 'L' ? a : b, c0 = p.wall === 'L' ? cx : cy;
+      const t = (WALL_H + PITCH * c0) / (1 + PITCH * la);
+      const v = p.wall === 'L' ? cx - a * t : cy - b * t, u = p.wall === 'L' ? cy - b * t : cx - a * t;
+      const bay = takeBay(p.wall, u);
+      const out = { x: p.x, y: p.y, e1: p.e1.slice(), e2: p.e2.slice(), panes: p.panes.slice(), sky: -1 };
+      if (bay) { const s = sky(bay, v, p.panes.slice()); s.patch = patches.length; out.sky = skylights.length; skylights.push(s); }
+      patches.push(out);
+    }
+    return { set, a: S.a, b: S.b, sun: true, skylights, patches, sunlit: Math.round(sunlitWith(B, best.ps, occ, a, b) * 1000) };   // the 0.5 wu measure
+  }
+
+  // ---- the collection, napping on the stacks ---------------------------------------------------
+  function napping(L, seed, collection) {
+    const r = stream(seed, ST.NAPS), cats = r.shuffle(collection.slice()), N = CFG.naps;
+    const n = Math.min(N.max, cats.length, L.napSpots.length), out = [];
+    for (let i = 0; i < n; i++) {
+      const s = L.napSpots[i];
+      const b = L.boxes[s.top], len = s.wall === 'L' ? b.y1 - b.y0 : b.x1 - b.x0;
+      const pose = r.int(len >= N.flatLen ? N.poses : N.poses - 1);   // 0 curled, 1 a loaf, 2 stretched out (long tops only)
+      out.push({ x: s.x, y: s.y, z: s.z, wall: s.wall, dir: s.dir, top: s.top, cat: cats[i], pose, phase: r.int(N.loopFrames) });
+    }
+    return out;
+  }
+
+  // ---- the room ---------------------------------------------------------------------------------
+  function build(seed, boardW, boardH, date, mode, collection) {
+    const CB = CFG.board;
+    if (!Number.isInteger(boardW) || !Number.isInteger(boardH) || boardW < CB.minW || boardW > CB.maxW || boardH < CB.minH || boardH > CB.maxH)
+      throw new RangeError('board must be ' + CB.minW + '-' + CB.maxW + ' x ' + CB.minH + '-' + CB.maxH + ': ' + boardW + ' x ' + boardH);
+    if (Number.isNaN(DY.dayNumber(date))) throw new RangeError('date must be YYYY-MM-DD: ' + date);
+    seed = seed >>> 0;
+    const set = lightSetOf(date, mode);
+    const L = layout(seed, boardW, boardH), dress = dressing(L, date), light = lighting(L, dress, seed, set);
+    if (dress.openSkylight && light.skylights.length) light.skylights[0].open = true;
+    const naps = napping(L, seed, collection || []), S = CFG.lights[set];
+    for (const it of dress.items) if (it.kind === 'sleepingCat') {       // the summer cat stretched out flat: one of the collection too
+      const col = collection || [], spare = col.length > naps.length ? stream(seed, ST.NAPS + 1).int(col.length - naps.length) : -1;
+      const left = col.slice(); for (const n of naps) left.splice(left.indexOf(n.cat), 1);
+      it.cat = spare >= 0 ? left[spare] : col.length ? col[0] : null;
+    }
+    const room = {
+      version: 1,
+      inputs: { seed, w: boardW, h: boardH, date, mode },
+      season: dress.season, rain: dress.rain,
+      light: { set, a: light.a, b: light.b, den: LIGHT_DEN, sun: light.sun, virtualZ: VZ, sunlit: light.sunlit,
+        lamps: Math.min(S.lamps || 0, L.lamps.length), string: !!S.string || dress.string },
+      room: { w: L.RX, d: L.RY, wallH: WALL_H, stackD: D, roofRun: RUN, roofTop: ROOF_TOP, pitch: [CFG.roof.pitchNum, CFG.roof.pitchDen] },
+      board: { x: L.B.x, y: L.B.y, w: boardW, h: boardH },
+      margins: L.margins,
+      sizes: L.sizes,
+      boxes: L.boxes,
+      columns: L.columns.map((c) => ({ wall: c.wall, u0: c.u0, u1: c.u1, boxes: c.boxes, top: c.top, h: c.h })),
+      gaps: L.gaps,
+      rafters: L.rafters,
+      beams: L.beams.map((b) => ({ axis: b.alongY ? 'y' : 'x', at: b.at, z: b.z, from: b.from, to: b.to })),
+      lamps: L.lamps,
+      skylights: light.skylights, patches: light.patches,
+      props: L.props,
+      slots: L.slots,
+      items: dress.items,
+      dressing: { skylights: dress.skylights, openSkylight: dress.openSkylight, blankets: dress.blankets, bunting: dress.bunting },
+      bulbs: L.bulbs, flags: L.flags,
+      naps,
+    };
+    room.bounds = bounds(room);
+    return room;
+  }
+
+  // Everything solid in the room, as boxes [x0,y0,z0,x1,y1,z1, what].
+  function solids(room) {
+    const out = [], P = room.room;
+    const add = (o, what) => out.push([o.x0, o.y0, o.z0, o.x1, o.y1, o.z1, what]);
+    room.boxes.forEach((b, i) => {
+      add(b, 'box ' + i + (b.wall === 'F' ? ' (front)' : ''));
+      if (b.flap && b.flap !== 2) {                   // a standing flap rises half the box's depth above its top
+        const dep = b.wall === 'L' ? b.x1 - b.x0 : b.y1 - b.y0;
+        out.push([b.x0, b.y0, b.z1, b.x1, b.y1, b.z1 + Math.ceil(dep / 2), 'flap of box ' + i]);
+      }
+    });
+    room.props.forEach((p) => add(p, p.kind));
+    room.items.forEach((it) => add(it, it.kind));
+    for (const l of room.lamps) {
+      out.push([l.x - l.r, l.y - l.r, l.z0, l.x + l.r, l.y + l.r, l.z1, 'lamp']);
+      out.push([l.x, l.y, l.z1, l.x + 1, l.y + 1, room.room.roofTop, 'lamp cord']);
+    }
+    for (const b of room.beams) out.push(b.axis === 'y' ? [b.at - 2, b.from, b.z - 2, b.at + 2, b.to, b.z + 2, 'beam'] : [b.from, b.at - 2, b.z - 2, b.to, b.at + 2, b.z + 2, 'beam']);
+    for (const u of room.rafters.L) out.push([0, u, P.wallH, Math.min(P.roofRun, u + 3), u + room.rafters.w, P.roofTop, 'rafter L']);
+    for (const u of room.rafters.R) out.push([u, 0, P.wallH, u + room.rafters.w, Math.min(P.roofRun, u + 3), P.roofTop, 'rafter R']);
+    for (const s of room.skylights) out.push(s.wall === 'L' ? [s.v0, s.u0, s.z0, s.v1, s.u1, s.z1, 'skylight'] : [s.u0, s.v0, s.z0, s.u1, s.v1, s.z1, 'skylight']);
+    for (const c of room.naps) {
+      const along = CFG.naps.len >> 1, out2 = CFG.naps.dep >> 1;
+      out.push(c.wall === 'L' ? [c.x - out2, c.y - along, c.z, c.x + out2, c.y + along, c.z + CFG.naps.h, 'napping cat'] : [c.x - along, c.y - out2, c.z, c.x + along, c.y + out2, c.z + CFG.naps.h, 'napping cat']);
+    }
+    for (const b of room.bulbs) out.push([b[0], b[1], b[2] - 1, b[0] + 1, b[1] + 1, b[2] + 1, 'string light']);
+    for (const f of room.flags) out.push([f[0], f[1], f[2] - 4, f[0] + 4, f[1] + 4, f[2], 'bunting']);
+    return out;
+  }
+  // Every board tile something hides: [{ what, tile: [i, j] }]. Empty is the rule.
+  function hidden(room) {
+    const out = [];
+    for (const s of solids(room)) { const t = hidesTile(room.board, s); if (t) out.push({ what: s[6], tile: t }); }
+    return out;
+  }
+  // Pixel bounds of the room and its base relative to the projection of world (0, 0, 0).
+  function bounds(room) {
+    let sx0 = Infinity, sx1 = -Infinity, sy0 = Infinity, sy1 = -Infinity;
+    const pt = (x, y, z) => { const sx = x - y, sy = (x + y) / 2 - z; if (sx < sx0) sx0 = sx; if (sx > sx1) sx1 = sx; if (sy < sy0) sy0 = sy; if (sy > sy1) sy1 = sy; };
+    const pad = 8, baseH = 16;
+    for (const [x, y] of [[-pad, -pad], [room.room.w + pad, -pad], [-pad, room.room.d + pad], [room.room.w + pad, room.room.d + pad]]) { pt(x, y, 0); pt(x, y, -baseH); }
+    pt(0, 0, room.room.roofTop);
+    for (const s of solids(room)) for (let k = 0; k < 8; k++) pt(k & 1 ? s[3] : s[0], k & 2 ? s[4] : s[1], k & 4 ? s[5] : s[2]);
+    return { sx0: Math.floor(sx0), sx1: Math.ceil(sx1), sy0: Math.floor(sy0), sy1: Math.ceil(sy1) };
+  }
+  function occludersOf(room) {
+    const occ = [];
+    for (const b of room.boxes) if (b.wall === 'F') occ.push([b.x0, b.y0, b.z0, b.x1, b.y1, b.z1]);
+    for (const p of room.props) occ.push([p.x0, p.y0, p.z0, p.x1, p.y1, p.z1]);
+    for (const it of room.items) if (it.z0 === 0) occ.push([it.x0, it.y0, it.z0, it.x1, it.y1, it.z1]);
+    for (const l of room.lamps) if (l.z0 < VZ) occ.push([l.x - l.r, l.y - l.r, l.z0, l.x + l.r, l.y + l.r, l.z1]);
+    return occ;
+  }
+  // Fraction of the board in sunlight (0 at night): scanlines every dy wu (default 0.5).
+  function sunlit(room, dy) {
+    const L = room.light;
+    return L.sun ? sunlitWith(room.board, room.patches, occludersOf(room), L.a / L.den, L.b / L.den, dy) : 0;
+  }
+  // Is the floor point (x, y) sunlit, shadows included? A plain point test, for cross-checking sunlit().
+  function litAt(room, x, y) {
+    const L = room.light; if (!L.sun) return false;
+    if (!room.patches.some((p) => inPatch(p, x, y))) return false;
+    return !shaded(occludersOf(room), x, y, L.a / L.den, L.b / L.den);
+  }
+  // Is the point (x, y, z) in a sunlight patch (ignoring shadows)? Used for dust and for lighting tops.
+  function inLight(room, x, y, z) {
+    const L = room.light; if (!L.sun) return false;
+    const fx = x + z * L.a / L.den, fy = y + z * L.b / L.den;
+    for (const p of room.patches) if (inPatch(p, fx, fy)) return true;
+    return false;
+  }
+  function onGridLines(room) { const out = []; room.patches.forEach((p, i) => { const L = onGrid(room.board, p); if (L) out.push({ patch: i, line: L }); }); return out; }
+
+  // Canonical JSON (sorted keys, no spaces) and its FNV-1a digest: the same bytes in Swift.
+  function canonical(v) {
+    if (Array.isArray(v)) return '[' + v.map(canonical).join(',') + ']';
+    if (v && typeof v === 'object') return '{' + Object.keys(v).sort().map((k) => JSON.stringify(k) + ':' + canonical(v[k])).join(',') + '}';
+    return JSON.stringify(v);
+  }
+  function digest(room) {
+    const s = canonical(room);
+    let h = 0x811c9dc5;
+    for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+    return (h >>> 0).toString(16).padStart(8, '0');
+  }
+  // Seed for a daily date: the same attic for everyone that day.
+  const seedForDate = (date) => fmix(Math.imul(DY.dayNumber(date), 0x9E3779B1) >>> 0);
+
+  return { build, hidden, sunlit, litAt, inLight, onGridLines, solids, canonical, digest, rng, seedForDate, seasonOf, lightSetOf, isRainy,
+    SETS, SEASONS, CFG, ceilAt };
+})();
+if (typeof module !== 'undefined' && module.exports) module.exports = BOXROOM;
+// ============================================================================
 // 20 PALETTE + LIGHT RAMPS
 // Every pixel on screen is one of these colours. Lighting never blends: it
 // walks a colour along its ramp (SH = one step darker/cooler, LIT = one step
 // warmer/brighter). Five light levels: 0 = SH(SH(c)), 1 = SH(c), 2 = c,
 // 3 = LIT(c), 4 = LIT(LIT(c)).
 // ============================================================================
+// Up to 128 colours (at most 16 in any one sprite); the table stride is PAL_N, so a colour's
+// number never changes when colours are added after it.
 const PAL_DEF = PALETTE_DATA.colours;   // [name, hex, SH, LIT] rows from src/data/palette.json
-const NPAL = PAL_DEF.length;          // 64 (<= 64)
+const PAL_N = 128;                     // table stride and the most colours there may be
+const NPAL = PAL_DEF.length;          // colours in use (<= PAL_N)
 const C = {};                          // name -> index
 PAL_DEF.forEach((p, i) => { C[p[0]] = i; });
-const PAL32 = new Uint32Array(64);     // ABGR for little-endian ImageData
+const PAL32 = new Uint32Array(PAL_N);  // ABGR for little-endian ImageData
 const PALRGB = [];                     // [r,g,b] for tooling
-const SH = new Uint8Array(64), LITC = new Uint8Array(64);
+const SH = new Uint8Array(PAL_N), LITC = new Uint8Array(PAL_N);
 PAL_DEF.forEach((p, i) => {
   const v = parseInt(p[1], 16), r = v >> 16, g = (v >> 8) & 255, b = v & 255;
   PAL32[i] = (255 << 24 | b << 16 | g << 8 | r) >>> 0;
   PALRGB.push([r, g, b]);
   SH[i] = C[p[2]]; LITC[i] = C[p[3]];
 });
-// LUT[level * 64 + index] -> final palette index
+// LUT[level * PAL_N + index] -> final palette index
 const NLVL = 5;
-const LUT = new Uint8Array(NLVL * 64);
-for (let i = 0; i < 64; i++) {
+const LUT = new Uint8Array(NLVL * PAL_N);
+for (let i = 0; i < PAL_N; i++) {
   const c = i < NPAL ? i : 0;
-  LUT[0 * 64 + i] = SH[SH[c]];
-  LUT[1 * 64 + i] = SH[c];
-  LUT[2 * 64 + i] = c;
-  LUT[3 * 64 + i] = LITC[c];
-  LUT[4 * 64 + i] = LITC[LITC[c]];
+  LUT[0 * PAL_N + i] = SH[SH[c]];
+  LUT[1 * PAL_N + i] = SH[c];
+  LUT[2 * PAL_N + i] = c;
+  LUT[3 * PAL_N + i] = LITC[c];
+  LUT[4 * PAL_N + i] = LITC[LITC[c]];
 }
-// Flattened final colour table: RES32[level*64+idx] = PAL32[LUT[...]]
-const RES32 = new Uint32Array(NLVL * 64);
-for (let i = 0; i < NLVL * 64; i++) RES32[i] = PAL32[LUT[i]];
-// Grayscale preview (G): each resolved colour mapped to its luminance, so the
-// ginger/blue and round/square cues can be checked without colour.
-const GRAY32 = new Uint32Array(NLVL * 64);
-for (let i = 0; i < NLVL * 64; i++) {
-  const c = PALRGB[LUT[i]], y = Math.round(0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]);
-  GRAY32[i] = (255 << 24 | y << 16 | y << 8 | y) >>> 0;
+// Flattened final colour table: RES32[level*PAL_N+idx] = PAL32[LUT[...]]. Grayscale preview (G): each
+// resolved colour mapped to its luminance, so the ginger/blue and round/square cues can be checked without colour.
+const lumOf = (i) => 0.2126 * PALRGB[i][0] + 0.7152 * PALRGB[i][1] + 0.0722 * PALRGB[i][2];
+// Two halves: the room's light, then the board's (a colour number with bit 7 set: 31_compose's resolve).
+function resolveTables(lut, boardLut) {
+  const N = NLVL * PAL_N, res = new Uint32Array(2 * N), gray = new Uint32Array(2 * N);
+  for (let h = 0; h < 2; h++) {
+    const L = h ? boardLut || lut : lut;
+    for (let i = 0; i < N; i++) {
+      res[h * N + i] = PAL32[L[i]];
+      const y = Math.round(lumOf(L[i]));
+      gray[h * N + i] = (255 << 24 | y << 16 | y << 8 | y) >>> 0;
+    }
+  }
+  return { res, gray };
 }
+const BASE_TABLES = resolveTables(LUT, LUT);
+let RES32 = BASE_TABLES.res, GRAY32 = BASE_TABLES.gray;   // the tables in use: the base ramps, or a light set's
 let grayscale = false;
+
+// ---- time of day (palette.json lightSets): one LUT per light set, for the Box Room ---------------------
+// For each colour and level: the base ramp's colour, transformed (dim for levels 0-2, lit for 3-4), then snapped
+// to the nearest palette colour (not a coat or a fixed colour) by redmean distance. The coats keep their own
+// ramps, so ginger stays brighter than blue at every hour (a lamp at night only shifts them a level, as it does
+// everything); fixed colours (skies, stars, bulbs) never change. In a set that transforms, each level is at
+// least as bright as the one below.
+// Integer maths only, so a port builds the same tables (the atlas export also writes them out).
+const LIGHT_SETS = PALETTE_DATA.lightSets;
+function lightTransform(rgb, T) {
+  let v = rgb.slice();
+  if (T && T.mul) v = v.map((c, k) => Math.floor(c * T.mul[k] / 256));
+  if (T && T.add) v = v.map((c, k) => c + T.add[k]);
+  if (T && T.mix) { const t = parseInt(T.mix[0], 16), tc = [t >> 16, (t >> 8) & 255, t & 255]; v = v.map((c, k) => c + Math.round((tc[k] - c) * T.mix[1] / 256)); }
+  return v.map((c) => (c < 0 ? 0 : c > 255 ? 255 : c));
+}
+function nearestColour(v, cands) {
+  let best = cands[0], bd = Infinity;
+  for (const i of cands) {
+    const p = PALRGB[i], rm = (v[0] + p[0]) >> 1, dr = v[0] - p[0], dg = v[1] - p[1], db = v[2] - p[2];
+    const d = (((512 + rm) * dr * dr) >> 8) + 4 * dg * dg + (((767 - rm) * db * db) >> 8);
+    if (d < bd) { bd = d; best = i; }
+  }
+  return best;
+}
+function buildLightLUT(S) {
+  const fam = new Int16Array(PAL_N).fill(-1), fixed = new Uint8Array(PAL_N), mat = new Int16Array(PAL_N).fill(-1), notLight = new Uint8Array(PAL_N);
+  LIGHT_SETS.coatFamilies.forEach((f, k) => f.forEach((n) => { fam[C[n]] = k; }));
+  LIGHT_SETS.materialFamilies.forEach((f, k) => f.forEach((n) => { mat[C[n]] = k; }));
+  for (const n of LIGHT_SETS.fixed) fixed[C[n]] = 1;
+  for (const n of LIGHT_SETS.notLight) notLight[C[n]] = 1;
+  const light = [];                                      // colours any colour may take on in the light
+  for (let i = 0; i < NPAL; i++) if (fam[i] < 0 && mat[i] < 0 && !notLight[i]) light.push(i);
+  const cands = (b) => mat[b] < 0 ? light : light.concat(LIGHT_SETS.materialFamilies[mat[b]].map((n) => C[n]));
+  const lut = new Uint8Array(NLVL * PAL_N), shifts = !!(S.dim || S.lit || S.litFrom);
+  for (let c = 0; c < PAL_N; c++) {
+    for (let l = 0; l < NLVL; l++) {
+      const from = l >= 3 && S.litFrom ? l + S.litFrom : l, b = LUT[from * PAL_N + c];
+      let out = b;
+      if (c < NPAL && !fixed[c] && !fixed[b] && fam[c] < 0 && fam[b] < 0) {   // a coat keeps its whole ramp, highlights too
+        const T = l >= 3 ? S.lit : S.dim;
+        if (T || from !== l) out = nearestColour(lightTransform(PALRGB[b], T), cands(b));
+      }
+      if (shifts && fam[c] < 0 && l > 0 && lumOf(out) < lumOf(lut[(l - 1) * PAL_N + c])) out = lut[(l - 1) * PAL_N + c];
+      lut[l * PAL_N + c] = out;
+    }
+  }
+  return lut;
+}
+// The board's light: in the sun the base ramps, the light its pieces were drawn for (snapping the day's sun to the
+// nearest colours can merge a piece into the stone); in the shade the set's dimming at lightSets.board.dimStrength,
+// so the board darkens a little with the evening. Lamps at night still shift it a level (litFrom).
+function scaledSet(S, s) {
+  const sc = (T) => T && { mul: T.mul && T.mul.map((m) => Math.round(256 + (m - 256) * s)), add: T.add && T.add.map((a) => Math.round(a * s)), mix: T.mix && [T.mix[0], Math.round(T.mix[1] * s)] };
+  return { dim: sc(S.dim), lit: null, litFrom: S.litFrom };
+}
+const LIGHT_LUTS = {}, BOARD_LUTS = {}, LIGHT_TABLES = {};
+for (const name of Object.keys(LIGHT_SETS.sets)) {
+  const S = LIGHT_SETS.sets[name];
+  LIGHT_LUTS[name] = buildLightLUT(S);
+  BOARD_LUTS[name] = buildLightLUT(scaledSet(S, LIGHT_SETS.board.dimStrength));
+  LIGHT_TABLES[name] = resolveTables(LIGHT_LUTS[name], BOARD_LUTS[name]);
+}
+let lightSetName = null;                                  // null: the base ramps (the sorting office)
+function useLightSet(name) {
+  const t = name ? LIGHT_TABLES[name] : null;
+  RES32 = t ? t.res : BASE_TABLES.res; GRAY32 = t ? t.gray : BASE_TABLES.gray;
+  lightSetName = t ? name : null;
+}
 // ============================================================================
 // 21 CORE: constants, buffers, projection, rasterisers, sunlight
 // World units (wu): 1 tile = 16 wu; z is in wu and 1 wu of z = 1 screen px.
@@ -2306,8 +3294,12 @@ let grayscale = false;
 // Depth (towards camera) = x + y + z, stored as 4x fixed point in Int16.
 // ============================================================================
 let LW = 320, LH = 200;                // logical view size: set on resize by the viewport rule (40_viewport)
-const WW = 720, WH = 336;              // baked world layer (views bigger than this show plain backdrop)
-const OX = 336, OY = 104;              // world-layer pixel of world (0,0,0)
+// The baked world layer (views bigger than it show plain backdrop) and the pixel of world (0,0,0) in it.
+// The sorting office uses 720 x 336 with (0,0,0) at (336, 104); a Box Room (34_boxroom) sets its own height
+// and origin, up to WH_MAX rows, so its whole room and roof fit.
+const WW = 720, WH_MAX = 400;
+const OFFICE_LAYER = { WH: 336, OX: 336, OY: 104 };
+let WH = OFFICE_LAYER.WH, OX = OFFICE_LAYER.OX, OY = OFFICE_LAYER.OY;
 const SCN = SCENE_DATA;                  // room layout + props (src/data/scene.json)
 const WS = WORLD.create(SCN, { mode: 'demo' });   // everything in the room that moves (sim/14_world); boot sets the mode
 const TILE = SCN.tile;
@@ -2342,7 +3334,7 @@ function hash2(x, y) {                  // stable 0..1 hash for textures
 }
 
 // ---- buffers -------------------------------------------------------------------
-const WN = WW * WH;
+const WN = WW * WH_MAX;
 const sIdx = new Uint8Array(WN), sLvl = new Uint8Array(WN), sDep = new Int16Array(WN);
 const sFlg = new Uint8Array(WN);       // flags | (sunLevelsAdded << 6)
 const sWX = new Int16Array(WN), sWY = new Int16Array(WN), sWZ = new Int16Array(WN); // world*4
@@ -2378,6 +3370,7 @@ let shFlag = 0;       // bake flags for the current primitive
 let shBias = 0;       // depth bias (decals)
 let shSunMax = 2;     // max sun levels for the current primitive
 let SUN_OBJ = 1;      // sun levels for furniture (floors and walls get 2)
+let shBoard = 0;      // 128 while drawing the board (a Box Room's stone, kerb and pieces): resolve gives it the board light
 let sunAdd = 0;       // written by lightAt
 let aoFn = null;      // bake-time ambient occlusion hook: (x,y,z,face,wpx,wpy) -> levels to remove
 let lampFn = null;    // run-time point light hook for dynamic pixels
@@ -2390,7 +3383,7 @@ function emit(px, py, x, y, z, face, col) {
   let l = 2 + shLvl;
   sunAdd = 0;
   if (!shFlat) l += lightAt(x, y, z, face, px + tPX, py + tPY);
-  tIdx[i] = col;
+  tIdx[i] = col | shBoard;
   tLvl[i] = l < 0 ? 0 : l > 4 ? 4 : l;
   if (tBake) {
     sWX[i] = Math.round(x * 4); sWY[i] = Math.round(y * 4); sWZ[i] = Math.round(z * 4);
@@ -2538,17 +3531,18 @@ function occluded(x, y, z) {
   }
   return false;
 }
-const ROOM_X = SCN.room.w, ROOM_Y = SCN.room.d, ROOM_H = SCN.room.h;
+let ROOM_X = SCN.room.w, ROOM_Y = SCN.room.d, ROOM_H = SCN.room.h;   // the room being baked (a Box Room changes them)
 function sunAmt(x, y, z) {
   if (x <= 0.25 || x > ROOM_X || y < 0 || y > ROOM_Y || z < -0.1) return 0;
   const a = windowAmt(y + SUN_M * x, z + SUN_K * x);
   if (a <= 0) return 0;
   return occluded(x, y, z) ? 0 : a;
 }
+let sunFn = sunAmt;   // (x, y, z, face) -> 0..1: the office's windows, or a Box Room's skylights (34_boxroom)
 function lightAt(x, y, z, face, wpx, wpy) {
   let l = 0;
   if (face !== F_X && shSunMax > 0 && tSun) {
-    const a = sunAmt(x, y, z);
+    const a = sunFn(x, y, z, face);
     if (a > 0) {
       l = Math.floor(a * shSunMax + bayer(wpx, wpy) * 0.999);
       if (l > shSunMax) l = shSunMax;
@@ -2563,7 +3557,8 @@ function lightAt(x, y, z, face, wpx, wpy) {
 // 22 SCENE A: layout, backdrop, diorama base, floor, sorting floor, walls, windows
 // ============================================================================
 const BASE_PAD = SCN.room.base.pad;
-const BASE_X0 = -BASE_PAD, BASE_Y0 = -BASE_PAD, BASE_X1 = ROOM_X + BASE_PAD, BASE_Y1 = ROOM_Y + BASE_PAD, BASE_R = SCN.room.base.r, BASE_H = SCN.room.base.h;
+const BASE_X0 = -BASE_PAD, BASE_Y0 = -BASE_PAD, BASE_R = SCN.room.base.r, BASE_H = SCN.room.base.h;
+let BASE_X1 = ROOM_X + BASE_PAD, BASE_Y1 = ROOM_Y + BASE_PAD;   // follow the room being baked
 const WALL_T = SCN.room.wallT, DADO_Z = SCN.room.dadoZ, SKIRT_Z = SCN.room.skirtZ;
 // Sorting grid: 6 x 5 tiles at tile (4..9, 1..5); row 0 is the pigeonhole bank's depth.
 const GRID_I = SCN.floor.i, GRID_J = SCN.floor.j, GRID_W = SCN.floor.w, GRID_H = SCN.floor.h;
@@ -2601,7 +3596,7 @@ function bakeBase() {
   const inside = (t, a) => rrSdf((t + a) * 0.5, (t - a) * 0.5, BASE_X0, BASE_Y0, BASE_X1, BASE_Y1, BASE_R) <= 0;
   for (let px = 0; px < WW; px++) {
     const a = px - OX + 0.5;
-    let t = 340, found = false;
+    let t = Math.max(340, BASE_X1 + BASE_Y1 + 8), found = false;      // from beyond the base's front corner (340 for the office)
     for (; t > -340; t -= 0.25) if (inside(t, a)) { found = true; break; }
     if (!found) continue;
     const xb = (t + a) * 0.5, yb = (t - a) * 0.5;
@@ -2616,6 +3611,7 @@ function bakeBase() {
       if (z > 0 || z < -BASE_H || py < 0 || py >= WH) continue;
       let c = C.WD2;
       shLvl = Math.floor(f * 2.2 + bayer(px, py) * 0.999) - 1;   // warm on the window side
+      if (BOXR && shLvl > 0) shLvl = 0;                          // a Box Room's light sets would turn that sunlit
       const g = fract(z * 0.23 + 0.55 * Math.sin(a * 0.045 + z * 0.37) + hash2(px >> 3, 3) * 0.1);
       if (g < 0.16) c = C.WD1;
       else if (g > 0.9) c = C.WD3;
@@ -2645,6 +3641,9 @@ function bakeBase() {
 // ---- 3. floorboards and stone sorting floor -----------------------------------------
 function shFloor(face, u, v) {
   if (u >= GX0 - 2 && u < GX1 + 2 && v >= GY0 && v < GY1 + 2) return -1;   // grid + kerb
+  return plankTex(u, v);
+}
+function plankTex(u, v) {                             // floorboards (the Box Room shares them): seams, nails, sheen, grain
   const PW = 6;
   const row = Math.floor(v / PW), vy = v - row * PW;
   const len = 44 + Math.floor(hash2(row, 3) * 3) * 10;
@@ -3656,7 +4655,7 @@ function blitSprite(fx, fy, fz, mirror, sunOn) {
       if (wz < blitClipZ) continue;
       let lit = 0;
       if (sunOn) {
-        const a = sunAmt(wx, wy, wz);
+        const a = sunFn(wx, wy, wz, F_TOP);
         if (a > bayer(px + tPX, py + tPY)) {
           lit = 1;
           // rim: the pixel's screen-left neighbour is outside the silhouette
@@ -3668,10 +4667,10 @@ function blitSprite(fx, fy, fz, mirror, sunOn) {
       let lamp = lampFn !== null ? lampFn(wx, wy, wz, px + tPX, py + tPY) : 0;
       tDep[i] = dep;
       if (c === 253) {                                     // outline pixel
-        if (lit || lamp) { tIdx[i] = SPO[y * SW + x]; tLvl[i] = 2; }
-        else { tIdx[i] = C.OUT; tLvl[i] = 2; }
+        if (lit || lamp) { tIdx[i] = SPO[y * SW + x] | shBoard; tLvl[i] = 2; }
+        else { tIdx[i] = C.OUT | shBoard; tLvl[i] = 2; }
       } else {
-        tIdx[i] = c; tLvl[i] = clamp(2 + lit + lamp, 0, 4);
+        tIdx[i] = c | shBoard; tLvl[i] = clamp(2 + lit + lamp, 0, 4);
       }
     }
   }
@@ -4307,7 +5306,7 @@ function drawZ(x, y, z, big, fade) {
     if (fade > 0.55 && bayer(px + tPX, py + tPY) < (fade - 0.55) * 4) continue;   // dithered fade
     const k = py * tW + px;
     if (d < tDep[k]) continue;
-    tDep[k] = d; tIdx[k] = C.WHITE; tLvl[k] = 2;
+    tDep[k] = d; tIdx[k] = C.WHITE | shBoard; tLvl[k] = 2;
   }
 }
 
@@ -4361,10 +5360,10 @@ function blob(x, y, z, rx, ry, dark) {
     }
     tDep[k] = dep;
     let add = 0;
-    const a = sunAmt(wx, wy, wz);
+    const a = sunFn(wx, wy, wz, F_TOP);
     if (a > bayer(px + tPX, py + tPY)) add = 1;
     if (lampFn !== null) add += lampFn(wx, wy, wz, px + tPX, py + tPY);
-    tIdx[k] = c; tLvl[k] = clamp(2 + lv + add, 0, 4);
+    tIdx[k] = c | shBoard; tLvl[k] = clamp(2 + lv + add, 0, 4);
   }
 }
 // ---- clock hands ------------------------------------------------------------------
@@ -4373,7 +5372,7 @@ function plotPlaneY(x, y, z, c) {       // one pixel on a +y facing plane, no li
   if (px < 0 || py < 0 || px >= tW || py >= tH) return;
   const k = py * tW + px, d = Math.round((x + y + z) * 4) + 6;
   if (d < tDep[k]) return;
-  tDep[k] = d; tIdx[k] = c; tLvl[k] = 2;
+  tDep[k] = d; tIdx[k] = c | shBoard; tLvl[k] = 2;
 }
 function drawClock(t) {
   const m = Math.floor((t / SCN.demo.loop) * 60) / 60;          // minute hand: 1 turn per loop, 60 ticks
@@ -4757,7 +5756,7 @@ function drawDust(t) {
     const x = DUST[o] + Math.sin(t / 24 * TAU + DUST[o + 3]) * 4;
     const y = DUST[o + 1] + Math.cos(t / 16 * TAU + DUST[o + 4]) * 3;
     const z = DUST[o + 2] + Math.sin(t / 48 * TAU + DUST[o + 5] * TAU) * 5;
-    if (sunAmt(x, y, z) < 0.6) continue;                           // only visible in the light
+    if (sunFn(x, y, z, F_TOP) < 0.6) continue;                     // only visible in the light
     if (fract(t / 3 + DUST[o + 5]) < 0.18) continue;               // gentle twinkle (3 s period)
     dot3(x, y, z, DUST[o + 5] > 0.5 ? C.SUN1 : C.WHITE, 0);
   }
@@ -4773,7 +5772,7 @@ let viewX = 0, viewY = 0;              // world-layer px of the view's top-left
 // View state set by the app layer: whole-number scale, optional user zoom (null =
 // default for the mode) and a pan offset in logical px added to the camera.
 const view = { scale: 1, zoom: null, panX: 0, panY: 0 };
-const VIEW_CX = OX + 24, VIEW_CY = OY + 49;   // diorama centre in the world layer
+let VIEW_CX = OX + 24, VIEW_CY = OY + 49;     // diorama centre in the world layer (a Box Room sets its own)
 
 function allocView() {
   offCanvas.width = LW; offCanvas.height = LH;
@@ -4814,9 +5813,9 @@ function applyVignette() {
   for (let i = 0; i < n; i++) if (VIG[i] && fLvl[i] > 0) fLvl[i]--;
 }
 
-function resolve() {
-  const n = LW * LH, T = grayscale ? GRAY32 : RES32;
-  for (let i = 0; i < n; i++) img32[i] = T[fLvl[i] * 64 + fIdx[i]];
+function resolve() {                   // a colour number with bit 7 set is the board's: the second half of the table
+  const n = LW * LH, T = grayscale ? GRAY32 : RES32, HALF = NLVL * PAL_N;
+  for (let i = 0; i < n; i++) { const v = fIdx[i]; img32[i] = T[(v >> 7) * HALF + fLvl[i] * PAL_N + (v & 127)]; }
   offCtx.putImageData(img, 0, 0);
 }
 
@@ -4882,6 +5881,7 @@ function drawFloorBox() {
   blitSprite(B.x, B.y, 0, false, true);
 }
 function drawDynamic() {
+  if (BOXR) { drawBoxDynamic(); return; }              // a Box Room has none of the office's cast (34_boxroom)
   paintWindows();
   lampFn = lampLight;
   nItems = 0;
@@ -4969,6 +5969,7 @@ function lampPool() {
   }
 }
 function postPasses() {
+  if (BOXR) return;
   const s = WS.sorter, wk = WS.walker;
   sunShadow(s.x, s.y, 3.5, 26);
   contactShadow(s.x, s.y, 6, 2, 0.9);
@@ -5111,13 +6112,13 @@ function demoPrepareSrc(t) {
 // are stored; the game holds some of them for several frames.
 // Swift: a texture atlas plus JSON, loaded by the board view.
 // ============================================================================
-const AC = 64, ACX = 32, ACY = 36;                                  // scratch cell; world (8, 8, 0) projects to (ACX, ACY)
+const AC = 128, ACX = 64, ACY = 96;                                 // scratch cell; world (8, 8, 0) projects to (ACX, ACY) (room above for tall pieces)
 const aIdx = new Uint8Array(AC * AC), aLvl = new Uint8Array(AC * AC), aDep = new Int16Array(AC * AC);
 const aCls = new Uint8Array(AC * AC), aSel = new Uint8Array(AC * AC);
 function atlasCell() {
   aIdx.fill(255); aLvl.fill(2); aDep.fill(DEPTH_EMPTY); aCls.fill(0); aSel.fill(0);
   targetCustom(aIdx, aLvl, aDep, AC, AC, ACX, ACY - 8);
-  aoFn = null; lampFn = null; shSunMax = 0; shFlag = 0; shFlat = false; shBias = 0; blitClipZ = -1e9;
+  aoFn = null; lampFn = null; shSunMax = 0; shFlag = 0; shFlat = false; shBias = 0; blitClipZ = -1e9; shBoard = 0;
 }
 // blitSprite at neutral light, also keeping each outline pixel's class and selective colour.
 function atlasBlit(fx, fy, fz, mirror) {
@@ -5213,7 +6214,7 @@ function atlasSprites() {
   spr('queue_head', 'none', 'none', 0, false, AT_COATS.map(([coat, cn]) => fr(cn, () => {
     KEY = coatKeyOf(coat); sprClear(); tpl(QUEUE_HEAD, AX - 2, AY - 3); KEY = KEY_S; outlineSprite(); atlasBlit(8, 8, 0.5, false);
   })));
-  return S;
+  return S.concat(boxAtlasSprites());                              // then the Box Room's pieces (37_boxatlas)
 }
 
 // ---- render, crop, pack -------------------------------------------------------------------
@@ -5231,7 +6232,7 @@ function buildAtlas() {
       const idx = new Uint8Array(AC * AC);
       for (let i = 0; i < AC * AC; i++) {
         if (aIdx[i] === 255) { idx[i] = 255; continue; }
-        idx[i] = LUT[clamp(aLvl[i], 0, 4) * 64 + aIdx[i]];              // the colour it shows at neutral light
+        idx[i] = LUT[clamp(aLvl[i], 0, 4) * PAL_N + aIdx[i]];              // the colour it shows at neutral light
         const x = i % AC, y = (i / AC) | 0;
         if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
       }
@@ -5268,6 +6269,8 @@ function buildAtlas() {
       'cats in boxes are drawn for all 4 directions because the box keeps its lighting; loose cats are side views (mirroredFor: the frames flipped)',
       'unique frames only: the game holds frames (the dog flops an ear for 3 frames, a hopping cat moves along an arc on one frame)',
       'atlas-index.png: R palette index, G 1 for outline pixels, B the outline pixel\'s sunlit colour, A 255 opaque',
+      'Box Room pieces (box_, brick_gap_, skylight_, roof_, beam, lamp, string_bulb, the props, the seasonal things, nap_): the anchor is the pixel of the piece\'s own origin, the min corner (x0, y0, z0) of its box in sim/18_boxroom data (boxes, props, items); the bottom back corner of a wall panel; the low back corner of a skylight on its slope; the bottom centre of a lamp\'s shade; a napping cat\'s feet. _L and _R pieces face the left wall (front +x, direction E) or the right wall (front +y, direction S); props are drawn facing each way',
+      'nap_ cats: calico and tortoiseshell patches are drawn here at seed 0; the game varies them with each cat\'s seed (render/36_coats coatPixel)',
     ],
     sprites,
   };
@@ -5275,11 +6278,1049 @@ function buildAtlas() {
 }
 function paletteJson() {
   const hex = (i) => '#' + PAL_DEF[i][1].toLowerCase(), lut = [], grey = [];
-  for (let l = 0; l < NLVL; l++) lut.push(Array.from(LUT.subarray(l * 64, l * 64 + 64)));
-  for (let i = 0; i < 64; i++) { const g = GRAY32[2 * 64 + i] & 255; grey.push('#' + g.toString(16).padStart(2, '0').repeat(3)); }
-  return { size: 64, levels: NLVL, neutralLevel: 2,
-    colours: PAL_DEF.map((p, i) => ({ index: i, name: p[0], hex: hex(i), sh: SH[i], lit: LITC[i] })), lut, grayscale: grey };
+  for (let l = 0; l < NLVL; l++) lut.push(Array.from(LUT.subarray(l * PAL_N, l * PAL_N + NPAL)));
+  for (let i = 0; i < NPAL; i++) { const g = GRAY32[2 * PAL_N + i] & 255; grey.push('#' + g.toString(16).padStart(2, '0').repeat(3)); }
+  const lightSets = {};                                // the Box Room's time of day: one LUT per set (20_palette)
+  for (const name of Object.keys(LIGHT_LUTS)) { lightSets[name] = []; for (let l = 0; l < NLVL; l++) lightSets[name].push(Array.from(LIGHT_LUTS[name].subarray(l * PAL_N, l * PAL_N + NPAL))); }
+  const boardLightSets = {};                           // the board's light in each set: a colour number with bit 7 set uses it
+  for (const name of Object.keys(BOARD_LUTS)) { boardLightSets[name] = []; for (let l = 0; l < NLVL; l++) boardLightSets[name].push(Array.from(BOARD_LUTS[name].subarray(l * PAL_N, l * PAL_N + NPAL))); }
+  return { size: NPAL, maxColours: PAL_N, levels: NLVL, neutralLevel: 2,
+    colours: PAL_DEF.map((p, i) => ({ index: i, name: p[0], hex: hex(i), sh: SH[i], lit: LITC[i] })), lut, grayscale: grey, lightSets, boardLightSets };
 }
+// ============================================================================
+// 34 BOX ROOM: bakes a generated attic (sim/18_boxroom: plain data) into the world layer with the scene's own
+// rasterisers, ramps and depth: the base, floorboards, the stone board and its kerb, brick knee walls with
+// their gaps and round windows, the roof band (boarded slopes, rafters, skylights, the cut edges), the cross
+// beams and the box stacks with their flaps, tape, string, labels and paw prints.
+// Light: lightAt asks sunFn, which here is the room's patches. Only tops are lit, and a point at height z
+// counts where its drop along the light, (x + a z, y + b z), lands; things standing on the floor margins
+// shade it. useBoxRoom(room) points the renderer at a room; useOffice() points it back.
+// Swift: the same bake into the indexed layer (or meshes from the same data and the same light test).
+// ============================================================================
+let BOXR = null;                           // the Box Room on show (BOXROOM data), or null: the sorting office
+const F_SLOPE = 3;                         // face id of the roof slopes' inner faces (never sunlit)
+const BX_SOFT = 1.2, BX_BAR = BOXROOM.CFG.skylights.barW, BX_PITCH = BOXROOM.CFG.roof.pitchNum / BOXROOM.CFG.roof.pitchDen;
+let bxA = 0, bxB = 0, bxVZ = 48, bxP = [], bxOcc = [], bxAbove = null, bxGrid = null, bxSet = 'fri', bxLamps = [], bxNapAt = new Float32Array(0);
+
+function useBoxRoom(room) {
+  BOXR = room;
+  ROOM_X = room.room.w; ROOM_Y = room.room.d; ROOM_H = room.room.roofTop;
+  BASE_X1 = ROOM_X + BASE_PAD; BASE_Y1 = ROOM_Y + BASE_PAD;
+  const b = room.bounds, pad = 12;
+  WH = Math.min(WH_MAX, b.sy1 - b.sy0 + 2 * pad);
+  OX = Math.round(WW / 2 - (b.sx0 + b.sx1) / 2); OY = pad - b.sy0;
+  VIEW_CX = OX + Math.round((b.sx0 + b.sx1) / 2); VIEW_CY = OY + Math.round((b.sy0 + b.sy1) / 2);
+  const L = room.light;
+  bxA = L.a / L.den; bxB = L.b / L.den; bxVZ = L.virtualZ;
+  bxP = L.sun ? room.patches.map(bxPrep) : [];
+  bxOcc = [];                                                     // what stands on the floor margins shades the light (as in sim/18)
+  for (const q of room.boxes) if (q.wall === 'F') bxOcc.push([q.x0, q.y0, q.z0, q.x1, q.y1, q.z1]);
+  for (const q of room.props) bxOcc.push([q.x0, q.y0, q.z0, q.x1, q.y1, q.z1]);
+  for (const q of room.items) if (q.z0 === 0) bxOcc.push([q.x0, q.y0, q.z0, q.x1, q.y1, q.z1]);
+  for (const l of room.lamps) if (l.z0 < bxVZ) bxOcc.push([l.x - l.r, l.y - l.r, l.z0, l.x + l.r, l.y + l.r, l.z1]);
+  bxSet = L.set;
+  bxLamps = room.lamps.slice(0, L.lamps);                         // the lamps that are on
+  // Each napping cat stands its sprite on the front edge of its box top (as the cubby cats do on their cushions),
+  // so the top it lies on is never nearer the camera than it is; a cat on a blanket lies on the blanket.
+  bxNapAt = new Float32Array(room.naps.length * 3);
+  room.naps.forEach((n, k) => {
+    const b = room.boxes[n.top];
+    bxNapAt[k * 3] = n.wall === 'L' ? b.x1 : n.x; bxNapAt[k * 3 + 1] = n.wall === 'L' ? n.y : b.y1;
+    bxNapAt[k * 3 + 2] = n.z + (room.dressing.blankets.indexOf(n.top) >= 0 ? 0.5 : 0);
+  });
+  sunFn = bxSun;
+  useLightSet(L.set);
+  bxInitDust(room);
+  targetStatic();
+}
+function useOffice() {
+  BOXR = null;
+  ROOM_X = SCN.room.w; ROOM_Y = SCN.room.d; ROOM_H = SCN.room.h;
+  BASE_X1 = ROOM_X + BASE_PAD; BASE_Y1 = ROOM_Y + BASE_PAD;
+  WH = OFFICE_LAYER.WH; OX = OFFICE_LAYER.OX; OY = OFFICE_LAYER.OY;
+  VIEW_CX = OX + 24; VIEW_CY = OY + 49;
+  sunFn = sunAmt;
+  useLightSet(null);
+  targetStatic();
+}
+
+// ---- sunlight through the skylights ------------------------------------------------------------
+function bxPrep(p) {
+  const det = p.e1[0] * p.e2[1] - p.e1[1] * p.e2[0];
+  return { x: p.x, y: p.y, e1: p.e1, e2: p.e2, n1: p.panes[0], n2: p.panes[1], det,
+    h1: Math.abs(det) / Math.hypot(p.e2[0], p.e2[1]), h2: Math.abs(det) / Math.hypot(p.e1[0], p.e1[1]) };
+}
+// 0..1 for the floor point (x, y) in patch p: soft at the edges and along the frame bars, as the windows are.
+function bxPatchAmt(p, x, y) {
+  const dx = x - p.x, dy = y - p.y;
+  const s = (dx * p.e2[1] - dy * p.e2[0]) / p.det, t = (p.e1[0] * dy - p.e1[1] * dx) / p.det;
+  if (s <= 0 || s >= 1 || t <= 0 || t >= 1) return 0;
+  let m = (s < 0.5 ? s : 1 - s) * p.h1;
+  const mt = (t < 0.5 ? t : 1 - t) * p.h2; if (mt < m) m = mt;
+  for (let k = 1; k < p.n1; k++) { const d = Math.abs(s - k / p.n1) * p.h1 - BX_BAR / 2; if (d < m) m = d; }
+  for (let k = 1; k < p.n2; k++) { const d = Math.abs(t - k / p.n2) * p.h2 - BX_BAR / 2; if (d < m) m = d; }
+  return clamp(m / BX_SOFT + 0.35, 0, 1);
+}
+// Does anything standing on the floor margins block the light on its way to (x, y, z)?
+function bxShaded(x, y, z) {
+  for (let k = 0; k < bxOcc.length; k++) {
+    const o = bxOcc[k];
+    let t0 = Math.max(o[2], z + 0.05), t1 = Math.min(o[5], bxVZ);       // heights along the ray
+    const ax0 = z + (x - o[3]) / bxA, ax1 = z + (x - o[0]) / bxA; if (ax0 > t0) t0 = ax0; if (ax1 < t1) t1 = ax1;
+    const ay0 = z + (y - o[4]) / bxB, ay1 = z + (y - o[1]) / bxB; if (ay0 > t0) t0 = ay0; if (ay1 < t1) t1 = ay1;
+    if (t0 < t1) return true;
+  }
+  return false;
+}
+function bxSun(x, y, z, face) {
+  if (face !== F_TOP || z > bxVZ || !bxP.length) return 0;
+  const fx = x + bxA * z, fy = y + bxB * z;
+  let a = 0;
+  for (let k = 0; k < bxP.length; k++) { const v = bxPatchAmt(bxP[k], fx, fy); if (v > a) a = v; }
+  return a > 0 && bxShaded(x, y, z) ? 0 : a;
+}
+
+// ---- contact shadows -------------------------------------------------------------------------------
+// Floor next to anything standing on it, and the back walls, loses a level (dithered over 2 wu).
+function bxBuildAO(R) {
+  const W = R.room.w, D = R.room.d;
+  bxGrid = new Uint8Array(W * D);
+  const foot = (b) => { for (let y = Math.floor(b.y0); y < b.y1; y++) for (let x = Math.floor(b.x0); x < b.x1; x++) bxGrid[y * W + x] = 1; };
+  for (const b of R.boxes) if (b.z0 === 0) foot(b);
+  for (const p of R.props) if (p.kind !== 'rug') foot(p);
+  for (const it of R.items) if (it.z0 === 0 && it.kind !== 'sleepingCat') foot(it);
+  bxAbove = new Int16Array(R.boxes.length).fill(-1);
+  for (const c of R.columns) for (let k = 1; k < c.boxes.length; k++) bxAbove[c.boxes[k - 1]] = c.boxes[k];
+}
+function bxAO(x, y, z, face, wpx, wpy) {
+  if (face !== F_TOP || z > 0.5) return 0;
+  const R = BOXR, B = R.board;
+  if (x >= B.x - 2 && x < B.x + B.w * TILE + 2 && y >= B.y - 2 && y < B.y + B.h * TILE + 2) return 0;
+  let d = Math.min(x, y);
+  const W = R.room.w, cx = Math.floor(x), cy = Math.floor(y);
+  for (let j = -2; j <= 2 && d > 0; j++) for (let i = -2; i <= 2; i++) {
+    const gx = cx + i, gy = cy + j;
+    if (gx < 0 || gy < 0 || gx >= W || gy >= R.room.d || !bxGrid[gy * W + gx]) continue;
+    const e = Math.max(Math.abs(i) - 0.5, Math.abs(j) - 0.5, 0);
+    if (e < d) d = e;
+  }
+  if (d < 0.8) return 1;
+  return d < 2.2 && bayer(wpx, wpy) < (2.2 - d) / 1.6 ? 1 : 0;
+}
+
+// ---- lamps: a warm pool under each lamp that's on, baked (and lampFn for anything drawn each frame) -------
+// Like the office lamp: the shade blocks upward light, a small core and a thin dithered rim. Levels: up to 2.
+function bxLampAdd(x, y, z, wpx, wpy) {
+  let add = 0;
+  for (let k = 0; k < bxLamps.length; k++) {
+    const l = bxLamps[k], lz = l.z0 - 1;
+    if (z > lz + 2) continue;
+    const dx = x - l.x, dy = y - l.y, dz = (z - lz) * 0.35, d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+    if (d >= l.pool) continue;
+    const a = 1 - d / l.pool, n = a * 3.4 + bayer(wpx, wpy) * 0.999 - 0.25;
+    const v = n >= 2 ? 2 : n >= 1 ? 1 : 0;
+    if (v > add) add = v;
+  }
+  return add;
+}
+// aoFn while baking: contact shadow, less lamp light. A lamp doesn't add to the sun (a pixel takes the brighter of the
+// two: lightAt has just set sunAdd), and on the board it lifts the stone a level at most, as the sun does.
+function bxBakeLight(x, y, z, face, wpx, wpy) {
+  const lamp = Math.min(bxLampAdd(x, y, z, wpx, wpy), shBoard ? 1 : 2);
+  return bxAO(x, y, z, face, wpx, wpy) - Math.max(0, lamp - sunAdd);
+}
+function shBxBulb(face, dx, dy) { shFlat = true; return C.GL0; }
+function shBxBulbOff(face, dx, dy) { return C.PAPSH; }
+function bxLamp(l, on, beamZ) {
+  shSunMax = 1; shFlag = 0;
+  for (let z = beamZ - 2; z > l.z1; z -= 1) dot3(l.x, l.y, z, C.DEEP, 0);    // the flex up to the beam
+  const z = l.z0;
+  cylinder(l.x, l.y, 1.0, z + 6.5, z + 8, shRing, C.BR0, false);
+  cylinder(l.x, l.y, 2.2, z + 5, z + 6.5, shRing, C.BR0, false);
+  cylinder(l.x, l.y, 3.6, z + 3.5, z + 5, shRing, C.BR0, false);
+  cylinder(l.x, l.y, 4.6, z + 1.5, z + 3.5, shRing, C.BR0, false);
+  cylinder(l.x, l.y, 5.2, z, z + 1.5, shRim, C.BR0, true);
+  disc(l.x, l.y, 2.0, z - 0.6, on ? shBxBulb : shBxBulbOff, on ? C.GL0 : C.PAPSH, false);
+  shFlat = false;
+}
+
+// ---- the sky in the windows: by light set --------------------------------------------------------------
+// f: -1 at the bottom of the glass, 1 at the top. The sky colours are fixed in every light set (palette.json).
+function bxSkyPx(f, u, v) {
+  const n = (hash2(Math.floor(u * 2), Math.floor(v * 2)) - 0.5) * 0.5, cl = hash2(Math.floor(u / 3) + 71, Math.floor(v / 2) + 13);
+  if (bxSet === 'night') {
+    if (hash2(Math.floor(u * 1.5) + 7, Math.floor(v * 1.5) + 3) > 0.965) return C.GL0;   // a few stars
+    return f + n > 0.25 ? C.NSK1 : C.NSK0;
+  }
+  if (bxSet === 'sun') { if (f > 0.2 && cl > 0.88) return C.SS1; return f + n > 0 ? C.SS1 : C.SS0; }   // sunset
+  if (bxSet === 'sat') { if (f > -0.3 && cl > 0.9) return C.SS1; return f + n > 0.35 ? C.SKY1 : C.EV1; }   // low evening sun
+  if (f > -0.3 && cl > (bxSet === 'mon' ? 0.95 : 0.9)) return C.WHITE;
+  return f + n > 0.1 ? C.SKY1 : C.SKY0;
+}
+
+// ---- floor, board, walls -------------------------------------------------------------------------------
+function shBxFloor(face, u, v) {
+  const B = BOXR.board;
+  if (u >= B.x - 2 && u < B.x + B.w * TILE + 2 && v >= B.y - 2 && v < B.y + B.h * TILE + 2) return -1;   // the board and its kerb
+  return plankTex(u, v);
+}
+function bxBrick(u, z, seed) {                        // running bond: 7 x 3 bricks, 1 wu mortar
+  const row = Math.floor(z / 4);
+  if (z - row * 4 >= 3) return C.PAPSH;
+  const uu = u + (row & 1) * 4 + seed, bi = Math.floor(uu / 8);
+  if (uu - bi * 8 >= 7) return C.PAPSH;
+  const h = hash2(bi * 7 + seed, row * 3 + 1);
+  return h < 0.2 ? C.BK0 : h > 0.86 ? C.BK2 : C.BK1;
+}
+let bxWall = 'L';
+function shBxWall(face, u, z) {
+  const R = BOXR;
+  shFlat = false; shFlag = FL_ROOM; shLvl = bxWall === 'L' ? -1 : 0;   // the left wall is turned from the light, as in the office
+  for (const g of R.gaps) {
+    const w = g.window;
+    if (!w || g.wall !== bxWall) continue;
+    const du = u - w.u, dz = z - w.z, d = Math.sqrt(du * du + dz * dz);
+    if (d < w.r) { shFlat = true; return bxSkyPx(dz / w.r, u, z); }
+    if (d < w.r + 1.6) { shLvl = 0; return dz > 0 ? C.WD3 : C.WD2; }   // the round frame
+    if (d < w.r + 2.6) return C.BK0;                                  // a ring of headers round it
+  }
+  if (z >= R.room.wallH - 3) { shLvl = -1; return z >= R.room.wallH - 1 ? C.WD0 : C.WD1; }   // the wall plate the roof sits on
+  return bxBrick(u, z, bxWall === 'L' ? 3 : 0);
+}
+function bxEdge(on, c) { return on ? C.OUT : c; }
+// The model's cut ends at the open sides: the knee wall and the roof slab above it, in one section.
+let bxEndX0 = 0;
+function shBxEnd(face, u, v) {
+  const R = BOXR, x = u + bxEndX0, z = v, W = R.room.wallH, inner = W + BX_PITCH * x, outer = inner + 5;
+  shFlag = 0;
+  const top = R.room.roofTop;
+  if (x < 0 && z < W) return bxEdge(x < -WALL_T + 0.8 || z < 0.8, face === F_Y ? C.PL2 : C.PL1);
+  if (x >= -WALL_T && z >= (x < 0 ? W : inner) && z < outer && z <= top) {   // the slab: from its underside (or the wall top) up
+    const edge = z < inner + 0.8 || z >= outer - 0.8 || z > top - 0.8 || x < -WALL_T + 0.8;
+    return bxEdge(edge, face === F_Y ? C.PL2 : C.PL1);
+  }
+  return -1;
+}
+
+// ---- the roof slopes -------------------------------------------------------------------------------------
+// Plane z = wallH + pitch * v rising from wall L (v = x, u = y) or wall R (v = y, u = x), shown beyond the hip
+// line x = y. Unlike the box faces it isn't axis-aligned, so each pixel solves the plane for its world point.
+function faceSlope(wall, u0, u1, v0, v1, sh, hip) {      // hip false: draw both sides of x = y (a lone piece, for the atlas)
+  const H = BOXR.room.wallH, P = BX_PITCH;
+  let pa = 1e9, pb = -1e9, qa = 1e9, qb = -1e9;
+  for (const [u, v] of [[u0, v0], [u0, v1], [u1, v0], [u1, v1]]) {
+    const x = wall === 'L' ? v : u, y = wall === 'L' ? u : v, z = H + P * v;
+    const sx = x - y + tOX, sy = (x + y) * 0.5 - z + tOY;
+    if (sx < pa) pa = sx; if (sx > pb) pb = sx; if (sy < qa) qa = sy; if (sy > qb) qb = sy;
+  }
+  pa = Math.max(0, Math.floor(pa) - 1); pb = Math.min(tW - 1, Math.ceil(pb) + 1);
+  qa = Math.max(0, Math.floor(qa) - 1); qb = Math.min(tH - 1, Math.ceil(qb) + 1);
+  for (let py = qa; py <= qb; py++) for (let px = pa; px <= pb; px++) {
+    const A = px - tOX + 0.5, Bv = py - tOY;
+    let x, y;
+    if (wall === 'L') { x = (Bv + H + A / 2) / (1 - P); y = x - A; } else { y = (Bv + H - A / 2) / (1 - P); x = y + A; }
+    const u = wall === 'L' ? y : x, v = wall === 'L' ? x : y;
+    if (u < u0 || u >= u1 || v < v0 || v >= v1) continue;
+    if (hip !== false && (wall === 'L' ? y < x : x <= y)) continue;    // the other slope's side of the hip
+    shLvl = 0;
+    const c = sh(F_SLOPE, u, v);
+    if (c < 0) continue;
+    emit(px, py, x, y, H + P * v, F_SLOPE, c);
+  }
+}
+function bxSkylightPx(s, lu, lv) {
+  const W = s.u1 - s.u0, L = s.v1 - s.v0, F = 1.6;
+  shLvl = 0;
+  if (lu < F || lu >= W - F || lv < F || lv >= L - F) return lu < 0.8 || lu >= W - 0.8 || lv < 0.8 || lv >= L - 0.8 ? C.WD1 : lv < F ? C.WD4 : C.WD3;
+  if (s.open) {                                     // summer: the sash propped open at the top, a stay holding it
+    if (lv >= L - 3.4) return C.WD3;
+    const su = W * 0.18 + (lv - F) / (L - 3.4 - F) * W * 0.12;
+    if (Math.abs(lu - su) < 0.6 && lv > F + 1) return C.DEEP;
+    shFlat = true;
+    return bxSkyPx(lv / L * 2 - 1, s.u0 + lu, lv);
+  }
+  for (let k = 1; k < s.panes[0]; k++) if (Math.abs(lu - W * k / s.panes[0]) < 0.8) return C.WD3;
+  for (let k = 1; k < s.panes[1]; k++) if (Math.abs(lv - L * k / s.panes[1]) < 0.8) return C.WD3;
+  shFlat = true;
+  const d = bxGlassDressing(s, lu, lv, W, L);       // snow, rain (35_boxprops)
+  return d >= 0 ? d : bxSkyPx(lv / L * 2 - 1, s.u0 + lu, lv);
+}
+let bxSlopeWall = 'L';
+function shBxSlope(face, u, v) {
+  const R = BOXR, wall = bxSlopeWall;
+  shFlag = FL_ROOM; shFlat = false;
+  const x = wall === 'L' ? v : u, y = wall === 'L' ? u : v;
+  if (Math.abs(x - y) < 1.6) return Math.abs(x - y) < 0.7 ? C.DEEP : C.OUT;               // the hip rafter
+  for (const r of R.rafters[wall]) if (u >= r && u < r + R.rafters.w) return u - r < 0.8 || u - r >= R.rafters.w - 0.8 ? C.OUT : C.DEEP;
+  for (const s of R.skylights) if (s.wall === wall && u >= s.u0 && u < s.u1 && v >= s.v0 && v < s.v1) return bxSkylightPx(s, u - s.u0, v - s.v0);
+  if (v >= R.room.roofRun - 0.8) return C.OUT;                                             // the cut edge
+  if (v < 0.8) return C.DEEP;                                                              // where the slope meets the wall plate
+  // Boards in the roof's shade. The slope is steep to the eye: a pixel spans 1 wu up it across and 2 down,
+  // so a seam needs 2 wu to draw as a solid 2:1 line rather than dots.
+  shLvl = -1;
+  const k = Math.floor(v / 6);
+  if (v - k * 6 < 2) return C.WD1;
+  return hash2(Math.floor((u + k * 13) / 23), k) < 0.25 ? C.WD1 : C.WD2;
+}
+function shBxCap(face, u, v) { shFlag = 0; return face === F_TOP ? C.BG0 : face === F_Y ? C.PL2 : C.PL1; }
+function shBxBeam(face, u, v) { shFlag = FL_ROOM; return face === F_TOP ? C.WD1 : face === F_Y ? C.WD0 : C.DEEP; }
+
+// ---- the box stacks ----------------------------------------------------------------------------------------
+let bxCur = null, bxCurI = 0;
+function shBxBox(face, u, v) {
+  const b = bxCur, alongX = b.wall === 'R' || (b.wall === 'F' && b.x1 - b.x0 >= b.y1 - b.y0);
+  const len = alongX ? b.x1 - b.x0 : b.y1 - b.y0, dep = alongX ? b.y1 - b.y0 : b.x1 - b.x0;
+  shFlag = FL_ROOM;
+  if (face === F_TOP) {
+    const a = alongX ? u : v, c = alongX ? v : u;                     // along the box, and across it
+    const above = bxAbove[bxCurI];
+    if (above >= 0) {                                                 // a contact shadow round the box resting on this one
+      const q = BOXR.boxes[above], x = b.x0 + u, y = b.y0 + v;
+      if (x > q.x0 - 1.2 && x < q.x1 + 1.2 && y > q.y0 - 1.2 && y < q.y1 + 1.2) shLvl = -1;
+    }
+    const cm = dep / 2 + (b.nudge ? (a - len / 2) * 0.25 : 0);       // the seam; askew on a box that's been knocked round
+    if ((b.string & 2) && Math.abs(c - cm) < 0.6) return C.PAPSH;
+    if ((b.string & 1) && Math.abs(a - len / 2) < 0.6) return C.PAPSH;
+    if (Math.abs(c - cm) < 0.6) return C.KRAFT0;
+    if (Math.abs(c - cm) < 2.2 && a > 1 && a < len - 1) return C.KRAFT;   // tape over the seam
+    return C.KRAFT2;
+  }
+  const front = alongX ? F_Y : F_X, h = b.z1 - b.z0;
+  if (face === F_X) shLvl = -1;
+  if (v >= h - 2.5 && v < h - 1.7) return C.KRAFT0;                   // the flap crease round the top
+  if (face === front) {
+    if (b.label) {
+      const lu = b.label[0], lz = b.label[1];
+      if (u >= lu && u < lu + 6 && v >= lz && v < lz + 4) return u < lu + 1 || u >= lu + 5 || v < lz + 1 || v >= lz + 3 ? C.PAPSH : C.CREAM;
+    }
+    if (b.paw && pawShape(u, v, b.paw[0] + 2, b.paw[1] + 2, 2.4)) return (bxCurI & 1) ? C.RD1 : C.BL1;
+    if ((b.string & 1) && Math.abs(u - len / 2) < 0.6) return C.PAPSH;
+  } else if ((b.string & 2) && Math.abs(u - dep / 2) < 0.6) return C.PAPSH;
+  return C.KRAFT;
+}
+function shBxFlap(face, u, v) { shFlag = FL_ROOM; if (face === F_X) shLvl = -1; return face === F_TOP ? C.KRAFT0 : C.KRAFT; }
+function bxFlap(b) {                                    // 1: the back flap stands up; 2: the front one hangs down; 3, 4: the ends stand up
+  const L = b.wall === 'L', u0 = L ? b.y0 : b.x0, u1 = L ? b.y1 : b.x1, v0 = L ? b.x0 : b.y0, v1 = L ? b.x1 : b.y1;
+  const fh = Math.ceil((v1 - v0) / 2), z = b.z1;
+  const q = b.flap === 1 ? [u0 + 1, u1 - 1, v0, v0 + 1, z, z + fh] : b.flap === 2 ? [u0 + 1, u1 - 1, v1, v1 + 1, z - fh, z]
+    : b.flap === 3 ? [u0, u0 + 1, v0 + 1, v1 - 1, z, z + fh] : [u1 - 1, u1, v0 + 1, v1 - 1, z, z + fh];
+  const w = b.wall === 'F' ? 'R' : b.wall;
+  const bx = w === 'L' ? [q[2], q[0], q[4], q[3], q[1], q[5]] : [q[0], q[2], q[4], q[1], q[3], q[5]];
+  box(bx[0], bx[1], bx[2], bx[3], bx[4], bx[5], shBxFlap, C.WD1, 3);
+}
+
+// ---- the bake ---------------------------------------------------------------------------------------------
+function bakeBoxRoom() {
+  const R = BOXR, P = R.room, B = R.board, X0 = B.x, Y0 = B.y, X1 = X0 + B.w * TILE, Y1 = Y0 + B.h * TILE;
+  targetStatic();
+  bakeBackdrop();
+  bakeBase();
+  bxBuildAO(R);
+  aoFn = bxBakeLight;                                              // contact shadows, less the lamps' pools
+  // floorboards, then the stone board and its brass-capped kerb (2 wu high, so only its own edge touches a tile)
+  shFlat = false; shBias = 0; shSunMax = 2; shFlag = FL_FLOOR | FL_ROOM;
+  faceTop(0, 0, P.w, P.d, 0, shBxFloor, C.WD0, 0);
+  shSunMax = 1; shBoard = 128;                                    // the board takes the board light (20_palette)
+  faceTop(X0, Y0, X1, Y1, 0, shStone, C.FT0, 0);
+  shSunMax = 2; shFlag = FL_ROOM;
+  box(X0 - 2, Y0 - 2, 0, X0, Y1 + 2, 2, shKerbTop, C.WD0, 3);
+  box(X0 - 2, Y0 - 2, 0, X1 + 2, Y0, 2, shKerbTop, C.WD0, 3);
+  box(X0 - 2, Y1, 0, X1 + 2, Y1 + 2, 2, shKerbTop, C.WD0, 3);
+  box(X1, Y0 - 2, 0, X1 + 2, Y1 + 2, 2, shKerbTop, C.WD0, 3);
+  shBoard = 0;
+  // brick knee walls, then the roof band above them, and the cut ends at the open sides
+  shSunMax = 0;
+  bxWall = 'L'; faceX(0, P.d, 0, P.wallH, 0, shBxWall, C.WD0, 0);
+  bxWall = 'R'; faceY(0, P.w, 0, P.wallH, 0, shBxWall, C.WD0, 0);
+  bxSlopeWall = 'L'; faceSlope('L', 0, P.d, 0, P.roofRun, shBxSlope);
+  bxSlopeWall = 'R'; faceSlope('R', 0, P.w, 0, P.roofRun, shBxSlope);
+  shFlat = false;
+  const cap = 5 / BX_PITCH;                                       // the roof slab's top, cut level at roofTop
+  faceTop(P.roofRun - cap, P.roofRun - cap, P.roofRun, P.d, P.roofTop, shBxCap, C.OUT, 1);
+  faceTop(P.roofRun, P.roofRun - cap, P.w, P.roofRun, P.roofTop, shBxCap, C.OUT, 1);
+  bxEndX0 = -WALL_T; faceY(-WALL_T, P.roofRun, 0, P.roofTop + 1, P.d, shBxEnd, C.OUT, 0);
+  faceX(-WALL_T, P.roofRun, 0, P.roofTop + 1, P.w, shBxEnd, C.OUT, 0);
+  // cross beams under the cut roof
+  for (const b of R.beams) {
+    if (b.axis === 'y') box(b.at - 2, b.from, b.z - 2, b.at + 2, b.to, b.z + 2, shBxBeam, C.OUT, 7);
+    else box(b.from, b.at - 2, b.z - 2, b.to, b.at + 2, b.z + 2, shBxBeam, C.OUT, 7);
+  }
+  // the stacks and the loose boxes in front
+  shSunMax = 1; shFlag = FL_ROOM;
+  for (let i = 0; i < R.boxes.length; i++) {
+    bxCur = R.boxes[i]; bxCurI = i;
+    const b = bxCur;
+    box(b.x0, b.y0, b.z0, b.x1, b.y1, b.z1, shBxBox, C.WD1, 3);
+    if (b.flap) bxFlap(b);
+  }
+  // the props on the margins, the season's dressing, then the hanging lamps under their beams
+  bxBakeProps(R);
+  bxBakeDressing(R);
+  R.lamps.forEach((l, i) => bxLamp(l, i < R.light.lamps, R.beams[l.beam].z));
+  aoFn = null;
+  shSunMax = 2; shFlat = false; shFlag = 0; shBias = 0; shLvl = 0;
+}
+
+// ---- each frame ---------------------------------------------------------------------------------------------
+// The game's board (a daily puzzle) in painter's order, then the dust in the light, the napping cats, the season's
+// moving bits, the string lights' twinkle and the game's sparkles and hearts.
+function drawBoxDynamic() {
+  nItems = 0;
+  lampFn = bxLamps.length ? bxLampAdd : null;
+  if (typeof GAME_MODE !== 'undefined' && GAME_MODE && gm.L) { gPrepareSrc(); addBoardItems(G_SRC); }
+  sortItems();
+  shBoard = 128;                                                    // the board's pieces and cats take the board light,
+  if (BOXR.light.sun) lampFn = null;                                // and lamp light only at night (by day the sun lights them)
+  for (let k = 0; k < nItems; k++) {
+    if (drawItemHook) drawItemHook(ITEM_ID[k], false);
+    drawItem(ITEM_ID[k]);
+    if (drawItemHook) drawItemHook(ITEM_ID[k], true);
+  }
+  shBoard = 0;
+  lampFn = bxLamps.length ? bxLampAdd : null;
+  drawBoxDust(loopT);
+  drawBoxNaps(loopT);
+  drawBoxDressing(loopT);
+  if (BOXR.light.string) drawBoxString(loopT);
+  drawParticles();
+  lampFn = null; shSunMax = 2;
+}
+// The collection, napping on the stacks: breathing every 3 s; now and then an ear (every 12 s) or the tail tip
+// (every 16 s) flicks, each cat at its own phase. All three divide the 48 s loop.
+function drawBoxNaps(t) {
+  const N = BOXR.naps;
+  shSunMax = 1; shFlag = 0; shBias = 0; shFlat = false;
+  for (let k = 0; k < N.length; k++) {
+    const n = N[k], tt = t + n.phase / 60;
+    const frame = (fract(tt / 3) < 0.4 ? 1 : 0) | (fract(tt / 12) < 0.03 ? 2 : 0) | (fract((tt + 5) / 16) < 0.025 ? 4 : 0);
+    buildNapSprite(n.cat, NAP_POSE_IDS[n.pose], frame, n.top * 7 + k);
+    blitSprite(bxNapAt[k * 3], bxNapAt[k * 3 + 1], bxNapAt[k * 3 + 2], n.wall === 'L' ? n.dir === 'U' : n.dir === 'R', true);   // the head leads the way it lies
+  }
+}
+// String lights: a bulb every 6 wu on a dark flex, each glowing in one of three colours and now and then
+// dipping for a moment; at night and at sunset the pixels round each bulb pick up a level.
+function drawBoxString(t) {
+  const B = BOXR.bulbs, GLOW = [C.GL0, C.GL1, C.GL2], DIM = [C.BR2, C.RD2, C.BL2], glow = bxSet === 'night' || bxSet === 'sun';
+  shSunMax = 0; shFlag = 0; shBias = 4;
+  for (let k = 0; k < B.length; k++) {
+    const b = B[k], q = k + 1 < B.length ? B[k + 1] : null;
+    shFlat = false;
+    if (q && Math.abs(q[0] - b[0]) + Math.abs(q[1] - b[1]) <= 8) {   // the flex to the next bulb on the same run
+      for (let s = 1; s < 4; s++) { const f = s / 4; dot3(b[0] + (q[0] - b[0]) * f, b[1] + (q[1] - b[1]) * f, b[2] + (q[2] - b[2]) * f + 1 - Math.abs(f - 0.5) * 2 * 0.6, C.DEEP, 0); }
+    }
+    const dip = fract(t / 4 + hash2(k, 5)) < 0.06;
+    shFlat = true;
+    dot3(b[0], b[1], b[2], dip ? DIM[b[3]] : GLOW[b[3]], 0);
+    if (glow && !dip) {
+      const px = Math.round(b[0] - b[1]) + tOX, py = Math.round((b[0] + b[1]) * 0.5 - b[2]) + tOY;
+      for (const [ox, oy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const x = px + ox, y = py + oy;
+        if (x >= 0 && y >= 0 && x < tW && y < tH && tLvl[y * tW + x] < 4) tLvl[y * tW + x]++;
+      }
+    }
+  }
+  shFlat = false; shBias = 0;
+}
+// Dust: motes seeded where the light is (the sun's shafts by day, under the lamps at night), drifting on the
+// 48 s loop and drawn only while they're in it.
+const BX_NDUST = 64, BX_DUST = new Float32Array(BX_NDUST * 6);
+let bxNDust = 0;
+function bxInitDust(room) {
+  rngSeed(room.inputs.seed ^ 0x5eed);
+  bxNDust = 0;
+  const P = room.room;
+  for (let guard = 0; bxNDust < BX_NDUST && guard < 20000; guard++) {
+    const x = P.stackD + rnd() * (P.w - P.stackD), y = P.stackD + rnd() * (P.d - P.stackD), z = 3 + rnd() * (bxVZ - 6);
+    if (!bxDustLit(x, y, z)) continue;
+    const o = bxNDust * 6;
+    BX_DUST[o] = x; BX_DUST[o + 1] = y; BX_DUST[o + 2] = z; BX_DUST[o + 3] = rnd() * TAU; BX_DUST[o + 4] = rnd() * TAU; BX_DUST[o + 5] = rnd();
+    bxNDust++;
+  }
+}
+function bxDustLit(x, y, z) { return bxSun(x, y, z, F_TOP) >= 0.6 || bxLampAdd(x, y, z, 1, 2) >= 1; }
+function drawBoxDust(t) {
+  shSunMax = 0; shFlag = 0; shFlat = true; shBias = 6;
+  for (let k = 0; k < bxNDust; k++) {
+    const o = k * 6;
+    const breeze = BOXR.dressing.openSkylight ? 1 : 0;              // summer: the open skylight's breeze stirs it
+    const x = BX_DUST[o] + Math.sin(t / 24 * TAU + BX_DUST[o + 3]) * 4 + breeze * Math.sin(t / 6 * TAU + BX_DUST[o + 4]) * 7;
+    const y = BX_DUST[o + 1] + Math.cos(t / 16 * TAU + BX_DUST[o + 4]) * 3 + breeze * Math.cos(t / 8 * TAU + BX_DUST[o + 3]) * 5;
+    const z = BX_DUST[o + 2] + Math.sin(t / 48 * TAU + BX_DUST[o + 5] * TAU) * 5;
+    if (!bxDustLit(x, y, z)) continue;
+    if (fract(t / 3 + BX_DUST[o + 5]) < 0.18) continue;           // a gentle twinkle (3 s)
+    dot3(x, y, z, C.GL0, 0);
+  }
+  shFlat = false; shBias = 0;
+}
+
+// Point the frame at the whole room, LW x LH logical px (tests in Node, which have no app layer).
+function __boxTestView(w, h) { LW = w; LH = h; viewX = Math.round(VIEW_CX - w / 2); viewY = Math.round(VIEW_CY - h / 2); }
+
+// ---- review: every tile core still shows its own stone ---------------------------------------------------------
+// The same rule as __so.coverage: no baked pixel other than the floor may sit in the 12 x 6 px core of a tile.
+// Returns the offending tiles as [i, j, what] (what: 'flag' if not floor, 'deep' if floor from elsewhere).
+function bxCheckCores() {
+  const R = BOXR, B = R.board, out = [];
+  for (let j = 0; j < B.h; j++) for (let i = 0; i < B.w; i++) {
+    const cx = B.x + 8 + i * TILE, cy = B.y + 8 + j * TILE;
+    const sx = Math.round(cx - cy) + OX, sy = Math.round((cx + cy) / 2) + OY;
+    let bad = null;
+    for (let y = sy - 3; y < sy + 3 && !bad; y++) for (let x = sx - 6; x < sx + 6 && !bad; x++) {
+      const k = y * WW + x;
+      if (!(sFlg[k] & FL_FLOOR)) bad = 'flag';
+      else if (Math.abs(sWZ[k]) > 1 || sWX[k] < (B.x + i * TILE) * 4 - 4 || sWX[k] > (B.x + i * TILE + TILE) * 4 + 4 ||
+        sWY[k] < (B.y + j * TILE) * 4 - 4 || sWY[k] > (B.y + j * TILE + TILE) * 4 + 4) bad = 'deep';
+    }
+    if (bad) out.push([i, j, bad]);
+  }
+  return out;
+}
+// ============================================================================
+// 35 BOX ROOM PROPS AND DRESSING: the things on the floor margins (an old post trolley, a coat stand with a
+// post-blue cap, a mailbag slumped against a stack, an armchair with a knitted blanket, a gramophone, a rag rug)
+// and each season's dressing in its fixed slot (sim/18_boxroom): seedlings in egg boxes and a jam jar of
+// flowers, a fan and a cat stretched out flat, a pumpkin and blankets on the stacks, a tree of boxes with
+// bunting, snow, rain or leaves on the skylights, an open skylight in summer, and a bucket catching the drip
+// on wet days. Everything stays inside the box the generator reserved for it, so the coverage rule holds.
+// Baked with the room (bxBakeProps, bxBakeDressing); the moving bits each frame (drawBoxDressing).
+// ============================================================================
+// A prop's own frame: a runs across its front, b from its back (0) to its front, z up. dir is the way it faces.
+function bxFrame(P) { const across = P.dir === 'R' || P.dir === 'L'; return { P, A: across ? P.y1 - P.y0 : P.x1 - P.x0, B: across ? P.x1 - P.x0 : P.y1 - P.y0 }; }
+function bxAt(F, a, b) {
+  const P = F.P;
+  return P.dir === 'R' ? [P.x0 + b, P.y0 + a] : P.dir === 'L' ? [P.x1 - b, P.y0 + a] : P.dir === 'D' ? [P.x0 + a, P.y0 + b] : [P.x0 + a, P.y1 - b];
+}
+function bxPBox(F, a0, a1, b0, b1, z0, z1, sh, dk, olm) {
+  const p = bxAt(F, a0, b0), q = bxAt(F, a1, b1);
+  box(Math.min(p[0], q[0]), Math.min(p[1], q[1]), z0, Math.max(p[0], q[0]), Math.max(p[1], q[1]), z1, sh, dk, olm === undefined ? 3 : olm);
+}
+function bxPCyl(F, a, b, r, z0, z1, sh, dk, olb) { const p = bxAt(F, a, b); cylinder(p[0], p[1], r, z0, z1, sh, dk, olb); }
+function bxPDisc(F, a, b, r, z, sh, dk) { const p = bxAt(F, a, b); disc(p[0], p[1], r, z, sh, dk, false); }
+const bxFaces = (top, fy, fx) => (face) => (face === F_TOP ? top : face === F_Y ? fy : fx);    // a flat colour per face
+const bxRingSh = (light, mid, dark) => (face, th, h) => (face === F_X ? dark : th > 1.0 ? light : mid);   // cylinders: lit on the left
+
+// ---- the props ---------------------------------------------------------------------------------------------
+function bxTrolley(P) {                               // a flat bed on castors, red frame, a handle at one end, a parcel aboard
+  const F = bxFrame(P), long = F.B >= F.A;          // the trolley's length runs along its longer side
+  const L = long ? F.B : F.A, W = long ? F.A : F.B;
+  const at = (s, t) => (long ? [t, s] : [s, t]);    // (along the length, across) -> (a, b)
+  const pb = (s0, s1, t0, t1, z0, z1, sh) => { const p = at(s0, t0), q = at(s1, t1); bxPBox(F, Math.min(p[0], q[0]), Math.max(p[0], q[0]), Math.min(p[1], q[1]), Math.max(p[1], q[1]), z0, z1, sh, C.OUT); };
+  const red = bxFaces(C.RD2, C.RD1, C.RD0), wheel = bxRingSh(C.FT0, C.DEEP, C.OUT);
+  for (const s of [2.5, L - 2.5]) for (const t of [2.2, W - 2.2]) { const p = at(s, t); bxPCyl(F, p[0], p[1], 1.3, 0, 2.6, wheel, C.OUT, true); }
+  pb(0.5, L - 0.5, 0.8, 2, 2.6, 4, red); pb(0.5, L - 0.5, W - 2, W - 0.8, 2.6, 4, red);
+  pb(0.5, L - 0.5, 0.5, W - 0.5, 4, 5.4, (face, u, v) => (face === F_TOP ? (Math.floor((long ? v : u) / 3) % 2 ? C.WD3 : C.WD2) : face === F_Y ? C.WD2 : C.WD1));
+  pb(0.6, 1.8, 0.8, 2, 5.4, 15, red); pb(0.6, 1.8, W - 2, W - 0.8, 5.4, 15, red);    // the handle's uprights
+  pb(0.4, 2, 0.6, W - 0.6, 14.4, 16, bxFaces(C.DEEP, C.RD1, C.RD0));                   // and its grip
+  pb(L - 9.5, L - 2, 2, W - 2, 5.4, 9, (face, u, v) => (face === F_TOP ? (Math.abs(u - 3.7) < 0.6 ? C.KRAFT0 : C.KRAFT2) : face === F_Y ? C.KRAFT : C.KRAFT0));
+}
+function bxCoatStand(P) {
+  const cx = (P.x0 + P.x1) / 2, cy = (P.y0 + P.y1) / 2, F = bxFrame(P);
+  const wood = bxRingSh(C.WD3, C.WD2, C.WD1);
+  cylinder(cx, cy, 3.4, 0, 1.4, wood, C.WD0, true);
+  cylinder(cx, cy, 0.9, 1.4, 40, wood, C.WD0, false);
+  cylinder(cx, cy, 1.4, 40, 42, wood, C.WD0, false);
+  cylinder(cx, cy, 0.8, 42, 43.6, wood, C.WD0, false);
+  for (const [dx, dy] of [[1.8, 0], [-1.8, 0], [0, 1.8], [0, -1.8]]) dot3(cx + dx, cy + dy, 38.5, C.BR2, 0);   // brass pegs
+  const f = bxAt(F, F.A / 2, F.B / 2 + 1.6), c = [f[0], f[1]];                                        // the cap, on the front peg
+  cylinder(c[0], c[1], 2.2, 34, 36.2, (face, th, h) => (h > 1.6 ? C.BL2 : face === F_X ? C.BL0 : C.BL1), C.OUT, false);
+  const peak = bxAt(F, F.A / 2, Math.min(F.B - 0.4, F.B / 2 + 3.3));
+  disc(peak[0], peak[1], 1.4, 34, () => C.BL0, C.OUT, false);
+  dot3(peak[0], peak[1], 35.4, C.BR3, 0);                                                             // the brass badge
+  const scarf = bxAt(F, F.A / 2 - 1.8, F.B / 2);                                                      // a scarf down the side
+  for (let z = 22; z < 38; z++) dot3(scarf[0], scarf[1], z, (z >> 1) & 1 ? C.RD2 : C.CREAM, 0);
+}
+function bxMailbag(P) {                               // hessian, slumped back against the stack it leans on
+  const R = BOXR.room, cx = (P.x0 + P.x1) / 2, cy = (P.y0 + P.y1) / 2, intoX = P.x0 === R.stackD, rmax = Math.min(P.x1 - P.x0, P.y1 - P.y0) / 2 - 0.4;
+  const sack = bxRingSh(C.KRAFT, C.KRAFT0, C.WD1);
+  for (let z = 0; z < 8; z++) {
+    const f = z / 8, r = rmax * (z < 4 ? 1 - 0.04 * z : 0.84 - 0.13 * (z - 4)), lean = f * f * (rmax - r + 1.2);
+    cylinder(intoX ? cx - lean : cx, intoX ? cy : cy - lean, Math.max(1.6, r), z, z + 1, sack, C.WD0, z === 0);
+  }
+  const nx = intoX ? cx - rmax + 1.6 : cx, ny = intoX ? cy : cy - rmax + 1.6;
+  cylinder(nx, ny, 1.5, 8, 8.8, () => C.WD0, C.OUT, false);                                           // the drawstring
+  cylinder(nx, ny, 1.9, 8.8, 9.8, sack, C.WD0, false);
+  dot3(intoX ? cx + 1.5 : cx + 2.8, intoX ? cy + 2.8 : cy + 1.5, 5, C.BR2, 0);                       // a brass tag
+}
+function bxKnit(face, u, v) {                         // a knitted blanket: oatmeal with red bands, a V stitch
+  const band = Math.floor(v / 2.2) % 5;
+  if (band === 1 || band === 3) return band === 1 ? C.RD2 : C.RD1;
+  return ((Math.floor(u) + Math.floor(v * 2)) & 1) ? C.PAPSH : C.CREAM;
+}
+function bxArmchair(P) {                              // green velvet, a knitted blanket over the back and one arm
+  const F = bxFrame(P), A = F.A, B = F.B;
+  const velvet = bxFaces(C.PT2, C.PT1, C.PT0), leg = bxFaces(C.WD1, C.WD1, C.WD0);
+  for (const a of [1, A - 2.5]) for (const b of [1, B - 2.5]) bxPBox(F, a, a + 1.5, b, b + 1.5, 0, 2, leg, C.OUT);
+  bxPBox(F, 2, A - 2, 2, B - 1, 2, 7, velvet, C.OUT);
+  bxPBox(F, 3.2, A - 3.2, 5, B - 1.4, 7, 9, bxFaces(C.PT3, C.PT2, C.PT1), C.PT0);                      // the seat cushion
+  bxPBox(F, 0.5, 3.5, 2, B - 0.6, 2, 11, velvet, C.OUT);
+  bxPBox(F, A - 3.5, A - 0.5, 2, B - 0.6, 2, 11, velvet, C.OUT);
+  bxPBox(F, 0.5, A - 0.5, 0.5, 5, 2, 17.4, velvet, C.OUT);                                             // the back
+  bxPBox(F, 3, A * 0.62, 0.6, 5.6, 9, 18, bxKnit, C.WD1);                                               // the blanket over it
+  bxPBox(F, A - 3.9, A - 0.2, B * 0.42, B * 0.75, 6, 11.6, bxKnit, C.WD1);                              // and over the arm
+}
+function bxGramophone(P) {                            // a wooden cabinet, a record, a brass tulip horn
+  const F = bxFrame(P), A = F.A, B = F.B;
+  bxPBox(F, 1, A - 1, 1, B - 1, 0, 7, (face, u, v) => (face === F_TOP ? C.WD3 : v < 1.2 ? C.WD1 : face === F_Y ? C.WD2 : C.WD1), C.WD0);
+  const rec = bxAt(F, A * 0.58, B * 0.6);
+  disc(rec[0], rec[1], 3.5, 7.2, (face, dx, dy) => { const r = Math.hypot(dx, dy); return r < 0.9 ? C.RD2 : r > 2.6 && r < 3.0 ? C.OUT : C.DEEP; }, C.OUT, false);
+  for (let k = 0; k <= 6; k++) { const p = bxAt(F, A - 2 - k * 0.45, B - 2 - k * 0.55); dot3(p[0], p[1], 8, C.BR2, 0); }   // the tone arm
+  const brass = bxRingSh(C.BR3, C.BR2, C.BR1);
+  const steps = [[0.7, 7, 9, 2.5, 3], [1.2, 9, 10, 3, 4], [1.8, 10, 11.5, 3.6, 5], [2.6, 11.5, 13, 4.2, 5.8], [3.4, 13, 14.5, 4.8, 6.4], [4.1, 14.5, 16, 5.2, 6.8], [4.7, 16, 17, 5.5, 7]];
+  for (const [r, z0, z1, a, b] of steps) bxPCyl(F, a, b, r, z0, z1, brass, C.BR0, false);
+  bxPDisc(F, 5.5, 7, 4.0, 17, () => C.DEEP, C.BR0);                                                     // the horn's mouth
+}
+function bxRug(P) {                                   // a woven rag rug: uneven stripes across it, fringes at the ends
+  const W = P.x1 - P.x0, D = P.y1 - P.y0, long = W >= D, L = long ? W : D;
+  const BANDS = [C.WD3, C.RD1, C.CREAM, C.KRAFT0, C.RD2, C.PAPSH, C.WD2, C.CREAM, C.RD1];
+  shFlag = FL_ROOM; shSunMax = 2; shBias = 2;
+  faceTop(P.x0, P.y0, P.x1, P.y1, 0.6, (face, u, v) => {
+    const s = long ? u : v, t = long ? v : u, w = long ? D : W;
+    if (s < 1.5 || s >= L - 1.5) return (Math.floor(t) & 1) && t > 0.6 && t < w - 0.6 ? C.PAPSH : -1;   // the fringe
+    if (t < 0.8 || t >= w - 0.8) return C.WD1;                                                        // the selvedge
+    const k = Math.floor((s - 1.5) / 2.3 + hash2(Math.floor((s - 1.5) / 2.3), 7) * 0.4) % BANDS.length;
+    return hash2(Math.floor(s * 2), Math.floor(t * 2)) > 0.93 ? C.WD1 : BANDS[k];
+  }, C.WD1, 0);
+  shBias = 0;
+}
+function bxBucket(it) {                               // galvanised, a little water, its handle up
+  const cx = (it.x0 + it.x1) / 2, cy = (it.y0 + it.y1) / 2;
+  cylinder(cx, cy, 3.5, 0, 6, (face, th, h) => (h > 5.2 ? C.FT2 : face === F_X ? C.PL0 : (Math.floor(h) === 2 ? C.PL0 : C.PL1)), C.FT0, true);
+  disc(cx, cy, 3.0, 5.4, (face, dx, dy) => (Math.hypot(dx - 0.8, dy - 0.8) < 0.9 ? C.BL4 : C.BL2), C.BL1, false);
+  for (let k = 0; k <= 8; k++) { const a = Math.PI * k / 8; dot3(cx + Math.cos(a) * 3.4, cy - Math.cos(a) * 0.2, 6 + Math.sin(a) * 1.8, C.FT0, 0); }
+}
+
+// ---- the seasonal items ------------------------------------------------------------------------------------
+function bxJamJar(it) {                               // glass, water, three stems, flowers
+  const cx = (it.x0 + it.x1) / 2, cy = (it.y0 + it.y1) / 2, z = it.z0;
+  cylinder(cx, cy, 1.7, z, z + 4.6, (face, th, h) => (h < 2.8 ? C.BL3 : th > 1.2 ? C.WHITE : C.PL2), C.PL0, true);
+  const F = [[-0.7, 0.2, C.RD3], [0.6, -0.4, C.SUN0], [0.1, 0.8, C.BL3]];
+  for (const [dx, dy, c] of F) {
+    for (let k = 0; k < 4; k++) dot3(cx + dx * k / 4, cy + dy * k / 4, z + 4.6 + k, C.PT1, 0);
+    dot3(cx + dx, cy + dy, z + 8.8, c, 0); dot3(cx + dx + 0.6, cy + dy - 0.6, z + 8.8, c, 0); dot3(cx + dx, cy + dy, z + 9.6, c, 0);
+  }
+  dot3(cx + 0.8, cy + 0.2, z + 6, C.PT2, 0);
+}
+function bxSeedlings(it) {                            // a grey egg box, a sprout in each cup
+  const L = it.x1 - it.x0 >= it.y1 - it.y0, n = 6, z = it.z0;
+  shFlag = FL_ROOM;
+  box(it.x0, it.y0, z, it.x1, it.y1, z + 2.4, (face, u, v) => {
+    if (face !== F_TOP) return face === F_Y ? C.PAPSH : C.FT0;
+    const s = L ? u : v, t = L ? v : u, cs = (L ? it.x1 - it.x0 : it.y1 - it.y0) / n, ct = (L ? it.y1 - it.y0 : it.x1 - it.x0) / 2;
+    const ds = s % cs - cs / 2, dt = t % ct - ct / 2;
+    return ds * ds + dt * dt < 1.6 ? C.FT0 : C.PL1;
+  }, C.FT0, 3);
+  for (let i = 0; i < n; i++) for (let j = 0; j < 2; j++) {
+    const along = (i + 0.5) / n, across = (j + 0.5) / 2, x = L ? it.x0 + along * (it.x1 - it.x0) : it.x0 + across * (it.x1 - it.x0), y = L ? it.y0 + across * (it.y1 - it.y0) : it.y0 + along * (it.y1 - it.y0);
+    const h = 2 + Math.floor(hash2(i * 3 + j, 9) * 2.5);
+    for (let k = 0; k < h; k++) dot3(x, y, z + 2.4 + k, C.PT2, 0);
+    dot3(x - 0.6, y + 0.6, z + 2.4 + h, C.PT3, 0); dot3(x + 0.6, y - 0.6, z + 2.4 + h, C.PT3, 0);
+  }
+}
+function bxPumpkin(it) {                              // ribbed, a stalk and a curl of vine
+  const cx = (it.x0 + it.x1) / 2, cy = (it.y0 + it.y1) / 2;
+  const prof = [2.8, 3.9, 4.4, 4.5, 4.3, 3.8, 2.6];
+  prof.forEach((r, z) => cylinder(cx, cy, r, z, z + 1, (face, th, h) => {
+    const rib = Math.floor(fract(th / (TAU / 10)) * 10) < 2;
+    return z >= 5 && th > 0.8 ? C.EV1 : rib ? C.SS0 : face === F_X ? C.SS0 : C.EV0;
+  }, C.CTD, z === 0));
+  cylinder(cx, cy, 0.7, 7, 8.4, () => C.WD1, C.WD0, false);
+  dot3(cx + 1, cy - 0.5, 7.6, C.PT2, 0); dot3(cx + 1.6, cy - 0.2, 7.2, C.PT2, 0);
+}
+function bxBoxTree(it) {                              // boxes stacked into a tree, paw-print baubles, a star on top
+  const cx = (it.x0 + it.x1) / 2, cy = (it.y0 + it.y1) / 2, W = Math.min(it.x1 - it.x0, it.y1 - it.y0);
+  const tiers = [[W, 0, 9], [W * 0.72, 9, 17], [W * 0.46, 17, 24], [W * 0.24, 24, 27.6]];
+  shFlag = FL_ROOM;
+  tiers.forEach(([w, z0, z1], k) => {
+    const h = w / 2;
+    box(cx - h, cy - h, z0, cx + h, cy + h, z1, (face, u, v) => {
+      if (face === F_TOP) return Math.abs(u - h) < 0.6 ? C.KRAFT0 : C.KRAFT2;
+      if (hash2(Math.floor(u / 3) + k * 5, Math.floor(v / 3) + 11) > 0.86 && v > 1 && v < z1 - z0 - 2) return [C.RD2, C.BL2, C.SUN0][(Math.floor(u / 3) + k) % 3];
+      return face === F_Y ? C.KRAFT : C.KRAFT0;
+    }, C.WD1, 3);
+  });
+  for (const [dx, dz] of [[0, 28.6], [0, 29.8], [0.7, 29.2], [-0.7, 29.2]]) dot3(cx + dx * 0.5, cy - dx * 0.5, dz, C.BR3, 0);
+}
+function bxFan(it) {                                  // a pedestal fan facing the board; its blades turn (drawBoxDressing)
+  const cx = (it.x0 + it.x1) / 2, cy = (it.y0 + it.y1) / 2, metal = bxRingSh(C.PL2, C.PL1, C.PL0);
+  cylinder(cx, cy, 3.2, 0, 1.2, metal, C.FT0, true);
+  cylinder(cx, cy, 0.6, 1.2, 11, metal, C.FT0, false);
+  cylinder(cx, cy, 1.4, 11, 14, metal, C.FT0, false);
+  bxFanPlane(it, (face, u, v) => {                     // the guard: a ring and four spokes
+    const r = Math.hypot(u - 4.2, v - 4.2);
+    if (r > 4.2) return -1;
+    if (r > 3.4 || r < 0.9 || Math.abs(u - 4.2) < 0.4 || Math.abs(v - 4.2) < 0.4) return r < 0.9 ? C.PL0 : C.PL2;
+    return -1;
+  }, 0.8);
+}
+// The fan's vertical plane (8.4 wu across, centred at z 13), facing along its dir: shader(face, u, v) with u across
+// and v up; front: how far in front of the stand.
+function bxFanPlane(it, sh, front) {
+  const cx = (it.x0 + it.x1) / 2, cy = (it.y0 + it.y1) / 2, d = it.dir || 'R';
+  if (d === 'R' || d === 'L') faceX(cy - 4.2, cy + 4.2, 8.8, 17.2, cx + (d === 'R' ? front : -front), sh, C.FT0, 0);
+  else faceY(cx - 4.2, cx + 4.2, 8.8, 17.2, cy + (d === 'D' ? front : -front), sh, C.FT0, 0);
+}
+// Blankets: a knitted throw over the top of a box and down its front.
+function bxBlanket(b) {
+  shFlag = FL_ROOM;
+  const L = b.wall === 'L', h = b.z1 - b.z0;
+  faceTop(b.x0 + 0.4, b.y0 + 0.4, b.x1 - 0.4, b.y1 - 0.4, b.z1 + 0.4, bxKnit, C.WD1, 0);
+  if (L) faceX(b.y0 + 1, b.y1 - 1, b.z1 - h * 0.6, b.z1 + 0.4, b.x1 + 0.4, bxKnit, C.WD1, 6);
+  else faceY(b.x0 + 1, b.x1 - 1, b.z1 - h * 0.6, b.z1 + 0.4, b.y1 + 0.4, bxKnit, C.WD1, 6);
+}
+// Bunting along the roof band's top edges: triangles in three colours.
+function bxBunting(R) {
+  const P = R.room, COL = [C.RD2, C.BL2, C.CREAM];
+  shFlag = FL_ROOM; shSunMax = 0;
+  for (const f of R.flags) {
+    const tri = (face, u, v) => (Math.abs(u - 2) <= v * 0.5 ? COL[f[3]] : -1);
+    if (f[0] === P.roofRun) faceX(f[1] - 2, f[1] + 2, f[2] - 4, f[2], f[0] + 0.5, tri, C.OUT, 0);
+    else faceY(f[0] - 2, f[0] + 2, f[2] - 4, f[2], f[1] + 0.5, tri, C.OUT, 0);
+    dot3(f[0], f[1], f[2] + 0.4, C.DEEP, 0);
+  }
+}
+
+// ---- baking -------------------------------------------------------------------------------------------------
+const BX_PROP = { trolley: bxTrolley, coatStand: bxCoatStand, mailbag: bxMailbag, armchair: bxArmchair, gramophone: bxGramophone, rug: bxRug };
+const BX_ITEM = { jamJar: bxJamJar, seedlings: bxSeedlings, pumpkin: bxPumpkin, boxTree: bxBoxTree, fan: bxFan, bucket: bxBucket };
+function bxBakeProps(R) {
+  for (const p of R.props) { shFlat = false; shFlag = FL_ROOM; shSunMax = 1; shBias = 0; BX_PROP[p.kind](p); }
+  shFlat = false; shBias = 0; shSunMax = 2;
+}
+function bxBakeDressing(R) {
+  for (const it of R.items) {
+    shFlat = false; shFlag = FL_ROOM; shSunMax = 1; shBias = 0;
+    if (BX_ITEM[it.kind]) BX_ITEM[it.kind](Object.assign({ dir: bxFaceBoard(it) }, it));
+  }
+  for (const i of R.dressing.blankets) { shSunMax = 1; bxBlanket(R.boxes[i]); }
+  if (R.dressing.bunting) bxBunting(R);
+  shFlat = false; shBias = 0; shSunMax = 2;
+}
+function bxFaceBoard(it) {                            // the way an item turns to face the board
+  const B = BOXR.board, cx = B.x + B.w * TILE / 2 - (it.x0 + it.x1) / 2, cy = B.y + B.h * TILE / 2 - (it.y0 + it.y1) / 2;
+  return Math.abs(cx) >= Math.abs(cy) ? (cx >= 0 ? 'R' : 'L') : (cy >= 0 ? 'D' : 'U');
+}
+
+// ---- the skylights' dressing, in the glass (34_boxroom's skylight shader asks here) -----------------------------
+// Returns a colour for a pixel of glass at (lu across, lv up the slope) in a skylight W x L, or -1 for the plain sky.
+function bxGlassDressing(s, lu, lv, W, L) {
+  const d = BOXR.dressing.skylights;
+  if (d === 'snow') {                                 // lying in the lower part of the glass, and a few flakes
+    const edge = L * 0.3 + Math.sin(lu * 0.9) * 1.2 + hash2(Math.floor(lu), 3) * 1.4;
+    if (lv < edge) return lv > edge - 1 ? C.PAPSH : C.WHITE;
+    if (hash2(Math.floor(lu * 1.3) + 17, Math.floor(lv * 1.3)) > 0.96) return C.WHITE;
+  } else if (d === 'rain') {                          // streaks running down the glass
+    const k = Math.floor((lu + lv * 0.25) / 3.2);
+    if (Math.abs(((lu + lv * 0.25) % 3.2) - 1.6) < 0.5 && hash2(k, Math.floor(lv / 5)) > 0.45) return C.PL2;
+  }
+  return -1;
+}
+
+// ---- each frame: the moving bits ---------------------------------------------------------------------------------
+function drawBoxDressing(t) {
+  const R = BOXR;
+  for (const it of R.items) {
+    if (it.kind === 'fan') bxFanBlades(Object.assign({ dir: bxFaceBoard(it) }, it), t);
+    else if (it.kind === 'sleepingCat') bxFlatCat(it, t);
+    else if (it.kind === 'bucket') bxDrip(it, t);
+  }
+  if (R.dressing.skylights === 'rain') bxRainDrops(t);
+  else if (R.dressing.skylights === 'leaves') bxLeaves(t);
+}
+function bxFanBlades(it, t) {                         // three blades turning once every 0.4 s
+  shFlat = false; shFlag = 0; shSunMax = 1; shBias = 1;
+  const a0 = t * TAU / 0.4;
+  bxFanPlane(it, (face, u, v) => {
+    const du = u - 4.2, dv = v - 4.2, r = Math.hypot(du, dv);
+    if (r > 3.3 || r < 1.0) return -1;
+    const a = fract((Math.atan2(dv, du) - a0) / (TAU / 3));
+    return a < 0.22 ? C.BL2 : a < 0.3 ? C.BL1 : -1;
+  }, 0.4);
+  shBias = 0;
+}
+// A cat stretched out flat in the summer heat: one of the collection (36_coats), breathing every 3 s.
+function bxFlatCat(it, t) {
+  const along = it.x1 - it.x0 >= it.y1 - it.y0;     // head towards the screen-left end of its slot
+  buildNapSprite(it.cat || 'greyTabby', 'flat', fract(t / 3) < 0.4 ? 1 : 0, it.x0 * 7 + it.y0);
+  shSunMax = 1; shFlag = 0; shBias = 0;
+  blitSprite((it.x0 + it.x1) / 2, (it.y0 + it.y1) / 2, 0, along, true);
+}
+// Rainy days: a drop forms under the roof above the bucket, falls, and rings the water; every 2.4 s.
+function bxDrip(it, t) {
+  const cx = (it.x0 + it.x1) / 2, cy = (it.y0 + it.y1) / 2, top = BOXROOM.ceilAt(cx, cy) - 1, ph = fract(t / 2.4);
+  shFlat = true; shFlag = 0; shBias = 3;
+  if (ph < 0.25) dot3(cx, cy, top, C.BL3, 0);                                  // forming
+  else if (ph < 0.55) dot3(cx, cy, top - (top - 6) * ((ph - 0.25) / 0.3) ** 2, C.BL4, 0);   // falling
+  else if (ph < 0.75) { const r = 0.8 + (ph - 0.55) * 8; for (let k = 0; k < 8; k++) dot3(cx + Math.cos(k * TAU / 8) * r, cy + Math.sin(k * TAU / 8) * r, 5.6, C.BL4, 0); }
+  shFlat = false; shBias = 0;
+}
+// A point on a skylight's glass, a hair inside the room: (lu across, lv up the slope).
+function bxGlassPoint(s, lu, lv) {
+  const v = s.v0 + lv, u = s.u0 + lu, z = BOXR.room.wallH + v * BX_PITCH;
+  return s.wall === 'L' ? [v + 0.3, u, z - 0.2] : [u, v + 0.3, z - 0.2];
+}
+function bxRainDrops(t) {                             // a few bright drops running down each skylight
+  shFlat = true; shFlag = 0; shBias = 8;
+  BOXR.skylights.forEach((s, i) => {
+    const W = s.u1 - s.u0, L = s.v1 - s.v0;
+    for (let k = 0; k < 4; k++) {
+      const lu = 2 + hash2(i * 9 + k, 1) * (W - 4), lv = L - 2 - fract(t / (1.2 + k * 0.3) + hash2(k, i)) * (L - 4);
+      const p = bxGlassPoint(s, lu, lv); dot3(p[0], p[1], p[2], C.WHITE, 0);
+    }
+  });
+  shFlat = false; shBias = 0;
+}
+function bxLeaves(t) {                                // autumn leaves tumbling past the glass
+  const COL = [C.RD2, C.EV0, C.BR2, C.SS0];
+  shFlat = false; shFlag = 0; shBias = 8; shSunMax = 0;
+  BOXR.skylights.forEach((s, i) => {
+    const W = s.u1 - s.u0, L = s.v1 - s.v0;
+    for (let k = 0; k < 3; k++) {
+      const f = fract(t / (3 + k * 1.3) + hash2(i, k * 7));
+      const lu = 1.5 + f * (W - 3), lv = L * (0.3 + 0.5 * hash2(k, i + 3)) + Math.sin(f * TAU * 2 + k) * 2.5;
+      if (lv < 1.6 || lv > L - 1.6) continue;
+      const p = bxGlassPoint(s, lu, lv), q = bxGlassPoint(s, lu + 0.9, lv + 0.9);
+      dot3(p[0], p[1], p[2], COL[(i + k) % 4], 0); dot3(q[0], q[1], q[2], COL[(i + k + 1) % 4], 0);
+    }
+  });
+  shBias = 0;
+}
+// ============================================================================
+// 36 COATS: the collection's cats (src/data/coats.json): their napping poses, drawn with region letters
+// (o body, O its light back, d its shaded underside, h head, H its light top, t tail, p paws, w chin and chest,
+// e/z eyes open/closed, n nose, i inner ear), and each coat's colours and pattern: solid, tabby stripes,
+// calico patches, tortoiseshell mottling or Siamese points. A pattern only reads the pixel's letter and place
+// in its template (and a seed, so two calicos differ), so a port builds the same sprites.
+// Side views facing screen-left, mirrored for screen-right; each pose breathes on frame 1.
+// ============================================================================
+const COATS = COATS_DATA.coats, COAT_IDS = Object.keys(COATS);
+const NAP_POSES = {
+  // curled up, the tail wrapped along the front
+  curl: { rows: [
+    '.h.h........',
+    '.hhhhOooo...',
+    'hHzHhOOOood.',
+    'hwHhooddood.',
+    '.wwpooooood.',
+    '.ttttttttt..',
+  ], breath: [7, 0], ear: [3, 0], tail: [[1, 5], [0, 4]] },
+  // a loaf facing the room: both ears up, eyes shut, paws tucked, the tail round one side
+  loaf: { rows: [
+    '.h.....h..',
+    '.hh...hh..',
+    '.hHHHHHh..',
+    'hhzhhhzhh.',
+    'hhhwnwhhh.',
+    '.oOwwwOoo.',
+    '.ooopoooot',
+    '..dddddtt.',
+  ], breath: [2, 5], ear: [7, 0], tail: [[9, 6], [9, 5]] },
+  // stretched out flat on its side, legs out
+  flat: { rows: [
+    '.h.h............',
+    'hhhhh...........',
+    'hzhHoOOOOOOOOO..',
+    'nwhooooooooooot.',
+    '.wwooddddddddtt.',
+    '..pp.p....pp....',
+  ], breath: [8, 1], ear: [3, 0], tail: [[14, 4], [15, 3]] },
+};
+const NAP_POSE_IDS = Object.keys(NAP_POSES);
+const COAT_STRIPABLE = 'oOhHt';
+// The palette colour of one template pixel in a coat (EMPTY for '.').
+function coatPixel(coat, ch, x, y, seed) {
+  if (ch === '.') return EMPTY;
+  const K = COATS[coat] || COATS.greyTabby;
+  const base = (k) => C[K[k]];
+  let c;
+  switch (ch) {
+    case 'h': c = K.h ? base('h') : base('o'); break;
+    case 'H': c = K.H ? base('H') : base('O'); break;
+    case 't': case 'p': c = K[ch] ? base(ch) : base('o'); break;
+    default: c = base(ch);
+  }
+  switch (K.pattern) {
+    case 'tabby':                                      // slanting stripes on the body, a forehead M, rings on the tail
+      if (COAT_STRIPABLE.includes(ch)) {
+        if (ch === 't' ? x % 2 === 0 : ch === 'h' || ch === 'H' ? y <= 2 && x % 2 === 1 : (x + (y >> 1)) % 3 === 0) c = base('s');
+      }
+      break;
+    case 'calico': {                                   // white with big patches of orange and black
+      if (!'oOdhHt'.includes(ch)) break;
+      const v = hash2(Math.floor(x / 3) + seed * 13, Math.floor(y / 2) + seed * 7);
+      const dark = ch === 'd', light = ch === 'O' || ch === 'H';
+      if (v < 0.34) c = dark ? C.CO0 : C[K.patches[0]];
+      else if (v < 0.58) c = dark ? C.OUT : light ? C.COOL1 : C[K.patches[1]];
+      break;
+    }
+    case 'tortie': {                                   // black mottled with rust and apricot, in little clumps
+      if (!'oOdhHt'.includes(ch)) break;
+      const v = hash2(Math.floor(x / 2) + seed * 5, y + seed * 3), light = ch === 'O' || ch === 'H';
+      if (v < 0.42) c = ch === 'd' ? C.CO0 : light ? C[K.mottle[1]] : C[K.mottle[0]];
+      break;
+    }
+    case 'points':                                     // Siamese: face, ears, tail and paws dark
+      if (K.points[ch]) c = C[K.points[ch]];
+      break;
+  }
+  return c;
+}
+// Build a napping cat into the sprite buffer (anchored at its feet, as every sprite is), outlined.
+// frame bits: 1 breathing in (the back rises), 2 an ear flicked down, 4 the tail tip flicked up.
+function buildNapSprite(coat, pose, frame, seed) {
+  const P = NAP_POSES[pose] || NAP_POSES.curl, rows = P.rows, w = rows[0].length, x0 = AX - (w >> 1), y0 = AY - rows.length + 1;
+  sprClear();
+  for (let y = 0; y < rows.length; y++) for (let x = 0; x < w; x++) {
+    const c = coatPixel(coat, rows[y][x], x, y, seed | 0);
+    if (c !== EMPTY) sp(x0 + x, y0 + y, c);
+  }
+  if (frame & 1) sp(x0 + P.breath[0], y0 + P.breath[1] - 1, coatPixel(coat, 'O', P.breath[0], 0, seed | 0));   // breathing in: the back rises
+  if (frame & 2) sp(x0 + P.ear[0], y0 + P.ear[1], EMPTY);                                                       // an ear flicks
+  if (frame & 4) {                                                                                              // the tail tip flicks up
+    const [a, b] = P.tail, c = coatPixel(coat, 't', a[0], a[1], seed | 0);
+    sp(x0 + a[0], y0 + a[1], EMPTY); sp(x0 + b[0], y0 + b[1], c);
+  }
+  outlineSprite();
+}
+// Review and tests: a coat's sprite in a scratch cell (the atlas's), at neutral light or lit: { idx, lvl, w, h }.
+function coatCell(coat, pose, frame, seed, lit) {
+  atlasCell();
+  buildNapSprite(coat, pose, frame, seed);
+  atlasBlit(8, 8, 0, false);
+  const idx = new Uint8Array(AC * AC), lvl = new Uint8Array(AC * AC);
+  for (let i = 0; i < AC * AC; i++) { idx[i] = aIdx[i]; lvl[i] = aIdx[i] === 255 ? 2 : lit ? 3 : 2; }
+  return { idx, lvl, w: AC, h: AC };
+}
+// The board's own cats in the same pose, for comparison: ginger and blue, curled.
+function boardCatCell(coatConst, lit) {
+  atlasCell();
+  KEY = coatKeyOf(coatConst); sprClear(); tpl(CAT_CURL, AX - 6, AY - 5); KEY = KEY_S; outlineSprite();
+  atlasBlit(8, 8, 0, false);
+  const idx = new Uint8Array(AC * AC), lvl = new Uint8Array(AC * AC);
+  for (let i = 0; i < AC * AC; i++) { idx[i] = aIdx[i]; lvl[i] = aIdx[i] === 255 ? 2 : lit ? 3 : 2; }
+  return { idx, lvl, w: AC, h: AC };
+}
+// ============================================================================
+// 37 BOX ROOM ATLAS: every Box Room piece for the S atlas (33_atlas), drawn by the room's own shaders at neutral
+// light: the boxes in each size facing either wall, with their variants (knocked askew, each open flap, a label, a
+// paw print, string, a blanket); a brick gap with and without its round window; a skylight by day, at night,
+// open, snowed on and rained on; the roof's boards, rafters and cross beams; lamps off and on and the string
+// lights' bulbs; every prop facing each way; the seasonal things; the bunting, a raindrop, a leaf; and the
+// collection's napping cats in every coat and pose. Each piece is drawn with its own origin at the atlas cell's
+// reference point, so the anchor is the pixel of that origin: the min corner (x0, y0, z0) of its box in the room
+// data (boxes, props, items), the bottom back corner of a wall panel, the low back corner of a skylight on its
+// slope, the bottom centre of a lamp's shade, a napping cat's feet.
+// ============================================================================
+function bxAtlasRoom() {                              // a stand-in room for the shaders: nothing in the way
+  return { room: { w: 200, d: 200, wallH: 48, stackD: 8, roofRun: 40, roofTop: 108 }, board: { x: 1000, y: 1000, w: 1, h: 1 },
+    boxes: [], columns: [], gaps: [], rafters: { L: [], R: [], w: 3 }, skylights: [], props: [], items: [], naps: [], flags: [], bulbs: [],
+    dressing: { skylights: null, blankets: [], bunting: false, openSkylight: false }, light: { set: 'fri', sun: false, lamps: 0, string: false } };
+}
+function boxAtlasSprites() {
+  const S = [], spr = (name, direction, mirroredFor, fps, loop, frames) => S.push({ name, direction, mirroredFor, fps, loop, frames });
+  const fr = (tag, draw) => ({ tag, draw });
+  // run a draw with a stand-in room (and the room's light set, for the night sky), then put things back
+  const inRoom = (tweak, draw) => () => {
+    const keep = { R: BOXR, set: bxSet, above: bxAbove };
+    BOXR = bxAtlasRoom(); if (tweak) tweak(BOXR); bxSet = BOXR.light.set; bxAbove = new Int16Array([-1]);
+    try { draw(); } finally { BOXR = keep.R; bxSet = keep.set; bxAbove = keep.above; shFlat = false; shBias = 0; }
+  };
+  // ---- boxes: each size, facing the left wall (front +x) or the right (front +y) -----------------------------
+  CFG_BOXES().forEach((sz, k) => {
+    for (const wall of ['L', 'R']) {
+      const mk = (o) => Object.assign({ x0: 8, y0: 8, z0: 0, x1: 8 + (wall === 'L' ? sz.dep : sz.len), y1: 8 + (wall === 'L' ? sz.len : sz.dep), z1: sz.h,
+        size: k, wall, col: -1, lvl: 0, nudge: false, flap: 0, string: 0, label: null, paw: null }, o);
+      const draw = (o, blanket) => inRoom(null, () => {
+        const b = mk(o); bxCur = b; bxCurI = 0; shFlag = FL_ROOM; shSunMax = 1;
+        box(b.x0, b.y0, b.z0, b.x1, b.y1, b.z1, shBxBox, C.WD1, 3);
+        if (b.flap) bxFlap(b);
+        if (blanket) bxBlanket(b);
+      });
+      spr('box_' + sz.name + '_' + wall, wall === 'L' ? 'E' : 'S', 'none', 0, false, [
+        fr('plain', draw({})), fr('rotated', draw({ nudge: true })), fr('flap_back', draw({ flap: 1 })), fr('flap_front', draw({ flap: 2 })),
+        fr('flap_end', draw({ flap: 3 })), fr('label', draw({ label: [2, 2] })), fr('paw', draw({ paw: [2, 2] })), fr('string', draw({ string: 3 })),
+        fr('blanket', draw({}, true))]);
+    }
+  });
+  // ---- the knee walls: a brick gap, with and without its round window ---------------------------------------
+  for (const wall of ['L', 'R']) {
+    const panel = (win, set) => inRoom((R) => { R.light.set = set || 'fri'; if (win) R.gaps = [{ wall, u0: 8, u1: 32, window: { u: 20, z: 30, r: 7 } }]; }, () => {
+      bxWall = wall; shFlag = FL_ROOM; shSunMax = 0;
+      if (wall === 'L') faceX(8, 32, 0, 48, 8, shBxWall, C.WD0, 0); else faceY(8, 32, 0, 48, 8, shBxWall, C.WD0, 0);
+    });
+    spr('brick_gap_' + wall, wall === 'L' ? 'E' : 'S', 'none', 0, false, [fr('brick', panel(false)), fr('window', panel(true)), fr('window_night', panel(true, 'night'))]);
+  }
+  // ---- the roof: a skylight in each slope, its boards, rafters and the cross beams ---------------------------------
+  // On its slope, lowered so its low back corner sits at the reference point (z 0 at v = 8).
+  const onSlope = (wall, u0, u1, v0, v1, sh) => { const keep = BOXR.room.wallH; BOXR.room.wallH = -BX_PITCH * v0; faceSlope(wall, u0, u1, v0, v1, sh, false); BOXR.room.wallH = keep; };
+  for (const wall of ['L', 'R']) {
+    const sky = (set, dress, open) => inRoom((R) => { R.light.set = set; R.dressing.skylights = dress || null; }, () => {
+      const s = { wall, u0: 8, u1: 34, v0: 8, v1: 32, panes: [2, 2], open: !!open };
+      BOXR.skylights = [s]; shFlag = FL_ROOM; shSunMax = 0;
+      onSlope(wall, s.u0, s.u1, s.v0, s.v1, (face, u, v) => bxSkylightPx(s, u - s.u0, v - s.v0));
+    });
+    spr('skylight_' + wall, wall === 'L' ? 'E' : 'S', 'none', 0, false, [fr('day', sky('fri')), fr('night', sky('night')), fr('sunset', sky('sun')),
+      fr('open', sky('fri', null, true)), fr('snow', sky('fri', 'snow')), fr('rain', sky('fri', 'rain'))]);
+    spr('roof_' + wall, wall === 'L' ? 'E' : 'S', 'none', 0, false, [
+      fr('boards', inRoom(null, () => { bxSlopeWall = wall; shSunMax = 0; onSlope(wall, 8, 32, 8, 32, (face, u, v) => { shLvl = -1; const k = Math.floor(v / 6); return v - k * 6 < 2 ? C.WD1 : hash2(Math.floor((u + k * 13) / 23), k) < 0.25 ? C.WD1 : C.WD2; }); })),
+      fr('rafter', inRoom(null, () => { shSunMax = 0; onSlope(wall, 8, 11, 8, 48, (face, u, v) => (u - 8 < 0.8 || u - 8 >= 2.2 ? C.OUT : C.DEEP)); }))]);
+  }
+  spr('beam', 'none', 'none', 0, false, [
+    fr('along_y', inRoom(null, () => { shSunMax = 0; box(8, 8, 0, 12, 40, 4, shBxBeam, C.OUT, 7); })),
+    fr('along_x', inRoom(null, () => { shSunMax = 0; box(8, 8, 0, 40, 12, 4, shBxBeam, C.OUT, 7); }))]);
+  // ---- lamps and string lights -----------------------------------------------------------------------------------
+  spr('lamp', 'none', 'none', 0, false, [false, true].map((on) => fr(on ? 'on' : 'off', inRoom(null, () => bxLamp({ x: 8, y: 8, z0: 0, z1: 8, r: 5 }, on, 14)))));
+  spr('string_bulb', 'none', 'none', 0, false, [[C.GL0, 'warm'], [C.GL1, 'rose'], [C.GL2, 'cool'], [C.BR2, 'warm_dip'], [C.RD2, 'rose_dip'], [C.BL2, 'cool_dip']]
+    .map(([c, t]) => fr(t, () => { shFlat = true; dot3(8, 8, 0, c, 0); shFlat = false; })));
+  // ---- props, each facing the four ways (mailbag: slumped against either wall's stacks) --------------------------
+  const PROPS = { trolley: [12, 22, 16], coatStand: [8, 8, 44], armchair: [18, 18, 18], gramophone: [12, 12, 18] };   // across, depth, height
+  for (const kind of Object.keys(PROPS)) {
+    for (const dir of ['R', 'D', 'L', 'U']) {
+      const [A, B, H] = PROPS[kind], along = dir === 'R' || dir === 'L';
+      const P = { kind, x0: 8, y0: 8, z0: 0, x1: 8 + (along ? B : A), y1: 8 + (along ? A : B), z1: H, dir };
+      spr(kind + '_' + { R: 'E', D: 'S', L: 'W', U: 'N' }[dir], { R: 'E', D: 'S', L: 'W', U: 'N' }[dir], 'none', 0, false,
+        [fr('rest', inRoom(null, () => { shFlag = FL_ROOM; shSunMax = 1; BX_PROP[kind](P); }))]);
+    }
+  }
+  for (const wall of ['L', 'R']) {
+    const P = { kind: 'mailbag', x0: 8, y0: 8, z0: 0, x1: 8 + (wall === 'L' ? 10 : 12), y1: 8 + (wall === 'L' ? 12 : 10), z1: 10, dir: wall === 'L' ? 'R' : 'D' };
+    spr('mailbag_' + wall, wall === 'L' ? 'E' : 'S', 'none', 0, false, [fr('rest', inRoom((R) => { R.room.stackD = 8; }, () => {
+      shFlag = FL_ROOM; shSunMax = 1;
+      if (wall === 'R') { P.x0 = 9; P.x1 = 21; }            // touches y = stackD only, so it slumps towards the right wall
+      bxMailbag(P);
+    }))]);
+  }
+  spr('rug', 'none', 'none', 0, false, [[26, 16, 'along_x'], [16, 26, 'along_y']].map(([w, d, t]) => fr(t, inRoom(null, () => bxRug({ x0: 8, y0: 8, x1: 8 + w, y1: 8 + d })))));
+  // ---- the seasons: everything in its slot, the fan facing four ways with its blades turning ------------------------
+  const item = (kind, w, d, h, dir) => ({ kind, x0: 8, y0: 8, z0: 0, x1: 8 + w, y1: 8 + d, z1: h, dir: dir || 'R' });
+  spr('jam_jar', 'none', 'none', 0, false, [fr('rest', inRoom(null, () => { shFlag = FL_ROOM; shSunMax = 1; bxJamJar(item('jamJar', 4, 4, 10)); }))]);
+  spr('seedlings', 'none', 'none', 0, false, [[12, 6, 'along_x'], [6, 12, 'along_y']].map(([w, d, t]) => fr(t, inRoom(null, () => { shSunMax = 1; bxSeedlings(item('seedlings', w, d, 6)); }))));
+  spr('pumpkin', 'none', 'none', 0, false, [fr('rest', inRoom(null, () => { shFlag = FL_ROOM; shSunMax = 1; bxPumpkin(item('pumpkin', 10, 10, 8)); }))]);
+  spr('box_tree', 'none', 'none', 0, false, [fr('rest', inRoom(null, () => { shSunMax = 1; bxBoxTree(item('boxTree', 14, 14, 30)); }))]);
+  spr('bucket', 'none', 'none', 0, false, [fr('rest', inRoom(null, () => { shFlag = FL_ROOM; shSunMax = 1; bxBucket(item('bucket', 8, 8, 8)); }))]);
+  spr('drip', 'none', 'none', 10, false, [fr('drop', () => { shFlat = true; dot3(8, 8, 0, C.BL4, 0); shFlat = false; }),
+    ...[0.8, 1.6].map((r, k) => fr('ring' + k, () => { shFlat = true; for (let q = 0; q < 8; q++) dot3(8 + Math.cos(q * TAU / 8) * r, 8 + Math.sin(q * TAU / 8) * r, 0, C.BL4, 0); shFlat = false; }))]);
+  for (const dir of ['R', 'D', 'L', 'U']) {
+    const it = item('fan', 10, 8, 18, dir), d = { R: 'E', D: 'S', L: 'W', U: 'N' }[dir];
+    spr('fan_' + d, d, 'none', 0, false, [fr('rest', inRoom(null, () => { shFlag = FL_ROOM; shSunMax = 1; bxFan(it); }))]);
+    spr('fan_blades_' + d, d, 'none', 15, true, [0, 1, 2, 3, 4, 5].map((k) => fr('turn' + k, inRoom(null, () => bxFanBlades(it, k * 0.4 / 18)))));
+  }
+  spr('bunting', 'none', 'none', 0, false, [C.RD2, C.BL2, C.CREAM].map((c, k) => fr(['red', 'blue', 'cream'][k], () => {
+    shFlag = FL_ROOM; shSunMax = 0;
+    faceX(8, 12, 0, 4, 8, (face, u, v) => (Math.abs(u - 2) <= v * 0.5 ? c : -1), C.OUT, 0);
+  })));
+  spr('raindrop', 'none', 'none', 0, false, [fr('drop', () => { shFlat = true; dot3(8, 8, 0, C.WHITE, 0); shFlat = false; })]);
+  spr('leaf', 'none', 'none', 0, false, [[C.RD2, C.EV0], [C.EV0, C.BR2], [C.BR2, C.SS0], [C.SS0, C.RD2]].map(([a, b], k) => fr('colour' + k, () => {
+    dot3(8, 8, 0, a, 0); dot3(8.9, 8.9, 0.9, b, 0);
+  })));
+  // ---- the collection: every coat in every napping pose, resting, breathing, an ear and the tail flicking ------------
+  for (const coat of COAT_IDS) for (const pose of NAP_POSE_IDS) {
+    spr('nap_' + coat + '_' + pose, 'S', 'E', 10, true, [[0, 'rest'], [1, 'breath'], [2, 'ear'], [4, 'tail']].map(([f, t]) => fr(t, () => {
+      buildNapSprite(coat, pose, f, 0); atlasBlit(8, 8, 0, false);
+    })));
+  }
+  return S;
+}
+function CFG_BOXES() { return BOXROOM.CFG.boxes; }
 // ============================================================================
 // 40 VIEWPORT MATHS (pure; Node-exported for tests). Device pixels in, whole
 // scales out: scale = device px per logical px, and the logical canvas is
@@ -5321,8 +7362,8 @@ const screen = document.getElementById('screen');
 const sctx = screen.getContext('2d', { alpha: false });
 let scale = 1, dstX = 0, dstY = 0, devW = 1, devH = 1, devDpr = 1;
 const BG_CSS = '#' + PAL_DEF[C.BG0][1];
-const BG_GREY_CSS = (() => { const g = GRAY32[2 * 64 + C.BG0] & 255; return 'rgb(' + g + ',' + g + ',' + g + ')'; })();
-const ROOM_FIT_W = 352, ROOM_FIT_H = 270;          // the diorama (336 x 254) plus an 8 px margin
+const BG_GREY_CSS = (() => { const g = GRAY32[2 * PAL_N + C.BG0] & 255; return 'rgb(' + g + ',' + g + ',' + g + ')'; })();
+let ROOM_FIT_W = 352, ROOM_FIT_H = 270;            // the diorama (336 x 254) plus an 8 px margin; a Box Room sets its own
 
 let lastIW = -1, lastIH = -1, lastDpr = -1;
 function onResize() {
@@ -5340,7 +7381,10 @@ function scaleLimits(w, h) {
   const hi = VIEWPORT.maxScale(w, h);
   return [Math.min(VIEWPORT.roomFitScale(w, h, ROOM_FIT_W, ROOM_FIT_H), hi), hi];
 }
-function defaultScale(w, h, dpr) { return GAME_MODE ? VIEWPORT.gameScale(w, h, dpr, G_BOARD_FIT_PX) : VIEWPORT.baseScale(w, h); }
+function defaultScale(w, h, dpr) {
+  if (GAME_MODE) return VIEWPORT.gameScale(w, h, dpr, gBoardFitPx());
+  return BOX_REVIEW ? VIEWPORT.roomFitScale(w, h, ROOM_FIT_W, ROOM_FIT_H) : VIEWPORT.baseScale(w, h);   // ?boxroom: the whole room
+}
 function applyScale() {
   const lim = scaleLimits(devW, devH);
   const s = clamp(view.zoom !== null ? view.zoom : defaultScale(devW, devH, devDpr), lim[0], lim[1]);
@@ -5366,7 +7410,7 @@ function zoomStep(dir, mx, my) {
   const vx = wx - (mx - dstX) / s1, vy = wy - (my - dstY) / s1;          // view origin that keeps the point
   panBy(vx - (VIEW_CX + WS.camX + view.panX - LW / 2), vy - (VIEW_CY + WS.camY + view.panY - LH / 2));
 }
-const PAN_MAX_X = 168, PAN_MAX_Y = 127;            // the view centre stays over the diorama
+let PAN_MAX_X = 168, PAN_MAX_Y = 127;              // the view centre stays over the diorama
 function panBy(dx, dy) {
   view.panX = clamp(view.panX + dx, -PAN_MAX_X, PAN_MAX_X);
   view.panY = clamp(view.panY + dy, -PAN_MAX_Y, PAN_MAX_Y);
@@ -5383,6 +7427,7 @@ function simulate(t, frame) {
   if (GAME_MODE) { gUpdate(); gWatch(); }
   WORLD.step(WS, frame);
   if (GAME_MODE) gCamera();
+  else if (BOXR) { WS.camX = 0; WS.camY = 0; }      // the Box Room review holds still
   updateParticles(DT);
 }
 function update() {
@@ -5417,9 +7462,8 @@ function tick(now) {
 }
 
 function boot() {
-  bakeStatic();
-  bakeOutside();
-  initDust();
+  if (BOX_REVIEW) showBoxRoom(boxRoomFor(BOX_REVIEW.args));   // ?boxroom (47_boxroom)
+  else if (!(GAME_MODE && G_ROOM)) { bakeStatic(); bakeOutside(); initDust(); }   // (a daily puzzle opened in its Box Room is baked already)
   onResize();
   window.addEventListener('resize', onResize);
   window.addEventListener('keydown', onKey);
@@ -5464,7 +7508,7 @@ window.__so = {
   viewFor(w, h, dpr) {                  // what the viewport rule gives a device size (no side effects)
     const lim = scaleLimits(w, h);
     const at = (s) => ({ scale: s, lw: Math.floor(w / s), lh: Math.floor(h / s), tilePt: +(32 * s / dpr).toFixed(1) });
-    return { demo: at(VIEWPORT.baseScale(w, h)), game: at(VIEWPORT.gameScale(w, h, dpr, G_BOARD_FIT_PX)), zoomOut: lim[0], zoomIn: lim[1] };
+    return { demo: at(VIEWPORT.baseScale(w, h)), game: at(VIEWPORT.gameScale(w, h, dpr, gBoardFitPx())), zoomOut: lim[0], zoomIn: lim[1] };
   },
   fakeRaf(hz, n) {                      // drive frame() with synthetic vsync timestamps and count the steps
     const keep = [lastNow, acc];
@@ -5533,8 +7577,11 @@ window.__so = {
       paused = true;
       if (!GAME_MODE) for (let f = 0; f < LOOP_FRAMES; f += 10) { this.seek(f); check(DEMO_SRC, 'demo ' + (f / 60).toFixed(2) + ' s'); }
       else for (const id of levelIds || []) {
-        const L = LEVELS.find((l) => l.id === id);
-        gLoadLevel(L); gm.chutes = L.solution.map((c) => Object.assign({}, c)); gSyncSrc(); gSend();
+        // a level id, or daily:YYYY-MM-DD for that day's puzzle in its own Box Room
+        const day = /^daily:(\d{4}-\d{2}-\d{2})$/.exec(id), entry = day ? DAILY.puzzleFor(DAILY_DATA, day[1]) : null;
+        const L = entry ? entry.level : LEVELS.find((l) => l.id === id);
+        if (!L) continue;
+        gLoadLevel(L, entry ? gDailyRoom(day[1], L) : null); gm.chutes = L.solution.map((c) => Object.assign({}, c)); gSyncSrc(); gSend();
         for (let n = 0, after = 0; after < 240 && n < 60 * 60; n++) {
           update(); if (gm.mode !== 'running') after++;
           if (n % 10 === 0) check(G_SRC, id + ' step ' + n);
@@ -5656,20 +7703,33 @@ function progressDailyHinted(key) { progress = PROGRESS.dailyHinted(progress, ke
 // (42b_progress), and the board drawn with the scene's own art. Add ?demo to the
 // URL for the scripted scene loop, ?edit for the level editor.
 // ============================================================================
-const GAME_MODE = !/[?&]demo\b/.test(location.search);
+const GAME_MODE = !/[?&](demo|boxroom)\b/.test(location.search);   // ?boxroom: a Box Room on its own (47_boxroom)
 const LEVELS = LEVELS_DATA.levels;
 const G_KEEP_PROGRESS = GAME_MODE && !/[?&]edit\b/.test(location.search);   // the editor's trial runs aren't progress
-// Board position: roomX/roomY count from the stone floor's back corner (room tile GRID_I, GRID_J).
-const gBoardX = (B) => GRID_I + B.roomX, gBoardY = (B) => GRID_J + B.roomY;
-const G_CAM_X = 26, G_CAM_Y = 3;                                 // room framing when the whole room fits
-const G_BOARD_FIT_PX = (GRID_W + GRID_H) * TILE + 32;           // widest board (6 x 5) + 16 px each side, logical px
+// The room the level is played in: null for the sorting office (the handmade levels and the editor), or the
+// Box Room (sim/18_boxroom data) a daily puzzle is played in (47_boxroom switches between them).
+let G_ROOM = null;
+// Board position, in tiles from world (0, 0): in the office, roomX/roomY count from the stone floor's back corner
+// (room tile GRID_I, GRID_J); a Box Room puts its board where its data says (whole world units, so maybe half tiles).
+const gBoardX = (B) => (G_ROOM ? G_ROOM.board.x / TILE : GRID_I + B.roomX), gBoardY = (B) => (G_ROOM ? G_ROOM.board.y / TILE : GRID_J + B.roomY);
+const G_CAM_X = 26, G_CAM_Y = 3;                                 // office framing when the whole room fits (a Box Room centres)
+const G_BOARD_FIT_PX = (GRID_W + GRID_H) * TILE + 32;           // widest office board (6 x 5) + 16 px each side, logical px
+// The board width the default zoom fits: the office's widest, or a bigger Box Room board.
+function gBoardFitPx() { const B = gm.L && gm.L.board; return G_ROOM && B ? Math.max(G_BOARD_FIT_PX, (B.w + B.h) * TILE + 32) : G_BOARD_FIT_PX; }
+// The Box Room a daily puzzle is played in: the date's seed, the puzzle's board, the weekday's light, the season.
+// The collection is the sample one until there's real collecting.
+function gDailyRoom(key, level) {
+  const B = level.board, CB = BOXROOM.CFG.board;
+  if (B.w < CB.minW || B.w > CB.maxW || B.h < CB.minH || B.h > CB.maxH) return null;   // too small for a Box Room: the office
+  return BOXROOM.build(BOXROOM.seedForDate(key), B.w, B.h, key, 'daily', BOXROOM.CFG.sampleCollection);
+}
 let gHudPx = 0;                                                  // HUD height in logical px (portrait, bottom)
 // When the whole room fits, keep it framed. Otherwise centre the board in the part of
 // the screen the HUD doesn't cover, so every tile is visible and easy to tap.
 function gCamera() {
   const B = gm.L.board, cx = (gBoardX(B) + B.w / 2) * TILE, cy = (gBoardY(B) + B.h / 2) * TILE;
   const bx = OX + cx - cy - VIEW_CX, by = OY + (cx + cy) * 0.5 - 8 - VIEW_CY;
-  if (LW >= ROOM_FIT_W && LH >= ROOM_FIT_H) { WS.camX = G_CAM_X; WS.camY = G_CAM_Y; return; }
+  if (LW >= ROOM_FIT_W && LH >= ROOM_FIT_H) { WS.camX = G_ROOM ? 0 : G_CAM_X; WS.camY = G_ROOM ? 0 : G_CAM_Y; return; }
   WS.camX = Math.round(bx); WS.camY = Math.round(by + gHudPx / 2);
 }
 function gMeasureHud() {
@@ -5714,15 +7774,16 @@ function gLoad(i) {
   gm.li = (i + LEVELS.length) % LEVELS.length;
   gLoadLevel(LEVELS[gm.li]);
 }
-function gLoadLevel(level) {
+function gLoadLevel(level, room) {
   gm.L = level; gm.custom = LEVELS.indexOf(level) < 0;              // the editor's Try it and the daily puzzle aren't level progress
+  gUseRoom(room || null);                                           // the office, or the daily puzzle's Box Room (47_boxroom)
   gm.attempts = 0; gm.hinted = false; gm.daily = null; hud.stars.hidden = true; hud.next.hidden = false;   // the editor's Try it hides it again
   view.zoom = null; view.panX = 0; view.panY = 0;                 // each level opens at the default zoom
   if (devW > 1) applyScale();
   const errs = grValidate(gm.L, null);
   if (errs.length) console.warn('level ' + gm.L.id + ': ' + errs.join('; '));
   const B = gm.L.board;
-  if (B.roomX < 0 || B.roomY < 0 || B.roomX + B.w > GRID_W || B.roomY + B.h > GRID_H)
+  if (!G_ROOM && (B.roomX < 0 || B.roomY < 0 || B.roomX + B.w > GRID_W || B.roomY + B.h > GRID_H))
     console.warn('level ' + gm.L.id + ': board is not on the grey sorting floor');
   gm.chutes = [];
   gm.tray = { plain: gm.L.tray.plain | 0, ginger: gm.L.tray.ginger | 0, blue: gm.L.tray.blue | 0 };
@@ -5815,7 +7876,7 @@ function gClear() {
 function gLoadDaily() {
   const entry = DAILY.puzzleFor(DAILY_DATA, G_TODAY);
   if (!entry) { gStatus(MSG.noDaily); gHud(); return false; }
-  gLoadLevel(entry.level);
+  gLoadLevel(entry.level, gDailyRoom(G_TODAY, entry.level));
   gm.daily = { key: G_TODAY, entry }; hud.next.hidden = true;
   const day = G_KEEP_PROGRESS ? progress.daily[G_TODAY] : null;
   if (day) {
@@ -6034,6 +8095,7 @@ for (let k = 0; k < 4; k++) G_SRC.queues.push({ coats: new Uint8Array(8), n: 0 }
 function gSyncSrc() {
   const L = gm.L, s = G_SRC;
   s.ox = gTX(0); s.oy = gTY(0); s.w = L.board.w; s.h = L.board.h;
+  s.rails = !G_ROOM;                                              // a Box Room's board has its kerb baked in
   s.hatches.length = 0; s.baskets.length = 0; s.dogs.length = 0; s.turntables.length = 0;
   for (const h of L.hatches || []) s.hatches.push({ x: h.x, y: h.y, dir: GR_DIR[h.dir] });
   for (const b of L.baskets || []) s.baskets.push({ x: b.x, y: b.y, coat: b.coat === 'ginger' ? COAT_GINGER : COAT_BLUE });
@@ -6398,6 +8460,136 @@ function perfShow(now) {
   P.shown = true; P.t0 = now; P.frames = 0; P.steps = 0; P.work = 0; P.workMax = 0; P.late = 0; P.multi = 0;
 }
 if (PERF_ON) perfInit();
+// ============================================================================
+// 47 BOX ROOM REVIEW: ?boxroom shows one generated Box Room on its own, framed whole, with an empty board:
+//   ?boxroom&seed=7&w=6&h=5&date=2026-10-16&mode=daily
+// Defaults: today (the player's local date), a 6 x 5 board, that date's seed, daily. mode=free is the night
+// shift. Review hooks for tools (tools/snap.js): __so.boxShot(args, k) -> PNG data URL of the whole room,
+// __so.boxSheet(list, k, cols) -> a labelled contact sheet, __so.boxCoverage(list) -> tile-core check.
+// args are [seed, w, h, date, mode], as in buildBoxRoom.
+// ============================================================================
+const BOX_REVIEW = (function () {
+  const q = location.search;
+  if (!/[?&]boxroom\b/.test(q)) return null;
+  const arg = (k) => (new RegExp('[?&]' + k + '=([^&]*)').exec(q) || [])[1];
+  const date = arg('date') && !Number.isNaN(DAILY.dayNumber(arg('date'))) ? arg('date') : DAILY.localKey(new Date());
+  const num = (k, d, lo, hi) => { const v = parseInt(arg(k), 10); return Number.isNaN(v) ? d : clamp(v, lo, hi); };
+  const seed = arg('seed') !== undefined && !Number.isNaN(parseInt(arg('seed'), 10)) ? parseInt(arg('seed'), 10) >>> 0 : BOXROOM.seedForDate(date);
+  return { args: [seed, num('w', 6, 5, 10), num('h', 5, 4, 8), date, arg('mode') === 'free' ? 'free' : 'daily'] };
+})();
+function boxRoomFor(args) { return BOXROOM.build(args[0], args[1], args[2], args[3], args[4], BOXROOM.CFG.sampleCollection); }
+// The game plays a level in the office (room null) or in a Box Room: bake whichever it needs, once.
+const OFFICE_FIT = { w: ROOM_FIT_W, h: ROOM_FIT_H, px: PAN_MAX_X, py: PAN_MAX_Y };
+function gUseRoom(room) {
+  if (room === G_ROOM) return;
+  const wasBox = !!G_ROOM;
+  G_ROOM = room;
+  if (room) { showBoxRoom(room); return; }
+  if (wasBox) {
+    useOffice(); bakeStatic(); bakeOutside(); initDust();
+    ROOM_FIT_W = OFFICE_FIT.w; ROOM_FIT_H = OFFICE_FIT.h; PAN_MAX_X = OFFICE_FIT.px; PAN_MAX_Y = OFFICE_FIT.py;
+    if (devW > 1) applyScale();
+    dirty = true;
+  }
+}
+function showBoxRoom(room) {
+  useBoxRoom(room);
+  bakeBoxRoom();
+  const b = room.bounds;
+  ROOM_FIT_W = b.sx1 - b.sx0 + 16; ROOM_FIT_H = b.sy1 - b.sy0 + 16;
+  PAN_MAX_X = Math.ceil((b.sx1 - b.sx0) / 2); PAN_MAX_Y = Math.ceil((b.sy1 - b.sy0) / 2);
+  if (devW > 1) applyScale();
+  dirty = true;
+}
+// The whole room at k x, without the vignette: a canvas.
+function boxRenderFull(k) {
+  const b = BOXR.bounds, pad = 8, w = b.sx1 - b.sx0 + 2 * pad, h = b.sy1 - b.sy0 + 2 * pad;
+  const keep = { LW, LH, panX: view.panX, panY: view.panY };
+  LW = w; LH = h; ensureFrameBuffers(LW, LH); allocView();
+  view.panX = 0; view.panY = 0; WS.camX = 0; WS.camY = 0;
+  viewX = Math.round(VIEW_CX - LW / 2); viewY = Math.round(VIEW_CY - LH / 2);
+  composeStatic(); targetFrame(viewX, viewY); drawDynamic(); postPasses(); resolve();
+  const c = document.createElement('canvas'); c.width = w * k; c.height = h * k;
+  const g = c.getContext('2d'); g.imageSmoothingEnabled = false; g.drawImage(offCanvas, 0, 0, w * k, h * k);
+  LW = keep.LW; LH = keep.LH; view.panX = keep.panX; view.panY = keep.panY;
+  ensureFrameBuffers(LW, LH); allocView(); buildVignette(); dirty = true;
+  return c;
+}
+const BOX_DAY = { mon: 'Monday', tue: 'Tuesday', wed: 'Wednesday', thu: 'Thursday', fri: 'Friday', sat: 'Saturday', sun: 'Sunday', night: 'night shift' };
+function boxCaption(r) {
+  return r.board.w + ' × ' + r.board.h + ' · seed ' + r.inputs.seed + ' · ' + r.inputs.date + ' · ' + BOX_DAY[r.light.set] + ', ' + r.season +
+    (r.rain ? ', rain' : '') + (r.light.sun ? ' · ' + Math.round(r.light.sunlit / 10) + '% sunlit' : '');
+}
+if (typeof window !== 'undefined' && window.__so) {
+  __so.boxShot = (args, k) => { showBoxRoom(boxRoomFor(args)); return boxRenderFull(k || 2).toDataURL('image/png'); };
+  // Rooms in a grid, each captioned underneath (the captions are the sheet's, not the scene's).
+  __so.boxSheet = (list, k, cols) => {
+    k = k || 2; cols = cols || 3;
+    const shots = list.map((a) => { const r = boxRoomFor(a); showBoxRoom(r); return { c: boxRenderFull(k), cap: boxCaption(r) }; });
+    const cw = Math.max(...shots.map((s) => s.c.width)), ch = Math.max(...shots.map((s) => s.c.height)) + 22 * k / 2 + 8;
+    const rows = Math.ceil(shots.length / cols), out = document.createElement('canvas');
+    out.width = cols * cw; out.height = rows * ch;
+    const g = out.getContext('2d');
+    g.fillStyle = BG_CSS; g.fillRect(0, 0, out.width, out.height);
+    g.imageSmoothingEnabled = false; g.fillStyle = '#4f3f45'; g.font = (7 * k) + 'px Helvetica, Arial, sans-serif'; g.textAlign = 'center';
+    shots.forEach((s, i) => {
+      const x = (i % cols) * cw, y = Math.floor(i / cols) * ch;
+      g.drawImage(s.c, x + (cw - s.c.width) / 2, y + (ch - 22 * k / 2 - 8 - s.c.height));
+      g.fillText(s.cap, x + cw / 2, y + ch - 8);
+    });
+    if (BOX_REVIEW) showBoxRoom(boxRoomFor(BOX_REVIEW.args));
+    return out.toDataURL('image/png');
+  };
+  // The coats: each in every napping pose, in four lights (Monday, Friday, Sunday, night), in sunlight and in
+  // grayscale, beside the board's ginger and blue. Returns a PNG data URL.
+  __so.coatSheet = (k) => {
+    k = k || 4;
+    const SETS = ['mon', 'fri', 'sun', 'night'], cols = [], CW = 26, CH = 14;
+    for (const s of SETS) for (const p of NAP_POSE_IDS) cols.push({ set: s, pose: p, lit: false });
+    for (const p of NAP_POSE_IDS) cols.push({ set: 'fri', pose: p, lit: true });
+    cols.push({ set: 'fri', pose: 'curl', lit: false, gray: true });
+    const rows = COAT_IDS.map((id) => ({ id, name: COATS[id].name })).concat([{ ref: COAT_GINGER, name: 'board: ginger' }, { ref: COAT_BLUE, name: 'board: blue' }]);
+    const out = document.createElement('canvas'), LBL = 70 * k / 4 * 1.6;
+    out.width = Math.round(LBL + cols.length * CW * k); out.height = Math.round((rows.length * CH + 12) * k);
+    const g = out.getContext('2d');
+    g.fillStyle = BG_CSS; g.fillRect(0, 0, out.width, out.height);
+    g.fillStyle = '#4f3f45'; g.font = (3 * k) + 'px Helvetica, Arial, sans-serif';
+    const heads = ['Monday', 'Friday', 'Sunday', 'night', 'in the sun', 'grey'];
+    [0, 3, 6, 9, 12, 15].forEach((c, i) => g.fillText(heads[i], LBL + c * CW * k + 2 * k, 8 * k));
+    const img = g.createImageData(CW * k, CH * k), px = new Uint32Array(img.data.buffer);
+    rows.forEach((r, ri) => {
+      g.fillStyle = '#4f3f45'; g.fillText(r.name, 3 * k, (12 + ri * CH + CH * 0.6) * k);
+      cols.forEach((col, ci) => {
+        const cell = r.ref ? boardCatCell(r.ref, col.lit) : coatCell(r.id, col.pose, 0, ri * 3 + ci, col.lit);
+        const T = LIGHT_TABLES[col.set], tab = col.gray ? T.gray : T.res;
+        px.fill(0);
+        for (let y = 0; y < CH; y++) for (let x = 0; x < CW; x++) {
+          const sx = AC / 2 - CW / 2 + x, sy = ACY - CH + 3 + y, i = sy * AC + sx;
+          if (sx < 0 || sy < 0 || sx >= AC || sy >= AC || cell.idx[i] === 255) continue;
+          const c = tab[cell.lvl[i] * PAL_N + cell.idx[i]];
+          for (let j = 0; j < k; j++) for (let q = 0; q < k; q++) px[(y * k + j) * CW * k + x * k + q] = c;
+        }
+        const tmp = document.createElement('canvas'); tmp.width = CW * k; tmp.height = CH * k; tmp.getContext('2d').putImageData(img, 0, 0);
+        g.drawImage(tmp, LBL + ci * CW * k, (12 + ri * CH) * k);
+      });
+    });
+    return out.toDataURL('image/png');
+  };
+  // Bake each room and check every tile core shows its own stone floor; the review room comes back after.
+  __so.boxCoverage = (list) => {
+    const out = { rooms: 0, tiles: 0, bad: [], ms: 0 };
+    const t0 = performance.now();
+    for (const a of list) {
+      const r = boxRoomFor(a);
+      useBoxRoom(r); bakeBoxRoom();
+      out.rooms++; out.tiles += r.board.w * r.board.h;
+      for (const t of bxCheckCores()) if (out.bad.length < 40) out.bad.push(a.join(',') + ' tile ' + t[0] + ',' + t[1] + ' ' + t[2]);
+    }
+    out.ms = Math.round(performance.now() - t0);
+    if (BOX_REVIEW) showBoxRoom(boxRoomFor(BOX_REVIEW.args));
+    return out;
+  };
+}
 // Start once every module above has been defined.
 boot();
 </script>
