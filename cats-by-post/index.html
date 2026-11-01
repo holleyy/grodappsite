@@ -230,7 +230,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "ec6f666902";
+const BUILD_ID = "0c7e162840";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -6192,7 +6192,7 @@ const CITYHALL_DATA = {
   },
   "gallery": {
     "z": 46,
-    "width": 20,
+    "width": 22,
     "railH": 14
   },
   "volumes": [
@@ -6233,14 +6233,14 @@ const CITYHALL_DATA = {
       -4,
       44,
       224,
-      21.5,
+      23.5,
       61
     ],
     [
       -4,
       0,
       44,
-      21.5,
+      23.5,
       192,
       61
     ],
@@ -6474,6 +6474,32 @@ const CITYHALL_DATA = {
           184,
           56
         ]
+      ],
+      "solidParts": [
+        [
+          16,
+          150,
+          0,
+          32,
+          166,
+          15
+        ],
+        [
+          22.9,
+          156.9,
+          14,
+          25.1,
+          159.1,
+          40
+        ],
+        [
+          -2,
+          132,
+          35,
+          50,
+          184,
+          56
+        ]
       ]
     },
     {
@@ -6497,6 +6523,32 @@ const CITYHALL_DATA = {
           186,
           0,
           14,
+          238,
+          52,
+          56
+        ]
+      ],
+      "solidParts": [
+        [
+          204,
+          18,
+          0,
+          220,
+          34,
+          14
+        ],
+        [
+          210.9,
+          24.9,
+          14,
+          213.1,
+          27.1,
+          40
+        ],
+        [
+          186,
+          0,
+          35,
           238,
           52,
           56
@@ -6534,17 +6586,17 @@ const CITYHALL_DATA = {
       "id": "trolley-left",
       "kind": "trolley",
       "anchor": [
-        46,
-        88,
+        44,
+        152,
         0
       ],
       "parts": [
         [
-          37,
-          77,
+          35,
+          141,
           0,
-          55,
-          99,
+          53,
+          163,
           27
         ]
       ]
@@ -6642,6 +6694,24 @@ const CITYHALL_DATA = {
           107,
           58
         ]
+      ],
+      "solidParts": [
+        [
+          23,
+          36,
+          -2,
+          45,
+          107,
+          58
+        ],
+        [
+          18,
+          36,
+          44,
+          44,
+          42,
+          46
+        ]
       ]
     }
   ],
@@ -6649,36 +6719,36 @@ const CITYHALL_DATA = {
     {
       "id": "sorter",
       "radius": 7,
-      "height": 30,
+      "height": 36,
       "points": [
         [
-          48,
-          128,
+          58,
+          140,
           0
         ],
         [
-          48,
-          46,
+          58,
+          54,
           0
         ],
         [
           136,
-          42,
+          52,
           0
         ],
         [
-          184,
-          42,
+          172,
+          52,
           0
         ],
         [
-          48,
-          46,
+          58,
+          54,
           0
         ],
         [
-          48,
-          128,
+          58,
+          140,
           0
         ]
       ]
@@ -6686,44 +6756,44 @@ const CITYHALL_DATA = {
     {
       "id": "worker-back",
       "radius": 7,
-      "height": 28,
+      "height": 36,
       "points": [
         [
           132,
-          10,
-          48
+          15,
+          48.5
         ],
         [
-          198,
-          10,
-          48
+          180,
+          15,
+          48.5
         ],
         [
           132,
-          10,
-          48
+          15,
+          48.5
         ]
       ]
     },
     {
       "id": "worker-left",
       "radius": 7,
-      "height": 28,
+      "height": 36,
       "points": [
         [
-          10,
+          15,
           118,
-          48
+          48.5
         ],
         [
-          10,
+          15,
           72,
-          48
+          48.5
         ],
         [
-          10,
+          15,
           118,
-          48
+          48.5
         ]
       ]
     },
@@ -7022,7 +7092,64 @@ const CITYHALL_DATA = {
         46
       ]
     }
-  ]
+  ],
+  "staff": {
+    "height": 36,
+    "sole": 2.5,
+    "margin": 0.5,
+    "spans": {
+      "walk": {
+        "towards": [
+          -3.6875,
+          3.6875
+        ],
+        "away": [
+          -4.6875,
+          3.4375
+        ]
+      },
+      "read": {
+        "towards": [
+          -4.1875,
+          3.1875
+        ],
+        "away": [
+          -4.9375,
+          3.3125
+        ]
+      },
+      "check": {
+        "towards": [
+          -2.9375,
+          3.4375
+        ],
+        "away": [
+          -3.0625,
+          3.3125
+        ]
+      },
+      "sort": {
+        "towards": [
+          -5.1875,
+          3.5625
+        ],
+        "away": [
+          -5.4375,
+          3.4375
+        ]
+      },
+      "wave": {
+        "towards": [
+          -4.3125,
+          2.8125
+        ],
+        "away": [
+          -4.3125,
+          3.4375
+        ]
+      }
+    }
+  }
 }
 ;
 const DAILY_DATA = {
@@ -10772,6 +10899,23 @@ if(typeof module!=='undefined'&&module.exports)module.exports=TRAINCHAPTER;
 const CITYHALL=(function(){
  const node=typeof module!=='undefined'&&module.exports,CFG=node?require('../data/cityhall.json'):CITYHALL_DATA,D=node?require('./19b_depot'):DEPOT;
  const finite=v=>Array.isArray(v)&&v.every(Number.isFinite);
+ // Snapshot source-local geometry once. Anchored drawings consume XY; fixed drawings
+ // retain their native coordinates. Neither may silently keep stale declarations.
+ const anchored=new Set(['palm','sorting-table','supervisor-desk','bench','trolley']),models=new Map();
+ for(const f of CFG.furniture)models.set(f.id,{kind:f.kind,anchor:f.anchor.slice(),parts:f.parts.map(b=>b.slice()),solidParts:f.solidParts?.map(b=>b.slice())});
+ function furnitureGeometry(f){
+  const m=models.get(f.id)||Array.from(models.values()).find(m=>m.kind===f.kind);
+  if(!m)return f.solidParts||f.parts;
+  if(f.kind!==m.kind||!finite(f.anchor)||f.anchor.length!==3)throw new RangeError('Invalid furniture anchor '+f.id);
+  const moving=anchored.has(f.kind),dx=f.anchor[0]-m.anchor[0],dy=f.anchor[1]-m.anchor[1];
+  if(f.anchor[2]!==m.anchor[2]||!moving&&(dx||dy))throw new RangeError('Fixed native furniture anchor '+f.id);
+  const translate=list=>list?.map(b=>b.map((v,k)=>v+(k%3===0?dx:k%3===1?dy:0)));
+  const parts=translate(m.parts),solids=translate(m.solidParts);
+  const matches=(a,b)=>!a&&!b||Array.isArray(a)&&Array.isArray(b)&&a.length===b.length&&a.every((q,i)=>finite(q)&&q.length===6&&q.every((v,k)=>Math.abs(v-b[i][k])<1e-8));
+  if(!matches(f.parts,parts)||!matches(f.solidParts,solids))throw new RangeError('Furniture footprint differs from its anchor '+f.id);
+  return solids||parts;
+ }
+
  function volumes(r){
   const a=r.volumes.map(b=>b.concat('architecture')).concat(r.columns.map(b=>b.concat('column')));
   for(const f of r.furniture)for(const b of f.parts)a.push(b.concat(f.id));
@@ -10787,6 +10931,78 @@ const CITYHALL=(function(){
   return a;
  }
  function hidden(r,extra){const out=[];for(const b of volumes(r).concat(extra||[])){if(b[5]<=0)continue;const tile=D.hidesTile(r.board,b);if(tile)out.push({what:b[6],tile});}return out;}
+ // Visibility bounds include empty space; traffic uses the native solids instead.
+ function staffObstacles(r){
+  const out=[];
+  for(const f of r.furniture){
+   const parts=furnitureGeometry(f);
+   for(const b of parts)out.push({id:f.id,bounds:b});
+  }
+  for(let i=0;i<r.columns.length;i++)out.push({id:'column-'+i,bounds:r.columns[i]});
+  const z=r.gallery.z,w=r.gallery.width;
+  out.push({id:'back gallery deck',bounds:[0,0,z-2,r.room.w,w,z]},{id:'left gallery deck',bounds:[0,0,z-2,w,r.room.d,z]},
+   {id:'back gallery rail',bounds:[0,w-1,z-1,r.room.w,w+1,z+15]},{id:'left gallery rail',bounds:[w-1,0,z-1,w+1,r.room.d,z+15]});
+  for(let i=0;i<r.windows.length;i++){
+   const a=r.windows[i],back=a.wall==='Y';
+   out.push({id:'window-'+i,bounds:back?[a.u0,8.9,a.z0,a.u1,9.1,a.z1]:[8.9,a.u0,a.z0,9.1,a.u1,a.z1]},
+    {id:'window sill-'+i,bounds:back?[a.u0-1,1,a.z0-2,a.u1+1,10,a.z0]:[1,a.u0-1,a.z0-2,10,a.u1+1,a.z0]});
+  }
+  for(const p of r.pipes)for(let k=1;k<p.points.length;k++){
+   const a=p.points[k-1],b=p.points[k],v=p.radius+.6;
+   out.push({id:p.id,bounds:[Math.min(a[0],b[0])-v,Math.min(a[1],b[1])-v,Math.min(a[2],b[2])-v,Math.max(a[0],b[0])+v,Math.max(a[1],b[1])+v,Math.max(a[2],b[2])+v]});
+  }
+  for(const x of[110,140])out.push({id:'station hood-'+x,bounds:[x-4.2,27.8,27.8,x+4.2,42.2,39.2]});
+  out.push({id:'left station hood',bounds:[21.8,27.8,29.8,30.2,42.2,40.2]});
+  for(const t of[45,91,202])out.push({id:'back wall lamp-'+t,bounds:[t-2.5,10.5,68.5,t+2.5,17.5,78.5]});
+  for(const t of[48,151])out.push({id:'left wall lamp-'+t,bounds:[10.5,t-2.5,68.5,17.5,t+2.5,78.5]});
+  for(const b of r.volumes)if(b[2]>=90)out.push({id:'roof',bounds:b});
+  out.push({id:'back wall',bounds:[-4,-4,0,r.room.w,0,112]},{id:'left wall',bounds:[-4,0,0,0,r.room.d,112]});
+  return out;
+ }
+ // Native blit mirrors about half a screen pixel; margin includes anchor rounding.
+ function staffSpan(body,action,face){
+  const a=body.spans[action][face===2||face===3?'away':'towards'],mirror=face===1||face===3;
+  return [ (mirror?.5-a[1]:a[0])-body.margin,(mirror?.5-a[0]:a[1])+body.margin ];
+ }
+ // Load-time and verification queries only; the frame loop never allocates these bounds.
+ function staffBounds(r,a){const u=staffSpan(r.staff,a.action,a.face);return [a.x+u[0],a.y-u[1],a.z-r.staff.sole,a.x+u[1],a.y-u[0],a.z+r.staff.height];}
+ function staffSegmentHits(p,q,action,face,body,b){
+  if(Math.max(p[2],q[2])+body.height<=b[2]||Math.min(p[2],q[2])-body.sole>=b[5])return false;
+  const u=staffSpan(body,action,face);let lo=0,hi=1;
+  for(let k=0;k<2;k++){
+   const d=q[k]-p[k],min=b[k]-(k?-u[0]:u[1]),max=b[k+3]-(k?-u[1]:u[0]);
+   if(!d){if(p[k]<=min||p[k]>=max)return false;}
+   else{const a=(min-p[k])/d,c=(max-p[k])/d;lo=Math.max(lo,Math.min(a,c));hi=Math.min(hi,Math.max(a,c));if(lo>=hi)return false;}
+  }
+  return lo<hi;
+ }
+ function staffRouteIssues(r){
+  const body=r.staff,obstacles=staffObstacles(r),out=[];
+  if(!body||!Number.isFinite(body.height)||body.height<=0||!Number.isFinite(body.sole)||body.sole<0||!Number.isFinite(body.margin)||body.margin<0||['walk','read','check','sort','wave'].some(k=>['towards','away'].some(v=>!finite(body.spans?.[k]?.[v])||body.spans[k][v].length!==2||body.spans[k][v][0]>=body.spans[k][v][1])))throw new RangeError('Invalid staff clearance profile');
+  for(const o of obstacles){const b=o.bounds;if(!finite(b)||b.length!==6||b[0]>=b[3]||b[1]>=b[4]||b[2]>=b[5])throw new RangeError('Invalid staff solid '+o.id);}
+  if(!Array.isArray(r.routes)||r.routes.length<3)throw new RangeError('Missing staff routes');
+  for(let i=0;i<3;i++){
+   const route=r.routes[i],points=route.points,faces=i===0?[3,1,1,2,0]:i===1?[1,2]:[3,0];
+   if(route.id!==['sorter','worker-back','worker-left'][i]||points.length!==faces.length+1||points.some(p=>p[2]!==points[0][2])||points[0].some((n,k)=>n!==points[points.length-1][k]))throw new RangeError('Invalid closed staff route');
+   for(const o of obstacles)for(let k=1;k<points.length;k++)if(staffSegmentHits(points[k-1],points[k],'walk',faces[k-1],body,o.bounds))out.push({kind:'route',who:route.id,obstacle:o.id,segment:k-1});
+  }
+  const life=create(r),seen=new Set();
+  for(let f=0;f<2880;f++){
+   step(life,f);
+   for(let i=0;i<3;i++){
+    const a=life.workers[i];if(a.action==='walk')continue;
+    const key=i+':'+a.x+':'+a.y+':'+a.action+':'+a.face;if(seen.has(key))continue;seen.add(key);
+    const b=staffBounds(r,a);
+    for(const o of obstacles)if(b[0]<o.bounds[3]&&b[3]>o.bounds[0]&&b[1]<o.bounds[4]&&b[4]>o.bounds[1]&&b[2]<o.bounds[5]&&b[5]>o.bounds[2])out.push({kind:'stationary',who:r.routes[i].id,obstacle:o.id,frame:f});
+   }
+  }
+  for(const f of r.furniture)if(f.kind==='trolley'){
+   const a=f.anchor,b=[a[0]-9,a[1]-11,0,a[0]+9,a[1]+11,27];
+   if(f.parts.length!==1||b.some((v,k)=>v!==f.parts[0][k]))throw new RangeError('Trolley footprint differs from its anchor');
+   for(const o of obstacles)if(o.id!==f.id&&b[0]<o.bounds[3]&&b[3]>o.bounds[0]&&b[1]<o.bounds[4]&&b[4]>o.bounds[1]&&b[2]<o.bounds[5]&&b[5]>o.bounds[2])out.push({kind:'parking',who:f.id,obstacle:o.id});
+  }
+  return out;
+ }
  function build(data){
   const r=JSON.parse(JSON.stringify(data||CFG));
   if(r.board?.w!==8||r.board?.h!==6||r.board.x!==64||r.board.y!==64||!Number.isInteger(r.room?.w)||!Number.isInteger(r.room?.d)||r.room.w<216||r.room.d<184)throw new RangeError('City Hall requires its full8x6 sorting floor and margins');
@@ -10799,41 +11015,44 @@ const CITYHALL=(function(){
   for(const k of['sx0','sy0'])b[k]=Math.floor(b[k]);for(const k of['sx1','sy1'])b[k]=Math.ceil(b[k]);
   if(b.sx1-b.sx0+24>720||b.sy1-b.sy0+24>400||r.room.w+8>720)throw new RangeError('City Hall exceeds720x400');
   if(hidden(r).length)throw new RangeError('City Hall scenery hides a board tile');
+  const traffic=staffRouteIssues(r);if(traffic.length)throw new RangeError('Staff '+traffic[0].kind+': '+traffic[0].who+' intersects '+traffic[0].obstacle);
   r.bounds=b;return r;
  }
  const mod=f=>((Math.floor(f)%2880)+2880)%2880;
  function actor(x,y,z){return {x,y,z,face:0,action:'read',frame:0};}
- function create(r){return step({room:r,frame:0,clock:0,lightX:0,lightY:0,workers:[actor(48,128,0),actor(132,10,48),actor(10,118,48)],
+ function create(r){return step({room:r,frame:0,clock:0,lightX:0,lightY:0,workers:r.routes.slice(0,3).map(p=>actor(...p.points[0])),
   pm:{x:26,y:120,z:26,state:3,frame:0,face:0,head:0,flick:0,bat:-1},pigeon:{x:8,y:40,z:111,state:'perch',frame:0,bob:0,face:1},
   capsules:[{x:66,y:24,z:35,visible:false},{x:24,y:32,z:36,vertical:true,visible:false}],
   puffs:[{x:26,y:38,z:31,visible:false,pose:0},{x:110,y:38,z:28,visible:false,pose:0},{x:140,y:38,z:28,visible:false,pose:0}],pressure:new Uint8Array(3)},0);}
  // Cosine ramps keep cruise pace even and bring both feet to a stop before turns.
- function move(a,f,from,to,x0,y0,x1,y1,z,face){
+ function move(a,f,from,to,p,q,face){
   const t=f-from,duration=to-from,r=24,left=duration-t;
   const travel=t<r?(t-r/Math.PI*Math.sin(Math.PI*t/r))*.5:left<r?duration-r-(left-r/Math.PI*Math.sin(Math.PI*left/r))*.5:t-r*.5;
-  const u=travel/(duration-r),dx=x1-x0,dy=y1-y0,cycles=Math.max(1,Math.round(Math.hypot(dx,dy)/16));
-  a.x=x0+dx*u;a.y=y0+dy*u;a.z=z;a.face=face;a.action='walk';a.frame=Math.floor(u*cycles*4+.5)%4;
+  const u=travel/(duration-r),dx=q[0]-p[0],dy=q[1]-p[1],cycles=Math.max(1,Math.round(Math.hypot(dx,dy)/16));
+  a.x=p[0]+dx*u;a.y=p[1]+dy*u;a.z=p[2]+(q[2]-p[2])*u;a.face=face;a.action='walk';a.frame=Math.floor(u*cycles*4+.5)%4;
  }
+ function stand(a,p,face,action){a.x=p[0];a.y=p[1];a.z=p[2];a.face=face;a.action=action;a.frame=0;}
  function step(s,frame){
-  const f=mod(frame),a=s.workers[0];s.frame=f;s.clock=Math.floor(f/240)%12;s.lightX=Math.sin(f/2880*Math.PI*2)*3;s.lightY=Math.cos(f/2880*Math.PI*2)*2;
-  a.x=48;a.y=128;a.z=0;a.face=f<156||f>=2844?0:3;a.action='check';a.frame=0;
-  if(f>=180&&f<516)move(a,f,180,516,48,128,48,46,0,3);
-  else if(f>=516&&f<552){a.y=46;a.face=f<534?3:1;}
-  else if(f>=552&&f<912)move(a,f,552,912,48,46,136,42,0,1);
-  else if(f>=912&&f<1296){a.x=136;a.y=42;a.face=f<930||f>=1278?1:3;a.action='sort';}
-  else if(f>=1296&&f<1512)move(a,f,1296,1512,136,42,184,42,0,1);
-  else if(f>=1512&&f<1728){a.x=184;a.y=42;a.face=f<1530?1:3;}
-  else if(f>=1728&&f<1908){a.x=184;a.y=42;a.face=0;a.action='wave';}
-  else if(f>=1908&&f<1944){a.x=184;a.y=42;a.face=f<1926?0:2;}
-  else if(f>=1944&&f<2472)move(a,f,1944,2472,184,42,48,46,0,2);
-  else if(f>=2472&&f<2508){a.y=46;a.face=f<2490?2:0;}
-  else if(f>=2508&&f<2844)move(a,f,2508,2844,48,46,48,128,0,0);
+  const f=mod(frame),a=s.workers[0],path=s.room.routes[0].points,p0=path[0],p1=path[1],p2=path[2],p3=path[3];
+  s.frame=f;s.clock=Math.floor(f/240)%12;s.lightX=Math.sin(f/2880*Math.PI*2)*3;s.lightY=Math.cos(f/2880*Math.PI*2)*2;
+  stand(a,p0,f<156||f>=2796?0:3,'check');
+  if(f>=180&&f<516)move(a,f,180,516,p0,p1,3);
+  else if(f>=516&&f<552)stand(a,p1,f<534?3:1,'check');
+  else if(f>=552&&f<876)move(a,f,552,876,p1,p2,1);
+  else if(f>=876&&f<1296)stand(a,p2,f<894||f>=1278?1:3,'sort');
+  else if(f>=1296&&f<1452)move(a,f,1296,1452,p2,p3,1);
+  else if(f>=1452&&f<1728)stand(a,p3,f<1470?1:3,'check');
+  else if(f>=1728&&f<1908)stand(a,p3,0,'wave');
+  else if(f>=1908&&f<1944)stand(a,p3,f<1926?0:2,'check');
+  else if(f>=1944&&f<2400)move(a,f,1944,2400,p3,path[4],2);
+  else if(f>=2400&&f<2436)stand(a,path[4],f<2418?2:0,'check');
+  else if(f>=2436&&f<2796)move(a,f,2436,2796,path[4],path[5],0);
   for(let i=1;i<3;i++){
-   const p=s.workers[i],t=(f+(i-1)*480)%1440,back=i===1;
-   p.action='read';p.z=48;p.frame=0;p.x=back?132:10;p.y=back?10:118;p.face=t<18?(back?2:0):t>=222?(back?1:3):0;
-   if(t>=240&&t<720)move(p,t,240,720,back?132:10,back?10:118,back?198:10,back?10:72,48,back?1:3);
-   else if(t>=720&&t<960){p.x=back?198:10;p.y=back?10:72;p.face=t<738?(back?1:3):t>=942?(back?2:0):0;}
-   else if(t>=960)move(p,t,960,1440,back?198:10,back?10:72,back?132:10,back?10:118,48,back?2:0);
+   const p=s.workers[i],t=(f+(i-1)*480)%1440,back=i===1,route=s.room.routes[i].points,outEnd=back?600:720,inStart=back?1080:960;
+   const turning=t<18||t>=222;stand(p,route[0],t<18?(back?2:0):t>=222?(back?1:3):(back?0:1),turning?'check':'read');
+   if(t>=240&&t<outEnd)move(p,t,240,outEnd,route[0],route[1],back?1:3);
+   else if(t>=outEnd&&t<inStart){const turn=t<outEnd+18||t>=inStart-18;stand(p,route[1],t<outEnd+18?(back?1:3):t>=inStart-18?(back?2:0):(back?0:1),turn?'check':'read');}
+   else if(t>=inStart)move(p,t,inStart,1440,route[1],route[2],back?2:0);
   }
   for(let i=0;i<3;i++){s.pressure[i]=Math.round(1+Math.sin(f/480*Math.PI*2+i));const p=s.puffs[i],age=(f+i*60)%360;p.visible=age>=6&&age<36;p.pose=Math.min(3,Math.floor(age/9));}
   const p=s.pm;p.frame=Math.floor(f/240)%6;p.head=Math.floor(p.frame/2);p.flick=p.frame&1;
@@ -10842,7 +11061,7 @@ const CITYHALL=(function(){
   const c=s.capsules[0],d=s.capsules[1],u=(f%480)/480,w=((f+240)%480)/480;c.x=66+144*u;c.visible=c.x>=132&&c.x<=164;d.y=32+134*w;d.visible=d.y>=82&&d.y<=108;
   return s;
  }
- return {CFG,build,hidden,volumes,create,step};
+ return {CFG,build,hidden,volumes,staffObstacles,staffBounds,staffRouteIssues,create,step};
 
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=CITYHALL;
@@ -19561,13 +19780,13 @@ function shCitySpandrel(face,u,v){
  shFlag=FL_ROOM;shFlat=false;const top=14,dx=Math.min(u,56-u),curve=14-14*Math.sqrt(Math.max(0,1-Math.pow((dx-28)/28,2)));
  if(v<top-curve-.7)return -1;return cityMaterial(v>12?C.PT0:C.PT1,u,v,'slate');
 }
-function cityHallGallery(axis){
+function cityHallGallery(axis,w=CITYR.gallery.width){
  const n=axis===F_Y?CITYR.room.w:CITYR.room.d,z=46;
- if(axis===F_Y){box(0,0,z-2,n,20,z,shCityCream,C.PAPSH,0);box(0,19,z-1,n,21,z+3,shCityIron,C.PT0,0);box(0,19,z+13,n,20.5,z+15,shCityBrass,C.BR0,0);}
- else{box(0,0,z-2,20,n,z,shCityCream,C.PAPSH,0);box(19,0,z-1,21,n,z+3,shCityIron,C.PT0,0);box(19,0,z+13,20.5,n,z+15,shCityBrass,C.BR0,0);}
- for(let t=4;t<n;t+=8){if(axis===F_Y)box(t,19,z+2,t+.8,20,z+13,shCityIron,C.PT0,0);else box(19,t,z+2,20,t+.8,z+13,shCityIron,C.PT0,0);}
- for(let t=24;t<n-6;t+=56){if(axis===F_Y)faceY(t-3,t+3,z+5,z+11,21,shCityRosette,C.BR0,0);else faceX(t-3,t+3,z+5,z+11,21,shCityRosette,C.BR0,0);}
- for(let t=2;t+50<n;t+=56){if(axis===F_Y)cityFace('frieze',t,21.2,z+3,50,9,F_Y);else cityFace('frieze',21.2,t,z+3,50,9,F_X);}
+ if(axis===F_Y){box(0,0,z-2,n,w,z,shCityCream,C.PAPSH,0);box(0,w-1,z-1,n,w+1,z+3,shCityIron,C.PT0,0);box(0,w-1,z+13,n,w+.5,z+15,shCityBrass,C.BR0,0);}
+ else{box(0,0,z-2,w,n,z,shCityCream,C.PAPSH,0);box(w-1,0,z-1,w+1,n,z+3,shCityIron,C.PT0,0);box(w-1,0,z+13,w+.5,n,z+15,shCityBrass,C.BR0,0);}
+ for(let t=4;t<n;t+=8){if(axis===F_Y)box(t,w-1,z+2,t+.8,w,z+13,shCityIron,C.PT0,0);else box(w-1,t,z+2,w,t+.8,z+13,shCityIron,C.PT0,0);}
+ for(let t=24;t<n-6;t+=56){if(axis===F_Y)faceY(t-3,t+3,z+5,z+11,w+1,shCityRosette,C.BR0,0);else faceX(t-3,t+3,z+5,z+11,w+1,shCityRosette,C.BR0,0);}
+ for(let t=2;t+50<n;t+=56){if(axis===F_Y)cityFace('frieze',t,w+1.2,z+3,50,9,F_Y);else cityFace('frieze',w+1.2,t,z+3,50,9,F_X);}
  for(let t=0;t+56<=n;t+=56){if(axis===F_Y)faceY(t,t+56,90,104,19,shCitySpandrel,C.PT0,0);else faceX(t,t+56,90,104,19,shCitySpandrel,C.PT0,0);}
 }
 function cityHallRoof(axis){
@@ -19765,26 +19984,29 @@ function cityHallAtlasSprites(){
   try{draw();}finally{paperPropScope--;CITYR=room;cityFaceKind=kind;cityFaceW=w;cityFaceH=h;cityColour=colour;}
  };}
  const out=catalog.map(p=>{
-  const f=r.furniture.find(f=>f.id===p.id),draw=f&&f.kind==='trolley'?()=>cityHallTrolleyLegacy(f):p.draw;
-  return {name:'cityhall_'+p.id,origin:p.origin,cellSize:p.size,direction:'none',mirroredFor:'none',fps:0,loop:false,frames:[{tag:'rest',draw:at(p.origin,draw)}]};
+  const f=r.furniture.find(f=>f.id===p.id),origin=f&&f.kind==='trolley'?(f.id==='trolley-left'?[46,88,0]:[188,44,0]):p.origin;
+  const legacy=f&&f.kind==='trolley'?{...f,anchor:origin}:null,draw=legacy?()=>cityHallTrolleyLegacy(legacy):p.id==='gallery-y'?()=>cityHallGallery(F_Y,20):p.id==='gallery-x'?()=>cityHallGallery(F_X,20):p.draw;
+  return {name:'cityhall_'+p.id,origin,cellSize:p.size,direction:'none',mirroredFor:'none',fps:0,loop:false,frames:[{tag:'rest',draw:at(origin,draw)}]};
  });
- const add=(name,origin,frames,fps=10,loop=false)=>out.push({name:'cityhall_'+name,origin,cellSize:128,direction:'none',mirroredFor:'none',fps,loop,frames:frames.map(f=>({...f,draw:at(origin,f.draw)}))});
+ const add=(name,origin,frames,fps=10,loop=false,size=128)=>out.push({name:'cityhall_'+name,origin,cellSize:size,direction:'none',mirroredFor:'none',fps,loop,frames:frames.map(f=>({...f,draw:at(origin,f.draw)}))});
  add('clock-hands',[132,22,82],Array.from({length:12},(_,k)=>({tag:'hands'+k,draw:()=>cityHallHands(k)})),60/240,true);
  add('pressure-gauge',[0,0,0],Array.from({length:3},(_,k)=>({tag:'pressure'+k,draw:()=>cityHallGauge(0,0,0,k)})),0);
  add('air-wisp',[0,0,0],Array.from({length:4},(_,k)=>({tag:'wisp'+k,draw:()=>cityHallPuff({x:0,y:0,z:0,visible:true,pose:k})})),60/9);
  add('parcel-capsule',[0,0,0],[{tag:'horizontal',draw:()=>cityHallCapsule({x:0,y:0,z:0,visible:true})},{tag:'vertical',draw:()=>cityHallCapsule({x:0,y:0,z:0,visible:true,vertical:true})}],0);
  add('postmistress-bat',[26,120,26],['notice','reach','tap','settle'].map((tag,k)=>({tag,draw:()=>{cityHallBuildBat(k);atlasBlit(26,120,26,false);}})),0);
  add('postal-trolley',[0,0,0],[{tag:'rest',draw:()=>cityHallTrolley({anchor:[0,0,0]})}],0);
+ add('gallery-y-clear',[112,10,55],[{tag:'rest',draw:()=>cityHallGallery(F_Y)}],0,false,512);
+ add('gallery-x-clear',[10,96,55],[{tag:'rest',draw:()=>cityHallGallery(F_X)}],0,false,512);
  return out;
 }
 function cityHallAtlasAssemblies(){
  const r=CITYHALL.build(),keep=CITYR;CITYR=r;let layers;
- try{layers=cityHallStaticCatalog().map(p=>({family:p.id.startsWith('trolley-')?'cityhall_postal-trolley':'cityhall_'+p.id,origin:p.origin,...(p.id.startsWith('trolley-')?{instance:p.id}:{})}));}finally{CITYR=keep;}
+ try{layers=cityHallStaticCatalog().map(p=>({family:p.id.startsWith('trolley-')?'cityhall_postal-trolley':'cityhall_'+p.id+(p.id.startsWith('gallery-')?'-clear':''),origin:p.origin,...(p.id.startsWith('trolley-')?{instance:p.id}:{})}));}finally{CITYR=keep;}
  return {room:'cityhall',worldUnitsPerTile:16,board:r.board,loopFrames:2880,layers,
   clock:{family:'cityhall_clock-hands',origin:[132,22,82],poses:12,periodFrames:2880},gauges:{family:'cityhall_pressure-gauge',poses:3,periodFrames:480},
   puffs:{family:'cityhall_air-wisp',poses:4,periodFrames:360,phaseOffsetPerStation:60,visibleAges:[6,36],poseFrames:9},capsules:{family:'cityhall_parcel-capsule',poses:['horizontal','vertical'],periodFrames:480,inspectionOnly:true},
   catReaction:{family:'cityhall_postmistress-bat',origin:[26,120,26],periodFrames:480,phaseOffset:48,poseAges:[[0,24],[24,64],[64,81],[81,108]],idle:'accepted Depot Postmistress'},
-  legacyFamilies:['cityhall_trolley-left','cityhall_trolley-back'],
+  legacyFamilies:['cityhall_trolley-left','cityhall_trolley-back','cityhall_gallery-y','cityhall_gallery-x'],
   workerReuse:'accepted Depot postal worker, both views and mirrored facings',catReuse:'accepted tuxedo Postmistress',birdReuse:'accepted Depot pigeon',
   light:{roomSet:r.light.finalScenerySet,boardSet:r.light.boardSet},notes:['Static native4x paper faces; generated detail inputs remain editable.','Functional tunnel symbols are provisional Rule art; Piece supplies finished hoods.','All capsule/puff/worker envelopes remain outside live tile cores.']};
 }
