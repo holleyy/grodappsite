@@ -230,7 +230,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "492360413e";
+const BUILD_ID = "ec6f666902";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -10807,25 +10807,35 @@ const CITYHALL=(function(){
   pm:{x:26,y:120,z:26,state:3,frame:0,face:0,head:0,flick:0,bat:-1},pigeon:{x:8,y:40,z:111,state:'perch',frame:0,bob:0,face:1},
   capsules:[{x:66,y:24,z:35,visible:false},{x:24,y:32,z:36,vertical:true,visible:false}],
   puffs:[{x:26,y:38,z:31,visible:false,pose:0},{x:110,y:38,z:28,visible:false,pose:0},{x:140,y:38,z:28,visible:false,pose:0}],pressure:new Uint8Array(3)},0);}
- function move(a,t,fromX,fromY,toX,toY,z,face){a.x=fromX+(toX-fromX)*t;a.y=fromY+(toY-fromY)*t;a.z=z;a.face=face;a.action='walk';}
+ // Cosine ramps keep cruise pace even and bring both feet to a stop before turns.
+ function move(a,f,from,to,x0,y0,x1,y1,z,face){
+  const t=f-from,duration=to-from,r=24,left=duration-t;
+  const travel=t<r?(t-r/Math.PI*Math.sin(Math.PI*t/r))*.5:left<r?duration-r-(left-r/Math.PI*Math.sin(Math.PI*left/r))*.5:t-r*.5;
+  const u=travel/(duration-r),dx=x1-x0,dy=y1-y0,cycles=Math.max(1,Math.round(Math.hypot(dx,dy)/16));
+  a.x=x0+dx*u;a.y=y0+dy*u;a.z=z;a.face=face;a.action='walk';a.frame=Math.floor(u*cycles*4+.5)%4;
+ }
  function step(s,frame){
   const f=mod(frame),a=s.workers[0];s.frame=f;s.clock=Math.floor(f/240)%12;s.lightX=Math.sin(f/2880*Math.PI*2)*3;s.lightY=Math.cos(f/2880*Math.PI*2)*2;
-  a.x=48;a.y=128;a.z=0;a.face=2;a.action='check';
-  if(f>=240&&f<600)move(a,(f-240)/360,48,128,48,46,0,3);
-  else if(f>=600&&f<960)move(a,(f-600)/360,48,46,136,42,0,1);
-  else if(f>=960&&f<1440){a.x=136;a.y=42;a.face=3;a.action='sort';}
-  else if(f>=1440&&f<1680)move(a,(f-1440)/240,136,42,184,42,0,1);
-  else if(f>=1680&&f<2280){a.x=184;a.y=42;a.face=f<1980?3:0;a.action=f<1980?'check':'wave';}
-  else if(f>=2280&&f<2520)move(a,(f-2280)/240,184,42,48,46,0,2);
-  else if(f>=2520&&f<2760)move(a,(f-2520)/240,48,46,48,128,0,0);
+  a.x=48;a.y=128;a.z=0;a.face=f<156||f>=2844?0:3;a.action='check';a.frame=0;
+  if(f>=180&&f<516)move(a,f,180,516,48,128,48,46,0,3);
+  else if(f>=516&&f<552){a.y=46;a.face=f<534?3:1;}
+  else if(f>=552&&f<912)move(a,f,552,912,48,46,136,42,0,1);
+  else if(f>=912&&f<1296){a.x=136;a.y=42;a.face=f<930||f>=1278?1:3;a.action='sort';}
+  else if(f>=1296&&f<1512)move(a,f,1296,1512,136,42,184,42,0,1);
+  else if(f>=1512&&f<1728){a.x=184;a.y=42;a.face=f<1530?1:3;}
+  else if(f>=1728&&f<1908){a.x=184;a.y=42;a.face=0;a.action='wave';}
+  else if(f>=1908&&f<1944){a.x=184;a.y=42;a.face=f<1926?0:2;}
+  else if(f>=1944&&f<2472)move(a,f,1944,2472,184,42,48,46,0,2);
+  else if(f>=2472&&f<2508){a.y=46;a.face=f<2490?2:0;}
+  else if(f>=2508&&f<2844)move(a,f,2508,2844,48,46,48,128,0,0);
   for(let i=1;i<3;i++){
-   const p=s.workers[i],t=(f+(i-1)*480)%1440;p.action='read';p.z=48;p.face=0;
-   let v=0;if(t>=240&&t<720){v=(t-240)/480;p.action='walk';p.face=i===1?1:3;}
-   else if(t>=720&&t<960)v=1;
-   else if(t>=960){v=1-(t-960)/480;p.action='walk';p.face=i===1?2:0;}
-   p.x=i===1?132+66*v:10;p.y=i===1?10:118-46*v;
+   const p=s.workers[i],t=(f+(i-1)*480)%1440,back=i===1;
+   p.action='read';p.z=48;p.frame=0;p.x=back?132:10;p.y=back?10:118;p.face=t<18?(back?2:0):t>=222?(back?1:3):0;
+   if(t>=240&&t<720)move(p,t,240,720,back?132:10,back?10:118,back?198:10,back?10:72,48,back?1:3);
+   else if(t>=720&&t<960){p.x=back?198:10;p.y=back?10:72;p.face=t<738?(back?1:3):t>=942?(back?2:0):0;}
+   else if(t>=960)move(p,t,960,1440,back?198:10,back?10:72,back?132:10,back?10:118,48,back?2:0);
   }
-  for(let i=0;i<3;i++){s.workers[i].frame=Math.floor(f/6)%4;s.pressure[i]=Math.round(1+Math.sin(f/480*Math.PI*2+i));const p=s.puffs[i],age=(f+i*60)%360;p.visible=age>=6&&age<36;p.pose=Math.min(3,Math.floor(age/9));}
+  for(let i=0;i<3;i++){s.pressure[i]=Math.round(1+Math.sin(f/480*Math.PI*2+i));const p=s.puffs[i],age=(f+i*60)%360;p.visible=age>=6&&age<36;p.pose=Math.min(3,Math.floor(age/9));}
   const p=s.pm;p.frame=Math.floor(f/240)%6;p.head=Math.floor(p.frame/2);p.flick=p.frame&1;
   const age=(f+48)%480;p.bat=age<24?0:age<64?1:age<81?2:age<108?3:-1;
   const b=s.pigeon,t=(f%960)/960,v=t<.5?t*2:2-t*2;b.y=40+92*v;b.face=t<.5?0:1;b.state=f%480<60?'peck':'perch';b.frame=Math.floor(f/30)&1;b.bob=b.frame;
@@ -19497,16 +19507,10 @@ function cityFace(kind,x,y,z,w,h,face){cityFaceKind=kind;cityFaceW=w;cityFaceH=h
 function citySun(){return 0;}
 function cityHallPrepareActors(){
  if(CITY_POOLS)return;
- const s=DEPOTWORLD.create(DEPOT.build()),p={walk:[],read:[],check:[],sort:[],wave:[]};
- for(let f=0;f<2880;f+=6){DEPOTWORLD.step(s,f);const d=s.driver;
-  if(d.walk>=0)p.walk.push({...d});
-  if(d.hold&&!d.pour&&!d.pencil)p.read.push({...d});
-  if(d.reach&&!d.pour)p.wave.push({...d});
-  if(d.pencil&&!d.pour)p.sort.push({...d});
-  if(d.scratch||d.reach&&!d.pour)p.check.push({...d});
- }
- for(const key of Object.keys(p))if(!p[key].length)p[key].push({...s.driver});
- CITY_POOLS=p;CITY_DRIVER={...s.driver};CITY_PM={};
+ const s=DEPOTWORLD.create(DEPOT.build()),pose=f=>{DEPOTWORLD.step(s,f);return {...s.driver};};
+ // These original source hashes all have approved paper textures. Never mix task snapshots into a gait.
+ CITY_POOLS={walk:[pose(90),pose(108),pose(90),pose(96)],read:[pose(396)],check:[pose(0)],sort:[pose(714)],wave:[pose(294)]};
+ CITY_DRIVER={...s.driver};CITY_PM={};
 }
 function activateCityHall(r){
  BOXR=null;CITYR=r;CITYLIFE=CITYHALL.create(r);cityHallPrepareActors();
@@ -19726,7 +19730,7 @@ function cityHallCapsule(c){
  else{box(x-3,y-1.4,z-1.4,x+3,y+1.4,z+1.4,shCityWood,C.WD1,0);box(x-.4,y-1.5,z-1.5,x+.4,y+1.5,z+1.5,shCityCream,C.PAPSH,0);}
 }
 function cityHallActors(){
- for(const a of CITYLIFE.workers){const list=CITY_POOLS[a.action],p=list[Math.floor(CITYLIFE.frame/6)%list.length];Object.assign(CITY_DRIVER,p);CITY_DRIVER.face=a.face;buildDriver(CITY_DRIVER);blitSprite(a.x,a.y,a.z,a.face===1||a.face===3,true);}
+ for(const a of CITYLIFE.workers){const list=CITY_POOLS[a.action],p=list[a.frame];Object.assign(CITY_DRIVER,p);CITY_DRIVER.face=a.face;buildDriver(CITY_DRIVER);blitSprite(a.x,a.y,a.z,a.face===1||a.face===3,true);}
  const pm=CITYLIFE.pm;
  if(pm.bat>=0){cityHallBuildBat(pm.bat);blitSprite(pm.x,pm.y,pm.z,false,true);}else{
   cat.x=pm.x;cat.y=pm.y;cat.z=pm.z;cat.state=pm.state;cat.frame=pm.frame;cat.face=pm.face;cat.head=pm.head;cat.flick=pm.flick;drawCat();
