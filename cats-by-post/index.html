@@ -230,7 +230,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "4d40527a87";
+const BUILD_ID = "15f0306ed7";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -10075,7 +10075,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = WORLD;
 //   practice: Practice, nightShift: NightShiftProgress }.
 // ============================================================================
 const PROGRESS = (function () {
-  const KEY = 'catsByPost.cityHallLevelsPreview', VERSION = 5;
+  const KEY = 'catsByPost.cityHallChapterPreview', VERSION = 5;
   const emptyPractice = () => ({ current: '', records: {}, order: [] });
   const emptyNightShift = () => ({ weeklyBest: {}, allTimeBest: 0, totalCatsHome: 0 });
   const empty = () => ({ version: VERSION, levels: {}, unlocked: [], current: '', daily: {}, practice: emptyPractice(), nightShift: emptyNightShift() });
@@ -12274,6 +12274,36 @@ const CITYHALL=(function(){
 
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=CITYHALL;
+// Shared-rule Hall teaching. Build traces once; CP samples them without live mutations.
+const CITYCHAPTER=(function(){
+ const node=typeof module!=='undefined'&&module.exports,R=node?require('./10_rules'):{grCreate,grTick,grResult,GR_DIR,GE_RELEASED,GE_MOVED,GO_RUNNING},B=node?require('./12_boardanim'):BOARDANIM;
+ function demo(ox,oy){
+  const level={id:'cityhall-chapter-demo',room:'cityhall',board:{w:7,h:5,roomX:0,roomY:0},timeLimit:32,
+   hatches:[{x:0,y:2,dir:'R',cats:['blue','ginger','ginger']}],tunnels:[{a:{x:2,y:2},b:{x:4,y:2},symbol:'circle'}],
+   gates:[{x:5,y:2,exits:['U','D']}],dogs:[{x:5,y:3}],baskets:[{x:5,y:0,coat:'blue'}],flaps:[{x:2,y:4,side:'D',coat:'ginger'}],tray:{ginger:1,plain:1,blue:0}},
+   turns=[{x:5,y:1,type:'ginger',dir:'L'},{x:4,y:1,type:'plain',dir:'D'}],s=R.grCreate(level,turns),traces=[],gates=B.makeGateTrace(96),ends=[],h=level.hatches[0];
+  for(let i=0;i<s.n;i++){const tr=B.makeTrace(34);tr.ox=ox;tr.oy=oy;tr.tick=tr.pop=.3;tr.coat=s.coat[i];tr.hx=h.x;tr.hy=h.y;tr.hatchDir=R.GR_DIR[h.dir];tr.bw=7;tr.bh=5;tr.look=i;tr.blinkPhase=i*7;traces.push(tr);}
+  while(s.outcome===R.GO_RUNNING){const t=Math.round((s.tick+1)*300)/1000;R.grTick(s);B.recordGates(gates,s,t);
+   for(let i=0;i<s.n;i++){const tr=traces[i];if(s.ev[i]===R.GE_RELEASED)tr.rel=t;else if(s.ev[i]>=R.GE_MOVED){B.record(tr,s.px[i],s.py[i],s.pdir[i],s.x[i],s.y[i],s.dir[i],s.ev[i],s.bounced[i]);B.recordDestination(tr,s,i);}}}
+  for(const tr of traces)ends.push(tr.rel+tr.n*tr.tick+6);
+  return {level,turns,traces,gates,ends,loop:15,final:R.grResult(s)};
+ }
+ function growth(stage,frame,out){
+  const t=Math.max(0,Math.min(1,(frame-30)/180)),u=t*t*(3-2*t),length=stage===1?92:76;
+  out.u=u;out.pose=Math.min(31,Math.floor(u*32));out.visible=u<1;out.z=0;
+  out.x=stage===1?94+length*u:164;out.y=stage===1?132:94+length*u;
+  out.face=stage===1?1:0;out.walk=t>0&&t<1?Math.floor(u*length/4)%4:-1;
+  return out;
+ }
+ const H=node?require('./19i_cityhall'):CITYHALL,dispatchLife=H.create(H.CFG);
+ function dispatch(frame,out){
+  out.worldFrame=Math.min(2796,1944+Math.max(0,frame));H.step(dispatchLife,out.worldFrame);const a=dispatchLife.workers[0];
+  out.x=a.x;out.y=a.y;out.z=a.z;out.face=a.face;out.stopped=out.worldFrame===2796;
+  out.bagX=a.x+4;out.bagY=a.y+9;out.bagZ=11;return out;
+ }
+ return {demo,growth,dispatch};
+})();
+if(typeof module!=='undefined'&&module.exports)module.exports=CITYCHAPTER;
 // ============================================================================
 // 20 NIGHT SHIFT: a deterministic round simulation. It uses the puzzle rules'
 // board, cat and turntable data, but owns its release clock, live editing,
@@ -16511,7 +16541,7 @@ function atlasSprites() {
   spr('queue_head', 'none', 'none', 0, false, AT_COATS.map(([coat, cn]) => fr(cn, () => {
     KEY = coatKeyOf(coat); sprClear(); tpl(QUEUE_HEAD, AX - 2, AY - 3); KEY = KEY_S; outlineSprite(); atlasBlit(8, 8, 0.5, false);
   })));
-  return S.concat(boxAtlasSprites(), depotAtlasSprites(),trainAtlasSprites(),pointsAtlasSprites(),trainChapterAtlasSprites(),cityHallAtlasSprites(),tunnelPieceAtlasSprites());
+  return S.concat(boxAtlasSprites(), depotAtlasSprites(),trainAtlasSprites(),pointsAtlasSprites(),trainChapterAtlasSprites(),cityHallAtlasSprites(),tunnelPieceAtlasSprites(),cityHallChapterAtlasSprites());
 }
 
 // ---- render, crop, pack -------------------------------------------------------------------
@@ -21268,7 +21298,7 @@ function cityHallActors(){
 function cityHallBuildBat(pose){KEY=KEY_S;SPR.set(CITYHALL_FIDELITY_SOURCES[pose]);}
 function drawCityHall(){
  nItems=0;const src=gBoardSource();if(src===G_SRC)gPrepareSrc();addBoardItems(src);sortItems();for(let k=0;k<nItems;k++){const id=ITEM_ID[k];if(drawItemHook)drawItemHook(id,false);shBoard=128;drawBoardItem(id-IT_BOARD0);if(drawItemHook)drawItemHook(id,true);}
- shBoard=0;shSunMax=0;if(drawItemHook)drawItemHook(40,false);cityHallActors();paperPropScope++;
+ shBoard=0;shSunMax=0;if(drawItemHook)drawItemHook(40,false);cityHallActors();if(cpActive()&&CP.hall)drawHallChapter();paperPropScope++;
  try{cityHallHands(CITYLIFE.clock);for(let i=0;i<3;i++){cityHallGauge(i===0?24:80+i*30,i===0?44.4:30, i===0?24:29,CITYLIFE.pressure[i]);cityHallPuff(CITYLIFE.puffs[i]);}for(const c of CITYLIFE.capsules)cityHallCapsule(c);}finally{paperPropScope--;}
  if(drawItemHook)drawItemHook(40,true);shBoard=0;shSunMax=2;drawParticles(0,PMAX);
 }
@@ -21318,7 +21348,44 @@ function cityHallAtlasAssemblies(){
   legacyFamilies:['cityhall_trolley-left','cityhall_trolley-back','cityhall_gallery-y','cityhall_gallery-x'],
   workerFacings:[0,1,2,3].map(face=>({face,view:face<2?'towards':'away',mirror:CITYHALL.staffMirror(face)})),
   workerReuse:'accepted Depot postal worker, both views and mirrored facings',catReuse:'accepted tuxedo Postmistress',birdReuse:'accepted Depot pigeon',
+  chapter:{runnerFamilies:['cityhall_runner-row','cityhall_runner-column'],poses:32,growthAfter:['6-3','6-7'],activeOnlyBetweenLevels:true,workerReuse:'accepted Depot postal worker; row face1/column face0',runnerOrigins:[[84,144,0],[176,84,0]],dispatch:'accepted sorter route frames1944..2796; train_mailbag/rest at worker+(4,9,11)'},
   light:{roomSet:r.light.finalScenerySet,boardSet:r.light.boardSet},notes:['Static native4x paper faces; generated detail inputs remain editable.','Functional tunnel symbols are provisional Rule art; Piece supplies finished hoods.','All capsule/puff/worker envelopes remain outside live tile cores.']};
+}
+// Chapter-only paper runners. Native geometry is shared with64 appended atlas poses.
+let hallRunnerAxis=0;
+function shHallRunner(face,u,v){
+ shFlag=FL_ROOM;shFlat=false;
+ const across=bdMod(hallRunnerAxis?u:v,16),along=hallRunnerAxis?v:u;
+ if(across<1||across>15)return C.PT0;
+ if(across<2||across>14)return C.BR2;
+ const weave=bdMod(Math.floor(u*4)+Math.floor(v*4),7);
+ return weave===0?C.PT1:bdMod(along,16)<.5?C.PT0:C.PT2;
+}
+function cityHallRunner(axis,pose,x=0,y=0){
+ const length=axis?76:92,u=pose/32,roll=length*u,r=1.5+Math.sqrt(u)*2.4;
+ hallRunnerAxis=axis;
+ if(axis)faceTop(x,y+roll,x+16,y+length,.35,shHallRunner,C.PT0,0);
+ else faceTop(x+roll,y,x+length,y+16,.35,shHallRunner,C.PT0,0);
+ // Small layered half-round roll, with exposed cream card edges and green cloth.
+ for(let k=0;k<8;k++){
+  const d=(k-3.5)*r/4,h=Math.sqrt(Math.max(0,r*r-d*d));
+  if(axis)box(x,y+roll+d,r-h+.4,x+16,y+roll+d+r/4,r+h+.4,shHallRunner,C.PT0,0);
+  else box(x+roll+d,y,r-h+.4,x+roll+d+r/4,y+16,r+h+.4,shHallRunner,C.PT0,0);
+ }
+ // Woven pulling strap runs alongside the cleared, inactive floor.
+ if(axis){dpRod(x+1,y+roll,2,x-10,y+roll+10,11,C.BR1);}
+ else dpRod(x+roll,y+1,2,x+roll+10,y-10,11,C.BR1);
+}
+function cityHallChapterAtlasSprites(){
+ return [0,1].map(axis=>({name:'cityhall_runner-'+(axis?'column':'row'),origin:[0,0,0],cellSize:256,direction:'none',mirroredFor:'none',fps:0,loop:false,
+  frames:Array.from({length:32},(_,pose)=>({tag:'roll'+pose,draw:()=>{tOX=aOriginX;tOY=aOriginY;shBoard=0;paperPropScope++;try{cityHallRunner(axis,pose);}finally{paperPropScope--;}}}))}));
+}
+function drawHallChapter(){
+ if(CP.mode==='growth'&&HC.motion.visible){
+  paperPropScope++;try{cityHallRunner(HC.stage-1,HC.motion.pose,HC.stage===1?84:176,HC.stage===1?144:84);}finally{paperPropScope--;}
+ }else if(CP.mode==='exit'){
+  const s=HC.satchel;buildTrainProp('mailbag',1);blitSprite(s.x,s.y,s.z,false,true);
+ }
 }
 // Export and runtime share prepared paper paint and the same logical footprint.
 function tunnelPieceAtlasSprites(){
@@ -23024,28 +23091,28 @@ nsEl.replay.addEventListener('click', () => {
 if (GAME_MODE && /[?&]nightshift\b/.test(location.search)) nsLoad();
 // The chapter's cards own a separate presentation clock. The live puzzle, stars
 // and placements stay intact while a precomputed demo is watched or replayed.
-const CP={mode:'',frame:0,seen:false,seenTrain:false,train:false,depotDemo:null,depotSrc:null,src:null,demo:null,room:null,stage:0,
+const CP={mode:'',frame:0,seen:false,seenTrain:false,train:false,seenHall:false,hall:false,depotDemo:null,depotSrc:null,src:null,demo:null,room:null,stage:0,
   enterScale:1,targetScale:1,visualScale:1,enterX:0,enterY:0,sourceView:null,targetView:null,
   motion:{offset:0,driver:{x:0,y:0,face:1,walk:-1,hold:1,bob:0}},
   panel:$('chapterScene'),card:$('chapterCard'),title:$('chapterTitle'),text:$('chapterText'),
   primary:$('chapterPrimary'),secondary:$('chapterSecondary'),replay:null,focus:null};
 function cpActive(){return !!window.__chapterReady&&!!CP.mode;}
 function cpHud(){
-  if(CP.replay)CP.replay.hidden=!G_KEEP_PROGRESS||gm.custom||!/^[45]-/.test(gm.L.id)||!!gm.shift||gm.mode==='running';
+  if(CP.replay)CP.replay.hidden=!G_KEEP_PROGRESS||gm.custom||!/^[456]-/.test(gm.L.id)||!!gm.shift||gm.mode==='running';
 }
 function cpCancel(){
   if(!CP.mode)return;
   CP.mode='';CP.panel.hidden=true;hud.root.inert=screen.inert=false;
   if(G_KEEP_PROGRESS)hud.root.classList.add('on');
   if(CP.room&&G_ROOM!==CP.room)gUseRoom(CP.room);
-  if(CP.train)tcCancel();
+  if(CP.train)tcCancel();if(CP.hall)hcCancel();
   CP.room=null;CP.sourceView=CP.targetView=null;view.zoom=null;view.panX=view.panY=0;
   if(devW>1)applyScale();
 }
 function cpCard(mode,title,text,primary,secondary){
   if(!CP.mode)CP.focus=document.activeElement;
   CP.mode=mode;CP.frame=0;CP.panel.hidden=false;
-  $('chapterKicker').textContent=CP.train?'The mail train · Chapter 5':'The town depot · Chapter 4';
+  $('chapterKicker').textContent=CP.hall?'The city sorting hall · Chapter 6':CP.train?'The mail train · Chapter 5':'The town depot · Chapter 4';
   CP.title.textContent=title;CP.text.textContent=text;CP.primary.textContent=primary;
   CP.secondary.textContent=secondary||'';CP.secondary.hidden=!secondary;
   hud.root.inert=screen.inert=true;hud.root.classList.remove('on');gm.cursor=false;
@@ -23053,8 +23120,9 @@ function cpCard(mode,title,text,primary,secondary){
   view.panX=view.panY=0;CP.primary.focus&&CP.primary.focus();dirty=true;
 }
 function cpIntro(){
+  if(/^6-/.test(gm.L.id))return hcIntro();
   if(/^5-/.test(gm.L.id))return tcIntro();
-  CP.train=false;
+  CP.train=CP.hall=false;
   if(!G_KEEP_PROGRESS||gm.custom||!/^4-/.test(gm.L.id)||gm.mode==='running')return;
   CP.focus=document.activeElement;CP.room=G_ROOM;CP.seen=true;
   cpCard('intro','Doors of their own',
@@ -23064,6 +23132,7 @@ function cpIntro(){
 }
 function cpDemo(){
   if(CP.mode!=='intro'&&CP.mode!=='demo')return;
+  if(CP.hall)return hcDemo();
   if(CP.train)return tcDemo();
   CP.demo=CP.depotDemo;CP.src=CP.depotSrc;
   if(!CP.demo){
@@ -23097,11 +23166,13 @@ function cpWatch(W,o){
     W.xs[W.n]=o.x;W.ys[W.n++]=o.y;
   }
 }
-function gBoardSource(){if(CP.train&&TC.preparing)return TC.stageSrc;return cpActive()&&CP.mode==='demo'?cpPrepareDemo():G_SRC;}
+function gBoardSource(){if(CP.hall&&CP.mode==='growth')return HC.stageSrc;if(CP.train&&TC.preparing)return TC.stageSrc;return cpActive()&&CP.mode==='demo'?cpPrepareDemo():G_SRC;}
 function cpBegin(){
   if(!CP.mode)return;
   if(CP.mode==='enter')return;
+  if(CP.mode==='exit'&&gm.L.id==='5-15'){gLoad(55);hcIntro();return;}
   if(CP.mode==='exit'&&gm.L.id==='4-15'){gLoad(40);tcIntro();return;}
+  if(CP.hall)loopFrame=CITYLIFE.frame;
   if(CP.train){loopFrame=TC.lightFrame;TC.carriage=TC.carriageGrey=null;TC.layout=null;}
   CP.enterScale=scale;CP.enterX=WS.camX;CP.enterY=WS.camY;
   if(CP.room&&G_ROOM!==CP.room)gUseRoom(CP.room);
@@ -23113,12 +23184,12 @@ function cpBegin(){
 // through the wide view and scales its presentation; no intermediate view or
 // image/depot buffers are created by the animation loop.
 function cpSaveView(){
-  return {scale,LW,LH,dstX,dstY,viewX0,viewY0,img,img32,vig:VIG.slice(),depot:DP_VIEW,backdrop:BD.frame,
+  return {scale,LW,LH,dstX,dstY,viewX0,viewY0,img,img32,vig:VIG.slice(),depot:DP_VIEW,backdrop:BD?BD.frame:null,
     density:paperViewScale,paper:paperImage,rgba:paperRGBA,depth:paperDepth,index:paperIndex,hud:gHudPx,side:gFlapSidePx};
 }
 function cpUseView(v){
   scale=view.scale=v.scale;LW=v.LW;LH=v.LH;dstX=v.dstX;dstY=v.dstY;viewX0=v.viewX0;viewY0=v.viewY0;
-  img=v.img;img32=v.img32;VIG=v.vig;DP_VIEW=v.depot;BD.frame=v.backdrop;
+  img=v.img;img32=v.img32;VIG=v.vig;DP_VIEW=v.depot;if(BD)BD.frame=v.backdrop;
   paperViewScale=v.density;paperImage=v.paper;paperRGBA=v.rgba;paperDepth=v.depth;paperIndex=v.index;
   gHudPx=v.hud;gFlapSidePx=v.side;paperReady=false;
 }
@@ -23137,7 +23208,7 @@ function cpPrepareEntry(){
 }
 function cpFinishEntry(){
   if(CP.targetView)cpUseView(CP.targetView);
-  CP.mode='';if(CP.train)tcCancel();CP.room=null;CP.sourceView=CP.targetView=null;view.zoom=null;hud.root.inert=screen.inert=false;
+  CP.mode='';if(CP.train)tcCancel();if(CP.hall)hcCancel();CP.room=null;CP.sourceView=CP.targetView=null;view.zoom=null;hud.root.inert=screen.inert=false;
   const target=CP.focus&&CP.focus.tagName==='BUTTON'&&!CP.focus.disabled?CP.focus:hud.send;
   if(target.focus)target.focus();
 }
@@ -23149,7 +23220,7 @@ function cpPresent(output,resolution){
 }
 function cpNext(){
   if(!G_KEEP_PROGRESS||gm.custom||gm.daily||gm.practice||gm.shift)return false;
-  if(tcNext())return true;
+  if(hcNext()||tcNext())return true;
   if(gm.L.id==='3-10'){gLoad(25);cpIntro();return true;}
   if(gm.L.id==='4-6'||gm.L.id==='4-9'){
     const stage=gm.L.id==='4-6'?1:2;gLoad(gm.li+1);CP.room=G_ROOM;CP.stage=stage;
@@ -23165,14 +23236,14 @@ function cpNext(){
   }
   return false;
 }
-function cpPicked(){if(gm.L.id==='5-1'&&!CP.seenTrain&&!progress.levels['5-1'])tcIntro();if(gm.L.id==='4-1'&&!CP.seen&&!progress.levels['4-1'])cpIntro();}
+function cpPicked(){if(gm.L.id==='6-1'&&!CP.seenHall&&!progress.levels['6-1'])hcIntro();if(gm.L.id==='5-1'&&!CP.seenTrain&&!progress.levels['5-1'])tcIntro();if(gm.L.id==='4-1'&&!CP.seen&&!progress.levels['4-1'])cpIntro();}
 function cpInitial(){cpHud();cpPicked();}
 function cpUpdate(){
   CP.frame++;
   if(CP.mode==='enter'&&CP.frame>=72)cpFinishEntry();
 }
 function cpWorld(){
-  if(CP.train)tcWorld();
+  if(CP.hall)hcWorld();else if(CP.train)tcWorld();
   const mode=CP.mode,small=devW>devH&&window.innerHeight<=520;
   const panel=mode==='enter'?0:small?0:Math.ceil(CP.card.offsetHeight*devDpr);
   const wide=VIEWPORT.roomFitScale(devW,Math.max(100,devH-panel-32*devDpr),ROOM_FIT_W,ROOM_FIT_H);
@@ -23192,7 +23263,7 @@ function cpWorld(){
     gCamera(CP.targetScale);const x=WS.camX,y=WS.camY;
     WS.camX=Math.round(CP.enterX+(x-CP.enterX)*v);WS.camY=Math.round(CP.enterY+(y-CP.enterY)*v);
   }
-  if(CP.train){dirty=true;return;}
+  if(CP.train||CP.hall){dirty=true;return;}
   if(mode==='growth'){
     DEPOTCHAPTER.growth(CP.stage,CP.frame,CP.motion);
     Object.assign(DPLIFE.driver,CP.motion.driver);DPLIFE.driver.reach=0;DPLIFE.driver.pencil=false;DPLIFE.driver.pour=false;DPLIFE.driver.scratch=0;
@@ -23228,7 +23299,7 @@ const TC={stage:0,demo:null,src:null,lightFrame:1080,carriage:null,carriageGrey:
  motion:{approach:0,joint:0,bump:0,phase:0,lightFrame:0}};
 function tcIntro(){
  if(!G_KEEP_PROGRESS||gm.custom||gm.mode==='running')return;
- CP.focus=document.activeElement;CP.room=G_ROOM;CP.train=true;CP.seenTrain=true;TC.stage=0;
+ CP.focus=document.activeElement;CP.room=G_ROOM;CP.train=true;CP.hall=false;CP.seenTrain=true;TC.stage=0;
  cpCard('intro','The night mail',
   "Some cats live far beyond town, so the post goes by train. Tonight you're sorting aboard the night mail, as it rattles through the countryside.",
   'Start sorting','Watch the points');cpWorld();
@@ -23261,7 +23332,7 @@ function tcNext(){
  if(gm.L.id==='5-15'){
   CP.room=G_ROOM;CP.train=true;TC.stage=0;
   cpCard('exit','The night mail delivered','The last cat is home. The satchel is ready for the morning collection, and the lamps glow softly as the night mail rolls on.',
-   'Back to the carriage','Watch the points');cpWorld();return true;
+   'Enter the city hall','Watch the points');cpWorld();return true;
  }
  return false;
 }
@@ -23275,6 +23346,64 @@ function tcWorld(){
  }
 }
 function tcCancel(){TC.carriage=TC.carriageGrey=null;TC.layout=null;TC.preparing=false;CP.train=false;}
+// Hall owns only presentation state; accepted room routes and live puzzle stay intact.
+const HC={stage:0,demo:null,src:null,stageSrc:null,motion:{pose:0,u:0,x:0,y:0,z:0,face:1,walk:0,visible:false},satchel:{x:0,y:0,z:0},dispatch:{worldFrame:1944,x:0,y:0,z:0,face:2,bagX:0,bagY:0,bagZ:0,stopped:false}};
+function hcIntro(){
+ if(!G_KEEP_PROGRESS||gm.custom||gm.mode==='running')return;
+ CP.focus=document.activeElement;CP.room=G_ROOM;CP.hall=true;CP.train=false;CP.seenHall=true;HC.stage=0;
+ cpCard('intro','The city sorting hall',
+  'The train brought you to the city, where the grand sorting hall sends cats across town through a web of brass tunnels. In they pop, and out they pop, somewhere else entirely.',
+  'Start sorting','Watch the tunnels');cpWorld();
+}
+function hcDemo(){
+ if(CP.mode!=='intro'&&CP.mode!=='demo')return;
+ if(!HC.demo){const d=HC.demo=CITYCHAPTER.demo(64,64),s=HC.src=makeBoardSrc(3);s.ox=s.oy=64;s.w=7;s.h=5;s.rails=true;s.n=3;s.traces=d.traces;
+  for(const h of d.level.hatches)s.hatches.push({x:h.x,y:h.y,dir:GR_DIR[h.dir]});
+  for(const b of d.level.baskets)s.baskets.push({x:b.x,y:b.y,coat:GR_COAT[b.coat]});
+  for(const t of d.turns)s.turntables.push({x:t.x,y:t.y,dir:GR_DIR[t.dir],kind:GR_TYPE[t.type]});
+  for(const p of d.level.gates)s.gates.push({x:p.x,y:p.y,a:GR_DIR[p.exits[0]],b:GR_DIR[p.exits[1]],pose:BOARDANIM.makeGateOut()});
+  for(const p of d.level.dogs)s.dogs.push(p);
+  for(let i=0;i<d.level.flaps.length;i++){const f=d.level.flaps[i];s.edgeFlaps.push({x:f.x,y:f.y,side:GR_DIR[f.side],coat:GR_COAT[f.coat],index:i});}
+  for(let i=0;i<d.level.tunnels.length;i++){const t=d.level.tunnels[i],symbol=GR_TUNNEL_SYMBOLS.indexOf(t.symbol);s.tunnels.push({x:t.a.x,y:t.a.y,pair:i,symbol},{x:t.b.x,y:t.b.y,pair:i,symbol});}
+ }
+ CP.demo=HC.demo;CP.src=HC.src;
+ cpCard('demo','In here, out over there',
+  'Blue pops across the hall to a basket. Ginger meets a dog and bounces back through the tunnel. The last cat takes the other turn and slips out through the flap. The matching symbols mark both ends; cats keep their direction.',
+  'Start sorting','Replay demo');cpWorld();
+}
+function hcNext(){
+ if(!/^6-/.test(gm.L.id))return false;
+ if(gm.L.id==='6-3'||gm.L.id==='6-7'){
+  const stage=gm.L.id==='6-3'?1:2;gLoad(gm.li+1);CP.room=G_ROOM;CP.hall=true;CP.train=false;HC.stage=stage;
+  cpCard('growth',stage===1?'More marble, more post':'The whole grand floor',
+   stage===1?'A new pair waits beside the runner. Roll back the carpet to open the rest of the marble row for the next collection.':
+   'Another pair is ready beside the last runner. Once the carpet is clear, all eight columns and six rows can take the city’s post.',
+   'Continue sorting');if(typeof hcPrepareGrowth==='function')hcPrepareGrowth();cpWorld();return true;
+ }
+ if(gm.L.id==='6-15'){
+  CP.room=G_ROOM;CP.hall=true;CP.train=false;HC.stage=0;
+  cpCard('exit','A whole city, delivered',
+   'The last hood gives a little sigh. Every cat is home, and the satchel is on its way to the next collection. There may be rather larger parcels waiting beyond the hall.',
+   'Back to the hall','Watch the tunnels');cpWorld();return true;
+ }
+ return false;
+}
+function hcPrepareGrowth(){
+ const s=HC.stageSrc=makeBoardSrc(0),B=gm.L.board;s.ox=G_SRC.ox;s.oy=G_SRC.oy;s.w=B.w;s.h=B.h;s.rails=true;
+ const x=HC.stage===1?0:7,y=HC.stage===1?5:0;
+ s.tunnels.push({x,y,pair:0,symbol:HC.stage-1},{x:1,y:1,pair:0,symbol:HC.stage-1});
+}
+function hcWorld(){
+ if(CP.mode==='exit'){
+  const d=CITYCHAPTER.dispatch(CP.frame,HC.dispatch);cityHallStep(d.worldFrame);HC.satchel.x=d.bagX;HC.satchel.y=d.bagY;HC.satchel.z=d.bagZ;
+ }else{
+  cityHallStep(CP.mode==='enter'?loopFrame:CP.frame+(CP.mode==='growth'?1200:600));
+  if(CP.mode==='growth'){
+   const m=CITYCHAPTER.growth(HC.stage,CP.frame,HC.motion),a=CITYLIFE.workers[0];a.x=m.x;a.y=m.y;a.z=0;a.face=m.face;a.action=m.walk<0?'check':'walk';a.frame=Math.max(0,m.walk);
+  }
+ }
+}
+function hcCancel(){CP.hall=false;HC.stageSrc=null;}
 // ============================================================================
 // 44 LEVEL EDITOR (hidden: add ?edit to the URL). Set the board size and time
 // limit, place hatches / baskets / dogs, set each hatch's cats and the tray,
@@ -23951,11 +24080,10 @@ if (/[?&]backdropReview\b/.test(location.search)) {
 boot();
 </script>
 <script>
-document.title='Cats by Post — City Hall levels';
-const cityLevels=LEVELS.filter(L=>/^6-/.test(L.id));
-for(const L of cityLevels)if(!progress.unlocked.includes(L.id))progress.unlocked.push(L.id);
-const cityRequested=new URLSearchParams(location.search).get('level');
-const cityReview=cityLevels.find(L=>L.id===cityRequested)||cityLevels.find(L=>L.id===progress.current)||cityLevels[0];
-cpCancel();gLoad(LEVELS.indexOf(cityReview));
+document.title='Cats by Post — The city sorting hall';
+for(const L of LEVELS.filter(L=>/^6-/.test(L.id)||L.id==='5-15'))if(!progress.unlocked.includes(L.id))progress.unlocked.push(L.id);
+const hallChapterRequested=new URLSearchParams(location.search).get('level');
+const hallChapterLevel=LEVELS.find(L=>L.id===hallChapterRequested)||LEVELS.find(L=>L.id===progress.current&&/^6-/.test(L.id))||LEVELS[55];
+cpCancel();gLoad(LEVELS.indexOf(hallChapterLevel));if(!hallChapterRequested)hcIntro();
 </script></body>
 </html>
