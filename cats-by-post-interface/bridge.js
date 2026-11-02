@@ -54,7 +54,7 @@
     ctx.putImageData(frame,0,0);return faceCache[coat]=c.toDataURL();
   }
   function state(){const s=gm.shift;return{sample:sampleMode,resultStars:gm.mode==='won'?SCORE.stars(gm.L,gm.chutes.length,gm.attempts,gm.hinted):null,id:gm.L.id,title:gm.L.title,li:gm.li,room:ACTIVE_ROOM.id,board:gm.L.board,mode:gm.mode,phase:s?.phase||gm.mode,paused:s?!!s.paused:tacticalPaused||frozen,tacticalPaused:s?!!s.paused:tacticalPaused,frozen,
-    tray:{...gm.tray},sel:gm.sel,chutes:clone(gm.chutes),hinted:gm.hinted,attempts:gm.attempts,tick:gm.sim?.tick||0,home:s?s.catsHome:gm.sim?Array.from(gm.sim.st).filter(v=>v===GL_DONE).length:0,
+    tray:{...gm.tray},sel:gm.sel,chutes:clone(gm.chutes),hinted:gm.hinted,attempts:gm.attempts,target:gm.L.minTurntables,tick:gm.sim?.tick||0,home:s?s.catsHome:gm.sim?Array.from(gm.sim.st).filter(v=>v===GL_DONE).length:0,
     shift:s?{run:clone(s.run),round:s.round,strikes:s.strikes,phase:s.phase,paused:s.paused,fast:s.fastForward,offers:s.cardOffers,choice:s.cardChoice,walkies:s.pendingWalkies,walkiesFrom:nsui.walkiesFrom,best:nsBest(),sleepers:s.sleepers.length}:null,
     status:hud.status.textContent,pending:gPracticePending,queue:queue(),undo:editable()&&history.size>0,editable:editable(),hatches:gm.L.hatches.map((h,i)=>({...h,number:i+1,...project(h.x+.5,h.y+.5)})),
     progress:clone(progress),collection:gCollection(),daily:gm.daily?{key:gm.daily.key,number:gm.daily.entry.number}:null,practice:gm.practice?{key:gm.practice.key,weekday:gm.practice.entry.weekday,seed:gm.practice.entry.seed}:null,camera:viewState()};
