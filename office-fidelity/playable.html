@@ -223,7 +223,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "office-fidelity-d5ee791485";
+const BUILD_ID = "office-fidelity-ccf2bd61c9";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -15863,7 +15863,7 @@ function paperResolveFrame() {
       }
     }
   }
-  if(!paperAtlasBuilding)paperCtx.putImageData(paperImage,0,0);paperReady=true;
+  if(typeof fidelityNightResolve==='function')fidelityNightResolve();if(!paperAtlasBuilding)paperCtx.putImageData(paperImage,0,0);paperReady=true;
 }
 function paperOutputCanvas(){return paperEnabled&&paperReady?paperCanvas:offCanvas;}
 function paperOutputScale(){return paperEnabled&&paperReady?paperRenderScale():1;}
@@ -16382,7 +16382,7 @@ function paperResolveStatic(){
       const i=y*LW+x,si=wy*WW+wx;
       if(sFlg[si]&FL_GLASS)continue;
       // Keep runtime lamp changes, but the paper surface has no checker vignette.
-      const delta=(fIdx[i]&127)===(sIdx[si]&127)&&fDep[i]===sDep[si]?fLvl[i]-sLvl[si]+(paperVignette&&VIG[i]&&sLvl[si]>0?1:0):0;
+      const delta=typeof fidelityNightActive==='function'&&fidelityNightActive()?0:(fIdx[i]&127)===(sIdx[si]&127)&&fDep[i]===sDep[si]?fLvl[i]-sLvl[si]+(paperVignette&&VIG[i]&&sLvl[si]>0?1:0):0;
       for(let sy=0;sy<S;sy++)for(let sx=0;sx<S;sx++){
         const p=(y*S+sy)*W+x*S+sx;
         const k=(wy*PAPER_SCALE+paperSampleOffset(sy,S))*PAPER_STATIC_W+wx*PAPER_SCALE+paperSampleOffset(sx,S);
@@ -19761,10 +19761,11 @@ async function fidelityStart(){
   // Keep every navigation path inside this one-level study, including the N key.
   hud.next.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();},true);
   gNext=function(){};hud.next.remove();hud.pick.remove();
-  fidelityPrepareAnimation();fidelityDiscTextures();fidelityReset();fidelityPrepareWorker();fidelityPreparePostalFixtures();fidelityPrepareFoliageClock();fidelityPrepareLamp();fidelityPrepareCounter();__so.seek(600);fidelityPrepareLight();fidelityPrepareBackdrop();
-  const bar=document.createElement('div');bar.className='row fidelity-bar';bar.innerHTML='<strong>Office fidelity · daytime backdrop</strong><small>Send to watch both cats settle into their baskets, or rotate the ginger disc to experiment.</small><button id="fidelityReset" type="button">Replay study</button>';
+  fidelityPrepareAnimation();fidelityDiscTextures();fidelityReset();fidelityPrepareWorker();fidelityPreparePostalFixtures();fidelityPrepareFoliageClock();fidelityPrepareLamp();fidelityPrepareCounter();__so.seek(600);fidelityPrepareLight();fidelityPrepareBackdrop();fidelityNightPrepare();
+  const bar=document.createElement('div');bar.className='row fidelity-bar';bar.innerHTML='<strong>Office fidelity · lighting pilot</strong><small>Send to watch both cats settle into their baskets, or rotate the ginger disc to experiment.</small><button id="fidelityReset" type="button">Replay study</button><button id="fidelityLight" type="button" style="min-width:15ch">View daytime</button>';
   hud.root.insertBefore(bar,hud.root.firstChild);
   document.getElementById('fidelityReset').addEventListener('click',fidelityReset);
+  document.getElementById('fidelityLight').addEventListener('click',()=>fidelityNightSet(!fidelityNight.enabled));
   hud.next.hidden=true;hud.pick.hidden=true;
   OFFICE_FIDELITY.ready=true;OFFICE_FIDELITY.loadMs=performance.now()-OFFICE_FIDELITY.started;gMeasureHud();gCamera();dirty=true;
 }
@@ -21340,6 +21341,93 @@ present=function(){
 };
 const fidelityBackdropEdgeCSS=backdropEdgeCSS;
 backdropEdgeCSS=function(){return fidelityBackdropActive()?fidelityBackdrop.edgeCSS:fidelityBackdropEdgeCSS();};
+
+// Isolated projected lighting study. Source art, simulation and native buffers stay original.
+const fidelityNight={enabled:true,ready:false,frames:0,toggles:0,fieldBuilds:0,roofBuilds:0,graded:0,
+ field:new Uint32Array(WN),floor:new Float32Array(WN),tables:new Uint32Array(2*NLVL*PAL_N),gray:new Uint32Array(2*NLVL*PAL_N),roofs:Object.create(null),dayFloor:null};
+function fidelityNightActive(){return fidelityNight.ready&&fidelityNight.enabled&&OFFICE_FIDELITY.ready&&!paperAtlasBuilding&&ACTIVE_ROOM.id==='office';}
+function fidelityNightPrepare(){
+ const d=fidelityNight;d.dayFloor=fidelityFloorLight;d.floor.fill(1);
+ for(let h=0;h<2;h++)for(let l=0;l<NLVL;l++)for(let c=0;c<PAL_N;c++){
+  const i=h*NLVL*PAL_N+l*PAL_N+c,k=h*NLVL*PAL_N+Math.min(l,2)*PAL_N+c;d.tables[i]=BASE_TABLES.res[k];d.gray[i]=BASE_TABLES.gray[k];
+ }
+ const B=gm.L.board,bx=(gBoardX(B)+B.w/2)*TILE,by=(gBoardY(B)+B.h/2)*TILE,cx=OX+bx-by,cy=OY+(bx+by)/2-5,lx=OX+LAMP_X-LAMP_Y,ly=OY+(LAMP_X+LAMP_Y)/2-LAMP_Z+21;
+ for(let y=0;y<WH;y++)for(let x=0;x<WW;x++){
+  const a=(x-cx)/78,b=(y-cy)/43,board=Math.exp(-a*a-b*b),u=(x-lx)/27,v=(y-ly)/34,warm=Math.exp(-u*u-v*v);
+  const r=Math.round(128*(.47+.43*board+.66*warm)),g=Math.round(128*(.54+.34*board+.38*warm)),bl=Math.round(128*(.73+.17*board+.02*warm));d.field[y*WW+x]=(bl<<16)|(g<<8)|r;
+ }d.fieldBuilds++;
+ for(const id of ['backdrop-far','backdrop-near']){
+  const src=fidelitySurfaces[id],r={id,width:src.width,height:src.height,rgba:new Uint8ClampedArray(src.rgba.length)};
+  for(let k=0;k<src.rgba.length;k+=4){r.rgba[k]=Math.round(src.rgba[k]*.24+11);r.rgba[k+1]=Math.round(src.rgba[k+1]*.30+15);r.rgba[k+2]=Math.round(src.rgba[k+2]*.45+23);r.rgba[k+3]=src.rgba[k+3];}
+  if(id==='backdrop-near'){
+   // Existing printed window panes, not new openings in the roof silhouettes.
+   for(const box of [[33,115,23,24],[426,103,23,25],[560,120,23,23],[964,121,23,24]])for(let y=box[1];y<box[1]+box[3];y++)for(let x=box[0];x<box[0]+box[2];x++){
+    const k=(y*r.width+x)*4;if(src.rgba[k+3]<240||src.rgba[k]>155||src.rgba[k+1]>155||src.rgba[k+2]>150)continue;
+    r.rgba[k]=222;r.rgba[k+1]=167;r.rgba[k+2]=87;
+   }
+  }d.roofs[id]=r;
+ }d.roofBuilds++;
+ d.retainedBytes=d.field.byteLength+d.floor.byteLength+d.tables.byteLength+d.gray.byteLength+d.roofs['backdrop-far'].rgba.byteLength+d.roofs['backdrop-near'].rgba.byteLength;
+ d.ready=true;fidelityFloorLight=d.floor;fidelityMaterialInvalidate();fidelityBackdrop.cx=NaN;fidelityBackdrop.LW=0;
+}
+function fidelityNightSet(enabled){
+ const d=fidelityNight;enabled=!!enabled;if(d.enabled===enabled)return;d.enabled=enabled;d.toggles++;
+ if(d.ready){fidelityFloorLight=enabled?d.floor:d.dayFloor;fidelityMaterialInvalidate();fidelityBackdrop.cx=NaN;fidelityBackdrop.LW=0;}
+ const button=document.getElementById('fidelityLight');if(button){button.textContent=enabled?'View daytime':'View nighttime';button.dataset.light=enabled?'night':'day';}dirty=true;
+}
+const fidelityNightOriginalResolve=resolve;
+resolve=function(){
+ if(!fidelityNightActive())return fidelityNightOriginalResolve();
+ const res=RES32,gray=GRAY32;RES32=fidelityNight.tables;GRAY32=fidelityNight.gray;
+ try{return fidelityNightOriginalResolve();}finally{RES32=res;GRAY32=gray;}
+};
+const fidelityNightOriginalSky=fidelityBackdropSky;
+fidelityBackdropSky=function(y){
+ if(!fidelityNightActive())return fidelityNightOriginalSky(y);
+ const t=clamp((y+112)/112,0,1),g=clamp(y/80,0,1);
+ return y<0?fidelityBackdropRGB(28+35*t,39+36*t,64+32*t):fidelityBackdropRGB(63-9*g,75-9*g,96-19*g);
+};
+const fidelityNightOriginalLayer=fidelityBackdropLayer;
+fidelityBackdropLayer=function(r,x,y){return fidelityNightOriginalLayer(fidelityNightActive()&&fidelityNight.roofs[r.id]?fidelityNight.roofs[r.id]:r,x,y);};
+const fidelityNightOriginalBake=fidelityBackdropBake;
+fidelityBackdropBake=function(cx,cy){
+ fidelityNightOriginalBake(cx,cy);if(!fidelityNightActive())return;
+ const d=fidelityBackdrop;
+ // Small paper moon and a few fixed pinpricks. No motion or frame-time work.
+ for(let y=69;y<=111;y++)for(let x=741;x<=783;x++){
+  const dx=x-762,dy=y-90,q=Math.sqrt(dx*dx+dy*dy);if(q>19)continue;const p=y*d.width+x,c=fidelityBlend(d.rgba[p],0xffcbd7e5,Math.round(230*clamp(19-q,0,1)));d.rgba[p]=c;d.gray[p]=fidelityBackdropGrey(c);
+ }
+ for(const s of [[104,62],[292,117],[465,46],[619,141],[877,48]]){const p=s[1]*d.width+s[0],c=fidelityBlend(d.rgba[p],0xffd3dce4,150);d.rgba[p]=c;d.gray[p]=fidelityBackdropGrey(c);}
+};
+function fidelityNightContact(cx,cy,rx,ry){
+ const S=paperRenderScale(),W=LW*S,ax=Math.round(cx-cy)+OX-viewX,ay=Math.round((cx+cy)/2)+OY-viewY;
+ for(let y=Math.max(0,ay-ry);y<Math.min(LH,ay+ry+1);y++)for(let x=Math.max(0,ax-rx);x<Math.min(LW,ax+rx+1);x++){
+  const wx=x+viewX,wy=y+viewY;if(wx<0||wy<0||wx>=WW||wy>=WH)continue;const si=wy*WW+wx;if(!(sFlg[si]&FL_FLOOR))continue;
+  for(let sy=0;sy<S;sy++)for(let sx=0;sx<S;sx++){
+   const X=x+(paperSampleOffset(sx,S)+.5)/4-.5-ax,Y=y+(paperSampleOffset(sy,S)+.5)/4-.5-ay,e=X*X/(rx*rx)+Y*Y/(ry*ry);if(e>=1)continue;
+   const p=(y*S+sy)*W+x*S+sx;if(paperDepth[p]!==sDep[si])continue;paperRGBA[p]=fidelityBlend(paperRGBA[p],0xff171c22,Math.round((1-e)*52));
+  }
+ }
+}
+function fidelityNightGrade(c,g){
+ let r=Math.min(255,((c&255)*(g&255)+64)>>7),b=Math.min(255,((c>>>16&255)*(g>>>16&255)+64)>>7),v=Math.min(255,((c>>>8&255)*(g>>>8&255)+64)>>7);
+ if(grayscale)r=v=b=Math.round(r*.299+v*.587+b*.114);return (0xff000000|b<<16|v<<8|r)>>>0;
+}
+function fidelityNightResolve(){
+ if(!fidelityNightActive())return;
+ fidelityNightContact(WS.sorter.x,WS.sorter.y,6,2);if(cat.z===0)fidelityNightContact(cat.x,cat.y,5,2);
+ if(WS.walker.on&&WS.walker.z===0)fidelityNightContact(WS.walker.x,WS.walker.y,5,2);
+ const d=fidelityNight,S=paperRenderScale(),W=LW*S;d.graded=0;
+ for(let y=0;y<LH;y++)for(let x=0;x<LW;x++){
+  const wx=x+viewX,wy=y+viewY,g=wx>=0&&wy>=0&&wx<WW&&wy<WH?d.field[wy*WW+wx]:0x5d453c;
+  for(let sy=0;sy<S;sy++)for(let sx=0;sx<S;sx++){
+   const p=(y*S+sy)*W+x*S+sx,background=fidelityBackdropFine(wx,wy,paperSampleOffset(sx,S),paperSampleOffset(sy,S));
+   paperRGBA[p]=fidelityNightGrade(paperRGBA[p],background?0x5d453c:g);d.graded++;
+  }
+ }const edge=fidelityNightGrade(fidelityBackdrop.rows[0],0x5d453c);
+ if(d.edgeColour!==edge){d.edgeColour=edge;d.edgeCSS='rgb('+(edge&255)+','+(edge>>>8&255)+','+(edge>>>16&255)+')';}
+ if(fidelityBackdrop.edgeCSS!==d.edgeCSS)fidelityBackdrop.edgeCSS=d.edgeCSS;d.frames++;
+}
 
 </script>
 </body>
