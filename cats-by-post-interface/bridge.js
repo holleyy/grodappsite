@@ -90,7 +90,7 @@
     clear:gClear,hint:gHint,
     send(){if(precisionStory()){window.Lab.resume();return}history.clear();frozen=false;tacticalPaused=false;paused=false;if(gm.shift&&gm.shift.paused)nsSend();else if(!gm.shift)gSend();changed()},
     arrange(){tacticalPaused=false;frozen=false;paused=false;if(gm.shift)NIGHTSHIFT.setPaused(gm.shift,true);else gToEdit();history.clear();gHud();changed()},
-    stop(){tacticalPaused=false;if(gm.shift)NIGHTSHIFT.setPaused(gm.shift,true);else gToEdit();frozen=false;paused=false;history.clear();gHud();changed()},
+    stop(){tacticalPaused=false;if(gm.shift)NIGHTSHIFT.setPaused(gm.shift,true);else{if(gm.mode==='running'&&G_KEEP_PROGRESS){if(gm.daily)progressDaily(gm.daily.key,false);if(gm.practice)progressPracticeAttempt(gm.practice.key,false)}gToEdit()}frozen=false;paused=false;history.clear();gHud();changed()},
     fast(){if(gm.shift){NIGHTSHIFT.setFastForward(gm.shift,!gm.shift.fastForward);gHud()}},
     card(id){history.clear();nsChooseCard(id);changed()},nextRound(){history.clear();nsNext();camera();changed()},
     grey(value){grayscale=!!value;dirty=true},
