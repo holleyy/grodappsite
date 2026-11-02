@@ -223,7 +223,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "office-fidelity-fabc6eef2e";
+const BUILD_ID = "office-fidelity-193cb22633";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -19762,7 +19762,7 @@ async function fidelityStart(){
   hud.next.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();},true);
   gNext=function(){};hud.next.remove();hud.pick.remove();
   fidelityPrepareAnimation();fidelityDiscTextures();fidelityReset();fidelityPrepareWorker();fidelityPreparePostalFixtures();fidelityPrepareFoliageClock();fidelityPrepareLamp();fidelityPrepareCounter();__so.seek(600);fidelityPrepareLight();
-  const bar=document.createElement('div');bar.className='row fidelity-bar';bar.innerHTML='<strong>Office fidelity · daylight study</strong><small>Send to watch both cats settle into their baskets, or rotate the ginger disc to experiment.</small><button id="fidelityReset" type="button">Replay study</button>';
+  const bar=document.createElement('div');bar.className='row fidelity-bar';bar.innerHTML='<strong>Office fidelity · cabinet finish</strong><small>Send to watch both cats settle into their baskets, or rotate the ginger disc to experiment.</small><button id="fidelityReset" type="button">Replay study</button>';
   hud.root.insertBefore(bar,hud.root.firstChild);
   document.getElementById('fidelityReset').addEventListener('click',fidelityReset);
   hud.next.hidden=true;hud.pick.hidden=true;
@@ -20727,13 +20727,14 @@ function fidelityPostalPack(r,g,b){return (255<<24)|(clamp(Math.round(b),0,255)<
 function fidelityPostalGray(c){const v=Math.round((c&255)*.299+(c>>>8&255)*.587+(c>>>16&255)*.114);return (255<<24)|(v<<16)|(v<<8)|v;}
 function fidelityPostalRegion(name,x0,y0,z0,x1,y1,z1,capacity){
  const x=Math.floor(x0-y1+OX)-2,y=Math.floor((x0+y0)*.5-z1+OY)-2,w=Math.ceil(x1-y0+OX)+2-x,h=Math.ceil((x1+y1)*.5-z0+OY)+2-y,n=w*h*16;
- if(capacity<1||capacity>65535)throw Error('Postal fixture compact capacity outside Uint16 range');
- const r={name,x,y,w,h,capacity,count:0,lookup:new Uint16Array(n),idx:new Uint8Array(capacity),dep:new Int16Array(capacity),rgba:new Uint32Array(capacity),gray:new Uint32Array(capacity),samples:new Uint32Array(capacity)};
- fidelityPostalFixtures.retainedBytes+=n*2+capacity*15;return r;
+ if(capacity<1||capacity>131072)throw Error('Postal fixture bounded source capacity exceeded');
+ const r={name,x,y,w,h,capacity,count:0,lookup:capacity>65535?new Uint32Array(n):new Uint16Array(n),idx:new Uint8Array(capacity),dep:new Int16Array(capacity),rgba:new Uint32Array(capacity),gray:new Uint32Array(capacity),samples:new Uint32Array(capacity)};
+ fidelityPostalFixtures.retainedBytes+=r.lookup.byteLength+capacity*15;return r;
 }
 function fidelityPreparePostalFixtures(){
  const d=fidelityPostalFixtures;if(d.prepared)return;d.prepared=true;
  d.regions.push(fidelityPostalRegion('shelf',-2,-1,0,42,16,46,45056),fidelityPostalRegion('conveyor',-1,CV_Y0-3,0,CV_X1+2,CV_Y1+3,CV_Z+22,26624),fidelityPostalRegion('trolley',TR_X0-2,TR_Y0-2,0,TR_X1+2,TR_Y1+2,20,8192),fidelityPostalRegion('carriers',162,0,0,177,15,16,8192));
+ d.regions.push(fidelityPostalRegion('cabinet',BANK_X0-3,0,0,BANK_X1+3,GY0,BANK_Z1+3,81920));
  for(let n=0;n<32;n++){const capacity=n===31?4096:1024,s={capacity,source:new Uint8Array(capacity),depth:new Int16Array(capacity),mask:new Uint8Array(capacity),stripped:new Uint8Array(capacity),underIdx:new Uint8Array(capacity),underLvl:new Uint8Array(capacity),underDep:new Int16Array(capacity)};d.slots.push(s);d.retainedBytes+=capacity*9;}
  OFFICE_FIDELITY.postalFixtureBytes=d.retainedBytes;
 }
@@ -20801,6 +20802,7 @@ paperStaticEmit=function(px,py,x,y,z,face,col){
  const d=fidelityPostalFixtures,r=d.region,k=py*paperStaticWidth+px,before=d.prepared&&r?paperStaticDep[k]:0;
  fidelityPostalOriginalStaticEmit(px,py,x,y,z,face,col);
  if(!d.prepared||!r||!paperStaticTarget()||Math.round((x+y+z)*4)+shBias<before)return;
+ if(d.scope===9&&d.shader!==shWood&&d.shader!==shCornice&&d.shader!==shPlinth)return;
  const X=px-r.x*4,Y=py-r.y*4;if(X<0||Y<0||X>=r.w*4||Y>=r.h*4)return;
  const a=Y*r.w*4+X,kind=fidelityPostalKind(d.shader),u=face===F_TOP?x-d.a0:face===F_Y?x-d.a0:y-d.a0,v=face===F_TOP?y-d.a1:z-d.a2;
  const w=kind===2?(face===F_X?pD:pW):d.fw,h=kind===2?(face===F_TOP?pD:pH):d.fh;
@@ -20814,6 +20816,7 @@ function fidelityPostalBake(original,scope,region){return function(){
  try{return original.apply(this,arguments);}finally{d.scope=oldScope;d.region=oldRegion;d.ready=true;d.bakes++;}
 };}
 bakeShelf=fidelityPostalBake(bakeShelf,1,0);bakeConveyor=fidelityPostalBake(bakeConveyor,3,1);bakeTrolley=fidelityPostalBake(bakeTrolley,4,2);bakeCarriers=fidelityPostalBake(bakeCarriers,5,3);
+bakeBank=fidelityPostalBake(bakeBank,9,4);
 // Trolley parcels are emitted by bakeExtras rather than bakeTrolley.
 const fidelityPostalOriginalParcel=parcel;
 parcel=function(x,y,z,w,h,depth,seed){const d=fidelityPostalFixtures,r=d.region;const scoped=d.prepared&&!r&&tBake&&x>=TR_X0&&y>=TR_Y0;if(scoped)d.region=d.regions[2];try{return fidelityPostalOriginalParcel(x,y,z,w,h,depth,seed);}finally{d.region=r;}};
@@ -20845,9 +20848,9 @@ faceX=function(a,b,c,e,z,sh,dk,olm){return fidelityPostalFace(fidelityPostalOrig
 faceY=function(a,b,c,e,z,sh,dk,olm){return fidelityPostalFace(fidelityPostalOriginalY,F_Y,a,b,c,e,z,sh,dk,olm);};
 const fidelityPostalOriginalBegin=paperBeginFrame;
 paperBeginFrame=function(){fidelityPostalOriginalBegin();fidelityPostalFixtures.count=0;fidelityPostalFixtures.roller=false;};
-function fidelityPostalStatic(){
+function fidelityPostalStatic(regionOnly=-1){
  const d=fidelityPostalFixtures,S=paperRenderScale(),W=LW*S;
- for(let j=0;j<d.regions.length;j++){const r=d.regions[j],R=grayscale?r.gray:r.rgba;
+ for(let j=regionOnly<0?0:regionOnly;j<(regionOnly<0?d.regions.length:regionOnly+1);j++){if(j===4&&regionOnly<0)continue;const r=d.regions[j],R=grayscale?r.gray:r.rgba;
   for(let n=0;n<r.count;n++){const a=r.samples[n],rgb=R[n];if(!rgb)continue;const X=a%(r.w*4),Y=Math.floor(a/(r.w*4)),sx=X%4,sy=Y%4;
    if(S===2&&(sx%2||sy%2)||S===1&&(sx!==1||sy!==1))continue;
    const wx=r.x+(X>>2),wy=r.y+(Y>>2),px=wx-viewX,py=wy-viewY;if(px<0||py<0||px>=LW||py>=LH)continue;
@@ -21174,6 +21177,48 @@ function fidelityWindowResolve(){
 // their underlayer erase, before any new props, leaves or pendant are painted.
 const fidelityWindowOriginalCounterStatic=fidelityCounterStatic;
 fidelityCounterStatic=function(){fidelityWindowOriginalCounterStatic();fidelityWindowResolve();};
+
+// Original carcass/carrier faces only. Accepted coloured cubbies remain separate.
+const fidelityCabinetPalette={top:[222,197,145],edge:[179,147,97],panel:[205,180,128],shadow:[151,126,87],shell:[219,208,172],side:[191,195,165],rib:[113,135,137],fold:[173,157,117]};
+const fidelityCabinetOriginalColour=fidelityPostalColour;
+fidelityPostalColour=function(kind,face,u,v,w,h,col,level,x,y,z,shader){
+ const P=fidelityCabinetPalette;let base,shade=0;
+ if(kind===9){
+  base=face===F_TOP?P.top:P.edge;
+  if(shader===shWood){
+   if(face!==F_TOP){const edge=Math.min(u,w-u,v,h-v);base=edge>1.1?P.panel:P.edge;shade=edge<.2?-14:edge<.45?5:0;}
+  }else if(shader===shCornice){
+   if(face!==F_TOP){base=P.edge;const ply=v%1;shade=ply<.15?-13:ply>.83?5:0;}
+   else{const edge=Math.min(u,w-u,v,h-v);shade=edge<.2?-17:edge<.46?5:0;const joint=Math.min(Math.abs(x-BANK_X0),Math.abs(x-BANK_X1));if(joint<.16)shade=-11;}
+  }else if(shader===shPlinth){
+   if(face!==F_TOP){base=P.panel;if(z<1.1)base=P.shadow;else if(z>BANK_Z0-.9)base=P.edge;else{const seam=((u+2)%CUB_W+CUB_W)%CUB_W;if(seam<.17)shade=-9;}}
+   else{const edge=Math.min(u,w-u,v,h-v);shade=edge<.2?-14:edge<.45?5:0;}
+  }
+ }else if(kind===5&&shader===shCarrier){
+  if(col===C.DEEP||col===C.OUT)return 0;
+  base=face===F_TOP?P.shell:face===F_X?P.side:P.shell;
+  const edge=Math.min(u,w-u,v,h-v);shade=edge<.2?-17:edge<.43?5:0;
+  if(face===F_TOP){const seam=Math.abs(u-w*.5);if(seam<.13)shade=-13;else if(seam<.33)shade=4;}
+  else if(face===F_X){
+   const score=Math.abs(v-h*.55);if(score<.17)shade=-16;else if(score<.4)shade=4;
+   if(u>1.4&&u<w-1.4&&v>h*.62&&v<h*.83){const slot=((u-1.4)%1.6+1.6)%1.6;if(slot<.22){base=P.rib;shade=0;}}
+  }else if(u>=1.8&&u<w-1.8&&v>=1.2&&v<h-1.1){
+   base=P.rib;const rim=u<2.5||u>=w-2.5||v<1.9||v>=h-1.8;shade=rim?8:-7;
+  }else if(Math.abs(v-h*.55)<.18){base=P.fold;shade=-5;}
+ }else if(kind===5&&shader===shTag){
+  if(col===C.DEEP||col===C.OUT)return 0;const rgb=fidelityCabinetOriginalColour(kind,face,u,v,w,h,col,level,x,y,z,shader);return v>h*.35&&v<h*.45&&u>w*.18&&u<w*.8?fidelityDeskLit(rgb,-2):rgb;
+ }else return fidelityCabinetOriginalColour(kind,face,u,v,w,h,col,level,x,y,z,shader);
+ const light=.9+level*.05,fibre=Math.sin(x*.31+y*.47+z*.61)*.32;
+ return fidelityPostalPack(base[0]*light+shade+fibre,base[1]*light+shade+fibre,base[2]*light+shade+fibre);
+};
+function fidelityCabinetResolve(){
+ if(!OFFICE_FIDELITY.ready||!fidelityPostalFixtures.enabled||!fidelityPostalFixtures.ready||paperAtlasBuilding||ACTIVE_ROOM.id!=='office')return;
+ fidelityPostalStatic(4);
+}
+// Cubby-face projection retains coarse colour metadata. Restore only the fine
+// original wood source after that projection, before any new foreground art.
+const fidelityCabinetOriginalCounterStatic=fidelityCounterStatic;
+fidelityCounterStatic=function(){fidelityCabinetOriginalCounterStatic();fidelityCabinetResolve();};
 
 </script>
 </body>
