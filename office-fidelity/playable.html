@@ -223,7 +223,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "office-fidelity-1a5d7482d3";
+const BUILD_ID = "office-fidelity-fabc6eef2e";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -19762,7 +19762,7 @@ async function fidelityStart(){
   hud.next.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();},true);
   gNext=function(){};hud.next.remove();hud.pick.remove();
   fidelityPrepareAnimation();fidelityDiscTextures();fidelityReset();fidelityPrepareWorker();fidelityPreparePostalFixtures();fidelityPrepareFoliageClock();fidelityPrepareLamp();fidelityPrepareCounter();__so.seek(600);fidelityPrepareLight();
-  const bar=document.createElement('div');bar.className='row fidelity-bar';bar.innerHTML='<strong>Office fidelity · worker and clock</strong><small>Send to watch both cats settle into their baskets, or rotate the ginger disc to experiment.</small><button id="fidelityReset" type="button">Replay study</button>';
+  const bar=document.createElement('div');bar.className='row fidelity-bar';bar.innerHTML='<strong>Office fidelity · daylight study</strong><small>Send to watch both cats settle into their baskets, or rotate the ginger disc to experiment.</small><button id="fidelityReset" type="button">Replay study</button>';
   hud.root.insertBefore(bar,hud.root.firstChild);
   document.getElementById('fidelityReset').addEventListener('click',fidelityReset);
   hud.next.hidden=true;hud.pick.hidden=true;
@@ -20264,10 +20264,15 @@ function fidelityLampBracketErase(){
       const X=paperSampleOffset(sx,S),Y=paperSampleOffset(sy,S),a=(y*4+Y)*d.w*4+x*4+X;
       if(!fidelityLampMask[a])continue;
       const k=((d.y+y)*4+Y)*PAPER_STATIC_W+(d.x+x)*4+X,p=(py*S+sy)*W+px*S+sx;
-      if(paperStaticDep[k]!==fidelityLampOldDep[a]||paperStaticIdx[k]!==fidelityLampOldIdx[a]||paperDepth[p]!==sDep[si]||paperIndex[p]!==sIdx[si])continue;
+      const liveGlass=(sFlg[si]&FL_GLASS)&&paperIndex[p]===paperSceneryWindowIdx[py*LW+px];
+      if(paperStaticDep[k]!==fidelityLampOldDep[a]||paperStaticIdx[k]!==fidelityLampOldIdx[a]||paperDepth[p]!==sDep[si]||(paperIndex[p]!==sIdx[si]&&!liveGlass))continue;
       const cell=y*d.w+x,glass=fidelityLampBaseGlass[cell];
       const c=glass?fidelityLampWindowColour(d.x+x+(X+.5)/4-.5,d.y+y+(Y+.5)/4-.5,fidelityLampBaseZ[cell]):fidelityLampBaseIdx[a],l=glass?2:fidelityLampBaseLvl[a];
       paperRGBA[p]=T[(c>>7)*half+l*PAL_N+(c&127)];paperIndex[p]=c;paperDepth[p]=fidelityLampBaseDep[a];d.cleared++;
+      if(typeof fidelityWindowActive==='function'&&fidelityWindowActive()){
+        const restored=fidelityWindowRestore(p,d.x+x,d.y+y,X,Y,fidelityLampBaseIdx[a],fidelityLampBaseDep[a]);
+        if(!restored&&glass&&fidelityLampBaseIdx[a]===C.SKY0)paperRGBA[p]=fidelityWindowGlassRGB(d.x+x+(X+.5)/4-.5,d.y+y+(Y+.5)/4-.5);
+      }
     }
   }
 }
@@ -21049,6 +21054,126 @@ function fidelityPrepareWorker(){
  const resolveStatic=paperResolveStatic,resolveFrame=paperResolveFrame;paperResolveStatic=function(){fidelityWorkerUnder();return resolveStatic();};paperResolveFrame=function(){try{return resolveFrame();}finally{fidelityWorkerRestore();}};
  d.ready=true;
 }
+
+// Daylight material on the original window faces; live scenery stays separate.
+const fidelityWindows={enabled:true,ready:false,capturing:false,shader:null,bakes:0,emits:0,painted:0,glassPainted:0,restored:0};
+const fidelityWindowPalette={frame:[196,162,107],raised:[220,192,140],edge:[158,126,81],reveal:[169,165,140],sill:[224,202,154],cut:[177,151,106],ink:[125,103,69],fastener:[181,143,73]};
+const fidelityWindowMinY=Math.min(...WINS.map(w=>w.y0)),fidelityWindowMaxY=Math.max(...WINS.map(w=>w.y1)),fidelityWindowMinZ=Math.min(...WINS.map(w=>w.z0)),fidelityWindowMaxZ=Math.max(...WINS.map(w=>w.z1));
+const fidelityWindowCache={x:Math.floor(OX-fidelityWindowMaxY-5),y:Math.floor(OY+(GLASS_X+fidelityWindowMinY)*.5-fidelityWindowMaxZ-5),capacity:49152,count:0};
+fidelityWindowCache.w=Math.ceil(OX+4-fidelityWindowMinY+5)-fidelityWindowCache.x;
+fidelityWindowCache.h=Math.ceil(OY+(4+fidelityWindowMaxY)*.5-fidelityWindowMinZ+8)-fidelityWindowCache.y;
+fidelityWindowCache.lookup=new Uint16Array(fidelityWindowCache.w*fidelityWindowCache.h*16);
+fidelityWindowCache.idx=new Uint8Array(fidelityWindowCache.capacity);fidelityWindowCache.dep=new Int16Array(fidelityWindowCache.capacity);fidelityWindowCache.lvl=new Uint8Array(fidelityWindowCache.capacity);
+fidelityWindowCache.rgba=new Uint32Array(fidelityWindowCache.capacity);fidelityWindowCache.gray=new Uint32Array(fidelityWindowCache.capacity);fidelityWindowCache.samples=new Uint32Array(fidelityWindowCache.capacity);
+fidelityWindows.cache=fidelityWindowCache;fidelityWindows.retainedBytes=fidelityWindowCache.lookup.byteLength+fidelityWindowCache.capacity*16;OFFICE_FIDELITY.windowBytes=fidelityWindows.retainedBytes;
+function fidelityWindowActive(){return fidelityWindows.enabled&&fidelityWindows.ready&&OFFICE_FIDELITY.ready&&!paperAtlasBuilding&&ACTIVE_ROOM.id==='office';}
+function fidelityWindowAt(y,z,pad=0){for(let k=0;k<WINS.length;k++){const w=WINS[k];if(y>=w.y0-pad&&y<w.y1+pad&&z>=w.z0-3-pad&&z<w.z1+pad)return k;}return -1;}
+function fidelityWindowMaterial(x,y,z,face,col,level,shader){
+ const k=fidelityWindowAt(y,z,3);if(k<0)return 0;const w=WINS[k],P=fidelityWindowPalette;let base=P.frame,shade=0;
+ if(shader===shWallL){
+  if(winAt(y,z)>=0||y<w.y0-3||y>=w.y1+3||z<w.z0-1||z>=w.z1+3)return 0;
+  const distance=Math.min(Math.abs(y-w.y0),Math.abs(y-w.y1),Math.abs(z-w.z1));
+  base=distance>1.05&&distance<2.45?P.raised:P.frame;shade=distance<.22?-19:distance<.45?7:0;
+  // Mitred card corners belong to the existing flat architrave.
+  if(z>w.z1&&Math.min(Math.abs(y-w.y0-(z-w.z1)),Math.abs(y-w.y1+(z-w.z1)))<.16)shade=-13;
+ }else if(shader===shGlass){
+  if(shFlag&FL_GLASS)return 0;
+  const u=y-w.y0,v=z-w.z0,mid=(w.y1-w.y0)*.5;
+  const vertical=Math.min(u,w.y1-y,Math.abs(u+.5-mid)),horizontal=Math.min(v,w.z1-z,Math.abs(z+.5-w.zr));
+  base=P.raised;const edge=Math.min(vertical,horizontal);shade=edge<.22?-19:edge<.48?5:0;
+  if(Math.abs(z+.5-w.zr)<RAIL+.5){base=P.frame;shade=z<w.zr?7:-7;if(Math.abs(u+.5-mid)<BAR+.5)shade=-11;}
+  // A small ochre paper sash fastener with a printed slit, not polished metal.
+  if(Math.abs(u-mid+2.1)<1.1&&Math.abs(z-w.zr+.2)<.63){base=P.fastener;shade=Math.abs(u-mid+2.1)<.55&&Math.abs(z-w.zr+.2)<.13?-30:7;}
+ }else if(shader===shRevealSide){base=face===F_TOP?P.cut:P.reveal;shade=face===F_Y?-8:4;}
+ else if(shader===shSill){
+  if(face===F_TOP){base=P.sill;const edge=Math.min(x,4-x,y-w.y0+3,w.y1+3-y);shade=edge<.18?-20:edge<.42?5:0;}
+  else{base=P.cut;const ply=((z-w.z0+3)%1+1)%1;shade=ply<.14?-11:ply>.82?5:0;if(face===F_Y)shade-=6;}
+ }else return 0;
+ const light=.9+level*.05,fibre=Math.sin(y*.41+z*.73+x*.21)*.38;
+ return fidelityDeskPack(base[0]*light+shade+fibre,base[1]*light+shade+fibre,base[2]*light+shade+fibre);
+}
+const fidelityWindowOriginalFace=paperStaticFace,fidelityWindowOriginalEmit=paperStaticEmit,fidelityWindowOriginalWalls=bakeWalls;
+paperStaticFace=function(face,a){const old=fidelityWindows.shader;fidelityWindows.shader=a[5];try{return fidelityWindowOriginalFace(face,a);}finally{fidelityWindows.shader=old;}};
+paperStaticEmit=function(px,py,x,y,z,face,col){
+ const d=fidelityWindows,r=d.cache,k=py*paperStaticWidth+px,before=d.capturing?paperStaticDep[k]:0;
+ fidelityWindowOriginalEmit(px,py,x,y,z,face,col);
+ if(!d.capturing)return;
+ const dep=Math.round((x+y+z)*4)+shBias;let level=paperStaticLvl[k];
+ // Furniture is baked first. Retain the original window face even behind the
+ // old arm so its smaller replacement can expose the proper card underlayer.
+ if(dep<before){const saved=sunAdd;let l=2+shLvl;if(!shFlat)l+=lightAt(x,y,z,face,px/4+paperStaticPX+tPX,py/4+paperStaticPY+tPY);sunAdd=saved;level=clamp(l,0,4);}
+ const rgb=fidelityWindowMaterial(x,y,z,face,col,level,d.shader);if(!rgb)return;
+ const X=px-r.x*4,Y=py-r.y*4;if(X<0||Y<0||X>=r.w*4||Y>=r.h*4)throw Error('Window source outside bounded cache');
+ const a=Y*r.w*4+X;let n=r.lookup[a]-1;if(n<0){n=r.count;if(n>=r.capacity)throw Error('Window source capacity exceeded');r.lookup[a]=++r.count;r.samples[n]=a;}else if(dep<r.dep[n])return;
+ r.idx[n]=col|shBoard;r.dep[n]=dep;r.lvl[n]=level;r.rgba[n]=rgb;r.gray[n]=fidelityDeskGrey(rgb);d.emits++;
+};
+bakeWalls=function(){
+ const d=fidelityWindows,old=d.capturing;d.capturing=ACTIVE_ROOM.id==='office'&&paperStaticTarget()&&!paperStaticAtlasActive;
+ if(d.capturing){d.ready=false;d.cache.count=0;d.cache.lookup.fill(0);}
+ try{return fidelityWindowOriginalWalls();}finally{if(d.capturing){d.ready=d.cache.count>0;d.bakes++;}d.capturing=old;}
+};
+function fidelityWindowSourceColour(wx,wy,X,Y,c,dep,delta=0){
+ const r=fidelityWindows.cache,x=wx-r.x,y=wy-r.y;if(x<0||y<0||x>=r.w||y>=r.h)return 0;
+ const n=r.lookup[(y*4+Y)*r.w*4+x*4+X]-1;if(n<0||r.idx[n]!==c||r.dep[n]!==dep)return 0;
+ return fidelityDeskLit((grayscale?r.gray:r.rgba)[n],delta);
+}
+function fidelityWindowRestore(p,wx,wy,X,Y,c,dep){
+ if(!fidelityWindowActive())return false;const rgb=fidelityWindowSourceColour(wx,wy,X,Y,c,dep);if(!rgb)return false;paperRGBA[p]=rgb;fidelityWindows.restored++;return true;
+}
+function fidelityWindowScene(wx,wy){
+ const u=wx-paperSceneryWindowDU-OV_U0,v=wy-paperSceneryWindowDV-OV_V0,iu=Math.floor(u+.5),iv=Math.floor(v+.5);
+ let c=iu>=0&&iv>=0&&iu<OVW&&iv<OVH?OUTV[iv*OVW+iu]:C.SKY0;
+ const tc=paperSceneryTreeAt(u,v);if(tc>=0)c=tc;
+ if(WS.pigeon.on){const pc=pigeonAt(Math.floor(wx+.5)-OV_U0,Math.floor(wy+.5)-OV_V0);if(pc>=0)c=pc;}return c;
+}
+function fidelityWindowGlassRGB(wx,wy){
+ const c=fidelityWindowScene(wx,wy),T=grayscale?GRAY32:RES32,base=T[2*PAL_N+c],y=GLASS_X-wx+OX,z=(GLASS_X+y)*.5-wy+OY,k=fidelityWindowAt(y,z,1);
+ if(k<0)return base;const w=WINS[k],u=y-w.y0,v=z-w.z0,band=Math.abs(v-u*.8-22),echo=Math.abs(v-u*.8-26);
+ const reflection=band<1.6?(1-band/1.6)*.19:echo<.48?(1-echo/.48)*.12:0;
+ let rgb=fidelityBlend(base,grayscale?fidelityDeskGrey(fidelityDeskPack(178,201,205)):fidelityDeskPack(178,201,205),15);
+ if(reflection)rgb=fidelityBlend(rgb,grayscale?fidelityDeskGrey(fidelityDeskPack(255,247,221)):fidelityDeskPack(255,247,221),Math.round(reflection*255));return rgb;
+}
+function fidelityWindowFineGlass(wx,wy,X,Y){
+ const k=(wy*4+Y)*PAPER_STATIC_W+wx*4+X,y=GLASS_X-(wx+(X+.5)/4-OX),z=(GLASS_X+y)*.5-(wy+Y/4-OY);
+ return paperStaticIdx[k]===C.SKY0&&paperStaticDep[k]===Math.round((GLASS_X+y+z)*4);
+}
+const fidelityWindowOriginalColour=paperSceneryWindowColour,fidelityWindowOriginalLampColour=fidelityLampWindowColour,fidelityWindowOriginalUnder=paperSceneryUnder;
+paperSceneryWindowColour=function(wx,wy,si){return fidelityWindowActive()?fidelityWindowScene(wx,wy):fidelityWindowOriginalColour(wx,wy,si);};
+fidelityLampWindowColour=function(wx,wy,z){return fidelityWindowActive()?fidelityWindowScene(wx,wy):fidelityWindowOriginalLampColour(wx,wy,z);};
+paperSceneryUnder=function(s,k,px,py,sx,sy,T){
+ if(fidelityWindowActive()){
+  const wx=px+viewX,wy=py+viewY,si=wy*WW+wx,X=paperSampleOffset(sx,paperRenderScale()),Y=paperSampleOffset(sy,paperRenderScale());
+  if(wx>=0&&wy>=0&&wx<WW&&wy<WH&&s.underDep[k]===sDep[si]){
+   const fine=(wy*4+Y)*PAPER_STATIC_W+wx*4+X,material=fidelityWindowSourceColour(wx,wy,X,Y,paperStaticIdx[fine],paperStaticDep[fine]);if(material)return material;
+   if((sFlg[si]&FL_GLASS)&&fidelityWindowFineGlass(wx,wy,X,Y))return fidelityWindowGlassRGB(wx+(X+.5)/4-.5,wy+(Y+.5)/4-.5);
+   const rgb=fidelityWindowSourceColour(wx,wy,X,Y,s.underIdx[k],s.underDep[k]);if(rgb)return rgb;
+  }
+ }return fidelityWindowOriginalUnder(s,k,px,py,sx,sy,T);
+};
+function fidelityWindowResolve(){
+ const d=fidelityWindows;if(!fidelityWindowActive())return;const r=d.cache,S=paperRenderScale(),W=LW*S,R=grayscale?r.gray:r.rgba;d.painted=0;d.glassPainted=0;
+ for(let n=0;n<r.count;n++){
+  const a=r.samples[n],X=a%(r.w*4),Y=Math.floor(a/(r.w*4)),sx=X%4,sy=Y%4;if(S===2&&(sx%2||sy%2)||S===1&&(sx!==1||sy!==1))continue;
+  const wx=r.x+(X>>2),wy=r.y+(Y>>2),px=wx-viewX,py=wy-viewY;if(px<0||py<0||px>=LW||py>=LH)continue;
+  const si=wy*WW+wx,k=(wy*4+sy)*PAPER_STATIC_W+wx*4+sx,p=(py*S+(S===4?sy:S===2?sy>>1:0))*W+px*S+(S===4?sx:S===2?sx>>1:0);
+  if(paperStaticIdx[k]!==r.idx[n]||paperStaticDep[k]!==r.dep[n])continue;
+  const i=py*LW+px,glass=(sFlg[si]&FL_GLASS)&&paperIndex[p]===paperSceneryWindowIdx[i];
+  const native=(paperIndex[p]===sIdx[si]||glass)&&paperDepth[p]===sDep[si],bare=paperIndex[p]===r.idx[n]&&paperDepth[p]===r.dep[n];if(!native&&!bare)continue;
+  const delta=fIdx[i]===sIdx[si]&&fDep[i]===sDep[si]?fLvl[i]-sLvl[si]:0;paperRGBA[p]=fidelityDeskLit(R[n],delta);d.painted++;
+ }
+ for(let y=Math.max(0,r.y-viewY);y<Math.min(LH,r.y+r.h-viewY);y++)for(let x=Math.max(0,r.x-viewX);x<Math.min(LW,r.x+r.w-viewX);x++){
+  const wx=x+viewX,wy=y+viewY,si=wy*WW+wx;if(!(sFlg[si]&FL_GLASS))continue;const i=y*LW+x;
+  for(let sy=0;sy<S;sy++)for(let sx=0;sx<S;sx++){
+   const p=(y*S+sy)*W+x*S+sx;if(paperDepth[p]!==sDep[si]||(paperIndex[p]!==paperSceneryWindowIdx[i]&&paperIndex[p]!==sIdx[si]))continue;
+   if(!fidelityWindowFineGlass(wx,wy,paperSampleOffset(sx,S),paperSampleOffset(sy,S)))continue;
+   paperRGBA[p]=fidelityWindowGlassRGB(wx+(paperSampleOffset(sx,S)+.5)/4-.5,wy+(paperSampleOffset(sy,S)+.5)/4-.5);d.glassPainted++;
+  }
+ }
+}
+// The old static counter-prop masks can expose the window too. Resolve after
+// their underlayer erase, before any new props, leaves or pendant are painted.
+const fidelityWindowOriginalCounterStatic=fidelityCounterStatic;
+fidelityCounterStatic=function(){fidelityWindowOriginalCounterStatic();fidelityWindowResolve();};
 
 </script>
 </body>
