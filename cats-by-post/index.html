@@ -235,7 +235,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "8384f1efc0";
+const BUILD_ID = "3da3b41728";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -16371,7 +16371,7 @@ function drawBoardItem(k) {
     }
     for (const g of src.gates) {
       if(pointsRulePreview)drawPointsRule(bdX(src,g.x),bdY(src,g.y),g.a,g.b,g.pose);
-      else if(ACTIVE_ROOM.id==='train')drawPoints(bdX(src,g.x),bdY(src,g.y),g.a,g.b,g.pose);
+      else if(ACTIVE_ROOM.id==='train'||ACTIVE_ROOM.id==='cityhall')drawPoints(bdX(src,g.x),bdY(src,g.y),g.a,g.b,g.pose);
       else drawGate(bdX(src,g.x),bdY(src,g.y),g.a,g.b,g.pose);
     }
     for (const t of src.tunnels) drawTunnelPiece(src,t);
