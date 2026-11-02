@@ -235,7 +235,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "3da3b41728";
+const BUILD_ID = "69fdb621d0";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -16304,7 +16304,7 @@ function postOfficePasses() {
 // and cat flaps swing when a napped cat goes home.
 // ============================================================================
 function makeBoardSrc(maxCats) {
-  const s = { ox: 0, oy: 0, w: 0, h: 0, rails: false, cursor: -1, gallery: null, hatchNumbers: false,
+  const s = { ox: 0, oy: 0, w: 0, h: 0, rails: false, cursor: -1, gallery: null, hatchNumbers: false, hatchCues: false,
     extras: [], locked: [], eventTiles: [], eventFrame: 0,
     tunnels: [], tunnelFocus: -1, hatches: [], baskets: [], dogs: [], turntables: [], gates: [], flaps: [], edgeFlaps: [], // flaps: original demo wall flaps; edgeFlaps: rule destinations
     queues: [], n: 0, traces: [], poses: [], times: new Float64Array(maxCats).fill(-1) };
@@ -16461,6 +16461,42 @@ function demoPrepareSrc(t) {
   }
   Q.n = best < 2.5 ? 1 : 0;
   Q.coats[0] = DEMO_D.cats[next].coat === 'ginger' ? COAT_GINGER : COAT_BLUE;
+}
+// Raised start arrow: cached indexed artwork and a world-anchored annotation.
+// It never changes rule/index/depth buffers or allocates in the frame path.
+const HATCH_CUE_TEXTURES=[];
+function hatchCueFade(age){const t=clamp(age/.3,0,1);return 1-t*t*(3-2*t);}
+function hatchCueTexture(dir,shadow){
+  const dx=GR_DX[dir],dy=GR_DY[dir],shape=[-3.5,-.85,.2,-.85,.2,-2.1,4.1,0,.2,2.1,.2,.85,-3.5,.85];
+  const top=new Float64Array(14),bottom=new Float64Array(14),z=shadow?0:8.4;
+  for(let i=0;i<14;i+=2){const t=shape[i]+4.5,v=shape[i+1],x=dx*t-dy*v,y=dy*t+dx*v;top[i]=bottom[i]=x-y;top[i+1]=(x+y)*.5-z;bottom[i+1]=(x+y)*.5-(shadow?0:7.7);}
+  const family=(shadow?'hatch_shadow_':'hatch_start_')+GR_DIRS[dir];
+  const r={id:family+'/idle',family,frame:'idle',isPiece:true,x:-12,y:-16,dx:-12,dy:-16,w:24,h:24,pixels:new Uint8Array(96*96).fill(EMPTY),direction:['E','S','W','N'][dir],mirroredFor:'none',cueOpacity:shadow?.22:1,cuePlane:z};
+  function paint(poly,x,y,fill){let inside=false,near=false;
+    for(let i=0,j=12;i<14;j=i,i+=2){const ax=poly[j],ay=poly[j+1],bx=poly[i],by=poly[i+1];if((ay>y)!==(by>y)&&x<(bx-ax)*(y-ay)/(by-ay)+ax)inside=!inside;
+      const vx=bx-ax,vy=by-ay,t=clamp(((x-ax)*vx+(y-ay)*vy)/(vx*vx+vy*vy),0,1),a=x-ax-vx*t,b=y-ay-vy*t;if(a*a+b*b<=.24*.24)near=true;}
+    return !shadow&&near?C.DEEP:inside?fill:EMPTY;
+  }
+  for(let y=0;y<96;y++)for(let x=0;x<96;x++){const sx=r.dx+(x+.5)/4,sy=r.dy+(y+.5)/4;let c=shadow?paint(top,sx,sy,C.WD0):paint(bottom,sx,sy,C.BR1);if(!shadow){const t=paint(top,sx,sy,C.CREAM);if(t!==EMPTY)c=t;}r.pixels[y*96+x]=c;}
+  return r;
+}
+function hatchCueInstall(records,selectors){
+  if(!HATCH_CUE_TEXTURES.length)for(let i=0;i<8;i++)HATCH_CUE_TEXTURES.push(hatchCueTexture(i&3,i>=4));
+  selectors[11]=HATCH_CUE_TEXTURES;for(let i=0;i<8;i++)records.push(HATCH_CUE_TEXTURES[i]);
+}
+function hatchCueBlend(r,cx,cy,alpha){
+  if(alpha<=0)return;
+  const S=paperRenderScale(),W=LW*S,ax=Math.round((cx-cy+OX-viewX+.5)*S),ay=Math.round(((cx+cy)*.5+OY-viewY+.5)*S),T=grayscale?GRAY32:RES32,offset=NLVL*PAL_N+2*PAL_N;
+  for(let y=0;y<r.h*S;y++){const py=ay+r.dy*S+y;if(py<0||py>=LH*S)continue;const sy=Math.floor(y/S)*4+paperSampleOffset(y%S,S),depth=(cx+cy)*4+8*(r.dy+(y+.5)/S)+12*r.cuePlane+8;
+    for(let x=0;x<r.w*S;x++){const px=ax+r.dx*S+x;if(px<0||px>=W)continue;const sx=Math.floor(x/S)*4+paperSampleOffset(x%S,S),c=r.pixels[sy*r.w*4+sx];if(c===EMPTY)continue;
+      const p=py*W+px;if(paperDepth[p]>depth)continue;
+      const a=alpha*r.cueOpacity,src=T[offset+c],dst=paperRGBA[p],red=Math.round((src&255)*a+(dst&255)*(1-a)),green=Math.round((src>>>8&255)*a+(dst>>>8&255)*(1-a)),blue=Math.round((src>>>16&255)*a+(dst>>>16&255)*(1-a));paperRGBA[p]=(0xff000000|blue<<16|green<<8|red)>>>0;
+    }
+  }
+}
+function hatchCueResolve(src){
+  if(!src||!src.hatchCues)return;
+  for(let i=0;i<src.hatches.length;i++){const h=src.hatches[i];if(!(h.cueAlpha>0))continue;const inset=h.cueInset||0,cx=src.ox+h.x*TILE+8-inset*GR_DX[h.dir],cy=src.oy+h.y*TILE+8-inset*GR_DY[h.dir];hatchCueBlend(HATCH_CUE_TEXTURES[h.dir+4],cx,cy,h.cueAlpha);hatchCueBlend(HATCH_CUE_TEXTURES[h.dir],cx,cy,h.cueAlpha);}
 }
 // ============================================================================
 // 33 ATLAS (S): every board sprite frame at neutral light (no sun, AO or lamp),
@@ -19183,9 +19219,9 @@ const PAPER_SCALE = 4, PAPER_CAPACITY = 256, PAPER_MISSING_CAPACITY = 1024;
 let paperEnabled = false, paperCount = 0, paperReady = false, paperVignette = false;
 let paperLookup = new Map(), paperSlots = null, paperAtlas = null, paperSlotSize = SW*SHT;
 let paperSpriteRecords=[],paperAtlasBuilding=false,paperAtlasIdx=null,paperAtlasCls=null,paperAtlasSel=null;
-let paperPieceRecords=[],paperPieceLookup=[[],[],[],[],[],[],[],[],[],[],[]],paperCacheBuild=false,paperCachePiece=null,paperVersion=0;
+let paperPieceRecords=[],paperPieceLookup=[[],[],[],[],[],[],[],[],[],[],[],[]],paperCacheBuild=false,paperCachePiece=null,paperVersion=0;
 const paperMissingHashes=new Uint32Array(2048),paperMissingHits=new Uint32Array(2048);
-const paperPieceMisses=[new Uint32Array(60),new Uint32Array(12),new Uint32Array(4),new Uint32Array(96),new Uint32Array(8),new Uint32Array(8),new Uint32Array(56),new Uint32Array(10),new Uint32Array(96),new Uint32Array(32),new Uint32Array(4)];
+const paperPieceMisses=[new Uint32Array(60),new Uint32Array(12),new Uint32Array(4),new Uint32Array(96),new Uint32Array(8),new Uint32Array(8),new Uint32Array(56),new Uint32Array(10),new Uint32Array(96),new Uint32Array(32),new Uint32Array(4),new Uint32Array(8)];
 let paperMissingSlots=0,paperMissingOverflow=0;
 let paperNapLookup=new Map(),paperNapFamilies=new Map(),paperNapIssues=[],paperDerivedHashes=new Set();
 let paperBoxFadeIssues=[];
@@ -19224,6 +19260,7 @@ function paperDecodePixels(item,w,h) {
   return pixels;
 }
 function paperPieceSelector(family,frame) {
+  const cue=family.match(/^hatch_(start|shadow)_([RDLU])$/);if(cue&&frame==='idle')return [11,GR_DIR[cue[2]]+(cue[1]==='shadow'?4:0)];
   let m=family.match(/^turntable_(plain|ginger|blue)_([ESWN])$/);
   if(m){
     const kind=['plain','ginger','blue'].indexOf(m[1]),dir='ESWN'.indexOf(m[2]);
@@ -19379,11 +19416,13 @@ function paperInstallData(data) {
   if(takeoffs.some(Boolean)&&takeoffs.some(r=>!r))throw new Error('Take-off artwork requires both coats, both views and both rim layers');
   if(flapSources.some(Boolean)&&flapSources.some(r=>!r))throw new Error('Flap artwork requires both coats and both views');
   paperFlapSources=flapSources;paperLookup=next;paperSpriteRecords=records;paperPieceRecords=pieces;paperPieceLookup=selectors;paperTakeoffSources=takeoffs;paperAtlas=null;paperVersion++;
+  const artworkOn=next.size>0||pieces.length>0;
+  hatchCueInstall(pieces,selectors);
   paperNapLookup=napLookup;paperNapFamilies=new Map();paperNapIssues=[];paperDerivedHashes=new Set();
   paperBoxFadeIssues=[];paperPrepareBoxFades();
   paperMissingHits.fill(0);paperMissingSlots=0;paperMissingOverflow=0;for(const counts of paperPieceMisses)counts.fill(0);
   if(slotSize>paperSlotSize)paperSlots=null;
-  paperSlotSize=slotSize;paperEnabled=next.size>0||pieces.length>0;paperBeginFrame();
+  paperSlotSize=slotSize;paperEnabled=artworkOn;paperBeginFrame();
   if(paperEnabled&&img)paperAllocView();
 }
 function paperAllocView() {
@@ -19672,7 +19711,7 @@ function paperResolveFrame() {
       }
     }
   }
-  if(!paperAtlasBuilding)paperCtx.putImageData(paperImage,0,0);paperReady=true;
+  if(!paperAtlasBuilding){hatchCueResolve(boardSrc);paperCtx.putImageData(paperImage,0,0);}paperReady=true;
 }
 function paperOutputCanvas(){return paperEnabled&&paperReady?paperCanvas:offCanvas;}
 function paperOutputScale(){return paperEnabled&&paperReady?paperRenderScale():1;}
@@ -19793,7 +19832,7 @@ function paperAtlasData() {
       const r=entry.texture,frame={x:0,y:0,tag:entry.tag,sourceHash:r.sourceHash,logicalRect:r.isPiece?{dx:r.dx,dy:r.dy,w:r.w,h:r.h}:{x:r.x,y:r.y,w:r.w,h:r.h},
         textureKind:'generated',...(r.depth?{logicalDepth:Array.from(r.depth),logicalFaces:Array.from(r.faces)}:{}),sourceDecals:r.arrowFree?['gate_open','gate_closed']:undefined,
         ...(r.entryNative?{entryAnchorNative:Array.from(r.entryNative),entryMouth:Array.from(r.entryMouth),entryAperture:Array.from(r.entryAperture),entryStage:r.entryStage}:{}),
-        ...(r.derivation?{derivation:r.derivation}:{}),...(r.fadeStep?{fadeStep:r.fadeStep}:{})};
+        ...(r.derivation?{derivation:r.derivation}:{}),...(r.fadeStep?{fadeStep:r.fadeStep}:{}),...(r.cueOpacity!==undefined?{presentationOpacity:r.cueOpacity,depthPlane:r.cuePlane}:{})};
       s.frames.push(frame);pack.push({frame,w:s.size.w,h:s.size.h,texture:r,sprite:s});
     }
   }
@@ -22587,7 +22626,10 @@ function gSyncSrc() {
     const t = L.tunnels[i], symbol = GR_TUNNEL_SYMBOLS.indexOf(t.symbol);
     s.tunnels.push({ x: t.a.x, y: t.a.y, pair: i, symbol }, { x: t.b.x, y: t.b.y, pair: i, symbol });
   }
-  for (const h of L.hatches || []) s.hatches.push({ x: h.x, y: h.y, dir: GR_DIR[h.dir] });
+  for (const h of L.hatches || []) {
+    const dir=GR_DIR[h.dir],cueInset=L.hatches.some(other=>other!==h&&other.x===h.x+GR_DX[dir]&&other.y===h.y+GR_DY[dir])?1:0;
+    s.hatches.push({ x: h.x, y: h.y, dir, cueAlpha: 1, cueFrom: 0, cuePausedEmpty: false, cueInset });
+  }
   for (const b of L.baskets || []) s.baskets.push({ x: b.x, y: b.y, coat: b.coat === 'ginger' ? COAT_GINGER : COAT_BLUE });
   for (const d of L.dogs || []) s.dogs.push({ x: d.x, y: d.y });
   for (const g of L.gates || []) s.gates.push({ x: g.x, y: g.y, a: GR_DIR[g.exits[0]], b: GR_DIR[g.exits[1]], pose: BOARDANIM.makeGateOut() });
@@ -22600,6 +22642,7 @@ function gRunning() { return gm.sim && gm.mode !== 'edit'; }
 function gPrepareSrc() {
   if (gm.shift) { nsPrepareSrc(); return; }
   const s = G_SRC, run = gRunning();
+  s.hatchCues=!(window.__chapterReady&&cpActive());
   s.hatchNumbers = false; s.tunnelFocus = gm.cursor ? tunnelPairAt(gm.L.tunnels, gm.cx, gm.cy) : -1;
   s.extras.length = 0; s.locked.length = 0; s.eventTiles.length = 0; s.eventFrame = 0;
   s.gallery = G_GALLERY.length ? G_GALLERY : null;
@@ -22609,6 +22652,8 @@ function gPrepareSrc() {
   const hatches = gm.L.hatches || [];
   for (let q = 0; q < hatches.length; q++) {                       // the cats still to come, next one out first
     const h = hatches[q], Q = s.queues[q];
+    const H0=run?gm.sim.hatches[q]:null,tr=H0?G_TRACES[H0.first]:null;
+    s.hatches[q].cueAlpha=!h.cats.length?0:run?hatchCueFade(gm.t-(tr.rel-tr.pop)):1;
     Q.n = 0;
     if (!run) { for (const c of h.cats) if (Q.n < 8) Q.coats[Q.n++] = grCatCoat(c) === GR_GINGER ? COAT_GINGER : COAT_BLUE; continue; }
     const H = gm.sim.hatches[q];
@@ -22966,6 +23011,7 @@ function nsHudQueue() {
 }
 function nsPrepareSrc() {
   const shift = gm.shift, s = G_SRC, current = shift.current, sim = current && current.sim;
+  s.hatchCues=shift.phase==='running';
   for(let k=0;k<s.gates.length;k++)BOARDANIM.gatePose(gm.gateTrace,k,nsui.time,s.gates[k].pose);
   s.hatchNumbers = shift.paused; s.tunnelFocus = gm.cursor ? tunnelPairAt(gm.L.tunnels, gm.cx, gm.cy) : -1;
   s.gallery = null; s.n = sim ? sim.n : 0;
@@ -22997,6 +23043,9 @@ function nsPrepareSrc() {
       if (current.releaseHatches[j] !== q) continue;
       Q.coats[Q.n++] = sim.coat[current.releaseOrder[j]] === GR_GINGER ? COAT_GINGER : COAT_BLUE;
     }
+    const h=s.hatches[q],H=sim.hatches[q],tr=H.count?NS_TRACES[H.first]:null;
+    if(shift.paused){h.cueFrom=nsui.time;h.cuePausedEmpty=!Q.n;h.cueAlpha=Q.n?1:0;}
+    else h.cueAlpha=tr&&!h.cuePausedEmpty?hatchCueFade(nsui.time-Math.max(h.cueFrom,tr.rel-tr.pop)):0;
   }
   s.cursor = gm.cursor ? gm.cy * gm.L.board.w + gm.cx : -1;
 }
