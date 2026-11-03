@@ -43,3 +43,36 @@ body.big .piece .piece-name{font-size:.86rem}body.big .arrival-cadence{font-size
 .sheet:not([data-kind=delivery]){transform:none}
 @media(min-width:1000px){.sheet:not([data-kind=delivery]){inset:50% auto auto 50%;margin:0;transform:translate(-50%,-50%);max-height:calc(100dvh - 32px)}}
 .level-tab.paper{background:#f6ecd4;box-shadow:0 0 0 6px #f6ecd4,0 3px 8px #34433a22;max-width:560px;border-radius:1px}#camera-tools{margin-left:auto}
+
+/* Hatch identity is separate from the number of cats still waiting. */
+.hatch-key,.hatch-number span,.arrival-tabs button{font-family:var(--body);font-variant-numeric:lining-nums tabular-nums;font-weight:600}
+.arrival-tabs button{display:flex;align-items:center;justify-content:center;gap:6px;padding:4px 7px;min-width:58px;line-height:1;color:#29464b}
+.hatch-tab-number{display:grid;place-items:center;flex:none;width:23px;height:23px;border:1px solid #6b8075;border-radius:50%;font-size:.95rem;background:#faf0d5}
+.hatch-tab-count{font-size:.88rem;min-width:13px;font-variant-numeric:tabular-nums;text-align:center}.hatch-tab-count small{display:block;font-size:.55rem;line-height:1;margin-top:2px;color:#5e6b60}
+.arrival-tabs button.is-exhausted{color:#727968}.arrival-tabs button.is-exhausted .hatch-tab-number{border-color:#aaa88b;background:transparent}
+.desk.paper{--stock-height:54px}.desk .piece{min-height:var(--stock-height)}
+.desk.is-empty .piece{min-height:34px;padding:2px 6px;grid-template-columns:25px minmax(0,1fr) auto;background:#eee5d0;border-color:#c9bea5}
+.desk.is-empty .piece .piece-disc,.desk.is-empty .piece-disc img{width:25px;height:24px}.desk.is-empty .piece .piece-disc{opacity:.55}.desk.is-empty .piece-name{font-size:.74rem;color:#646e5f}.desk.is-empty .piece .count{font-size:.85rem;color:#646e5f}
+#more-button[aria-expanded=true]{background:#dfc68e;border-color:#6f806f;box-shadow:inset 0 -2px #365357}
+@media(min-width:700px) and (min-height:601px){.desk.paper{--stock-height:62px}.desk.is-empty .piece{min-height:36px;grid-template-columns:30px minmax(0,1fr) auto;padding-inline:12px}.desk.is-empty .piece-name{font-size:.85rem}.desk.is-empty .piece .count{font-size:1rem}}
+@media(min-width:1000px),(min-width:650px) and (max-height:600px){.desk.paper{--stock-height:52px}.desk.is-empty .piece{padding-inline:4px;grid-template-columns:22px minmax(0,1fr) auto}.desk.is-empty .piece .piece-disc,.desk.is-empty .piece-disc img{width:22px}}
+@media(min-width:500px) and (max-height:600px){.desk.paper{--stock-height:46px}.arrival-tabs button{gap:4px;min-width:50px;padding-inline:4px}.hatch-tab-number{width:21px;height:21px;font-size:.86rem}.hatch-tab-count{font-size:.8rem}.desk.is-empty .piece-name{font-size:.68rem}}
+@media(max-width:360px){.arrival-tabs button{padding-inline:5px;min-width:54px;gap:4px}.desk.is-empty .piece{grid-template-columns:21px minmax(0,1fr) auto;padding-inline:4px;gap:2px}.desk.is-empty .piece .piece-disc,.desk.is-empty .piece-disc img{width:21px}.desk.is-empty .piece-name{font-size:.7rem}}
+/* Short rails and larger lettering need separate name/count lines. */
+@media(min-width:500px) and (max-height:600px){
+ .desk:not(.is-empty) .piece{grid-template-columns:26px minmax(0,1fr);grid-template-rows:1fr 1fr;column-gap:4px;row-gap:3px}
+ .desk:not(.is-empty) .piece .piece-disc{grid-column:1;grid-row:1 / 3;align-self:center;width:26px}
+ .desk:not(.is-empty) .piece .piece-name{grid-column:2;grid-row:1;align-self:end;white-space:nowrap}
+ .desk:not(.is-empty) .piece .count{grid-column:2;grid-row:2;align-self:start;font-size:.85rem;line-height:1.15}
+}
+@media(max-width:360px){
+ body.big .desk:not(.is-empty) .piece{grid-template-columns:29px minmax(0,1fr);grid-template-rows:1fr 1fr;column-gap:4px;row-gap:3px}
+ body.big .desk:not(.is-empty) .piece .piece-disc{grid-column:1;grid-row:1 / 3;align-self:center}
+ body.big .desk:not(.is-empty) .piece .piece-name{grid-column:2;grid-row:1;align-self:end;white-space:nowrap}
+ body.big .desk:not(.is-empty) .piece .count{grid-column:2;grid-row:2;align-self:start;line-height:1.15}
+}
+body.big .hatch-tab-count{font-size:1rem}body.big .hatch-tab-count small{font-size:.66rem}
+
+@media(min-width:500px) and (max-height:600px){.desk:not(.is-empty) .piece .piece-disc img{width:26px}}
+/* Additional hatches can extend the tab strip without squeezing its controls. */
+.arrival-tabs{min-width:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}.arrival-tabs button{flex:none}.arrival-toggle{flex-shrink:0}
