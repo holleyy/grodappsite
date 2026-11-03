@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#ede3cc"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="A playable paper-and-post interface sketchbook for Cats by Post.">
+<title>Cats by Post · A playable sketchbook</title>
+<link rel="stylesheet" href="app.css?v=playing-1">
+</head>
+<body data-view="home">
+<svg class="svg-library" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8z"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="m14 5-7 7 7 7M7 12h14"/></symbol>
+<symbol id="i-undo" viewBox="0 0 24 24"><path d="m8 4-5 5 5 5M3 9h10a7 7 0 0 1 0 14"/></symbol>
+<symbol id="i-fit" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M8 12l4-3 4 3-4 3z"/></symbol>
+<symbol id="i-post" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 5l9 8 9-8M3 19l6-6m12 6-6-6"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><path d="m9 3-1 3-3 1-2 5 2 5 3 1 1 3h6l1-3 3-1 2-5-2-5-3-1-1-3z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-cat" viewBox="0 0 24 24"><path d="M4 11V3l7 5h2l7-5v8q3 10-8 10T4 11Z"/><path d="M8 13h.01M16 13h.01M10 17h4"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15A9 9 0 0 1 9 3a9 9 0 1 0 11 12Z"/><path d="M19 3v4m-2-2h4"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5q-5-3-10 0v16q5-3 10 0 5-3 10 0V5q-5-3-10 0Zm0 0v16"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22S3 13 3 9a9 9 0 0 1 18 0c0 4-9 13-9 13Z"/><circle cx="12" cy="9" r="3"/></symbol>
+<symbol id="i-tea" viewBox="0 0 24 24"><path d="M3 8h13v6a6.5 6.5 0 0 1-13 0Zm13 1h3a3 3 0 0 1 0 6h-3M2 22h17M7 1v3m6-3v3"/></symbol>
+<symbol id="i-train" viewBox="0 0 24 24"><path d="M5 3h14v15H5zM5 11h14M9 3v8m6-8v8M7 18l-3 5m13-5 3 5M8 15h.01m8 0h.01"/></symbol>
+<symbol id="i-hall" viewBox="0 0 24 24"><path d="m2 8 10-6 10 6H2Zm2 3v8m5-8v8m6-8v8m5-8v8M2 22h20"/></symbol>
+<symbol id="i-parcel" viewBox="0 0 24 24"><path d="m2 7 10-5 10 5v13l-10 3-10-3Zm0 0 10 5 10-5M12 12v11M7 4l10 5v5"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></symbol>
+</defs></svg>
+<iframe id="world" src="runtime.html?v=playing-1" title="Cats by Post playable board" allow="autoplay" tabindex="0"></iframe>
+<div id="wash" aria-hidden="true"></div>
+<main id="app">
+<div id="loading" class="loading paper"><svg class="ico"><use href="#i-post"/></svg><h1>Opening the post…</h1><p>The cats are just getting comfortable.</p></div>
+<section id="home" class="home" hidden></section>
+<section id="play" class="play" aria-label="Sorting desk" hidden>
+<header id="play-head" class="play-head"><button class="paper icon-button" data-action="menu" aria-label="Open menu"><svg class="ico"><use href="#i-menu"/></svg></button><div class="level-tab paper"><h1 id="level-title">First post</h1><span id="level-detail">1–1</span></div><button id="pause-button" aria-label="Pause the post" class="paper pause-button" data-action="pause"><svg class="ico"><use href="#i-pause"/></svg><span>Pause</span></button></header>
+<div id="hatch-labels" class="hatch-labels" aria-label="Hatch locations"></div>
+<div class="camera-tools" id="camera-tools"><button id="view-toggle" aria-label="View controls" class="paper" data-action="camera" aria-expanded="false" aria-controls="view-controls"><svg class="ico"><use href="#i-fit"/></svg><span>View</span></button><div id="view-controls" class="view-controls paper" role="group" aria-label="View controls" hidden><button data-action="zoom" data-arg="-1" aria-label="Zoom out">−</button><button data-action="fit">Fit</button><button data-action="zoom" data-arg="1" aria-label="Zoom in">+</button><button data-action="overview">Room</button></div></div>
+<div id="notice" class="notice paper" role="status" hidden></div>
+<footer id="desk" class="desk paper">
+<button id="arrival-peek" class="arrival-peek" data-action="queue" aria-haspopup="dialog"></button>
+<div id="piece-tray" class="piece-tray" role="group" aria-label="Turntable tray"></div>
+<div class="desk-actions"><button id="undo" data-action="undo"><svg class="ico"><use href="#i-undo"/></svg><span>Undo</span></button><button id="more-button" data-action="tools">Tools</button><button id="send" class="primary" data-action="send"><svg class="ico"><use href="#i-post"/></svg><span>Send the post</span></button></div>
+<div class="run-secondary"><p id="desk-status" class="desk-status" aria-live="polite"></p><button id="cancel-run" class="cancel-run" data-action="stop" aria-label="Cancel run and return to setup" hidden>Cancel run</button></div>
+</footer>
+</section>
+<section id="pages" class="pages" hidden></section>
+</main>
+<dialog id="sheet" class="sheet" aria-labelledby="sheet-title"><div class="sheet-title"><h2 id="sheet-title"></h2><button class="icon-button" id="sheet-close" aria-label="Close"><svg class="ico"><use href="#i-close"/></svg></button></div><div id="sheet-body" class="sheet-body"></div></dialog>
+<div id="toast" class="toast paper" role="status" hidden></div>
+<script src="model.js"></script><script src="completion.js?v=playing-1"></script><script src="app.js?v=playing-1"></script>
+<script src="handoff.js?v=journey-3"></script></body></html>
