@@ -4,7 +4,7 @@
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const number=id=>id.replace('-','–');
  const places=[
-  {id:'office',title:'The sorting office',label:'Sorting office',chapters:[1,2],count:15,x:.238,y:.70,focus:[.238,.592],art:'office'},
+  {id:'office',title:'The sorting office',label:'Sorting office',chapters:[1,2],count:15,x:.238,y:.687,focus:[.238,.592],art:'office'},
   {id:'depot',title:'The town depot',label:'Town depot',chapters:[3,4],count:25,x:.819,y:.515,focus:[.819,.417],art:'depot'},
   {id:'train',title:'The mail train',label:'Mail train',chapters:[5],count:15,x:.270,y:.40,focus:[.270,.334]},
   {id:'hall',title:'The city hall',label:'City hall',chapters:[6],count:15,x:.617,y:.35,focus:[.617,.274]},
@@ -29,18 +29,28 @@
  const announce=text=>{$('announcement').textContent=text};
  const showDialog=id=>{if(!$(id).open)$(id).showModal()};
  document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());
- function camera(){return[(vp.scrollLeft+vp.clientWidth/2)/(WORLD.width*zoom),(vp.scrollTop+vp.clientHeight/2)/(WORLD.height*zoom)]}
- function centreAt(p){vp.scrollTo({left:p[0]*WORLD.width*zoom-vp.clientWidth/2,top:p[1]*WORLD.height*zoom-vp.clientHeight/2,behavior:'instant'})}
+ function mapAnchor(width=vp.clientWidth,height=vp.clientHeight,isWide=wide.matches){
+  const lower=isWide?0:Math.min(235,$('next-dock').getBoundingClientRect().height+15);
+  return [width/2,(Math.min(120,height*.25)+height-lower)/2];
+ }
+ function camera(){const a=mapAnchor();return[(vp.scrollLeft+a[0])/(WORLD.width*zoom),(vp.scrollTop+a[1])/(WORLD.height*zoom)]}
+ function centreAt(p){const a=mapAnchor();vp.scrollTo({left:p[0]*WORLD.width*zoom-a[0],top:p[1]*WORLD.height*zoom-a[1],behavior:'instant'});requestAnimationFrame(showReadableLabels)}
  function minZoom(){return Math.max(.55,vp.clientWidth/WORLD.width,vp.clientHeight/WORLD.height)+.005}
  function changeZoom(value,point=camera()){
   zoom=Math.min(1.9,Math.max(minZoom(),value));world.style.width=WORLD.width*zoom+'px';world.style.height=WORLD.height*zoom+'px';centreAt(point);
   $('zoom-out').disabled=zoom<=minZoom()+.001;$('zoom-in').disabled=zoom>=1.9;
  }
- function recenter(){if(!current())return;centreAt(placeFor(current().id).focus);announce('Back at '+placeFor(current().id).title)}
+ function recenter(){if(!current())return;const p=placeFor(current().id);if(vp.clientHeight<650)changeZoom(minZoom(),[p.focus[0],p.focus[1]+.05]);else centreAt(p.focus);announce('Back at '+p.title)}
+ function showReadableLabels(){
+  const edge=vp.getBoundingClientRect(),top=document.querySelector('.camera-controls').getBoundingClientRect().bottom+7;
+  const bottom=wide.matches?edge.bottom-8:$('next-dock').getBoundingClientRect().top-7;
+  $('map-pins').querySelectorAll('button').forEach(b=>{const r=b.getBoundingClientRect();b.style.visibility=r.top<top||r.bottom>bottom||r.left<edge.left+4||r.right>edge.right-4?'hidden':'visible'});
+ }
  function renderPins(){
   if(!levels.length)return;const currentPlace=placeFor(current().id).id;
   $('map-pins').innerHTML=places.map(p=>`<button class="map-pin ${p.id===currentPlace?'current':''} ${view?.place===p.id?'selected':''}" style="left:${p.x*100}%;top:${p.y*100}%" data-place="${p.id}" aria-label="${p.title}, ${count(p)} of ${p.count} posted">${p.label}<small>${count(p)===p.count?'All posted':count(p)?count(p)+' of '+p.count+' posted':p.art?'Not reached yet':'Still to come'}</small></button>`).join('');
   $('map-pins').querySelectorAll('button').forEach(b=>b.onclick=e=>{if(dragClick){e.preventDefault();return}openPacket(b.dataset.place)});
+  requestAnimationFrame(showReadableLabels);
  }
  function updateDock(){
   const l=current();if(!l)return;
@@ -152,9 +162,10 @@
  }
  vp.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||e.button!==0)return;drag={x:e.clientX,y:e.clientY,left:vp.scrollLeft,top:vp.scrollTop,moved:false};dragClick=false});
  vp.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(!drag.moved&&Math.hypot(dx,dy)>5){drag.moved=true;vp.setPointerCapture(e.pointerId);vp.classList.add('dragging')}if(drag.moved){vp.scrollLeft=drag.left-dx;vp.scrollTop=drag.top-dy}});
+ vp.addEventListener('scroll',showReadableLabels,{passive:true});document.fonts.ready.then(showReadableLabels);
  const dragEnd=()=>{if(!drag)return;dragClick=drag.moved;drag=null;vp.classList.remove('dragging');setTimeout(()=>dragClick=false,0)};
  window.addEventListener('pointerup',dragEnd);vp.addEventListener('pointercancel',dragEnd);
- let size=[vp.clientWidth,vp.clientHeight];new ResizeObserver(()=>{const point=[(vp.scrollLeft+size[0]/2)/(WORLD.width*zoom),(vp.scrollTop+size[1]/2)/(WORLD.height*zoom)];size=[vp.clientWidth,vp.clientHeight];changeZoom(zoom,point)}).observe(vp);
+ let size=[vp.clientWidth,vp.clientHeight,wide.matches];new ResizeObserver(()=>{const a=mapAnchor(...size),point=[(vp.scrollLeft+a[0])/(WORLD.width*zoom),(vp.scrollTop+a[1])/(WORLD.height*zoom)];size=[vp.clientWidth,vp.clientHeight,wide.matches];changeZoom(zoom,point)}).observe(vp);
  wide.addEventListener('change',()=>{setPaneState();if(levels.length)renderPane()});document.addEventListener('keydown',keys);
  $('current-place').onclick=()=>{recenter();if(wide.matches)backToMap()};$('place-index').onclick=placeIndex;$('cats-button').onclick=()=>showDialog('cats-dialog');$('menu-button').onclick=()=>showDialog('menu-dialog');
  $('pane-back').onclick=()=>{if(wide.matches&&!view)openPacket(placeFor(current().id).id);else paneBack()};$('current-letter').onclick=()=>openLetter(current().id,view?.type==='packet'?{...view,scroll:$('pane-content').scrollTop}:null);
@@ -164,6 +175,6 @@
  $('retry-game').onclick=()=>{openingToken++;$('opening').hidden=true;location.reload()};
  window.Journey={startLetter,openPacket,openLetter,backToMap,recenter,placeIndex,leave,delivered,gameReady,service,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
  fetch('levels.json').then(r=>{if(!r.ok)throw Error('Level index unavailable');return r.json()}).then(data=>{
-  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=journey-3&example='+EXAMPLE;
+  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=journey-3&example='+EXAMPLE;
  }).catch(e=>{toast('The letter index could not be opened. Please reload.');console.error(e)});
 })();
