@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Cats by Post · Delivery example</title></head><body><script>
+/* A read-only storage facade exists before any copied runtime code executes. */
+(async () => {
+ try {
+  Object.defineProperty(window,'localStorage',{configurable:true,value:{getItem(){return null},setItem(){},removeItem(){},clear(){},key(){return null},length:0}});
+  const response=await fetch('runtime.html?v=playing-1');
+  if(!response.ok)throw Error('Runtime '+response.status);
+  const html=await response.text();
+  document.open();document.write(html);document.close();
+ } catch(error) {
+  console.error(error);document.body.textContent='This delivery could not be opened. Please reload to try again.';
+  parent.postMessage({type:'hud-runtime-error'},location.origin);
+ }
+})();
+</script></body></html>

@@ -5,7 +5,7 @@
  let lastWon='';
  function outcomes(){const app=window.APP;if(!app)return;const s=app.engine.state();if(s.mode!=='won'){lastWon='';return}if(!s.shift&&!s.daily&&!s.practice&&!s.sample){const key=s.id+JSON.stringify(s.resultStars);if(key!==lastWon){lastWon=key;host()?.delivered(s.id,s.resultStars||s.progress?.levels?.[s.id]?.stars||{delivered:true})}}}
  document.addEventListener('click',e=>{
-  const link=e.target.closest('a[href]');if(link){link.target='_blank';link.rel='noopener noreferrer';return}
+  const link=e.target.closest('a[href]');if(link&&!link.hasAttribute('data-local')){link.target='_blank';link.rel='noopener noreferrer';return}
   const el=e.target.closest('[data-action]');if(!el||el.disabled||!window.APP||!host())return;
   const action=el.dataset.action,s=APP.engine.state();
   const story=!s.shift&&!s.daily&&!s.practice&&!s.sample;
