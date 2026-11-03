@@ -126,6 +126,26 @@
     #chapterCard button { font-size:11px; padding:7px 8px; }
   }
 @media(max-height:520px) and (orientation:landscape){.fidelity-bar small{display:none}}
+/* Colour-only night card: sizes, fonts and all daytime rules stay original. */
+#hud.fidelity-night{background:#272d35;color:#eee5cf;border-color:#969083;box-shadow:4px 4px 0 #151b24}
+#hud.fidelity-night button{background:#c69b65;color:#1f252d;border-color:#d8ba8c}
+#hud.fidelity-night button:hover:not(:disabled){background:#e9c590;color:#1f252d}
+#hud.fidelity-night button:disabled{opacity:1;background:#3d444e;color:#c6c2b6;border-color:#777f88}
+#hud.fidelity-night button[aria-pressed="true"]{background:#efdbaf;color:#1f252d;outline-color:#e7c58e}
+#hud.fidelity-night button:focus-visible{outline:3px solid #f4dfaf;outline-offset:2px}
+#hud.fidelity-night #btnSend{background:#b8493f!important;color:#fff4df!important;border-color:#e9b3a1}
+#hud.fidelity-night #btnSend:hover:not(:disabled){background:#b94a40!important;color:#fff4df!important}
+#hud.fidelity-night .sw{border-color:#bbae96}
+#hud.fidelity-night .queue-cat{background:#343c47;border-color:#8d96a0}
+#hud.fidelity-night .queue-cat::after{background:#343c47;color:#eee5cf}
+#hud.fidelity-night .queue-cat.next{border-color:#e7bf7c;box-shadow:inset 0 0 0 1px #e7bf7c}
+#hud.fidelity-night .queue-cat.released{opacity:1;border-color:#707b88}
+#hud.fidelity-night .queue-cat.released img{opacity:.4}
+#hud.fidelity-night button:disabled[aria-pressed="true"]{background:#414751;color:#dad3c2;outline-color:#a9a18e}
+#hud.fidelity-night #btnSend:disabled{background:#3d444e!important;color:#c6c2b6!important;border-color:#777f88}
+#hud.fidelity-night .star{color:#c6c2b6}
+#hud.fidelity-night .star.on{color:#f2c77f}
+
 </style>
 </head>
 <body>
@@ -223,7 +243,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "office-fidelity-ccf2bd61c9";
+const BUILD_ID = "office-fidelity-725e19721a";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -19767,7 +19787,7 @@ async function fidelityStart(){
   document.getElementById('fidelityReset').addEventListener('click',fidelityReset);
   document.getElementById('fidelityLight').addEventListener('click',()=>fidelityNightSet(!fidelityNight.enabled));
   hud.next.hidden=true;hud.pick.hidden=true;
-  OFFICE_FIDELITY.ready=true;OFFICE_FIDELITY.loadMs=performance.now()-OFFICE_FIDELITY.started;gMeasureHud();gCamera();dirty=true;
+  fidelityNightFinishTheme();OFFICE_FIDELITY.ready=true;OFFICE_FIDELITY.loadMs=performance.now()-OFFICE_FIDELITY.started;gMeasureHud();gCamera();dirty=true;
 }
 fidelityStart().catch(error=>{console.error(error);document.title='Office fidelity failed to load';});
 
@@ -21243,7 +21263,7 @@ function fidelityBackdropLayer(r,x,y){
  return ((Math.round(alpha*fade)<<24)|(Math.round((r.rgba[a+2]*aa+r.rgba[b+2]*ab)/alpha)<<16)|(Math.round((r.rgba[a+1]*aa+r.rgba[b+1]*ab)/alpha)<<8)|Math.round((r.rgba[a]*aa+r.rgba[b]*ab)/alpha))>>>0;
 }
 function fidelityBackdropBake(cx,cy){
- const d=fidelityBackdrop,far=fidelitySurfaces['backdrop-far'],near=fidelitySurfaces['backdrop-near'];
+ const d=fidelityBackdrop,far=fidelitySurfaces['backdrop-far'],near=fidelitySurfaces['backdrop-near'],paperCloud=typeof fidelityNightPaperCloud==='function'&&fidelityNightActive();
  for(let y=0;y<d.height;y++){
   const rel=(y-d.baseline)/4,sky=fidelityBackdropSky(rel);
   for(let x=0;x<d.width;x++){
@@ -21251,7 +21271,7 @@ function fidelityBackdropBake(cx,cy){
    // Two broad quiet paper cloud shapes, fixed in the sky layer.
    const ux=x/4,uy=rel;
    const e1=(ux-42)*(ux-42)/(23*23)+(uy+75)*(uy+75)/(4.5*4.5),e2=(ux-172)*(ux-172)/(31*31)+(uy+55)*(uy+55)/(5*5);
-   if(e1<1||e2<1)c=fidelityBlend(c,0xffedf0ea,Math.round(65*clamp((1-Math.min(e1,e2))*5,0,1)));
+   if(paperCloud)c=fidelityNightPaperCloud(ux,uy,c);else if(e1<1||e2<1)c=fidelityBlend(c,0xffedf0ea,Math.round(65*clamp((1-Math.min(e1,e2))*5,0,1)));
    const f=fidelityBackdropLayer(far,x+cx*(.12-.25)*4,far.height+y-d.baseline+24+cy*(.80-.85)*4);
    if(f>>>24)c=fidelityBlend(c,f,Math.round((f>>>24)*.42));
    const n=fidelityBackdropLayer(near,x+cx*(.28-.25)*4,near.height+y-d.baseline+cy*(.88-.85)*4);
@@ -21359,13 +21379,8 @@ function fidelityNightPrepare(){
  for(const id of ['backdrop-far','backdrop-near']){
   const src=fidelitySurfaces[id],r={id,width:src.width,height:src.height,rgba:new Uint8ClampedArray(src.rgba.length)};
   for(let k=0;k<src.rgba.length;k+=4){r.rgba[k]=Math.round(src.rgba[k]*.24+11);r.rgba[k+1]=Math.round(src.rgba[k+1]*.30+15);r.rgba[k+2]=Math.round(src.rgba[k+2]*.45+23);r.rgba[k+3]=src.rgba[k+3];}
-  if(id==='backdrop-near'){
-   // Existing printed window panes, not new openings in the roof silhouettes.
-   for(const box of [[33,115,23,24],[426,103,23,25],[560,120,23,23],[964,121,23,24]])for(let y=box[1];y<box[1]+box[3];y++)for(let x=box[0];x<box[0]+box[2];x++){
-    const k=(y*r.width+x)*4;if(src.rgba[k+3]<240||src.rgba[k]>155||src.rgba[k+1]>155||src.rgba[k+2]>150)continue;
-    r.rgba[k]=222;r.rgba[k+1]=167;r.rgba[k+2]=87;
-   }
-  }d.roofs[id]=r;
+  if(id==='backdrop-near')fidelityNightWindowFinish(r,src);
+d.roofs[id]=r;
  }d.roofBuilds++;
  d.retainedBytes=d.field.byteLength+d.floor.byteLength+d.tables.byteLength+d.gray.byteLength+d.roofs['backdrop-far'].rgba.byteLength+d.roofs['backdrop-near'].rgba.byteLength;
  d.ready=true;fidelityFloorLight=d.floor;fidelityMaterialInvalidate();fidelityBackdrop.cx=NaN;fidelityBackdrop.LW=0;
@@ -21394,9 +21409,7 @@ fidelityBackdropBake=function(cx,cy){
  fidelityNightOriginalBake(cx,cy);if(!fidelityNightActive())return;
  const d=fidelityBackdrop;
  // Small paper moon and a few fixed pinpricks. No motion or frame-time work.
- for(let y=69;y<=111;y++)for(let x=741;x<=783;x++){
-  const dx=x-762,dy=y-90,q=Math.sqrt(dx*dx+dy*dy);if(q>19)continue;const p=y*d.width+x,c=fidelityBlend(d.rgba[p],0xffcbd7e5,Math.round(230*clamp(19-q,0,1)));d.rgba[p]=c;d.gray[p]=fidelityBackdropGrey(c);
- }
+ fidelityNightPaperMoon(d);
  for(const s of [[104,62],[292,117],[465,46],[619,141],[877,48]]){const p=s[1]*d.width+s[0],c=fidelityBlend(d.rgba[p],0xffd3dce4,150);d.rgba[p]=c;d.gray[p]=fidelityBackdropGrey(c);}
 };
 function fidelityNightContact(cx,cy,rx,ry){
@@ -21428,6 +21441,47 @@ function fidelityNightResolve(){
  if(d.edgeColour!==edge){d.edgeColour=edge;d.edgeCSS='rgb('+(edge&255)+','+(edge>>>8&255)+','+(edge>>>16&255)+')';}
  if(fidelityBackdrop.edgeCSS!==d.edgeCSS)fidelityBackdrop.edgeCSS=d.edgeCSS;d.frames++;
 }
+
+// Finish existing night details only. All work here is setup, light-event or cold sky bake.
+const fidelityNightPaper={cloud:[[-1,.15],[-.89,-.05],[-.69,-.08],[-.56,-.45],[-.28,-.61],[-.02,-.4],[.16,-.68],[.45,-.59],[.62,-.23],[.84,-.24],[1,.08],[.91,.29],[.57,.39],[.22,.34],[-.12,.43],[-.49,.35],[-.79,.37]],
+ moon:[[-.05,-1],[.4,-.94],[.76,-.65],[.96,-.21],[1,.22],[.79,.67],[.4,.91],[-.04,1],[-.5,.84],[-.82,.5],[-1,.02],[-.83,-.5],[-.45,-.87]],
+ panes:[[35,115,44,125],[47,115,56,124],[34,127,44,138],[47,127,56,138],[427,104,437,115],[440,104,449,115],[427,118,437,128],[440,118,449,128],[560,120,568,129],[570,120,578,129],[560,131,567,140],[570,131,578,140],[964,121,973,130],[976,121,985,130],[964,132,973,141],[976,133,985,141]]};
+function fidelityPaperDistance(x,y,points){
+ let inside=false,best=Infinity;
+ for(let i=0,j=points.length-1;i<points.length;j=i++){
+  const a=points[j],b=points[i],dx=b[0]-a[0],dy=b[1]-a[1],t=clamp(((x-a[0])*dx+(y-a[1])*dy)/(dx*dx+dy*dy),0,1),X=x-a[0]-t*dx,Y=y-a[1]-t*dy;
+  best=Math.min(best,X*X+Y*Y);if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])inside=!inside;
+ }return Math.sqrt(best)*(inside?1:-1);
+}
+function fidelityNightPaperCloud(x,y,c){
+ if(y< -81||y> -51)return c;
+ for(let n=0;n<2;n++){
+  const cx=n?172:42,cy=n?-55:-75,rx=n?31:23,ry=n?5:5.5;if(x<cx-rx-1||x>cx+rx+1||Math.abs(y-cy)>ry+1)continue;
+  const u=(x-cx)/rx,v=(y-cy)/ry;
+  const lower=fidelityPaperDistance(u-.025,v-.11,fidelityNightPaper.cloud),upper=fidelityPaperDistance(u,v,fidelityNightPaper.cloud);
+  if(lower>-.03)c=fidelityBlend(c,0xff716052,Math.round(48*clamp(.5+lower*ry*4,0,1)));
+  if(upper>-.03)c=fidelityBlend(c,0xffa18b79,Math.round(70*clamp(.5+upper*ry*4,0,1)));
+ }return c;
+}
+function fidelityNightPaperMoon(d){
+ for(let y=69;y<=111;y++)for(let x=741;x<=783;x++){
+  const u=(x-762)/19,v=(y-90)/19,lower=fidelityPaperDistance(u-.04,v-.035,fidelityNightPaper.moon),upper=fidelityPaperDistance(u,v,fidelityNightPaper.moon);if(lower<-.06&&upper<-.06)continue;
+  const p=y*d.width+x;let c=d.rgba[p];
+  if(lower>-.06)c=fidelityBlend(c,0xffb8a698,Math.round(190*clamp(.5+lower*19,0,1)));
+  if(upper>-.06){const fibre=(hash2(x,y)-.5)*3,rim=upper<.065?-6:0;c=fidelityBlend(c,fidelityBackdropRGB(232+fibre+rim,223+fibre+rim,203+fibre+rim),Math.round(235*clamp(.5+upper*19,0,1)));}
+  d.rgba[p]=c;d.gray[p]=fidelityBackdropGrey(c);
+ }
+}
+function fidelityNightWindowFinish(r,src){
+ for(const pane of fidelityNightPaper.panes)for(let y=pane[1];y<pane[3];y++)for(let x=pane[0];x<pane[2];x++){
+  const k=(y*r.width+x)*4;if(src.rgba[k+3]<240)continue;
+  const edge=Math.min(x+.5-pane[0],pane[2]-x-.5,y+.5-pane[1],pane[3]-y-.5),a=.94*clamp(edge/1.25,0,1),v=(y-pane[1])/(pane[3]-pane[1]);
+  r.rgba[k]=Math.round(r.rgba[k]*(1-a)+(202-v*3)*a);r.rgba[k+1]=Math.round(r.rgba[k+1]*(1-a)+(161-v*3)*a);r.rgba[k+2]=Math.round(r.rgba[k+2]*(1-a)+(102-v*2)*a);
+ }
+}
+function fidelityNightFinishTheme(){const root=hud.root;if(root.classList.contains('fidelity-night')!==fidelityNight.enabled)root.classList.toggle('fidelity-night',fidelityNight.enabled);}
+const fidelityNightFinishSet=fidelityNightSet;
+fidelityNightSet=function(enabled){fidelityNightFinishSet(enabled);fidelityNightFinishTheme();};
 
 </script>
 </body>
