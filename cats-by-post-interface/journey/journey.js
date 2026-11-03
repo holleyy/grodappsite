@@ -181,6 +181,6 @@
  $('retry-game').onclick=()=>{openingToken++;$('opening').hidden=true;location.reload()};
  window.Journey={startLetter,openPacket,openLetter,backToMap,recenter,placeIndex,leave,delivered,gameReady,service,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
  fetch('levels.json').then(r=>{if(!r.ok)throw Error('Level index unavailable');return r.json()}).then(data=>{
-  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=menus-6&example='+EXAMPLE;
+  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=spacing-7&example='+EXAMPLE;
  }).catch(e=>{toast('The letter index could not be opened. Please reload.');console.error(e)});
 })();
