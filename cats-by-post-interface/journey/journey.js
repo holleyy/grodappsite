@@ -34,23 +34,17 @@
   return [width/2,(Math.min(120,height*.25)+height-lower)/2];
  }
  function camera(){const a=mapAnchor();return[(vp.scrollLeft+a[0])/(WORLD.width*zoom),(vp.scrollTop+a[1])/(WORLD.height*zoom)]}
- function centreAt(p){const a=mapAnchor();vp.scrollTo({left:p[0]*WORLD.width*zoom-a[0],top:p[1]*WORLD.height*zoom-a[1],behavior:'instant'});requestAnimationFrame(showReadableLabels)}
+ function centreAt(p){const a=mapAnchor();vp.scrollTo({left:p[0]*WORLD.width*zoom-a[0],top:p[1]*WORLD.height*zoom-a[1],behavior:'instant'})}
  function minZoom(){return Math.max(.55,vp.clientWidth/WORLD.width,vp.clientHeight/WORLD.height)+.005}
  function changeZoom(value,point=camera()){
   zoom=Math.min(1.9,Math.max(minZoom(),value));world.style.width=WORLD.width*zoom+'px';world.style.height=WORLD.height*zoom+'px';centreAt(point);
   $('zoom-out').disabled=zoom<=minZoom()+.001;$('zoom-in').disabled=zoom>=1.9;
  }
  function recenter(){if(!current())return;const p=placeFor(current().id);if(vp.clientHeight<650)changeZoom(minZoom(),[p.focus[0],p.focus[1]+.05]);else centreAt(p.focus);announce('Back at '+p.title)}
- function showReadableLabels(){
-  const edge=vp.getBoundingClientRect(),top=document.querySelector('.camera-controls').getBoundingClientRect().bottom+7;
-  const bottom=wide.matches?edge.bottom-8:$('next-dock').getBoundingClientRect().top-7;
-  $('map-pins').querySelectorAll('button').forEach(b=>{const r=b.getBoundingClientRect();b.style.visibility=r.top<top||r.bottom>bottom||r.left<edge.left+4||r.right>edge.right-4?'hidden':'visible'});
- }
  function renderPins(){
   if(!levels.length)return;const currentPlace=placeFor(current().id).id;
   $('map-pins').innerHTML=places.map(p=>`<button class="map-pin ${p.id===currentPlace?'current':''} ${view?.place===p.id?'selected':''}" style="left:${p.x*100}%;top:${p.y*100}%" data-place="${p.id}" aria-label="${p.title}, ${count(p)} of ${p.count} posted">${p.label}<small>${count(p)===p.count?'All posted':count(p)?count(p)+' of '+p.count+' posted':p.art?'Not reached yet':'Still to come'}</small></button>`).join('');
   $('map-pins').querySelectorAll('button').forEach(b=>b.onclick=e=>{if(dragClick){e.preventDefault();return}openPacket(b.dataset.place)});
-  requestAnimationFrame(showReadableLabels);
  }
  function updateDock(){
   const l=current();if(!l)return;
@@ -84,6 +78,9 @@
   return p.art?`<figure class="${cls}"><img src="../assets/${p.art}.png" alt="${p.title}" width="1280" height="880"></figure>`:`<div class="future-art"><img src="images/route.webp" alt="An illustration of ${p.title.toLowerCase()}" style="left:${-(p.focus[0]*800-155)}px;top:${-(p.focus[1]*800-105)}px"></div>`;
  }
  function envelope(l,p){return `<div class="letter-object"><img src="images/envelope.webp" alt="An addressed postal envelope" width="1561" height="1008"><span class="return-address">The postmistress<br>Cats by Post</span><div class="recipient"><span>${esc(l.title)}</span><span class="letter-place">${number(l.id)} · ${esc(p.label)}</span></div></div>`}
+ function print(l,p){return `<img class="print-paper" src="images/print-paper.webp" alt="" width="1470" height="1070">${l.planned?`<span class="print-scene print-concept">${roomArt(p)}</span>`:`<img class="print-scene" src="images/level-prints/${l.id}.webp" alt="The starting arrangement for ${esc(l.title)}" width="960" height="640">`}<span class="print-reference">${number(l.id)}</span>`}
+ function mailPreview(l,p){return `<div class="mail-preview"><img class="envelope-rear" src="images/envelope-open.webp" alt="" width="1301" height="1209"><button class="preview-print" id="preview-print" aria-label="Take a closer look at ${esc(l.title)}">${print(l,p)}<span class="print-loupe"><img src="icons/magnifying-glass-plus.svg" alt="" width="24" height="24"></span></button>${envelope(l,p)}</div>`}
+ function inspectPrint(l,p){$('print-title').textContent=l.title;$('print-content').innerHTML=`<figure class="inspection-print">${print(l,p)}</figure>`;showDialog('print-dialog')}
  function earned(id){const stars=model.done[id]?.stars||{},keys=['delivered','tidy','firstPost'],labels=['Delivered','Tidy','First post'],crops=['20 70 576 752','600 70 578 752','1180 70 576 752'];return `<div class="earned-postage" aria-label="Earned postage">${keys.map((k,i)=>stars[k]?`<svg viewBox="${crops[i]}" role="img" aria-label="${labels[i]} stamp earned"><image href="../assets/cats-postage.png" width="1774" height="887"/></svg>`:'').join('')}</div>`}
  function renderPane(){
   if(!levels.length)return;
@@ -99,8 +96,9 @@
    const l=allLevels().find(x=>x.id===(view?.id||current().id)),p=placeFor(l.id),isActive=l.id===active()?.id,done=!!model.done[l.id],replacing=!!active()&&!isActive;
    $('pane-title').textContent=p.title;$('pane-back').textContent=returnView?'Letters':wide.matches?'All letters':'Map';
    const cats=l.hatches?.reduce((sum,h)=>sum+h.cats.length,0),hatches=l.hatches?.length;
-   const action=l.planned?'Still to come':isActive?'Continue sorting':done?'Replay this letter':replacing?'Switch to this letter':'Open the letter';
-   content.innerHTML=`<article class="letter-view">${roomArt(p,'letter-room')}${envelope(l,p)}${done?earned(l.id):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span></div>`:''}${l.planned?'<p class="planned-note">More post is on the way.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
+   const action=l.planned?'Still to come':isActive?'Continue sorting':done?'Replay this letter':replacing?'Switch to this letter':'Start sorting';
+   content.innerHTML=`<article class="letter-view">${mailPreview(l,p)}${done?earned(l.id):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span></div>`:''}${l.planned?'<p class="planned-note">More post is on the way.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
+   $('preview-print').onclick=()=>inspectPrint(l,p);
    $('open-letter')?.addEventListener('click',()=>startLetter(l.id));$('browse-packet')?.addEventListener('click',()=>openPacket(p.id,+l.id.split('-')[0]));$('keep-current')?.addEventListener('click',()=>openLetter(active().id));
   }
   content.scrollTop=0;
@@ -162,7 +160,6 @@
  }
  vp.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||e.button!==0)return;drag={x:e.clientX,y:e.clientY,left:vp.scrollLeft,top:vp.scrollTop,moved:false};dragClick=false});
  vp.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(!drag.moved&&Math.hypot(dx,dy)>5){drag.moved=true;vp.setPointerCapture(e.pointerId);vp.classList.add('dragging')}if(drag.moved){vp.scrollLeft=drag.left-dx;vp.scrollTop=drag.top-dy}});
- vp.addEventListener('scroll',showReadableLabels,{passive:true});document.fonts.ready.then(showReadableLabels);
  const dragEnd=()=>{if(!drag)return;dragClick=drag.moved;drag=null;vp.classList.remove('dragging');setTimeout(()=>dragClick=false,0)};
  window.addEventListener('pointerup',dragEnd);vp.addEventListener('pointercancel',dragEnd);
  let size=[vp.clientWidth,vp.clientHeight,wide.matches];new ResizeObserver(()=>{const a=mapAnchor(...size),point=[(vp.scrollLeft+a[0])/(WORLD.width*zoom),(vp.scrollTop+a[1])/(WORLD.height*zoom)];size=[vp.clientWidth,vp.clientHeight,wide.matches];changeZoom(zoom,point)}).observe(vp);
