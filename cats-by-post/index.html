@@ -235,7 +235,7 @@
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "0aac98ddbb";
+const BUILD_ID = "f9d246e3ad";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -10720,7 +10720,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = WORLD;
 //   practice: Practice, nightShift: NightShiftProgress }.
 // ============================================================================
 const PROGRESS = (function () {
-  const KEY = 'catsByPost.parcelLevelsPreview', VERSION = 5;
+  const KEY = 'catsByPost.parcelChapterPreview', VERSION = 5;
   const emptyPractice = () => ({ current: '', records: {}, order: [] });
   const emptyNightShift = () => ({ weeklyBest: {}, allTimeBest: 0, totalCatsHome: 0 });
   const empty = () => ({ version: VERSION, levels: {}, unlocked: [], current: '', daily: {}, practice: emptyPractice(), nightShift: emptyNightShift() });
@@ -13073,6 +13073,35 @@ const PARCEL=(function(){
  return {CFG,build,volumes,hidden,staffMirror,staffBounds,staffIssues,create,step};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=PARCEL;
+// One shared cadence-aware teaching run. Chapter clocks sample immutable traces.
+const PARCELCHAPTER=(function(){
+ const node=typeof module!=='undefined'&&module.exports,R=node?require('./10_rules'):{grCreate,grTick,grResult,GR_DIR,GE_RELEASED,GE_MOVED,GO_RUNNING},B=node?require('./12_boardanim'):BOARDANIM;
+ function demo(ox,oy){
+  const level={id:'parcel-chapter-demo',room:'parcel',board:{w:7,h:6,roomX:0,roomY:0},timeLimit:40,
+   hatches:[{x:0,y:2,dir:'R',cats:[{coat:'ginger',big:true},'blue','blue']}],gates:[{x:5,y:2,exits:['U','D']}],dogs:[],
+   baskets:[{x:5,y:0,coat:'blue'},{x:5,y:5,coat:'blue'},{x:6,y:1,coat:'ginger'}],tray:{plain:0,ginger:1,blue:0}},
+   turns=[{x:5,y:1,type:'ginger',dir:'R'}],s=R.grCreate(level,turns),traces=[],gates=B.makeGateTrace(120),ends=[],h=level.hatches[0];
+  for(let i=0;i<s.n;i++){const tr=B.makeTrace(42);tr.ox=ox;tr.oy=oy;tr.tick=tr.pop=.3;tr.coat=s.coat[i];tr.big=!!s.big[i];tr.hx=h.x;tr.hy=h.y;tr.hatchDir=R.GR_DIR[h.dir];tr.bw=7;tr.bh=6;tr.look=i;tr.blinkPhase=i*7;traces.push(tr);}
+  while(s.outcome===R.GO_RUNNING){const t=Math.round((s.tick+1)*300)/1000;R.grTick(s);B.recordGates(gates,s,t);
+   for(let i=0;i<s.n;i++){const tr=traces[i];if(s.ev[i]===R.GE_RELEASED)tr.rel=t;else if(s.ev[i]>=R.GE_MOVED){B.record(tr,s.px[i],s.py[i],s.pdir[i],s.x[i],s.y[i],s.dir[i],s.ev[i],s.bounced[i]);B.recordDestination(tr,s,i);}}}
+  for(const tr of traces)ends.push(tr.rel+tr.n*tr.tick+6);
+  return {level,turns,traces,gates,ends,loop:16,final:R.grResult(s)};
+ }
+ function growth(stage,frame,out){
+  if(!Number.isInteger(stage)||stage<1||stage>3||!Number.isFinite(frame))throw new RangeError('Invalid parcel growth shot');
+  const f=Math.max(0,frame),t=Math.max(0,Math.min(1,(f-90)/240)),u=t*t*(3-2*t),startY=stage===1?168:184,travel=(208-startY)*u;
+  out.x=stage===1?200:stage===2?184:216;out.y=startY+travel;out.lift=Math.min(3,Math.max(0,Math.floor((f-30)/20)));
+  out.walk=t>0&&t<1?Math.floor(travel/4)%4:-1;out.face=0;out.workerX=out.x+4;out.workerY=out.y-9.5;out.revealed=f>=330;return out;
+ }
+ const P=node?require('./19k_parcel'):PARCEL,dispatchLife=P.create(P.CFG);
+ function dispatch(frame,out){
+  if(!Number.isFinite(frame))throw new RangeError('Invalid parcel dispatch shot');
+  out.worldFrame=Math.min(2699,1908+Math.max(0,frame));P.step(dispatchLife,out.worldFrame);const p=dispatchLife.parcels[0];
+  out.bagX=p.x+2;out.bagY=p.y-1;out.bagZ=p.z+6;out.visible=!dispatchLife.van.closed;out.stopped=out.worldFrame===2699;return out;
+ }
+ return {demo,growth,dispatch};
+})();
+if(typeof module!=='undefined'&&module.exports)module.exports=PARCELCHAPTER;
 // ============================================================================
 // 20 NIGHT SHIFT: a deterministic round simulation. It uses the puzzle rules'
 // board, cat and turntable data, but owns its release clock, live editing,
@@ -17454,7 +17483,7 @@ function atlasSprites() {
   spr('queue_head', 'none', 'none', 0, false, AT_COATS.map(([coat, cn]) => fr(cn, () => {
     KEY = coatKeyOf(coat); sprClear(); tpl(QUEUE_HEAD, AX - 2, AY - 3); KEY = KEY_S; outlineSprite(); atlasBlit(8, 8, 0.5, false);
   })));
-  return S.concat(boxAtlasSprites(), depotAtlasSprites(),trainAtlasSprites(),pointsAtlasSprites(),trainChapterAtlasSprites(),cityHallAtlasSprites(),tunnelPieceAtlasSprites(),cityHallChapterAtlasSprites(),parcelAtlasSprites());
+  return S.concat(boxAtlasSprites(), depotAtlasSprites(),trainAtlasSprites(),pointsAtlasSprites(),trainChapterAtlasSprites(),cityHallAtlasSprites(),tunnelPieceAtlasSprites(),cityHallChapterAtlasSprites(),parcelAtlasSprites(),parcelChapterAtlasSprites());
 }
 
 // ---- render, crop, pack -------------------------------------------------------------------
@@ -22522,9 +22551,10 @@ function parcelActors(){const a=PARCELIFE.sorter;buildParcelHandler(a);blitSprit
 function drawParcel(){
  nItems=0;const src=gBoardSource();if(src===G_SRC)gPrepareSrc();addBoardItems(src);sortItems();for(let k=0;k<nItems;k++){const id=ITEM_ID[k];if(drawItemHook)drawItemHook(id,false);shBoard=128;drawBoardItem(id-IT_BOARD0);if(drawItemHook)drawItemHook(id,true);}
  shBoard=0;shSunMax=0;lampFn=parcelLampAdd;if(drawItemHook)drawItemHook(40,false);
- parcelBlit(PARCELIFE.van.closed?PARCEL_CACHE.vanClosed:PARCEL_CACHE.van,PARCELIFE.van.x-185,PARCELIFE.van.y);parcelBlit(PARCEL_CACHE.rollers[PARCELIFE.roller]);parcelBlit(PARCEL_CACHE.dial[0]);parcelBlit(PARCEL_CACHE.scale[PARCELIFE.scale]);parcelBlit(PARCEL_CACHE.truck[PARCELIFE.lift]);parcelBlit(PARCEL_CACHE.dispatch,0,PARCELIFE.dispatch.y-49);
+ parcelBlit(PARCELIFE.van.closed?PARCEL_CACHE.vanClosed:PARCEL_CACHE.van,PARCELIFE.van.x-185,PARCELIFE.van.y);parcelBlit(PARCEL_CACHE.rollers[PARCELIFE.roller]);parcelBlit(PARCEL_CACHE.dial[0]);parcelBlit(PARCEL_CACHE.scale[PARCELIFE.scale]);if(!(cpActive()&&CP.parcel&&CP.mode==='growth'))parcelBlit(PARCEL_CACHE.truck[PARCELIFE.lift]);parcelBlit(PARCEL_CACHE.dispatch,0,PARCELIFE.dispatch.y-49);
  const p=PARCELIFE.parcels[0];if(p.visible)parcelBlit(p.wrapped?PARCEL_CACHE.parcel:PARCEL_CACHE.plain,p.x-108,p.y-36,p.z-22);
  parcelActors();paperPropScope++;try{for(let i=0;i<12;i++){const t=(PARCELIFE.frame+i*197)%1440;if(t<1200)dot3(173+i%4*16,12+i%3*8,16+t/80,C.CREAM,0);}}finally{paperPropScope--;}
+ if(cpActive()&&CP.parcel)drawParcelChapter();
  if(drawItemHook)drawItemHook(40,true);lampFn=null;shSunMax=2;
 }
 // Warehouse export uses the same independent native draw functions as the live room.
@@ -22537,6 +22567,36 @@ function parcelAtlasSprites(){
  add('rollers',[120,50,8],4,'roller',parcelRollers,60/18);add('floor-scale-dial',[30,117,21],3,'needle',parcelScaleDial);add('hanging-scale',[154,50,45],3,'weigh',parcelHangingScale);add('hand-truck',[55,191,0],4,'lift',parcelTruck);out.push({name:'parcel_moving-parcel',origin:[108,36,22],cellSize:128,direction:'none',mirroredFor:'none',fps:0,loop:false,frames:[{tag:'rest',draw:at([108,36,22],parcelMovingBox)}]});add('van',[185,-20,0],2,'door',k=>parcelVan(!!k));add('dispatch-trolley',[185,49,0],1,'rest',()=>parcelTrolley(185,49));add('plain-parcel',[108,36,22],1,'rest',()=>parcelMovingBox(false));out.push(record(catalog.find(p=>p.id==='packing-supplies')));add('paper-ball',[247,161,0],4,'roll',parcelPaperBall);return out;
 }
 function parcelAtlasAssemblies(){parcelPrepareLight();const r=PARCEL.build(),keep=PARR;PARR=r;let layers;try{layers=parcelStaticCatalog().map(p=>({family:'parcel_'+p.id,origin:p.origin,frame:'rest'}));}finally{PARR=keep;}return {room:'parcel',worldUnitsPerTile:16,board:r.board,loopFrames:2880,layers,light:{...r.light,sceneryTreatment:'Warm material ramps use fri; steel/sky remain dawn',sceneryLut:Array.from({length:NLVL},(_,l)=>Array.from(PARCEL_LIGHT.roomLut.subarray(l*PAL_N,l*PAL_N+NPAL)))},rollers:{family:'parcel_rollers',origin:[120,50,8],poses:4,poseFrames:18},dial:{family:'parcel_floor-scale-dial',origin:[30,117,21],poses:3},scale:{family:'parcel_hanging-scale',origin:[154,50,45],poses:3},truck:{family:'parcel_hand-truck',origin:[55,191,0],poses:4},parcels:{family:'parcel_moving-parcel',origin:[108,36,22],count:1,model:'PARCEL.step owns van/hand/incoming/bench/belt/scale/dispatch transfers; no conveyor reset'},van:{family:'parcel_van',origin:[185,-8,0],translationY:12,reuse:'accepted van geometry; empty hold and closed doors',xRange:[110,185],departing:[2340,2700]},play:{cat:'accepted loose ginger walk/stretch/sit',period:1440,envelope:'playing-cat',toy:'parcel_paper-ball'},handling:{families:['parcel_handler-towards','parcel_handler-away'],poses:['reach','grip','rise'],settle:'accepted Depot carry',timing:'PARCEL.step grip wait, lift, settled carry; supported set-down then release'},sorter:{reuse:'accepted Depot canonical staff',route:r.route,timeline:r.timeline,mirror:'face1 or face2',rearWork:'parcel_worker-rear retains head and mirrors the body; cargo side follows nose'},postmistress:{reuse:'accepted tuxedo curl/stretch/watch',origin:[26,188,35]},notes:['Original eight paper faces; no accepted artwork replaced.','No big-cat Piece or Chapter7 integration; ordinary accepted cats show timing.','Live floor never moves during hand-truck lift inspection.']};}
+// Four additive chapter pallet poses. Accepted ambient truck art is unchanged.
+function parcelChapterTruck(pose){
+ const z=5+pose*2;
+ // Fixed wheel chassis stays on the ground while the carriage lifts on its mast.
+ for(const x of[50,59])box(x-.75,185,2.5,x+.75,196,4.5,shParcelSteel,C.PL0,0);
+ box(49.25,192.5,2.5,59.75,194.5,4.5,shParcelSteel,C.PL0,0);
+ for(const x of[50,59]){
+  box(x-.6,185,4,x+.6,186.2,25,shParcelRed,C.RD0,0);dpRod(x,185.5,25,x,188,26,C.BR1);
+  const keep=dpWheelR;dpWheel(x,194,3,3,'Y');dpWheelR=keep;
+ }
+ // Low brace matches the accepted push pose's hand height and contact anchor.
+ dpRod(50,185.5,10,50,183.5,11,C.BR1);dpRod(59,185.5,10,59,183.5,11,C.BR1);
+ dpRod(50,183.5,11,59,183.5,11,C.BR1);
+ box(49,186,z,60,197,z+.5,shParcelSteel,C.PL0,0);
+ for(const x of[49,58])box(x,187,z+.5,x+2,197,z+1.5,shParcelWood,C.WD0,0);
+ for(let y=187;y<197;y+=3)box(48.5,y,z+1.5,61,y+2.4,z+2.2,shParcelWood,C.WD0,0);
+ box(50,188,z+2.2,59,195,z+10.2,shParcelKraft,C.KRAFT0,0);parcelFace('parcel',50,195.1,z+2.2,9,8,F_Y);
+}
+function parcelChapterAtlasSprites(){
+ return [{name:'parcel_chapter-pallet',origin:[55,191,0],cellSize:256,direction:'none',mirroredFor:'none',fps:0,loop:false,
+  frames:Array.from({length:4},(_,pose)=>({tag:'lift'+pose,draw:()=>{const kind=parcelFaceKind,w=parcelFaceW,h=parcelFaceH;tOX=aOriginX-(55-191);tOY=aOriginY-123;paperPropScope++;try{parcelChapterTruck(pose);}finally{paperPropScope--;parcelFaceKind=kind;parcelFaceW=w;parcelFaceH=h;}}}))}];
+}
+function pcPrepareTruck(){if(!PC.truck)PC.truck=[0,1,2,3].map(pose=>parcelCacheCell(()=>parcelChapterTruck(pose)));}
+function drawParcelChapter(){
+ if(CP.mode==='growth'){
+  const m=PC.motion;parcelBlit(PC.truck[m.lift],m.x-55,m.y-191);
+ }else if(CP.mode==='exit'&&PC.dispatch.visible){
+  const p=PC.dispatch;buildTrainProp('mailbag',1);blitSprite(p.bagX,p.bagY,p.bagZ,false,true);
+ }
+}
 // ============================================================================
 // 40 VIEWPORT MATHS (pure; Node-exported for tests). Device pixels in, whole
 // scales out: scale = device px per logical px, and the logical canvas is
@@ -24233,28 +24293,28 @@ nsEl.replay.addEventListener('click', () => {
 if (GAME_MODE && /[?&]nightshift\b/.test(location.search)) nsLoad();
 // The chapter's cards own a separate presentation clock. The live puzzle, stars
 // and placements stay intact while a precomputed demo is watched or replayed.
-const CP={mode:'',frame:0,seen:false,seenTrain:false,train:false,seenHall:false,hall:false,depotDemo:null,depotSrc:null,src:null,demo:null,room:null,stage:0,
+const CP={mode:'',frame:0,seen:false,seenTrain:false,train:false,seenHall:false,hall:false,seenParcel:false,parcel:false,depotDemo:null,depotSrc:null,src:null,demo:null,room:null,stage:0,
   enterScale:1,targetScale:1,visualScale:1,enterX:0,enterY:0,sourceView:null,targetView:null,
   motion:{offset:0,driver:{x:0,y:0,face:1,walk:-1,hold:1,bob:0}},
   panel:$('chapterScene'),card:$('chapterCard'),title:$('chapterTitle'),text:$('chapterText'),
   primary:$('chapterPrimary'),secondary:$('chapterSecondary'),replay:null,focus:null};
 function cpActive(){return !!window.__chapterReady&&!!CP.mode;}
 function cpHud(){
-  if(CP.replay)CP.replay.hidden=!G_KEEP_PROGRESS||gm.custom||!/^[456]-/.test(gm.L.id)||!!gm.shift||gm.mode==='running';
+  if(CP.replay)CP.replay.hidden=!G_KEEP_PROGRESS||gm.custom||!/^[4567]-/.test(gm.L.id)||!!gm.shift||gm.mode==='running';
 }
 function cpCancel(){
   if(!CP.mode)return;
   CP.mode='';CP.panel.hidden=true;hud.root.inert=screen.inert=false;
   if(G_KEEP_PROGRESS)hud.root.classList.add('on');
   if(CP.room&&G_ROOM!==CP.room)gUseRoom(CP.room);
-  if(CP.train)tcCancel();if(CP.hall)hcCancel();
+  if(CP.train)tcCancel();if(CP.hall)hcCancel();if(CP.parcel)pcCancel();
   CP.room=null;CP.sourceView=CP.targetView=null;view.zoom=null;view.panX=view.panY=0;
   if(devW>1)applyScale();
 }
 function cpCard(mode,title,text,primary,secondary){
   if(!CP.mode)CP.focus=document.activeElement;
   CP.mode=mode;CP.frame=0;CP.panel.hidden=false;
-  $('chapterKicker').textContent=CP.hall?'The city sorting hall · Chapter 6':CP.train?'The mail train · Chapter 5':'The town depot · Chapter 4';
+  $('chapterKicker').textContent=CP.parcel?'The parcel room · Chapter 7':CP.hall?'The city sorting hall · Chapter 6':CP.train?'The mail train · Chapter 5':'The town depot · Chapter 4';
   CP.title.textContent=title;CP.text.textContent=text;CP.primary.textContent=primary;
   CP.secondary.textContent=secondary||'';CP.secondary.hidden=!secondary;
   hud.root.inert=screen.inert=true;hud.root.classList.remove('on');gm.cursor=false;
@@ -24262,9 +24322,10 @@ function cpCard(mode,title,text,primary,secondary){
   view.panX=view.panY=0;CP.primary.focus&&CP.primary.focus();dirty=true;
 }
 function cpIntro(){
+  if(/^7-/.test(gm.L.id))return pcIntro();
   if(/^6-/.test(gm.L.id))return hcIntro();
   if(/^5-/.test(gm.L.id))return tcIntro();
-  CP.train=CP.hall=false;
+  CP.train=CP.hall=CP.parcel=false;
   if(!G_KEEP_PROGRESS||gm.custom||!/^4-/.test(gm.L.id)||gm.mode==='running')return;
   CP.focus=document.activeElement;CP.room=G_ROOM;CP.seen=true;
   cpCard('intro','Doors of their own',
@@ -24274,6 +24335,7 @@ function cpIntro(){
 }
 function cpDemo(){
   if(CP.mode!=='intro'&&CP.mode!=='demo')return;
+  if(CP.parcel)return pcDemo();
   if(CP.hall)return hcDemo();
   if(CP.train)return tcDemo();
   CP.demo=CP.depotDemo;CP.src=CP.depotSrc;
@@ -24308,12 +24370,14 @@ function cpWatch(W,o){
     W.xs[W.n]=o.x;W.ys[W.n++]=o.y;
   }
 }
-function gBoardSource(){if(CP.hall&&CP.mode==='growth')return HC.stageSrc;if(CP.train&&TC.preparing)return TC.stageSrc;return cpActive()&&CP.mode==='demo'?cpPrepareDemo():G_SRC;}
+function gBoardSource(){if(CP.parcel&&CP.mode==='growth')return PC.stageSrc;if(CP.hall&&CP.mode==='growth')return HC.stageSrc;if(CP.train&&TC.preparing)return TC.stageSrc;return cpActive()&&CP.mode==='demo'?cpPrepareDemo():G_SRC;}
 function cpBegin(){
   if(!CP.mode)return;
   if(CP.mode==='enter')return;
+  if(CP.mode==='exit'&&gm.L.id==='6-15'){gLoad(70);pcIntro();return;}
   if(CP.mode==='exit'&&gm.L.id==='5-15'){gLoad(55);hcIntro();return;}
   if(CP.mode==='exit'&&gm.L.id==='4-15'){gLoad(40);tcIntro();return;}
+  if(CP.parcel)loopFrame=PARCELIFE.frame;
   if(CP.hall)loopFrame=CITYLIFE.frame;
   if(CP.train){loopFrame=TC.lightFrame;TC.carriage=TC.carriageGrey=null;TC.layout=null;}
   CP.enterScale=scale;CP.enterX=WS.camX;CP.enterY=WS.camY;
@@ -24350,7 +24414,7 @@ function cpPrepareEntry(){
 }
 function cpFinishEntry(){
   if(CP.targetView)cpUseView(CP.targetView);
-  CP.mode='';if(CP.train)tcCancel();if(CP.hall)hcCancel();CP.room=null;CP.sourceView=CP.targetView=null;view.zoom=null;hud.root.inert=screen.inert=false;
+  CP.mode='';if(CP.train)tcCancel();if(CP.hall)hcCancel();if(CP.parcel)pcCancel();CP.room=null;CP.sourceView=CP.targetView=null;view.zoom=null;hud.root.inert=screen.inert=false;
   const target=CP.focus&&CP.focus.tagName==='BUTTON'&&!CP.focus.disabled?CP.focus:hud.send;
   if(target.focus)target.focus();
 }
@@ -24362,7 +24426,7 @@ function cpPresent(output,resolution){
 }
 function cpNext(){
   if(!G_KEEP_PROGRESS||gm.custom||gm.daily||gm.practice||gm.shift)return false;
-  if(hcNext()||tcNext())return true;
+  if(pcNext()||hcNext()||tcNext())return true;
   if(gm.L.id==='3-10'){gLoad(25);cpIntro();return true;}
   if(gm.L.id==='4-6'||gm.L.id==='4-9'){
     const stage=gm.L.id==='4-6'?1:2;gLoad(gm.li+1);CP.room=G_ROOM;CP.stage=stage;
@@ -24378,14 +24442,14 @@ function cpNext(){
   }
   return false;
 }
-function cpPicked(){if(gm.L.id==='6-1'&&!CP.seenHall&&!progress.levels['6-1'])hcIntro();if(gm.L.id==='5-1'&&!CP.seenTrain&&!progress.levels['5-1'])tcIntro();if(gm.L.id==='4-1'&&!CP.seen&&!progress.levels['4-1'])cpIntro();}
+function cpPicked(){if(gm.L.id==='7-1'&&!CP.seenParcel&&!progress.levels['7-1'])pcIntro();if(gm.L.id==='6-1'&&!CP.seenHall&&!progress.levels['6-1'])hcIntro();if(gm.L.id==='5-1'&&!CP.seenTrain&&!progress.levels['5-1'])tcIntro();if(gm.L.id==='4-1'&&!CP.seen&&!progress.levels['4-1'])cpIntro();}
 function cpInitial(){cpHud();cpPicked();}
 function cpUpdate(){
   CP.frame++;
   if(CP.mode==='enter'&&CP.frame>=72)cpFinishEntry();
 }
 function cpWorld(){
-  if(CP.hall)hcWorld();else if(CP.train)tcWorld();
+  if(CP.parcel)pcWorld();else if(CP.hall)hcWorld();else if(CP.train)tcWorld();
   const mode=CP.mode,small=devW>devH&&window.innerHeight<=520;
   const panel=mode==='enter'?0:small?0:Math.ceil(CP.card.offsetHeight*devDpr);
   const wide=VIEWPORT.roomFitScale(devW,Math.max(100,devH-panel-32*devDpr),ROOM_FIT_W,ROOM_FIT_H);
@@ -24405,7 +24469,7 @@ function cpWorld(){
     gCamera(CP.targetScale);const x=WS.camX,y=WS.camY;
     WS.camX=Math.round(CP.enterX+(x-CP.enterX)*v);WS.camY=Math.round(CP.enterY+(y-CP.enterY)*v);
   }
-  if(CP.train||CP.hall){dirty=true;return;}
+  if(CP.train||CP.hall||CP.parcel){dirty=true;return;}
   if(mode==='growth'){
     DEPOTCHAPTER.growth(CP.stage,CP.frame,CP.motion);
     Object.assign(DPLIFE.driver,CP.motion.driver);DPLIFE.driver.reach=0;DPLIFE.driver.pencil=false;DPLIFE.driver.pour=false;DPLIFE.driver.scratch=0;
@@ -24526,7 +24590,7 @@ function hcNext(){
   CP.room=G_ROOM;CP.hall=true;CP.train=false;HC.stage=0;
   cpCard('exit','A whole city, delivered',
    'The last hood gives a little sigh. Every cat is home, and the satchel is on its way to the next collection. There may be rather larger parcels waiting beyond the hall.',
-   'Back to the hall','Watch the tunnels');cpWorld();return true;
+   'Down to the parcel room','Watch the tunnels');cpWorld();return true;
  }
  return false;
 }
@@ -24546,6 +24610,61 @@ function hcWorld(){
  }
 }
 function hcCancel(){CP.hall=false;HC.stageSrc=null;}
+// Parcel Chapter owns presentation only. Live levels, traces and rewards stay put.
+const PC={stage:0,demo:null,src:null,stageSrc:null,motion:{x:0,y:0,lift:0,walk:-1,revealed:false},dispatch:{worldFrame:0,bagX:0,bagY:0,bagZ:0},truck:null};
+function pcIntro(){
+ if(!G_KEEP_PROGRESS||gm.custom||gm.mode==='running')return;
+ CP.focus=document.activeElement;CP.room=G_ROOM;CP.parcel=true;CP.train=CP.hall=false;CP.seenParcel=true;PC.stage=0;
+ cpCard('intro','The parcel room',
+  "Not every cat fits in a small box. Down in the parcel room, the big, fluffy cats travel in parcels of their own. They're in no hurry at all.",
+  'Start sorting','Watch the big cats');cpWorld();
+}
+function pcDemo(){
+ if(CP.mode!=='intro'&&CP.mode!=='demo')return;
+ if(!PC.demo){const d=PC.demo=PARCELCHAPTER.demo(80,80),s=PC.src=makeBoardSrc(3);s.ox=s.oy=80;s.w=7;s.h=6;s.rails=true;s.n=3;s.traces=d.traces;s.largeBaskets=true;
+  for(const h of d.level.hatches)s.hatches.push({x:h.x,y:h.y,dir:GR_DIR[h.dir]});
+  for(const b of d.level.baskets)s.baskets.push({x:b.x,y:b.y,coat:GR_COAT[b.coat]});
+  for(const t of d.turns)s.turntables.push({x:t.x,y:t.y,dir:GR_DIR[t.dir],kind:GR_TYPE[t.type]});
+  for(const p of d.level.gates)s.gates.push({x:p.x,y:p.y,a:GR_DIR[p.exits[0]],b:GR_DIR[p.exits[1]],pose:BOARDANIM.makeGateOut()});
+ }
+ CP.demo=PC.demo;CP.src=PC.src;
+ cpCard('demo','No hurry at all',
+  'Big ginger moves on every other beat. The two little blues catch up and reach the points first, switching them as they pass. Ginger follows at a gentler pace, then takes the ginger turn to a roomy bed.',
+  'Start sorting','Replay demo');cpWorld();
+}
+function pcNext(){
+ if(!/^7-/.test(gm.L.id))return false;
+ const stage=gm.L.id==='7-5'?1:gm.L.id==='7-8'?2:gm.L.id==='7-10'?3:0;
+ if(stage){
+  gLoad(gm.li+1);CP.room=G_ROOM;CP.parcel=true;CP.train=CP.hall=false;PC.stage=stage;
+  cpCard('growth',stage===1?'A wider wrapping line':stage===2?'Another row for the post':'Room for the whole parade',
+   'The hand truck lifts the last pallet out of the marked strip. Once it is parked on the apron, there is a little more floor for the next collection.',
+   'Continue sorting');pcPrepareGrowth();cpWorld();return true;
+ }
+ if(gm.L.id==='7-15'){
+  CP.room=G_ROOM;CP.parcel=true;CP.train=CP.hall=false;PC.stage=0;
+  cpCard('exit','Every parcel, home at last',
+   'The last big cat settles into a well-earned nap. The satchel joins the outgoing post, and the van carries this collection into the morning. There will be another busy day soon enough.',
+   'Back to the warehouse','Watch the big cats');cpWorld();return true;
+ }
+ return false;
+}
+function pcPrepareGrowth(){
+ const s=PC.stageSrc=makeBoardSrc(0);s.ox=G_SRC.ox;s.oy=G_SRC.oy;s.rails=true;pcPrepareTruck();
+}
+function pcWorld(){
+ if(CP.mode==='exit')parcelStep(PARCELCHAPTER.dispatch(CP.frame,PC.dispatch).worldFrame);
+ else{
+  parcelStep(CP.mode==='enter'?loopFrame:CP.frame+600);
+  if(CP.mode==='growth'){
+   const m=PARCELCHAPTER.growth(PC.stage,CP.frame,PC.motion),a=PARCELIFE.sorter,s=PC.stageSrc,B=gm.L.board;
+   s.w=m.revealed?B.w:B.w-(PC.stage===2?0:1);s.h=m.revealed?B.h:B.h-(PC.stage===2?1:0);
+   a.x=m.workerX;a.y=m.workerY;a.z=0;a.face=m.face;a.action='push';a.frame=Math.max(0,m.walk);a.handling=-1;
+   PARCELIFE.parcels[0].visible=false;
+  }
+ }
+}
+function pcCancel(){CP.parcel=false;PC.stageSrc=null;}
 // Inspect warehouse life without taking a gameplay step. Used by the Scene controls.
 function parcelInspect(frame) {
   if (ACTIVE_ROOM.id !== 'parcel' || !Number.isFinite(frame)) return false;
@@ -25248,11 +25367,10 @@ if (/[?&]backdropReview\b/.test(location.search)) {
 boot();
 </script>
 <script>
-document.title='Cats by Post — Parcel levels';
-const parcelLevels=LEVELS.filter(L=>/^7-/.test(L.id));
-for(const L of parcelLevels)if(!progress.unlocked.includes(L.id))progress.unlocked.push(L.id);
-const parcelRequested=new URLSearchParams(location.search).get('level');
-const parcelReview=parcelLevels.find(L=>L.id===parcelRequested)||parcelLevels.find(L=>L.id===progress.current)||parcelLevels[0];
-cpCancel();gLoad(LEVELS.indexOf(parcelReview));
+document.title='Cats by Post — The parcel room';
+for(const L of LEVELS.filter(L=>/^7-/.test(L.id)||L.id==='6-15'))if(!progress.unlocked.includes(L.id))progress.unlocked.push(L.id);
+const parcelChapterRequested=new URLSearchParams(location.search).get('level');
+const parcelChapterLevel=LEVELS.find(L=>L.id===parcelChapterRequested)||LEVELS.find(L=>L.id===progress.current&&/^7-/.test(L.id))||LEVELS[70];
+cpCancel();gLoad(LEVELS.indexOf(parcelChapterLevel));if(!parcelChapterRequested)pcIntro();
 </script></body>
 </html>
