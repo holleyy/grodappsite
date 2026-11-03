@@ -118,7 +118,7 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 setInterval(()=>{if(ready&&active)save()},5000);
 async function init(){try{
  engine=$('world').contentWindow.Lab;if(!engine)return;
- for(const source of ['hud-bridge.js?v=hud-13','gate-legibility.js?v=gate-14'])await new Promise((resolve,reject)=>{const script=$('world').contentDocument.createElement('script');script.src=source;script.onload=resolve;script.onerror=()=>reject(Error('Presentation adapter could not load'));$('world').contentDocument.body.appendChild(script)});ready=true;
+ for(const source of ['hud-bridge.js?v=hud-13','gate-legibility.js?v=arrow-15'])await new Promise((resolve,reject)=>{const script=$('world').contentDocument.createElement('script');script.src=source;script.onload=resolve;script.onerror=()=>reject(Error('Presentation adapter could not load'));$('world').contentDocument.body.appendChild(script)});await engine.gateInkReady;ready=true;
  const postage=new Image();postage.src='../../assets/cats-postage.png';$('loading').hidden=true;state=engine.state();
  if(saved){try{engine.restore(saved.game);state=engine.state()}catch{saved=null}}
  PlayHUD.connect({engine:()=>engine,poll:()=>{lastSignature='';poll()},save,layout});
