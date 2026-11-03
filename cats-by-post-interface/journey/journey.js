@@ -3,6 +3,7 @@
  const $=id=>document.getElementById(id),M=JourneyModel,EXAMPLE=new URLSearchParams(location.search).get('example')==='depot'?'depot':'office',KEY='cats-by-post.journey.'+EXAMPLE+'.navigation.v1';
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const number=id=>id.replace('-','–');
+ const uiIcon=(name,cls='')=>`<img class="menu-icon ${cls}" src="icons/${name}.svg" alt="" width="24" height="24">`;
  const places=[
   {id:'office',title:'The sorting office',label:'Sorting office',chapters:[1,2],count:15,x:.238,y:.687,focus:[.238,.592],art:'office'},
   {id:'depot',title:'The town depot',label:'Town depot',chapters:[3,4],count:25,x:.819,y:.515,focus:[.819,.417],art:'depot'},
@@ -81,20 +82,27 @@
  function print(l,p){return `<img class="print-paper" src="images/print-paper.webp" alt="" width="1470" height="1070">${l.planned?`<span class="print-scene print-concept">${roomArt(p)}</span>`:`<img class="print-scene" src="images/level-prints/${l.id}.webp" alt="The starting arrangement for ${esc(l.title)}" width="960" height="640">`}<span class="print-reference">${number(l.id)}</span>`}
  function mailPreview(l,p){return `<div class="mail-preview"><img class="envelope-rear" src="images/envelope-open.webp" alt="" width="1301" height="1209"><button class="preview-print" id="preview-print" aria-label="Take a closer look at ${esc(l.title)}">${print(l,p)}<span class="print-loupe"><img src="icons/magnifying-glass-plus.svg" alt="" width="24" height="24"></span></button>${envelope(l,p)}</div>`}
  function inspectPrint(l,p){$('print-title').textContent=l.title;$('print-content').innerHTML=`<figure class="inspection-print">${print(l,p)}</figure>`;showDialog('print-dialog')}
+ function paneBackLabel(label){$('pane-back').innerHTML=uiIcon('arrow-left')+`<span class="sr-only">${label}</span>`;$('pane-back').title=label}
+ function packetPreview(p,ch){const list=allLevels().filter(l=>+l.id.split('-')[0]===ch);return list.find(l=>l.id===current().id)||list.find(l=>!model.done[l.id])||list.at(-1)}
+ function menu(){
+  const l=levels.length?current():null;$('menu-current').hidden=!l;if(!l){showDialog('menu-dialog');return}$('menu-current').innerHTML=`${uiIcon('envelope-open')}<span><strong>${active()?'Continue sorting':'Your next letter'}</strong><small>${number(l.id)} · ${esc(l.title)}</small></span>${uiIcon('arrow-right','row-arrow')}`;
+  $('menu-current').onclick=()=>{closeDialogs();if(active())startLetter(l.id);else openLetter(l.id)};showDialog('menu-dialog');
+ }
  function earned(id){const stars=model.done[id]?.stars||{},keys=['delivered','tidy','firstPost'],labels=['Delivered','Tidy','First post'],crops=['20 70 576 752','600 70 578 752','1180 70 576 752'];return `<div class="earned-postage" aria-label="Earned postage">${keys.map((k,i)=>stars[k]?`<svg viewBox="${crops[i]}" role="img" aria-label="${labels[i]} stamp earned"><image href="../assets/cats-postage.png" width="1774" height="887"/></svg>`:'').join('')}</div>`}
  function renderPane(){
   if(!levels.length)return;
   const content=$('pane-content');$('current-letter').hidden=true;
   if(view?.type==='packet'){
-   const p=places.find(p=>p.id===view.place),ch=view.chapter;let list=allLevels().filter(l=>+l.id.split('-')[0]===ch);
-   $('pane-title').textContent=p.title;$('pane-back').textContent='Map';
+   const p=places.find(p=>p.id===view.place),ch=view.chapter,preview=packetPreview(p,ch);let list=allLevels().filter(l=>+l.id.split('-')[0]===ch);
+   $('pane-title').textContent=p.title;paneBackLabel('Map');
    $('current-letter').hidden=false;$('current-letter').textContent=active()?'Continue '+number(active().id):'Next '+number(next()?.id||current().id);
-   content.innerHTML=`${roomArt(p)}<p>${count(p)} of ${p.count} posted</p>${p.id===placeFor(current().id).id?`<button class="packet-current" data-letter="${current().id}">${active()?'Continue':'Next delivery'} ${number(current().id)}<small>${esc(current().title)}</small></button>`:''}<div class="chapter-tabs" role="group" aria-label="Chapter packets">${p.chapters.map(c=>`<button data-chapter="${c}" aria-pressed="${c===ch}">${chapters[c][0]}<small>${chapterDone(c)} of ${chapters[c][1]} posted</small></button>`).join('')}</div>${!p.art?'<p class="planned-note">A place for later post.</p><p>This part of the journey is still being drawn.</p>':''}<ol class="letters">${list.map(l=>{const delivered=!!model.done[l.id],ready=l.id===next()?.id||l.id===active()?.id,available=!l.planned&&(delivered||ready);return `<li><button data-letter="${l.id}" class="${ready?'letter-current':''}" ${available?'':'disabled'}><span class="route-number">${number(l.id)}</span><span class="route-name">${esc(l.title)}<small>${l.planned?'Still to come':delivered?'Delivered · revisit':l.id===active()?.id?'Your unfinished letter':ready?'Ready to open':'After earlier post'}</small></span></button></li>`}).join('')}</ol>`;
+   content.innerHTML=`<div class="packet-hero"><button class="preview-print packet-print" id="packet-print" aria-label="Take a closer look at ${esc(preview.title)}">${print(preview,p)}<span class="print-loupe">${uiIcon('magnifying-glass-plus')}</span></button><p class="packet-progress">${count(p)} of ${p.count} posted</p></div><div class="chapter-tabs" role="group" aria-label="Chapter packets">${p.chapters.map(c=>`<button data-chapter="${c}" aria-pressed="${c===ch}">${chapters[c][0]}<small>${chapterDone(c)} of ${chapters[c][1]} posted</small></button>`).join('')}</div>${!p.art?'<p class="planned-note">More post is on the way.</p>':''}<ol class="letters">${list.map(l=>{const delivered=!!model.done[l.id],ready=l.id===next()?.id||l.id===active()?.id,available=!l.planned&&(delivered||ready);return `<li><button data-letter="${l.id}" class="${ready?'letter-current':''} ${delivered?'letter-posted':''}" ${ready?'aria-current="step"':''} ${available?'':'disabled'}><span class="route-number">${number(l.id)}</span><span class="route-name">${esc(l.title)}<small>${l.planned?'Still to come':delivered?'Posted':l.id===active()?.id?'Your unfinished letter':ready?'Ready to open':'After earlier post'}</small></span>${uiIcon(delivered?'check':ready?'envelope-open':'lock-simple','letter-state')}</button></li>`}).join('')}</ol>`;
+   $('packet-print').onclick=()=>inspectPrint(preview,p);
    content.querySelectorAll('[data-letter]').forEach(b=>b.onclick=()=>openLetter(b.dataset.letter,{...view,scroll:content.scrollTop}));
    content.querySelectorAll('[data-chapter]').forEach(b=>b.onclick=()=>{view={...view,chapter:+b.dataset.chapter};renderPane();content.querySelector(`[data-chapter="${view.chapter}"]`).focus({preventScroll:true})});
   }else{
    const l=allLevels().find(x=>x.id===(view?.id||current().id)),p=placeFor(l.id),isActive=l.id===active()?.id,done=!!model.done[l.id],replacing=!!active()&&!isActive;
-   $('pane-title').textContent=p.title;$('pane-back').textContent=returnView?'Letters':wide.matches?'All letters':'Map';
+   $('pane-title').textContent=p.title;paneBackLabel(returnView?'Letters':wide.matches?'All letters':'Map');
    const cats=l.hatches?.reduce((sum,h)=>sum+h.cats.length,0),hatches=l.hatches?.length;
    const action=l.planned?'Still to come':isActive?'Continue sorting':done?'Replay this letter':replacing?'Switch to this letter':'Start sorting';
    content.innerHTML=`<article class="letter-view">${mailPreview(l,p)}${done?earned(l.id):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span></div>`:''}${l.planned?'<p class="planned-note">More post is on the way.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
@@ -104,7 +112,7 @@
   content.scrollTop=0;
  }
  function placeIndex(){
-  $('index-content').innerHTML=`<ul class="place-index">${places.map(p=>`<li><button data-index-place="${p.id}">${p.title}<small>${count(p)?count(p)+' of '+p.count+' posted':p.art?'Not reached yet':'Still to come'}</small></button></li>`).join('')}</ul>`;
+  $('index-content').innerHTML=`<ul class="place-index">${places.map(p=>`<li><button data-index-place="${p.id}" ${p.id===placeFor(current().id).id?'aria-current="location"':''}><span class="index-art">${p.art?`<img src="../assets/${p.art}.png" alt="" width="1280" height="880">`:`<img class="index-map-crop" src="images/route.webp" alt="" style="left:${40-p.focus[0]*240}px;top:${32-p.focus[1]*240}px">`}</span><span>${p.title}<small>${count(p)?count(p)+' of '+p.count+' posted':p.art?'Not reached yet':'Still to come'}</small></span>${uiIcon('caret-right','row-arrow')}</button></li>`).join('')}</ul>`;
   $('index-content').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('index-dialog').close();centreAt(places.find(p=>p.id===b.dataset.indexPlace).focus);openPacket(b.dataset.indexPlace)});showDialog('index-dialog');
  }
  function closeDialogs(){document.querySelectorAll('dialog[open]').forEach(d=>d.close())}
@@ -164,14 +172,15 @@
  window.addEventListener('pointerup',dragEnd);vp.addEventListener('pointercancel',dragEnd);
  let size=[vp.clientWidth,vp.clientHeight,wide.matches];new ResizeObserver(()=>{const a=mapAnchor(...size),point=[(vp.scrollLeft+a[0])/(WORLD.width*zoom),(vp.scrollTop+a[1])/(WORLD.height*zoom)];size=[vp.clientWidth,vp.clientHeight,wide.matches];changeZoom(zoom,point)}).observe(vp);
  wide.addEventListener('change',()=>{setPaneState();if(levels.length)renderPane()});document.addEventListener('keydown',keys);
- $('current-place').onclick=()=>{recenter();if(wide.matches)backToMap()};$('place-index').onclick=placeIndex;$('cats-button').onclick=()=>showDialog('cats-dialog');$('menu-button').onclick=()=>showDialog('menu-dialog');
+ $('current-place').onclick=()=>{recenter();if(wide.matches)backToMap()};$('place-index').onclick=placeIndex;$('cats-button').onclick=()=>showDialog('cats-dialog');$('menu-button').onclick=menu;
  $('pane-back').onclick=()=>{if(wide.matches&&!view)openPacket(placeFor(current().id).id);else paneBack()};$('current-letter').onclick=()=>openLetter(current().id,view?.type==='packet'?{...view,scroll:$('pane-content').scrollTop}:null);
  $('next-dock').onclick=()=>openLetter(current().id);$('zoom-out').onclick=()=>changeZoom(zoom-.16);$('zoom-in').onclick=()=>changeZoom(zoom+.16);
  document.querySelectorAll('[data-service]').forEach(b=>b.onclick=()=>service(b.dataset.service));$('cats-night').onclick=()=>service('night');$('about-study').onclick=()=>{closeDialogs();showDialog('about-dialog')};$('reset-example').onclick=resetExample;
+ document.querySelectorAll('[data-menu-destination]').forEach(b=>b.onclick=()=>{closeDialogs();if(b.dataset.menuDestination==='places')placeIndex();else showDialog('cats-dialog')});
  $('cancel-opening').onclick=()=>{openingToken++;clearTimeout(loadingTimer);$('opening').hidden=true;setPlaying(false)};
  $('retry-game').onclick=()=>{openingToken++;$('opening').hidden=true;location.reload()};
  window.Journey={startLetter,openPacket,openLetter,backToMap,recenter,placeIndex,leave,delivered,gameReady,service,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
  fetch('levels.json').then(r=>{if(!r.ok)throw Error('Level index unavailable');return r.json()}).then(data=>{
-  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=journey-3&example='+EXAMPLE;
+  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=menus-6&example='+EXAMPLE;
  }).catch(e=>{toast('The letter index could not be opened. Please reload.');console.error(e)});
 })();
