@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f1ecdf"><meta name="robots" content="noindex,nofollow">
+<title>The route, the letters &amp; the company · Cats by Post</title>
+<link rel="stylesheet" href="study.css">
+</head>
+<body>
+<main>
+<header class="introduction">
+<h1>The route &amp;<br>the company</h1>
+<p>Places to explore. Letters to open. Familiar faces.</p>
+<nav aria-label="Explore the studies"><a href="#route">Map</a><a href="#desk">Desk</a><a href="#company">Cats</a></nav>
+</header>
+
+<section id="route" aria-labelledby="route-title">
+<div class="section-heading"><h2 id="route-title">A world to explore</h2><p>Drag the map, open a place, find your way home.</p></div>
+<div class="route-layout">
+<div class="map-study">
+<div class="map-tools" aria-label="Map controls"><button id="home-map">Current place</button><button id="place-index">Place index</button><button id="map-cats">Cats</button></div>
+<div id="map-window" tabindex="0" role="region" aria-label="Postal journey map. Drag or scroll to explore; use arrow keys when the map is focused.">
+<div id="map-world"><img src="images/wide-route.png" alt="A fold-out postal world with six places, a river, railway and winter woodland." width="1536" height="1024" draggable="false" fetchpriority="high"><div id="map-places"></div></div>
+</div>
+<div class="map-bottom"><p id="map-help">Drag or scroll to explore</p><div class="zoom-tools"><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-in" aria-label="Zoom in">+</button></div></div>
+<button id="next-letter" class="next-letter"><span>Next delivery</span><strong>1–4</strong><span class="next-action">Open letter</span></button>
+<div class="study-setting"><label for="progress-scenario">Try the journey later on</label><select id="progress-scenario"><option value="early">At the office · 3 of 100 posted</option><option value="depot">At the depot · 33 of 100 posted</option><option value="winter">Near the end · 97 of 100 posted</option></select></div>
+<p class="caption">A navigation study with mock progress. Map illustration is concept art; office and depot postcards use the game’s room images.</p>
+</div>
+<div class="route-notes">
+<h3>Six places, a hundred deliveries</h3><p>The map shows places. A place opens its chapter packets; each packet holds its letters. More levels make the packet deeper, rather than covering the countryside in dots.</p>
+<h3>A home, without snapping back</h3><p>Opening the journey starts at your current place. After that, it stays where you leave it. Close a packet or the cat album and you return to the same view. <strong>Current place</strong> brings you back deliberately.</p>
+<h3>Browse freely, travel directly</h3><p>One finger pans; mouse users drag or scroll. The place index reaches every destination without a search. Zoom is optional. The next letter stays within reach while you look around.</p>
+<details><summary>What grows on a bigger screen?</summary><p>The same map reveals more geography. The current letter stays in a fixed, reachable position. Opening a place gives the postcard and letters a facing spread on iPad or Mac; a phone shows one readable column.</p><p>There is no automatic return-to-centre after a timeout. Resizing keeps the part of the map you were looking at.</p></details>
+</div>
+</div>
+</section>
+
+<section id="desk" aria-labelledby="desk-title">
+<div class="section-heading"><h2 id="desk-title">Give each object its own job</h2><p>The same journey, kept on a sorting desk instead of a map.</p></div>
+<div class="direction-layout">
+<figure class="desk-visual"><div class="hotspot-art">
+<img src="images/separate-desk.png" alt="Place packets sit in a wooden rack. The office packet has been pulled out and opened on the desk. Its chapter folders and next letter are visible. A separate closed cat file sits below." width="852" height="1846" loading="lazy">
+<button class="hotspot" style="left:7%;top:24%;width:22%;height:6%" data-desk="office" aria-label="Open the sorting-office packet"></button>
+<button class="hotspot" style="left:30%;top:22%;width:22%;height:6%" data-desk="depot" aria-label="Open the town-depot packet"></button>
+<button class="hotspot" style="left:53%;top:21%;width:20%;height:6%" data-desk="train" aria-label="Open the mail-train packet"></button>
+<button class="hotspot" style="left:76%;top:19%;width:22%;height:7%" data-desk="index" aria-label="Browse all place packets"></button>
+<button class="hotspot" style="left:13%;top:43%;width:31%;height:5%" data-desk="chapter1" aria-label="Browse the First post letters"></button>
+<button class="hotspot" style="left:45%;top:43%;width:34%;height:5%" data-desk="chapter2" aria-label="Browse the Ginger and blue letters"></button>
+<button class="hotspot" style="left:84%;top:53%;width:13%;height:10%" data-desk="letters" aria-label="Open the office letter index"></button>
+<button class="hotspot" style="left:35%;top:59%;width:48%;height:12%" data-desk="next" aria-label="Open next delivery, 1–4"></button>
+<button class="hotspot" style="left:21%;top:80%;width:67%;height:14%" data-desk="cats" aria-label="Open the separate cat portrait file study"></button>
+</div><figcaption>Tap the rack, chapter folders, next letter, “All letters”, or the separate cat file. This illustrated desk shows the early office scenario.</figcaption></figure>
+<div class="direction-notes">
+<h3>The rack selects a place</h3><p>Choose Office, Depot or another destination. Its packet comes out onto the desk; its slot stays empty until you put it back. The rack always holds story correspondence.</p>
+<h3>The open packet selects a delivery</h3><p>The postcard tells you where you are. Chapter folders divide the work. Delivered letters sit behind the ready letter; <strong>All letters</strong> gives a direct, readable index for replays or a long chapter.</p>
+<h3>The cat file holds cats</h3><p>It is a separate object with its own portrait cards. Opening it puts away the delivery packet and brings a cat forward. Returning to deliveries restores the packet you had open. Nothing changes from a level into a cat.</p>
+<p class="judgment">This fixes the box’s logic, but it asks the player to learn more objects. I still favour the map: the world is a stronger invitation, and the letter remains the quickest way to play.</p>
+<details><summary>Opening, closing and the wider desk</summary><p>Phone: focus moves to one opened object. The back action restores the wider desk; it does not launch another menu over it.</p><p>Tablet and Mac: the rack and closed cat file can remain at the edges of the working space. Selecting a letter brings that letter forward. Navigation never depends on dragging tiny paper edges.</p><p>The cat-file tap below shows the shared portrait content in album form for comparison. Its card-file opening still needs its own visual pass.</p></details>
+</div>
+</div>
+</section>
+
+<section id="company" aria-labelledby="company-title">
+<div class="section-heading"><h2 id="company-title">Yes: option 1 becomes the cats’ book</h2><p>The portrait leaves belong here. The map keeps the journey.</p></div>
+<div class="direction-layout">
+<figure class="portrait-visual"><a href="images/portrait-leaf.png" aria-label="Open the cats-only album study at full size"><img src="images/portrait-leaf.png" alt="A cloth-bound album leaf with a mounted portrait of Black, a named index and a tucked invitation for Smoke to arrive after sixteen more Night Shift cats are home." width="852" height="1846" loading="lazy"></a><figcaption>A portrait study, rather than a fully wired album. Black’s leaf is illustrated; the other cats would use the same format.</figcaption></figure>
+<div class="direction-notes"><h3>A quieter version of the first idea</h3><p>A portrait, a name and a small observation. No place progress mixed into the leaf. Night Shift’s next arrival sits in a pocket as an invitation.</p><h3>A direct index, not endless leafing</h3><p>Turn a leaf for the pleasure of browsing, or choose a named cat directly. Phone shows one leaf. iPad can show a facing pair. The book opens at the cat you last visited.</p><h3>The same company, two bindings</h3><p>From the map, this is a bound album. From the desk, these portraits would be cards pulled from the separate file. Their arrival conditions and Night Shift progress are the same.</p><button id="album-demo">Open the album from here</button><p class="judgment">The map plus this companion book is the most coherent combination for me. It gives the journey room and gives each cat its own moment.</p></div>
+</div>
+</section>
+<footer><p>Separate interface studies; the playable game and its saves are unchanged. Balthazar and Signika are free, locally served fonts.</p><p><a href="../">The original three directions</a><a href="../../?v=playing-1">The playable prototype</a></p></footer>
+</main>
+
+<dialog id="place-dialog" aria-labelledby="place-title"><div class="dialog-head"><button data-close="place-dialog">Back</button><h2 id="place-title"></h2><button id="place-current">Current letter</button></div><div id="place-content" class="dialog-content"></div></dialog>
+<dialog id="index-dialog" aria-labelledby="index-title"><div class="dialog-head"><button data-close="index-dialog">Back</button><h2 id="index-title">Place index</h2></div><div id="index-content" class="dialog-content"></div></dialog>
+<dialog id="letter-dialog" aria-labelledby="letter-title"><div class="dialog-head"><button data-close="letter-dialog">Back</button><h2 id="letter-title"></h2></div><div id="letter-content" class="dialog-content"></div></dialog>
+<dialog id="cats-dialog" class="cats-dialog" aria-labelledby="cats-title"><div class="dialog-head"><button data-close="cats-dialog">Back</button><h2 id="cats-title">The company</h2><button id="cat-index">Cat index</button></div><div class="dialog-content"><img class="album-leaf" src="images/portrait-leaf.png" alt="Black’s portrait leaf. The companion album contains cats only; Smoke’s invitation shows sixteen more Night Shift cats home." width="852" height="1846"><p class="caption">Visual study: the album is illustrated here; portrait turning is not built. Back restores the map or packet you came from.</p></div></dialog>
+<div id="announcement" class="sr-only" aria-live="polite"></div>
+<script src="study.js"></script>
+</body></html>
