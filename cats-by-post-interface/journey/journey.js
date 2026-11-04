@@ -15,15 +15,16 @@
  const chapters={1:['First post',5],2:['Ginger and blue',10],3:['The town depot',10],4:['Doors of their own',15],5:['A change of points',15],6:['Under the city',15],7:['Special delivery',15],8:['Home for Christmas',15]};
  const WORLD={width:2048,height:2048};
  let model,hadSave=false;try{const raw=localStorage.getItem(KEY);model=M.read(raw);hadSave=!!raw&&JSON.parse(raw)?.version===1}catch{model=M.read(null)}
- let levels=[],view=null,returnView=null,focusReturn=null,zoom=1,drag=null,dragClick=false,gameIsReady=false,gamePromiseResolve,gamePromiseReject,openingToken=0,toastTimer,loadingTimer;
+ let lastDelivery=null,levels=[],view=null,returnView=null,focusReturn=null,zoom=1,drag=null,dragClick=false,gameIsReady=false,gamePromiseResolve,gamePromiseReject,openingToken=0,toastTimer,loadingTimer;
  const gamePromise=new Promise((resolve,reject)=>{gamePromiseResolve=resolve;gamePromiseReject=reject});gamePromise.catch(()=>{});
  const frame=$('game'),vp=$('map-window'),world=$('map-world'),wide=matchMedia('(min-width:740px)');
  const company=CompanyBox.create({dialog:$('cats-dialog'),getProgress:()=>gameIsReady?frame.contentWindow.APP.engine.state().progress:gamePromise.then(app=>app.engine.state().progress),onNight:()=>service('night'),getReturnFocus:()=>$('cats-button')});
  const allLevels=()=>Object.keys(chapters).flatMap(ch=>Array.from({length:chapters[ch][1]},(_,i)=>levels.find(l=>l.id===ch+'-'+(i+1))||{id:ch+'-'+(i+1),title:'Delivery '+number(ch+'-'+(i+1)),planned:true}));
  const next=()=>M.next(allLevels(),model.done);
  const active=()=>model.active&&levels.find(l=>l.id===model.active);
- const current=()=>active()||next()||levels.at(-1);
+ const current=()=>active()||next()||allLevels().at(-1);
  const placeFor=id=>typeof id==='string'?places.find(p=>p.chapters.includes(+id.split('-')[0])):null;
+ function deliveryContext(id){const context=M.continuation(model,allLevels(),id),letter=context.letter,p=letter&&placeFor(letter.id);return{...context,chapterJustCompleted:lastDelivery?.id===id?lastDelivery.chapterJustCompleted:context.chapterJustCompleted,chapterTitle:chapters[+id.split('-')[0]]?.[0],placeChanged:!!letter&&placeFor(id)?.id!==p.id,letter:letter?{id:letter.id,title:letter.title,place:p.label,planned:!!letter.planned}:null}}
  const count=p=>Object.keys(model.done).filter(id=>p.chapters.includes(+id.split('-')[0])).length;
  const chapterDone=ch=>Object.keys(model.done).filter(id=>+id.split('-')[0]===ch).length;
  const toast=text=>{clearTimeout(toastTimer);$('toast').textContent=text;$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,3200)};
@@ -50,8 +51,10 @@
  }
  function updateDock(){
   const l=current();if(!l)return;
-  $('next-dock').setAttribute('aria-label',(active()?'Continue delivery ':'Open next delivery ')+number(l.id)+', '+l.title);
-  $('next-dock').querySelector('.dock-address').innerHTML=`<strong>${active()?'Continue':'Next delivery'} ${number(l.id)}</strong><span>${esc(l.title)}</span><small>${l.planned?'More post is on the way':'Open the letter'}</small>`;
+  const planned=l.planned,p=placeFor(l.id);
+  if(!active()&&!next()){$('next-dock').setAttribute('aria-label','All letters posted. Browse your places.');$('next-dock').querySelector('.dock-address').innerHTML='<strong>All letters posted</strong><span>Your places</span><small>Visit the map</small>';return}
+  $('next-dock').setAttribute('aria-label',planned?'See the next stop, '+p.title+'. More post is on the way.':(active()?'Continue delivery ':'Open next delivery ')+number(l.id)+', '+l.title);
+  $('next-dock').querySelector('.dock-address').innerHTML=planned?`<strong>The next stop</strong><span>${esc(p.title)}</span><small>More post is on the way</small>`:`<strong>${active()?'Continue':'Next delivery'} ${number(l.id)}</strong><span>${esc(l.title)}</span><small>Open the letter</small>`;
  }
  function setPaneState(){
   const open=wide.matches||!!view;$('post-pane').classList.toggle('open',open);
@@ -74,6 +77,7 @@
  }
  function paneBack(){
   if(view?.type==='letter'&&returnView){const old=returnView;returnView=null;view=old;renderPane();setPaneState();$('pane-content').scrollTop=old.scroll||0;return}
+  if(wide.matches&&view?.type==='letter'){openPacket(view.place,+view.id.split('-')[0]);return}
   backToMap();
  }
  function roomArt(p,cls='room-postcard'){
@@ -86,8 +90,8 @@
  function paneBackLabel(label){$('pane-back').innerHTML=uiIcon('arrow-left')+`<span class="sr-only">${label}</span>`;$('pane-back').title=label}
  function packetPreview(p,ch){const list=allLevels().filter(l=>+l.id.split('-')[0]===ch);return list.find(l=>l.id===current().id)||list.find(l=>!model.done[l.id])||list.at(-1)}
  function menu(){
-  const l=levels.length?current():null;$('menu-current').hidden=!l;if(!l){showDialog('menu-dialog');return}$('menu-current').innerHTML=`${uiIcon('envelope-open')}<span><strong>${active()?'Continue sorting':'Your next letter'}</strong><small>${number(l.id)} · ${esc(l.title)}</small></span>${uiIcon('arrow-right','row-arrow')}`;
-  $('menu-current').onclick=()=>{closeDialogs();if(active())startLetter(l.id);else openLetter(l.id)};showDialog('menu-dialog');
+  const l=levels.length?current():null;$('menu-current').hidden=!l;if(!l){showDialog('menu-dialog');return}$('menu-current').innerHTML=`${uiIcon('envelope-open')}<span><strong>${l.planned?'The next stop':active()?'Continue sorting':'Your next letter'}</strong><small>${l.planned?esc(placeFor(l.id).title):number(l.id)+' · '+esc(l.title)}</small></span>${uiIcon('arrow-right','row-arrow')}`;
+  $('menu-current').onclick=()=>{closeDialogs();if(l.planned)openPacket(placeFor(l.id).id);else if(active())startLetter(l.id);else openLetter(l.id)};showDialog('menu-dialog');
  }
  function earned(id){const stars=model.done[id]?.stars||{},keys=['delivered','tidy','firstPost'],labels=['Delivered','Tidy','First post'],crops=['20 70 576 752','600 70 578 752','1180 70 576 752'];return `<div class="earned-postage" aria-label="Earned postage">${keys.map((k,i)=>stars[k]?`<svg viewBox="${crops[i]}" role="img" aria-label="${labels[i]} stamp earned"><image href="../assets/cats-postage.png" width="1774" height="887"/></svg>`:'').join('')}</div>`}
  function renderPane(){
@@ -96,8 +100,8 @@
   if(view?.type==='packet'){
    const p=places.find(p=>p.id===view.place),ch=view.chapter,preview=packetPreview(p,ch);let list=allLevels().filter(l=>+l.id.split('-')[0]===ch);
    $('pane-title').textContent=p.title;paneBackLabel('Map');
-   $('current-letter').hidden=false;$('current-letter').textContent=active()?'Continue '+number(active().id):'Next '+number(next()?.id||current().id);
-   content.innerHTML=`<div class="packet-hero"><button class="preview-print packet-print" id="packet-print" aria-label="Take a closer look at ${esc(preview.title)}">${print(preview,p)}<span class="print-loupe">${uiIcon('magnifying-glass-plus')}</span></button><p class="packet-progress">${count(p)} of ${p.count} posted</p></div><div class="chapter-tabs" role="group" aria-label="Chapter packets">${p.chapters.map(c=>`<button data-chapter="${c}" aria-pressed="${c===ch}">${chapters[c][0]}<small>${chapterDone(c)} of ${chapters[c][1]} posted</small></button>`).join('')}</div>${!p.art?'<p class="planned-note">More post is on the way.</p>':''}<ol class="letters">${list.map(l=>{const delivered=!!model.done[l.id],ready=l.id===next()?.id||l.id===active()?.id,available=!l.planned&&(delivered||ready);return `<li><button data-letter="${l.id}" class="${ready?'letter-current':''} ${delivered?'letter-posted':''}" ${ready?'aria-current="step"':''} ${available?'':'disabled'}><span class="route-number">${number(l.id)}</span><span class="route-name">${esc(l.title)}<small>${l.planned?'Still to come':delivered?'Posted':l.id===active()?.id?'Your unfinished letter':ready?'Ready to open':'After earlier post'}</small></span>${uiIcon(delivered?'check':ready?'envelope-open':'lock-simple','letter-state')}</button></li>`}).join('')}</ol>`;
+   $('current-letter').hidden=!!current().planned||(!active()&&!next());$('current-letter').textContent=active()?'Continue '+number(active().id):'Next '+number(next()?.id||current().id);
+   content.innerHTML=`<div class="packet-hero"><button class="preview-print packet-print" id="packet-print" aria-label="Take a closer look at ${esc(preview.title)}">${print(preview,p)}<span class="print-loupe">${uiIcon('magnifying-glass-plus')}</span></button><p class="packet-progress">${count(p)} of ${p.count} posted</p></div><div class="chapter-tabs" role="group" aria-label="Chapter packets">${p.chapters.map(c=>`<button data-chapter="${c}" aria-pressed="${c===ch}">${chapters[c][0]}<small>${chapterDone(c)} of ${chapters[c][1]} posted</small></button>`).join('')}</div>${!p.art?'<p class="planned-note">More post is on the way.</p>':''}<ol class="letters">${list.map(l=>{const delivered=!!model.done[l.id],ready=!l.planned&&(l.id===next()?.id||l.id===active()?.id),available=!l.planned&&(delivered||ready);return `<li><button data-letter="${l.id}" class="${ready?'letter-current':''} ${delivered?'letter-posted':''}" ${ready?'aria-current="step"':''} ${available?'':'disabled'}><span class="route-number">${number(l.id)}</span><span class="route-name">${esc(l.title)}<small>${l.planned?'Still to come':delivered?'Posted':l.id===active()?.id?'Your unfinished letter':ready?'Ready to open':'After earlier post'}</small></span>${uiIcon(delivered?'check':ready?'envelope-open':'lock-simple','letter-state')}</button></li>`}).join('')}</ol>`;
    $('packet-print').onclick=()=>inspectPrint(preview,p);
    content.querySelectorAll('[data-letter]').forEach(b=>b.onclick=()=>openLetter(b.dataset.letter,{...view,scroll:content.scrollTop}));
    content.querySelectorAll('[data-chapter]').forEach(b=>b.onclick=()=>{view={...view,chapter:+b.dataset.chapter};renderPane();content.querySelector(`[data-chapter="${view.chapter}"]`).focus({preventScroll:true})});
@@ -106,7 +110,7 @@
    $('pane-title').textContent=p.title;paneBackLabel(returnView?'Letters':wide.matches?'All letters':'Map');
    const cats=l.hatches?.reduce((sum,h)=>sum+h.cats.length,0),hatches=l.hatches?.length;
    const action=l.planned?'Still to come':isActive?'Continue sorting':done?'Replay this letter':replacing?'Switch to this letter':'Start sorting';
-   content.innerHTML=`<article class="letter-view">${mailPreview(l,p)}${done?earned(l.id):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span></div>`:''}${l.planned?'<p class="planned-note">More post is on the way.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
+   content.innerHTML=`<article class="letter-view" aria-label="${esc((done?'Posted letter ':isActive?'Unfinished letter ':'Letter ')+number(l.id)+', '+l.title)}">${mailPreview(l,p)}${done?earned(l.id):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span></div>`:''}${l.planned?'<p class="planned-note">More post is on the way.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
    $('preview-print').onclick=()=>inspectPrint(l,p);
    $('open-letter')?.addEventListener('click',()=>startLetter(l.id));$('browse-packet')?.addEventListener('click',()=>openPacket(p.id,+l.id.split('-')[0]));$('keep-current')?.addEventListener('click',()=>openLetter(active().id));
   }
@@ -132,7 +136,7 @@
   clearTimeout(loadingTimer);$('opening').hidden=true;return app;
  }
  async function startLetter(id){
-  const l=levels.find(x=>x.id===id);if(!l)return;closeDialogs();
+  const l=levels.find(x=>x.id===id);if(!l)return;lastDelivery=null;closeDialogs();
   try{const app=await readyForGame('Opening '+l.title+'…');if(!app)return;
    const saved=app.saved,isResume=model.active===id&&saved?.game?.gm?.L?.id===id&&saved.game.gm.mode!=='won';
    if(isResume){app.dispatch('continue');app.engine.pause(true);app.engine.freeze(false)}else app.start('story',levels.indexOf(l));
@@ -140,15 +144,17 @@
   }catch(e){openingError('The letter could not be opened.',e)}
  }
  function openingError(message,error){clearTimeout(loadingTimer);setPlaying(false);$('journey-app').inert=true;$('opening-text').textContent=message;$('opening').hidden=false;$('retry-game').hidden=false;$('retry-game').focus({preventScroll:true});console.error(error)}
- function delivered(id,stars){model=M.delivered(model,id,stars);save();renderPins();updateDock()}
+ function delivered(id,stars){if(lastDelivery?.id!==id)lastDelivery={id,chapterJustCompleted:M.continuation(model,allLevels(),id).chapterJustCompleted};model=M.delivered(model,id,stars);save();renderPins();updateDock()}
  function leave(destination='map'){
   if(!gameIsReady)return;const app=frame.contentWindow.APP,s=app.engine.state();app.engine.pause(true);app.save();app.closeSheet(false);app.engine.freeze(true);
   if(s.shift||s.daily||s.practice||s.sample){model.active=null;save()}else if(s.mode!=='won'&&!model.done[s.id]){model.active=s.id;save()}
   setPlaying(false);updateDock();
-  if(destination==='next'){openLetter(current().id);return}
+  const destinationPlace=placeFor(current().id),changedPlace=s.mode==='won'&&!s.shift&&!s.daily&&!s.practice&&!s.sample&&placeFor(s.id)?.id!==destinationPlace.id;
+  const orient=()=>{if(changedPlace)centreAt(destinationPlace.focus);if(s.mode==='won')announce(s.title+' posted. '+(current().planned?'More post is on the way.':'Next letter '+number(current().id)+', '+current().title+'.'))};
+  if(destination==='next'&&!current().planned){openLetter(current().id);orient();return}
   if(destination==='packet'){openPacket(placeFor(s.id)?.id||placeFor(current().id).id);return}
   if(destination==='cats'){view=null;returnView=null;renderPane();setPaneState();renderPins();company.open();return}
-  view=null;returnView=null;renderPane();setPaneState();renderPins();
+  view=null;returnView=null;renderPane();setPaneState();renderPins();orient();
  }
  async function service(action){
   closeDialogs();try{const app=await readyForGame(action==='night'?'Opening the late post…':action==='daily'?'Opening today’s post…':'Opening the sorting desk…');if(!app)return;
@@ -175,13 +181,13 @@
  wide.addEventListener('change',()=>{setPaneState();if(levels.length)renderPane()});document.addEventListener('keydown',keys);
  $('current-place').onclick=()=>{recenter();if(wide.matches)backToMap()};$('place-index').onclick=placeIndex;$('cats-button').onclick=()=>company.open();$('menu-button').onclick=menu;
  $('pane-back').onclick=()=>{if(wide.matches&&!view)openPacket(placeFor(current().id).id);else paneBack()};$('current-letter').onclick=()=>openLetter(current().id,view?.type==='packet'?{...view,scroll:$('pane-content').scrollTop}:null);
- $('next-dock').onclick=()=>openLetter(current().id);$('zoom-out').onclick=()=>changeZoom(zoom-.16);$('zoom-in').onclick=()=>changeZoom(zoom+.16);
+ $('next-dock').onclick=()=>!active()&&!next()?placeIndex():current().planned?openPacket(placeFor(current().id).id):openLetter(current().id);$('zoom-out').onclick=()=>changeZoom(zoom-.16);$('zoom-in').onclick=()=>changeZoom(zoom+.16);
  document.querySelectorAll('[data-service]').forEach(b=>b.onclick=()=>service(b.dataset.service));$('about-study').onclick=()=>{closeDialogs();showDialog('about-dialog')};$('reset-example').onclick=resetExample;
  document.querySelectorAll('[data-menu-destination]').forEach(b=>b.onclick=()=>{closeDialogs();if(b.dataset.menuDestination==='places')placeIndex();else company.open()});
  $('cancel-opening').onclick=()=>{openingToken++;clearTimeout(loadingTimer);$('opening').hidden=true;setPlaying(false)};
  $('retry-game').onclick=()=>{openingToken++;$('opening').hidden=true;location.reload()};
- window.Journey={company,startLetter,openPacket,openLetter,backToMap,recenter,placeIndex,leave,delivered,gameReady,service,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
+ window.Journey={company,startLetter,openPacket,openLetter,backToMap,recenter,placeIndex,leave,delivered,resetDeliveryContext:()=>{lastDelivery=null},deliveryContext,gameReady,service,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
  fetch('levels.json').then(r=>{if(!r.ok)throw Error('Level index unavailable');return r.json()}).then(data=>{
-  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=hud-16&example='+EXAMPLE;
+  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=letter-17&example='+EXAMPLE;
  }).catch(e=>{toast('The letter index could not be opened. Please reload.');console.error(e)});
 })();

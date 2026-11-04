@@ -3,16 +3,22 @@
  'use strict';
  const host=()=>parent.Journey;
  let lastWon='';
- function outcomes(){const app=window.APP;if(!app)return;const s=app.engine.state();if(s.mode!=='won'){lastWon='';return}if(!s.shift&&!s.daily&&!s.practice&&!s.sample){const key=s.id+JSON.stringify(s.resultStars);if(key!==lastWon){lastWon=key;host()?.delivered(s.id,s.resultStars||s.progress?.levels?.[s.id]?.stars||{delivered:true})}}}
+ function outcomes(){const app=window.APP;if(!app)return;const s=app.engine.state();if(s.mode!=='won'){if(lastWon)host()?.resetDeliveryContext?.();lastWon='';return}if(!s.shift&&!s.daily&&!s.practice&&!s.sample){const key=s.id+JSON.stringify(s.resultStars);if(key!==lastWon){lastWon=key;host()?.delivered(s.id,s.resultStars||s.progress?.levels?.[s.id]?.stars||{delivered:true})}}}
+ function handle(action){
+  const app=window.APP;if(!app||!host())return false;const s=app.engine.state();
+  const story=!s.shift&&!s.daily&&!s.practice&&!s.sample;
+  const onward=s.mode==='won'&&(story||s.sample)&&['next','send'].includes(action);
+  if(!['home','map','places','album'].includes(action)&&!onward)return false;
+  outcomes();app.engine.pause(true);app.save();app.closeSheet(false);
+  if(action==='album')host().leave('cats');
+  else if(onward){const context=story?host().deliveryContext?.(s.id):null;host().leave(s.sample?'packet':context&&['planned','complete'].includes(context.kind)?'map':'next')}
+  else host().leave(action==='places'?'packet':'map');
+  return true;
+ }
+ window.JourneyHandoff={handle};
  document.addEventListener('click',e=>{
   const link=e.target.closest('a[href]');if(link&&!link.hasAttribute('data-local')){link.target='_blank';link.rel='noopener noreferrer';return}
-  const el=e.target.closest('[data-action]');if(!el||el.disabled||!window.APP||!host())return;
-  const action=el.dataset.action,s=APP.engine.state();
-  const story=!s.shift&&!s.daily&&!s.practice&&!s.sample;
-  if(['home','places','album'].includes(action)||(action==='next'&&story)||(action==='send'&&s.mode==='won'&&story)){
-   e.preventDefault();e.stopImmediatePropagation();outcomes();APP.engine.pause(true);APP.save();APP.closeSheet(false);
-   if(action==='album')host().leave('cats');else if(action==='next'||action==='send')host().leave('next');else host().leave(action==='places'?'packet':'map');
-  }
+  const el=e.target.closest('[data-action]');if(el&&!el.disabled&&handle(el.dataset.action)){e.preventDefault();e.stopImmediatePropagation()}
  },true);
  setInterval(()=>{outcomes();if(window.APP?.view==='home'&&!document.getElementById('sheet').open&&parent.document.getElementById('game-stage')?.classList.contains('active'))host()?.leave('map')},200);
  const started=setInterval(()=>{if(!window.APP)return;clearInterval(started);host()?.gameReady()},80);

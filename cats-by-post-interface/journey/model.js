@@ -12,5 +12,14 @@
  function next(levels,done){return levels.find(l=>!Object.hasOwn(done,l.id))||null}
  function select(state,id){return{...state,selected:id}}
  function delivered(state,id,stars){if(!valid(id))return state;const old=state.done[id]?.stars||{};return{...state,active:state.active===id?null:state.active,done:{...state.done,[id]:{stars:Object.fromEntries(['delivered','tidy','firstPost'].map(k=>[k,!!old[k]||!!stars[k]]))}}}}
- const api={read,next,select,delivered,valid};root.JourneyModel=api;if(typeof module!=='undefined')module.exports=api;
+ function continuation(state,levels,finishedId){
+  // Project the win for display; the outcome handoff still owns the saved award.
+  const projected=delivered(state,finishedId,{delivered:true});
+  const resumed=projected.active&&levels.find(l=>l.id===projected.active&&!l.planned);
+  const letter=resumed||next(levels,projected.done)||null;
+  const chapter=String(finishedId).split('-')[0],packet=levels.filter(l=>l.id.split('-')[0]===chapter);
+  const chapterComplete=packet.length>0&&packet.every(l=>Object.hasOwn(projected.done,l.id));
+  return{kind:!letter?'complete':letter.planned?'planned':resumed?'continue':'ready',letter,chapterComplete,chapterJustCompleted:chapterComplete&&!packet.every(l=>Object.hasOwn(state.done,l.id))};
+ }
+ const api={read,next,select,delivered,valid,continuation};root.JourneyModel=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
