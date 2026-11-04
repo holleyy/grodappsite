@@ -1,6 +1,7 @@
 (() => {
  'use strict';
- const $=id=>document.getElementById(id),M=JourneyModel,EXAMPLE=new URLSearchParams(location.search).get('example')==='depot'?'depot':'office',KEY='cats-by-post.journey.'+EXAMPLE+'.navigation.v1';
+ const params=new URLSearchParams(location.search),STUDY=['first','returning','services'].includes(params.get('study'))?params.get('study'):null;
+ const $=id=>document.getElementById(id),M=JourneyModel,EXAMPLE=params.get('example')==='depot'?'depot':'office',KEY=STUDY?'cats-by-post.start-study.'+STUDY+'.navigation.v1':'cats-by-post.journey.'+EXAMPLE+'.navigation.v1';
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const number=id=>id.replace('-','–');
  const uiIcon=(name,cls='')=>`<img class="menu-icon ${cls}" src="icons/${name}.svg" alt="" width="24" height="24">`;
@@ -14,7 +15,7 @@
  ];
  const chapters={1:['First post',5],2:['Ginger and blue',10],3:['The town depot',10],4:['Doors of their own',15],5:['A change of points',15],6:['Under the city',15],7:['Special delivery',15],8:['Home for Christmas',15]};
  const WORLD={width:2048,height:2048};
- let model,hadSave=false;try{const raw=localStorage.getItem(KEY);model=M.read(raw);hadSave=!!raw&&JSON.parse(raw)?.version===1}catch{model=M.read(null)}
+ let model,hadSave=false;try{const raw=localStorage.getItem(KEY);model=M.read(raw,{empty:STUDY==='first'});hadSave=!!raw&&JSON.parse(raw)?.version===1}catch{model=M.read(null,{empty:STUDY==='first'})}
  let lastDelivery=null,levels=[],view=null,returnView=null,focusReturn=null,zoom=1,drag=null,dragClick=false,gameIsReady=false,gamePromiseResolve,gamePromiseReject,openingToken=0,toastTimer,loadingTimer;
  const gamePromise=new Promise((resolve,reject)=>{gamePromiseResolve=resolve;gamePromiseReject=reject});gamePromise.catch(()=>{});
  const frame=$('game'),vp=$('map-window'),world=$('map-world'),wide=matchMedia('(min-width:740px)');
@@ -188,6 +189,6 @@
  $('retry-game').onclick=()=>{openingToken++;$('opening').hidden=true;location.reload()};
  window.Journey={company,startLetter,openPacket,openLetter,backToMap,recenter,placeIndex,leave,delivered,resetDeliveryContext:()=>{lastDelivery=null},deliveryContext,gameReady,service,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
  fetch('levels.json').then(r=>{if(!r.ok)throw Error('Level index unavailable');return r.json()}).then(data=>{
-  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=paper-18&example='+EXAMPLE;
+  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=start-19&example='+EXAMPLE+(STUDY?'&study='+STUDY:'');
  }).catch(e=>{toast('The letter index could not be opened. Please reload.');console.error(e)});
 })();

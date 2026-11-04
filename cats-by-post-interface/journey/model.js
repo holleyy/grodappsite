@@ -2,8 +2,8 @@
  'use strict';
  const lengths=[0,5,10,10,15,15,15,15,15];
  const valid=id=>{const m=/^([1-8])-(\d{1,2})$/.exec(id||'');return!!m&&+m[2]>0&&+m[2]<=lengths[+m[1]]};
- function read(raw){
-  const state={version:1,done:{'1-1':{stars:{delivered:true}},'1-2':{stars:{delivered:true}},'1-3':{stars:{delivered:true}}},active:null,selected:null};
+ function read(raw,{empty=false}={}){
+  const state={version:1,done:empty?{}:{'1-1':{stars:{delivered:true}},'1-2':{stars:{delivered:true}},'1-3':{stars:{delivered:true}}},active:null,selected:null};
   try{const p=JSON.parse(raw);if(!p||p.version!==1||!p.done||Array.isArray(p.done))return state;
    for(const [id,r]of Object.entries(p.done))if(valid(id)&&r&&typeof r==='object')state.done[id]={stars:{delivered:true,tidy:!!r.stars?.tidy,firstPost:!!r.stars?.firstPost}};
    if(valid(p.active))state.active=p.active;

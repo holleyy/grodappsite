@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Cats by Post · Start screen example</title></head><body><script>
+/* Namespace the copied runtime's storage before any of its code executes. */
+(async () => {
+ try {
+  const requested=new URLSearchParams(location.search).get('study');
+  if(!['first','returning','services'].includes(requested))throw Error('Unknown start-screen example');
+  const storage=window.localStorage,prefix='cats-by-post.start-study.'+requested+'.runtime.';
+  const keys=()=>Object.keys(storage).filter(key=>key.startsWith(prefix));
+  Object.defineProperty(window,'localStorage',{configurable:true,value:{
+   getItem(key){return storage.getItem(prefix+key)},setItem(key,value){storage.setItem(prefix+key,value)},
+   removeItem(key){storage.removeItem(prefix+key)},clear(){for(const key of keys())storage.removeItem(key)},
+   key(index){return keys()[index]?.slice(prefix.length)||null},get length(){return keys().length}
+  }});
+  const response=await fetch('runtime.html?v=playing-1');if(!response.ok)throw Error('Runtime '+response.status);
+  const html=await response.text();document.open();document.write(html);document.close();
+ }catch(error){console.error(error);document.body.textContent='This example could not be opened. Please refresh to try again.';parent.postMessage({type:'hud-runtime-error'},location.origin)}
+})();
+</script></body></html>

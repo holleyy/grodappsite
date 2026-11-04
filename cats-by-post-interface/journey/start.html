@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#253e40"><meta name="robots" content="noindex,nofollow">
+<title>Cats by Post · Two beginnings</title>
+<link rel="stylesheet" href="journey.css?v=journey-3"><link rel="stylesheet" href="menu-system.css?v=spacing-7"><link rel="stylesheet" href="company-box.css?v=paper-18"><link rel="stylesheet" href="start.css?v=start-19">
+</head><body data-scene="office">
+<header class="study-bar" aria-label="Compare start screens">
+ <a id="back-to-prototype" href="./?v=paper-18" aria-label="Back to the journey prototype"><img src="icons/arrow-left.svg" alt="" width="20" height="20"></a>
+ <button id="back-to-start" hidden><img src="icons/arrow-left.svg" alt="" width="20" height="20"><span>Start screen</span></button>
+ <nav aria-label="Start screen ideas"><button data-scene="office" aria-pressed="true">The office</button><button data-scene="desk" aria-pressed="false">The desk</button></nav>
+ <button id="study-options" aria-label="Choose a first visit or a returning player" title="Example options"><img src="icons/list.svg" alt="" width="22" height="22"></button>
+</header>
+<main id="start-app" class="start-app">
+ <picture class="start-art" aria-hidden="true"><source id="portrait-art" media="(orientation:portrait)" srcset="images/start/office-portrait.webp"><img id="wide-art" src="images/start/office-wide.webp" alt="" width="1536" height="1024" fetchpriority="high"></picture>
+ <div class="start-composition">
+  <h1 class="game-title"><span>Cats <i>by</i></span><span>Post</span></h1>
+  <div class="opening-line" aria-hidden="true">The post can wait a moment.</div>
+  <button id="primary-letter" class="primary-letter" aria-label="Continue sorting Ginger and blue, delivery 1–4">
+   <img class="letter-art" src="images/envelope.webp" alt="" width="1561" height="1008">
+   <span class="letter-copy"><strong id="primary-heading">Continue 1–4</strong><span id="primary-title">Ginger and blue</span><small id="primary-detail">Back to your arrangement <img src="icons/arrow-right.svg" alt="" width="20" height="20"></small></span>
+  </button>
+  <nav class="postal-services" aria-label="More post">
+   <button id="today-button" class="service-slip" data-service="daily"><img src="icons/calendar-blank.svg" alt="" width="25" height="25"><span>Today’s post</span></button>
+   <button id="night-button" class="service-slip" data-service="night"><img src="icons/moon-stars.svg" alt="" width="25" height="25"><span>Night Shift</span></button>
+  </nav>
+  <nav class="office-tools" aria-label="Around the office">
+   <button id="places-button" class="places-object"><img class="map-print" src="images/route.webp" alt="" width="1254" height="1254"><span><img src="icons/map-trifold.svg" alt="" width="23" height="23">Places</span></button>
+   <button id="collection-button" class="collection-object" aria-label="Open The company photograph box"><img class="closed-box" src="images/photo-box-closed.webp" alt="" width="1385" height="1136"><span>The company</span></button>
+  </nav>
+  <button id="settings-button" class="start-settings" aria-label="Settings"><img src="icons/gear-six.svg" alt="" width="24" height="24"></button>
+ </div>
+ <p id="entry-status" class="entry-status" role="status" hidden></p>
+</main>
+<section id="story-host" class="journey-host" aria-label="Your example post" aria-hidden="true" inert><iframe id="story-frame" title="Playable start screen example" src="about:blank"></iframe></section>
+<section id="service-host" class="journey-host" aria-label="Postal services example" aria-hidden="true" inert><iframe id="service-frame" title="Today’s post and Night Shift" src="about:blank"></iframe></section>
+<dialog id="cats-dialog" class="company-dialog" aria-labelledby="cats-title"><h1 id="cats-title" class="sr-only">The company</h1></dialog>
+<dialog id="options-dialog" class="menu-sheet entry-options" aria-labelledby="options-title">
+ <header class="dialog-head menu-heading"><h2 id="options-title">Two beginnings</h2><button id="close-options" class="menu-close" aria-label="Close example options"><img src="icons/x.svg" alt="" width="24" height="24"></button></header>
+ <div class="dialog-content"><p>Try each entrance with the same post.</p>
+ <div class="visit-options" role="group" aria-label="Example player"><button data-visit="first" aria-pressed="false"><strong>First visit</strong><span>A first letter, ready to open.</span></button><button data-visit="returning" aria-pressed="true"><strong>Returning player</strong><span>A paused delivery, exactly as you left it.</span></button></div>
+ <p class="example-note">These examples have their own saves. Your existing prototype journey stays where you left it.</p>
+ <button id="reset-study" class="reset-study">Reset this example</button><a class="existing-journey" href="./?v=paper-18">Back to the current journey <img src="icons/arrow-right.svg" alt="" width="20" height="20"></a>
+ </div>
+</dialog>
+<script src="company-model.js?v=box-9"></script><script src="paper-motion.js?v=paper-18"></script><script src="company-box.js?v=paper-18"></script><script src="start.js?v=start-19"></script>
+</body></html>

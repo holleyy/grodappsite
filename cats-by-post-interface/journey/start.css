@@ -1,0 +1,121 @@
+/* Two reversible start-screen studies. The game objects retain live text and actions. */
+:root{--study-bar:48px;--cream:#f9e9c5;--start-ink:#294449}
+html,body{height:100%;min-height:100%;background:#283f40;overflow:hidden}
+body{margin:0}
+button,a{-webkit-tap-highlight-color:transparent}
+.study-bar{position:fixed;inset:0 0 auto;z-index:30;height:var(--study-bar);display:flex;align-items:center;justify-content:space-between;gap:6px;padding:0 max(8px,env(safe-area-inset-right)) 0 max(8px,env(safe-area-inset-left));background:#f3ead5;color:#2b4447;border-bottom:1px solid #b7a784}
+.study-bar>button,.study-bar>a{display:flex;align-items:center;justify-content:center;min-width:40px;min-height:44px;padding:5px;border:0;border-radius:0;background:none;color:inherit;box-shadow:none}
+.study-bar img{pointer-events:none}
+.study-bar nav{display:flex;align-items:stretch;height:100%;gap:16px}
+.study-bar nav button{position:relative;min-height:44px;padding:4px 5px;border:0;border-radius:0;background:none;font:18px/1.1 Balthazar,serif;color:#6b6a58;box-shadow:none}
+.study-bar nav button[aria-pressed=true]{color:#253f42;border-bottom:3px solid #a44834}
+.study-bar #back-to-start{gap:7px;white-space:nowrap;font:15px Signika,sans-serif}
+.start-app{position:fixed;inset:var(--study-bar) 0 0;overflow:auto;overscroll-behavior:contain;background:#b9783d;isolation:isolate}
+.start-art{position:absolute;inset:0;display:block;pointer-events:none;z-index:-1}
+.start-art img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center}
+.start-composition{position:relative;min-height:100%;height:100%;max-width:1600px;margin:auto;isolation:isolate}
+.game-title{position:absolute;top:5%;left:50%;transform:translateX(-50%);width:max-content;max-width:90%;margin:0;text-align:center;color:var(--cream);text-shadow:0 2px 2px #172c2b55;font:400 clamp(64px,8.5vw,112px)/.79 Balthazar,Georgia,serif;letter-spacing:-2px;pointer-events:none}
+.game-title>span{display:block}.game-title i{font:400 .4em/1 PostHand,cursive;letter-spacing:0;vertical-align:middle;margin-left:2px}.game-title>span+span{margin-top:9px}
+.opening-line{display:none;position:absolute;top:26%;left:50%;transform:translateX(-50%);font:22px/1 PostHand,cursive;color:#ecdfbd;white-space:nowrap}
+.primary-letter{position:absolute;container-type:inline-size;left:50%;bottom:10%;transform:translateX(-50%) rotate(-3deg);width:clamp(300px,29vw,440px);aspect-ratio:1561/1008;min-height:0;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;text-align:left;filter:drop-shadow(1px 5px 3px #30271944);color:var(--start-ink)}
+.primary-letter:hover{background:none;transform:translateX(-50%) rotate(-1.5deg)}
+.primary-letter:active{transform:translateX(-50%) rotate(-1.5deg) translateY(2px)}
+.letter-art{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;pointer-events:none}
+.letter-copy{position:absolute;left:11%;right:19%;top:32%;transform:rotate(-1deg)}
+.letter-copy strong{display:block;font:400 clamp(29px,8cqw,42px)/1 Balthazar,serif;letter-spacing:-.4px}
+.letter-copy>span{display:block;font:400 clamp(25px,7.5cqw,38px)/1.1 PostHand,cursive;margin-top:11px}
+.letter-copy small{display:flex;align-items:center;gap:7px;margin-top:14px;font:500 clamp(13px,4cqw,16px)/1.15 Signika,sans-serif;color:#9e4332}
+.letter-copy small img{width:19px;height:19px;opacity:.8}
+.postal-services{position:absolute;left:50%;bottom:3%;transform:translateX(-50%);display:flex;gap:15px;width:clamp(310px,30vw,470px)}
+.service-slip{display:flex;align-items:center;justify-content:center;gap:9px;flex:1;min-width:0;min-height:52px;padding:12px 14px;border:0;border-radius:0;background:url(images/paper-button.webp) center/100% 100% no-repeat;color:#29464a;box-shadow:none;font:400 21px/1 Balthazar,serif;filter:drop-shadow(0 2px 2px #30271933);rotate:-1.5deg}
+.service-slip+button{rotate:1.5deg}.service-slip:hover{background:url(images/paper-button.webp) center/100% 100% no-repeat;color:#9c4332;translate:0 -2px}.service-slip:active{transform:none;translate:0 1px}.service-slip img{width:23px;height:23px;pointer-events:none;flex:none}
+.office-tools{position:absolute;inset:0;pointer-events:none}
+.office-tools>button{position:absolute;pointer-events:auto;border:0;border-radius:0;background:none;box-shadow:none;padding:0;min-height:44px;color:#f3e4bf}
+.office-tools>button:hover{background:none}
+.office-tools>button>span{display:block;width:max-content;max-width:none;margin-inline:auto;white-space:nowrap;font:18px/1.1 Balthazar,serif;padding:5px 9px;background:url(images/paper-button.webp) center/100% 100% no-repeat;color:var(--start-ink);text-shadow:none}
+.places-object{left:8%;bottom:4%;width:150px;transform:rotate(-6deg)}
+.places-object .map-print{display:block;width:100%;height:95px;object-fit:cover;object-position:center 60%;border:6px solid #f5e5bc;box-shadow:0 3px 3px #30271944;pointer-events:none}
+.places-object>span{display:flex!important;align-items:center;justify-content:center;gap:7px;margin-top:9px}
+.places-object>span img{filter:none}
+.collection-object{right:7%;bottom:3%;width:175px;transform:rotate(5deg)}
+.closed-box{display:block;width:100%;height:auto;max-width:none;filter:drop-shadow(2px 5px 3px #30271944);pointer-events:none}
+.collection-object>span{margin-top:6px}
+.start-settings{position:absolute;right:max(15px,env(safe-area-inset-right));top:16px;min-width:44px;min-height:44px;display:grid;place-items:center;padding:0;border:0;border-radius:0;background:url(images/paper-button.webp) center/100% 100% no-repeat;color:var(--start-ink);box-shadow:none}
+.start-settings:hover{background:url(images/paper-button.webp) center/100% 100% no-repeat}.start-settings img{pointer-events:none}
+.entry-status{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:35;max-width:calc(100% - 28px);width:max-content;padding:12px 20px;color:#f8edcf;background:#263f40;border:1px solid #bcaa7e;font:16px/1.3 Signika,sans-serif;text-align:center;box-shadow:0 3px 6px #1e2b2a55}
+.journey-host{position:fixed;inset:var(--study-bar) 0 0;z-index:20;visibility:hidden;pointer-events:none;background:#f5ecd7}
+.journey-host.open{visibility:visible;pointer-events:auto}
+.journey-host iframe{display:block;width:100%;height:100%;border:0}
+.entry-options{width:min(460px,calc(100% - 24px));height:auto;max-height:calc(100dvh - 32px);margin:auto;padding:0;background:#f5ecd7}
+.entry-options::backdrop{background:#183b3ca8}
+.entry-options .dialog-content{padding:22px 25px 26px}
+.entry-options .dialog-content>p:first-child{margin:0 0 15px;font:24px/1.2 Balthazar,serif}
+.visit-options{display:flex;flex-direction:column}
+.visit-options button{padding:18px 14px;text-align:left;border:0;border-bottom:1px solid #c7b796;border-radius:0;background:none;box-shadow:none;color:#29464a}
+.visit-options button[aria-pressed=true]{border-left:3px solid #a44734;background:#e9ddbe}
+.visit-options strong{display:block;font:28px/1.1 Balthazar,serif}.visit-options span{display:block;margin-top:8px;font:16px/1.35 Signika,sans-serif;color:#606656}
+.example-note{font:15px/1.45 Signika,sans-serif;color:#606656;margin-top:20px}
+.reset-study{border:1px solid #ae9875;background:none;border-radius:0;margin:20px 0;min-height:44px;padding:10px 15px;color:#8e4233}
+.existing-journey{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#29464a;font:17px Signika,sans-serif;min-height:44px}
+body[data-scene=desk] .primary-letter{bottom:30%;width:clamp(330px,36vw,550px);rotate:0;transform:translateX(-50%) rotate(-5deg)}
+body[data-scene=desk] .primary-letter:hover{transform:translateX(-50%) rotate(-3deg)}
+body[data-scene=desk] .game-title{top:10%;font-size:clamp(64px,6vw,85px)}
+body[data-scene=desk] .opening-line{display:none}
+body[data-scene=desk] .postal-services{bottom:18%;width:clamp(330px,38vw,560px);gap:23px}
+body[data-scene=desk] .service-slip{min-height:65px;font-size:25px;rotate:-3deg}
+body[data-scene=desk] .service-slip+button{rotate:3deg}
+body[data-scene=desk] .places-object{left:18%;bottom:10%;width:170px}
+body[data-scene=desk] .collection-object{right:16%;bottom:9%;width:190px}
+@media(orientation:portrait){
+ .game-title{top:5%;font-size:clamp(65px,14vw,105px)}
+ .primary-letter{bottom:17%;width:min(80%,450px)}
+ .postal-services{bottom:10%;width:min(86%,470px)}
+ .office-tools{bottom:0;height:10%;top:auto;display:flex;justify-content:center;align-items:center;gap:40px}
+ .office-tools>button{position:relative;inset:auto;width:auto;min-width:90px;transform:none;display:flex;align-items:center;justify-content:center;gap:7px;height:44px}
+ .places-object .map-print{display:none}.places-object>span{margin:0;font-size:19px!important}.places-object>span img{width:23px;height:23px}
+ .collection-object .closed-box{width:45px;height:40px;object-fit:contain}.collection-object>span{font-size:19px!important;margin:0}
+ .service-slip{font-size:20px;min-height:51px;padding:10px 9px;gap:6px;white-space:nowrap}.service-slip img{width:20px;height:20px}
+ body[data-scene=desk] .game-title{top:16%;font-size:clamp(66px,13vw,100px)}
+ body[data-scene=desk] .primary-letter{bottom:37%;width:min(84%,510px)}
+ body[data-scene=desk] .postal-services{bottom:25%;width:min(84%,470px);gap:18px}
+ body[data-scene=desk] .service-slip{font-size:20px;min-height:60px;padding-inline:9px;gap:6px;white-space:nowrap}
+ body[data-scene=desk] .office-tools{top:auto;bottom:8%;height:13%;gap:38px}
+ body[data-scene=desk] .office-tools>button{position:relative;inset:auto;display:block;width:105px;height:auto;min-height:60px;flex:none}
+ body[data-scene=desk] .places-object .map-print{display:block;height:70px;border-width:4px;rotate:-6deg}
+ body[data-scene=desk] .places-object>span{margin-top:10px;font-size:20px!important}
+ body[data-scene=desk] .collection-object .closed-box{width:108px;height:87px;margin:auto;rotate:5deg}
+ body[data-scene=desk] .collection-object>span{font-size:20px!important}
+ body[data-scene=desk] .start-art img{object-position:right center}
+}
+@media(max-width:500px){
+ .study-bar nav{gap:10px}.study-bar nav button{font-size:17px}.study-bar #back-to-start{min-width:40px}.study-bar #back-to-start span{display:none}
+ .letter-copy strong{font-size:29px}.letter-copy>span{font-size:28px;margin-top:8px}.letter-copy small{font-size:13px;margin-top:11px}
+ .start-settings{top:12px;right:12px}
+ body[data-scene=desk] .primary-letter{bottom:36%;width:86%}
+ body[data-scene=desk] .game-title{font-size:70px;top:18%}
+ .game-title{font-size:75px;top:5%}
+}
+@media(max-height:720px) and (orientation:portrait){
+ .game-title{font-size:64px;top:4%}.primary-letter{width:75%;bottom:20%}.letter-copy strong{font-size:26px}.letter-copy>span{font-size:24px;margin-top:6px}.letter-copy small{font-size:12px;margin-top:7px}
+ .postal-services{bottom:9%;gap:10px}.service-slip{font-size:19px;min-height:48px;padding:9px}.office-tools{height:9%;gap:22px}
+ body[data-scene=desk] .game-title{font-size:58px;top:14%}body[data-scene=desk] .primary-letter{width:77%;bottom:37%}
+ body[data-scene=desk] .postal-services{bottom:23%;gap:10px}body[data-scene=desk] .service-slip{min-height:49px;font-size:18px;padding-inline:7px}
+ body[data-scene=desk] .office-tools{bottom:4%;height:16%;gap:35px}body[data-scene=desk] .office-tools>button{width:85px}
+ body[data-scene=desk] .places-object .map-print{height:49px}body[data-scene=desk] .collection-object .closed-box{width:84px;height:67px}
+ body[data-scene=desk] .office-tools>button>span{font-size:17px!important}
+}
+@media(max-width:359px) and (orientation:portrait){.service-slip,body[data-scene=desk] .service-slip{font-size:17px;gap:5px;padding-inline:6px}.service-slip img{width:18px;height:18px}}
+@media(max-height:600px) and (orientation:landscape){
+ .game-title,body[data-scene=desk] .game-title{left:22%;top:15%;font-size:clamp(52px,10vh,70px)}
+ .primary-letter,body[data-scene=desk] .primary-letter{left:65%;bottom:29%;width:min(37vw,330px)}
+ .letter-copy strong{font-size:25px}.letter-copy>span{font-size:24px;margin-top:6px}.letter-copy small{font-size:12px;margin-top:7px}
+ .postal-services,body[data-scene=desk] .postal-services{left:65%;bottom:7%;width:45%;gap:9px}
+ .service-slip,body[data-scene=desk] .service-slip{font-size:17px;min-height:45px;padding:8px 6px;gap:5px;white-space:nowrap}.service-slip img{width:18px;height:18px}
+ .office-tools{left:0;right:auto;top:auto;bottom:5%;width:40%;display:flex;justify-content:center;gap:14px}
+ .office-tools>button,body[data-scene=desk] .office-tools>button{position:relative;inset:auto;width:85px;transform:none}
+ .places-object .map-print{display:none}.places-object>span{font-size:17px!important;margin:0}.collection-object .closed-box{height:40px;width:50px;margin:auto}.collection-object>span{font-size:16px!important;margin:0}
+ .start-settings{top:9px;right:10px}
+ body[data-scene=office] .game-title{color:#213c3f;text-shadow:0 1px 1px #fff0c8}
+}
+@media(prefers-reduced-motion:no-preference){.primary-letter,.service-slip{transition:transform .16s ease-out,translate .16s ease-out}.start-composition{animation:arrival .4s ease-out}@keyframes arrival{from{opacity:0;translate:0 5px}to{opacity:1;translate:0 0}}}
+.reduced *{animation:none!important;transition:none!important}
