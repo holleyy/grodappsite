@@ -3,16 +3,16 @@
  'use strict';
  const $=id=>document.getElementById(id),params=new URLSearchParams(location.search),wait=ms=>new Promise(r=>setTimeout(r,ms));
  const studyMode=['scene','material','visit','compare'].some(key=>params.has(key)),example=params.get('example')==='depot'?'depot':'office';
- let scene=params.get('scene')==='desk'?'desk':'office',visit=['first','postmarks'].includes(params.get('visit'))?params.get('visit'):'returning',material=params.get('material')==='illustrated'?'illustrated':'paper',generation=0,storyReady=null,serviceReady=null,shown=null,context=null;
+ let scene=params.get('scene')==='desk'?'desk':'office',visit=['first','postmarks','photographs'].includes(params.get('visit'))?params.get('visit'):'returning',material=params.get('material')==='illustrated'?'illustrated':'paper',generation=0,storyReady=null,serviceReady=null,shown=null,context=null;
  const compare=scene==='office'&&params.has('material');
- const company=CompanyBox.create({dialog:$('cats-dialog'),getProgress:async()=>{await storyReady;return(serviceReady&&$('service-frame').contentWindow.Journey?.state.gameReady?appFor('service'):appFor('story')).engine.state().progress},onNight:()=>openService('night'),getReturnFocus:()=>$('collection-button')});
+ const company=CompanyBox.create({dialog:$('cats-dialog'),getProgress:async()=>{await storyReady;const progress=(serviceReady&&$('service-frame').contentWindow.Journey?.state.gameReady?appFor('service'):appFor('story')).engine.state().progress;return studyMode&&visit==='photographs'?{...progress,nightShift:{...progress.nightShift,totalCatsHome:50}}:progress},onNight:()=>openService('night'),getSeenKey:()=>studyMode?'cats-by-post.start-study.'+visit+'.navigation.v1.photographs.seen.v1':'cats-by-post.journey.'+example+'.navigation.v1.photographs.seen.v1',getReturnFocus:()=>$('collection-button')});
  function appFor(role){return $(role+'-frame').contentWindow.document.getElementById('game').contentWindow.APP}
  function journey(role='story'){return $(role+'-frame').contentWindow.Journey}
  function status(text){$('entry-status').textContent=text;$('entry-status').hidden=!text}
  function setScene(next){scene=next==='desk'?'desk':'office';document.body.dataset.scene=scene;renderArt();document.querySelectorAll('button[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scene===scene)));updateUrl()}
  function renderArt(){const art=scene==='office'&&material==='paper'?'office-paper':scene;document.body.dataset.material=material;$('wide-art').src='images/start/'+art+'-wide.webp';$('portrait-art').srcset='images/start/'+art+'-portrait.webp';document.querySelectorAll('[data-material]').forEach(b=>{if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',String(b.dataset.material===material))})}
  function setMaterial(value){material=value==='paper'?'paper':'illustrated';renderArt();updateUrl()}
- function updateUrl(){const url=new URL(location.href);if(studyMode){url.searchParams.set('scene',scene);url.searchParams.set('visit',visit);if(compare)url.searchParams.set('material',material)}url.searchParams.set('v','postmarks-22');history.replaceState(null,'',url)}
+ function updateUrl(){const url=new URL(location.href);if(studyMode){url.searchParams.set('scene',scene);url.searchParams.set('visit',visit);if(compare)url.searchParams.set('material',material)}url.searchParams.set('v','box-23');history.replaceState(null,'',url)}
  function show(role){shown=role;for(const name of ['story','service']){const on=name===role;$(name+'-host').classList.toggle('open',on);$(name+'-host').inert=!on;$(name+'-host').setAttribute('aria-hidden',String(!on))}$('start-app').inert=!!role;$('back-to-start').hidden=!role;$('back-to-prototype').hidden=!!role;if(role)$(role+'-frame').focus()}
  function entryMark(id,done){
   $('primary-letter').querySelector('.entry-mark')?.remove();const p=PostalIdentity.forLevel(id);
@@ -33,7 +33,7 @@
   document.body.classList.toggle('reduced',appFor('story').prefs.reduced);
  }
  async function prepare(role,type){
-  const frame=$(role+'-frame');frame.contentWindow.__startOldDocument=true;frame.src='index.html?v=postmarks-22&example='+example+(type?'&study='+type:'');
+  const frame=$(role+'-frame');frame.contentWindow.__startOldDocument=true;frame.src='index.html?v=box-23&example='+example+(type?'&study='+type:'');
   for(let i=0;i<250;i++){
    await wait(80);const j=frame.contentWindow.Journey;if(!frame.contentWindow.__startOldDocument&&j?.state.gameReady)return j;
   }

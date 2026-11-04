@@ -1,6 +1,6 @@
 /* Cats by Post: a phone-playable interface sketchbook, deliberately outside the game. */
 const HUD_EXAMPLE=['quiet','busy'].includes(new URLSearchParams(location.search).get('hud'))?new URLSearchParams(location.search).get('hud'):null;
-const ENTRY_STUDY=['first','returning','services','postmarks'].includes(new URLSearchParams(location.search).get('study'))?new URLSearchParams(location.search).get('study'):null;
+const ENTRY_STUDY=['first','returning','services','postmarks','photographs'].includes(new URLSearchParams(location.search).get('study'))?new URLSearchParams(location.search).get('study'):null;
 const $=id=>document.getElementById(id), M=LabModel, SESSION=HUD_EXAMPLE?'cats-by-post.hud-pressure.session.v1.'+HUD_EXAMPLE:ENTRY_STUDY?'cats-by-post.start-study.'+ENTRY_STUDY+'.session.v1':'cats-by-post.journey.session.v1.'+(new URLSearchParams(location.search).get('example')==='depot'?'depot':'office'), PREFS=HUD_EXAMPLE?'cats-by-post.hud-pressure.preferences.v1':SESSION+'.preferences';
 const icon=name=>`<svg class="ico" aria-hidden="true"><use href="#i-${name}"/></svg>`;
 const menuIcon=(name,cls='')=>`<img class="menu-icon ${cls}" src="../icons/${name}.svg" alt="" width="24" height="24">`;
@@ -103,7 +103,7 @@ function sample(which){if(HUD_EXAMPLE){home();return}if(which==='depot'){start('
 // Sample rounds use the game’s deterministic review hook, never fabricated scores.
 function engineDebug(round){$('world').contentWindow.eval(`nsSkipTo(${round})`);engine.camera();poll()}
 function dispatch(action,arg,el){if(!ready)return;if(window.JourneyHandoff?.handle(action))return;sound();switch(action){
- case'main-menu':{engine.pause(true);save();closeSheet(false);const url=new URL('../start.html',location.href);url.searchParams.set('v','postmarks-22');if(['first','returning','postmarks'].includes(ENTRY_STUDY))url.searchParams.set('visit',ENTRY_STUDY);else if(new URLSearchParams(location.search).get('example')==='depot')url.searchParams.set('example','depot');if(parent!==window&&parent.Journey){parent.Journey.leave('map');parent.location.href=url.href}else location.href=url.href;break;}
+ case'main-menu':{engine.pause(true);save();closeSheet(false);const url=new URL('../start.html',location.href);url.searchParams.set('v','box-23');if(['first','returning','postmarks','photographs'].includes(ENTRY_STUDY))url.searchParams.set('visit',ENTRY_STUDY);else if(new URLSearchParams(location.search).get('example')==='depot')url.searchParams.set('example','depot');if(parent!==window&&parent.Journey){parent.Journey.leave('map');parent.location.href=url.href}else location.href=url.href;break;}
  case'flip-mail':Completion.flip();requestAnimationFrame(layout);break;case'stamp-info':Completion.flip(arg);requestAnimationFrame(layout);break;case'home':home();break;case'map':save();location.href='../?v=letter-17';break;case'continue':continueGame();break;case'places':places();break;case'album':album();break;case'area':area(arg);break;
  case'level':start('story',Number(arg));break;case'preview-level':start('sample',Number(arg));break;case'next-unsolved':start('story',nextLevel().i);break;
  case'pause':pausePlay();break;case'menu':pauseMenu();break;case'resume':resume();break;case'close':closeSheet();break;case'settings':settings();break;case'help':help();break;case'camera':cameraSheet();break;case'tools':tools();break;
@@ -140,6 +140,6 @@ async function init(){try{
  }catch(e){console.error(e);$('loading').hidden=false;$('loading').innerHTML='<h1>The post is taking a moment.</h1><p>Please reload to try again.</p>'}}
 
 $('world').addEventListener('load',init);
-$('world').src=HUD_EXAMPLE?'hud-runtime.html?edit&v=hud-13':ENTRY_STUDY?'entry-runtime.html?study='+ENTRY_STUDY+'&v=postmarks-22':'runtime.html?v=playing-1';
+$('world').src=HUD_EXAMPLE?'hud-runtime.html?edit&v=hud-13':ENTRY_STUDY?'entry-runtime.html?study='+ENTRY_STUDY+'&v=box-23':'runtime.html?v=playing-1';
 
 window.addEventListener('message',e=>{if(e.source===$('world').contentWindow&&e.data?.type==='hud-runtime-error'){$('loading').hidden=false;$('loading').innerHTML='<h1>The post could not be opened.</h1><p>Please reload to try again.</p>'}});
