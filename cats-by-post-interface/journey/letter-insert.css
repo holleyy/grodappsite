@@ -1,6 +1,8 @@
 /* The print slides out of the pocket; the addressed front stays above it. */
-.mail-preview{position:relative;isolation:isolate;aspect-ratio:1/1.2;width:100%;margin:12px auto 14px}
-.envelope-rear{position:absolute;z-index:1;left:0;bottom:8.2%;width:100%;height:auto;pointer-events:none}
+.mail-preview{position:relative;isolation:isolate;perspective:1000px;aspect-ratio:1/1.2;width:100%;margin:12px auto 14px}
+.envelope-rear,.envelope-flap{position:absolute;z-index:1;left:0;bottom:8.2%;width:100%;height:auto;pointer-events:none}
+.envelope-rear{clip-path:inset(34% 0 0)}
+.envelope-flap{clip-path:polygon(0 34%,50% 0,100% 34%);transform-origin:50% 34%;transform:rotateX(0deg)}
 .preview-print,.inspection-print{position:relative;aspect-ratio:1470/1070;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;isolation:isolate}
 .preview-print{position:absolute;z-index:2;left:6%;top:0;width:88%;transform:rotate(-3deg);cursor:zoom-in;filter:drop-shadow(0 3px 3px #4d39232b)}
 .preview-print:hover{background:transparent;transform:translateY(-5px) rotate(-3deg)}
@@ -19,8 +21,7 @@
 .inspection-print .print-reference{font-size:clamp(24px,5vw,36px)}
 @media(max-width:739px){.print-dialog{width:100%;height:auto;max-height:100dvh;margin:auto 0}.print-dialog .dialog-content{padding-bottom:calc(25px + var(--safe-bottom))}}
 @media(prefers-reduced-motion:no-preference){
- .preview-print{animation:draw-out .55s cubic-bezier(.2,.7,.25,1) backwards;transition:transform .18s ease-out}
- @keyframes draw-out{from{transform:translateY(125px) rotate(1deg)}to{transform:rotate(-3deg)}}
+ .preview-print{transition:transform .16s ease-out}
  .inspection-print{animation:print-out .2s ease-out}
  @keyframes print-out{from{opacity:.6;transform:translateY(12px) rotate(-3deg)}to{opacity:1;transform:rotate(-1deg)}}
 }

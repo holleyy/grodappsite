@@ -43,8 +43,21 @@
 .company-night img{width:21px;height:21px;pointer-events:none}
 .company-night img:last-child{margin-left:auto}
 .photo-view{min-width:0;container-type:inline-size;display:flex;flex-direction:column;align-items:center;justify-content:center;align-self:center;width:100%;gap:18px}
-.lifted-print{width:min(100%,540px,calc((100dvh - 205px)*.876));transform:rotate(-1.5deg);touch-action:pan-y;cursor:grab;filter:drop-shadow(0 8px 8px #4d3b2a30)}
+.photo-table{position:relative;isolation:isolate;perspective:1200px;width:min(calc(100% - 24px),540px,calc((100dvh - 220px)*.876));flex:none}
+.photo-underlay{position:absolute;inset:0;pointer-events:none;z-index:0}
+.photo-underlay>img{display:block;width:100%;height:100%}
+.paper-underlay{transform:translate(-5px,7px) rotate(-4deg);filter:drop-shadow(0 2px 2px #4d3b2a25)}
+.picture-underlay{transform:translate(7px,5px) rotate(3deg)}
+.lifted-print{position:relative;z-index:2;width:100%;transform:rotate(-1.5deg);touch-action:pan-y;cursor:grab;filter:drop-shadow(0 8px 8px #4d3b2a30)}
 .lifted-print:active{cursor:grabbing}
+.photo-turn{position:relative;aspect-ratio:1090/1244;transform-style:preserve-3d;transform:rotateY(0deg)}
+.is-reversed .photo-turn{transform:rotateY(180deg)}
+.photo-front,.photo-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.photo-back{transform:rotateY(180deg)}
+.photo-departure{position:absolute;inset:0;pointer-events:none;z-index:1}
+.photo-return{position:fixed;z-index:4;pointer-events:none;transform-origin:center}
+/* One photograph has been caught under a paw. The name stays on flat paper. */
+.coat-print[data-paper-coat=cream]::after{content:'';position:absolute;right:4.2%;bottom:3.3%;width:9%;aspect-ratio:1;background:linear-gradient(135deg,#d8c4a155 0 45%,#a18b5e75 49%,#f9edcf 51%,#e8d5af 87%);clip-path:polygon(100% 0,100% 100%,0 100%);filter:drop-shadow(-1px -1px 1px #705b3233);pointer-events:none}
 .photo-actions{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:stretch;gap:10px;width:100%}
 .photo-actions button{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:48px;padding:11px 8px;background:#f6ebd1;border:1px solid #ac9874;font:16px/1.2 Signika,system-ui,sans-serif}
 .photo-actions button img{flex:none;width:20px;height:20px;pointer-events:none}
@@ -91,26 +104,22 @@
  .reverse-writing h2{font-size:37px}
  .photo-box-button{width:88px;right:9px}
 }
-@media(max-height:600px) and (min-width:600px){
+@media(max-height:600px) and (min-width:500px){
  .company-room{padding-top:58px}
  .company-dialog.viewing-photo .company-layout{grid-template-columns:minmax(0,800px);max-width:800px;gap:0;min-height:calc(100dvh - 90px)}
  .company-dialog.viewing-photo .box-index{display:none}
  .open-photo-box{width:235px}
  .coat-grid{grid-template-columns:1fr}
  .next-coat-note{padding:18px 24px 17px;width:310px}
- .lifted-print{width:min(100%,calc((100dvh - 110px)*.876));grid-column:1;grid-row:1/3;justify-self:center}
+ .photo-table{width:min(calc(100% - 24px),calc((100dvh - 95px)*.876));grid-column:1;grid-row:1/3;justify-self:center}
  .company-dialog.viewing-photo .photo-view{position:static;display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,210px);grid-template-rows:1fr auto;gap:0 24px}
  .photo-actions{grid-column:2;grid-row:1;display:flex;flex-direction:column;gap:8px;align-self:end;margin-bottom:14px}
  .photo-actions button{justify-content:center!important}
  .photo-position{grid-column:2;grid-row:2;align-self:start;margin-bottom:24px}
- .reverse-writing{font-size:18px;top:13%}
- .reverse-writing h2{font-size:32px;margin-bottom:16px}
- .reverse-writing p+p{margin-top:18px}
- .reverse-writing .coat-origin{font-size:14px;padding-top:13px}
-}
-@media(prefers-reduced-motion:no-preference){
- .lifted-print{animation:photo-lift .22s ease-out}
- @keyframes photo-lift{from{opacity:.7;transform:translateY(10px) rotate(-3deg)}to{opacity:1;transform:rotate(-1.5deg)}}
+ .reverse-writing{font-size:16px;line-height:1.25;top:10%}
+ .reverse-writing h2{font-size:28px;margin-bottom:12px}
+ .reverse-writing p+p{margin-top:16px}
+ .reverse-writing .coat-origin{font-size:12px;padding-top:8px}
 }
 @media(prefers-reduced-motion:reduce){.coat-thumb{transition:none}}
 @container(max-width:380px){
