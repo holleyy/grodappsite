@@ -1,5 +1,7 @@
 /* Two reversible start-screen studies. The game objects retain live text and actions. */
-:root{--study-bar:48px;--cream:#f9e9c5;--start-ink:#294449}
+:root{--study-bar:0px;--cream:#f9e9c5;--start-ink:#294449}
+.prototype-mode{--study-bar:48px}
+body:not(.prototype-mode) .study-bar{display:none}
 html,body{height:100%;min-height:100%;background:#283f40;overflow:hidden}
 body{margin:0}
 button,a{-webkit-tap-highlight-color:transparent}

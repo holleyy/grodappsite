@@ -16,7 +16,7 @@
  const chapters={1:['First post',5],2:['Ginger and blue',10],3:['The town depot',10],4:['Doors of their own',15],5:['A change of points',15],6:['Under the city',15],7:['Special delivery',15],8:['Home for Christmas',15]};
  const WORLD={width:2048,height:2048};
  let model,hadSave=false;try{const raw=localStorage.getItem(KEY);model=M.read(raw,{empty:STUDY==='first'});hadSave=!!raw&&JSON.parse(raw)?.version===1}catch{model=M.read(null,{empty:STUDY==='first'})}
- let lastDelivery=null,levels=[],view=null,returnView=null,focusReturn=null,zoom=1,drag=null,dragClick=false,gameIsReady=false,gamePromiseResolve,gamePromiseReject,openingToken=0,toastTimer,loadingTimer;
+ let lastDelivery=null,levels=[],view=null,returnView=null,focusReturn=null,zoom=1,drag=null,dragClick=false,gameIsReady=false,gamePromiseResolve,gamePromiseReject,openingToken=0,toastTimer,loadingTimer,serviceReturn='map';
  const gamePromise=new Promise((resolve,reject)=>{gamePromiseResolve=resolve;gamePromiseReject=reject});gamePromise.catch(()=>{});
  const frame=$('game'),vp=$('map-window'),world=$('map-world'),wide=matchMedia('(min-width:740px)');
  const company=CompanyBox.create({dialog:$('cats-dialog'),getProgress:()=>gameIsReady?frame.contentWindow.APP.engine.state().progress:gamePromise.then(app=>app.engine.state().progress),onNight:()=>service('night'),getReturnFocus:()=>$('cats-button')});
@@ -145,7 +145,18 @@
   }catch(e){openingError('The letter could not be opened.',e)}
  }
  function openingError(message,error){clearTimeout(loadingTimer);setPlaying(false);$('journey-app').inert=true;$('opening-text').textContent=message;$('opening').hidden=false;$('retry-game').hidden=false;$('retry-game').focus({preventScroll:true});console.error(error)}
+ async function resumeSaved(){
+  try{const app=await readyForGame('Continuing your post…');if(!app)return;if(!app.saved)throw Error('No saved post');app.dispatch('continue');app.engine.pause(true);app.engine.freeze(false);const s=app.engine.state();if(!s.shift&&!s.daily&&!s.practice&&!s.sample){model={...model,active:s.id,selected:s.id};save();updateDock()}setPlaying(true)}catch(e){openingError('Your saved post could not be opened.',e)}
+ }
  function delivered(id,stars){if(lastDelivery?.id!==id)lastDelivery={id,chapterJustCompleted:M.continuation(model,allLevels(),id).chapterJustCompleted};model=M.delivered(model,id,stars);save();renderPins();updateDock()}
+ function mainMenu(){
+  closeDialogs();if(gameIsReady&&$('game-stage').classList.contains('active'))leave('map');
+  let navigation;try{navigation=parent!==window&&parent.InterfaceNavigation}catch{}
+  if(typeof navigation?.mainMenu==='function'){navigation.mainMenu();return}
+  const url=new URL('start.html',location.href);url.searchParams.set('v','home-21');
+  if(['first','returning'].includes(STUDY))url.searchParams.set('visit',STUDY);else if(EXAMPLE==='depot')url.searchParams.set('example','depot');
+  location.href=url.href;
+ }
  function leave(destination='map'){
   if(!gameIsReady)return;const app=frame.contentWindow.APP,s=app.engine.state();app.engine.pause(true);app.save();app.closeSheet(false);app.engine.freeze(true);
   if(s.shift||s.daily||s.practice||s.sample){model.active=null;save()}else if(s.mode!=='won'&&!model.done[s.id]){model.active=s.id;save()}
@@ -157,7 +168,9 @@
   if(destination==='cats'){view=null;returnView=null;renderPane();setPaneState();renderPins();company.open();return}
   view=null;returnView=null;renderPane();setPaneState();renderPins();orient();
  }
- async function service(action){
+ function returnFromService(){if(serviceReturn==='main-menu')mainMenu();else leave('map')}
+ async function service(action,{returnTo='map'}={}){
+  serviceReturn=returnTo==='main-menu'?'main-menu':'map';
   closeDialogs();try{const app=await readyForGame(action==='night'?'Opening the late post…':action==='daily'?'Opening today’s post…':'Opening the sorting desk…');if(!app)return;
    if(action==='settings'||action==='help'){app.home();app.dispatch(action)}
    else{const saved=app.saved,canContinue=saved&&((action==='night'&&saved.game.gm.shift&&saved.game.gm.shift.phase!=='ended')||(action==='daily'&&saved.kind==='daily'&&saved.game.gm.mode!=='won'));if(canContinue){app.dispatch('continue');app.engine.pause(true)}else{app.home();app.dispatch(action)}}
@@ -184,11 +197,11 @@
  $('pane-back').onclick=()=>{if(wide.matches&&!view)openPacket(placeFor(current().id).id);else paneBack()};$('current-letter').onclick=()=>openLetter(current().id,view?.type==='packet'?{...view,scroll:$('pane-content').scrollTop}:null);
  $('next-dock').onclick=()=>!active()&&!next()?placeIndex():current().planned?openPacket(placeFor(current().id).id):openLetter(current().id);$('zoom-out').onclick=()=>changeZoom(zoom-.16);$('zoom-in').onclick=()=>changeZoom(zoom+.16);
  document.querySelectorAll('[data-service]').forEach(b=>b.onclick=()=>service(b.dataset.service));$('about-study').onclick=()=>{closeDialogs();showDialog('about-dialog')};$('reset-example').onclick=resetExample;
- document.querySelectorAll('[data-menu-destination]').forEach(b=>b.onclick=()=>{closeDialogs();if(b.dataset.menuDestination==='places')placeIndex();else company.open()});
+ document.querySelectorAll('[data-menu-destination]').forEach(b=>b.onclick=()=>{closeDialogs();if(b.dataset.menuDestination==='main-menu')mainMenu();else if(b.dataset.menuDestination==='places')placeIndex();else company.open()});
  $('cancel-opening').onclick=()=>{openingToken++;clearTimeout(loadingTimer);$('opening').hidden=true;setPlaying(false)};
  $('retry-game').onclick=()=>{openingToken++;$('opening').hidden=true;location.reload()};
- window.Journey={company,startLetter,openPacket,openLetter,backToMap,recenter,placeIndex,leave,delivered,resetDeliveryContext:()=>{lastDelivery=null},deliveryContext,gameReady,service,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
+ window.Journey={company,startLetter,resumeSaved,openPacket,openLetter,backToMap,recenter,placeIndex,leave,mainMenu,delivered,resetDeliveryContext:()=>{lastDelivery=null},deliveryContext,gameReady,service,returnFromService,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
  fetch('levels.json').then(r=>{if(!r.ok)throw Error('Level index unavailable');return r.json()}).then(data=>{
-  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=start-19&example='+EXAMPLE+(STUDY?'&study='+STUDY:'');
+  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=home-21&example='+EXAMPLE+(STUDY?'&study='+STUDY:'');
  }).catch(e=>{toast('The letter index could not be opened. Please reload.');console.error(e)});
 })();
