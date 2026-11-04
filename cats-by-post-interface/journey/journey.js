@@ -1,6 +1,6 @@
 (() => {
  'use strict';
- const params=new URLSearchParams(location.search),STUDY=['first','returning','services'].includes(params.get('study'))?params.get('study'):null;
+ const params=new URLSearchParams(location.search),STUDY=['first','returning','services','postmarks'].includes(params.get('study'))?params.get('study'):null;
  const $=id=>document.getElementById(id),M=JourneyModel,EXAMPLE=params.get('example')==='depot'?'depot':'office',KEY=STUDY?'cats-by-post.start-study.'+STUDY+'.navigation.v1':'cats-by-post.journey.'+EXAMPLE+'.navigation.v1';
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const number=id=>id.replace('-','–');
@@ -25,7 +25,7 @@
  const active=()=>model.active&&levels.find(l=>l.id===model.active);
  const current=()=>active()||next()||allLevels().at(-1);
  const placeFor=id=>typeof id==='string'?places.find(p=>p.chapters.includes(+id.split('-')[0])):null;
- function deliveryContext(id){const context=M.continuation(model,allLevels(),id),letter=context.letter,p=letter&&placeFor(letter.id);return{...context,chapterJustCompleted:lastDelivery?.id===id?lastDelivery.chapterJustCompleted:context.chapterJustCompleted,chapterTitle:chapters[+id.split('-')[0]]?.[0],placeChanged:!!letter&&placeFor(id)?.id!==p.id,letter:letter?{id:letter.id,title:letter.title,place:p.label,planned:!!letter.planned}:null}}
+ function deliveryContext(id){const context=M.continuation(model,allLevels(),id),letter=context.letter,p=letter&&placeFor(letter.id);return{...context,placeId:placeFor(id)?.id,chapterJustCompleted:lastDelivery?.id===id?lastDelivery.chapterJustCompleted:context.chapterJustCompleted,chapterTitle:chapters[+id.split('-')[0]]?.[0],placeChanged:!!letter&&placeFor(id)?.id!==p.id,letter:letter?{id:letter.id,title:letter.title,place:p.label,planned:!!letter.planned}:null}}
  const count=p=>Object.keys(model.done).filter(id=>p.chapters.includes(+id.split('-')[0])).length;
  const chapterDone=ch=>Object.keys(model.done).filter(id=>+id.split('-')[0]===ch).length;
  const toast=text=>{clearTimeout(toastTimer);$('toast').textContent=text;$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,3200)};
@@ -47,11 +47,12 @@
  function recenter(){if(!current())return;const p=placeFor(current().id);if(vp.clientHeight<650)changeZoom(minZoom(),[p.focus[0],p.focus[1]+.05]);else centreAt(p.focus);announce('Back at '+p.title)}
  function renderPins(){
   if(!levels.length)return;const currentPlace=placeFor(current().id).id;
-  $('map-pins').innerHTML=places.map(p=>`<button class="map-pin ${p.id===currentPlace?'current':''} ${view?.place===p.id?'selected':''}" style="left:${p.x*100}%;top:${p.y*100}%" data-place="${p.id}" aria-label="${p.title}, ${count(p)} of ${p.count} posted">${p.label}<small>${count(p)===p.count?'All posted':count(p)?count(p)+' of '+p.count+' posted':p.art?'Not reached yet':'Still to come'}</small></button>`).join('');
+  $('map-pins').innerHTML=places.map(p=>`<button class="map-pin ${p.id===currentPlace?'current':''} ${view?.place===p.id?'selected':''}" style="left:${p.x*100}%;top:${p.y*100}%" data-place="${p.id}" aria-label="${p.title}, ${count(p)} of ${p.count} posted">${PostalIdentity.mark(p.id,{className:"pin-mark",earned:PostalIdentity.earnedChapters(p.id,model.done).length>0,decorative:true})}<span class="pin-copy">${p.label}<small>${count(p)===p.count?'All posted':count(p)?count(p)+' of '+p.count+' posted':p.art?'Not reached yet':'Still to come'}</small></span></button>`).join('');
   $('map-pins').querySelectorAll('button').forEach(b=>b.onclick=e=>{if(dragClick){e.preventDefault();return}openPacket(b.dataset.place)});
  }
  function updateDock(){
   const l=current();if(!l)return;
+  $('next-dock').querySelector('.dock-mark')?.remove();$('next-dock').insertAdjacentHTML('beforeend',PostalIdentity.mark(placeFor(l.id).id,{className:'dock-mark',decorative:true}));
   const planned=l.planned,p=placeFor(l.id);
   if(!active()&&!next()){$('next-dock').setAttribute('aria-label','All letters posted. Browse your places.');$('next-dock').querySelector('.dock-address').innerHTML='<strong>All letters posted</strong><span>Your places</span><small>Visit the map</small>';return}
   $('next-dock').setAttribute('aria-label',planned?'See the next stop, '+p.title+'. More post is on the way.':(active()?'Continue delivery ':'Open next delivery ')+number(l.id)+', '+l.title);
@@ -84,11 +85,19 @@
  function roomArt(p,cls='room-postcard'){
   return p.art?`<figure class="${cls}"><img src="../assets/${p.art}.png" alt="${p.title}" width="1280" height="880"></figure>`:`<div class="future-art"><img src="images/route.webp" alt="An illustration of ${p.title.toLowerCase()}" style="left:${-(p.focus[0]*800-155)}px;top:${-(p.focus[1]*800-105)}px"></div>`;
  }
- function envelope(l,p){return `<div class="letter-object"><img src="images/envelope.webp" alt="An addressed postal envelope" width="1561" height="1008"><span class="return-address">The postmistress<br>Cats by Post</span><div class="recipient"><span>${esc(l.title)}</span><span class="letter-place">${number(l.id)} · ${esc(p.label)}</span></div></div>`}
+ function envelope(l,p){return `<div class="letter-object"><img src="images/envelope.webp" alt="An addressed postal envelope" width="1561" height="1008"><span class="return-address">The postmistress<br>Cats by Post</span><div class="recipient"><span>${esc(l.title)}</span><span class="letter-place">${number(l.id)} · ${esc(p.label)}</span></div>${PostalIdentity.mark(p.id,{className:"envelope-mark",earned:PostalIdentity.chapterEarned(+l.id.split("-")[0],model.done),decorative:true})}</div>`}
  function print(l,p){return `<img class="print-paper" src="images/print-paper.webp" alt="" width="1470" height="1070">${l.planned?`<span class="print-scene print-concept">${roomArt(p)}</span>`:`<img class="print-scene" src="images/level-prints/${l.id}.webp" alt="The starting arrangement for ${esc(l.title)}" width="960" height="640">`}<span class="print-reference">${number(l.id)}</span>`}
  function mailPreview(l,p){return `<div class="mail-preview"><img class="envelope-rear" src="images/envelope-open.webp" alt="" width="1301" height="1209"><img class="envelope-flap" src="images/envelope-open.webp" alt="" width="1301" height="1209"><button class="preview-print" id="preview-print" aria-label="Take a closer look at ${esc(l.title)}">${print(l,p)}<span class="print-loupe"><img src="icons/magnifying-glass-plus.svg" alt="" width="24" height="24"></span></button>${envelope(l,p)}</div>`}
  function inspectPrint(l,p){PaperMotion.finish($('pane-content'));$('print-title').textContent=l.title;$('print-content').innerHTML=`<figure class="inspection-print">${print(l,p)}</figure>`;showDialog('print-dialog')}
  function paneBackLabel(label){$('pane-back').innerHTML=uiIcon('arrow-left')+`<span class="sr-only">${label}</span>`;$('pane-back').title=label}
+ function inspectPostmark(p,ch){
+  PaperMotion.finish($('pane-content'));$('print-title').textContent=chapters[ch][0];
+  $('print-content').innerHTML=`<figure class="postmark-inspection">${PostalIdentity.mark(p.id,{earned:true,reference:'Chapter '+ch,label:chapters[ch][0]+' chapter postmark earned'})}<figcaption>${esc(chapters[ch][0])}</figcaption><p>${chapters[ch][1]} letters posted.</p></figure>`;showDialog('print-dialog');
+ }
+ function chapterPostmarks(p,onlyChapter){
+  const earned=PostalIdentity.earnedChapters(p.id,model.done).filter(ch=>!onlyChapter||ch===onlyChapter);if(!PostalIdentity.forPlace(p.id)?.art||!earned.length)return '';
+  return `<div class="chapter-postmarks" aria-label="Earned chapter postmarks">${earned.map(ch=>`<button class="chapter-postmark" data-inspect-postmark="${ch}" aria-label="Inspect ${esc(chapters[ch][0])} chapter postmark">${PostalIdentity.mark(p.id,{earned:true,reference:'Chapter '+ch,decorative:true})}<span>${esc(chapters[ch][0])}</span></button>`).join('')}</div>`;
+ }
  function packetPreview(p,ch){const list=allLevels().filter(l=>+l.id.split('-')[0]===ch);return list.find(l=>l.id===current().id)||list.find(l=>!model.done[l.id])||list.at(-1)}
  function menu(){
   const l=levels.length?current():null;$('menu-current').hidden=!l;if(!l){showDialog('menu-dialog');return}$('menu-current').innerHTML=`${uiIcon('envelope-open')}<span><strong>${l.planned?'The next stop':active()?'Continue sorting':'Your next letter'}</strong><small>${l.planned?esc(placeFor(l.id).title):number(l.id)+' · '+esc(l.title)}</small></span>${uiIcon('arrow-right','row-arrow')}`;
@@ -102,7 +111,7 @@
    const p=places.find(p=>p.id===view.place),ch=view.chapter,preview=packetPreview(p,ch);let list=allLevels().filter(l=>+l.id.split('-')[0]===ch);
    $('pane-title').textContent=p.title;paneBackLabel('Map');
    $('current-letter').hidden=!!current().planned||(!active()&&!next());$('current-letter').textContent=active()?'Continue '+number(active().id):'Next '+number(next()?.id||current().id);
-   content.innerHTML=`<div class="packet-hero"><button class="preview-print packet-print" id="packet-print" aria-label="Take a closer look at ${esc(preview.title)}">${print(preview,p)}<span class="print-loupe">${uiIcon('magnifying-glass-plus')}</span></button><p class="packet-progress">${count(p)} of ${p.count} posted</p></div><div class="chapter-tabs" role="group" aria-label="Chapter packets">${p.chapters.map(c=>`<button data-chapter="${c}" aria-pressed="${c===ch}">${chapters[c][0]}<small>${chapterDone(c)} of ${chapters[c][1]} posted</small></button>`).join('')}</div>${!p.art?'<p class="planned-note">More post is on the way.</p>':''}<ol class="letters">${list.map(l=>{const delivered=!!model.done[l.id],ready=!l.planned&&(l.id===next()?.id||l.id===active()?.id),available=!l.planned&&(delivered||ready);return `<li><button data-letter="${l.id}" class="${ready?'letter-current':''} ${delivered?'letter-posted':''}" ${ready?'aria-current="step"':''} ${available?'':'disabled'}><span class="route-number">${number(l.id)}</span><span class="route-name">${esc(l.title)}<small>${l.planned?'Still to come':delivered?'Posted':l.id===active()?.id?'Your unfinished letter':ready?'Ready to open':'After earlier post'}</small></span>${uiIcon(delivered?'check':ready?'envelope-open':'lock-simple','letter-state')}</button></li>`}).join('')}</ol>`;
+   content.innerHTML=`<div class="packet-hero"><button class="preview-print packet-print" id="packet-print" aria-label="Take a closer look at ${esc(preview.title)}">${print(preview,p)}<span class="print-loupe">${uiIcon('magnifying-glass-plus')}</span></button><div class="packet-postal-line">${chapterPostmarks(p,ch)||PostalIdentity.mark(p.id,{className:"packet-place-mark",decorative:true})}<p class="packet-progress">${count(p)} of ${p.count} posted</p></div></div><div class="chapter-tabs" role="group" aria-label="Chapter packets">${p.chapters.map(c=>`<button data-chapter="${c}" aria-pressed="${c===ch}"><span class="chapter-name">${chapters[c][0]}</span><span class="chapter-caption"><small>${chapterDone(c)} of ${chapters[c][1]} posted</small></span></button>`).join('')}</div>${!p.art?'<p class="planned-note">More post is on the way.</p>':''}<ol class="letters">${list.map(l=>{const delivered=!!model.done[l.id],ready=!l.planned&&(l.id===next()?.id||l.id===active()?.id),available=!l.planned&&(delivered||ready);return `<li><button data-letter="${l.id}" class="${ready?'letter-current':''} ${delivered?'letter-posted':''}" ${ready?'aria-current="step"':''} ${available?'':'disabled'}><span class="route-number">${number(l.id)}</span><span class="route-name">${esc(l.title)}<small>${l.planned?'Still to come':delivered?'Posted':l.id===active()?.id?'Your unfinished letter':ready?'Ready to open':'After earlier post'}</small></span>${uiIcon(delivered?'check':ready?'envelope-open':'lock-simple','letter-state')}</button></li>`}).join('')}</ol>`;
    $('packet-print').onclick=()=>inspectPrint(preview,p);
    content.querySelectorAll('[data-letter]').forEach(b=>b.onclick=()=>openLetter(b.dataset.letter,{...view,scroll:content.scrollTop}));
    content.querySelectorAll('[data-chapter]').forEach(b=>b.onclick=()=>{view={...view,chapter:+b.dataset.chapter};renderPane();content.querySelector(`[data-chapter="${view.chapter}"]`).focus({preventScroll:true})});
@@ -111,10 +120,11 @@
    $('pane-title').textContent=p.title;paneBackLabel(returnView?'Letters':wide.matches?'All letters':'Map');
    const cats=l.hatches?.reduce((sum,h)=>sum+h.cats.length,0),hatches=l.hatches?.length;
    const action=l.planned?'Still to come':isActive?'Continue sorting':done?'Replay this letter':replacing?'Switch to this letter':'Start sorting';
-   content.innerHTML=`<article class="letter-view" aria-label="${esc((done?'Posted letter ':isActive?'Unfinished letter ':'Letter ')+number(l.id)+', '+l.title)}">${mailPreview(l,p)}${done?earned(l.id):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span></div>`:''}${l.planned?'<p class="planned-note">More post is on the way.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
+   content.innerHTML=`<article class="letter-view" aria-label="${esc((done?'Posted letter ':isActive?'Unfinished letter ':'Letter ')+number(l.id)+', '+l.title)}">${mailPreview(l,p)}${done?earned(l.id)+chapterPostmarks(p,+l.id.split('-')[0]):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span></div>`:''}${l.planned?'<p class="planned-note">More post is on the way.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
    $('preview-print').onclick=()=>inspectPrint(l,p);
    $('open-letter')?.addEventListener('click',()=>startLetter(l.id));$('browse-packet')?.addEventListener('click',()=>openPacket(p.id,+l.id.split('-')[0]));$('keep-current')?.addEventListener('click',()=>openLetter(active().id));
   }
+  content.querySelectorAll('[data-inspect-postmark]').forEach(b=>b.onclick=()=>inspectPostmark(places.find(p=>p.id===(view?.place||placeFor(current().id).id)),+b.dataset.inspectPostmark));
   content.scrollTop=0;
  }
  function placeIndex(){
@@ -153,8 +163,8 @@
   closeDialogs();if(gameIsReady&&$('game-stage').classList.contains('active'))leave('map');
   let navigation;try{navigation=parent!==window&&parent.InterfaceNavigation}catch{}
   if(typeof navigation?.mainMenu==='function'){navigation.mainMenu();return}
-  const url=new URL('start.html',location.href);url.searchParams.set('v','home-21');
-  if(['first','returning'].includes(STUDY))url.searchParams.set('visit',STUDY);else if(EXAMPLE==='depot')url.searchParams.set('example','depot');
+  const url=new URL('start.html',location.href);url.searchParams.set('v','postmarks-22');
+  if(['first','returning','postmarks'].includes(STUDY))url.searchParams.set('visit',STUDY);else if(EXAMPLE==='depot')url.searchParams.set('example','depot');
   location.href=url.href;
  }
  function leave(destination='map'){
@@ -179,7 +189,8 @@
  }
  function resetExample(){
   if(!confirm('Start this example journey again? This clears only this prototype’s deliveries and saved route.'))return;
-  try{Object.keys(localStorage).filter(k=>k.startsWith('cats-by-post.journey.')).forEach(k=>localStorage.removeItem(k))}catch{}location.reload();
+  const prefix=STUDY?'cats-by-post.start-study.'+STUDY+'.':'cats-by-post.journey.';
+  try{Object.keys(localStorage).filter(k=>k.startsWith(prefix)).forEach(k=>localStorage.removeItem(k))}catch{}location.reload();
  }
  function keys(e){
   if(document.querySelector('dialog[open]')||$('game-stage').classList.contains('active'))return;
@@ -202,6 +213,6 @@
  $('retry-game').onclick=()=>{openingToken++;$('opening').hidden=true;location.reload()};
  window.Journey={company,startLetter,resumeSaved,openPacket,openLetter,backToMap,recenter,placeIndex,leave,mainMenu,delivered,resetDeliveryContext:()=>{lastDelivery=null},deliveryContext,gameReady,service,returnFromService,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
  fetch('levels.json').then(r=>{if(!r.ok)throw Error('Level index unavailable');return r.json()}).then(data=>{
-  levels=data;if(EXAMPLE==='depot'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=home-21&example='+EXAMPLE+(STUDY?'&study='+STUDY:'');
+  levels=data;if(STUDY==='postmarks'&&!hadSave){levels.slice(0,5).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}if(STUDY==='postmarks')view={type:'packet',place:'office',chapter:1};if(EXAMPLE==='depot'&&STUDY!=='postmarks'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=postmarks-22&example='+EXAMPLE+(STUDY?'&study='+STUDY:'');
  }).catch(e=>{toast('The letter index could not be opened. Please reload.');console.error(e)});
 })();

@@ -3,7 +3,7 @@
  'use strict';
  const $=id=>document.getElementById(id),params=new URLSearchParams(location.search),wait=ms=>new Promise(r=>setTimeout(r,ms));
  const studyMode=['scene','material','visit','compare'].some(key=>params.has(key)),example=params.get('example')==='depot'?'depot':'office';
- let scene=params.get('scene')==='desk'?'desk':'office',visit=params.get('visit')==='first'?'first':'returning',material=params.get('material')==='illustrated'?'illustrated':'paper',generation=0,storyReady=null,serviceReady=null,shown=null,context=null;
+ let scene=params.get('scene')==='desk'?'desk':'office',visit=['first','postmarks'].includes(params.get('visit'))?params.get('visit'):'returning',material=params.get('material')==='illustrated'?'illustrated':'paper',generation=0,storyReady=null,serviceReady=null,shown=null,context=null;
  const compare=scene==='office'&&params.has('material');
  const company=CompanyBox.create({dialog:$('cats-dialog'),getProgress:async()=>{await storyReady;return(serviceReady&&$('service-frame').contentWindow.Journey?.state.gameReady?appFor('service'):appFor('story')).engine.state().progress},onNight:()=>openService('night'),getReturnFocus:()=>$('collection-button')});
  function appFor(role){return $(role+'-frame').contentWindow.document.getElementById('game').contentWindow.APP}
@@ -12,13 +12,18 @@
  function setScene(next){scene=next==='desk'?'desk':'office';document.body.dataset.scene=scene;renderArt();document.querySelectorAll('button[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scene===scene)));updateUrl()}
  function renderArt(){const art=scene==='office'&&material==='paper'?'office-paper':scene;document.body.dataset.material=material;$('wide-art').src='images/start/'+art+'-wide.webp';$('portrait-art').srcset='images/start/'+art+'-portrait.webp';document.querySelectorAll('[data-material]').forEach(b=>{if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',String(b.dataset.material===material))})}
  function setMaterial(value){material=value==='paper'?'paper':'illustrated';renderArt();updateUrl()}
- function updateUrl(){const url=new URL(location.href);if(studyMode){url.searchParams.set('scene',scene);url.searchParams.set('visit',visit);if(compare)url.searchParams.set('material',material)}url.searchParams.set('v','home-21');history.replaceState(null,'',url)}
+ function updateUrl(){const url=new URL(location.href);if(studyMode){url.searchParams.set('scene',scene);url.searchParams.set('visit',visit);if(compare)url.searchParams.set('material',material)}url.searchParams.set('v','postmarks-22');history.replaceState(null,'',url)}
  function show(role){shown=role;for(const name of ['story','service']){const on=name===role;$(name+'-host').classList.toggle('open',on);$(name+'-host').inert=!on;$(name+'-host').setAttribute('aria-hidden',String(!on))}$('start-app').inert=!!role;$('back-to-start').hidden=!role;$('back-to-prototype').hidden=!!role;if(role)$(role+'-frame').focus()}
+ function entryMark(id,done){
+  $('primary-letter').querySelector('.entry-mark')?.remove();const p=PostalIdentity.forLevel(id);
+  if(p)$('primary-letter').insertAdjacentHTML('beforeend',PostalIdentity.mark(p.id,{className:'entry-mark',earned:PostalIdentity.chapterEarned(+id.split('-')[0],done),decorative:true}));
+ }
  function renderPrimary(){
   if(!storyReady||!journey()?.state.gameReady)return;
   const j=journey(),s=j.state,id=s.model.active||s.next,level=j.levels.find(l=>l.id===id),active=!!s.model.active;
   const saved=appFor('story').saved,g=saved?.game?.gm,service=!studyMode&&!active&&(g?.shift&&g.shift.phase!=='ended'?'night':g?.daily&&g.mode!=='won'?'daily':g?.practice&&g.mode!=='won'?'practice':null);
   const savedStory=!studyMode&&!active&&saved?.kind==='story'&&g?.mode!=='won'&&j.levels.find(l=>l.id===g?.L?.id);
+  entryMark(service?null:savedStory?.id||id,s.model.done);
   if(service||savedStory){context={id:savedStory?.id||null,active:true,planned:false,complete:false,service,resumeSaved:true};const title=savedStory?.title||{night:'Night Shift',daily:'Today’s post',practice:'Practice route'}[service];$('primary-heading').textContent=savedStory?'Continue '+savedStory.id.replace('-','–'):'Continue';$('primary-title').textContent=title;$('primary-detail').firstChild.textContent=savedStory?'Back to your arrangement ':service==='night'?'Back to your shift ':'Back to your route ';$('primary-letter').setAttribute('aria-label','Continue '+title);document.body.classList.toggle('reduced',appFor('story').prefs.reduced);return}
   context={id,active,planned:!!id&&!level,complete:!id};
   $('primary-heading').textContent=active?'Continue '+id.replace('-','–'):!level?'Places to post':id==='1-1'?'Your first letter':'Next delivery '+id.replace('-','–');
@@ -28,7 +33,7 @@
   document.body.classList.toggle('reduced',appFor('story').prefs.reduced);
  }
  async function prepare(role,type){
-  const frame=$(role+'-frame');frame.contentWindow.__startOldDocument=true;frame.src='index.html?v=home-21&example='+example+(type?'&study='+type:'');
+  const frame=$(role+'-frame');frame.contentWindow.__startOldDocument=true;frame.src='index.html?v=postmarks-22&example='+example+(type?'&study='+type:'');
   for(let i=0;i<250;i++){
    await wait(80);const j=frame.contentWindow.Journey;if(!frame.contentWindow.__startOldDocument&&j?.state.gameReady)return j;
   }

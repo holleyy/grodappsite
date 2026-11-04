@@ -3,7 +3,7 @@
 (async () => {
  try {
   const requested=new URLSearchParams(location.search).get('study');
-  if(!['first','returning','services'].includes(requested))throw Error('Unknown start-screen example');
+  if(!['first','returning','services','postmarks'].includes(requested))throw Error('Unknown start-screen example');
   const storage=window.localStorage,prefix='cats-by-post.start-study.'+requested+'.runtime.';
   const keys=()=>Object.keys(storage).filter(key=>key.startsWith(prefix));
   Object.defineProperty(window,'localStorage',{configurable:true,value:{

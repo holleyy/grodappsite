@@ -74,3 +74,8 @@ body.big .delivery-actions .next-envelope{height:auto;min-height:104px}
 body.big .note-greeting{font-size:1.9rem}body.big .receipt-row strong{font-size:1.5rem}body.big .receipt-row span{font-size:1.05rem;line-height:1.25}
 body.contrast .receipt-row span{color:var(--muted)}
 .delivery-nav .stay-here{color:#354f50}.delivery-nav .stay-here:hover{color:#893e30}
+/* The actual destination impression crosses the postage, away from the address. */
+.postal-cancellation.destination-cancellation{position:absolute;width:32%;right:1%;top:3%;rotate:-9deg;opacity:.78}
+.destination-cancellation .postal-reference{font-size:clamp(9px,2.6vw,13px);margin-top:2px}
+@media(prefers-reduced-motion:reduce){.destination-cancellation{animation:none}}
+body.reduced .destination-cancellation{animation:none}
