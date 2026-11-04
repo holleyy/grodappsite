@@ -15,6 +15,9 @@
 .mail-preview .letter-object{position:absolute;z-index:3;left:0;bottom:0;width:100%;max-width:none;margin:0;pointer-events:none;filter:drop-shadow(0 -2px 2px #4d39231a)}
 .print-concept{overflow:hidden;margin:0}
 .print-concept .future-art{width:100%;height:100%}
+.print-detail{position:absolute;left:7.15%;top:10.5%;width:85.7%;height:74.8%;display:grid;place-items:center;pointer-events:none;mix-blend-mode:multiply}
+.print-detail-plane{position:relative;height:100%;aspect-ratio:960/640;max-width:100%}
+.print-detail .trolley-cat{position:absolute;left:18.33%;top:49.69%;width:7.08%;height:auto;max-width:none;image-rendering:pixelated;pointer-events:none}
 .print-dialog{width:min(900px,calc(100% - 24px))}
 .print-dialog .dialog-content{padding:18px 16px 25px}
 .inspection-print{width:100%;margin:auto;transform:rotate(-1deg)}
