@@ -2,13 +2,16 @@
 (() => {
  'use strict';
  const $=id=>document.getElementById(id),params=new URLSearchParams(location.search),wait=ms=>new Promise(r=>setTimeout(r,ms));
- let scene=params.get('scene')==='desk'?'desk':'office',visit=params.get('visit')==='first'?'first':'returning',generation=0,storyReady=null,serviceReady=null,shown=null,context=null;
+ let scene=params.get('scene')==='desk'?'desk':'office',visit=params.get('visit')==='first'?'first':'returning',material=params.get('material')==='paper'?'paper':'illustrated',generation=0,storyReady=null,serviceReady=null,shown=null,context=null;
+ const compare=scene==='office'&&params.has('material');
  const company=CompanyBox.create({dialog:$('cats-dialog'),getProgress:async()=>{await storyReady;return(serviceReady&&$('service-frame').contentWindow.Journey?.state.gameReady?appFor('service'):appFor('story')).engine.state().progress},onNight:()=>openService('night'),getReturnFocus:()=>$('collection-button')});
  function appFor(role){return $(role+'-frame').contentWindow.document.getElementById('game').contentWindow.APP}
  function journey(role='story'){return $(role+'-frame').contentWindow.Journey}
  function status(text){$('entry-status').textContent=text;$('entry-status').hidden=!text}
- function setScene(next){scene=next;document.body.dataset.scene=scene;$('wide-art').src='images/start/'+scene+'-wide.webp';$('portrait-art').srcset='images/start/'+scene+'-portrait.webp';document.querySelectorAll('button[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scene===scene)));updateUrl()}
- function updateUrl(){const url=new URL(location.href);url.searchParams.set('scene',scene);url.searchParams.set('visit',visit);url.searchParams.set('v','start-19');history.replaceState(null,'',url)}
+ function setScene(next){scene=next==='desk'?'desk':'office';document.body.dataset.scene=scene;renderArt();document.querySelectorAll('button[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scene===scene)));updateUrl()}
+ function renderArt(){const art=scene==='office'&&material==='paper'?'office-paper':scene;document.body.dataset.material=material;$('wide-art').src='images/start/'+art+'-wide.webp';$('portrait-art').srcset='images/start/'+art+'-portrait.webp';document.querySelectorAll('[data-material]').forEach(b=>{if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',String(b.dataset.material===material))})}
+ function setMaterial(value){material=value==='paper'?'paper':'illustrated';renderArt();updateUrl()}
+ function updateUrl(){const url=new URL(location.href);url.searchParams.set('scene',scene);url.searchParams.set('visit',visit);if(compare)url.searchParams.set('material',material);url.searchParams.set('v','craft-20');history.replaceState(null,'',url)}
  function show(role){shown=role;for(const name of ['story','service']){const on=name===role;$(name+'-host').classList.toggle('open',on);$(name+'-host').inert=!on;$(name+'-host').setAttribute('aria-hidden',String(!on))}$('start-app').inert=!!role;$('back-to-start').hidden=!role;$('back-to-prototype').hidden=!!role;if(role)$(role+'-frame').focus()}
  function renderPrimary(){
   if(!storyReady||!journey()?.state.gameReady)return;
@@ -53,6 +56,7 @@
   try{if(!serviceReady){status('Opening the late post…');serviceReady=prepare('service','services')}const j=await serviceReady;await j.service(action);status('');show('service')}catch(e){serviceReady=null;status(e.message);console.error(e)}
  }
  $('primary-letter').onclick=primary;$('back-to-start').onclick=back;
+ if(compare){const nav=document.querySelector('.study-bar nav');nav.setAttribute('aria-label','Compare office artwork');nav.innerHTML='<button data-material="illustrated" aria-pressed="false">Illustrated</button><button data-material="paper" aria-pressed="true">Papercraft</button>';$('options-title').textContent='Try the office';document.querySelectorAll('button[data-material]').forEach(b=>b.onclick=async()=>{await back();setMaterial(b.dataset.material)})}
  document.querySelectorAll('button[data-scene]').forEach(b=>b.onclick=async()=>{await back();setScene(b.dataset.scene)});
  document.querySelectorAll('[data-service]').forEach(b=>b.onclick=()=>openService(b.dataset.service));
  $('places-button').onclick=()=>readyAction(()=>{journey().backToMap();show('story')});
@@ -62,6 +66,6 @@
  $('reset-study').onclick=async()=>{try{await back();const frame=$('story-frame');await new Promise(resolve=>{frame.addEventListener('load',resolve,{once:true});frame.src='about:blank'});const prefix='cats-by-post.start-study.'+visit+'.';for(const key of Object.keys(localStorage))if(key.startsWith(prefix))localStorage.removeItem(key);$('options-dialog').close();bootStory()}catch(e){status('This example could not be reset. Please refresh to try again.');console.error(e)}};
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&shown&&!document.querySelector('dialog[open]')){e.preventDefault();back()}});
  window.addEventListener('pageshow',()=>{if(storyReady)storyReady.then(renderPrimary,()=>{})});
- window.StartStudy={back,primary,setScene,openService,get state(){return{scene,visit,shown,context,ready:!!context&&!!journey()?.state.gameReady}},get journey(){return journey()},get serviceJourney(){return journey('service')}};
+ window.StartStudy={back,primary,setScene,setMaterial,openService,get state(){return{scene,material,compare,visit,shown,context,ready:!!context&&!!journey()?.state.gameReady}},get journey(){return journey()},get serviceJourney(){return journey('service')}};
  setScene(scene);bootStory();
 })();
