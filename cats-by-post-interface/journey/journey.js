@@ -163,7 +163,7 @@
   closeDialogs();if(gameIsReady&&$('game-stage').classList.contains('active'))leave('map');
   let navigation;try{navigation=parent!==window&&parent.InterfaceNavigation}catch{}
   if(typeof navigation?.mainMenu==='function'){navigation.mainMenu();return}
-  const url=new URL('start.html',location.href);url.searchParams.set('v','details-24');
+  const url=new URL('start.html',location.href);url.searchParams.set('v','materials-25');
   if(['first','returning','postmarks','photographs'].includes(STUDY))url.searchParams.set('visit',STUDY);else if(EXAMPLE==='depot')url.searchParams.set('example','depot');
   location.href=url.href;
  }
@@ -213,6 +213,6 @@
  $('retry-game').onclick=()=>{openingToken++;$('opening').hidden=true;location.reload()};
  window.Journey={company,startLetter,resumeSaved,openPacket,openLetter,backToMap,recenter,placeIndex,leave,mainMenu,delivered,resetDeliveryContext:()=>{lastDelivery=null},deliveryContext,gameReady,service,returnFromService,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
  fetch('levels.json').then(r=>{if(!r.ok)throw Error('Level index unavailable');return r.json()}).then(data=>{
-  levels=data;if(STUDY==='postmarks'&&!hadSave){levels.slice(0,5).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}if(STUDY==='postmarks')view={type:'packet',place:'office',chapter:1};if(EXAMPLE==='depot'&&STUDY!=='postmarks'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=details-24&example='+EXAMPLE+(STUDY?'&study='+STUDY:'');
+  levels=data;if(STUDY==='postmarks'&&!hadSave){levels.slice(0,5).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}if(STUDY==='postmarks')view={type:'packet',place:'office',chapter:1};if(EXAMPLE==='depot'&&STUDY!=='postmarks'&&!hadSave){levels.slice(0,33).forEach(l=>model.done[l.id]={stars:{delivered:true}});save()}updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});frame.src='play/index.html?v=materials-25&example='+EXAMPLE+(STUDY?'&study='+STUDY:'');
  }).catch(e=>{toast('The letter index could not be opened. Please reload.');console.error(e)});
 })();

@@ -5,15 +5,16 @@
  const studyMode=['scene','material','visit','compare'].some(key=>params.has(key)),example=params.get('example')==='depot'?'depot':'office';
  let scene=params.get('scene')==='desk'?'desk':'office',visit=['first','postmarks','photographs'].includes(params.get('visit'))?params.get('visit'):'returning',material=params.get('material')==='illustrated'?'illustrated':'paper',generation=0,storyReady=null,serviceReady=null,shown=null,context=null;
  const compare=scene==='office'&&params.has('material');
+ const cat=OfficeCat.create({button:$('office-cat'),art:$('wide-art'),container:$('start-app'),active:()=>scene==='office'&&material==='paper'&&!shown&&!document.hidden&&!document.querySelector('dialog[open]')});
  const company=CompanyBox.create({dialog:$('cats-dialog'),getProgress:async()=>{await storyReady;const progress=(serviceReady&&$('service-frame').contentWindow.Journey?.state.gameReady?appFor('service'):appFor('story')).engine.state().progress;return studyMode&&visit==='photographs'?{...progress,nightShift:{...progress.nightShift,totalCatsHome:50}}:progress},onNight:()=>openService('night'),getSeenKey:()=>studyMode?'cats-by-post.start-study.'+visit+'.navigation.v1.photographs.seen.v1':'cats-by-post.journey.'+example+'.navigation.v1.photographs.seen.v1',getReturnFocus:()=>$('collection-button')});
  function appFor(role){return $(role+'-frame').contentWindow.document.getElementById('game').contentWindow.APP}
  function journey(role='story'){return $(role+'-frame').contentWindow.Journey}
  function status(text){$('entry-status').textContent=text;$('entry-status').hidden=!text}
  function setScene(next){scene=next==='desk'?'desk':'office';document.body.dataset.scene=scene;renderArt();document.querySelectorAll('button[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scene===scene)));updateUrl()}
- function renderArt(){const art=scene==='office'&&material==='paper'?'office-paper':scene;document.body.dataset.material=material;$('wide-art').src='images/start/'+art+'-wide.webp';$('portrait-art').srcset='images/start/'+art+'-portrait.webp';document.querySelectorAll('[data-material]').forEach(b=>{if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',String(b.dataset.material===material))})}
+ function renderArt(){const art=scene==='office'&&material==='paper'?'office-paper':scene;document.body.dataset.material=material;$('portrait-art').srcset=art==='office-paper'?'images/materials/office-portrait-clear.webp':'images/start/'+art+'-portrait.webp';$('wide-art').src=art==='office-paper'?'images/materials/office-wide-clear.webp':'images/start/'+art+'-wide.webp';cat.refresh();document.querySelectorAll('[data-material]').forEach(b=>{if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',String(b.dataset.material===material))})}
  function setMaterial(value){material=value==='paper'?'paper':'illustrated';renderArt();updateUrl()}
- function updateUrl(){const url=new URL(location.href);if(studyMode){url.searchParams.set('scene',scene);url.searchParams.set('visit',visit);if(compare)url.searchParams.set('material',material)}url.searchParams.set('v','details-24');history.replaceState(null,'',url)}
- function show(role){shown=role;for(const name of ['story','service']){const on=name===role;$(name+'-host').classList.toggle('open',on);$(name+'-host').inert=!on;$(name+'-host').setAttribute('aria-hidden',String(!on))}$('start-app').inert=!!role;$('back-to-start').hidden=!role;$('back-to-prototype').hidden=!!role;if(role)$(role+'-frame').focus()}
+ function updateUrl(){const url=new URL(location.href);if(studyMode){url.searchParams.set('scene',scene);url.searchParams.set('visit',visit);if(compare)url.searchParams.set('material',material)}url.searchParams.set('v','materials-25');history.replaceState(null,'',url)}
+ function show(role){shown=role;for(const name of ['story','service']){const on=name===role;$(name+'-host').classList.toggle('open',on);$(name+'-host').inert=!on;$(name+'-host').setAttribute('aria-hidden',String(!on))}$('start-app').inert=!!role;$('back-to-start').hidden=!role;$('back-to-prototype').hidden=!!role;if(role)$(role+'-frame').focus();cat.refresh()}
  function entryMark(id,done){
   $('primary-letter').querySelector('.entry-mark')?.remove();const p=PostalIdentity.forLevel(id);
   if(p)$('primary-letter').insertAdjacentHTML('beforeend',PostalIdentity.mark(p.id,{className:'entry-mark',earned:PostalIdentity.chapterEarned(+id.split('-')[0],done),decorative:true}));
@@ -33,7 +34,7 @@
   document.body.classList.toggle('reduced',appFor('story').prefs.reduced);
  }
  async function prepare(role,type){
-  const frame=$(role+'-frame');frame.contentWindow.__startOldDocument=true;frame.src='index.html?v=details-24&example='+example+(type?'&study='+type:'');
+  const frame=$(role+'-frame');frame.contentWindow.__startOldDocument=true;frame.src='index.html?v=materials-25&example='+example+(type?'&study='+type:'');
   for(let i=0;i<250;i++){
    await wait(80);const j=frame.contentWindow.Journey;if(!frame.contentWindow.__startOldDocument&&j?.state.gameReady)return j;
   }
@@ -77,7 +78,7 @@
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&shown&&!document.querySelector('dialog[open]')){e.preventDefault();back()}});
  window.addEventListener('pageshow',()=>{if(storyReady)storyReady.then(renderPrimary,()=>{})});
  window.InterfaceNavigation={mainMenu:back};
- window.StartStudy={back,primary,setScene,setMaterial,openService,get state(){return{scene,material,compare,studyMode,visit,shown,context,ready:!!context&&!!journey()?.state.gameReady}},get journey(){return journey()},get serviceJourney(){return journey('service')}};
+ window.StartStudy={back,primary,setScene,setMaterial,openService,get state(){return{scene,material,compare,studyMode,visit,shown,context,ready:!!context&&!!journey()?.state.gameReady}},get journey(){return journey()},get cat(){return cat.state},get serviceJourney(){return journey('service')}};
  document.body.classList.toggle('prototype-mode',studyMode);document.title=studyMode?'Cats by Post · The office':'Cats by Post';
  setScene(scene);bootStory();
 })();

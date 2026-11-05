@@ -103,7 +103,7 @@ function sample(which){if(HUD_EXAMPLE){home();return}if(which==='depot'){start('
 // Sample rounds use the game’s deterministic review hook, never fabricated scores.
 function engineDebug(round){$('world').contentWindow.eval(`nsSkipTo(${round})`);engine.camera();poll()}
 function dispatch(action,arg,el){if(!ready)return;if(window.JourneyHandoff?.handle(action))return;sound();switch(action){
- case'main-menu':{engine.pause(true);save();closeSheet(false);const url=new URL('../start.html',location.href);url.searchParams.set('v','details-24');if(['first','returning','postmarks','photographs'].includes(ENTRY_STUDY))url.searchParams.set('visit',ENTRY_STUDY);else if(new URLSearchParams(location.search).get('example')==='depot')url.searchParams.set('example','depot');if(parent!==window&&parent.Journey){parent.Journey.leave('map');parent.location.href=url.href}else location.href=url.href;break;}
+ case'main-menu':{engine.pause(true);save();closeSheet(false);const url=new URL('../start.html',location.href);url.searchParams.set('v','materials-25');if(['first','returning','postmarks','photographs'].includes(ENTRY_STUDY))url.searchParams.set('visit',ENTRY_STUDY);else if(new URLSearchParams(location.search).get('example')==='depot')url.searchParams.set('example','depot');if(parent!==window&&parent.Journey){parent.Journey.leave('map');parent.location.href=url.href}else location.href=url.href;break;}
  case'flip-mail':Completion.flip();requestAnimationFrame(layout);break;case'stamp-info':Completion.flip(arg);requestAnimationFrame(layout);break;case'home':home();break;case'map':save();location.href='../?v=letter-17';break;case'continue':continueGame();break;case'places':places();break;case'album':album();break;case'area':area(arg);break;
  case'level':start('story',Number(arg));break;case'preview-level':start('sample',Number(arg));break;case'next-unsolved':start('story',nextLevel().i);break;
  case'pause':pausePlay();break;case'menu':pauseMenu();break;case'resume':resume();break;case'close':closeSheet();break;case'settings':settings();break;case'help':help();break;case'camera':cameraSheet();break;case'tools':tools();break;
@@ -140,6 +140,6 @@ async function init(){try{
  }catch(e){console.error(e);$('loading').hidden=false;$('loading').innerHTML='<h1>The post is taking a moment.</h1><p>Please reload to try again.</p>'}}
 
 $('world').addEventListener('load',init);
-$('world').src=HUD_EXAMPLE?'hud-runtime.html?edit&v=hud-13':ENTRY_STUDY?'entry-runtime.html?study='+ENTRY_STUDY+'&v=details-24':'runtime.html?v=playing-1';
+$('world').src=HUD_EXAMPLE?'hud-runtime.html?edit&v=hud-13':ENTRY_STUDY?'entry-runtime.html?study='+ENTRY_STUDY+'&v=materials-25':'runtime.html?v=playing-1';
 
 window.addEventListener('message',e=>{if(e.source===$('world').contentWindow&&e.data?.type==='hud-runtime-error'){$('loading').hidden=false;$('loading').innerHTML='<h1>The post could not be opened.</h1><p>Please reload to try again.</p>'}});

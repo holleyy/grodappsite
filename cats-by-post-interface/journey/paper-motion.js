@@ -12,13 +12,15 @@
  preference.addEventListener('change',()=>{if(preference.matches)finish()});
  function letter(preview){
   if(!preview)return;
-  run(preview.querySelector('.envelope-flap'),[{transform:'rotateX(178deg)'},{transform:'rotateX(-8deg)',offset:.8},{transform:'rotateX(0deg)'}],{duration:270});
-  run(preview.querySelector('.preview-print'),[{transform:'translateY(86%) rotate(1deg)'},{transform:'translateY(-2%) rotate(-3.5deg)',offset:.85},{transform:'translateY(0) rotate(-3deg)'}],{delay:110,duration:370,fill:'backwards'});
+  run(preview.querySelector('.envelope-flap'),[{transform:'rotateX(178deg)'},{transform:'rotateX(-3deg)',offset:.87},{transform:'rotateX(0deg)'}],{duration:310});
+  run(preview.querySelector('.letter-object'),[{transform:'skewX(-.7deg)'},{transform:'skewX(.4deg)',offset:.65},{transform:'none'}],{duration:390});
+  run(preview.querySelector('.preview-print'),[{transform:'translateY(86%) rotate(1deg)'},{transform:'translateY(4%) rotate(-2.8deg)',offset:.8},{transform:'translateY(0) rotate(-3deg)'}],{delay:140,duration:410,fill:'backwards'});
  }
  function lift(element,from){
   if(!element||!from)return;
   const to=element.getBoundingClientRect(),dx=from.x+from.width/2-to.x-to.width/2,dy=from.y+from.height/2-to.y-to.height/2;
-  run(element,[{transform:`translate(${dx}px,${dy}px) rotate(2deg) scale(${Math.min(1,from.width/to.width)})`,filter:'drop-shadow(0 1px 1px #4d3b2a25)'},{transform:'translate(0,0) rotate(-1.5deg) scale(1)',filter:'drop-shadow(0 8px 8px #4d3b2a30)'}],{duration:330});
+  const scale=Math.min(1,from.width/to.width);
+  run(element,[{transform:`translate(${dx}px,${dy}px) rotate(2deg) scale(${scale})`,filter:'drop-shadow(0 1px 1px #4d3b2a25)'},{transform:`translate(${dx}px,${dy-9}px) rotate(1.8deg) scale(${scale})`,filter:'drop-shadow(0 6px 5px #4d3b2a30)',offset:.18},{transform:'translate(0,0) rotate(-1.5deg) scale(1)',filter:'drop-shadow(0 8px 8px #4d3b2a30)'}],{duration:390,easing:'cubic-bezier(.25,.55,.25,1)'});
  }
  function browse(element,outgoing,direction,{from,outRect}={}){
   if(reduced())return;
@@ -38,6 +40,7 @@
   }
  }
  function arrival(element){if(element)run(element,[{transform:'translateY(-9px) rotate(-12deg)'},{transform:'translateY(0) rotate(-8deg)'}],{duration:260})}
+ function note(element){if(element)run(element,[{transform:'translateY(12px) skewX(-.8deg)'},{transform:'translateY(-1px) skewX(.35deg)',offset:.82},{transform:'none'}],{delay:140,duration:310,fill:'backwards'})}
 
  function putBack(copy,from,to,container){
   if(reduced()||!copy||!to||to.bottom<0||to.top>innerHeight)return;
@@ -47,5 +50,5 @@
   const a=run(copy,[{transform:'rotate(-1.5deg)',opacity:1},{transform:`translate(${dx}px,${dy}px) rotate(1deg) scale(${to.width/from.width})`,opacity:.45}],{duration:290});
   if(a)a.finished.then(()=>copy.remove(),()=>copy.remove());else copy.remove();
  }
- window.PaperMotion={run,finish,reduced,letter,lift,browse,arrival,putBack};
+ window.PaperMotion={run,finish,reduced,letter,lift,browse,arrival,putBack,note};
 })();

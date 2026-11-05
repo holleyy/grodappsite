@@ -21,9 +21,10 @@
 .letter-note{position:absolute;left:7%;right:17%;top:-7%;bottom:9%;padding:12px 18px 11px;background:#fbf1d6;border:1px solid #cfbf9a;box-shadow:1px 3px 4px #61563d24;rotate:-2deg;z-index:2;overflow:auto;scrollbar-width:thin}
 .note-greeting{font:1.65rem/1.1 PostHand,cursive;color:#3d534e;margin-bottom:8px}.receipt-row{display:flex;gap:8px;align-items:baseline;margin:5px 0;padding:0 2px}.receipt-row>b{font:24px/1 PostHand,cursive;width:18px;flex:none;color:#9d4939}.receipt-row strong{display:block;font:1.25rem/1.15 PostHand,cursive;color:#3b504a}.receipt-row span{display:block;font:.95rem/1.2 Balthazar,Georgia,serif;color:#6c6b58}.receipt-row[data-earned=false]{opacity:.62}.receipt-row.marked strong{text-decoration:underline;text-decoration-style:wavy;text-decoration-color:#ae8b5380;text-underline-offset:3px}.back-turn{right:1px;bottom:2px;font-size:16px;rotate:3deg}.stamp-detail{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 body:has(.sheet[data-kind=delivery][open]) #desk,body:has(.sheet[data-kind=delivery][open]) #camera-tools,body:has(.sheet[data-kind=delivery][open]) #hatch-labels,body:has(.sheet[data-kind=delivery][open]) #play-head{opacity:0;pointer-events:none}body:has(.sheet[data-kind=delivery][open]) #toast{display:none!important}
-@keyframes correspondence-arrives{from{translate:25px 30px;opacity:0}to{translate:0 0;opacity:1}}.sheet[data-kind=delivery][open]{animation:correspondence-arrives .6s cubic-bezier(.16,.75,.2,1)}
-@keyframes postage-lands{0%{opacity:0;transform:translate(-3px,-15px) rotate(-4deg) scale(1.14);filter:drop-shadow(2px 7px 3px #69533330)}58%{opacity:1;transform:translateY(1px) rotate(.5deg) scale(.975);filter:drop-shadow(0 0 0 #69533325)}80%{transform:translateY(-.5px) rotate(0) scale(1.008)}100%{opacity:1;transform:none;filter:drop-shadow(1px 1px 0 #69533325)}}.earned-stamp .postage-art{animation:postage-lands .34s cubic-bezier(.2,.7,.25,1) calc(var(--stamp-delay) + .15s) backwards}
-@keyframes ink-cancels{0%{opacity:0;transform:translate(-2px,-3px) scale(1.08)}30%{opacity:.83;transform:translate(.5px,.7px) scale(.995)}100%{opacity:.67;transform:none}}.postal-cancellation{animation:ink-cancels .23s ease-out .87s backwards}
+ .sheet[data-kind=delivery][open]{animation:none}
+@keyframes correspondence-arrives{0%{translate:22px 28px;transform:skewX(-1deg);opacity:0}78%{translate:0 1px;transform:skewX(.35deg);opacity:1}100%{translate:0 0;transform:none;opacity:1}}.sheet[data-kind=delivery][open] .delivery-letter{animation:correspondence-arrives .46s cubic-bezier(.22,.62,.25,1)}
+@keyframes postage-lands{0%{opacity:0;transform:translate(-2px,-11px) rotate(-3deg);filter:drop-shadow(1px 5px 3px #69533330)}78%{opacity:1;transform:translateY(.7px) skewX(.7deg);filter:drop-shadow(0 0 0 #69533325)}100%{opacity:1;transform:none;filter:drop-shadow(1px 1px 0 #69533325)}}.earned-stamp .postage-art{animation:postage-lands .28s cubic-bezier(.3,.4,.5,1) calc(var(--stamp-delay) + .15s) backwards}
+@keyframes ink-cancels{0%{opacity:0}24%{opacity:.77}100%{opacity:var(--ink-opacity,.67)}}.postal-cancellation{animation:ink-cancels .08s linear .85s backwards}
 @media(min-width:900px){.sheet[data-kind=delivery]{inset:auto 30px 22px auto;width:460px;margin:0}}
 @media(max-width:360px){.sheet[data-kind=delivery] .sheet-body{padding-inline:11px}.delivery-letter{aspect-ratio:1.6}.front-turn span{display:none}.letter-note{padding:8px 10px}.note-greeting{font-size:22px}.receipt-row{gap:4px;margin:3px 0}.receipt-row strong{font-size:1.125rem}.receipt-row span{font-size:.85rem}.back-turn{font-size:14px;right:-2px}}
 @media(max-height:700px) and (orientation:portrait){.sheet[data-kind=delivery]{bottom:calc(7px + var(--safe-bottom))}}
@@ -75,7 +76,7 @@ body.big .note-greeting{font-size:1.9rem}body.big .receipt-row strong{font-size:
 body.contrast .receipt-row span{color:var(--muted)}
 .delivery-nav .stay-here{color:#354f50}.delivery-nav .stay-here:hover{color:#893e30}
 /* The actual destination impression crosses the postage, away from the address. */
-.postal-cancellation.destination-cancellation{position:absolute;width:32%;right:1%;top:3%;rotate:-9deg;opacity:.78}
+.postal-cancellation.destination-cancellation{--ink-opacity:.78;position:absolute;width:32%;right:1%;top:3%;rotate:-9deg;opacity:.78}
 .destination-cancellation .postal-reference{font-size:clamp(9px,2.6vw,13px);margin-top:2px}
 @media(prefers-reduced-motion:reduce){.destination-cancellation{animation:none}}
 body.reduced .destination-cancellation{animation:none}

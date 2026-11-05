@@ -118,3 +118,10 @@ body[data-scene=desk] .collection-object{right:16%;bottom:9%;width:190px}
 }
 @media(prefers-reduced-motion:no-preference){.primary-letter,.service-slip{transition:transform .16s ease-out,translate .16s ease-out}.start-composition{animation:arrival .4s ease-out}@keyframes arrival{from{opacity:0;translate:0 5px}to{opacity:1;translate:0 0}}}
 .reduced *{animation:none!important;transition:none!important}
+
+/* The living cat shares the illustrated sack's source coordinates. */
+.start-composition{z-index:1;pointer-events:none}.start-composition button{pointer-events:auto}
+.office-cat{position:absolute;z-index:0;display:block;min-width:44px;min-height:44px;margin:0;padding:0;border:0;border-radius:0;background:transparent url(images/materials/ginger-motion.webp) 0 0/400% 200% no-repeat;box-shadow:none;cursor:pointer;touch-action:manipulation;clip-path:inset(28% 13% 16% 7%)}
+.office-cat:hover,.office-cat:active{background-color:transparent;transform:none}
+.office-cat:focus-visible{outline:2px dashed #28474a;outline-offset:-24px}
+.office-cat[hidden]{display:none}
