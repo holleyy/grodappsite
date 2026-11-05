@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-05",
+  "prototype": {
+    "localSource": "ad18f69",
+    "publicCommit": "bf233c65fbf1d6fb2811bcaa350b5faff76318a8",
+    "publicWorkflow": 42004376394,
+    "url": "https://holleyy.github.io/grodappsite/cats-by-post-interface/journey/start.html?v=ginger-26",
+    "embeddedRuntimeGitBlob": "481ccb6c672e032ac94659ed5190bcd25918517c",
+    "realPlayableLevels": 40
+  },
+  "campaignReference": {
+    "functionalCommit": "4c4ddfc629b22e120e81051e98c06e4cd33a279f",
+    "build": "9d960251a0",
+    "metadataSha256": "a4047fd2fd696b4e5e8b170fc2d61ca336b130c10a36bc40091def86b7f4788f",
+    "levels": 100,
+    "rooms": 6,
+    "chapters": 8,
+    "notACurrentMainOrRemasterAcceptanceClaim": true
+  },
+  "currentNativeStatus": "Not implemented or qualified by this handoff",
+  "evidence": [
+    {
+      "suite": "Node",
+      "passed": 54,
+      "source": "tests/*.test.cjs"
+    },
+    {
+      "suite": "Material motion",
+      "passed": 37,
+      "source": "docs/review/material-motion/captures/checks.json"
+    },
+    {
+      "suite": "Ginger interaction paint",
+      "passed": 11,
+      "source": "docs/review/ginger-tap/captures/checks.json"
+    },
+    {
+      "suite": "Photograph regression",
+      "passed": 58,
+      "source": "docs/review/material-motion/regressions/photo-handling.json"
+    },
+    {
+      "suite": "Main menu regression",
+      "passed": 34,
+      "source": "docs/review/material-motion/regressions/main-menu.json"
+    },
+    {
+      "suite": "Delivery state regression",
+      "passed": 51,
+      "source": "docs/review/material-motion/regressions/delivery-states.json"
+    },
+    {
+      "suite": "Observed art regression",
+      "passed": 22,
+      "source": "docs/review/material-motion/regressions/observed-details.json"
+    }
+  ]
+}

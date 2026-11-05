@@ -1,0 +1,54 @@
+{
+  "status": "Existing prototype coat names/notes/thresholds; verify against game authority at integration",
+  "source": "dist/journey/company-model.js",
+  "coats": [
+    {
+      "id": "tabby",
+      "name": "Grey tabby",
+      "at": 0,
+      "note": "Grey stripes, a pale muzzle and a ringed tail."
+    },
+    {
+      "id": "black",
+      "name": "Black",
+      "at": 0,
+      "note": "A black coat, with white markings at the chest and paws."
+    },
+    {
+      "id": "white",
+      "name": "White",
+      "at": 0,
+      "note": "A white coat from ears to tail."
+    },
+    {
+      "id": "cream",
+      "name": "Cream",
+      "at": 0,
+      "note": "Pale cream fur, with a softer hint of ginger."
+    },
+    {
+      "id": "smoke",
+      "name": "Smoke",
+      "at": 50,
+      "note": "A smoky blue-grey coat, without tabby stripes."
+    },
+    {
+      "id": "calico",
+      "name": "Calico",
+      "at": 100,
+      "note": "Clear patches of white, ginger and black."
+    },
+    {
+      "id": "tortoiseshell",
+      "name": "Tortoiseshell",
+      "at": 250,
+      "note": "Ginger and black, mottled closely together."
+    },
+    {
+      "id": "siamese",
+      "name": "Siamese",
+      "at": 500,
+      "note": "A cream coat with darker ears, face, paws and tail."
+    }
+  ]
+}

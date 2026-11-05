@@ -1,0 +1,86 @@
+{
+  "status": "Source-pinned web captures; not native remaster screenshots",
+  "figures": [
+    {
+      "id": "office",
+      "title": "The office",
+      "caption": "The accepted papercraft entrance; current envelope, services, places and photograph case.",
+      "sourcePath": "docs/review/ginger-tap/captures/before-tap.png",
+      "bundlePath": "figures/office.webp",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "map",
+      "title": "Places to post",
+      "caption": "One expandable world map; the next letter floats above it, with no blank strip underneath.",
+      "sourcePath": "docs/review/delivery-loop/states/normal-map.png",
+      "bundlePath": "figures/map.webp",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "packet",
+      "title": "The chapter packet",
+      "caption": "Posted, unfinished and locked rows keep the same internal alignment.",
+      "sourcePath": "docs/review/menu-spacing/after-rows-phone.png",
+      "bundlePath": "figures/packet.webp",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "letter",
+      "title": "The next letter",
+      "caption": "The real starting-arrangement photograph rises from its envelope.",
+      "sourcePath": "docs/review/material-motion/captures/opening-letter-flex.png",
+      "bundlePath": "figures/letter.webp",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "pause",
+      "title": "Pause as a tool",
+      "caption": "The paused board remains visible and editable; Resume and Cancel stay available.",
+      "sourcePath": "docs/review/hud-refinement/paused-phone.png",
+      "bundlePath": "figures/pause.webp",
+      "width": 390,
+      "height": 650
+    },
+    {
+      "id": "delivery",
+      "title": "Delivered correspondence",
+      "caption": "Applied postage and a place-specific cancellation, with the next envelope underneath.",
+      "sourcePath": "docs/review/material-motion/captures/ink-contact.png",
+      "bundlePath": "figures/delivery.webp",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "note",
+      "title": "The note inside",
+      "caption": "Reward facts belong inside the letter; one observed paw trace crosses the paper edge.",
+      "sourcePath": "docs/review/material-motion/captures/note-flex.png",
+      "bundlePath": "figures/note.webp",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "box",
+      "title": "The photograph box",
+      "caption": "A real case, filed coat prints and a tucked arrival; the label belongs inside the lid.",
+      "sourcePath": "docs/review/material-motion/captures/case-open.png",
+      "bundlePath": "figures/box.webp",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "print",
+      "title": "A stiff photographic print",
+      "caption": "The same print turns in depth while controls and the physical source box stay in place.",
+      "sourcePath": "docs/review/material-motion/captures/stiff-print-turn.png",
+      "bundlePath": "figures/print.webp",
+      "width": 390,
+      "height": 844
+    }
+  ]
+}

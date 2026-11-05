@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "sourceCheckpoint": "ad18f69",
+  "status": "Accepted web prototype timing reference; native lighting/projection qualification pending",
+  "gestures": [
+    {
+      "id": "envelope-flap",
+      "durationMs": 310,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.2,.75,.25,1)",
+      "source": "paper-motion.js",
+      "behaviour": "178deg to -3deg at .87 to0deg"
+    },
+    {
+      "id": "envelope-front",
+      "durationMs": 390,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.2,.75,.25,1)",
+      "source": "paper-motion.js",
+      "behaviour": "skewX-.7deg to.4deg at.65 to none"
+    },
+    {
+      "id": "invitation-photo",
+      "durationMs": 410,
+      "delayMs": 140,
+      "easing": "cubic-bezier(.2,.75,.25,1)",
+      "source": "paper-motion.js",
+      "behaviour": "translateY86% to4% at.8 to0; rotate1 to-3deg; rigid"
+    },
+    {
+      "id": "photo-lift",
+      "durationMs": 390,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.25,.55,.25,1)",
+      "source": "paper-motion.js",
+      "behaviour": "First18% lifts9 viewport CSS px while retaining source thumbnail scale, then transports"
+    },
+    {
+      "id": "photo-place",
+      "durationMs": 310,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.2,.75,.25,1)",
+      "source": "paper-motion.js",
+      "behaviour": "Measured viewed-pile destination and lowering shadow"
+    },
+    {
+      "id": "photo-draw",
+      "durationMs": 330,
+      "delayMs": 85,
+      "easing": "cubic-bezier(.2,.75,.25,1)",
+      "source": "paper-motion.js",
+      "behaviour": "Actual source or pile; no skew"
+    },
+    {
+      "id": "photo-turn",
+      "durationMs": 440,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.35,.08,.28,1)",
+      "source": "company-box.js",
+      "behaviour": "Same print, rotateY0/180deg"
+    },
+    {
+      "id": "photo-file",
+      "durationMs": 290,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.2,.75,.25,1)",
+      "source": "paper-motion.js",
+      "behaviour": "Visible slot; explicit viewport coordinates; clean transient copies"
+    },
+    {
+      "id": "new-photo",
+      "durationMs": 260,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.2,.75,.25,1)",
+      "source": "paper-motion.js",
+      "behaviour": "-9px/-12deg to0px/-8deg"
+    },
+    {
+      "id": "case-open",
+      "durationMs": 520,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.25,.55,.3,1)",
+      "source": "company-box.js",
+      "behaviour": "180deg to75deg at.73 to62.5deg, actual bottom hinge"
+    },
+    {
+      "id": "case-close",
+      "durationMs": 300,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.4,.12,.65,1)",
+      "source": "company-box.js",
+      "behaviour": "Current matrix to180deg; departure guard"
+    },
+    {
+      "id": "case-cancel-close",
+      "durationMs": 180,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.2,.75,.25,1)",
+      "source": "company-box.js",
+      "behaviour": "Current matrix to62.5deg; clear all retained closing effects"
+    },
+    {
+      "id": "delivered-envelope",
+      "durationMs": 460,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.22,.62,.25,1)",
+      "source": "play/completion.css",
+      "behaviour": "22px/28px +skew-1deg to0"
+    },
+    {
+      "id": "postage-paper",
+      "durationMs": 280,
+      "delayMs": [
+        310,
+        430,
+        540
+      ],
+      "easing": "cubic-bezier(.3,.4,.5,1)",
+      "source": "play/completion.css",
+      "behaviour": "-11px/-3deg to slight skew at contact to rest; no spring"
+    },
+    {
+      "id": "cancellation-ink",
+      "durationMs": 80,
+      "delayMs": 850,
+      "easing": "linear",
+      "source": "play/completion.css",
+      "behaviour": "Opacity only; no flight or scale"
+    },
+    {
+      "id": "delivered-envelope-turn",
+      "durationMs": 650,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.2,.7,.2,1)",
+      "source": "play/completion.css",
+      "behaviour": "Preserve full paper bounds while rotatingY180deg"
+    },
+    {
+      "id": "note-flex",
+      "durationMs": 310,
+      "delayMs": 140,
+      "easing": "cubic-bezier(.2,.75,.25,1)",
+      "source": "paper-motion.js",
+      "behaviour": "12px/skew-.8deg to-1px/skew.35deg at.82 to rest"
+    },
+    {
+      "id": "hud-feedback",
+      "durationMs": 180,
+      "delayMs": 0,
+      "easing": "cubic-bezier(.2,.7,.3,1)",
+      "source": "play/hud.js",
+      "behaviour": "Only actual count/next/home changes; stop when tactical paused/frozen/reduced"
+    }
+  ],
+  "ginger": {
+    "source": "office-cat.js",
+    "durationMs": 1560,
+    "poses": [
+      [
+        0,
+        0
+      ],
+      [
+        120,
+        1
+      ],
+      [
+        260,
+        2
+      ],
+      [
+        380,
+        3
+      ],
+      [
+        650,
+        4
+      ],
+      [
+        1050,
+        5
+      ],
+      [
+        1210,
+        6
+      ],
+      [
+        1380,
+        7
+      ],
+      [
+        1560,
+        0
+      ]
+    ],
+    "loop": false,
+    "replay": "Tap or keyboard activation",
+    "stopWhen": [
+      "scene hidden",
+      "modal covers office",
+      "app hidden",
+      "system or user reduced motion"
+    ]
+  },
+  "globalRules": [
+    "Simulation and campaign clocks stay game-owned",
+    "No gesture blocks interaction or independently awards progress",
+    "Latest intent invalidates stale navigation callbacks",
+    "Reduced motion exposes a valid resting state immediately",
+    "Hover/press retain material artwork and atlas sizing"
+  ]
+}

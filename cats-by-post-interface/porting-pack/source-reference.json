@@ -1,0 +1,160 @@
+{
+  "status": "Read-only prototype reference; browser adapters/legacy lifecycle are not native integration code; HTML is text, not runnable shell",
+  "files": [
+    {
+      "sourcePath": "dist/journey/map-surface.css",
+      "bundlePath": "reference/source/journey/map-surface.css",
+      "sha256": "3434313350e6de2bf2854b586fad0fff74bd54fdf55cefcec21d5f2ed4760488"
+    },
+    {
+      "sourcePath": "dist/journey/menu-system.css",
+      "bundlePath": "reference/source/journey/menu-system.css",
+      "sha256": "a3bb750bcad09d8280857ef0728e38e475da9da7cff1e4a249e0930229019142"
+    },
+    {
+      "sourcePath": "dist/journey/paper-motion.js",
+      "bundlePath": "reference/source/journey/paper-motion.js",
+      "sha256": "e355374ebbccb0e203574bbaebb5291d41ac1d12a4ef908cb62a6d41dc97299f"
+    },
+    {
+      "sourcePath": "dist/journey/model.js",
+      "bundlePath": "reference/source/journey/model.js",
+      "sha256": "86383cb55b236ba0d5234e6fd22e914d5f159a4b285206af2244ebb245f215b5"
+    },
+    {
+      "sourcePath": "dist/journey/company-model.js",
+      "bundlePath": "reference/source/journey/company-model.js",
+      "sha256": "cf649bbd870285ea7d92222f30a9ca74216485540dfd6947e8ce01ff9427e0c6"
+    },
+    {
+      "sourcePath": "dist/journey/photo-handling.js",
+      "bundlePath": "reference/source/journey/photo-handling.js",
+      "sha256": "cc0aabb242653d8bd7da7aea48f3b2554af7ec452671551f45c765d36cbeec2b"
+    },
+    {
+      "sourcePath": "dist/journey/company-box.css",
+      "bundlePath": "reference/source/journey/company-box.css",
+      "sha256": "dc6275f878e29641fd6199d333337fcc74829153f3742b10d3342fcd45186d57"
+    },
+    {
+      "sourcePath": "dist/journey/office-cat.js",
+      "bundlePath": "reference/source/journey/office-cat.js",
+      "sha256": "66c1b8cdaa9d7035c1bdb121f2a8824156df262656f828d806e7fc16c2b1b17a"
+    },
+    {
+      "sourcePath": "dist/journey/index.html",
+      "bundlePath": "reference/source/journey/index.html.txt",
+      "sha256": "e2f700591b83683ab0526d346283b80a37576fc29e314ad052ca6534cd968a43"
+    },
+    {
+      "sourcePath": "dist/journey/postal-identity.css",
+      "bundlePath": "reference/source/journey/postal-identity.css",
+      "sha256": "d26ad3182640a7bac3cfa55f7b12cc09fb47203992f5a678ab3e97a7dd8e8c12"
+    },
+    {
+      "sourcePath": "dist/journey/journey.js",
+      "bundlePath": "reference/source/journey/journey.js",
+      "sha256": "cba288948c21f9d53e933a384fa13249d6bd4c7275a18fc4a8bf6dca05d9a2c2"
+    },
+    {
+      "sourcePath": "dist/journey/postal-identity.js",
+      "bundlePath": "reference/source/journey/postal-identity.js",
+      "sha256": "78875358687922a1050804db252d8623cb201dbacba2ecee420f708180183599"
+    },
+    {
+      "sourcePath": "dist/journey/start.html",
+      "bundlePath": "reference/source/journey/start.html.txt",
+      "sha256": "1521278068bc49ce253ef73091861f503d421345b5e374557cb2fef06a5b102f"
+    },
+    {
+      "sourcePath": "dist/journey/start.css",
+      "bundlePath": "reference/source/journey/start.css",
+      "sha256": "9a2a95e9b045f05cc474db45003f74abc7502ec6082b7776f2e6388f59869d21"
+    },
+    {
+      "sourcePath": "dist/journey/journey.css",
+      "bundlePath": "reference/source/journey/journey.css",
+      "sha256": "20254a558d761b3d9bc19ba450af7953092d662ec6a1a027de3e7045dbb15731"
+    },
+    {
+      "sourcePath": "dist/journey/letter-insert.css",
+      "bundlePath": "reference/source/journey/letter-insert.css",
+      "sha256": "2ace249c24266406865a3c47ee2fef4b153391216c507ee03e3a4d185a7c12ab"
+    },
+    {
+      "sourcePath": "dist/journey/start.js",
+      "bundlePath": "reference/source/journey/start.js",
+      "sha256": "56642b848870b60af5050bc849dc340c651c59b65cb703e254701122a0eef5f6"
+    },
+    {
+      "sourcePath": "dist/journey/company-box.js",
+      "bundlePath": "reference/source/journey/company-box.js",
+      "sha256": "b0d3fe72b000bd631b6e5d24ad0adc8d023d3fbc6289f4e1f546780876ee9f7d"
+    },
+    {
+      "sourcePath": "dist/journey/play/hud.css",
+      "bundlePath": "reference/source/journey/play/hud.css",
+      "sha256": "9c1e34d146f0899260bd91479b91e8e02d27b311f80e2ddbfaf88faa11da69cc"
+    },
+    {
+      "sourcePath": "dist/journey/play/hud-model.js",
+      "bundlePath": "reference/source/journey/play/hud-model.js",
+      "sha256": "226ee51a9f7ea37f9370e2a453ab13b0e3bb5e06c0e1eef4857e0434dd285a54"
+    },
+    {
+      "sourcePath": "dist/journey/play/app.js",
+      "bundlePath": "reference/source/journey/play/app.js",
+      "sha256": "dd5e2c833380896b2f871f311972c3871c2c2ae2d6045cac249c4a9f633150ea"
+    },
+    {
+      "sourcePath": "dist/journey/play/completion.js",
+      "bundlePath": "reference/source/journey/play/completion.js",
+      "sha256": "db4612578f384b0821bb0b6d830cd00772bb3e51f3072d4fc0c65881f43ca7ef"
+    },
+    {
+      "sourcePath": "dist/journey/play/handoff.js",
+      "bundlePath": "reference/source/journey/play/handoff.js",
+      "sha256": "0db4d761144cb33ca2992333e5fbb68b528077b4949271610ba3baab424de39c"
+    },
+    {
+      "sourcePath": "dist/journey/play/app.css",
+      "bundlePath": "reference/source/journey/play/app.css",
+      "sha256": "8b14ff9cec1bb63c20b271b7f0dc93b18d545d00a6dca38e72fc56dfc223afe2"
+    },
+    {
+      "sourcePath": "dist/journey/play/bridge.js",
+      "bundlePath": "reference/source/journey/play/bridge.js",
+      "sha256": "541e248e311d26457250208aa8b265739991a7d81b3915311f44adb9eea7b73e"
+    },
+    {
+      "sourcePath": "dist/journey/play/model.js",
+      "bundlePath": "reference/source/journey/play/model.js",
+      "sha256": "fa0baa5bdbe528d2d840ddf18b6b88a6814afc1960221355cc59df7524c6c25f"
+    },
+    {
+      "sourcePath": "dist/journey/play/gate-legibility.js",
+      "bundlePath": "reference/source/journey/play/gate-legibility.js",
+      "sha256": "b4c41894054b64a193f63bf8e1d8bd064d25ce2f1e7e4cb218001e182aaf9dd9"
+    },
+    {
+      "sourcePath": "dist/journey/play/index.html",
+      "bundlePath": "reference/source/journey/play/index.html.txt",
+      "sha256": "4399b3084e109dc7109d27557d8085fa086d088581aa04d7cd1b567d1894d55b"
+    },
+    {
+      "sourcePath": "dist/journey/play/hud-bridge.js",
+      "bundlePath": "reference/source/journey/play/hud-bridge.js",
+      "sha256": "14842ae49d383266af5ef1fdcf336ec18a82ef0ae99a539e04864d8d411d1f57"
+    },
+    {
+      "sourcePath": "dist/journey/play/hud.js",
+      "bundlePath": "reference/source/journey/play/hud.js",
+      "sha256": "a95c3f260cc29d31cb3ac784e910136e6c0c942bfa080f625ec36305d88d68ab"
+    },
+    {
+      "sourcePath": "dist/journey/play/completion.css",
+      "bundlePath": "reference/source/journey/play/completion.css",
+      "sha256": "74de601c70edf63b1d6c79f85f65fbbf209085d4cfd93c2c2cfc200aa9a00d2b"
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://holleyy.github.io/grodappsite/cats-by-post-interface/porting-pack/contract.schema.json",
+  "title": "Proposed Cats by Post presentation snapshot — not implemented API",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contractStatus": {
+      "const": "proposal"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "runID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "mode": {
+      "enum": [
+        "story",
+        "daily",
+        "practice",
+        "night"
+      ]
+    },
+    "level": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "engineRoom": {
+          "type": "string"
+        },
+        "journeyPlace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "engineRoom",
+        "journeyPlace"
+      ]
+    },
+    "board": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ]
+    },
+    "clock": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tick": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "paused": {
+          "type": "boolean"
+        },
+        "reason": {
+          "enum": [
+            "none",
+            "tactical",
+            "menu",
+            "background",
+            "campaign"
+          ]
+        }
+      },
+      "required": [
+        "tick",
+        "paused",
+        "reason"
+      ]
+    },
+    "arrivals": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "order": {
+          "enum": [
+            "per-hatch",
+            "global"
+          ]
+        },
+        "tickDurationMs": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "releaseEveryTicks": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "hatches": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "uniqueItems": true
+        },
+        "cats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "hatch": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "order": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "coatID": {
+                "type": "string",
+                "minLength": 1
+              },
+              "size": {
+                "enum": [
+                  "normal",
+                  "large"
+                ]
+              },
+              "status": {
+                "enum": [
+                  "waiting",
+                  "released",
+                  "home",
+                  "failed"
+                ]
+              },
+              "releaseTick": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            },
+            "required": [
+              "id",
+              "hatch",
+              "order",
+              "coatID",
+              "size",
+              "status",
+              "releaseTick"
+            ]
+          }
+        }
+      },
+      "required": [
+        "order",
+        "tickDurationMs",
+        "releaseEveryTicks",
+        "hatches",
+        "cats"
+      ]
+    },
+    "stock": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "plain": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ginger": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blue": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "plain",
+        "ginger",
+        "blue"
+      ]
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "home": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "attempts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hinted": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "home",
+        "total",
+        "attempts",
+        "hinted"
+      ]
+    },
+    "eligibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "canEdit": {
+          "type": "boolean"
+        },
+        "canUndo": {
+          "type": "boolean"
+        },
+        "canSend": {
+          "type": "boolean"
+        },
+        "canCancel": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "canEdit",
+        "canUndo",
+        "canSend",
+        "canCancel"
+      ]
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "outcomeID": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "winSaved": {
+          "type": "boolean"
+        },
+        "homeSettled": {
+          "type": "boolean"
+        },
+        "mayShowResult": {
+          "type": "boolean"
+        },
+        "canAdvance": {
+          "type": "boolean"
+        },
+        "chapterPhase": {
+          "enum": [
+            "idle",
+            "active"
+          ]
+        },
+        "finalePhase": {
+          "enum": [
+            "idle",
+            "active"
+          ]
+        }
+      },
+      "required": [
+        "outcomeID",
+        "winSaved",
+        "homeSettled",
+        "mayShowResult",
+        "canAdvance",
+        "chapterPhase",
+        "finalePhase"
+      ]
+    },
+    "progressRevision": {
+      "type": "string"
+    },
+    "collection": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "coatID": {
+            "type": "string"
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "coatID",
+          "available"
+        ]
+      }
+    },
+    "phase": {
+      "enum": [
+        "setup",
+        "running",
+        "resolved",
+        "failed",
+        "service-break"
+      ]
+    }
+  },
+  "required": [
+    "contractStatus",
+    "schemaVersion",
+    "runID",
+    "revision",
+    "mode",
+    "level",
+    "board",
+    "clock",
+    "arrivals",
+    "stock",
+    "counts",
+    "eligibility",
+    "lifecycle",
+    "progressRevision",
+    "collection",
+    "phase"
+  ]
+}

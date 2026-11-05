@@ -1,0 +1,1461 @@
+{
+  "status": "Proposal examples only; no actual authored queue/solution or native API implementation",
+  "examples": [
+    {
+      "name": "precision-paused-busy-route",
+      "description": "Illustrative queue/coats/order, not the authored level queue or a solution. Counts/board/hatches reference pinned8-15 metadata.",
+      "snapshot": {
+        "contractStatus": "proposal",
+        "schemaVersion": 1,
+        "runID": "illustrative-run-A",
+        "revision": 4,
+        "mode": "story",
+        "level": {
+          "id": "8-15",
+          "engineRoom": "christmas",
+          "journeyPlace": "winter"
+        },
+        "board": {
+          "width": 10,
+          "height": 8
+        },
+        "clock": {
+          "tick": 0,
+          "paused": true,
+          "reason": "tactical"
+        },
+        "arrivals": {
+          "order": "per-hatch",
+          "tickDurationMs": null,
+          "releaseEveryTicks": null,
+          "hatches": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cats": [
+            {
+              "id": "illustrative-cat-1",
+              "hatch": 1,
+              "order": 1,
+              "coatID": "blue",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-2",
+              "hatch": 2,
+              "order": 1,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-3",
+              "hatch": 3,
+              "order": 1,
+              "coatID": "blue",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-4",
+              "hatch": 4,
+              "order": 1,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-5",
+              "hatch": 1,
+              "order": 2,
+              "coatID": "blue",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-6",
+              "hatch": 2,
+              "order": 2,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-7",
+              "hatch": 3,
+              "order": 2,
+              "coatID": "blue",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-8",
+              "hatch": 4,
+              "order": 2,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-9",
+              "hatch": 1,
+              "order": 3,
+              "coatID": "blue",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-10",
+              "hatch": 2,
+              "order": 3,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-11",
+              "hatch": 3,
+              "order": 3,
+              "coatID": "blue",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-12",
+              "hatch": 4,
+              "order": 3,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-13",
+              "hatch": 1,
+              "order": 4,
+              "coatID": "blue",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-14",
+              "hatch": 2,
+              "order": 4,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-15",
+              "hatch": 3,
+              "order": 4,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-16",
+              "hatch": 4,
+              "order": 4,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-17",
+              "hatch": 1,
+              "order": 5,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-18",
+              "hatch": 2,
+              "order": 5,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-19",
+              "hatch": 3,
+              "order": 5,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-20",
+              "hatch": 4,
+              "order": 5,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-21",
+              "hatch": 1,
+              "order": 6,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-22",
+              "hatch": 2,
+              "order": 6,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-23",
+              "hatch": 3,
+              "order": 6,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-24",
+              "hatch": 4,
+              "order": 6,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-25",
+              "hatch": 1,
+              "order": 7,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-26",
+              "hatch": 2,
+              "order": 7,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-27",
+              "hatch": 3,
+              "order": 7,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-28",
+              "hatch": 4,
+              "order": 7,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-29",
+              "hatch": 1,
+              "order": 8,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-30",
+              "hatch": 2,
+              "order": 8,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-31",
+              "hatch": 3,
+              "order": 8,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-32",
+              "hatch": 4,
+              "order": 8,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "waiting",
+              "releaseTick": null
+            }
+          ]
+        },
+        "stock": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 1
+        },
+        "counts": {
+          "home": 0,
+          "total": 32,
+          "attempts": 1,
+          "hinted": false
+        },
+        "eligibility": {
+          "canEdit": true,
+          "canUndo": false,
+          "canSend": false,
+          "canCancel": true
+        },
+        "lifecycle": {
+          "outcomeID": null,
+          "winSaved": false,
+          "homeSettled": false,
+          "mayShowResult": false,
+          "canAdvance": false,
+          "chapterPhase": "idle",
+          "finalePhase": "idle"
+        },
+        "progressRevision": "illustrative-progress-1",
+        "collection": [
+          {
+            "coatID": "tabby",
+            "available": true
+          },
+          {
+            "coatID": "smoke",
+            "available": false
+          }
+        ],
+        "phase": "running"
+      }
+    },
+    {
+      "name": "saved-awaiting-native-home",
+      "description": "Illustrative lifecycle facts/permissions supplied by campaign; not an implemented controller.",
+      "snapshot": {
+        "contractStatus": "proposal",
+        "schemaVersion": 1,
+        "runID": "illustrative-run-A",
+        "revision": 5,
+        "mode": "story",
+        "level": {
+          "id": "8-15",
+          "engineRoom": "christmas",
+          "journeyPlace": "winter"
+        },
+        "board": {
+          "width": 10,
+          "height": 8
+        },
+        "clock": {
+          "tick": 0,
+          "paused": true,
+          "reason": "campaign"
+        },
+        "arrivals": {
+          "order": "per-hatch",
+          "tickDurationMs": null,
+          "releaseEveryTicks": null,
+          "hatches": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cats": [
+            {
+              "id": "illustrative-cat-1",
+              "hatch": 1,
+              "order": 1,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-2",
+              "hatch": 2,
+              "order": 1,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-3",
+              "hatch": 3,
+              "order": 1,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-4",
+              "hatch": 4,
+              "order": 1,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-5",
+              "hatch": 1,
+              "order": 2,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-6",
+              "hatch": 2,
+              "order": 2,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-7",
+              "hatch": 3,
+              "order": 2,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-8",
+              "hatch": 4,
+              "order": 2,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-9",
+              "hatch": 1,
+              "order": 3,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-10",
+              "hatch": 2,
+              "order": 3,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-11",
+              "hatch": 3,
+              "order": 3,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-12",
+              "hatch": 4,
+              "order": 3,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-13",
+              "hatch": 1,
+              "order": 4,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-14",
+              "hatch": 2,
+              "order": 4,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-15",
+              "hatch": 3,
+              "order": 4,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-16",
+              "hatch": 4,
+              "order": 4,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-17",
+              "hatch": 1,
+              "order": 5,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-18",
+              "hatch": 2,
+              "order": 5,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-19",
+              "hatch": 3,
+              "order": 5,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-20",
+              "hatch": 4,
+              "order": 5,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-21",
+              "hatch": 1,
+              "order": 6,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-22",
+              "hatch": 2,
+              "order": 6,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-23",
+              "hatch": 3,
+              "order": 6,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-24",
+              "hatch": 4,
+              "order": 6,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-25",
+              "hatch": 1,
+              "order": 7,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-26",
+              "hatch": 2,
+              "order": 7,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-27",
+              "hatch": 3,
+              "order": 7,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-28",
+              "hatch": 4,
+              "order": 7,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-29",
+              "hatch": 1,
+              "order": 8,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-30",
+              "hatch": 2,
+              "order": 8,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-31",
+              "hatch": 3,
+              "order": 8,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-32",
+              "hatch": 4,
+              "order": 8,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            }
+          ]
+        },
+        "stock": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 1
+        },
+        "counts": {
+          "home": 32,
+          "total": 32,
+          "attempts": 1,
+          "hinted": false
+        },
+        "eligibility": {
+          "canEdit": false,
+          "canUndo": false,
+          "canSend": false,
+          "canCancel": false
+        },
+        "lifecycle": {
+          "outcomeID": "illustrative-outcome-1",
+          "winSaved": true,
+          "homeSettled": false,
+          "chapterPhase": "idle",
+          "finalePhase": "idle",
+          "mayShowResult": false,
+          "canAdvance": false
+        },
+        "progressRevision": "illustrative-progress-1",
+        "collection": [
+          {
+            "coatID": "tabby",
+            "available": true
+          },
+          {
+            "coatID": "smoke",
+            "available": false
+          }
+        ],
+        "phase": "resolved"
+      }
+    },
+    {
+      "name": "finale-still-owns-presentation",
+      "description": "Illustrative lifecycle facts/permissions supplied by campaign; not an implemented controller.",
+      "snapshot": {
+        "contractStatus": "proposal",
+        "schemaVersion": 1,
+        "runID": "illustrative-run-A",
+        "revision": 6,
+        "mode": "story",
+        "level": {
+          "id": "8-15",
+          "engineRoom": "christmas",
+          "journeyPlace": "winter"
+        },
+        "board": {
+          "width": 10,
+          "height": 8
+        },
+        "clock": {
+          "tick": 0,
+          "paused": true,
+          "reason": "campaign"
+        },
+        "arrivals": {
+          "order": "per-hatch",
+          "tickDurationMs": null,
+          "releaseEveryTicks": null,
+          "hatches": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cats": [
+            {
+              "id": "illustrative-cat-1",
+              "hatch": 1,
+              "order": 1,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-2",
+              "hatch": 2,
+              "order": 1,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-3",
+              "hatch": 3,
+              "order": 1,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-4",
+              "hatch": 4,
+              "order": 1,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-5",
+              "hatch": 1,
+              "order": 2,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-6",
+              "hatch": 2,
+              "order": 2,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-7",
+              "hatch": 3,
+              "order": 2,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-8",
+              "hatch": 4,
+              "order": 2,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-9",
+              "hatch": 1,
+              "order": 3,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-10",
+              "hatch": 2,
+              "order": 3,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-11",
+              "hatch": 3,
+              "order": 3,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-12",
+              "hatch": 4,
+              "order": 3,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-13",
+              "hatch": 1,
+              "order": 4,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-14",
+              "hatch": 2,
+              "order": 4,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-15",
+              "hatch": 3,
+              "order": 4,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-16",
+              "hatch": 4,
+              "order": 4,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-17",
+              "hatch": 1,
+              "order": 5,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-18",
+              "hatch": 2,
+              "order": 5,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-19",
+              "hatch": 3,
+              "order": 5,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-20",
+              "hatch": 4,
+              "order": 5,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-21",
+              "hatch": 1,
+              "order": 6,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-22",
+              "hatch": 2,
+              "order": 6,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-23",
+              "hatch": 3,
+              "order": 6,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-24",
+              "hatch": 4,
+              "order": 6,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-25",
+              "hatch": 1,
+              "order": 7,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-26",
+              "hatch": 2,
+              "order": 7,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-27",
+              "hatch": 3,
+              "order": 7,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-28",
+              "hatch": 4,
+              "order": 7,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-29",
+              "hatch": 1,
+              "order": 8,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-30",
+              "hatch": 2,
+              "order": 8,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-31",
+              "hatch": 3,
+              "order": 8,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-32",
+              "hatch": 4,
+              "order": 8,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            }
+          ]
+        },
+        "stock": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 1
+        },
+        "counts": {
+          "home": 32,
+          "total": 32,
+          "attempts": 1,
+          "hinted": false
+        },
+        "eligibility": {
+          "canEdit": false,
+          "canUndo": false,
+          "canSend": false,
+          "canCancel": false
+        },
+        "lifecycle": {
+          "outcomeID": "illustrative-outcome-1",
+          "winSaved": true,
+          "homeSettled": true,
+          "chapterPhase": "idle",
+          "finalePhase": "active",
+          "mayShowResult": false,
+          "canAdvance": false
+        },
+        "progressRevision": "illustrative-progress-1",
+        "collection": [
+          {
+            "coatID": "tabby",
+            "available": true
+          },
+          {
+            "coatID": "smoke",
+            "available": false
+          }
+        ],
+        "phase": "resolved"
+      }
+    },
+    {
+      "name": "result-ready-to-advance",
+      "description": "Illustrative lifecycle facts/permissions supplied by campaign; not an implemented controller.",
+      "snapshot": {
+        "contractStatus": "proposal",
+        "schemaVersion": 1,
+        "runID": "illustrative-run-A",
+        "revision": 7,
+        "mode": "story",
+        "level": {
+          "id": "8-15",
+          "engineRoom": "christmas",
+          "journeyPlace": "winter"
+        },
+        "board": {
+          "width": 10,
+          "height": 8
+        },
+        "clock": {
+          "tick": 0,
+          "paused": true,
+          "reason": "campaign"
+        },
+        "arrivals": {
+          "order": "per-hatch",
+          "tickDurationMs": null,
+          "releaseEveryTicks": null,
+          "hatches": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cats": [
+            {
+              "id": "illustrative-cat-1",
+              "hatch": 1,
+              "order": 1,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-2",
+              "hatch": 2,
+              "order": 1,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-3",
+              "hatch": 3,
+              "order": 1,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-4",
+              "hatch": 4,
+              "order": 1,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-5",
+              "hatch": 1,
+              "order": 2,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-6",
+              "hatch": 2,
+              "order": 2,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-7",
+              "hatch": 3,
+              "order": 2,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-8",
+              "hatch": 4,
+              "order": 2,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-9",
+              "hatch": 1,
+              "order": 3,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-10",
+              "hatch": 2,
+              "order": 3,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-11",
+              "hatch": 3,
+              "order": 3,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-12",
+              "hatch": 4,
+              "order": 3,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-13",
+              "hatch": 1,
+              "order": 4,
+              "coatID": "blue",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-14",
+              "hatch": 2,
+              "order": 4,
+              "coatID": "ginger",
+              "size": "large",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-15",
+              "hatch": 3,
+              "order": 4,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-16",
+              "hatch": 4,
+              "order": 4,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-17",
+              "hatch": 1,
+              "order": 5,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-18",
+              "hatch": 2,
+              "order": 5,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-19",
+              "hatch": 3,
+              "order": 5,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-20",
+              "hatch": 4,
+              "order": 5,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-21",
+              "hatch": 1,
+              "order": 6,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-22",
+              "hatch": 2,
+              "order": 6,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-23",
+              "hatch": 3,
+              "order": 6,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-24",
+              "hatch": 4,
+              "order": 6,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-25",
+              "hatch": 1,
+              "order": 7,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-26",
+              "hatch": 2,
+              "order": 7,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-27",
+              "hatch": 3,
+              "order": 7,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-28",
+              "hatch": 4,
+              "order": 7,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-29",
+              "hatch": 1,
+              "order": 8,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-30",
+              "hatch": 2,
+              "order": 8,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-31",
+              "hatch": 3,
+              "order": 8,
+              "coatID": "blue",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            },
+            {
+              "id": "illustrative-cat-32",
+              "hatch": 4,
+              "order": 8,
+              "coatID": "ginger",
+              "size": "normal",
+              "status": "home",
+              "releaseTick": null
+            }
+          ]
+        },
+        "stock": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 1
+        },
+        "counts": {
+          "home": 32,
+          "total": 32,
+          "attempts": 1,
+          "hinted": false
+        },
+        "eligibility": {
+          "canEdit": false,
+          "canUndo": false,
+          "canSend": false,
+          "canCancel": false
+        },
+        "lifecycle": {
+          "outcomeID": "illustrative-outcome-1",
+          "winSaved": true,
+          "homeSettled": true,
+          "chapterPhase": "idle",
+          "finalePhase": "idle",
+          "mayShowResult": true,
+          "canAdvance": true
+        },
+        "progressRevision": "illustrative-progress-1",
+        "collection": [
+          {
+            "coatID": "tabby",
+            "available": true
+          },
+          {
+            "coatID": "smoke",
+            "available": false
+          }
+        ],
+        "phase": "resolved"
+      }
+    }
+  ]
+}
