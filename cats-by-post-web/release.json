@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "463c2f327f4c33ec430e67acdf58f59a1a502f79",
+  "sourceCommit": "1cc7d7c2aeaf0d4cff2df8ff7ef8069a40c3ebff",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-e6cb6ba057e1",
-  "engineSha256": "c6ff7fb1b1f0d2267245f21e03edfbfe7ac95b1f6e4fe319de6088bfa634259c",
+  "build": "web-ff8f1c0d5da6",
+  "engineSha256": "bb216d2b8f17c68798f3cd71e0dd171778feb7cb28b0697ddacfcdc0b81587d4",
   "entry": "journey/start.html",
-  "scope": "Review prototype: attached ending counterfoil, two action sections and separate Office tab. Physical Safari qualification pending."
+  "scope": "Review: one credits return, simpler paper tabs and completed-office invitations to Daily, Practice and Night Shift. Physical Safari qualification pending."
 }

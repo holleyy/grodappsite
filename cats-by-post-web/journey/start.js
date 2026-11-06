@@ -21,13 +21,16 @@
   const id=continuing&&info.kind==='story'?info.id:state.model.active||state.next;
   const level=j.levels.find(l=>l.id===id);
   const service=continuing&&['night','daily','practice'].includes(info.kind)?info.kind:null;
-  context={id,active:!!continuing||!!state.model.active,resume:!!continuing,service,complete:!level&&!service};
+  const campaignComplete=j.levels.length>0&&j.levels.every(l=>!!state.model.done[l.id]);
+  context={id,active:!!continuing||!!state.model.active,resume:!!continuing,service,complete:!level&&!service,campaignComplete};
+  document.body.classList.toggle('campaign-complete',campaignComplete);
+  $('today-detail').hidden=$('night-detail').hidden=!campaignComplete;
   $('primary-letter').querySelector('.entry-mark')?.remove();
   const identity=PostalIdentity.forLevel(id);
   if(identity&&!service)$('primary-letter').insertAdjacentHTML('beforeend',PostalIdentity.mark(identity.id,{className:'entry-mark',earned:PostalIdentity.chapterEarned(+id.split('-')[0],state.model.done),decorative:true}));
   $('primary-heading').textContent=service?'Continue':context.complete?'Every letter posted':context.active?'Continue '+id.replace('-','–'):id==='1-1'?'Your first letter':'Next delivery '+id.replace('-','–');
-  $('primary-title').textContent=service?{night:'Night Shift',daily:'Today’s post',practice:'Practice'}[service]:level?.title||'Every cat, home at last';
-  $('primary-detail').firstChild.textContent=context.complete?'Visit your places ':context.active?'Back to your arrangement ':'Open the letter ';
+  $('primary-title').textContent=service?{night:'Night Shift',daily:'Today’s post',practice:'Practice'}[service]:level?.title||'The post goes on.';
+  $('primary-detail').firstChild.textContent=context.complete?'Revisit your places ':context.active?'Back to your arrangement ':'Open the letter ';
   $('primary-letter').setAttribute('aria-label',[$('primary-heading').textContent,$('primary-title').textContent].join(', '));
   document.body.classList.toggle('reduced',app().prefs.reduced);
  }

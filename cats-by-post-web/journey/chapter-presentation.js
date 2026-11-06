@@ -18,11 +18,12 @@
   const closing=doc.createElement('div');closing.className='chapter-closing';card.insertBefore(closing,row);
   const office=doc.createElement('button');office.id='chapter-office';office.type='button';office.className='chapter-office';office.textContent='Back to the office';office.hidden=true;card.insertBefore(office,row);
   const returns=doc.createElement('div');returns.className='chapter-return-actions';for(const button of Array.from(card.children).filter(n=>n.tagName==='BUTTON'&&n!==office))returns.appendChild(button);card.appendChild(returns);
-  const letter=doc.createElement('div');letter.className='chapter-thanks-sheet';
+  const letter=doc.createElement('div');card.dataset.officeReturn=String(typeof navigate==='function');
   let last='',lastKind='',creditsFocus=false;
   const before=(node,anchor)=>{if(node.nextSibling!==anchor)card.insertBefore(node,anchor)};
   panel.addEventListener('keydown',event=>{if(event.key!=='Tab'||panel.hidden)return;const buttons=Array.from(card.querySelectorAll('button')).filter(b=>!b.disabled&&b.getClientRects().length);if(!buttons.length)return;event.preventDefault();event.stopImmediatePropagation();const index=buttons.indexOf(doc.activeElement),next=index<0?(event.shiftKey?buttons.length-1:0):(index+(event.shiftKey?-1:1)+buttons.length)%buttons.length;buttons[next].focus()},true);
   office.addEventListener('click',()=>{office.disabled=true;try{leave(bridge,navigate)}finally{office.disabled=false}});
+  doc.addEventListener('keydown',event=>{if(event.key!=='Escape'||panel.hidden||card.dataset.paperKind!=='credits'||office.hidden)return;event.preventDefault();event.stopImmediatePropagation();office.click()},true);
   function refresh(){
    if(panel.hidden)return;const s=bridge.state();if(!s)return;const mode=s.lifecycle?.presentation,m=model(s,mode,s.progress),key=[s.id,mode,m.earned,m.canLeave].join(':');
    office.hidden=!m.canLeave||typeof navigate!=='function';if(key===last)return;last=key;const entered=m.kind!==lastKind;if(entered)creditsFocus=m.kind==='credits';lastKind=m.kind;card.dataset.paperKind=m.kind;card.dataset.paperPlace=m.place?.id||'';
@@ -35,7 +36,7 @@
    if(m.kind==='credits'){text.textContent='Thank you to our playtesters — and to every cat who waited for the right box.';primary.textContent="Today’s puzzle";doc.getElementById('chapterSecondary').textContent='Night Shift'}
    if(m.kind==='thanks')primary.textContent='Behind the post';
    office.classList.toggle('is-primary',m.kind==='credits');
-   if(m.kind==='thanks'){card.insertBefore(letter,decor);for(const node of [decor,title,text,closing])letter.appendChild(node);office.textContent='Office →';office.setAttribute('aria-label','Back to the office')}else{office.textContent='Back to the office';office.removeAttribute('aria-label')}
+   if(['thanks','credits'].includes(m.kind)){letter.className='chapter-'+m.kind+'-sheet';card.insertBefore(letter,decor);for(const node of m.kind==='credits'?[decor,title,closing,text]:[decor,title,text,closing])letter.appendChild(node);office.textContent=m.kind==='thanks'?'Office →':'Back to the office →';office.setAttribute('aria-label','Back to the office')}else{office.textContent='Back to the office';office.removeAttribute('aria-label')}
    if(m.kind==='credits'&&!office.hidden&&(creditsFocus||!card.contains(doc.activeElement))){office.focus({preventScroll:true});creditsFocus=false}
   }
   refresh.focus=()=>{if(panel.hidden)return false;refresh();const target=card.dataset.paperKind==='credits'&&!office.hidden?office:primary;if(target.disabled||!target.getClientRects().length)return false;target.focus({preventScroll:true});return doc.activeElement===target};

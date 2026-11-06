@@ -126,3 +126,14 @@ body[data-scene=desk] .collection-object{right:16%;bottom:9%;width:190px}
 .office-cat:hover,.office-cat:active{background-color:transparent;transform:none}
 .office-cat:focus-visible{outline:2px dashed #28474a;outline-offset:-24px}
 .office-cat[hidden]{display:none}
+
+/* The completed campaign makes the existing daily and late post easier to discover. */
+.service-copy{display:block;min-width:0;width:100%}.service-copy>span{display:flex;align-items:center;justify-content:center;gap:6px}.service-copy small{font:500 14px/1.25 Signika,sans-serif;max-width:18ch;margin:7px auto 0;color:#465852;white-space:normal}
+.service-copy small[hidden]{display:none}
+.campaign-complete .primary-letter{bottom:20%}
+.campaign-complete .service-slip{min-height:86px;align-items:flex-start;padding-block:16px;gap:8px}
+
+body.big .service-copy small{font-size:16px}
+@media(orientation:portrait){.campaign-complete .primary-letter{bottom:29%}.campaign-complete .postal-services{bottom:11%}}
+@media(max-height:720px) and (orientation:portrait){body.campaign-complete[data-scene=office] .primary-letter{bottom:37%}.campaign-complete .postal-services{bottom:16%}.campaign-complete .service-slip{padding:12px 8px;gap:5px;font-size:18px}.campaign-complete .service-slip>img{width:18px;height:18px}.service-copy small{font-size:13px}}
+@media(max-height:600px) and (orientation:landscape){.campaign-complete .primary-letter{bottom:40%}.campaign-complete .postal-services{bottom:7%;width:48%}.campaign-complete .service-slip{padding:10px 7px;min-height:78px;font-size:17px}.service-copy small{font-size:12px}}
