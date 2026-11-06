@@ -86,3 +86,7 @@ body.reduced .destination-cancellation{animation:none}
 .delivery-letter[data-side=back] .note-object{position:relative;inset:auto;margin:0 0 6px;flex:none}
 .delivery-letter[data-side=back] .note-object .letter-note{margin:0;rotate:0}
 .note-smudge{position:absolute;z-index:3;right:-11px;bottom:13px;width:46px;height:auto;rotate:-12deg;mix-blend-mode:multiply;opacity:.43;pointer-events:none}
+
+/* Received correspondence keeps its applied ink when it is picked up again. */
+.mail-stack[data-fresh=false] .delivery-letter,.mail-stack[data-fresh=false] .postage-art,.mail-stack[data-fresh=false] .postal-cancellation{animation:none!important}
+.next-post:focus-visible{outline:0}.next-post:focus-visible .next-copy strong{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}.next-post:focus-visible .next-arrow{outline:2px solid #914533;outline-offset:4px;border-radius:50%}

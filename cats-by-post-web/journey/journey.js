@@ -16,7 +16,7 @@
  const chapters={1:['First post',5],2:['Ginger and blue',10],3:['The town depot',10],4:['Doors of their own',15],5:['A change of points',15],6:['Under the city',15],7:['Special delivery',15],8:['Home for Christmas',15]};
  const WORLD={width:2048,height:2048};
  let model,hadSave=false;try{const raw=localStorage.getItem(KEY);model=M.read(raw,{empty:STUDY==='first'});hadSave=!!raw&&JSON.parse(raw)?.version===2}catch{model=M.read(null,{empty:STUDY==='first'})}
- let lastDelivery=null,levels=[],view=null,returnView=null,focusReturn=null,zoom=1,drag=null,dragClick=false,gameIsReady=false,gamePromiseResolve,gamePromiseReject,openingToken=0,toastTimer,loadingTimer,serviceReturn='map',letterGeneration=0;
+ let lastDelivery=null,levels=[],view=null,returnView=null,focusReturn=null,zoom=1,drag=null,dragClick=false,gameIsReady=false,gamePromiseResolve,gamePromiseReject,openingToken=0,toastTimer,loadingTimer,serviceReturn='map',letterGeneration=0,gameReturn=null,mapFocusPlace=null;
  const gamePromise=new Promise((resolve,reject)=>{gamePromiseResolve=resolve;gamePromiseReject=reject});gamePromise.catch(()=>{});
  const frame=$('game'),vp=$('map-window'),world=$('map-world'),wide=matchMedia('(min-width:740px)');
  const progressListeners=new Set();
@@ -67,22 +67,23 @@
   if(modal)$('post-pane').setAttribute('aria-modal','true');else $('post-pane').removeAttribute('aria-modal');
   $('map-region').inert=modal;$('map-header').inert=modal;
  }
- function openPacket(id,ch){
-  const p=places.find(p=>p.id===id);focusReturn=document.activeElement;
+ function openPacket(id,ch,restore=null){
+  const p=places.find(p=>p.id===id);focusReturn=document.activeElement;mapFocusPlace=id;
   let chapter=ch||p.chapters.find(c=>chapterDone(c)<chapters[c][1])||p.chapters.at(-1);
-  view={type:'packet',place:id,chapter};returnView=null;renderPane();setPaneState();$('pane-back').focus({preventScroll:true});renderPins();
+  view={type:'packet',place:id,chapter};returnView=null;renderPane();setPaneState();$('pane-back').focus({preventScroll:true});renderPins();if(restore)restorePacketPosition(restore);
  }
- function openLetter(id,back=null){
+ function restorePacketPosition(restore){const content=$('pane-content');content.scrollTop=restore.scroll||0;const row=content.querySelector('[data-letter="'+restore.focusLetter+'"]');if(row&&!row.disabled){row.focus({preventScroll:true});const r=row.getBoundingClientRect(),p=content.getBoundingClientRect();if(r.top<p.top||r.bottom>p.bottom)row.scrollIntoView({block:'nearest'})}}
+ function openLetter(id,back=null,{from=null}={}){
   if(!M.valid(id))return;focusReturn=document.activeElement;model=M.select(model,id);
-  returnView=back;view={type:'letter',id,place:placeFor(id).id};renderPane();setPaneState();PaperMotion.letter($('pane-content').querySelector('.mail-preview'));$('pane-back').focus({preventScroll:true});renderPins();
+  returnView=back;view={type:'letter',id,place:placeFor(id).id};renderPane();setPaneState();PaperMotion.letter($('pane-content').querySelector('.mail-preview'),{from});$('pane-back').focus({preventScroll:true});renderPins();const l=allLevels().find(x=>x.id===id);announce('Letter '+number(id)+', '+l.title+'. '+(model.done[id]?'Posted.':id===active()?.id?'Your unfinished letter.':'Ready to open.'));
  }
  function backToMap(){
   view=null;returnView=null;renderPane();setPaneState();renderPins();
-  if(focusReturn?.isConnected&&!focusReturn.closest('#post-pane'))focusReturn.focus({preventScroll:true});else $('current-place').focus({preventScroll:true});
+  if(focusReturn?.isConnected&&!focusReturn.closest('#post-pane'))focusReturn.focus({preventScroll:true});else ($('map-pins').querySelector('[data-place="'+mapFocusPlace+'"]')||$('current-place')).focus({preventScroll:true});
  }
  function paneBack(){
-  if(view?.type==='letter'&&returnView){const old=returnView;returnView=null;view=old;renderPane();setPaneState();$('pane-content').scrollTop=old.scroll||0;return}
-  if(wide.matches&&view?.type==='letter'){openPacket(view.place,+view.id.split('-')[0]);return}
+  if(view?.type==='letter'&&returnView){const old=returnView;returnView=null;view=old;renderPane();setPaneState();restorePacketPosition(old);return}
+  if(wide.matches&&view?.type==='letter'){openPacket(view.place,+view.id.split('-')[0],{scroll:0,focusLetter:view.id});return}
   backToMap();
  }
  function roomArt(p,cls='room-postcard'){
@@ -116,7 +117,7 @@
    $('current-letter').hidden=!!current().planned||(!active()&&!next());$('current-letter').textContent=active()?'Continue '+number(active().id):'Next '+number(next()?.id||current().id);
    content.innerHTML=`<div class="packet-hero"><button class="preview-print packet-print" id="packet-print" aria-label="Take a closer look at ${esc(preview.title)}">${print(preview,p)}<span class="print-loupe">${uiIcon('magnifying-glass-plus')}</span></button><div class="packet-postal-line">${chapterPostmarks(p,ch)||PostalIdentity.mark(p.id,{className:"packet-place-mark",decorative:true})}<p class="packet-progress">${count(p)} of ${p.count} posted</p></div></div><div class="chapter-tabs" role="group" aria-label="Chapter packets">${p.chapters.map(c=>`<button data-chapter="${c}" aria-pressed="${c===ch}"><span class="chapter-name">${chapters[c][0]}</span><span class="chapter-caption"><small>${chapterDone(c)} of ${chapters[c][1]} posted</small></span></button>`).join('')}</div>${!p.art?'<p class="planned-note">Not reached yet.</p>':''}<ol class="letters">${list.map(l=>{const delivered=!!model.done[l.id],ready=!l.planned&&(l.id===next()?.id||l.id===active()?.id),available=!l.planned&&(delivered||ready);return `<li><button data-letter="${l.id}" class="${ready?'letter-current':''} ${delivered?'letter-posted':''}" ${ready?'aria-current="step"':''} ${available?'':'disabled'}><span class="route-number">${number(l.id)}</span><span class="route-name">${esc(l.title)}<small>${l.planned?'Still to come':delivered?'Posted':l.id===active()?.id?'Your unfinished letter':ready?'Ready to open':'After earlier post'}</small></span>${uiIcon(delivered?'check':ready?'envelope-open':'lock-simple','letter-state')}</button></li>`}).join('')}</ol>`;
    $('packet-print').onclick=()=>inspectPrint(preview,p);
-   content.querySelectorAll('[data-letter]').forEach(b=>b.onclick=()=>openLetter(b.dataset.letter,{...view,scroll:content.scrollTop}));
+   content.querySelectorAll('[data-letter]').forEach(b=>b.onclick=()=>openLetter(b.dataset.letter,{...view,scroll:content.scrollTop,focusLetter:b.dataset.letter}));
    content.querySelectorAll('[data-chapter]').forEach(b=>b.onclick=()=>{view={...view,chapter:+b.dataset.chapter};renderPane();content.querySelector(`[data-chapter="${view.chapter}"]`).focus({preventScroll:true})});
   }else{
    const l=allLevels().find(x=>x.id===(view?.id||current().id)),p=placeFor(l.id),isActive=l.id===active()?.id,done=!!model.done[l.id],replacing=!!active()&&!isActive;
@@ -155,11 +156,11 @@
   clearTimeout(loadingTimer);return app;
  }
  async function startLetter(id){
-  const request=++letterGeneration,l=levels.find(x=>x.id===id);if(!l)return;lastDelivery=null;closeDialogs();
+  const request=++letterGeneration,l=levels.find(x=>x.id===id);if(!l)return;const origin={id,place:placeFor(id).id,packet:returnView?.type==='packet'?{...returnView,focusLetter:id}:null};lastDelivery=null;closeDialogs();
   try{const app=await readyForGame('Opening '+l.title+'…');if(!app||request!==letterGeneration)return;
    const saved=app.savedInfo,isResume=saved?.id===id&&saved.mode!=='won'&&saved.kind==='story';
    const opened=isResume?await app.continueGame():await app.start('story',levels.indexOf(l));
-   if(request!==letterGeneration)return;if(!opened)throw Error('This letter could not be opened.');
+   if(request!==letterGeneration)return;if(!opened)throw Error('This letter could not be opened.');gameReturn=origin;
    if(isResume){app.engine.pause(true);app.engine.unsuspend('navigation');app.engine.freeze(false)}
    $('opening').hidden=true;model={...model,active:id,selected:id};save();updateDock();setPlaying(true);
   }catch(e){if(request===letterGeneration)openingError('The letter could not be opened.',e)}
@@ -183,15 +184,15 @@
   if(['first','returning','postmarks','photographs'].includes(STUDY))url.searchParams.set('visit',STUDY);else if(EXAMPLE==='depot')url.searchParams.set('example','depot');
   location.href=url.href;
  }
- function leave(destination='map'){
+ function leave(destination='map',{from=null}={}){
   if(!gameIsReady)return;const app=frame.contentWindow.APP,s=app.engine.state(),wasPlaying=app.view==='play';setPlaying(false);app.engine.pause(true);app.save();app.closeSheet(false);app.engine.suspend('navigation');
   syncProgress();if(wasPlaying&&(s.shift||s.daily||s.practice||s.sample)){model.active=null;save()}else if(wasPlaying&&s.mode!=='won'&&!model.done[s.id]&&destination!=='next'){model.active=s.id;save()}
   updateDock();
-  const destinationPlace=placeFor(current().id),changedPlace=s.mode==='won'&&!s.shift&&!s.daily&&!s.practice&&!s.sample&&placeFor(s.id)?.id!==destinationPlace.id;
+  const destinationPlace=placeFor(destination==='packet'?s.id:current().id),story=!s.shift&&!s.daily&&!s.practice&&!s.sample,changedPlace=story&&((s.mode==='won'&&placeFor(s.id)?.id!==destinationPlace.id)||(gameReturn?.place&&gameReturn.place!==destinationPlace.id));
   const orient=()=>{if(changedPlace)centreAt(destinationPlace.focus);if(s.mode==='won')announce(s.title+' posted. '+(current().planned?'Not reached yet.':'Next letter '+number(current().id)+', '+current().title+'.'))};
-  if(destination==='next'&&!current().planned){openLetter(current().id);orient();return}
-  if(destination==='packet'){openPacket(placeFor(s.id)?.id||placeFor(current().id).id);return}
-  if(destination==='cats'){view=null;returnView=null;renderPane();setPaneState();renderPins();company.open();return}
+  if(destination==='next'&&!current().planned){openLetter(current().id,null,{from});orient();return}
+  if(destination==='packet'){const p=placeFor(s.id)||placeFor(current().id),old=gameReturn?.id===s.id?gameReturn.packet:null;openPacket(p.id,+s.id.split('-')[0],old||{scroll:0,focusLetter:s.id});orient();return}
+  if(destination==='cats'){view=null;returnView=null;renderPane();setPaneState();renderPins();orient();company.open();return}
   view=null;returnView=null;renderPane();setPaneState();renderPins();orient();
  }
  function returnFromService(){if(serviceReturn==='main-menu')mainMenu();else leave('map')}

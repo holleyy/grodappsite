@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "00fb465091053fb2b74951499dcabbba1edce91d",
+  "sourceCommit": "46c4dba3dcd41a76ce00d1b2764b17352625f7a1",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-35840ad7564e",
-  "engineSha256": "617bbe2c86f66ca41fef6adba8b454eeb788476629e2bc2430a6526d78f41e9f",
+  "build": "web-b25ffc45b3a2",
+  "engineSha256": "25d3396e87d727eb6a4b76a6de13490046b3e2841ddae64604464a62db8b8d51",
   "entry": "journey/start.html",
-  "scope": "Depth-clipped allocation-free board target and adaptive pressure HUD; physical Safari qualification pending."
+  "scope": "Connected delivery, next-letter, packet/menu and native milestone journeys; physical Safari qualification pending."
 }

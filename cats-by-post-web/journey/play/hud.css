@@ -141,3 +141,12 @@ body.big .cat-size,body.big .hatch-tab-next small{font-size:11px}body.big .arriv
  .four-hatches .is-expanded .cat-size{line-height:1;padding:1px 3px}
  .four-hatches .is-expanded .all-cats{padding-block:0;min-height:40px}
 }
+
+/* The delivered note can be put down and picked up again. */
+.review-delivery{display:flex;align-items:center;gap:6px;flex:none;min-width:44px;min-height:44px;padding:5px 0 5px 8px;border:0;border-radius:0;box-shadow:none;background:none;font:.78rem/1.15 var(--body);color:#334f53;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#7f8d7870}
+.review-delivery .menu-icon{width:18px;height:18px}.review-delivery:hover{background:none;color:#914533}
+.desk.has-note .cancel-run[hidden]{display:none!important}.desk.has-note .desk-status{flex:1;min-width:0}
+.sheet-title{gap:10px}.sheet-title h2{flex:1;min-width:0}.sheet-title #sheet-back{flex:none;min-width:44px;min-height:44px}
+body.big .review-delivery{font-size:.9rem}
+@media(max-width:360px){.review-delivery{font-size:.72rem;gap:4px}.review-delivery .menu-icon{width:16px;height:16px}}
+.sheet:not([data-kind=delivery]) .sheet-title:has(#sheet-back:not([hidden])) h2{font-size:clamp(28px,6vw,36px)}
