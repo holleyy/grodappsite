@@ -128,12 +128,20 @@ body[data-scene=desk] .collection-object{right:16%;bottom:9%;width:190px}
 .office-cat[hidden]{display:none}
 
 /* The completed campaign makes the existing daily and late post easier to discover. */
-.service-copy{display:block;min-width:0;width:100%}.service-copy>span{display:flex;align-items:center;justify-content:center;gap:6px}.service-copy small{font:500 14px/1.25 Signika,sans-serif;max-width:18ch;margin:7px auto 0;color:#465852;white-space:normal}
+.service-copy{display:block;min-width:0;width:100%}
+.service-copy>span{display:flex;align-items:center;justify-content:center;gap:6px}
+.service-copy small{display:block;font:500 14px/1.3 Signika,sans-serif;margin:8px 0 0;color:#465852;white-space:normal}
 .service-copy small[hidden]{display:none}
-.campaign-complete .primary-letter{bottom:20%}
-.campaign-complete .service-slip{min-height:86px;align-items:flex-start;padding-block:16px;gap:8px}
-
 body.big .service-copy small{font-size:16px}
-@media(orientation:portrait){.campaign-complete .primary-letter{bottom:29%}.campaign-complete .postal-services{bottom:11%}}
-@media(max-height:720px) and (orientation:portrait){body.campaign-complete[data-scene=office] .primary-letter{bottom:37%}.campaign-complete .postal-services{bottom:16%}.campaign-complete .service-slip{padding:12px 8px;gap:5px;font-size:18px}.campaign-complete .service-slip>img{width:18px;height:18px}.service-copy small{font-size:13px}}
-@media(max-height:600px) and (orientation:landscape){.campaign-complete .primary-letter{bottom:40%}.campaign-complete .postal-services{bottom:7%;width:48%}.campaign-complete .service-slip{padding:10px 7px;min-height:78px;font-size:17px}.service-copy small{font-size:12px}}
+.campaign-complete .primary-letter{bottom:23%}
+/* Insets:20px regular,16px compact. The cropped art keeps transparency outside that inset. */
+.campaign-complete .postal-services{--slip-inset:20px;--slip-gap:8px;gap:12px}
+.campaign-complete .service-slip,.campaign-complete .service-slip:hover{display:grid;align-items:stretch;justify-content:stretch;min-height:0;padding:var(--slip-inset);background-size:116% 116%}
+.campaign-complete .service-copy{display:grid;grid-template-rows:minmax(28px,auto) 1fr;row-gap:var(--slip-gap)}
+.campaign-complete .service-copy>span{white-space:nowrap;line-height:1.15}
+.campaign-complete .service-copy small{display:flex;align-items:center;justify-content:center;max-width:none;margin:0;min-height:1.3em}
+@media(orientation:portrait){.campaign-complete .primary-letter{bottom:29%}.campaign-complete .postal-services{bottom:11%;width:min(calc(100% - 24px),500px)}}
+@media(max-height:720px) and (orientation:portrait){body.campaign-complete[data-scene=office] .primary-letter{bottom:41%}.campaign-complete .postal-services{bottom:16%}.campaign-complete .service-slip{font-size:18px}}
+@media(max-width:1200px) and (orientation:landscape){.campaign-complete .postal-services{--slip-inset:16px}.campaign-complete .service-slip{font-size:18px}.campaign-complete .service-slip img{width:20px;height:20px}}
+@media(max-width:359px){.campaign-complete .postal-services{--slip-inset:16px}}
+@media(max-height:600px) and (orientation:landscape){.campaign-complete .primary-letter{bottom:44%}.campaign-complete .postal-services{--slip-inset:16px;bottom:7%;width:52%}.campaign-complete .service-slip{font-size:17px}.campaign-complete .service-slip img{width:18px;height:18px}}

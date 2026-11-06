@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "1cc7d7c2aeaf0d4cff2df8ff7ef8069a40c3ebff",
+  "sourceCommit": "2fb62f75513cbe1056098094df99ccbbf9bedf16",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-ff8f1c0d5da6",
-  "engineSha256": "bb216d2b8f17c68798f3cd71e0dd171778feb7cb28b0697ddacfcdc0b81587d4",
+  "build": "web-64b052192275",
+  "engineSha256": "8140e36f176dd97a72219960cf03fedb18948b0f26fd18ffe2ed9d28b0d11f2b",
   "entry": "journey/start.html",
-  "scope": "Review: one credits return, simpler paper tabs and completed-office invitations to Daily, Practice and Night Shift. Physical Safari qualification pending."
+  "scope": "Shared postal-slip insets, aligned text rows and corrected spacing against the painted paper. Physical Safari qualification pending."
 }
