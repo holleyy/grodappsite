@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "4d03453bba7cac40b6a00da5450e4f4320f82fb0",
+  "sourceCommit": "a3bab74d4a624a889fd35c465b235b4671a022b4",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-10a62768775d",
-  "engineSha256": "81bb2d78e222df12ca785ddc8a6f96081d718a27dd566062e355f6f0c68ab107",
+  "build": "web-7752d78d4d14",
+  "engineSha256": "b6888b094e6e17de375931680b1821018e886328a2dba052fc6be86ad5e33892",
   "entry": "journey/start.html",
-  "scope": "Chapter correspondence, signed thank-you, credits and phone preview; physical Safari qualification pending."
+  "scope": "Ending letter action alignment, consistent spacing and paper padding; refreshed phone preview. Physical Safari qualification pending."
 }
