@@ -28,6 +28,8 @@
  const placeFor=id=>typeof id==='string'?places.find(p=>p.chapters.includes(+id.split('-')[0])):null;
  function deliveryContext(id){const context=M.continuation(model,allLevels(),id),letter=context.letter,p=letter&&placeFor(letter.id);return{...context,placeId:placeFor(id)?.id,chapterJustCompleted:lastDelivery?.id===id?lastDelivery.chapterJustCompleted:context.chapterJustCompleted,chapterTitle:chapters[+id.split('-')[0]]?.[0],placeChanged:!!letter&&placeFor(id)?.id!==p.id,letter:letter?{id:letter.id,title:letter.title,place:p.label,planned:!!letter.planned}:null}}
  const count=p=>Object.keys(model.done).filter(id=>p.chapters.includes(+id.split('-')[0])).length;
+ const destinationCapture=p=>'images/destinations/'+p.id+'.webp?v='+encodeURIComponent(document.querySelector('meta[name=cbp-build]')?.content||'web');
+ const placeStatus=p=>count(p)===p.count?'All posted':count(p)?count(p)+' of '+p.count+' posted':placeFor(current()?.id)?.id===p.id?'Ready to post':'Not reached yet';
  const chapterDone=ch=>Object.keys(model.done).filter(id=>+id.split('-')[0]===ch).length;
  const toast=text=>{clearTimeout(toastTimer);$('toast').textContent=text;$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,3200)};
  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(M.navigation(model)))}catch{toast('Your post will stay with you for this visit.')}};
@@ -48,7 +50,7 @@
  function recenter(){if(!current())return;const p=placeFor(current().id);if(vp.clientHeight<650)changeZoom(minZoom(),[p.focus[0],p.focus[1]+.05]);else centreAt(p.focus);announce('Back at '+p.title)}
  function renderPins(){
   if(!levels.length)return;const currentPlace=placeFor(current().id).id;
-  $('map-pins').innerHTML=places.map(p=>`<button class="map-pin ${p.id===currentPlace?'current':''} ${view?.place===p.id?'selected':''}" style="left:${p.x*100}%;top:${p.y*100}%" data-place="${p.id}" aria-label="${p.title}, ${count(p)} of ${p.count} posted">${PostalIdentity.mark(p.id,{className:"pin-mark",earned:PostalIdentity.earnedChapters(p.id,model.done).length>0,decorative:true})}<span class="pin-copy">${p.label}<small>${count(p)===p.count?'All posted':count(p)?count(p)+' of '+p.count+' posted':p.art?'Not reached yet':'Still to come'}</small></span></button>`).join('');
+  $('map-pins').innerHTML=places.map(p=>`<button class="map-pin ${p.id===currentPlace?'current':''} ${view?.place===p.id?'selected':''}" style="left:${p.focus[0]*100}%;top:${p.focus[1]*100}%" data-place="${p.id}" aria-label="${p.title}, ${placeStatus(p)}"><img class="map-scene" data-destination-capture="${p.id}" src="${destinationCapture(p)}" alt="" width="960" height="640" draggable="false"><span class="pin-caption">${PostalIdentity.mark(p.id,{className:"pin-mark",earned:PostalIdentity.earnedChapters(p.id,model.done).length>0,decorative:true})}<span class="pin-copy">${p.label}<small>${placeStatus(p)}</small></span></span></button>`).join('');
   $('map-pins').querySelectorAll('button').forEach(b=>b.onclick=e=>{if(dragClick){e.preventDefault();return}openPacket(b.dataset.place)});
  }
  function updateDock(){
@@ -129,7 +131,7 @@
   content.scrollTop=0;
  }
  function placeIndex(){
-  $('index-content').innerHTML=`<ul class="place-index">${places.map(p=>`<li><button data-index-place="${p.id}" ${p.id===placeFor(current().id).id?'aria-current="location"':''}><span class="index-art">${p.art?`<img src="../assets/${p.art}.png" alt="" width="1280" height="880">`:`<img class="index-map-crop" src="images/route.webp" alt="" style="left:${40-p.focus[0]*240}px;top:${32-p.focus[1]*240}px">`}</span><span>${p.title}<small>${count(p)?count(p)+' of '+p.count+' posted':p.art?'Not reached yet':'Still to come'}</small></span>${uiIcon('caret-right','row-arrow')}</button></li>`).join('')}</ul>`;
+  $('index-content').innerHTML=`<ul class="place-index">${places.map(p=>`<li><button data-index-place="${p.id}" ${p.id===placeFor(current().id).id?'aria-current="location"':''}><span class="index-art"><img src="${destinationCapture(p)}" alt="" width="960" height="640"></span><span>${p.title}<small>${placeStatus(p)}</small></span>${uiIcon('caret-right','row-arrow')}</button></li>`).join('')}</ul>`;
   $('index-content').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('index-dialog').close();centreAt(places.find(p=>p.id===b.dataset.indexPlace).focus);openPacket(b.dataset.indexPlace)});showDialog('index-dialog');
  }
  function closeDialogs(){document.querySelectorAll('dialog[open]').forEach(d=>d.close())}
