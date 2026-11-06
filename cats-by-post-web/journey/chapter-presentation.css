@@ -19,14 +19,27 @@
 #chapterScene #chapterCard[data-paper-kind=film]::before{display:none}
 #chapterScene #chapterCard[data-paper-kind=film] .chapter-letter-content,#chapterScene #chapterCard[data-paper-kind=film] .chapter-closing{display:none}
 #chapterScene #chapterCard[data-paper-kind=film] button{background:#f8eed9ed;box-shadow:0 2px 6px #172c2b44;color:#253e40}
-#chapterScene #chapterCard[data-paper-kind=thanks]{padding-top:42px;padding-bottom:40px}
+#chapterScene #chapterCard[data-paper-kind=thanks]{--letter-inset:38px;padding:0;background:none}
 #chapterScene #chapterCard[data-paper-kind=thanks] #chapterTitle{max-width:calc(100% - 70px)}
 #chapterScene #chapterCard[data-paper-kind=thanks] #chapterText{font-size:19px;line-height:1.6;max-width:33ch}
 .chapter-signoff{font:400 23px/1.2 PostHand,cursive;margin:20px 0 28px;color:var(--chapter-ink)}
 .chapter-signoff>span{display:block;font-size:33px;margin-top:7px}
-#chapterScene #chapterCard[data-paper-kind=thanks] #chapter-office{display:block;width:fit-content;max-width:100%;margin-top:8px;text-align:left}
-#chapterScene #chapterCard[data-paper-kind=thanks] .row{flex-direction:column;align-items:flex-start;gap:8px;margin-top:10px}
-#chapterScene #chapterCard[data-paper-kind=thanks] .row button{max-width:100%;text-align:left}
+/* The sheet, perforated counterfoil and return tab share one paper object. */
+.chapter-thanks-sheet{position:relative;padding:42px var(--letter-inset) 32px;background:url(images/print-paper.webp) center/107% 109% no-repeat}
+#chapterScene #chapterCard[data-paper-kind=thanks] .chapter-signoff{margin-bottom:0}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;align-items:stretch;margin:-4px 0 0;padding:9px 8px 8px;background:url(images/print-paper.webp) center/107% 109% no-repeat;transform-origin:50% 0;transition:transform .18s ease;isolation:isolate}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row::before{content:"";position:absolute;left:5px;right:5px;top:1px;height:3px;background:radial-gradient(ellipse,#79634580 0 1px,transparent 1.6px) 0 0/9px 3px repeat-x}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row::after{content:"";position:absolute;left:50%;top:17px;bottom:15px;border-left:1px dashed #987a5066;pointer-events:none}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row button{display:flex;align-items:center;justify-content:center;gap:10px;min-width:0;min-height:80px;width:100%;padding:16px 12px;max-width:100%;text-align:left;background:transparent;color:var(--chapter-ink);box-shadow:none;text-decoration:none;border-radius:0;line-height:1.3}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row button::before{content:"";flex:0 0 25px;height:25px;background:currentColor;mask:url(icons/envelope-open.svg) center/contain no-repeat}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row #chapterSecondary::before{mask-image:url(icons/arrow-counter-clockwise.svg)}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row button:hover{background:#ddc28c40;color:var(--chapter-ink)}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row button:focus-visible{outline-offset:-5px}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row:has(button:active){transform:perspective(600px) rotateX(2deg)}
+#chapterScene #chapterCard[data-paper-kind=thanks] #chapter-office{position:relative;isolation:isolate;display:block;width:fit-content;max-width:calc(100% - 16px);min-height:50px;margin:-3px 9px 8px auto;padding:13px 22px;text-align:center;text-decoration:none;background:transparent;color:var(--chapter-ink);rotate:1deg;filter:drop-shadow(0 3px 3px #142b3233);transition:translate .18s ease,rotate .18s ease}
+#chapterScene #chapterCard[data-paper-kind=thanks] #chapter-office::before{content:"";position:absolute;inset:0;z-index:-1;background:#edd6ad url(images/print-paper.webp) center/108% 112% no-repeat;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)}
+#chapterScene #chapterCard[data-paper-kind=thanks] #chapter-office:hover{translate:0 -2px;rotate:0deg}
+#chapterScene #chapterCard[data-paper-kind=thanks] #chapter-office:active{translate:0 1px}
 #chapterScene #chapterCard[data-paper-kind=credits]{text-align:center;padding:43px 42px 36px}
 #chapterScene #chapterCard[data-paper-kind=credits] #chapterTitle{max-width:none;font-size:clamp(43px,5vw,58px);margin:26px 0 18px}
 #chapterScene #chapterCard[data-paper-kind=credits] .chapter-impression{position:relative;right:auto;top:auto;display:flex;margin:0 auto;width:88px;rotate:-8deg}
@@ -60,3 +73,9 @@ body.reduced #chapterScene #chapterCard{animation:none!important}
 @media(max-width:359px),(max-height:520px) and (orientation:landscape){#chapterScene #chapterCard[data-paper-kind=thanks] #chapterText{font-size:22px}}
 body.big #chapterScene #chapterCard[data-paper-kind=thanks] #chapterText{font-size:27px}
 body.big #chapterScene #chapterCard[data-paper-kind=credits] #chapterText{font-size:21px}
+
+@media(max-width:739px){#chapterScene #chapterCard[data-paper-kind=thanks]{--letter-inset:26px}.chapter-thanks-sheet{padding-top:30px}}
+@media(max-width:359px){#chapterScene #chapterCard[data-paper-kind=thanks]{--letter-inset:23px}#chapterScene #chapterCard[data-paper-kind=thanks] .row button{gap:8px;padding-inline:10px}#chapterScene #chapterCard[data-paper-kind=thanks] .row button::before{flex-basis:22px;height:22px}}
+@media(max-height:520px) and (orientation:landscape){#chapterScene #chapterCard[data-paper-kind=thanks]{--letter-inset:25px}.chapter-thanks-sheet{padding-top:24px}}
+@media(prefers-reduced-motion:reduce){#chapterScene #chapterCard[data-paper-kind=thanks] .row,#chapterScene #chapterCard[data-paper-kind=thanks] #chapter-office{transition:none;transform:none!important;translate:none!important;rotate:none!important}}
+body.reduced #chapterScene #chapterCard[data-paper-kind=thanks] .row,body.reduced #chapterScene #chapterCard[data-paper-kind=thanks] #chapter-office{transition:none;transform:none!important;translate:none!important;rotate:none!important}
