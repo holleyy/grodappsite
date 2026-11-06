@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "aa054ec6de4de7a919ec6669f30a5819f68ae8e1",
+  "sourceCommit": "00fb465091053fb2b74951499dcabbba1edce91d",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-5944cfbf848a",
-  "engineSha256": "c3c80efff327ab0e0c34b3db343738229da2a27778754b33d5ab6f3b8896eeeb",
+  "build": "web-35840ad7564e",
+  "engineSha256": "617bbe2c86f66ca41fef6adba8b454eeb788476629e2bc2430a6526d78f41e9f",
   "entry": "journey/start.html",
-  "scope": "Depth-clipped board feedback and adaptive pressure HUD; physical Safari qualification pending."
+  "scope": "Depth-clipped allocation-free board target and adaptive pressure HUD; physical Safari qualification pending."
 }

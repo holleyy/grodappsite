@@ -147,10 +147,10 @@
   #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
-<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-5944cfbf848a" type="image/svg+xml">
+<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-35840ad7564e" type="image/svg+xml">
 <style id="web-host-style">
-@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-5944cfbf848a);font-weight:400;font-display:swap}
-@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-5944cfbf848a);font-weight:500;font-display:swap}
+@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-35840ad7564e);font-weight:400;font-display:swap}
+@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-35840ad7564e);font-weight:500;font-display:swap}
 #hud,#shiftCards,#shiftEnding,#shiftDebug,#chapterKicker,#debug,#controls,#atlasPanel{display:none!important}
 html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterScene{font-family:Signika,sans-serif;color:#253e40}
@@ -163,7 +163,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterCard button:focus-visible{outline:3px solid #a94632;outline-offset:3px}
 @media(max-width:420px){#chapterCard{margin:10px;max-width:calc(100vw - 20px)}#chapterCard button{margin-bottom:6px}}
 </style>
-<link rel="stylesheet" href="../journey/preferences.css?v=web-5944cfbf848a"><script src="../journey/preferences.js?v=web-5944cfbf848a"></script></head>
+<link rel="stylesheet" href="../journey/preferences.css?v=web-35840ad7564e"><script src="../journey/preferences.js?v=web-35840ad7564e"></script></head>
 <body>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
@@ -263,7 +263,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "web-5944cfbf848a";
+const BUILD_ID = "web-35840ad7564e";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -26879,13 +26879,22 @@ function webDrawBoardFeedback(mark){
   function locked(x,y){const s=gm.sim;if(!s)return false;for(let i=0;i<s.n;i++)if((s.st[i]===GL_BOARD||((s.ev[i]===GE_DELIVERED||s.ev[i]===GE_WRONG)&&gm.t<s.tick*G_TICK))&&((s.x[i]===x&&s.y[i]===y)||(s.px[i]===x&&s.py[i]===y)))return true;return false;}
   // One description feeds pointer feedback, keyboard and precise placement. No rule is run here.
   const targetDirections=['up','right','down','left'];
+  const targetLists=['hatches','baskets','dogs','gates'],targetKinds=['hatch','basket','dog','gate'];
+  function drawTargetPiece(x,y){
+    // gPieceAt's optional [] fallbacks are fine on input, but not on a draw frame.
+    for(let f=0;f<targetLists.length;f++){
+      const list=gm.L[targetLists[f]];
+      if(list)for(let i=0;i<list.length;i++)if(list[i].x===x&&list[i].y===y)return targetKinds[f];
+    }
+    return tunnelPairAt(gm.L.tunnels,x,y)>=0?'tunnel':null;
+  }
   function target(x,y,out,draw=false){
     out.x=x;out.y=y;out.action='blocked';out.reason='That tile is outside the sorting floor.';out.type=null;out.dir=null;out.locked=false;
     if(!Number.isInteger(x)||!Number.isInteger(y)||x<0||y<0||x>=gm.L.board.w||y>=gm.L.board.h)return out;
     if(!editable()){out.reason='Pause to arrange.';return out;}
     const shift=gm.shift,locks=shift?(draw?G_SRC.locked:NIGHTSHIFT.lockedTiles(shift)):null;
     if(shift?locks.includes(y*gm.L.board.w+x):precision()&&locked(x,y)){out.locked=true;out.reason='A cat is on or heading for that tile.';return out;}
-    const fixed=gPieceAt(x,y);
+    const fixed=draw?drawTargetPiece(x,y):gPieceAt(x,y);
     if(fixed){out.action=fixed==='gate'||fixed==='tunnel'?'inspect':'blocked';out.reason=fixed==='hatch'?'The hatch needs this tile.':fixed==='basket'?'A basket already has this tile.':fixed==='dog'?'The dog is keeping this tile.':fixed==='tunnel'?'Inspect the linked tunnel.':'Inspect the points.';return out;}
     let placed=null;for(let i=0;i<gm.chutes.length;i++)if(gm.chutes[i].x===x&&gm.chutes[i].y===y){placed=gm.chutes[i];break;}
     if(placed){out.type=placed.type;out.dir=G_CW[(G_CW.indexOf(placed.dir)+1)%4];out.locked=!!placed.locked;
