@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "2fb62f75513cbe1056098094df99ccbbf9bedf16",
+  "sourceCommit": "0a912f54088eb911c4a4b12a7239bcf7edb0a02f",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-64b052192275",
-  "engineSha256": "8140e36f176dd97a72219960cf03fedb18948b0f26fd18ffe2ed9d28b0d11f2b",
+  "build": "web-8262f2145e3b",
+  "engineSha256": "b29f2bd938fc4b5cdc01b7864e233f584bfa2847deaae8e08d531b796e229994",
   "entry": "journey/start.html",
-  "scope": "Shared postal-slip insets, aligned text rows and corrected spacing against the painted paper. Physical Safari qualification pending."
+  "scope": "Continuous proportional camera, bounded raster coverage, preserved papercraft and native chapter ownership. Physical Safari and frame pacing qualification pending."
 }

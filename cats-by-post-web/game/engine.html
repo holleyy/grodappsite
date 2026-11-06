@@ -147,16 +147,16 @@
   #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
-<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-64b052192275" type="image/svg+xml">
+<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-8262f2145e3b" type="image/svg+xml">
 <style id="web-host-style">
-@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-64b052192275);font-weight:400;font-display:swap}
-@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-64b052192275);font-weight:500;font-display:swap}
+@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-8262f2145e3b);font-weight:400;font-display:swap}
+@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-8262f2145e3b);font-weight:500;font-display:swap}
 #hud,#shiftCards,#shiftEnding,#shiftDebug,#chapterKicker,#debug,#controls,#atlasPanel{display:none!important}
 html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterScene{font-family:Signika,sans-serif;color:#253e40}
 
 </style>
-<link rel="stylesheet" href="../journey/preferences.css?v=web-64b052192275"><script src="../journey/preferences.js?v=web-64b052192275"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-64b052192275"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-64b052192275"></head>
+<link rel="stylesheet" href="../journey/preferences.css?v=web-8262f2145e3b"><script src="../journey/preferences.js?v=web-8262f2145e3b"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-8262f2145e3b"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-8262f2145e3b"></head>
 <body>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
@@ -256,7 +256,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "web-64b052192275";
+const BUILD_ID = "web-8262f2145e3b";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -24093,84 +24093,108 @@ window.__so = {
     return out;
   },
 };
-// ============================================================================
-// 42 INPUT: one finger (or a mouse click) taps a tile when it lifts without
-// moving; two fingers pinch to zoom in whole steps and drag to pan; a mouse drag
-// pans; the mouse wheel (or a trackpad pinch) zooms in whole steps round the
-// pointer; a double tap on empty scenery fits the board to the screen again.
-// Swift: UITapGestureRecognizer (single and double), UIPinchGestureRecognizer
-// (whole steps) and UIPanGestureRecognizer(minimumNumberOfTouches: 2).
-// ============================================================================
-const PTR = new Map();                 // pointerId -> { x, y, x0, y0 } in device px
-const TAP_SLOP_CSS = 8;                // movement (CSS px) that still counts as a tap
-const PINCH_STEP = 1.25;               // finger-distance ratio per zoom step
-let multiTouch = false, pinchD0 = 0, pinchMX = 0, pinchMY = 0, mouseDrag = false;
-// The CSS canvas can differ from the backing image while mobile browser chrome resizes.
-function clientDeviceX(x,r) { return (x-r.left)*screen.width/r.width; }
-function clientDeviceY(y,r) { return (y-r.top)*screen.height/r.height; }
-function pointerStill(p,x,y) { return Math.hypot(x-p.cx0,y-p.cy0)<=TAP_SLOP_CSS; }
-function devX(e) { return clientDeviceX(e.clientX,screen.getBoundingClientRect()); }
-function devY(e) { return clientDeviceY(e.clientY,screen.getBoundingClientRect()); }
-function pinchNow() {                  // [distance, mid x, mid y] of the first two pointers
-  let a = null, b = null;
-  for (const p of PTR.values()) { if (!a) a = p; else if (!b) { b = p; break; } }
-  return [Math.hypot(a.x - b.x, a.y - b.y), (a.x + b.x) / 2, (a.y + b.y) / 2];
-}
-screen.addEventListener('pointerdown', (e) => {
-  const x = devX(e), y = devY(e);
-  PTR.set(e.pointerId, { x, y, x0: x, y0: y, cx0: e.clientX, cy0: e.clientY });
-  if (PTR.size >= 2) { multiTouch = true; const p = pinchNow(); pinchD0 = p[0]; pinchMX = p[1]; pinchMY = p[2]; }
-  try { screen.setPointerCapture(e.pointerId); } catch (err) { /* pointer already gone: nothing to capture */ }
-});
-screen.addEventListener('pointermove', (e) => {
-  const p = PTR.get(e.pointerId);
-  if (!p) { if (e.pointerType === 'mouse') onHover(e.clientX, e.clientY); return; }
-  const x = devX(e), y = devY(e), dx = x - p.x, dy = y - p.y;
-  p.x = x; p.y = y;
-  if (PTR.size >= 2) {
-    const [d, mx, my] = pinchNow();
-    panBy(-(mx - pinchMX) / scale, -(my - pinchMY) / scale);
-    pinchMX = mx; pinchMY = my;
-    if (d > pinchD0 * PINCH_STEP) { zoomStep(1, mx, my); pinchD0 = d; }
-    else if (d < pinchD0 / PINCH_STEP) { zoomStep(-1, mx, my); pinchD0 = d; }
-  } else if (e.pointerType === 'mouse') {
-    if (mouseDrag || !pointerStill(p,e.clientX,e.clientY)) {
-      mouseDrag = true;
-      panBy(-dx / scale, -dy / scale);
-    } else onHover(e.clientX, e.clientY);
+/* Web-only replacement for the native input prefix. The native tap/hover tail
+   is appended unchanged by the composer. Coordinates always cross the canvas rect. */
+const PTR=new Map(),TAP_SLOP_CSS=8;
+let multiTouch=false,mouseDrag=false;
+function clientDeviceX(x,r){return (x-r.left)*screen.width/r.width;}
+function clientDeviceY(y,r){return (y-r.top)*screen.height/r.height;}
+function devX(e){return clientDeviceX(e.clientX,screen.getBoundingClientRect());}
+function devY(e){return clientDeviceY(e.clientY,screen.getBoundingClientRect());}
+function pointerStill(p,x,y){return Math.hypot(x-p.cx0,y-p.cy0)<=TAP_SLOP_CSS;}
+(function(){
+  'use strict';
+  let distance=0,mx=0,my=0,anchorX=0,anchorY=0,hasAnchor=false,wheelAcc=0,timer=0;
+  let safari=false,safariBlocked=false,safariScale=1;
+  const spot={x:0,y:0},pair={d:0,x:0,y:0};
+  function midpoint(){
+    let a=null,b=null;for(const p of PTR.values()){if(!a)a=p;else{b=p;break;}}
+    if(!a)return false;
+    pair.x=b?(a.cx+b.cx)/2:a.cx;pair.y=b?(a.cy+b.cy)/2:a.cy;
+    pair.d=b?Math.hypot(a.cx-b.cx,a.cy-b.cy):0;return true;
   }
-});
-function endPointer(e, cancelled) {
-  const p = PTR.get(e.pointerId);
-  if (!p) return;
-  PTR.delete(e.pointerId);
-  const still = pointerStill(p,e.clientX,e.clientY);
-  if (!cancelled && !multiTouch && !mouseDrag && still && PTR.size === 0) onTap(e.clientX, e.clientY);
-  if (PTR.size === 0) { multiTouch = false; mouseDrag = false; }
-  else if (PTR.size >= 2) { const q = pinchNow(); pinchD0 = q[0]; pinchMX = q[1]; pinchMY = q[2]; }
-}
-screen.addEventListener('pointerup', (e) => endPointer(e, false));
-screen.addEventListener('pointercancel', (e) => endPointer(e, true));
-
-// The wheel zooms one whole step per notch (about 100 px of scroll) round the pointer; a trackpad
-// pinch arrives as ctrl + wheel with small deltas and zooms the same way, a step per 40.
-let wheelAcc = 0;
-screen.addEventListener('wheel', (e) => {
-  e.preventDefault();
-  const unit = e.deltaMode === 1 ? 33 : e.deltaMode === 2 ? 400 : 1, step = e.ctrlKey ? 40 : 100;
-  wheelAcc += e.deltaY * unit;
-  while (wheelAcc <= -step) { zoomStep(1, devX(e), devY(e)); wheelAcc += step; }
-  while (wheelAcc >= step) { zoomStep(-1, devX(e), devY(e)); wheelAcc -= step; }
-}, { passive: false });
-// Safari: stop the page zooming; a desktop trackpad pinch (no touch pointers) zooms the view.
-let gestureScale = 1;
-document.addEventListener('gesturestart', (e) => { e.preventDefault(); gestureScale = 1; });
-document.addEventListener('gesturechange', (e) => {
-  e.preventDefault();
-  if (PTR.size > 0) return;                          // touch pinches are handled by pointer events
-  if (e.scale > gestureScale * PINCH_STEP) { zoomStep(1, devW / 2, devH / 2); gestureScale = e.scale; }
-  else if (e.scale < gestureScale / PINCH_STEP) { zoomStep(-1, devW / 2, devH / 2); gestureScale = e.scale; }
-});
+  function remember(x,y){
+    mx=x;my=y;const r=screen.getBoundingClientRect();
+    WebCamera.world(clientDeviceX(x,r),clientDeviceY(y,r),spot);anchorX=spot.x;anchorY=spot.y;hasAnchor=true;
+  }
+  function rebase(){if(midpoint()){distance=pair.d;remember(pair.x,pair.y);}}
+  function stopTimer(){if(timer){clearTimeout(timer);timer=0;}}
+  function finish(){stopTimer();hasAnchor=false;WebCamera.end();}
+  function cancel(){
+    stopTimer();const ids=Array.from(PTR.keys());PTR.clear();multiTouch=false;mouseDrag=false;
+    hasAnchor=false;distance=0;wheelAcc=0;safari=false;safariBlocked=false;lastTapT=-1e9;WebCamera.end();
+    for(const id of ids)try{if(screen.hasPointerCapture?.(id))screen.releasePointerCapture(id);}catch{}
+  }
+  function move(ratio,x,y){
+    const r=screen.getBoundingClientRect();if(r.width<=0||r.height<=0)return;
+    WebCamera.gesture(ratio,clientDeviceX(mx,r),clientDeviceY(my,r),clientDeviceX(x,r),clientDeviceY(y,r));
+    remember(x,y);
+  }
+  screen.addEventListener('pointerdown',e=>{
+    if(!WebCamera.enabled()||e.pointerType==='mouse'&&e.button!==0)return;
+    stopTimer();PTR.set(e.pointerId,{cx:e.clientX,cy:e.clientY,cx0:e.clientX,cy0:e.clientY});
+    if(PTR.size>=2){multiTouch=true;lastTapT=-1e9;WebCamera.begin();rebase();}
+    try{screen.setPointerCapture(e.pointerId);}catch{}
+  });
+  screen.addEventListener('pointermove',e=>{
+    if(!WebCamera.enabled())return;
+    const p=PTR.get(e.pointerId);
+    if(!p){if(e.pointerType==='mouse')onHover(e.clientX,e.clientY);return;}
+    const oldX=p.cx,oldY=p.cy;p.cx=e.clientX;p.cy=e.clientY;
+    if(PTR.size>=2){
+      midpoint();move(distance>0&&pair.d>0?pair.d/distance:1,pair.x,pair.y);distance=pair.d;
+    }else if(multiTouch){move(1,p.cx,p.cy);}
+    else if(e.pointerType==='mouse'){
+      if(mouseDrag||!pointerStill(p,p.cx,p.cy)){
+        if(!mouseDrag){mouseDrag=true;lastTapT=-1e9;WebCamera.begin();remember(oldX,oldY);}
+        move(1,p.cx,p.cy);
+      }else onHover(e.clientX,e.clientY);
+    }
+  });
+  function end(e,cancelled){
+    if(!PTR.has(e.pointerId))return;
+    if(cancelled){cancel();return;}
+    const p=PTR.get(e.pointerId),tap=!multiTouch&&!mouseDrag&&pointerStill(p,e.clientX,e.clientY);
+    PTR.delete(e.pointerId);
+    if(PTR.size===0){multiTouch=false;mouseDrag=false;finish();if(tap&&WebCamera.enabled())onTap(e.clientX,e.clientY);}
+    else rebase();
+  }
+  screen.addEventListener('pointerup',e=>end(e,false));
+  screen.addEventListener('pointercancel',e=>end(e,true));
+  screen.addEventListener('lostpointercapture',e=>{if(PTR.has(e.pointerId))cancel();});
+  function wheelEnd(){timer=0;hasAnchor=false;WebCamera.end();}
+  function later(){stopTimer();timer=setTimeout(wheelEnd,140);}
+  screen.addEventListener('wheel',e=>{
+    e.preventDefault();if(!WebCamera.enabled()||safari||PTR.size)return;
+    const unit=e.deltaMode===1?33:e.deltaMode===2?400:1,delta=e.deltaY*unit;
+    if(!Number.isFinite(delta))return;
+    if(e.ctrlKey){
+      WebCamera.begin();remember(e.clientX,e.clientY);move(Math.exp(clamp(-delta*.005,-2,2)),e.clientX,e.clientY);later();
+    }else{
+      wheelAcc+=delta;
+      while(wheelAcc<=-100){zoomStep(1,devX(e),devY(e));wheelAcc+=100;}
+      while(wheelAcc>=100){zoomStep(-1,devX(e),devY(e));wheelAcc-=100;}
+    }
+  },{passive:false});
+  function safariPoint(e){const r=screen.getBoundingClientRect();spot.x=Number.isFinite(e.clientX)?e.clientX:r.left+r.width/2;spot.y=Number.isFinite(e.clientY)?e.clientY:r.top+r.height/2;}
+  document.addEventListener('gesturestart',e=>{
+    e.preventDefault();safariBlocked=PTR.size>0||!WebCamera.enabled();safari=true;safariScale=1;
+    if(!safariBlocked){stopTimer();WebCamera.begin();safariPoint(e);remember(spot.x,spot.y);}
+  },{passive:false});
+  document.addEventListener('gesturechange',e=>{
+    e.preventDefault();if(PTR.size)safariBlocked=true;
+    if(!safari||safariBlocked||!WebCamera.enabled()||!Number.isFinite(e.scale)||e.scale<=0)return;
+    safariPoint(e);move(e.scale/safariScale,spot.x,spot.y);safariScale=e.scale;
+  },{passive:false});
+  document.addEventListener('gestureend',e=>{e.preventDefault();safari=false;safariBlocked=false;if(!PTR.size)finish();},{passive:false});
+  window.addEventListener('blur',cancel);
+  window.WebCameraInput=Object.freeze({cancel,layoutChanged(){
+    if(!hasAnchor||!WebCamera.enabled())return;
+    const r=screen.getBoundingClientRect();if(r.width<=0||r.height<=0)return;
+    WebCamera.anchor(anchorX,anchorY,clientDeviceX(mx,r),clientDeviceY(my,r));
+    rebase();
+  }});
+})();
 
 // Taps and hover go to the level editor when it's open, otherwise to the game. A second tap on empty
 // scenery soon after the first (300 ms, 24 CSS px) fits the board to the screen.
@@ -26755,6 +26779,152 @@ const FidelityRooms=makeFidelityRoomManager({
 window.FidelityRooms=FidelityRooms;
 
 window.CBP_DEFER_PRESENTATION=new URLSearchParams(location.search).get('deferPresentation')==='1';
+/* Continuous camera transforms. Device coordinates and world coordinates stay separate. */
+(function(root){
+ 'use strict';
+ const clamp=(n,lo,hi)=>Math.max(lo,Math.min(hi,n));
+ function scaleBy(scale,ratio,lo,hi){return Number.isFinite(ratio)&&ratio>0?clamp(scale*ratio,lo,hi):scale;}
+ function project(x,y,cx,cy,scale,w,h,out){out.x=w/2+(x-cx)*scale;out.y=h/2+(y-cy)*scale;return out;}
+ function world(x,y,cx,cy,scale,w,h,out){out.x=cx+(x-w/2)/scale;out.y=cy+(y-h/2)/scale;return out;}
+ function anchor(wx,wy,mx,my,bx,by,scale,w,h,maxX,maxY,out){out.x=clamp(wx-(mx-w/2)/scale-bx,-maxX,maxX);out.y=clamp(wy-(my-h/2)/scale-by,-maxY,maxY);return out;}
+ function density(scale,previous,gesture){
+  if(gesture&&previous===4&&scale>=2.95)return 4;
+  if(gesture&&previous===2&&scale>=1.95&&scale<3)return 2;
+  const n=clamp(Math.floor(scale)||1,1,4);return n===3?4:n;
+ }
+ function plan(w,h,scale,minimum,gesture,old,out){
+  const d=density(scale,old?.density,gesture),floor=Math.max(minimum,d===4?2.95:d===2?1.95:minimum);
+  const same=old&&old.deviceWidth===w&&old.deviceHeight===h&&old.density===d;
+  let coverage=scale;
+  if(gesture){
+   if(same&&old.gesture&&scale>=old.coverage&&scale<=old.coverage*1.3)coverage=old.coverage;
+   else coverage=same&&scale>old.coverage?scale:clamp(scale/1.15,floor,scale);
+  }
+  const width=Math.ceil(w/coverage)+2,height=Math.ceil(h/coverage)+2;
+  const changed=!old||old.width!==width||old.height!==height||old.density!==d;
+  out.deviceWidth=w;out.deviceHeight=h;out.width=width;out.height=height;out.density=d;out.coverage=coverage;out.gesture=gesture;out.changed=changed;return out;
+ }
+ const api={scaleBy,project,world,anchor,plan};root.WebCameraMath=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
+})(globalThis);
+
+/* Web camera: magnification is continuous; raster coverage and paper density
+   change only at coverage/quality boundaries. Native chapter views stay native. */
+(function(){
+  'use strict';
+  const math=WebCameraMath;
+  const native={apply:applyScale,zoom:zoomStep,pan:panBy,render:renderFrame,present,pick:gPick,resize:onResize,card:cpCard};
+  let active=false,gesturing=false,inputEnabled=true,plan=null,minimum=1;
+  let vigScale=-1,vigX=NaN,vigY=NaN;
+  const point={x:0,y:0},pan={x:0,y:0},nextPlan={};
+  const centreX=()=>VIEW_CX+WS.camX+view.panX,centreY=()=>VIEW_CY+WS.camY+view.panY;
+  function transform(){
+    const x=centreX()-LW/2,y=centreY()-LH/2;
+    dstX=(devW-LW*scale)/2+(Math.round(x)-x)*scale;
+    dstY=(devH-LH*scale)/2+(Math.round(y)-y)*scale;
+  }
+  function activate(preserve=true){
+    if(active||cpActive())return;
+    if(preserve){
+      // Start from the image actually shown, including the native integer remainder.
+      const x=centreX()-LW/2,y=centreY()-LH/2;
+      view.panX=clamp(view.panX+Math.round(x)+(devW/2-dstX)/scale-centreX(),-PAN_MAX_X,PAN_MAX_X);
+      view.panY=clamp(view.panY+Math.round(y)+(devH/2-dstY)/scale-centreY(),-PAN_MAX_Y,PAN_MAX_Y);
+    }
+    minimum=scaleLimits(devW,devH)[0];active=true;
+    // A spread can reuse the image already covering the screen. Reserve extra
+    // coverage only when a contraction actually needs it.
+    plan=preserve?{deviceWidth:devW,deviceHeight:devH,width:LW,height:LH,density:paperOutputScale(),coverage:scale,gesture:true}:null;
+    view.zoom=scale;dirty=true;
+  }
+  function configure(){
+    math.plan(devW,devH,scale,minimum,gesturing,plan,nextPlan);
+    if(nextPlan.changed){
+      LW=nextPlan.width;LH=nextPlan.height;
+      ensureFrameBuffers(LW,LH);paperSetViewScale(nextPlan.density);allocView();
+      if(VIG.length<LW*LH)VIG=new Uint8Array(LW*LH);
+      vigScale=-1;
+    }
+    if(!plan)plan={};Object.assign(plan,nextPlan);
+    viewX0=Math.round(VIEW_CX-LW/2);viewY0=Math.round(VIEW_CY-LH/2);
+    transform();
+  }
+  function vignette(){
+    if(vigScale===scale&&vigX===dstX&&vigY===dstY)return;
+    vigScale=scale;vigX=dstX;vigY=dstY;
+    // Overscan is invisible working space: retain the vignette on the display.
+    for(let y=0;y<LH;y++)for(let x=0;x<LW;x++){
+      const dx=(dstX+x*scale-devW/2)/(devW/2),dy=(dstY+y*scale-devH/2)/(devH/2);
+      const d=Math.sqrt((dx*dx+dy*dy)*.5),a=clamp((d-.84)/.3,0,1)*.8;
+      VIG[y*LW+x]=a>bayer(x,y)?1:0;
+    }
+  }
+  function world(x,y,out){
+    if(active&&!cpActive())return math.world(x,y,centreX(),centreY(),scale,devW,devH,out);
+    out.x=Math.round(centreX()-LW/2)+(x-dstX)/scale;
+    out.y=Math.round(centreY()-LH/2)+(y-dstY)/scale;return out;
+  }
+  function anchor(wx,wy,mx,my){
+    gCamera();
+    math.anchor(wx,wy,mx,my,VIEW_CX+WS.camX,VIEW_CY+WS.camY,scale,devW,devH,PAN_MAX_X,PAN_MAX_Y,pan);
+    panBy(pan.x-view.panX,pan.y-view.panY);transform();dirty=true;
+  }
+  function gesture(ratio,x0,y0,x1,y1){
+    if(!inputEnabled||cpActive()||!Number.isFinite(ratio)||ratio<=0)return;
+    activate();world(x0,y0,point);const wx=point.x,wy=point.y,limits=scaleLimits(devW,devH);
+    view.scale=view.zoom=scale=math.scaleBy(scale,ratio,limits[0],limits[1]);
+    anchor(wx,wy,x1,y1);
+  }
+  function cancelInput(){if(window.WebCameraInput)WebCameraInput.cancel();gesturing=false;}
+  function reset(){cancelInput();active=false;plan=null;vigScale=-1;}
+  function nativeView(){
+    const was=active;reset();if(was)native.apply();
+  }
+  applyScale=function(){
+    if(!active||cpActive())return native.apply();
+    const limits=scaleLimits(devW,devH);minimum=limits[0];view.scale=scale=clamp(view.zoom===null?scale:view.zoom,limits[0],limits[1]);
+    configure();dirty=true;
+  };
+  zoomStep=function(dir,mx,my){
+    if(cpActive())return;activate();world(mx,my,point);const wx=point.x,wy=point.y,limits=scaleLimits(devW,devH);
+    view.scale=view.zoom=scale=clamp(scale+dir,limits[0],limits[1]);anchor(wx,wy,mx,my);
+  };
+  panBy=function(dx,dy){if(cpActive())return;activate();return native.pan(dx,dy);};
+  renderFrame=function(){
+    if(active&&!cpActive()){configure();vignette();}
+    return native.render();
+  };
+  present=function(){
+    if(!active||cpActive())return native.present();
+    transform();const resolution=paperOutputScale();sctx.imageSmoothingEnabled=false;
+    sctx.drawImage(paperOutputCanvas(),0,0,LW*resolution,LH*resolution,dstX,dstY,LW*scale,LH*scale);
+    syncBackdropCSS();
+  };
+  gPick=function(clientX,clientY){
+    if(!active||cpActive())return native.pick(clientX,clientY);
+    const r=screen.getBoundingClientRect();if(r.width<=0||r.height<=0)return -1;
+    world(clientDeviceX(clientX,r),clientDeviceY(clientY,r),point);
+    const a=(point.x-OX)*.5,b=point.y-OY,B=gm.L.board;
+    const fx=(b+a)/TILE-gBoardX(B),fy=(b-a)/TILE-gBoardY(B);
+    if(fx< -1||fy< -1||fx>B.w+1||fy>B.h+1)return -1;
+    return clamp(Math.floor(fy),0,B.h-1)*B.w+clamp(Math.floor(fx),0,B.w-1);
+  };
+  onResize=function(){
+    if(active&&!cpActive()&&view.zoom!==null)view.zoom=scale/devDpr*(window.devicePixelRatio||1);
+    return native.resize();
+  };
+  cpCard=function(...args){nativeView();return native.card(...args);};
+  window.WebCamera=Object.freeze({
+    world,gesture,anchor,reset,nativeView,
+    restore(){activate(false);},
+    project(x,y,out){if(!active||cpActive())return false;math.project(x,y,centreX(),centreY(),scale,devW,devH,out);return true;},
+    begin(){if(inputEnabled&&!cpActive()){gesturing=true;activate();panBy(0,0);}},
+    end(){gesturing=false;if(active)dirty=true;},
+    enabled(){return inputEnabled&&!cpActive();},
+    setEnabled(value){if(!value&&inputEnabled)cancelInput();inputEnabled=value;},
+    layoutChanged(){if(active&&!cpActive())transform();if(window.WebCameraInput)WebCameraInput.layoutChanged();}
+  });
+})();
+
 /* Engine-owned sessions contain a validated command replay, never progress or render buffers. */
 (function(){
   'use strict';
@@ -26853,6 +27023,7 @@ function webDrawBoardFeedback(mark){
   const clone=v=>JSON.parse(JSON.stringify(v)),listeners=new Set(),seen=new Set(),reasons=new Set(),history=[];
   let runNumber=0,runID='web-'+Date.now()+'-'+runNumber,revision=0,intent=0,tactical=false,feedback=null,feedbackID=0,winRecorded=false,replaying=false,dispatching=false;
   let softFrozen=false,presentationAttached=false;
+  const continuousCamera=window.WebCamera||null;
   let start=null,events=[],gameFrame=0,presentationFrame=0,loading=false,loadGeneration=0,framing='board',manual=false,insets={top:90,bottom:220,left:12,right:12},roomViews={},pendingView=null;
   let lastTick=-1,lastMode='',lastPresentation='',lastRound=-1,lastSettled=false,practiceResolve=null;
   const native={tap:gTap,clear:gClear,hint:gHint,send:gSend,update:gUpdate,chapter:cpUpdate,finish:gFinish,toEdit:gToEdit,load:gLoadLevel,camera:gCamera,resize:onResize,pan:panBy,hud:gHud,finale:xcStart,maybeFinale:xcMaybeFinale};
@@ -26868,7 +27039,7 @@ function webDrawBoardFeedback(mark){
   function emit(name,detail){for(const target of new Set([window,typeof parent==='undefined'?window:parent]))try{if(target.dispatchEvent&&typeof CustomEvent!=='undefined')target.dispatchEvent(new CustomEvent(name,{detail}));}catch{}}
   function changed(){revision++;const s=listeners.size?state():null;for(const fn of listeners)try{fn(s);}catch{}emit('gamechange');emit('labchange');}
   function report(kind,message,x,y,piece){feedback={id:++feedbackID,kind,message,x,y,...piece};gStatus(message);emit('gamefeedback',feedback);emit('labfeedback',feedback);dirty=true;return feedback;}
-  function syncPause(){const hard=!presentationAttached||reasons.size>0;const next=hard||((gm.mode==='running'||gm.mode==='edit')&&(tactical||softFrozen));if(paused!==next){paused=next;lastNow=-1;acc=0;}dirty=true;}
+  function syncPause(){const hard=!presentationAttached||reasons.size>0;const next=hard||((gm.mode==='running'||gm.mode==='edit')&&(tactical||softFrozen));if(paused!==next){paused=next;lastNow=-1;acc=0;}if(continuousCamera)continuousCamera.setEnabled(!hard&&!loading&&!replaying&&!cpActive());dirty=true;}
   function locked(x,y){const s=gm.sim;if(!s)return false;for(let i=0;i<s.n;i++)if((s.st[i]===GL_BOARD||((s.ev[i]===GE_DELIVERED||s.ev[i]===GE_WRONG)&&gm.t<s.tick*G_TICK))&&((s.x[i]===x&&s.y[i]===y)||(s.px[i]===x&&s.py[i]===y)))return true;return false;}
   // One description feeds pointer feedback, keyboard and precise placement. No rule is run here.
   const targetDirections=['up','right','down','left'];
@@ -26920,7 +27091,7 @@ function webDrawBoardFeedback(mark){
   gHint=function(){if(gm.mode==='running'||cpActive())return;native.hint();history.length=0;};
   gToEdit=function(){native.toEdit();if(gm.mode==='edit')winRecorded=false;};
   gSend=function(){if(gm.mode!=='running'&&!gm.shift)epoch();history.length=0;native.send();};
-  gLoadLevel=function(...args){remember();pendingView=null;native.load(...args);gm.cursor=false;manual=false;epoch();tactical=false;syncPause();};
+  gLoadLevel=function(...args){remember();pendingView=null;if(continuousCamera)continuousCamera.reset();native.load(...args);gm.cursor=false;manual=false;epoch();tactical=false;syncPause();};
   gFinish=function(){if(!gm.sim||finished.has(gm.sim))return;finished.add(gm.sim);native.finish();winRecorded=story()&&gm.mode==='won'&&!!progress.levels[gm.L.id]?.stars?.delivered;changed();};
   xcMaybeFinale=function(){return replaying?false:native.maybeFinale();};
   xcStart=function(replay){if(!replaying&&!replay)record('automaticFinale',{});protectView();native.finale(replay);syncPause();};
@@ -26946,13 +27117,14 @@ function webDrawBoardFeedback(mark){
   present=function(){nativePresent();if(displayFeedback&&gm.L&&gm.cursor&&editable()&&!mouseDrag&&!multiTouch){target(gm.cx,gm.cy,marker,true);webDrawBoardFeedback(marker);}};
   gHover=function(x,y){nativeHover(x,y);if(gPick(x,y)<0)gm.cursor=false;dirty=true;};
   screen.addEventListener('pointerleave',()=>{gm.cursor=false;dirty=true;});
-  // The renderer rounds its origin; the overlay and hatch labels use that same origin.
-  function project(x,y){const wx=OX+gTX(x)-gTY(y),wy=OY+(gTX(x)+gTY(y))*.5;return{x:(dstX+(wx-Math.round(VIEW_CX+WS.camX+view.panX-LW/2))*scale)/devDpr,y:(dstY+(wy-Math.round(VIEW_CY+WS.camY+view.panY-LH/2))*scale)/devDpr};}
+  // Manual views use the same fractional transform as picking and presentation.
+  function project(x,y){const wx=OX+gTX(x)-gTY(y),wy=OY+(gTX(x)+gTY(y))*.5,out={x:0,y:0};if(!continuousCamera||!continuousCamera.project(wx,wy,out)){out.x=dstX+(wx-Math.round(VIEW_CX+WS.camX+view.panX-LW/2))*scale;out.y=dstY+(wy-Math.round(VIEW_CY+WS.camY+view.panY-LH/2))*scale;}const r=screen.getBoundingClientRect();out.x=r.left+out.x*r.width/screen.width;out.y=r.top+out.y*r.height/screen.height;return out;}
   function viewState(){return{zoom:view.zoom,zoomCss:scale/devDpr,dpr:devDpr,x:view.panX,y:view.panY,framing,manual};}
   const boardBox={x0:0,x1:0,y0:0,y1:0};
   function boardBounds(){const B=gm.L.board,x=gBoardX(B)*TILE,y=gBoardY(B)*TILE;boardBox.x0=OX+x-y-B.h*TILE-14;boardBox.x1=OX+x+B.w*TILE-y+14;boardBox.y0=OY+(x+y)/2-34;boardBox.y1=OY+(x+y+(B.w+B.h)*TILE)/2+24;return boardBox;}
   gCamera=function(atScale=scale){if(cpActive()||!gm.L)return native.camera(atScale);const b=boardBounds();if(framing==='room'){WS.camX=G_ROOM?0:G_CAM_X;WS.camY=(G_ROOM?0:G_CAM_Y)+(insets.bottom-insets.top)*devDpr/(2*scale);}else{WS.camX=(b.x0+b.x1)/2-VIEW_CX+(insets.right-insets.left)*devDpr/(2*scale);WS.camY=(b.y0+b.y1)/2-VIEW_CY+(insets.bottom-insets.top)*devDpr/(2*scale);}};
-  function camera(mode='board'){if(cpActive())return viewState();framing=mode;manual=false;const b=boardBounds(),w=Math.max(60,innerWidth-insets.left-insets.right),h=Math.max(80,innerHeight-insets.top-insets.bottom);view.zoom=Math.max(.5,mode==='room'?Math.min(w*devDpr/ROOM_FIT_W,h*devDpr/ROOM_FIT_H):Math.min(w*devDpr/(b.x1-b.x0),h*devDpr/(b.y1-b.y0)));view.panX=view.panY=0;applyScale();gCamera();dirty=true;return viewState();}
+  function camera(mode='board'){if(cpActive())return viewState();if(continuousCamera)continuousCamera.reset();framing=mode;manual=false;const b=boardBounds(),w=Math.max(60,innerWidth-insets.left-insets.right),h=Math.max(80,innerHeight-insets.top-insets.bottom);view.zoom=Math.max(.5,mode==='room'?Math.min(w*devDpr/ROOM_FIT_W,h*devDpr/ROOM_FIT_H):Math.min(w*devDpr/(b.x1-b.x0),h*devDpr/(b.y1-b.y0)));view.panX=view.panY=0;applyScale();gCamera();dirty=true;return viewState();}
+  if(continuousCamera)resetView=()=>camera('board');
   // Puzzle view checkpoints are captured on actions/save/resize, never on animation frames.
   function cameraCheckpoint(){return{room:ACTIVE_ROOM.id,framing,manual,zoomCss:scale/devDpr,x:view.panX,y:view.panY};}
   function remember(){if(!gm.L||cpActive()||loading||replaying||!presentationAttached||reasons.has('navigation'))return false;roomViews[ACTIVE_ROOM.id]={levelId:gm.L.id,camera:cameraCheckpoint()};return true;}
@@ -26963,13 +27135,13 @@ function webDrawBoardFeedback(mark){
     const v={levelId:gm.L.id,camera:clone(point)};roomViews[point.room]=v;
     if(cpActive()){pendingView=v;return;}
     framing=point.framing;manual=point.manual;
-    if(manual){view.zoom=point.zoomCss*devDpr;applyScale();view.zoom=scale;view.panX=clamp(point.x,-PAN_MAX_X,PAN_MAX_X);view.panY=clamp(point.y,-PAN_MAX_Y,PAN_MAX_Y);gCamera();dirty=true;}
+    if(manual){if(continuousCamera)continuousCamera.restore();view.zoom=point.zoomCss*devDpr;applyScale();view.zoom=scale;view.panX=clamp(point.x,-PAN_MAX_X,PAN_MAX_X);view.panY=clamp(point.y,-PAN_MAX_Y,PAN_MAX_Y);gCamera();dirty=true;}
     else camera(framing);
   }
   function restorePendingView(){const v=pendingView;if(!v||cpActive())return;pendingView=null;if(v.levelId===gm.L.id&&v.camera.room===ACTIVE_ROOM.id)restoreCamera(v.camera);}
   function restoreRoomView(){const v=savedView();if(!v)return false;restoreCamera(v.camera);return true;}
   panBy=function(dx,dy){if(!cpActive())manual=true;return native.pan(dx,dy);};
-  onResize=function(){const protectedView=cpActive(),point=!protectedView&&manual&&presentationAttached?cameraCheckpoint():null;native.resize();if(protectedView)return;if(point)restoreCamera(point);else if(presentationAttached&&!cpActive())camera(framing);changed();};
+  onResize=function(){const protectedView=cpActive(),point=!protectedView&&manual&&presentationAttached?cameraCheckpoint():null;native.resize();if(protectedView)return;if(point)restoreCamera(point);else if(presentationAttached&&!cpActive())camera(framing);if(continuousCamera)continuousCamera.layoutChanged();changed();};
   if(window.removeEventListener)window.removeEventListener('resize',native.resize);window.addEventListener('resize',onResize);
   function queue(){const s=gm.shift;if(s){const c=s.current;return c.releaseOrder.map((id,j)=>({order:j+1,hatch:c.releaseHatches[j]+1,coat:GR_COATS[c.sim.coat[id]],big:!!c.sim.big[id],size:c.sim.big[id]?'big':'small',status:GL_STATES[c.sim.st[id]],released:j<c.released,releaseTick:j*c.params.releaseGap,releasedAt:c.sim.releaseTick[id]<0?null:c.sim.releaseTick[id],releaseEvery:c.params.releaseGap,moveEvery:c.sim.big[id]?2:1,tickMs:c.params.tickMs}));}
     const q=[];for(let h=0;h<gm.L.hatches.length;h++){const H=gm.L.hatches[h],S=gm.sim?.hatches[h];H.cats.forEach((cat,j)=>q.push({order:j+1,hatch:h+1,coat:GR_COATS[grCatCoat(cat)],big:grCatBig(cat),size:grCatBig(cat)?'big':'small',status:S&&gm.mode!=='edit'?GL_STATES[gm.sim.st[S.first+j]]:'waiting',released:!!S&&gm.mode!=='edit'&&gm.sim.st[S.first+j]!==GL_WAIT,releaseTick:j*GR_RELEASE_EVERY,releasedAt:S&&gm.mode!=='edit'&&gm.sim.st[S.first+j]!==GL_WAIT?j*GR_RELEASE_EVERY:null,releaseEvery:GR_RELEASE_EVERY,moveEvery:grCatBig(cat)?2:1,tickMs:GR_TICK_MS}));}return q;}
@@ -27009,7 +27181,7 @@ function webDrawBoardFeedback(mark){
       case 'unsuspend':if(!['menu','navigation','background','fidelity'].includes(a.reason))return false;reasons.delete(a.reason);return true;
       case 'freeze':softFrozen=!!a.value;return true;
       case 'camera':return camera(a.mode);
-      case 'layout':for(const key of ['top','bottom','left','right'])if(Number.isFinite(a[key])&&a[key]>=0)insets[key]=a[key];if(!cpActive()){if(manual)gCamera();else camera(framing);}return true;
+      case 'layout':for(const key of ['top','bottom','left','right'])if(Number.isFinite(a[key])&&a[key]>=0)insets[key]=a[key];if(!cpActive()){if(manual)gCamera();else camera(framing);if(continuousCamera)continuousCamera.layoutChanged();}return true;
       case 'focus':if(cpActive())return false;camera('board');{const p=gm.L.hatches[a.hatch-1];if(p){const pos=project(p.x+.5,p.y+.5);manual=true;panBy((pos.x-(insets.left+innerWidth-insets.right)/2)*devDpr/scale,(pos.y-(insets.top+innerHeight-insets.bottom)/2)*devDpr/scale);}}return true;
       case 'zoom':if(cpActive())return false;manual=true;zoomStep(a.dir,(insets.left+innerWidth-insets.right)*devDpr/2,(insets.top+innerHeight-insets.bottom)*devDpr/2);return true;
       case 'pan':if(cpActive())return false;manual=true;panBy(a.x*12,a.y*12);return true;
@@ -27090,5 +27262,5 @@ function webDrawBoardFeedback(mark){
 
 boot();
 </script>
-<script src="../journey/postal-identity.js?v=web-64b052192275"></script><script src="../journey/chapter-presentation.js?v=web-64b052192275"></script></body>
+<script src="../journey/postal-identity.js?v=web-8262f2145e3b"></script><script src="../journey/chapter-presentation.js?v=web-8262f2145e3b"></script></body>
 </html>
