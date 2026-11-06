@@ -147,7 +147,7 @@
  }
  function setPlaying(on){
   $('game-stage').classList.toggle('active',on);$('game-stage').setAttribute('aria-hidden',String(!on));$('journey-app').inert=on;
-  if(on){frame.focus();frame.contentWindow.focus()}else $('current-place').focus({preventScroll:true});
+  if(on){frame.focus();frame.contentWindow.focus();frame.contentWindow.APP?.focusPresentation?.()}else $('current-place').focus({preventScroll:true});
  }
  async function readyForGame(text){
   const token=++openingToken;$('journey-app').inert=true;$('opening-text').textContent=text;$('opening').hidden=false;$('cancel-opening').focus({preventScroll:true});$('retry-game').hidden=true;

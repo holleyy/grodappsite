@@ -1,0 +1,62 @@
+@font-face{font-family:PostHand;src:url(../assets/post-hand.ttf);font-weight:400;font-display:swap}
+/* Native nodes and handlers stay in place. Only the correspondence is composed. */
+#chapterScene #chapterCard{--chapter-ink:#253e40;--chapter-rust:#a74733;--chapter-muted:#596258;position:absolute;left:auto;right:max(24px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom));transform:none;box-sizing:border-box;width:min(570px,calc(100vw - 32px));max-width:none;max-height:calc(100dvh - 36px);overflow:auto;overscroll-behavior:contain;padding:36px 38px 30px;background:url(images/print-paper.webp) center/100% 100% no-repeat;border:0;border-radius:0;box-shadow:none;color:var(--chapter-ink);isolation:isolate;scrollbar-width:thin}
+#chapterScene #chapterTitle{font:400 clamp(32px,3.7vw,43px)/1.08 var(--post-head,Balthazar),Georgia,serif;max-width:calc(100% - 78px);margin:0 0 17px;text-wrap:balance}
+#chapterScene #chapterText{font:500 18px/1.48 Signika,sans-serif;margin:0 0 24px;max-width:35ch}
+#chapterKicker{display:none!important}
+.chapter-letter-content{display:contents}
+.chapter-impression{position:absolute;right:28px;top:20px;width:88px;rotate:-11deg;opacity:.78}
+#chapterScene #chapterCard .row{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+#chapterScene #chapterCard button{box-sizing:border-box;min-width:44px;min-height:48px;padding:12px 17px;border:0;border-radius:2px;font:500 17px/1.2 Signika,sans-serif;cursor:pointer;touch-action:manipulation;background:transparent;color:var(--chapter-ink);text-decoration:underline;text-underline-offset:4px;text-decoration-color:#a4916b;transition:background-color .15s,color .15s}
+#chapterScene #chapterCard button.primary,#chapterScene #chapterCard .is-primary{background:var(--chapter-ink);color:#fff4df;text-decoration:none;box-shadow:0 2px 0 #142d30}
+#chapterScene #chapterCard button:hover{background:#e4d3ab;color:#253e40}
+#chapterScene #chapterCard button.primary:hover,#chapterScene #chapterCard .is-primary:hover{background:#37575a;color:#fff4df}
+#chapterScene #chapterCard button:focus-visible{outline:3px solid var(--chapter-rust);outline-offset:3px}
+#chapterScene #chapterCard button:disabled{opacity:.5;cursor:wait}
+.chapter-return-actions{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px}
+.chapter-closing:empty,.chapter-return-actions:not(:has(button:not([hidden]))){display:none}
+#chapterScene #chapterCard[data-paper-kind=film]{width:auto;max-width:calc(100vw - 24px);padding:0;overflow:visible;right:20px;bottom:20px;background:none;animation:none}
+#chapterScene #chapterCard[data-paper-kind=film]::before{display:none}
+#chapterScene #chapterCard[data-paper-kind=film] .chapter-letter-content,#chapterScene #chapterCard[data-paper-kind=film] .chapter-closing{display:none}
+#chapterScene #chapterCard[data-paper-kind=film] button{background:#f8eed9ed;box-shadow:0 2px 6px #172c2b44;color:#253e40}
+#chapterScene #chapterCard[data-paper-kind=thanks]{padding-top:42px;padding-bottom:28px}
+#chapterScene #chapterCard[data-paper-kind=thanks] #chapterTitle{max-width:calc(100% - 70px)}
+#chapterScene #chapterCard[data-paper-kind=thanks] #chapterText{font-size:19px;line-height:1.6;max-width:33ch}
+.chapter-signoff{font:400 23px/1.2 PostHand,cursive;margin:20px 0 28px;color:var(--chapter-ink)}
+.chapter-signoff>span{display:block;font-size:33px;margin-top:7px}
+#chapterScene #chapterCard[data-paper-kind=thanks] #chapter-office{margin-top:6px;padding-left:0;display:block}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row{margin-top:10px}
+#chapterScene #chapterCard[data-paper-kind=credits]{text-align:center;padding:43px 42px 30px}
+#chapterScene #chapterCard[data-paper-kind=credits] #chapterTitle{max-width:none;font-size:clamp(43px,5vw,58px);margin:26px 0 18px}
+#chapterScene #chapterCard[data-paper-kind=credits] .chapter-impression{position:relative;right:auto;top:auto;display:flex;margin:0 auto;width:88px;rotate:-8deg}
+#chapterScene #chapterCard[data-paper-kind=credits] #chapterText{max-width:32ch;margin:0 auto 22px;color:var(--chapter-muted);font-size:17px}
+.chapter-creator{font:400 clamp(34px,4vw,43px)/1.1 var(--post-head,Balthazar),serif;margin:0 0 26px;padding:18px 12px 22px;border-block:1px solid #bca985}
+#chapterScene #chapterCard[data-paper-kind=credits] #chapter-office{display:block;width:100%;margin:0 0 15px}
+#chapterScene #chapterCard[data-paper-kind=credits] .row,#chapterScene #chapterCard[data-paper-kind=credits] .chapter-return-actions{justify-content:center;gap:4px 12px}
+#chapterScene #chapterCard[data-paper-kind=credits] #chapterPrimary{background:transparent;color:var(--chapter-ink);box-shadow:none;text-decoration:underline;text-underline-offset:4px}
+#chapterScene #chapterCard[data-paper-kind=credits] #chapterPrimary:hover{background:#e4d3ab}
+body.big #chapterScene #chapterText{font-size:21px}
+body.contrast #chapterScene #chapterCard{--chapter-ink:#152e32;--chapter-rust:#873220;--chapter-muted:#344740}
+@keyframes chapterPaperIn{from{opacity:0;translate:0 12px;rotate:.4deg}to{opacity:1;translate:0 0;rotate:0deg}}
+#chapterScene:not([hidden]) #chapterCard:not([data-paper-kind=film]){animation:chapterPaperIn .42s cubic-bezier(.2,.65,.3,1) both}
+@media(max-width:739px){#chapterScene #chapterCard{right:12px;bottom:max(12px,env(safe-area-inset-bottom));width:calc(100vw - 24px);padding:30px 26px 26px}#chapterScene #chapterTitle{font-size:34px}.chapter-impression{right:19px;top:20px;width:78px}.chapter-routing{font-size:23px}#chapterScene #chapterCard[data-paper-kind=credits]{padding:34px 28px 24px}#chapterScene #chapterCard[data-paper-kind=credits] #chapterTitle{margin-top:16px}}
+@media(max-width:359px){#chapterScene #chapterCard{padding-inline:23px}#chapterScene #chapterTitle{font-size:31px}#chapterScene #chapterText{font-size:17px}.chapter-impression{width:65px;right:15px}.chapter-routing{font-size:21px;padding-inline:12px}#chapterScene #chapterCard button{padding-inline:12px}#chapterScene #chapterCard[data-paper-kind=credits]{padding-inline:24px}}
+@media(max-height:520px) and (orientation:landscape){#chapterScene #chapterCard{left:12px;right:auto;top:12px;bottom:12px;width:min(365px,56vw);max-height:calc(100dvh - 24px);padding:24px 25px}#chapterScene #chapterTitle{font-size:29px}#chapterScene #chapterText{font-size:17px;line-height:1.45}.chapter-impression{top:14px;right:16px;width:65px}.chapter-routing{margin-bottom:16px}#chapterScene #chapterCard[data-paper-kind=credits]{padding:25px}#chapterScene #chapterCard[data-paper-kind=credits] #chapterTitle{font-size:36px}#chapterScene #chapterCard[data-paper-kind=film]{left:auto;top:auto;bottom:12px;right:12px;width:auto}}
+@media(prefers-reduced-motion:reduce){#chapterScene #chapterCard{animation:none!important}#chapterScene #chapterCard button{transition:none}}
+body.reduced #chapterScene #chapterCard{animation:none!important}
+
+#chapterScene #chapterCard [hidden]{display:none!important}
+#chapterScene #chapterCard[data-paper-kind=departure] .row{display:block;margin-top:20px}
+#chapterScene #chapterCard[data-paper-kind=departure] #chapterPrimary{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:80px;padding:12px 15px 12px 31px;text-align:left;background:transparent;color:var(--chapter-ink);font:400 25px/1.1 Balthazar,serif;box-shadow:none;rotate:-1deg}
+#chapterScene #chapterCard[data-paper-kind=departure] #chapterPrimary::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 14px 50%,#776044 0 3px,#ccb88e 3.5px 5px,transparent 5.5px),linear-gradient(100deg,#e8d4aa,#f3e3c1);clip-path:polygon(0 15px,15px 0,100% 0,100% 100%,15px 100%,0 calc(100% - 15px));border-block:1px solid #b79b6a}
+#chapterScene #chapterCard[data-paper-kind=departure] #chapterPrimary:hover::before{background-color:#dec18b;filter:brightness(.97)}
+#chapterScene #chapterCard[data-paper-kind=departure] #chapterPrimary:focus-visible{outline:none;text-decoration:underline;text-decoration-color:var(--chapter-rust);text-decoration-thickness:2px;text-underline-offset:5px}
+.chapter-destination{width:62px;flex:0 0 62px;opacity:.8;rotate:5deg}
+#chapterScene #chapterCard[data-paper-kind=departure] #chapterSecondary{margin-top:7px}
+#chapterScene #chapterCard .chapter-signoff{font:400 23px/1.2 PostHand,cursive;margin:20px 0 28px}
+#chapterScene #chapterCard .chapter-creator{font:400 clamp(34px,4vw,43px)/1.1 var(--post-head,Balthazar),serif;margin:0 0 26px}
+#chapterScene #chapterCard[data-paper-kind=thanks] #chapterText{font:400 24px/1.35 Balthazar,Georgia,serif;max-width:31ch}
+#chapterScene #chapterCard[data-paper-kind=thanks] #chapter-office{margin-top:14px}
+@media(max-width:359px),(max-height:520px) and (orientation:landscape){#chapterScene #chapterCard[data-paper-kind=thanks] #chapterText{font-size:22px}}
+body.big #chapterScene #chapterCard[data-paper-kind=thanks] #chapterText{font-size:27px}
+body.big #chapterScene #chapterCard[data-paper-kind=credits] #chapterText{font-size:21px}

@@ -175,7 +175,7 @@ async function init(){try{
  const postage=new Image();postage.src='../../assets/cats-postage.png';$('loading').hidden=true;state=engine.state();
  if(saved&&!engine.sessionSummary(saved.game)){saved=null;console.warn('Saved route unavailable; posted letters remain intact.')}
  PlayHUD.connect({engine:()=>engine,poll:()=>{lastSignature='';poll()},save,layout});
- window.APP={start,advance,continueGame,cancelOpening,home,places,album,dispatch,queueSheet,pauseMenu,settings,help,save,interrupted,engine,closeSheet,get state(){return engine.state()},get view(){return view},get opening(){return opening},get saved(){return saved},get savedInfo(){try{return saved?engine.sessionSummary(saved.game):null}catch{return null}},get prefs(){return prefs},get study(){return HUD_EXAMPLE}};
+ window.APP={start,advance,continueGame,cancelOpening,home,places,album,dispatch,queueSheet,pauseMenu,settings,help,save,interrupted,engine,closeSheet,focusPresentation:()=>$('world').contentWindow.ChapterPaper?.focus?.()||false,get state(){return engine.state()},get view(){return view},get opening(){return opening},get saved(){return saved},get savedInfo(){try{return saved?engine.sessionSummary(saved.game):null}catch{return null}},get prefs(){return prefs},get study(){return HUD_EXAMPLE}};
  home();
  unsubscribe=engine.subscribe?.(()=>{if(ready)poll()});document.fonts.ready.then(layout);
  }catch(e){console.error(e);$('loading').hidden=false;$('loading').innerHTML='<h1>The post is taking a moment.</h1><p>Please reload to try again.</p>'}}

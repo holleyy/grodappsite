@@ -33,7 +33,10 @@
  }
  async function action(fn){try{if(!ready)status('Bringing your post to the counter…');await waiting;status('');await fn()}catch(error){status('The post could not be opened. Please reload to try again.');console.error(error)}}
  async function primary(){await action(async()=>{renderPrimary();const j=journey();if(context.resume){show(true);await j.resumeSaved()}else if(context.active){show(true);await j.startLetter(context.id)}else if(context.complete){j.backToMap();show(true)}else{j.openLetter(context.id);show(true)}})}
- async function back(){if(ready){const j=journey();if(frame.contentDocument.getElementById('game-stage').classList.contains('active'))j.leave('map');show(false);renderPrimary();$('primary-letter').focus({preventScroll:true})}}
+ async function back(){if(ready){const j=journey();if(frame.contentDocument.getElementById('game-stage').classList.contains('active'))j.leave('map');show(false);renderPrimary();$('primary-letter').focus({preventScroll:true});
+  // Native chapter buttons finish their focus work inside the nested game frame.
+  requestAnimationFrame(()=>setTimeout(()=>{if(!shown&&document.visibilityState==='visible'&&!document.querySelector('dialog[open]')&&[frame,document.body,$('primary-letter')].includes(document.activeElement)){window.focus();$('primary-letter').focus({preventScroll:true})}},0))
+ }}
  async function openService(type){await action(async()=>{show(true);await journey().service(type,{returnTo:'main-menu'})})}
  $('primary-letter').onclick=primary;
  $('places-button').onclick=()=>action(()=>{journey().backToMap();show(true)});

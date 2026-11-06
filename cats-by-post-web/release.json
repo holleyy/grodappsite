@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "46c4dba3dcd41a76ce00d1b2764b17352625f7a1",
+  "sourceCommit": "4d03453bba7cac40b6a00da5450e4f4320f82fb0",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-b25ffc45b3a2",
-  "engineSha256": "25d3396e87d727eb6a4b76a6de13490046b3e2841ddae64604464a62db8b8d51",
+  "build": "web-10a62768775d",
+  "engineSha256": "81bb2d78e222df12ca785ddc8a6f96081d718a27dd566062e355f6f0c68ab107",
   "entry": "journey/start.html",
-  "scope": "Connected delivery, next-letter, packet/menu and native milestone journeys; physical Safari qualification pending."
+  "scope": "Chapter correspondence, signed thank-you, credits and phone preview; physical Safari qualification pending."
 }

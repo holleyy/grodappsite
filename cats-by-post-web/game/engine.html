@@ -147,23 +147,16 @@
   #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
-<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-b25ffc45b3a2" type="image/svg+xml">
+<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-10a62768775d" type="image/svg+xml">
 <style id="web-host-style">
-@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-b25ffc45b3a2);font-weight:400;font-display:swap}
-@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-b25ffc45b3a2);font-weight:500;font-display:swap}
+@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-10a62768775d);font-weight:400;font-display:swap}
+@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-10a62768775d);font-weight:500;font-display:swap}
 #hud,#shiftCards,#shiftEnding,#shiftDebug,#chapterKicker,#debug,#controls,#atlasPanel{display:none!important}
 html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterScene{font-family:Signika,sans-serif;color:#253e40}
-#chapterCard{background:#f7edd6;color:#253e40;border:1px solid #b4a17b;border-radius:4px;box-shadow:0 7px 25px #2a261a38;padding:clamp(20px,4vw,36px);max-width:560px}
-#chapterCard h1,#chapterCard h2,#chapterTitle{font-family:var(--post-head,Balthazar),serif;font-weight:400;font-size:clamp(28px,4vw,42px);line-height:1.12;margin:0 0 14px}
-#chapterCard p{font:500 18px/1.5 Signika,sans-serif;margin:0 0 20px;max-width:40ch}
-#chapterCard button{font:500 18px/1.2 Signika,sans-serif;min-height:48px;padding:12px 18px;border:1px solid #a9926c;border-radius:3px;background:#eee1be;color:#253e40}
-#chapterCard button:first-of-type{background:#253e40;color:#fff4dc;border-color:#253e40}
-#chapterCard button:hover{background:#ddd0aa;color:#253e40}
-#chapterCard button:focus-visible{outline:3px solid #a94632;outline-offset:3px}
-@media(max-width:420px){#chapterCard{margin:10px;max-width:calc(100vw - 20px)}#chapterCard button{margin-bottom:6px}}
+
 </style>
-<link rel="stylesheet" href="../journey/preferences.css?v=web-b25ffc45b3a2"><script src="../journey/preferences.js?v=web-b25ffc45b3a2"></script></head>
+<link rel="stylesheet" href="../journey/preferences.css?v=web-10a62768775d"><script src="../journey/preferences.js?v=web-10a62768775d"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-10a62768775d"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-10a62768775d"></head>
 <body>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
@@ -263,7 +256,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "web-b25ffc45b3a2";
+const BUILD_ID = "web-10a62768775d";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -27097,5 +27090,5 @@ function webDrawBoardFeedback(mark){
 
 boot();
 </script>
-</body>
+<script src="../journey/postal-identity.js?v=web-10a62768775d"></script><script src="../journey/chapter-presentation.js?v=web-10a62768775d"></script></body>
 </html>
