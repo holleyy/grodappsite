@@ -1,0 +1,9 @@
+{
+  "sourceCommit": "596c57e95874b492f6c5010d2b42aed972549f69",
+  "sourceBranch": "codex/web-interface-integration",
+  "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
+  "build": "web-81cbeb159e10",
+  "engineSha256": "ceba7eee7f9b758751d825057faf6fe78de5d462640428cb81193d3592c872ca",
+  "entry": "journey/start.html",
+  "scope": "Isolated accepted-interface review build; physical Safari qualification pending."
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#253e40"><meta name="robots" content="noindex,nofollow">
+<title>Cats by Post</title>
+<link rel="stylesheet" href="journey.css?v=web-81cbeb159e10"><link rel="stylesheet" href="menu-system.css?v=web-81cbeb159e10"><link rel="stylesheet" href="company-box.css?v=web-81cbeb159e10"><link rel="stylesheet" href="start.css?v=web-81cbeb159e10">
+<link rel="stylesheet" href="postal-identity.css?v=web-81cbeb159e10">
+<link rel="stylesheet" href="preferences.css?v=web-81cbeb159e10"><script src="preferences.js?v=web-81cbeb159e10"></script><link rel="icon" href="icons/envelope-open.svg?v=web-81cbeb159e10" type="image/svg+xml"><meta name="cbp-build" content="web-81cbeb159e10">
+</head><body data-scene="office" data-material="paper">
+
+<main id="start-app" class="start-app">
+ <picture class="start-art" aria-hidden="true"><source id="portrait-art" media="(orientation:portrait)" srcset="images/materials/office-portrait-clear.webp"><img id="wide-art" src="images/materials/office-wide-clear.webp?v=web-81cbeb159e10" alt="" width="1536" height="1024" fetchpriority="high"></picture>
+ <div class="start-composition">
+  <h1 class="game-title"><span>Cats <i>by</i></span><span>Post</span></h1>
+  <div class="opening-line" aria-hidden="true">The post can wait a moment.</div>
+  <button id="primary-letter" class="primary-letter" aria-label="Open your first letter">
+   <img class="letter-art" src="images/envelope.webp?v=web-81cbeb159e10" alt="" width="1561" height="1008">
+   <span class="letter-copy"><strong id="primary-heading">Your first letter</strong><span id="primary-title">First post</span><small id="primary-detail">Open the letter <img src="icons/arrow-right.svg?v=web-81cbeb159e10" alt="" width="20" height="20"></small></span>
+  </button>
+  <nav class="postal-services" aria-label="More post">
+   <button id="today-button" class="service-slip" data-service="daily"><img src="icons/calendar-blank.svg?v=web-81cbeb159e10" alt="" width="25" height="25"><span>Today’s post</span></button>
+   <button id="night-button" class="service-slip" data-service="night"><img src="icons/moon-stars.svg?v=web-81cbeb159e10" alt="" width="25" height="25"><span>Night Shift</span></button>
+  </nav>
+  <nav class="office-tools" aria-label="Around the office">
+   <button id="places-button" class="places-object" aria-label="Places to post"><span class="map-card"><img class="map-paper" src="images/print-paper.webp?v=web-81cbeb159e10" alt="" width="1470" height="1070"><img class="map-print" src="images/route.webp?v=web-81cbeb159e10" alt="" width="1254" height="1254"><span class="map-caption">Places</span></span></button>
+   <button id="collection-button" class="collection-object" aria-label="Open The company photograph box"><img class="closed-box" src="images/start/company-box-labelled.webp?v=web-81cbeb159e10" alt="" width="1385" height="1136"></button>
+  </nav>
+  <button id="settings-button" class="start-settings" aria-label="Settings"><img src="icons/gear-six.svg?v=web-81cbeb159e10" alt="" width="24" height="24"></button>
+ </div>
+ <button id="office-cat" class="office-cat" aria-label="Say hello to the ginger cat" hidden><span class="sr-only" role="status"></span></button>
+ <p id="entry-status" class="entry-status" role="status" hidden></p>
+</main>
+<section id="story-host" class="journey-host" aria-label="Your post" aria-hidden="true" inert><iframe id="story-frame" title="Cats by Post" src="about:blank"></iframe></section>
+
+<dialog id="cats-dialog" class="company-dialog" aria-labelledby="cats-title"><h1 id="cats-title" class="sr-only">The company</h1></dialog>
+
+<script src="company-model.js?v=web-81cbeb159e10"></script><script src="paper-motion.js?v=web-81cbeb159e10"></script><script src="photo-handling.js?v=web-81cbeb159e10"></script><script src="company-box.js?v=web-81cbeb159e10"></script><script src="postal-identity.js?v=web-81cbeb159e10"></script><script src="office-cat.js?v=web-81cbeb159e10"></script><script src="start.js?v=web-81cbeb159e10"></script>
+</body></html>

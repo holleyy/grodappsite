@@ -1,0 +1,8 @@
+@font-face{font-family:Della;src:url(../assets/della.ttf);font-weight:500;font-display:swap}
+@font-face{font-family:Grenze;src:url(../assets/grenze.ttf);font-weight:600;font-display:swap}
+.font-della h1,.font-della h2,.font-della h3{font-family:Della,Georgia,serif;font-weight:500}
+.font-grenze h1,.font-grenze h2,.font-grenze h3{font-family:Grenze,Georgia,serif;font-weight:600}
+body.contrast{--ink:#182d34;--muted:#344740;--line:#70634b;--paper:#fff4d9}
+body.big .menu-row strong,body.big .route-name,body.big .letter-facts,body.big .packet-progress{font-size:1.12em}
+body.big .menu-row small,body.big .route-name small{font-size:.92em}
+body.reduced *,body.reduced *::before,body.reduced *::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}

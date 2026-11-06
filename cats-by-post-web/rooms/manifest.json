@@ -1,0 +1,54 @@
+{
+  "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
+  "canonicalBuild": "9d960251a0",
+  "rooms": {
+    "office": {
+      "build": "office-fidelity-eef6fe3a8f",
+      "frozenPath": "docs/experiments/office-fidelity/playable.html",
+      "frozenSha256": "2d4784096cc5850028caa565c473907412e0cbeef2ac6572dcdcf71154f8e186",
+      "extensionSha256": "7e03c98a9d826fe6d44c89cd9616dff46f639cf2444743d35bdbfccb6dcc70e2",
+      "bundleSha256": "e6decd178cb6fb10b28cc3bc0c99a98b5ccf58fc8a9f4a120db06b84f8f8df6e",
+      "bundleBytes": 1739286
+    },
+    "depot": {
+      "build": "depot-contact-3f9fc92684",
+      "frozenPath": "docs/experiments/office-fidelity/depot/bespoke/refinement/interactions/playable.html",
+      "frozenSha256": "6d671e3c1637ff66ebbd4d61177cc7d185cd1da2a0a82c6c533850a80392d5cb",
+      "extensionSha256": "a7162555b6115c50380b4350d66feb6b98587cda5f774fbcb1c90bc90c7d30f9",
+      "bundleSha256": "e5d0546bfacf1927054da0212b03b12beba54133cbe88dcbc1d35118f9e0f15e",
+      "bundleBytes": 3337162
+    },
+    "train": {
+      "build": "train-craft-f20d6f0108",
+      "frozenPath": "docs/experiments/office-fidelity/train/craft/playable.html",
+      "frozenSha256": "6b3b21fa3c1153f6980332f29fd83f272c08102f9a4621a02d3d2fa4625e6dd2",
+      "extensionSha256": "02f85fac85ec34f5bc388629c6768ce9472d419188fae15522c582e0cbf4a52c",
+      "bundleSha256": "86503428820e453c85ba15731cd802242b426acf2ab12fad9cfd17cd19c40f76",
+      "bundleBytes": 2986746
+    },
+    "cityhall": {
+      "build": "cityhall-fidelity-527093ea02",
+      "frozenPath": "docs/experiments/office-fidelity/cityhall/playable.html",
+      "frozenSha256": "3bc6f63cf43905af4f706f2b148902297f38ba8bd0fcaf42297ffb055d684236",
+      "extensionSha256": "d2caa78e5d88502c44596ac1f71fa3c7a197fd1b8947a254442e3d1f9595a80a",
+      "bundleSha256": "571dcff6cc895f170af49cf4909d960bdcc088857fa51ac928165722a6cc373d",
+      "bundleBytes": 2970220
+    },
+    "parcel": {
+      "build": "parcel-fidelity-32d74bd062",
+      "frozenPath": "docs/experiments/office-fidelity/parcel/playable.html",
+      "frozenSha256": "ada08b962671475c240d3ced2243e7a8f51b036290e5e7771ada3ca2cbd5e39c",
+      "extensionSha256": "7f2af02e4a46e1b612c619d76d4b2ebc6164f77dbbcc76b271765c41dd9f2f4a",
+      "bundleSha256": "d40ffba890ec4e387ee193b1d94844b5783b3e6853645a9a797dbb7a008bbc26",
+      "bundleBytes": 6211884
+    },
+    "christmas": {
+      "build": "christmas-polish-6fe82d9bab",
+      "frozenPath": "docs/experiments/office-fidelity/christmas/polish/playable.html",
+      "frozenSha256": "6ec5a758a60193371326278e7242ae84fc09a90af3b1283820cecf7c015582d7",
+      "extensionSha256": "9df7b58139ad72a939d0eaa5018e15c89bebd16447a3f0b226469aa07cc52a94",
+      "bundleSha256": "266fa6ff4e69021ca9e6e69a3772d866ddf8cd53d95a8ad09d7ca4cb715410f3",
+      "bundleBytes": 2605154
+    }
+  }
+}
