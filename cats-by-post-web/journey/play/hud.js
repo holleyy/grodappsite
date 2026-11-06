@@ -3,7 +3,7 @@ var PlayHUD = (() => {
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const icon = name => `<img class="menu-icon" src="../icons/${name}.svg" alt="" width="24" height="24">`;
-  let expanded = false, hooks, lastKey = '', activeHatch = 1, previous = null;
+  let expanded = false, hooks, lastKey = '', activeHatch = 1, previous = null, inspectionKey = '';
 
   function feedback(state, lanes) {
     const quiet = state.tacticalPaused || state.frozen || document.body.classList.contains('reduced') || matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -24,11 +24,11 @@ var PlayHUD = (() => {
   function cat(c, next, engine, numbered, global) {
     const name = c.coat === 'ginger' ? 'Ginger' : c.coat === 'blue' ? 'Blue' : c.coat;
     const description = `${c.order}. ${c.big ? 'Large ' : ''}${name} cat${global ? ', hatch ' + c.hatch : ''}${c.released ? ', ' + (c.status || 'released') : ', waiting'}`;
-    return `<li class="arrival-cat ${c.released ? 'has-left' : ''} ${next ? 'is-next' : ''} ${c.big ? 'is-large' : ''}" aria-label="${esc(description)}"><span class="cat-portrait"><img src="${engine.face(c.coat)}" alt="" width="40" height="40">${global ? `<span class="cat-hatch">${c.hatch}</span>` : ''}${c.big ? '<span class="cat-size">Large</span>' : ''}</span>${numbered ? `<span class="cat-order">${c.order}</span>` : ''}</li>`;
+    return `<li class="arrival-cat ${c.released ? 'has-left' : ''} ${next ? 'is-next' : ''} ${c.big ? 'is-large' : ''}" aria-label="${esc(description)}"><span class="cat-portrait"><img src="${engine.face(c.coat)}" alt="" width="40" height="40">${global ? `<span class="cat-hatch">${c.hatch}</span>` : ''}</span>${c.big ? '<span class="cat-size">Large</span>' : ''}${numbered ? `<span class="cat-order">${c.order}</span>` : ''}</li>`;
   }
 
   function render(state, engine) {
-    document.body.classList.toggle('four-hatches', state.hatches.length > 3);
+    document.body.classList.toggle('four-hatches', !state.shift && state.hatches.length > 3);
     const running = state.shift ? state.shift.phase === 'running' : state.mode === 'running';
     document.body.dataset.clock = running ? state.tacticalPaused ? 'paused' : 'running' : state.mode;
     $('pause-button').hidden = !running;
@@ -43,12 +43,28 @@ var PlayHUD = (() => {
     $('arrival-panel').setAttribute('aria-label', expanded ? 'All arrivals. The board remains available.' : 'Upcoming cats by hatch');
     $('desk').classList.toggle('is-empty', Object.values(state.tray).every(n=>n===0));
     $('more-button').setAttribute('aria-expanded', String(!$('precision-tools').hidden));
-    if (!$('precision-tools').hidden && state.cursor) { $('tile-x').value=state.cursor.x; $('tile-y').value=state.cursor.y; const piece=state.chutes.find(c=>c.x===state.cursor.x&&c.y===state.cursor.y);$('tile-description').textContent=`Column ${state.cursor.x+1}, row ${state.cursor.y+1}${piece?', '+piece.type+' turntable':''}`; }
+    if (!$('precision-tools').hidden && state.cursor) {
+      const t=state.cursor,button=$('precision-tools').querySelector('.precision-place');
+      $('tile-x').value=t.x; $('tile-y').value=t.y;
+      button.textContent=t.action==='turn'?'Turn '+t.reason:t.action==='return'?'Return':t.action==='inspect'?'Inspect':'Place';
+      button.disabled=t.action==='blocked';button.setAttribute('aria-label',t.action==='turn'?'Turn '+t.type+' turntable '+t.reason:t.reason);
+      $('tile-description').textContent=`Column ${t.x+1}, row ${t.y+1}. ${t.reason}`;
+    }
     const lanes = HUDModel.lanes(state, 4);
     if (lanes.length>1 && !lanes.some(l=>l.hatch===activeHatch)) activeHatch=lanes[0].hatch;
+    const hatchPreviews=HUDModel.hatchPreviews(state);
     const tabs=$('arrival-tabs'), tabKey=lanes.length>1?lanes.map(l=>l.hatch).join(','):'';
-    if(tabs.dataset.key!==tabKey){tabs.innerHTML=lanes.length>1?lanes.map(l=>`<button data-action="hatch-preview" data-arg="${l.hatch}"><span class="hatch-tab-number">${l.hatch}</span><span class="hatch-tab-count"></span></button>`).join(''):'';tabs.dataset.key=tabKey;}
-    for(const button of tabs.children){const lane=lanes.find(l=>l.hatch===Number(button.dataset.arg));button.setAttribute('aria-pressed',String(lane.hatch===activeHatch));button.setAttribute('aria-label',`Preview hatch ${lane.hatch}, ${lane.remaining} waiting`);button.classList.toggle('is-exhausted',lane.remaining===0);button.querySelector('.hatch-tab-count').innerHTML=`${lane.remaining}<small>left</small>`;}
+    if(tabs.dataset.key!==tabKey){tabs.innerHTML=lanes.length>1?lanes.map(l=>`<button data-action="hatch-preview" data-arg="${l.hatch}"><span class="hatch-tab-number">${l.hatch}</span><span class="hatch-tab-next" aria-hidden="true"></span><span class="hatch-tab-count"></span></button>`).join(''):'';tabs.dataset.key=tabKey;}
+    for(const button of tabs.children){
+      const lane=hatchPreviews.find(l=>l.hatch===Number(button.dataset.arg)),next=lane.next;
+      button.setAttribute('aria-pressed',String(lane.hatch===activeHatch));button.setAttribute('aria-label',`Inspect hatch ${lane.hatch}, ${lane.remaining} waiting${next?', next '+(next.big?'large ':'')+next.coat+' cat':''}`);
+      button.classList.toggle('is-exhausted',lane.remaining===0);button.classList.toggle('is-large',!!next?.big);
+      button.querySelector('.hatch-tab-count').innerHTML=`${lane.remaining}<small>left</small>`;
+      const portrait=button.querySelector('.hatch-tab-next'),key=next?next.coat+':'+!!next.big:'empty';
+      if(portrait.dataset.key!==key){portrait.innerHTML=next?`<img src="${engine.face(next.coat)}" alt="" width="36" height="36">${next.big?'<small>Large</small>':''}`:icon('check');portrait.dataset.key=key;}
+    }
+    $('arrival-note').hidden=!expanded;
+    $('arrival-note').textContent=[state.shift?'In arrival order':HUDModel.cadence(state),state.queue.some(c=>c.big)?'Large cats move every second beat.':''].filter(Boolean).join(' · ');
     const key = JSON.stringify([expanded, activeHatch, lanes, state.shift?.round]);
     if (key === lastKey) { feedback(state, lanes); return; }
     lastKey = key;
@@ -60,6 +76,7 @@ var PlayHUD = (() => {
     }).join('');
     $('arrival-lanes').scrollTop = scroll;
     if(focusHatch)$('arrival-lanes').querySelector(`[data-action="focus-hatch"][data-arg="${focusHatch}"]`)?.focus({preventScroll:true});
+    if(expanded&&inspectionKey!==String(activeHatch)){const next=$('arrival-lanes').querySelector('.is-active .is-next');if(next){const a=next.getBoundingClientRect(),r=$('arrival-lanes').getBoundingClientRect();$('arrival-lanes').scrollTop+=a.top-r.top-5;}inspectionKey=String(activeHatch);}else if(!expanded)inspectionKey='';
     feedback(state, lanes);
   }
 
@@ -87,14 +104,14 @@ var PlayHUD = (() => {
     $('tile-x').value = x; $('tile-y').value = y;
     const choose = () => {
       const p = engine.setCursor(+$('tile-x').value, +$('tile-y').value);
-      $('tile-description').textContent = `Column ${p.x+1}, row ${p.y+1}${p.piece ? ', ' + p.piece : ', empty tile'}`;
+      $('tile-description').textContent = `Column ${p.x+1}, row ${p.y+1}. ${engine.tile(p.x,p.y).reason}`;
     };
     $('tile-x').onchange = choose; $('tile-y').onchange = choose;
     $('precision-tools').hidden = false; choose(); hooks.poll(); hooks.layout(); hooks.save();
     $('tile-x').focus({preventScroll:true});
   }
   function closePrecision() { $('precision-tools').hidden = true; $('more-button').setAttribute('aria-expanded','false'); hooks?.layout(); $('more-button').focus({preventScroll:true}); }
-  function reset() { expanded = false; lastKey = ''; activeHatch=1; previous=null; $('precision-tools').hidden = true; }
+  function reset() { expanded = false; lastKey = ''; activeHatch=1; previous=null; inspectionKey=''; $('precision-tools').hidden = true; }
 
   function layout(view, sheetOpen, sheetKind) {
     if (view !== 'play') return { top: 12, bottom: 12, left: 12, right: 12 };
@@ -109,12 +126,16 @@ var PlayHUD = (() => {
     const receipt = sheetOpen && sheetKind === 'delivery' ? $('sheet').offsetHeight + 12 : 0;
     document.documentElement.style.setProperty('--toast-bottom', innerHeight - desk.top + 8 + 'px');
     return {
-      top: receipt ? 16 : Math.ceil(side ? head.bottom + 14 : arrivals.bottom + 10),
+      top: receipt ? 16 : Math.ceil(side&&!(expanded&&matchMedia('(max-height:450px)').matches) ? head.bottom + 14 : arrivals.bottom + 10),
       bottom: side ? 16 : Math.max(receipt, Math.ceil(innerHeight - desk.top + stockGap + 12)),
       left: 12,
       right: side ? Math.ceil(innerWidth - desk.left + 16) : 12
     };
   }
-  function chooseHatch(hatch) { activeHatch=hatch;lastKey='';hooks.poll();hooks.layout(); }
+  function chooseHatch(hatch) {
+    activeHatch=hatch;lastKey='';
+    if(document.body.classList.contains('four-hatches')&&matchMedia('(max-width:650px), (max-height:450px)').matches){expanded=true;const s=hooks.engine().state();if(s.mode==='running')hooks.engine().pause(true);hooks.save();}
+    hooks.poll();hooks.layout();
+  }
   return { chooseHatch, connect(value) { hooks = value; }, render, layout, toggleArrivals, closeArrivals, openPrecision, closePrecision, reset, get expanded() { return expanded; }, get precision() { return !$('precision-tools').hidden; } };
 })();

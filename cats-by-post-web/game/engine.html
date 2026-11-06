@@ -147,10 +147,10 @@
   #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
-<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-b1c542e86fed" type="image/svg+xml">
+<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-5944cfbf848a" type="image/svg+xml">
 <style id="web-host-style">
-@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-b1c542e86fed);font-weight:400;font-display:swap}
-@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-b1c542e86fed);font-weight:500;font-display:swap}
+@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-5944cfbf848a);font-weight:400;font-display:swap}
+@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-5944cfbf848a);font-weight:500;font-display:swap}
 #hud,#shiftCards,#shiftEnding,#shiftDebug,#chapterKicker,#debug,#controls,#atlasPanel{display:none!important}
 html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterScene{font-family:Signika,sans-serif;color:#253e40}
@@ -163,7 +163,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterCard button:focus-visible{outline:3px solid #a94632;outline-offset:3px}
 @media(max-width:420px){#chapterCard{margin:10px;max-width:calc(100vw - 20px)}#chapterCard button{margin-bottom:6px}}
 </style>
-<link rel="stylesheet" href="../journey/preferences.css?v=web-b1c542e86fed"><script src="../journey/preferences.js?v=web-b1c542e86fed"></script></head>
+<link rel="stylesheet" href="../journey/preferences.css?v=web-5944cfbf848a"><script src="../journey/preferences.js?v=web-5944cfbf848a"></script></head>
 <body>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
@@ -263,7 +263,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "web-b1c542e86fed";
+const BUILD_ID = "web-5944cfbf848a";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -26801,6 +26801,59 @@ window.CBP_DEFER_PRESENTATION=new URLSearchParams(location.search).get('deferPre
   window.GameSessionCodec=Object.freeze({encode,decode,summary,version:VERSION});
 })();
 
+/* Display-resolution paper/ink feedback for the web host. The native board supplies
+   picking, camera and depth. Reuse the canvas path; never allocate in this draw. */
+const WEB_MARK_DASH=[5,4],WEB_MARK_SOLID=[];
+function webMarkPointX(x,y){return dstX+(OX+x-y-viewX)*scale;}
+function webMarkPointY(x,y){return dstY+(OY+(x+y)*.5-viewY)*scale;}
+function webMarkVisible(px,py){
+  const lx=(px-dstX)/scale,ly=(py-dstY)/scale;
+  if(lx<0||ly<0||lx>=LW||ly>=LH)return false;
+  const S=paperOutputScale(),ix=Math.floor(lx*S),iy=Math.floor(ly*S);
+  const depth=paperEnabled&&paperReady?paperDepth[iy*LW*S+ix]:fDep[Math.floor(ly)*LW+Math.floor(lx)];
+  return depth!==DEPTH_EMPTY&&depth<=(ly+viewY-OY)*8+16;
+}
+function webMarkLine(x0,y0,x1,y1){
+  sctx.moveTo(webMarkPointX(x0,y0),webMarkPointY(x0,y0));
+  sctx.lineTo(webMarkPointX(x1,y1),webMarkPointY(x1,y1));
+}
+function webMarkClip(x,y){
+  // Clip the entire antialiased stroke, including its round caps. Only visit the
+  // small tile rectangle; row runs use the current path, without a second buffer.
+  const margin=3*devDpr+2,a=1,b=TILE-1;
+  const x0=Math.max(0,Math.floor(webMarkPointX(x+a,y+b)-margin)),x1=Math.min(devW,Math.ceil(webMarkPointX(x+b,y+a)+margin));
+  const y0=Math.max(0,Math.floor(webMarkPointY(x+a,y+a)-margin)),y1=Math.min(devH,Math.ceil(webMarkPointY(x+b,y+b)+margin));
+  sctx.beginPath();
+  for(let py=y0;py<y1;py++){
+    let run=-1;
+    for(let px=x0;px<x1;px++){
+      if(webMarkVisible(px+.5,py+.5)){if(run<0)run=px;}
+      else if(run>=0){sctx.rect(run,py,px-run,1);run=-1;}
+    }
+    if(run>=0)sctx.rect(run,py,x1-run,1);
+  }
+  sctx.clip();
+}
+function webDrawBoardFeedback(mark){
+  const x=gTX(mark.x),y=gTY(mark.y),a=1,b=TILE-1;
+  sctx.save();sctx.lineCap='round';sctx.lineJoin='round';
+  webMarkClip(x,y);
+  sctx.beginPath();
+  webMarkLine(x+a,y+a,x+b,y+a);webMarkLine(x+b,y+a,x+b,y+b);
+  webMarkLine(x+b,y+b,x+a,y+b);webMarkLine(x+a,y+b,x+a,y+a);
+  sctx.setLineDash(mark.action==='blocked'?WEB_MARK_DASH:WEB_MARK_SOLID);
+  sctx.strokeStyle=mark.action==='blocked'?'#914533':'#253e40';sctx.lineWidth=3.5*devDpr;sctx.stroke();
+  sctx.strokeStyle='#fff0cd';sctx.lineWidth=1.25*devDpr;sctx.stroke();
+  sctx.setLineDash(WEB_MARK_SOLID);
+  if(mark.action==='place'){
+    const cx=x+TILE*.5,cy=y+TILE*.5;
+    sctx.beginPath();webMarkLine(cx,cy+3,cx,cy-3);webMarkLine(cx,cy-3,cx-2,cy-1);webMarkLine(cx,cy-3,cx+2,cy-1);
+    sctx.strokeStyle='#fff0cd';sctx.lineWidth=4*devDpr;sctx.stroke();
+    sctx.strokeStyle='#253e40';sctx.lineWidth=1.75*devDpr;sctx.stroke();
+  }
+  sctx.restore();
+}
+
 /* The independent web shell sends intents; canonical controllers own every rule and reward. */
 (function(){
   'use strict';
@@ -26824,6 +26877,24 @@ window.CBP_DEFER_PRESENTATION=new URLSearchParams(location.search).get('deferPre
   function report(kind,message,x,y,piece){feedback={id:++feedbackID,kind,message,x,y,...piece};gStatus(message);emit('gamefeedback',feedback);emit('labfeedback',feedback);dirty=true;return feedback;}
   function syncPause(){const hard=!presentationAttached||reasons.size>0;const next=hard||((gm.mode==='running'||gm.mode==='edit')&&(tactical||softFrozen));if(paused!==next){paused=next;lastNow=-1;acc=0;}dirty=true;}
   function locked(x,y){const s=gm.sim;if(!s)return false;for(let i=0;i<s.n;i++)if((s.st[i]===GL_BOARD||((s.ev[i]===GE_DELIVERED||s.ev[i]===GE_WRONG)&&gm.t<s.tick*G_TICK))&&((s.x[i]===x&&s.y[i]===y)||(s.px[i]===x&&s.py[i]===y)))return true;return false;}
+  // One description feeds pointer feedback, keyboard and precise placement. No rule is run here.
+  const targetDirections=['up','right','down','left'];
+  function target(x,y,out,draw=false){
+    out.x=x;out.y=y;out.action='blocked';out.reason='That tile is outside the sorting floor.';out.type=null;out.dir=null;out.locked=false;
+    if(!Number.isInteger(x)||!Number.isInteger(y)||x<0||y<0||x>=gm.L.board.w||y>=gm.L.board.h)return out;
+    if(!editable()){out.reason='Pause to arrange.';return out;}
+    const shift=gm.shift,locks=shift?(draw?G_SRC.locked:NIGHTSHIFT.lockedTiles(shift)):null;
+    if(shift?locks.includes(y*gm.L.board.w+x):precision()&&locked(x,y)){out.locked=true;out.reason='A cat is on or heading for that tile.';return out;}
+    const fixed=gPieceAt(x,y);
+    if(fixed){out.action=fixed==='gate'||fixed==='tunnel'?'inspect':'blocked';out.reason=fixed==='hatch'?'The hatch needs this tile.':fixed==='basket'?'A basket already has this tile.':fixed==='dog'?'The dog is keeping this tile.':fixed==='tunnel'?'Inspect the linked tunnel.':'Inspect the points.';return out;}
+    let placed=null;for(let i=0;i<gm.chutes.length;i++)if(gm.chutes[i].x===x&&gm.chutes[i].y===y){placed=gm.chutes[i];break;}
+    if(placed){out.type=placed.type;out.dir=G_CW[(G_CW.indexOf(placed.dir)+1)%4];out.locked=!!placed.locked;
+      if(placed.locked){out.reason='The hint piece stays fixed.';return out;}
+      out.action=placed.dir==='L'?'return':'turn';out.reason=out.action==='return'?'Return to the tray.':targetDirections[G_CW.indexOf(out.dir)];return out;}
+    let type=gm.tray[gm.sel]>0?gm.sel:null;for(let i=0;!type&&i<G_TYPES.length;i++)if(gm.tray[G_TYPES[i]]>0)type=G_TYPES[i];
+    if(!type){out.reason='No turntables left in the tray.';return out;}
+    out.action='place';out.type=type;out.dir='U';out.reason='Place facing up.';return out;
+  }
   function syncPieces(){if(!gm.sim||gm.shift)return;gm.sim.chDir.fill(-1);gm.sim.chType.fill(0);for(const p of gm.chutes){const k=p.y*gm.sim.W+p.x;gm.sim.chDir[k]=GR_DIR[p.dir];gm.sim.chType[k]=GR_TYPE[p.type];}gSyncSrc();dirty=true;}
   function editStamp(){return gm.shift?'shift:'+gm.shift.round+':'+gm.shift.current.sim.tick:gm.mode==='running'?'run:'+gameFrame:'setup';}
   function edit(fn){const before={chutes:clone(gm.chutes),tray:{...gm.tray},sel:gm.sel},stamp=editStamp();fn();if(JSON.stringify(before.chutes)!==JSON.stringify(gm.chutes)){history.push({...before,stamp});return true;}return false;}
@@ -26833,6 +26904,9 @@ window.CBP_DEFER_PRESENTATION=new URLSearchParams(location.search).get('deferPre
     if(!Number.isInteger(x)||!Number.isInteger(y)||x<0||y<0||x>=gm.L.board.w||y>=gm.L.board.h)return report('blocked','That tile is outside the sorting floor.',x,y);
     if(!editable())return report('blocked','Pause to arrange.',x,y);
     if(precision()&&locked(x,y))return report('blocked','A cat is on or heading for that tile.',x,y);
+    const destination=target(x,y,{});
+    if(destination.action==='blocked')return report('blocked',destination.reason,x,y);
+    if(destination.action==='inspect'){native.tap(x,y);return report('inspected',hud.status.textContent,x,y);}
     const before=gm.chutes.find(p=>p.x===x&&p.y===y),saved=before&&{...before};
     if(precision())edit(()=>precise(()=>native.tap(x,y)));else edit(()=>native.tap(x,y));
     const after=gm.chutes.find(p=>p.x===x&&p.y===y);
@@ -26844,7 +26918,7 @@ window.CBP_DEFER_PRESENTATION=new URLSearchParams(location.search).get('deferPre
   gHint=function(){if(gm.mode==='running'||cpActive())return;native.hint();history.length=0;};
   gToEdit=function(){native.toEdit();if(gm.mode==='edit')winRecorded=false;};
   gSend=function(){if(gm.mode!=='running'&&!gm.shift)epoch();history.length=0;native.send();};
-  gLoadLevel=function(...args){remember();pendingView=null;native.load(...args);manual=false;epoch();tactical=false;syncPause();};
+  gLoadLevel=function(...args){remember();pendingView=null;native.load(...args);gm.cursor=false;manual=false;epoch();tactical=false;syncPause();};
   gFinish=function(){if(!gm.sim||finished.has(gm.sim))return;finished.add(gm.sim);native.finish();winRecorded=story()&&gm.mode==='won'&&!!progress.levels[gm.L.id]?.stars?.delivered;changed();};
   xcMaybeFinale=function(){return replaying?false:native.maybeFinale();};
   xcStart=function(replay){if(!replaying&&!replay)record('automaticFinale',{});protectView();native.finale(replay);syncPause();};
@@ -26864,9 +26938,14 @@ window.CBP_DEFER_PRESENTATION=new URLSearchParams(location.search).get('deferPre
     const replay=presentationAvailable()&&story()&&gm.L.id==='8-15'&&hasSavedWin&&gm.mode!=='running'&&homeState()!=='settling';
     return {version:1,levelId:gm.L.id,mode:gm.shift?'nightShift':gm.daily?'daily':gm.practice?'practice':gm.custom?'custom':'campaign',gamePhase:gm.mode,presentation:p,hasSavedWin,winRecorded,currentWinRecorded:winRecorded,homeState:homeState(),storageStatus:'unknown',endingSeen:!!XC.seen,canAdvance,resultReady,canSend:inputAvailable(),canEdit:editable(),canNavigate:!loading,actions:{advance:canAdvance,continue:presentationAvailable()&&['intro','demo','growth','exit','station'].includes(p),watchDemo:presentationAvailable()&&['intro','demo'].includes(p),skip:presentationAvailable()&&p==='finale',showCredits:presentationAvailable()&&p==='thanks',replayEnding:replay,back:presentationAvailable()&&['thanks','credits','finale'].includes(p),send:inputAvailable(),chapterStory:chapterStoryAvailable(),cancelPresentation:p!=='none'}};
   }
-  const nativePrepare=gPrepareSrc;
-  gPrepareSrc=function(){const result=nativePrepare();if(precision()&&gm.cursor)G_SRC.cursor=gm.cy*gm.L.board.w+gm.cx;return result;};
-  function project(x,y){const wx=OX+gTX(x)-gTY(y),wy=OY+(gTX(x)+gTY(y))*.5;return{x:(dstX+(wx-(VIEW_CX+WS.camX+view.panX-LW/2))*scale)/devDpr,y:(dstY+(wy-(VIEW_CY+WS.camY+view.panY-LH/2))*scale)/devDpr};}
+  const nativePrepare=gPrepareSrc,displayFeedback=typeof webDrawBoardFeedback==='function',marker={};
+  gPrepareSrc=function(){const result=nativePrepare();if(displayFeedback)G_SRC.cursor=-1;else if(precision()&&gm.cursor)G_SRC.cursor=gm.cy*gm.L.board.w+gm.cx;return result;};
+  const nativePresent=present,nativeHover=gHover;
+  present=function(){nativePresent();if(displayFeedback&&gm.L&&gm.cursor&&editable()&&!mouseDrag&&!multiTouch){target(gm.cx,gm.cy,marker,true);webDrawBoardFeedback(marker);}};
+  gHover=function(x,y){nativeHover(x,y);if(gPick(x,y)<0)gm.cursor=false;dirty=true;};
+  screen.addEventListener('pointerleave',()=>{gm.cursor=false;dirty=true;});
+  // The renderer rounds its origin; the overlay and hatch labels use that same origin.
+  function project(x,y){const wx=OX+gTX(x)-gTY(y),wy=OY+(gTX(x)+gTY(y))*.5;return{x:(dstX+(wx-Math.round(VIEW_CX+WS.camX+view.panX-LW/2))*scale)/devDpr,y:(dstY+(wy-Math.round(VIEW_CY+WS.camY+view.panY-LH/2))*scale)/devDpr};}
   function viewState(){return{zoom:view.zoom,zoomCss:scale/devDpr,dpr:devDpr,x:view.panX,y:view.panY,framing,manual};}
   const boardBox={x0:0,x1:0,y0:0,y1:0};
   function boardBounds(){const B=gm.L.board,x=gBoardX(B)*TILE,y=gBoardY(B)*TILE;boardBox.x0=OX+x-y-B.h*TILE-14;boardBox.x1=OX+x+B.w*TILE-y+14;boardBox.y0=OY+(x+y)/2-34;boardBox.y1=OY+(x+y+(B.w+B.h)*TILE)/2+24;return boardBox;}
@@ -26893,11 +26972,11 @@ window.CBP_DEFER_PRESENTATION=new URLSearchParams(location.search).get('deferPre
   function queue(){const s=gm.shift;if(s){const c=s.current;return c.releaseOrder.map((id,j)=>({order:j+1,hatch:c.releaseHatches[j]+1,coat:GR_COATS[c.sim.coat[id]],big:!!c.sim.big[id],size:c.sim.big[id]?'big':'small',status:GL_STATES[c.sim.st[id]],released:j<c.released,releaseTick:j*c.params.releaseGap,releasedAt:c.sim.releaseTick[id]<0?null:c.sim.releaseTick[id],releaseEvery:c.params.releaseGap,moveEvery:c.sim.big[id]?2:1,tickMs:c.params.tickMs}));}
     const q=[];for(let h=0;h<gm.L.hatches.length;h++){const H=gm.L.hatches[h],S=gm.sim?.hatches[h];H.cats.forEach((cat,j)=>q.push({order:j+1,hatch:h+1,coat:GR_COATS[grCatCoat(cat)],big:grCatBig(cat),size:grCatBig(cat)?'big':'small',status:S&&gm.mode!=='edit'?GL_STATES[gm.sim.st[S.first+j]]:'waiting',released:!!S&&gm.mode!=='edit'&&gm.sim.st[S.first+j]!==GL_WAIT,releaseTick:j*GR_RELEASE_EVERY,releasedAt:S&&gm.mode!=='edit'&&gm.sim.st[S.first+j]!==GL_WAIT?j*GR_RELEASE_EVERY:null,releaseEvery:GR_RELEASE_EVERY,moveEvery:grCatBig(cat)?2:1,tickMs:GR_TICK_MS}));}return q;}
   function progressState(){const value=clone(progress);for(const record of Object.values(value.practice.records))delete record.level;return value;}
-  function state(){if(!gm.L)return null;const s=gm.shift,l=lifecycle();return {version:1,sample:false,feedback:feedback&&{...feedback},runID,revision,lifecycle:l,presentation:l.presentation,resultReady:l.resultReady,canAdvance:l.canAdvance,canSend:l.canSend,canEdit:l.canEdit,resultStars:gm.mode==='won'?SCORE.stars(gm.L,gm.chutes.length,gm.attempts,gm.hinted):null,id:gm.L.id,title:gm.L.title,li:gm.li,room:ACTIVE_ROOM.id,board:{...gm.L.board},mode:gm.mode,phase:s?.phase||gm.mode,paused:s?!!s.paused||softFrozen||reasons.size>0:tactical||softFrozen||reasons.size>0,tacticalPaused:s?!!s.paused:tactical,frozen:softFrozen||reasons.size>0,suspensions:Array.from(reasons),tray:{...gm.tray},sel:gm.sel,chutes:clone(gm.chutes),hinted:gm.hinted,attempts:gm.attempts,target:gm.L.minTurntables,tickMs:gm.shift?gm.shift.current.params.tickMs:GR_TICK_MS,releaseEvery:gm.shift?gm.shift.current.params.releaseGap:GR_RELEASE_EVERY,tick:gm.sim?.tick||0,home:s?s.catsHome:gm.sim?.delivered||0,shift:s?{run:clone(s.run),round:s.round,strikes:s.strikes,phase:s.phase,paused:s.paused,fast:s.fastForward,offers:clone(s.cardOffers),choice:s.cardChoice,walkies:s.pendingWalkies,walkiesFrom:nsui.walkiesFrom&&{...nsui.walkiesFrom},best:nsBest(),sleepers:s.sleepers.length}:null,status:hud.status.textContent,pending:gPracticePending||loading||reasons.has('fidelity'),queue:queue(),undo:editable()&&history.some(h=>h.stamp===editStamp()),editable:editable(),hatches:gm.L.hatches.map((h,i)=>({...clone(h),number:i+1,...project(h.x+.5,h.y+.5)})),progress:progressState(),collection:gCollection().slice(),daily:gm.daily?{key:gm.daily.key,number:gm.daily.entry.number}:null,practice:gm.practice?{key:gm.practice.key,weekday:gm.practice.entry.weekday,seed:gm.practice.entry.seed}:null,camera:viewState(),cursor:{x:gm.cx,y:gm.cy,visible:gm.cursor}};}
+  function state(){if(!gm.L)return null;const s=gm.shift,l=lifecycle();return {version:1,sample:false,feedback:feedback&&{...feedback},runID,revision,lifecycle:l,presentation:l.presentation,resultReady:l.resultReady,canAdvance:l.canAdvance,canSend:l.canSend,canEdit:l.canEdit,resultStars:gm.mode==='won'?SCORE.stars(gm.L,gm.chutes.length,gm.attempts,gm.hinted):null,id:gm.L.id,title:gm.L.title,li:gm.li,room:ACTIVE_ROOM.id,board:{...gm.L.board},mode:gm.mode,phase:s?.phase||gm.mode,paused:s?!!s.paused||softFrozen||reasons.size>0:tactical||softFrozen||reasons.size>0,tacticalPaused:s?!!s.paused:tactical,frozen:softFrozen||reasons.size>0,suspensions:Array.from(reasons),tray:{...gm.tray},sel:gm.sel,chutes:clone(gm.chutes),hinted:gm.hinted,attempts:gm.attempts,target:gm.L.minTurntables,tickMs:gm.shift?gm.shift.current.params.tickMs:GR_TICK_MS,releaseEvery:gm.shift?gm.shift.current.params.releaseGap:GR_RELEASE_EVERY,tick:gm.sim?.tick||0,home:s?s.catsHome:gm.sim?.delivered||0,shift:s?{run:clone(s.run),round:s.round,strikes:s.strikes,phase:s.phase,paused:s.paused,fast:s.fastForward,offers:clone(s.cardOffers),choice:s.cardChoice,walkies:s.pendingWalkies,walkiesFrom:nsui.walkiesFrom&&{...nsui.walkiesFrom},best:nsBest(),sleepers:s.sleepers.length}:null,status:hud.status.textContent,pending:gPracticePending||loading||reasons.has('fidelity'),queue:queue(),undo:editable()&&history.some(h=>h.stamp===editStamp()),editable:editable(),hatches:gm.L.hatches.map((h,i)=>({...clone(h),number:i+1,...project(h.x+.5,h.y+.5)})),progress:progressState(),collection:gCollection().slice(),daily:gm.daily?{key:gm.daily.key,number:gm.daily.entry.number}:null,practice:gm.practice?{key:gm.practice.key,weekday:gm.practice.entry.weekday,seed:gm.practice.entry.seed}:null,camera:viewState(),cursor:{x:gm.cx,y:gm.cy,visible:gm.cursor,...target(gm.cx,gm.cy,{})}};}
   function record(type,payload){if(!replaying&&start)events.push({gameFrame,presentationFrame,type,payload:clone(payload||{})});}
   if(window.FidelityRooms?.subscribe)window.FidelityRooms.subscribe(s=>{s.loading?reasons.add('fidelity'):reasons.delete('fidelity');syncPause();changed();});
   const replayCommands=new Set(['tap','select','clear','hint','send','pause','resume','stop','arrange','undo','fast','card','nextRound','advance','continue','watchDemo','skip','showCredits','replayEnding','back','cancelPresentation','chapterStory','chapterSecondary']);
-  function undo(){const h=history[history.length-1];if(!h||h.stamp!==editStamp()||!editable())return false;history.pop();if(gm.shift){for(const p of gm.shift.turntables.slice())NIGHTSHIFT.edit(gm.shift,{action:'pickup',x:p.x,y:p.y});for(const p of h.chutes)NIGHTSHIFT.edit(gm.shift,{action:'place',...p});gm.sel=h.sel;nsSync();}else{gm.chutes=h.chutes;gm.tray=h.tray;gm.sel=h.sel;if(precision())syncPieces();else gToEdit();}gHud();report('undone','Last arrangement restored.');return true;}
+  function undo(){const h=history[history.length-1];if(!h||h.stamp!==editStamp()||!editable())return false;const changedTile=gm.chutes.find(p=>!h.chutes.some(c=>c.x===p.x&&c.y===p.y&&c.dir===p.dir&&c.type===p.type))||h.chutes.find(p=>!gm.chutes.some(c=>c.x===p.x&&c.y===p.y&&c.dir===p.dir&&c.type===p.type));history.pop();if(gm.shift){for(const p of gm.shift.turntables.slice())NIGHTSHIFT.edit(gm.shift,{action:'pickup',x:p.x,y:p.y});for(const p of h.chutes)NIGHTSHIFT.edit(gm.shift,{action:'place',...p});gm.sel=h.sel;nsSync();}else{gm.chutes=h.chutes;gm.tray=h.tray;gm.sel=h.sel;if(precision())syncPieces();else gToEdit();}gHud();if(changedTile){gm.cx=changedTile.x;gm.cy=changedTile.y;gm.cursor=true;}report('undone','Last arrangement restored.',changedTile?.x,changedTile?.y);return true;}
   function stop(){if(gm.shift){NIGHTSHIFT.setPaused(gm.shift,true);}else{if(gm.mode==='running'&&G_KEEP_PROGRESS){if(gm.daily)progressDaily(gm.daily.key,false);if(gm.practice)progressPracticeAttempt(gm.practice.key,false);}gToEdit();}tactical=false;history.length=0;gHud();}
   const boardEdits=new Set(['tap','select','clear','hint','undo']);
   function execute(type,a){
@@ -26993,7 +27072,7 @@ window.CBP_DEFER_PRESENTATION=new URLSearchParams(location.search).get('deferPre
   const pieceCache={};
   function piece(type){if(pieceCache[type])return pieceCache[type];const item=PAPER_SPRITE_DATA.pieces.find(s=>s.id==='turntable_'+type+'_E/idle');if(!item)return null;const c=document.createElement('canvas');c.width=item.rect.w*4;c.height=item.rect.h*4;const ctx=c.getContext('2d'),frame=ctx.createImageData(c.width,c.height),out=new Uint32Array(frame.data.buffer),raw=atob(item.pixels);for(let i=0;i<raw.length;i++){const col=raw.charCodeAt(i);out[i]=col===255?0:PAL32[col];}ctx.putImageData(frame,0,0);return pieceCache[type]=c.toDataURL();}
 
-  const api={state,command,load,snapshot,restore,sessionSummary:GameSessionCodec.summary,subscribe(fn){listeners.add(fn);return()=>listeners.delete(fn);},suspend:reason=>fresh('suspend',{reason}),unsuspend:reason=>fresh('unsuspend',{reason}),levels:LEVELS.map((L,i)=>({i,id:L.id,title:L.title,room:LEVELROOMS.id(L),board:{...L.board},queueCount:L.hatches.reduce((n,h)=>n+h.cats.length,0),bigCount:L.hatches.reduce((n,h)=>n+h.cats.filter(grCatBig).length,0),hatchCount:L.hatches.length,mechanisms:{dogs:(L.dogs||[]).length,gates:(L.gates||[]).length,tunnels:(L.tunnels||[]).length,flaps:(L.flaps||[]).length}})),face,piece,geometry(){const b=gm.L.board;return[[0,0],[b.w,0],[b.w,b.h],[0,b.h]].map(([x,y])=>project(x,y));},remember,backdrop(){return fresh('camera',{mode:'board'});},layout:a=>fresh('layout',a),freeze:value=>fresh('freeze',{value}),pause:(value=true)=>fresh('pause',{value}),resume:()=>fresh('resume'),camera:mode=>fresh('camera',{mode}),focus:hatch=>fresh('focus',{hatch}),zoom:dir=>fresh('zoom',{dir}),pan:(x,y)=>fresh('pan',{x,y}),tap:(x,y)=>fresh('tap',{x,y}),select:type=>fresh('select',{type}).status==='accepted',clear:()=>fresh('clear'),hint:()=>fresh('hint'),send:()=>fresh('send'),arrange:()=>fresh('arrange'),stop:()=>fresh('stop'),fast:()=>fresh('fast'),card:id=>fresh('card',{id}),nextRound:()=>fresh('nextRound'),grey:value=>fresh('grey',{value}),setCursor:(x,y)=>fresh('setCursor',{x,y}).value,cursor:(dx,dy)=>fresh('setCursor',{x:Number.isSafeInteger(dx)?clamp(gm.cx+dx,0,gm.L.board.w-1):NaN,y:Number.isSafeInteger(dy)?clamp(gm.cy+dy,0,gm.L.board.h-1):NaN}).value,place:()=>fresh('tap',{x:gm.cx,y:gm.cy}),closeup(){fresh('camera',{mode:'board'});return fresh('zoom',{dir:scale*.4});},undo:()=>fresh('undo').value===true,next:()=>fresh('advance'),continue:()=>fresh('continue'),watchDemo:()=>fresh('watchDemo'),chapterStory:()=>fresh('chapterStory'),skip:()=>fresh('skip'),showCredits:()=>fresh('showCredits'),replayEnding:()=>fresh('replayEnding'),back:()=>fresh('back'),cancelPresentation:()=>fresh('cancelPresentation')};
+  const api={state,tile:(x,y)=>target(x,y,{}),command,load,snapshot,restore,sessionSummary:GameSessionCodec.summary,subscribe(fn){listeners.add(fn);return()=>listeners.delete(fn);},suspend:reason=>fresh('suspend',{reason}),unsuspend:reason=>fresh('unsuspend',{reason}),levels:LEVELS.map((L,i)=>({i,id:L.id,title:L.title,room:LEVELROOMS.id(L),board:{...L.board},queueCount:L.hatches.reduce((n,h)=>n+h.cats.length,0),bigCount:L.hatches.reduce((n,h)=>n+h.cats.filter(grCatBig).length,0),hatchCount:L.hatches.length,mechanisms:{dogs:(L.dogs||[]).length,gates:(L.gates||[]).length,tunnels:(L.tunnels||[]).length,flaps:(L.flaps||[]).length}})),face,piece,geometry(){const b=gm.L.board;return[[0,0],[b.w,0],[b.w,b.h],[0,b.h]].map(([x,y])=>project(x,y));},remember,backdrop(){return fresh('camera',{mode:'board'});},layout:a=>fresh('layout',a),freeze:value=>fresh('freeze',{value}),pause:(value=true)=>fresh('pause',{value}),resume:()=>fresh('resume'),camera:mode=>fresh('camera',{mode}),focus:hatch=>fresh('focus',{hatch}),zoom:dir=>fresh('zoom',{dir}),pan:(x,y)=>fresh('pan',{x,y}),tap:(x,y)=>fresh('tap',{x,y}),select:type=>fresh('select',{type}).status==='accepted',clear:()=>fresh('clear'),hint:()=>fresh('hint'),send:()=>fresh('send'),arrange:()=>fresh('arrange'),stop:()=>fresh('stop'),fast:()=>fresh('fast'),card:id=>fresh('card',{id}),nextRound:()=>fresh('nextRound'),grey:value=>fresh('grey',{value}),setCursor:(x,y)=>fresh('setCursor',{x,y}).value,cursor:(dx,dy)=>fresh('setCursor',{x:Number.isSafeInteger(dx)?clamp(gm.cx+dx,0,gm.L.board.w-1):NaN,y:Number.isSafeInteger(dy)?clamp(gm.cy+dy,0,gm.L.board.h-1):NaN}).value,place:()=>fresh('tap',{x:gm.cx,y:gm.cy}),closeup(){fresh('camera',{mode:'board'});return fresh('zoom',{dir:scale*.4});},undo:()=>fresh('undo').value===true,next:()=>fresh('advance'),continue:()=>fresh('continue'),watchDemo:()=>fresh('watchDemo'),chapterStory:()=>fresh('chapterStory'),skip:()=>fresh('skip'),showCredits:()=>fresh('showCredits'),replayEnding:()=>fresh('replayEnding'),back:()=>fresh('back'),cancelPresentation:()=>fresh('cancelPresentation')};
   api.ready=Promise.resolve().then(async()=>{if(!gm.L)return false;if(!start)start=descriptor();const generation=loadGeneration;if(window.CBP_DEFER_PRESENTATION!==true&&await presentationReady(generation))presentationAttached=true;syncPause();changed();return true;});
   window.GameBridge=Object.freeze(api);
   // Native picking remains in this frame; the accepted host owns puzzle shortcuts.

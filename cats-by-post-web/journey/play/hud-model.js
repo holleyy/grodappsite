@@ -16,5 +16,8 @@ var HUDModel = (() => {
     const seconds = Number((state.tickMs * state.releaseEvery / 1000).toFixed(2));
     return `Every ${seconds} s${!state.shift && state.hatches?.length > 1 ? ' · together' : ''}`;
   }
-  return { lanes, cadence };
+  function hatchPreviews(state) {
+    return state.shift ? [] : lanes(state).map(lane => ({hatch:lane.hatch,next:lane.upcoming[0]||null,remaining:lane.remaining}));
+  }
+  return { lanes, cadence, hatchPreviews };
 })();

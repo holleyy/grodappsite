@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "93784b885cb429f492eda6240edda5decf8cbd6b",
+  "sourceCommit": "aa054ec6de4de7a919ec6669f30a5819f68ae8e1",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-b1c542e86fed",
-  "engineSha256": "a6693057d79126335ab5399845a373b54ab3b824cae97a28e4f60b500e30dbd5",
+  "build": "web-5944cfbf848a",
+  "engineSha256": "c3c80efff327ab0e0c34b3db343738229da2a27778754b33d5ab6f3b8896eeeb",
   "entry": "journey/start.html",
-  "scope": "Actual remastered map/menu destination captures; physical Safari qualification pending."
+  "scope": "Depth-clipped board feedback and adaptive pressure HUD; physical Safari qualification pending."
 }
