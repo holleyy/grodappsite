@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="cbp-build" content="web-105f0a880a2c">
+ <title>Sound check · Cats by Post</title>
+ <script src="../journey/preferences.js?v=web-105f0a880a2c"></script>
+ <script src="../journey/audio.js?v=web-105f0a880a2c"></script>
+ <style>
+  *{box-sizing:border-box}body{margin:0;background:#f3ebd7;color:#253e40;font:17px/1.5 system-ui,sans-serif}main{max-width:680px;margin:auto;padding:28px 22px 60px}h1,h2{font-family:Georgia,serif;font-weight:400;line-height:1.2}h1{font-size:34px}h2{font-size:23px;margin-top:30px}input[type=button],a{font:inherit;color:inherit;min-height:48px}input[type=button]{background:#253e40;color:#f3ebd7;border:0;border-radius:4px;padding:12px 20px;cursor:pointer}input:disabled{opacity:.55}audio{width:100%;display:block;margin-top:14px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 ui-monospace,monospace;background:#fff7e5;padding:18px;border:1px solid #c5b697}section{padding-bottom:24px;border-bottom:1px solid #c5b697}a{display:inline-block;padding-top:14px}#result{min-height:3em}
+ </style>
+</head>
+<body><main>
+ <h1>Sound check</h1>
+ <p>This uses the game's real turntable recording. Try the three checks in order, then copy the results. Nothing plays automatically and your saved sound preference stays unchanged.</p>
+ <section><h2>1. Through the game mixer</h2><input id="game-test" type="button" value="Play a turntable"><p id="result" role="status">Ready for your tap.</p></section>
+ <section><h2>2. Safari playback session</h2><p>This explicitly requests media playback on Safari, then tries the game mixer again.</p><input id="session-test" type="button" value="Try Safari playback"></section>
+ <section><h2>3. The same file directly</h2><p>Use this player's Play button. Is the recording audible here?</p><audio id="file-test" controls preload="none" src="../assets/audio/cbp_turntable_place_02.wav"></audio></section>
+ <h2>Results</h2><pre id="report" aria-live="polite"></pre><input id="copy" type="button" value="Copy results"><p id="copy-status" role="status"></p><a href="../index.html">Back to Cats by Post</a>
+</main><script>
+ (()=>{
+  const $=id=>document.getElementById(id),record={build:document.querySelector('meta[name=cbp-build]')?.content||'local',browser:navigator.userAgent,savedSound:PostPreferences.read().sound,sessionSupport:!!navigator.audioSession,events:[],tests:[],requests:[]};
+  let busy=false,previousSession;
+  function report(){record.mixer=PostAudio.inspect();record.session=navigator.audioSession?{type:navigator.audioSession.type,state:navigator.audioSession.state}:null;$('report').textContent=JSON.stringify(record,null,2)}
+  PostAudio.subscribe(e=>{record.events.push(e);report()});
+  function ownFetch(){return fetch('../assets/audio/cbp_turntable_place_02.wav').then(async r=>{
+   const b=await r.arrayBuffer(),result={status:r.status,bytes:b.byteLength,type:r.headers.get('content-type')};record.requests.push(result);
+   if(r.ok&&window.OfflineAudioContext)try{const decoded=await new OfflineAudioContext(1,1,44100).decodeAudioData(b);result.decode={duration:decoded.duration,channels:decoded.numberOfChannels,sampleRate:decoded.sampleRate}}catch(e){result.decodeError=String(e)}report()
+  }).catch(e=>{record.requests.push({error:String(e)});report()})}
+  async function test(playback){
+   if(busy)return;busy=true;$('game-test').disabled=$('session-test').disabled=true;const label=playback?'playback-session':'game';
+   try{
+    if(playback&&navigator.audioSession){previousSession??=navigator.audioSession.type;navigator.audioSession.type='playback'}
+    PostAudio.configure({sound:true});const unlocking=PostAudio.unlock();void ownFetch();
+    const unlocked=await Promise.race([unlocking,new Promise(resolve=>setTimeout(()=>resolve('timeout'),4000))]);
+    const started=unlocked===true&&await PostAudio.play('turntable_place',{maxAge:5000});record.tests.push({kind:label,unlocked,started});
+    $('result').textContent=started?'The mixer started the recording. Was it audible?':unlocked==='timeout'?'Safari has not completed audio unlock. Try tapping again.':'The recording did not start. The details are below.';
+   }catch(e){record.tests.push({kind:label,error:String(e)});$('result').textContent='Playback failed. The details are below.'}
+   finally{busy=false;$('game-test').disabled=false;$('session-test').disabled=!navigator.audioSession;report()}
+  }
+  $('game-test').onclick=()=>test(false);$('session-test').onclick=()=>test(true);$('session-test').disabled=!navigator.audioSession;
+  for(const event of ['playing','ended','error'])$('file-test').addEventListener(event,()=>{record.tests.push({kind:'direct-file',event,error:$('file-test').error?.message});report()});
+  $('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('report').textContent);$('copy-status').textContent='Copied.'}catch{$('copy-status').textContent='You can select the results above to copy them.'}};
+  window.addEventListener('pagehide',()=>{if(previousSession!==undefined)try{navigator.audioSession.type=previousSession}catch{}});
+  report();
+ })();
+</script></body></html>

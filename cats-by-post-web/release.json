@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "d6af1ea3e841648d7b8571e401ad4fc75c0a42d7",
+  "sourceCommit": "e54bc5f045750a8eacceb6a79436c4091f1968f2",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
   "build": "web-105f0a880a2c",
   "engineSha256": "e78308d968767bb9fce9b62370a471e941b04cba91dc8c24f384a8e68354ce4e",
   "entry": "journey/start.html",
-  "scope": "Existing audio integration for phone listening; approved interface, artwork, campaign and bonus study preserved."
+  "scope": "Existing audio integration, with a separate iPhone Safari sound diagnostic. Game audio behaviour unchanged pending device evidence."
 }
