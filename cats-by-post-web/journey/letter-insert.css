@@ -28,3 +28,20 @@
  .inspection-print{animation:print-out .2s ease-out}
  @keyframes print-out{from{opacity:.6;transform:translateY(12px) rotate(-3deg)}to{opacity:1;transform:rotate(-1deg)}}
 }
+.opening{gap:24px;overflow:auto;padding:max(24px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom))}
+.opening-art{width:min(430px,100%,calc((100dvh - 210px)/1.2));flex-shrink:0;container-type:inline-size}
+.opening-art .mail-preview{margin:0}
+.opening-art .letter-object{width:100%;max-width:none;margin:0}
+.opening-art .return-address{font-size:4.2cqw}
+.opening-art .recipient{font-size:9cqw}
+.opening-art .recipient .letter-place{font-size:6.3cqw;margin-top:1.6cqw}
+.opening-art .print-reference{font-size:5.5cqw}
+.opening-art .preview-print{pointer-events:none;cursor:default}
+.opening-caption{width:min(360px,100%);display:flex;flex-direction:column;align-items:center;gap:20px;flex-shrink:0}
+.opening-caption p{font-size:clamp(26px,3vw,32px);line-height:1.15}
+.opening-actions{display:flex;flex-direction:column;align-items:center;gap:12px}
+.opening-actions button{padding:12px 20px;min-height:44px}
+@media(max-height:450px) and (min-width:600px){
+ .opening{display:grid;grid-template-columns:minmax(0,300px) minmax(0,300px);justify-content:center;align-content:center;gap:32px}
+ .opening-art{width:min(100%,calc((100dvh - 48px)/1.2));justify-self:center}
+}
