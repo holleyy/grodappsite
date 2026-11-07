@@ -1,6 +1,6 @@
 @font-face{font-family:PostHand;src:url(../assets/post-hand.ttf);font-weight:400;font-display:swap}
 /* Native nodes and handlers stay in place. Only the correspondence is composed. */
-#chapterScene #chapterCard{--chapter-ink:#253e40;--chapter-rust:#a74733;--chapter-muted:#596258;position:absolute;left:auto;right:max(24px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom));transform:none;box-sizing:border-box;width:min(570px,calc(100vw - 32px));max-width:none;max-height:calc(100dvh - 36px);overflow:auto;overscroll-behavior:contain;padding:36px 38px 30px;background:url(images/print-paper.webp) center/100% 100% no-repeat;border:0;border-radius:0;box-shadow:none;color:var(--chapter-ink);isolation:isolate;scrollbar-width:thin}
+#chapterScene #chapterCard{--chapter-ink:var(--ui-chapter-ink);--chapter-rust:var(--ui-chapter-accent);--chapter-muted:var(--ui-chapter-muted);position:absolute;left:auto;right:max(24px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom));transform:none;box-sizing:border-box;width:min(570px,calc(100vw - 32px));max-width:none;max-height:calc(100dvh - 36px);overflow:auto;overscroll-behavior:contain;padding:36px 38px 30px;background:var(--ui-material-print) center/100% 100% no-repeat;border:0;border-radius:0;box-shadow:none;color:var(--chapter-ink);isolation:isolate;scrollbar-width:thin}
 #chapterScene #chapterTitle{font:400 clamp(32px,3.7vw,43px)/1.08 var(--post-head,Balthazar),Georgia,serif;max-width:calc(100% - 78px);margin:0 0 17px;text-wrap:balance}
 #chapterScene #chapterText{font:500 18px/1.48 Signika,sans-serif;margin:0 0 24px;max-width:35ch}
 #chapterKicker{display:none!important}
@@ -25,9 +25,9 @@
 .chapter-signoff{font:400 23px/1.2 PostHand,cursive;margin:20px 0 28px;color:var(--chapter-ink)}
 .chapter-signoff>span{display:block;font-size:33px;margin-top:7px}
 /* The sheet, perforated counterfoil and return tab share one paper object. */
-.chapter-thanks-sheet{position:relative;padding:42px var(--letter-inset) 32px;background:url(images/print-paper.webp) center/107% 109% no-repeat}
+.chapter-thanks-sheet{position:relative;padding:42px var(--letter-inset) 32px;background:var(--ui-material-print) center/107% 109% no-repeat}
 #chapterScene #chapterCard[data-paper-kind=thanks] .chapter-signoff{margin-bottom:0}
-#chapterScene #chapterCard[data-paper-kind=thanks] .row{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;align-items:stretch;margin:-4px 0 0;padding:9px 8px 8px;background:url(images/print-paper.webp) center/107% 109% no-repeat;transform-origin:50% 0;transition:transform .18s ease;isolation:isolate}
+#chapterScene #chapterCard[data-paper-kind=thanks] .row{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;align-items:stretch;margin:-4px 0 0;padding:9px 8px 8px;background:var(--ui-material-print) center/107% 109% no-repeat;transform-origin:50% 0;transition:transform .18s ease;isolation:isolate}
 #chapterScene #chapterCard[data-paper-kind=thanks] .row::before{content:"";position:absolute;left:5px;right:5px;top:1px;height:3px;background:radial-gradient(ellipse,#79634580 0 1px,transparent 1.6px) 0 0/9px 3px repeat-x}
 #chapterScene #chapterCard[data-paper-kind=thanks] .row::after{content:"";position:absolute;left:50%;top:17px;bottom:15px;border-left:1px dashed #987a5066;pointer-events:none}
 #chapterScene #chapterCard[data-paper-kind=thanks] .row button{display:flex;align-items:center;justify-content:center;gap:10px;min-width:0;min-height:80px;width:100%;padding:16px 12px;max-width:100%;text-align:left;background:transparent;color:var(--chapter-ink);box-shadow:none;text-decoration:none;border-radius:0;line-height:1.3}
@@ -37,11 +37,11 @@
 #chapterScene #chapterCard[data-paper-kind=thanks] .row button:focus-visible{outline-offset:-5px}
 #chapterScene #chapterCard[data-paper-kind=thanks] .row:has(button:active){transform:perspective(600px) rotateX(2deg)}
 #chapterScene #chapterCard:is([data-paper-kind=thanks],[data-paper-kind=credits]) #chapter-office{position:relative;isolation:isolate;display:block;width:fit-content;max-width:calc(100% - 16px);min-height:50px;margin:-3px 9px 8px auto;padding:13px 22px;text-align:center;text-decoration:none;background:transparent;color:var(--chapter-ink);rotate:1deg;filter:drop-shadow(0 3px 3px #142b3233);transition:translate .18s ease,rotate .18s ease}
-#chapterScene #chapterCard:is([data-paper-kind=thanks],[data-paper-kind=credits]) #chapter-office::before{content:"";position:absolute;inset:0;z-index:-1;background:url(images/print-paper.webp) center/107% 109% no-repeat}
+#chapterScene #chapterCard:is([data-paper-kind=thanks],[data-paper-kind=credits]) #chapter-office::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ui-material-print) center/107% 109% no-repeat}
 #chapterScene #chapterCard:is([data-paper-kind=thanks],[data-paper-kind=credits]) #chapter-office:hover{translate:0 -2px;rotate:0deg}
 #chapterScene #chapterCard:is([data-paper-kind=thanks],[data-paper-kind=credits]) #chapter-office:active{translate:0 1px}
 #chapterScene #chapterCard[data-paper-kind=credits]{text-align:center;padding:0;background:none}
-.chapter-credits-sheet{position:relative;padding:43px 42px 28px;background:url(images/print-paper.webp) center/107% 109% no-repeat}
+.chapter-credits-sheet{position:relative;padding:43px 42px 28px;background:var(--ui-material-print) center/107% 109% no-repeat}
 #chapterScene #chapterCard[data-paper-kind=credits] #chapterTitle{max-width:none;font-size:clamp(43px,5vw,58px);margin:26px 0 18px}
 #chapterScene #chapterCard[data-paper-kind=credits] .chapter-impression{position:relative;right:auto;top:auto;display:flex;margin:0 auto;width:88px;rotate:-8deg}
 #chapterScene #chapterCard[data-paper-kind=credits] #chapterText{max-width:32ch;margin:0 auto 22px;color:var(--chapter-muted);font-size:17px}

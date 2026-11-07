@@ -8,7 +8,7 @@
  const cat=OfficeCat.create({button:$('office-cat'),art:$('wide-art'),container:$('start-app'),active:()=>!shown&&!document.hidden&&!document.querySelector('dialog[open]')});
  const company=CompanyBox.create({dialog:$('cats-dialog'),getProgress:async()=>{await waiting;const s=app().engine.state();return{...s.progress,collection:s.collection}},onNight:()=>openService('night'),getSeenKey:()=> 'catsByPost.web.photographs.seen.v1',getReturnFocus:()=>$('collection-button')});
  function status(text){$('entry-status').textContent=text;$('entry-status').hidden=!text}
- function show(value){
+ function show(value){if(!value)InterfaceTheme.use('postal');
   shown=!!value;$('story-host').classList.toggle('open',shown);$('story-host').inert=!shown;$('story-host').setAttribute('aria-hidden',String(!shown));$('start-app').inert=shown;
   if(shown)frame.focus();cat.refresh();
  }

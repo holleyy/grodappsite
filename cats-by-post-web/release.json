@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "dbbbaf78ac0adf0c46a9815baac29acde90b0cdd",
+  "sourceCommit": "b378f9e2abd5bc96a9853c69829b19ef7fba7cfb",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-ba912b261166",
-  "engineSha256": "40fd48029549761e996b2be036c5f2afac19788c05537bb04ac11460050a6528",
+  "build": "web-8bb875e7691f",
+  "engineSha256": "440717f85cc0fcf96246d2d8905be245a8f2570293ea401f2fc15ef955c3d79d",
   "entry": "journey/start.html",
-  "scope": "Finish consistent menu type and preferences, focus/Back, contextual first-letter help and read-only accessible board inspection."
+  "scope": "Shared menu/theme roles and catalogue preparation; certified Sunday generation and cancellable preparation. Current postal campaign only."
 }

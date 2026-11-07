@@ -1,19 +1,11 @@
 (() => {
  'use strict';
  const params=new URLSearchParams(location.search),STUDY=null;
- const $=id=>document.getElementById(id),M=JourneyModel,EXAMPLE='office',KEY='catsByPost.web.navigation.v2';
+ const $=id=>document.getElementById(id),C=JourneyCatalogue.postal,M=JourneyModel.create(C),EXAMPLE='office',KEY='catsByPost.web.navigation.v2';
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const number=id=>id.replace('-','–');
  const uiIcon=(name,cls='')=>`<img class="menu-icon ${cls}" src="icons/${name}.svg" alt="" width="24" height="24">`;
- const places=[
-  {id:'office',title:'The sorting office',label:'Sorting office',chapters:[1,2],count:15,x:.238,y:.687,focus:[.238,.592],art:'office'},
-  {id:'depot',title:'The town depot',label:'Town depot',chapters:[3,4],count:25,x:.819,y:.515,focus:[.819,.417],art:'depot'},
-  {id:'train',title:'The mail train',label:'Mail train',chapters:[5],count:15,x:.270,y:.40,focus:[.270,.334],art:'train'},
-  {id:'hall',title:'The city hall',label:'City hall',chapters:[6],count:15,x:.617,y:.35,focus:[.617,.274],art:'hall'},
-  {id:'parcel',title:'The parcel room',label:'Parcel room',chapters:[7],count:15,x:.488,y:.54,focus:[.488,.466],art:'parcel'},
-  {id:'winter',title:'The Christmas post',label:'Christmas post',chapters:[8],count:15,x:.766,y:.70,focus:[.766,.626],art:'winter'}
- ];
- const chapters={1:['First post',5],2:['Ginger and blue',10],3:['The town depot',10],4:['Doors of their own',15],5:['A change of points',15],6:['Under the city',15],7:['Special delivery',15],8:['Home for Christmas',15]};
+ const places=C.places,chapters=Object.fromEntries(C.chapters.map(ch=>[ch.id,[ch.title,ch.count]]));
  const WORLD={width:2048,height:2048};
  let model,hadSave=false;try{const raw=localStorage.getItem(KEY);model=M.read(raw,{empty:STUDY==='first'});hadSave=!!raw&&JSON.parse(raw)?.version===2}catch{model=M.read(null,{empty:STUDY==='first'})}
  let lastDelivery=null,levels=[],view=null,returnView=null,focusReturn=null,zoom=1,drag=null,dragClick=false,gameIsReady=false,gamePromiseResolve,gamePromiseReject,openingToken=0,toastTimer,loadingTimer,serviceReturn='map',letterGeneration=0,gameReturn=null,mapFocusPlace=null;
@@ -25,12 +17,12 @@
  const next=()=>M.next(allLevels(),model.done);
  const active=()=>model.active&&levels.find(l=>l.id===model.active);
  const current=()=>active()||next()||allLevels().at(-1);
- const placeFor=id=>typeof id==='string'?places.find(p=>p.chapters.includes(+id.split('-')[0])):null;
- function deliveryContext(id){const context=M.continuation(model,allLevels(),id),letter=context.letter,p=letter&&placeFor(letter.id);return{...context,placeId:placeFor(id)?.id,chapterJustCompleted:lastDelivery?.id===id?lastDelivery.chapterJustCompleted:context.chapterJustCompleted,chapterTitle:chapters[+id.split('-')[0]]?.[0],placeChanged:!!letter&&placeFor(id)?.id!==p.id,letter:letter?{id:letter.id,title:letter.title,place:p.label,planned:!!letter.planned}:null}}
- const count=p=>Object.keys(model.done).filter(id=>p.chapters.includes(+id.split('-')[0])).length;
+ const placeFor=id=>C.context(id)?.place||null;
+ function deliveryContext(id){const context=M.continuation(model,allLevels(),id),letter=context.letter,p=letter&&placeFor(letter.id);return{...context,placeId:placeFor(id)?.id,chapterJustCompleted:lastDelivery?.id===id?lastDelivery.chapterJustCompleted:context.chapterJustCompleted,chapterTitle:chapters[C.context(id)?.chapter.id]?.[0],placeChanged:!!letter&&placeFor(id)?.id!==p.id,letter:letter?{id:letter.id,title:letter.title,place:p.label,planned:!!letter.planned}:null}}
+ const count=p=>Object.keys(model.done).filter(id=>p.chapters.includes(C.context(id)?.chapter.id)).length;
  const destinationCapture=p=>'images/destinations/'+p.id+'.webp?v='+encodeURIComponent(document.querySelector('meta[name=cbp-build]')?.content||'web');
  const placeStatus=p=>count(p)===p.count?'All posted':count(p)?count(p)+' of '+p.count+' posted':placeFor(current()?.id)?.id===p.id?'Ready to post':'Not reached yet';
- const chapterDone=ch=>Object.keys(model.done).filter(id=>+id.split('-')[0]===ch).length;
+ const chapterDone=ch=>Object.keys(model.done).filter(id=>C.context(id)?.chapter.id===ch).length;
  const toast=text=>{clearTimeout(toastTimer);$('toast').textContent=text;$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,3200)};
  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(M.navigation(model)))}catch{toast('Your post will stay with you for this visit.')}};
  const announce=text=>{$('announcement').textContent=text};
@@ -67,13 +59,13 @@
   if(modal)$('post-pane').setAttribute('aria-modal','true');else $('post-pane').removeAttribute('aria-modal');
   $('map-region').inert=modal;$('map-header').inert=modal;
  }
- function openPacket(id,ch,restore=null){
+ function openPacket(id,ch,restore=null){InterfaceTheme.use(C.context(id)?.themeId||C.pack(C.place(id)?.packId)?.themeId||'postal');
   const p=places.find(p=>p.id===id);focusReturn=document.activeElement;mapFocusPlace=id;
   let chapter=ch||p.chapters.find(c=>chapterDone(c)<chapters[c][1])||p.chapters.at(-1);
   view={type:'packet',place:id,chapter};returnView=null;renderPane();setPaneState();$('pane-back').focus({preventScroll:true});renderPins();if(restore)restorePacketPosition(restore);
  }
  function restorePacketPosition(restore){const content=$('pane-content');content.scrollTop=restore.scroll||0;const row=content.querySelector('[data-letter="'+restore.focusLetter+'"]');if(row&&!row.disabled){row.focus({preventScroll:true});const r=row.getBoundingClientRect(),p=content.getBoundingClientRect();if(r.top<p.top||r.bottom>p.bottom)row.scrollIntoView({block:'nearest'})}}
- function openLetter(id,back=null,{from=null}={}){
+ function openLetter(id,back=null,{from=null}={}){InterfaceTheme.use(C.context(id)?.themeId||'postal');
   if(!M.valid(id))return;focusReturn=document.activeElement;model=M.select(model,id);
   returnView=back;view={type:'letter',id,place:placeFor(id).id};renderPane();setPaneState();PaperMotion.letter($('pane-content').querySelector('.mail-preview'),{from});$('pane-back').focus({preventScroll:true});renderPins();const l=allLevels().find(x=>x.id===id);announce('Letter '+number(id)+', '+l.title+'. '+(model.done[id]?'Posted.':id===active()?.id?'Your unfinished letter.':'Ready to open.'));
  }
@@ -83,14 +75,14 @@
  }
  function paneBack(){
   if(view?.type==='letter'&&returnView){const old=returnView;returnView=null;view=old;renderPane();setPaneState();restorePacketPosition(old);return}
-  if(wide.matches&&view?.type==='letter'){openPacket(view.place,+view.id.split('-')[0],{scroll:0,focusLetter:view.id});return}
+  if(wide.matches&&view?.type==='letter'){openPacket(view.place,C.context(view.id)?.chapter.id,{scroll:0,focusLetter:view.id});return}
   backToMap();
  }
  function roomArt(p,cls='room-postcard'){
-  return `<figure class="${cls}"><img src="images/level-prints/${p.chapters[0]}-1.webp" alt="${p.title}" width="960" height="640"></figure>`;
+  return `<figure class="${cls}"><img src="images/level-prints/${p.levelIds[0]}.webp" alt="${p.title}" width="960" height="640"></figure>`;
  }
  function addressedEnvelope(title,reference,postmark=''){return `<div class="letter-object"><img src="images/envelope.webp" alt="An addressed postal envelope" width="1561" height="1008"><span class="return-address">The postmistress<br>Cats by Post</span><div class="recipient"><span>${esc(title)}</span><span class="letter-place">${esc(reference)}</span></div>${postmark}</div>`}
- function envelope(l,p){return addressedEnvelope(l.title,number(l.id)+' · '+p.label,PostalIdentity.mark(p.id,{className:'envelope-mark',earned:PostalIdentity.chapterEarned(+l.id.split('-')[0],model.done),decorative:true}))}
+ function envelope(l,p){return addressedEnvelope(l.title,number(l.id)+' · '+p.label,PostalIdentity.mark(p.id,{className:'envelope-mark',earned:PostalIdentity.chapterEarned(C.context(l.id)?.chapter.id,model.done),decorative:true}))}
  function print(l,p){return `<img class="print-paper" src="images/print-paper.webp" alt="" width="1470" height="1070">${l.planned?`<span class="print-scene print-concept">${roomArt(p)}</span>`:`<img class="print-scene" src="images/level-prints/${l.id}.webp?v=${document.querySelector('meta[name=cbp-build]')?.content||'web'}" alt="The starting arrangement for ${esc(l.title)}" width="960" height="640">`}${l.id==='1-4'?'<span class="print-detail"><span class="print-detail-plane"><img class="trolley-cat" src="images/observations/trolley-cat.webp" alt="A ginger cat is already asleep on a parcel on the trolley" width="160" height="130"></span></span>':''}<span class="print-reference">${number(l.id)}</span>`}
  function mailPreview(l,p,{interactive=true}={}){return `<div class="mail-preview"><img class="envelope-rear" src="images/envelope-open.webp" alt="" width="1301" height="1209"><img class="envelope-flap" src="images/envelope-open.webp" alt="" width="1301" height="1209">${interactive?`<button class="preview-print" id="preview-print" aria-label="Take a closer look at ${esc(l.title)}">${print(l,p)}<span class="print-loupe"><img src="icons/magnifying-glass-plus.svg" alt="" width="24" height="24"></span></button>`:`<div class="preview-print">${print(l,p)}</div>`}${envelope(l,p)}</div>`}
  function inspectPrint(l,p){PaperMotion.finish($('pane-content'));$('print-title').textContent=l.title;$('print-content').innerHTML=`<figure class="inspection-print">${print(l,p)}</figure>`;showDialog('print-dialog')}
@@ -103,7 +95,7 @@
   const earned=PostalIdentity.earnedChapters(p.id,model.done).filter(ch=>!onlyChapter||ch===onlyChapter);if(!PostalIdentity.forPlace(p.id)?.art||!earned.length)return '';
   return `<div class="chapter-postmarks" aria-label="Earned chapter postmarks">${earned.map(ch=>`<button class="chapter-postmark" data-inspect-postmark="${ch}" aria-label="Inspect ${esc(chapters[ch][0])} chapter postmark">${PostalIdentity.mark(p.id,{earned:true,reference:'Chapter '+ch,decorative:true})}<span>${esc(chapters[ch][0])}</span></button>`).join('')}</div>`;
  }
- function packetPreview(p,ch){const list=allLevels().filter(l=>+l.id.split('-')[0]===ch);return list.find(l=>l.id===current().id)||list.find(l=>!model.done[l.id])||list.at(-1)}
+ function packetPreview(p,ch){const list=allLevels().filter(l=>C.context(l.id)?.chapter.id===ch);return list.find(l=>l.id===current().id)||list.find(l=>!model.done[l.id])||list.at(-1)}
  function menu(){
   const l=levels.length?current():null;$('menu-current').hidden=!l;if(!l){showDialog('menu-dialog');return}$('menu-current').innerHTML=`${uiIcon('envelope-open')}<span><strong>${l.planned?'The next stop':active()?'Continue sorting':'Your next letter'}</strong><small>${l.planned?esc(placeFor(l.id).title):number(l.id)+' · '+esc(l.title)}</small></span>${uiIcon('arrow-right','row-arrow')}`;
   $('menu-current').onclick=()=>{closeDialogs();if(l.planned)openPacket(placeFor(l.id).id);else if(active())startLetter(l.id);else openLetter(l.id)};showDialog('menu-dialog');
@@ -113,24 +105,24 @@
   if(!levels.length)return;
   const content=$('pane-content');$('current-letter').hidden=true;
   if(view?.type==='packet'){
-   const p=places.find(p=>p.id===view.place),ch=view.chapter,preview=packetPreview(p,ch);let list=allLevels().filter(l=>+l.id.split('-')[0]===ch);
+   const p=places.find(p=>p.id===view.place),ch=view.chapter,preview=packetPreview(p,ch);let list=allLevels().filter(l=>C.context(l.id)?.chapter.id===ch);
    $('pane-title').textContent=p.title;paneBackLabel('Map');
    $('current-letter').hidden=!!current().planned||(!active()&&!next());$('current-letter').textContent=active()?'Continue '+number(active().id):'Next '+number(next()?.id||current().id);
    content.innerHTML=`<div class="packet-hero"><button class="preview-print packet-print" id="packet-print" aria-label="Take a closer look at ${esc(preview.title)}">${print(preview,p)}<span class="print-loupe">${uiIcon('magnifying-glass-plus')}</span></button><div class="packet-postal-line">${chapterPostmarks(p,ch)||PostalIdentity.mark(p.id,{className:"packet-place-mark",decorative:true})}<p class="packet-progress">${count(p)} of ${p.count} posted</p></div></div><div class="chapter-tabs" role="group" aria-label="Chapter packets">${p.chapters.map(c=>`<button data-chapter="${c}" aria-pressed="${c===ch}"><span class="chapter-name">${chapters[c][0]}</span><span class="chapter-caption"><small>${chapterDone(c)} of ${chapters[c][1]} posted</small></span></button>`).join('')}</div>${!p.art?'<p class="planned-note">Not reached yet.</p>':''}<ol class="letters">${list.map(l=>{const delivered=!!model.done[l.id],ready=!l.planned&&(l.id===next()?.id||l.id===active()?.id),available=!l.planned&&(delivered||ready);return `<li><button data-letter="${l.id}" class="${ready?'letter-current':''} ${delivered?'letter-posted':''}" ${ready?'aria-current="step"':''} ${available?'':'disabled'}><span class="route-number">${number(l.id)}</span><span class="route-name">${esc(l.title)}<small>${l.planned?'Still to come':delivered?'Posted':l.id===active()?.id?'Your unfinished letter':ready?'Ready to open':'After earlier post'}</small></span>${uiIcon(delivered?'check':ready?'envelope-open':'lock-simple','letter-state')}</button></li>`}).join('')}</ol>`;
    $('packet-print').onclick=()=>inspectPrint(preview,p);
    content.querySelectorAll('[data-letter]').forEach(b=>b.onclick=()=>openLetter(b.dataset.letter,{...view,scroll:content.scrollTop,focusLetter:b.dataset.letter}));
-   content.querySelectorAll('[data-chapter]').forEach(b=>b.onclick=()=>{view={...view,chapter:+b.dataset.chapter};renderPane();content.querySelector(`[data-chapter="${view.chapter}"]`).focus({preventScroll:true})});
+   content.querySelectorAll('[data-chapter]').forEach(b=>b.onclick=()=>{view={...view,chapter:p.chapters.find(ch=>String(ch)===b.dataset.chapter)};renderPane();content.querySelector(`[data-chapter="${view.chapter}"]`).focus({preventScroll:true})});
   }else{
    const l=allLevels().find(x=>x.id===(view?.id||current().id)),p=placeFor(l.id),isActive=l.id===active()?.id,done=!!model.done[l.id],replacing=!!active()&&!isActive;
    $('pane-title').textContent=p.title;paneBackLabel(returnView?'Letters':wide.matches?'All letters':'Map');
    const cats=l.hatches?.reduce((sum,h)=>sum+h.cats.length,0),hatches=l.hatches?.length;
    const action=l.planned?'Still to come':isActive?'Continue sorting':done?'Replay this letter':replacing?'Switch to this letter':'Start sorting';
-   content.innerHTML=`<article class="letter-view" aria-label="${esc((done?'Posted letter ':isActive?'Unfinished letter ':'Letter ')+number(l.id)+', '+l.title)}">${mailPreview(l,p)}${done?earned(l.id)+chapterPostmarks(p,+l.id.split('-')[0]):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span>${l.bigCount?`<span>${l.bigCount} large</span>`:''}</div>`:''}${l.planned?'<p class="planned-note">Not reached yet.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${l.id==='1-1'&&!done&&!isActive?'<button id="letter-help">How to play</button>':''}${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
+   content.innerHTML=`<article class="letter-view" aria-label="${esc((done?'Posted letter ':isActive?'Unfinished letter ':'Letter ')+number(l.id)+', '+l.title)}">${mailPreview(l,p)}${done?earned(l.id)+chapterPostmarks(p,C.context(l.id)?.chapter.id):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span>${l.bigCount?`<span>${l.bigCount} large</span>`:''}</div>`:''}${l.planned?'<p class="planned-note">Not reached yet.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${l.id==='1-1'&&!done&&!isActive?'<button id="letter-help">How to play</button>':''}${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
    $('preview-print').onclick=()=>inspectPrint(l,p);
    $('letter-help')?.addEventListener('click',()=>service('help',{returnTo:'letter'}));
-   $('open-letter')?.addEventListener('click',()=>startLetter(l.id));$('browse-packet')?.addEventListener('click',()=>openPacket(p.id,+l.id.split('-')[0]));$('keep-current')?.addEventListener('click',()=>openLetter(active().id));
+   $('open-letter')?.addEventListener('click',()=>startLetter(l.id));$('browse-packet')?.addEventListener('click',()=>openPacket(p.id,C.context(l.id)?.chapter.id));$('keep-current')?.addEventListener('click',()=>openLetter(active().id));
   }
-  content.querySelectorAll('[data-inspect-postmark]').forEach(b=>b.onclick=()=>inspectPostmark(places.find(p=>p.id===(view?.place||placeFor(current().id).id)),+b.dataset.inspectPostmark));
+  content.querySelectorAll('[data-inspect-postmark]').forEach(b=>b.onclick=()=>inspectPostmark(places.find(p=>p.id===(view?.place||placeFor(current().id).id)),C.chapters.find(ch=>String(ch.id)===b.dataset.inspectPostmark)?.id));
   content.scrollTop=0;
  }
  function placeIndex(){
@@ -153,6 +145,7 @@
  }
  function openingArtwork(context,app){
   const saved=app?.savedInfo,l=levels.find(l=>l.id===(context.id||(context.resume&&saved?.kind==='story'?saved.id:null))),p=l&&placeFor(l.id);
+  InterfaceTheme.use(l?C.context(l.id)?.themeId:'postal');
   if(l&&p){$('opening-art').innerHTML=mailPreview(l,p,{interactive:false});return}
   const kind=context.resume?saved?.kind:context.service,matching=saved?.kind===kind?saved:null;
   const title={night:'Night Shift',daily:'Today’s post',practice:'Practice',settings:'Settings',help:'How to play'}[kind]||'Your saved post';
@@ -201,7 +194,7 @@
   const destinationPlace=placeFor(destination==='packet'?s.id:current().id),story=!s.shift&&!s.daily&&!s.practice&&!s.sample,changedPlace=story&&((s.mode==='won'&&placeFor(s.id)?.id!==destinationPlace.id)||(gameReturn?.place&&gameReturn.place!==destinationPlace.id));
   const orient=()=>{if(changedPlace)centreAt(destinationPlace.focus);if(s.mode==='won')announce(s.title+' posted. '+(current().planned?'Not reached yet.':'Next letter '+number(current().id)+', '+current().title+'.'))};
   if(destination==='next'&&!current().planned){openLetter(current().id,null,{from});orient();return}
-  if(destination==='packet'){const p=placeFor(s.id)||placeFor(current().id),old=gameReturn?.id===s.id?gameReturn.packet:null;openPacket(p.id,+s.id.split('-')[0],old||{scroll:0,focusLetter:s.id});orient();return}
+  if(destination==='packet'){const p=placeFor(s.id)||placeFor(current().id),old=gameReturn?.id===s.id?gameReturn.packet:null;openPacket(p.id,C.context(s.id)?.chapter.id,old||{scroll:0,focusLetter:s.id});orient();return}
   if(destination==='cats'){view=null;returnView=null;renderPane();setPaneState();renderPins();orient();company.open();return}
   view=null;returnView=null;renderPane();setPaneState();renderPins();orient();
  }
@@ -237,7 +230,7 @@
  $('retry-game').onclick=()=>{openingToken++;$('opening').hidden=true;location.reload()};
  window.Journey={company,syncProgress,onProgress(fn){progressListeners.add(fn);return()=>progressListeners.delete(fn)},startLetter,resumeSaved,openPacket,openLetter,backToMap,recenter,placeIndex,leave,mainMenu,delivered,resetDeliveryContext:()=>{lastDelivery=null},deliveryContext,gameReady,service,returnFromService,isDelivered:id=>!!model.done[id],get state(){return{model,view,returnView,zoom,camera:camera(),gameReady:gameIsReady,wide:wide.matches,next:next()?.id}},get levels(){return levels}};
  fetch('levels.json').then(r=>{if(!r.ok)throw Error('Level index unavailable');return r.json()}).then(data=>{
-  if(!Array.isArray(data)||data.length!==100||new Set(data.map(l=>l.id)).size!==100)throw Error('The campaign index is incomplete');
+  C.validateIndex(data);
   levels=data;updateDock();renderPane();renderPins();setPaneState();requestAnimationFrame(()=>{changeZoom(!wide.matches&&vp.clientHeight<650?.72:.85,placeFor(current().id).focus);recenter()});{const url=new URL('play/index.html',location.href);url.searchParams.set('v',document.querySelector('meta[name=cbp-build]')?.content||'local');frame.contentWindow.location.replace(url.href)};
  }).catch(e=>{toast('The letter index could not be opened. Please reload.');console.error(e)});
 })();

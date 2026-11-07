@@ -1,5 +1,5 @@
 /* Two reversible start-screen studies. The game objects retain live text and actions. */
-:root{--study-bar:0px;--cream:#f9e9c5;--start-ink:#294449}
+:root{--study-bar:0px;--cream:var(--ui-start-cream);--start-ink:var(--ui-start-ink)}
 .prototype-mode{--study-bar:48px}
 body:not(.prototype-mode) .study-bar{display:none}
 html,body{height:100%;min-height:100%;background:#283f40;overflow:hidden}
@@ -29,8 +29,8 @@ button,a{-webkit-tap-highlight-color:transparent}
 .letter-copy small{display:flex;align-items:center;gap:7px;margin-top:14px;font:500 clamp(13px,4cqw,16px)/1.15 Signika,sans-serif;color:#9e4332}
 .letter-copy small img{width:19px;height:19px;opacity:.8}
 .postal-services{position:absolute;left:50%;bottom:3%;transform:translateX(-50%);display:flex;gap:15px;width:clamp(310px,30vw,470px)}
-.service-slip{display:flex;align-items:center;justify-content:center;gap:9px;flex:1;min-width:0;min-height:52px;padding:12px 14px;border:0;border-radius:0;background:url(images/paper-button.webp) center/100% 100% no-repeat;color:#29464a;box-shadow:none;font:400 calc(21px * var(--post-scale,1))/1 var(--post-head,Balthazar),serif;filter:drop-shadow(0 2px 2px #30271933);rotate:-1.5deg}
-.service-slip+button{rotate:1.5deg}.service-slip:hover{background:url(images/paper-button.webp) center/100% 100% no-repeat;color:#9c4332;translate:0 -2px}.service-slip:active{transform:none;translate:0 1px}.service-slip img{width:23px;height:23px;pointer-events:none;flex:none}
+.service-slip{display:flex;align-items:center;justify-content:center;gap:9px;flex:1;min-width:0;min-height:52px;padding:12px 14px;border:0;border-radius:0;background:var(--ui-material-button) center/100% 100% no-repeat;color:#29464a;box-shadow:none;font:400 calc(var(--ui-menu-item-size) * 0.7777777778 * var(--post-scale,1))/1 var(--post-head,Balthazar),serif;filter:drop-shadow(0 2px 2px #30271933);rotate:-1.5deg}
+.service-slip+button{rotate:1.5deg}.service-slip:hover{background:var(--ui-material-button) center/100% 100% no-repeat;color:#9c4332;translate:0 -2px}.service-slip:active{transform:none;translate:0 1px}.service-slip img{width:23px;height:23px;pointer-events:none;flex:none}
 .office-tools{position:absolute;inset:0;pointer-events:none}
 .office-tools>button{position:absolute;pointer-events:auto;border:0;border-radius:0;background:none;box-shadow:none;padding:0;min-height:44px;color:#f3e4bf}
 .office-tools>button:hover{background:none}
@@ -41,8 +41,8 @@ button,a{-webkit-tap-highlight-color:transparent}
 .map-caption{position:absolute;bottom:8%;left:7%;right:7%;font:400 calc(21px * var(--post-scale,1))/1 var(--post-head,Balthazar),serif;color:var(--start-ink);text-align:center;white-space:nowrap}
 .collection-object{right:7%;bottom:3%;width:175px;transform:rotate(5deg)}
 .closed-box{display:block;width:100%;height:auto;max-width:none;filter:drop-shadow(2px 5px 3px #30271944);pointer-events:none}
-.start-settings{position:absolute;right:max(15px,env(safe-area-inset-right));top:16px;min-width:44px;min-height:44px;display:grid;place-items:center;padding:0;border:0;border-radius:0;background:url(images/paper-button.webp) center/100% 100% no-repeat;color:var(--start-ink);box-shadow:none}
-.start-settings:hover{background:url(images/paper-button.webp) center/100% 100% no-repeat}.start-settings img{pointer-events:none}
+.start-settings{position:absolute;right:max(15px,env(safe-area-inset-right));top:16px;min-width:44px;min-height:44px;display:grid;place-items:center;padding:0;border:0;border-radius:0;background:var(--ui-material-button) center/100% 100% no-repeat;color:var(--start-ink);box-shadow:none}
+.start-settings:hover{background:var(--ui-material-button) center/100% 100% no-repeat}.start-settings img{pointer-events:none}
 .entry-status{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:35;max-width:calc(100% - 28px);width:max-content;padding:12px 20px;color:#f8edcf;background:#263f40;border:1px solid #bcaa7e;font:16px/1.3 Signika,sans-serif;text-align:center;box-shadow:0 3px 6px #1e2b2a55}
 .journey-host{position:fixed;inset:var(--study-bar) 0 0;z-index:20;visibility:hidden;pointer-events:none;background:#f5ecd7}
 .journey-host.open{visibility:visible;pointer-events:auto}
@@ -63,7 +63,7 @@ body[data-scene=desk] .primary-letter:hover{transform:translateX(-50%) rotate(-3
 body[data-scene=desk] .game-title{top:10%;font-size:clamp(64px,6vw,85px)}
 body[data-scene=desk] .opening-line{display:none}
 body[data-scene=desk] .postal-services{bottom:18%;width:clamp(330px,38vw,560px);gap:23px}
-body[data-scene=desk] .service-slip{min-height:65px;font-size:calc(25px * var(--post-scale,1));rotate:-3deg}
+body[data-scene=desk] .service-slip{min-height:65px;font-size:calc(var(--ui-menu-item-size) * 0.9259259259 * var(--post-scale,1));rotate:-3deg}
 body[data-scene=desk] .service-slip+button{rotate:3deg}
 body[data-scene=desk] .places-object{left:18%;bottom:10%;width:170px}
 body[data-scene=desk] .collection-object{right:16%;bottom:9%;width:190px}
@@ -75,11 +75,11 @@ body[data-scene=desk] .collection-object{right:16%;bottom:9%;width:190px}
  .office-tools>button{position:relative;inset:auto;width:100px;min-width:100px;transform:none;display:block;height:auto}
  .map-caption{font-size:calc(16px * var(--post-scale,1))}
  .collection-object .closed-box{width:90px;height:74px;object-fit:contain;margin:auto}
- .service-slip{font-size:calc(20px * var(--post-scale,1));min-height:51px;padding:10px 9px;gap:6px;white-space:nowrap}.service-slip img{width:20px;height:20px}
+ .service-slip{font-size:calc(var(--ui-menu-item-size) * 0.7407407407 * var(--post-scale,1));min-height:51px;padding:10px 9px;gap:6px;white-space:nowrap}.service-slip img{width:20px;height:20px}
  body[data-scene=desk] .game-title{top:16%;font-size:clamp(66px,13vw,100px)}
  body[data-scene=desk] .primary-letter{bottom:37%;width:min(84%,510px)}
  body[data-scene=desk] .postal-services{bottom:25%;width:min(84%,470px);gap:18px}
- body[data-scene=desk] .service-slip{font-size:calc(20px * var(--post-scale,1));min-height:60px;padding-inline:9px;gap:6px;white-space:nowrap}
+ body[data-scene=desk] .service-slip{font-size:calc(var(--ui-menu-item-size) * 0.7407407407 * var(--post-scale,1));min-height:60px;padding-inline:9px;gap:6px;white-space:nowrap}
  body[data-scene=desk] .office-tools{top:auto;bottom:8%;height:13%;gap:38px}
  body[data-scene=desk] .office-tools>button{position:relative;inset:auto;display:block;width:105px;height:auto;min-height:60px;flex:none}
  body[data-scene=desk] .map-caption{font-size:calc(18px * var(--post-scale,1))}
@@ -96,20 +96,20 @@ body[data-scene=desk] .collection-object{right:16%;bottom:9%;width:190px}
 }
 @media(max-height:720px) and (orientation:portrait){
  .game-title{font-size:64px;top:4%}.primary-letter{width:75%;bottom:20%}.letter-copy strong{font-size:calc(26px * var(--post-scale,1))}.letter-copy>span{font-size:24px;margin-top:6px}.letter-copy small{font-size:calc(12px * var(--post-scale,1));margin-top:7px}
- .postal-services{bottom:16%;gap:10px}.service-slip{font-size:calc(19px * var(--post-scale,1));min-height:48px;padding:9px}.office-tools{height:15%;gap:22px}
+ .postal-services{bottom:16%;gap:10px}.service-slip{font-size:calc(var(--ui-menu-item-size) * 0.7037037037 * var(--post-scale,1));min-height:48px;padding:9px}.office-tools{height:15%;gap:22px}
  body[data-scene=office] .primary-letter{bottom:27%}
  body[data-scene=desk] .game-title{font-size:58px;top:14%}body[data-scene=desk] .primary-letter{width:77%;bottom:37%}
- body[data-scene=desk] .postal-services{bottom:23%;gap:10px}body[data-scene=desk] .service-slip{min-height:49px;font-size:calc(18px * var(--post-scale,1));padding-inline:7px}
+ body[data-scene=desk] .postal-services{bottom:23%;gap:10px}body[data-scene=desk] .service-slip{min-height:49px;font-size:calc(var(--ui-menu-item-size) * 0.6666666667 * var(--post-scale,1));padding-inline:7px}
  body[data-scene=desk] .office-tools{bottom:4%;height:16%;gap:35px}body[data-scene=desk] .office-tools>button{width:85px}
  body[data-scene=desk] .map-caption{font-size:calc(16px * var(--post-scale,1))}body[data-scene=desk] .collection-object .closed-box{width:84px;height:67px}
 }
-@media(max-width:359px) and (orientation:portrait){.primary-letter{width:86%}.letter-copy{top:28%;right:15%}.letter-copy strong{font-size:calc(24px * var(--post-scale,1))}.letter-copy>span{font-size:22px;line-height:1.06}.letter-copy small{margin-top:7px}.service-slip,body[data-scene=desk] .service-slip{font-size:calc(17px * var(--post-scale,1));gap:5px;padding-inline:6px}.service-slip img{width:18px;height:18px}}
+@media(max-width:359px) and (orientation:portrait){.primary-letter{width:86%}.letter-copy{top:28%;right:15%}.letter-copy strong{font-size:calc(24px * var(--post-scale,1))}.letter-copy>span{font-size:22px;line-height:1.06}.letter-copy small{margin-top:7px}.service-slip,body[data-scene=desk] .service-slip{font-size:calc(var(--ui-menu-item-size) * 0.6296296296 * var(--post-scale,1));gap:5px;padding-inline:6px}.service-slip img{width:18px;height:18px}}
 @media(max-height:600px) and (orientation:landscape){
  .game-title,body[data-scene=desk] .game-title{left:22%;top:15%;font-size:clamp(52px,10vh,70px)}
  .primary-letter,body[data-scene=desk] .primary-letter{left:65%;bottom:29%;width:min(37vw,330px)}
  .letter-copy strong{font-size:calc(25px * var(--post-scale,1))}.letter-copy>span{font-size:24px;margin-top:6px}.letter-copy small{font-size:calc(12px * var(--post-scale,1));margin-top:7px}
  .postal-services,body[data-scene=desk] .postal-services{left:65%;bottom:7%;width:45%;gap:9px}
- .service-slip,body[data-scene=desk] .service-slip{font-size:calc(17px * var(--post-scale,1));min-height:45px;padding:8px 6px;gap:5px;white-space:nowrap}.service-slip img{width:18px;height:18px}
+ .service-slip,body[data-scene=desk] .service-slip{font-size:calc(var(--ui-menu-item-size) * 0.6296296296 * var(--post-scale,1));min-height:45px;padding:8px 6px;gap:5px;white-space:nowrap}.service-slip img{width:18px;height:18px}
  .office-tools{left:0;right:auto;top:auto;bottom:5%;width:40%;display:flex;justify-content:center;gap:14px}
  .office-tools>button,body[data-scene=desk] .office-tools>button{position:relative;inset:auto;width:85px;transform:none}
  .map-caption{font-size:calc(15px * var(--post-scale,1))}.collection-object .closed-box{height:70px;width:85px;margin:auto}
@@ -141,7 +141,7 @@ body.big .service-copy small{font-size:16px}
 .campaign-complete .service-copy>span{white-space:nowrap;line-height:1.15}
 .campaign-complete .service-copy small{display:flex;align-items:center;justify-content:center;max-width:none;margin:0;min-height:1.3em}
 @media(orientation:portrait){.campaign-complete .primary-letter{bottom:29%}.campaign-complete .postal-services{bottom:11%;width:min(calc(100% - 24px),500px)}}
-@media(max-height:720px) and (orientation:portrait){body.campaign-complete[data-scene=office] .primary-letter{bottom:41%}.campaign-complete .postal-services{bottom:16%}.campaign-complete .service-slip{font-size:calc(18px * var(--post-scale,1))}}
-@media(max-width:1200px) and (orientation:landscape){.campaign-complete .postal-services{--slip-inset:16px}.campaign-complete .service-slip{font-size:calc(18px * var(--post-scale,1))}.campaign-complete .service-slip img{width:20px;height:20px}}
+@media(max-height:720px) and (orientation:portrait){body.campaign-complete[data-scene=office] .primary-letter{bottom:41%}.campaign-complete .postal-services{bottom:16%}.campaign-complete .service-slip{font-size:calc(var(--ui-menu-item-size) * 0.6666666667 * var(--post-scale,1))}}
+@media(max-width:1200px) and (orientation:landscape){.campaign-complete .postal-services{--slip-inset:16px}.campaign-complete .service-slip{font-size:calc(var(--ui-menu-item-size) * 0.6666666667 * var(--post-scale,1))}.campaign-complete .service-slip img{width:20px;height:20px}}
 @media(max-width:359px){.campaign-complete .postal-services{--slip-inset:16px}}
-@media(max-height:600px) and (orientation:landscape){.campaign-complete .primary-letter{bottom:44%}.campaign-complete .postal-services{--slip-inset:16px;bottom:7%;width:52%}.campaign-complete .service-slip{font-size:calc(17px * var(--post-scale,1))}.campaign-complete .service-slip img{width:18px;height:18px}}
+@media(max-height:600px) and (orientation:landscape){.campaign-complete .primary-letter{bottom:44%}.campaign-complete .postal-services{--slip-inset:16px;bottom:7%;width:52%}.campaign-complete .service-slip{font-size:calc(var(--ui-menu-item-size) * 0.6296296296 * var(--post-scale,1))}.campaign-complete .service-slip img{width:18px;height:18px}}
