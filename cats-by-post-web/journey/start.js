@@ -2,14 +2,14 @@
 (() => {
  'use strict';
  const $=id=>document.getElementById(id),frame=$('story-frame');
- let shown=false,context=null,ready=false,waiting=null;
+ let shown=false,context=null,ready=false,waiting=null;PostAudio.setView('office',{active:true,priority:0,location:'office'});
  const journey=()=>frame.contentWindow.Journey;
  const app=()=>frame.contentWindow.document.getElementById('game')?.contentWindow.APP;
  const cat=OfficeCat.create({button:$('office-cat'),art:$('wide-art'),container:$('start-app'),active:()=>!shown&&!document.hidden&&!document.querySelector('dialog[open]')});
  const company=CompanyBox.create({dialog:$('cats-dialog'),getProgress:async()=>{await waiting;const s=app().engine.state();return{...s.progress,collection:s.collection}},onNight:()=>openService('night'),getSeenKey:()=> 'catsByPost.web.photographs.seen.v1',getReturnFocus:()=>$('collection-button')});
  function status(text){$('entry-status').textContent=text;$('entry-status').hidden=!text}
  function show(value){if(!value)InterfaceTheme.use('postal');
-  shown=!!value;$('story-host').classList.toggle('open',shown);$('story-host').inert=!shown;$('story-host').setAttribute('aria-hidden',String(!shown));$('start-app').inert=shown;
+  shown=!!value;PostAudio.setView('office',{active:!shown,priority:0,location:'office'});if(!shown){PostAudio.setView('journey',{active:false,priority:10});PostAudio.setView('play',{active:false,priority:20})}else PostAudio.setView('journey',{active:true,priority:10,location:'office'});$('story-host').classList.toggle('open',shown);$('story-host').inert=!shown;$('story-host').setAttribute('aria-hidden',String(!shown));$('start-app').inert=shown;
   if(shown)frame.focus();cat.refresh();
  }
  function renderPrimary(){

@@ -11,7 +11,7 @@
  function finish(container=document){for(const a of running)if(container.contains(a.effect?.target)){a.finish();running.delete(a)}}
  preference.addEventListener('change',()=>{if(preference.matches)finish()});
  function letter(preview,{from=null}={}){
-  if(!preview)return;
+  if(!preview)return;void window.PostAudio?.play('envelope_open');
   if(from&&from.width>0){const to=preview.getBoundingClientRect(),paper=preview.querySelector('.letter-object').getBoundingClientRect(),dx=from.x+from.width/2-paper.x-paper.width/2,dy=from.y+from.height/2-paper.y-paper.height/2,scale=from.width/paper.width,origin=(paper.x+paper.width/2-to.x)+'px '+(paper.y+paper.height/2-to.y)+'px';run(preview,[{transformOrigin:origin,transform:`translate(${dx}px,${dy}px) rotate(4deg) scale(${scale})`},{transformOrigin:origin,transform:'none'}],{duration:430,easing:'cubic-bezier(.2,.65,.25,1)'})}
   run(preview.querySelector('.envelope-flap'),[{transform:'rotateX(178deg)'},{transform:'rotateX(-3deg)',offset:.87},{transform:'rotateX(0deg)'}],{duration:310});
   run(preview.querySelector('.letter-object'),[{transform:'skewX(-.7deg)'},{transform:'skewX(.4deg)',offset:.65},{transform:'none'}],{duration:390});

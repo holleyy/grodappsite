@@ -1,0 +1,22 @@
+Cats by Post — existing audio exports, prepared 7 November 2026
+
+Provider: ElevenLabs
+Model: eleven_text_to_sound_v2
+Generation date: 2026-11-07 UTC
+All 48 supplied recordings are AI-generated.
+Commercial-use entitlement has not been verified; no licence grant is asserted.
+
+These PCM working files derive from compressed MP3 exports. Conversion to WAV
+does not restore a lossless master. Unchanged originals, original metadata and
+source URLs are preserved in the separate Cats_by_Post_audio integration pack.
+No replacement audio was generated and no generation credits were spent.
+
+All 48 originals were fully decoded and measured. Source effects are downmixed
+to mono; ambience retains its distinct source channels. Prepared ambience uses
+a measured 350 ms tail/head overlap. Perceived seamlessness is not verified.
+No listening review of materials, actions, voices, music or noise was possible.
+Mix settings are provisional until the recordings are auditioned on a device.
+
+45 files have existing action/location mappings. Two unusually quiet takes
+(turntable_place_01, turntable_rotate_02) and the unmatched cat_yawn_01 remain
+preserved but are excluded from automatic playback. See the integration manifest.

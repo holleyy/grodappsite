@@ -1,0 +1,392 @@
+{
+  "ambience_christmas_post": {
+    "files": [
+      "cbp_ambience_christmas_post_01.wav"
+    ],
+    "gain_db": -25.0,
+    "gains_db": {
+      "cbp_ambience_christmas_post_01.wav": 7.91
+    },
+    "loop": true
+  },
+  "ambience_city_hall": {
+    "files": [
+      "cbp_ambience_city_hall_01.wav"
+    ],
+    "gain_db": -26.0,
+    "gains_db": {
+      "cbp_ambience_city_hall_01.wav": 2.26
+    },
+    "loop": true
+  },
+  "ambience_mail_train": {
+    "files": [
+      "cbp_ambience_mail_train_01.wav"
+    ],
+    "gain_db": -24.0,
+    "gains_db": {
+      "cbp_ambience_mail_train_01.wav": -12.81
+    },
+    "loop": true
+  },
+  "ambience_parcel_room": {
+    "files": [
+      "cbp_ambience_parcel_room_01.wav"
+    ],
+    "gain_db": -25.0,
+    "gains_db": {
+      "cbp_ambience_parcel_room_01.wav": 12
+    },
+    "loop": true
+  },
+  "ambience_sorting_office": {
+    "files": [
+      "cbp_ambience_sorting_office_01.wav"
+    ],
+    "gain_db": -24.0,
+    "gains_db": {
+      "cbp_ambience_sorting_office_01.wav": 12
+    },
+    "loop": true
+  },
+  "ambience_town_depot": {
+    "files": [
+      "cbp_ambience_town_depot_01.wav"
+    ],
+    "gain_db": -25.0,
+    "gains_db": {
+      "cbp_ambience_town_depot_01.wav": -5.57
+    },
+    "loop": true
+  },
+  "box_close": {
+    "files": [
+      "cbp_box_close_01.wav"
+    ],
+    "gain_db": -6.0,
+    "gains_db": {
+      "cbp_box_close_01.wav": -6.0
+    },
+    "loop": false
+  },
+  "box_open": {
+    "files": [
+      "cbp_box_open_01.wav"
+    ],
+    "gain_db": -7.0,
+    "gains_db": {
+      "cbp_box_open_01.wav": -7.0
+    },
+    "loop": false
+  },
+  "cat_arrive": {
+    "files": [
+      "cbp_cat_arrive_01.wav",
+      "cbp_cat_arrive_02.wav",
+      "cbp_cat_arrive_03.wav"
+    ],
+    "gain_db": -4.0,
+    "gains_db": {
+      "cbp_cat_arrive_01.wav": -4.0,
+      "cbp_cat_arrive_02.wav": 2.0,
+      "cbp_cat_arrive_03.wav": -10.0
+    },
+    "loop": false
+  },
+  "cat_purr": {
+    "files": [
+      "cbp_cat_purr_01.wav"
+    ],
+    "gain_db": -11.0,
+    "gains_db": {
+      "cbp_cat_purr_01.wav": -11.0
+    },
+    "loop": false
+  },
+  "cat_settle": {
+    "files": [
+      "cbp_cat_settle_01.wav",
+      "cbp_cat_settle_02.wav"
+    ],
+    "gain_db": -9.0,
+    "gains_db": {
+      "cbp_cat_settle_01.wav": -9.78,
+      "cbp_cat_settle_02.wav": -8.22
+    },
+    "loop": false
+  },
+  "cat_yawn": {
+    "files": [
+      "cbp_cat_yawn_01.wav"
+    ],
+    "gain_db": -11.0,
+    "gains_db": {
+      "cbp_cat_yawn_01.wav": -11.0
+    },
+    "loop": false
+  },
+  "delivery_complete": {
+    "files": [
+      "cbp_delivery_complete_01.wav"
+    ],
+    "gain_db": -3.0,
+    "gains_db": {
+      "cbp_delivery_complete_01.wav": -3.0
+    },
+    "loop": false
+  },
+  "dog_woof": {
+    "files": [
+      "cbp_dog_woof_01.wav"
+    ],
+    "gain_db": -8.0,
+    "gains_db": {
+      "cbp_dog_woof_01.wav": -8.0
+    },
+    "loop": false
+  },
+  "envelope_open": {
+    "files": [
+      "cbp_envelope_open_01.wav"
+    ],
+    "gain_db": -8.0,
+    "gains_db": {
+      "cbp_envelope_open_01.wav": -8.0
+    },
+    "loop": false
+  },
+  "flap_close": {
+    "files": [
+      "cbp_flap_close_01.wav"
+    ],
+    "gain_db": -7.0,
+    "gains_db": {
+      "cbp_flap_close_01.wav": -7.0
+    },
+    "loop": false
+  },
+  "flap_open": {
+    "files": [
+      "cbp_flap_open_01.wav"
+    ],
+    "gain_db": -8.0,
+    "gains_db": {
+      "cbp_flap_open_01.wav": -8.0
+    },
+    "loop": false
+  },
+  "letter_slide": {
+    "files": [
+      "cbp_letter_slide_01.wav"
+    ],
+    "gain_db": -10.0,
+    "gains_db": {
+      "cbp_letter_slide_01.wav": -10.0
+    },
+    "loop": false
+  },
+  "paper_unfold": {
+    "files": [
+      "cbp_paper_unfold_01.wav"
+    ],
+    "gain_db": -8.0,
+    "gains_db": {
+      "cbp_paper_unfold_01.wav": -8.0
+    },
+    "loop": false
+  },
+  "parcel_heavy_arrive": {
+    "files": [
+      "cbp_parcel_heavy_arrive_01.wav"
+    ],
+    "gain_db": -2.0,
+    "gains_db": {
+      "cbp_parcel_heavy_arrive_01.wav": -2.0
+    },
+    "loop": false
+  },
+  "photo_flip": {
+    "files": [
+      "cbp_photo_flip_01.wav"
+    ],
+    "gain_db": -9.0,
+    "gains_db": {
+      "cbp_photo_flip_01.wav": -9.0
+    },
+    "loop": false
+  },
+  "photo_lift": {
+    "files": [
+      "cbp_photo_lift_01.wav"
+    ],
+    "gain_db": -10.0,
+    "gains_db": {
+      "cbp_photo_lift_01.wav": -10.0
+    },
+    "loop": false
+  },
+  "photo_slide": {
+    "files": [
+      "cbp_photo_slide_01.wav",
+      "cbp_photo_slide_02.wav"
+    ],
+    "gain_db": -10.0,
+    "gains_db": {
+      "cbp_photo_slide_01.wav": -7.19,
+      "cbp_photo_slide_02.wav": -12.81
+    },
+    "loop": false
+  },
+  "points_lever": {
+    "files": [
+      "cbp_points_lever_01.wav"
+    ],
+    "gain_db": -5.0,
+    "gains_db": {
+      "cbp_points_lever_01.wav": -5.0
+    },
+    "loop": false
+  },
+  "run_cancel": {
+    "files": [
+      "cbp_run_cancel_01.wav"
+    ],
+    "gain_db": -7.0,
+    "gains_db": {
+      "cbp_run_cancel_01.wav": -7.0
+    },
+    "loop": false
+  },
+  "run_pause": {
+    "files": [
+      "cbp_run_pause_01.wav"
+    ],
+    "gain_db": -7.0,
+    "gains_db": {
+      "cbp_run_pause_01.wav": -7.0
+    },
+    "loop": false
+  },
+  "run_resume": {
+    "files": [
+      "cbp_run_resume_01.wav"
+    ],
+    "gain_db": -6.0,
+    "gains_db": {
+      "cbp_run_resume_01.wav": -6.0
+    },
+    "loop": false
+  },
+  "run_send": {
+    "files": [
+      "cbp_run_send_01.wav"
+    ],
+    "gain_db": -3.0,
+    "gains_db": {
+      "cbp_run_send_01.wav": -3.0
+    },
+    "loop": false
+  },
+  "stamp_apply": {
+    "files": [
+      "cbp_stamp_apply_01.wav",
+      "cbp_stamp_apply_02.wav"
+    ],
+    "gain_db": -1.0,
+    "gains_db": {
+      "cbp_stamp_apply_01.wav": -1.14,
+      "cbp_stamp_apply_02.wav": -0.86
+    },
+    "loop": false
+  },
+  "tunnel_enter": {
+    "files": [
+      "cbp_tunnel_enter_01.wav"
+    ],
+    "gain_db": -9.0,
+    "gains_db": {
+      "cbp_tunnel_enter_01.wav": -9.0
+    },
+    "loop": false
+  },
+  "tunnel_exit": {
+    "files": [
+      "cbp_tunnel_exit_01.wav"
+    ],
+    "gain_db": -8.0,
+    "gains_db": {
+      "cbp_tunnel_exit_01.wav": -8.0
+    },
+    "loop": false
+  },
+  "turntable_pickup": {
+    "files": [
+      "cbp_turntable_pickup_01.wav",
+      "cbp_turntable_pickup_02.wav"
+    ],
+    "gain_db": -9.0,
+    "gains_db": {
+      "cbp_turntable_pickup_01.wav": -11.69,
+      "cbp_turntable_pickup_02.wav": -6.31
+    },
+    "loop": false
+  },
+  "turntable_place": {
+    "files": [
+      "cbp_turntable_place_02.wav",
+      "cbp_turntable_place_03.wav"
+    ],
+    "gain_db": -5.0,
+    "gains_db": {
+      "cbp_turntable_place_01.wav": -5.0,
+      "cbp_turntable_place_02.wav": -8.22,
+      "cbp_turntable_place_03.wav": -5.0
+    },
+    "loop": false
+  },
+  "turntable_rotate": {
+    "files": [
+      "cbp_turntable_rotate_01.wav",
+      "cbp_turntable_rotate_03.wav"
+    ],
+    "gain_db": -5.0,
+    "gains_db": {
+      "cbp_turntable_rotate_01.wav": -5.0,
+      "cbp_turntable_rotate_02.wav": -5.0,
+      "cbp_turntable_rotate_03.wav": -7.96
+    },
+    "loop": false
+  },
+  "ui_back": {
+    "files": [
+      "cbp_ui_back_01.wav"
+    ],
+    "gain_db": -12.0,
+    "gains_db": {
+      "cbp_ui_back_01.wav": -12.0
+    },
+    "loop": false
+  },
+  "ui_select": {
+    "files": [
+      "cbp_ui_select_01.wav",
+      "cbp_ui_select_02.wav"
+    ],
+    "gain_db": -11.0,
+    "gains_db": {
+      "cbp_ui_select_01.wav": -5.61,
+      "cbp_ui_select_02.wav": -16.39
+    },
+    "loop": false
+  },
+  "ui_unavailable": {
+    "files": [
+      "cbp_ui_unavailable_01.wav"
+    ],
+    "gain_db": -9.0,
+    "gains_db": {
+      "cbp_ui_unavailable_01.wav": -9.0
+    },
+    "loop": false
+  }
+}

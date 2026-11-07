@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "b378f9e2abd5bc96a9853c69829b19ef7fba7cfb",
+  "sourceCommit": "d6af1ea3e841648d7b8571e401ad4fc75c0a42d7",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-8bb875e7691f",
-  "engineSha256": "440717f85cc0fcf96246d2d8905be245a8f2570293ea401f2fc15ef955c3d79d",
+  "build": "web-105f0a880a2c",
+  "engineSha256": "e78308d968767bb9fce9b62370a471e941b04cba91dc8c24f384a8e68354ce4e",
   "entry": "journey/start.html",
-  "scope": "Shared menu/theme roles and catalogue preparation; certified Sunday generation and cancellable preparation. Current postal campaign only."
+  "scope": "Existing audio integration for phone listening; approved interface, artwork, campaign and bonus study preserved."
 }

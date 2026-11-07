@@ -85,7 +85,7 @@
  function envelope(l,p){return addressedEnvelope(l.title,number(l.id)+' · '+p.label,PostalIdentity.mark(p.id,{className:'envelope-mark',earned:PostalIdentity.chapterEarned(C.context(l.id)?.chapter.id,model.done),decorative:true}))}
  function print(l,p){return `<img class="print-paper" src="images/print-paper.webp" alt="" width="1470" height="1070">${l.planned?`<span class="print-scene print-concept">${roomArt(p)}</span>`:`<img class="print-scene" src="images/level-prints/${l.id}.webp?v=${document.querySelector('meta[name=cbp-build]')?.content||'web'}" alt="The starting arrangement for ${esc(l.title)}" width="960" height="640">`}${l.id==='1-4'?'<span class="print-detail"><span class="print-detail-plane"><img class="trolley-cat" src="images/observations/trolley-cat.webp" alt="A ginger cat is already asleep on a parcel on the trolley" width="160" height="130"></span></span>':''}<span class="print-reference">${number(l.id)}</span>`}
  function mailPreview(l,p,{interactive=true}={}){return `<div class="mail-preview"><img class="envelope-rear" src="images/envelope-open.webp" alt="" width="1301" height="1209"><img class="envelope-flap" src="images/envelope-open.webp" alt="" width="1301" height="1209">${interactive?`<button class="preview-print" id="preview-print" aria-label="Take a closer look at ${esc(l.title)}">${print(l,p)}<span class="print-loupe"><img src="icons/magnifying-glass-plus.svg" alt="" width="24" height="24"></span></button>`:`<div class="preview-print">${print(l,p)}</div>`}${envelope(l,p)}</div>`}
- function inspectPrint(l,p){PaperMotion.finish($('pane-content'));$('print-title').textContent=l.title;$('print-content').innerHTML=`<figure class="inspection-print">${print(l,p)}</figure>`;showDialog('print-dialog')}
+ function inspectPrint(l,p){void PostAudio.play('photo_lift');PaperMotion.finish($('pane-content'));$('print-title').textContent=l.title;$('print-content').innerHTML=`<figure class="inspection-print">${print(l,p)}</figure>`;showDialog('print-dialog')}
  function paneBackLabel(label){$('pane-back').innerHTML=uiIcon('arrow-left')+`<span class="sr-only">${label}</span>`;$('pane-back').title=label}
  function inspectPostmark(p,ch){
   PaperMotion.finish($('pane-content'));$('print-title').textContent=chapters[ch][0];
@@ -139,9 +139,9 @@
   const info=app.savedInfo;if(model.active&&(!info||info.id!==model.active||info.mode==='won'||info.kind!=='story'))model.active=null;
   save();gamePromiseResolve(app);updateDock();renderPane();renderPins();
  }
- function setPlaying(on){
+ function setPlaying(on){PostAudio.setView('journey',{active:!on,priority:10,location:'office'});if(!on)PostAudio.setView('play',{active:false,priority:20});
   $('game-stage').classList.toggle('active',on);$('game-stage').setAttribute('aria-hidden',String(!on));$('journey-app').inert=on;
-  if(on){frame.focus();frame.contentWindow.focus();frame.contentWindow.APP?.focusPresentation?.()}else $('current-place').focus({preventScroll:true});
+  frame.contentWindow.APP?.syncAudioScene?.();if(on){frame.focus();frame.contentWindow.focus();frame.contentWindow.APP?.focusPresentation?.()}else $('current-place').focus({preventScroll:true});
  }
  function openingArtwork(context,app){
   const saved=app?.savedInfo,l=levels.find(l=>l.id===(context.id||(context.resume&&saved?.kind==='story'?saved.id:null))),p=l&&placeFor(l.id);
@@ -158,7 +158,7 @@
   const app=await gamePromise;if(token!==openingToken)return null;
   clearTimeout(loadingTimer);if(!wasReady)openingArtwork(context,app);return app;
  }
- async function startLetter(id){
+ async function startLetter(id){void PostAudio.play('letter_slide');
   const request=++letterGeneration,l=levels.find(x=>x.id===id);if(!l)return;const origin={id,place:placeFor(id).id,packet:returnView?.type==='packet'?{...returnView,focusLetter:id}:null};lastDelivery=null;closeDialogs();
   try{const app=await readyForGame('Opening '+l.title+'…',{id});if(!app||request!==letterGeneration)return;
    const saved=app.savedInfo,isResume=saved?.id===id&&saved.mode!=='won'&&saved.kind==='story';

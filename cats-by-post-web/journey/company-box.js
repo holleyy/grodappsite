@@ -29,7 +29,7 @@ window.CompanyBox={create({dialog,getProgress,onNight,getReturnFocus,getSeenKey}
  function closeBox(action=()=>{}){
   if(!dialog.open)return;
   if(closing){closeAnimation?.finish();return}
-  closing=true;const request=token,departure=++closeGeneration,lids=[...dialog.querySelectorAll('.box-lid')],from=lids.map(l=>getComputedStyle(l).transform);
+  void window.PostAudio?.play('box_close');closing=true;const request=token,departure=++closeGeneration,lids=[...dialog.querySelectorAll('.box-lid')],from=lids.map(l=>getComputedStyle(l).transform);
   PaperMotion.finish(dialog);
   const animations=lids.map((lid,i)=>PaperMotion.run(lid,[{transform:from[i]},{transform:'rotateX(180deg)'}],{duration:300,easing:'cubic-bezier(.4,.12,.65,1)',fill:'forwards'})).filter(Boolean);
   closeAnimation=animations[0];
@@ -44,7 +44,7 @@ window.CompanyBox={create({dialog,getProgress,onNight,getReturnFocus,getSeenKey}
  function inspect(id){const coat=state.arrived.find(c=>c.id===id);if(!coat?.at||seen.includes(id))return;seen=[...seen,id];try{const key=getSeenKey?.();if(key)localStorage.setItem(key,JSON.stringify(seen))}catch{}}
 
  function turn(){
-  cancelClose();const surface=dialog.querySelector('#lifted-print'),paper=surface.querySelector('.photo-turn'),from=getComputedStyle(paper).transform;PaperMotion.finish(surface);reverse=!reverse;surface.classList.toggle('is-reversed',reverse);
+  void window.PostAudio?.play('photo_flip');cancelClose();const surface=dialog.querySelector('#lifted-print'),paper=surface.querySelector('.photo-turn'),from=getComputedStyle(paper).transform;PaperMotion.finish(surface);reverse=!reverse;surface.classList.toggle('is-reversed',reverse);
   const front=surface.querySelector('.photo-front'),rear=surface.querySelector('.photo-back');front.inert=reverse;front.setAttribute('aria-hidden',String(reverse));rear.inert=!reverse;rear.setAttribute('aria-hidden',String(!reverse));
   const c=state.arrived.find(c=>c.id===selected);surface.setAttribute('aria-label',`${c.name} photograph, ${reverse?'reverse':'front'}. Swipe or use arrow keys to browse.`);
   dialog.querySelector('#photo-turn span').textContent=reverse?'The photograph':'Turn over';PaperMotion.run(paper,[{transform:from},{transform:reverse?'rotateY(180deg)':'rotateY(0deg)'}],{duration:440,easing:'cubic-bezier(.35,.08,.28,1)'});
@@ -83,11 +83,11 @@ window.CompanyBox={create({dialog,getProgress,onNight,getReturnFocus,getSeenKey}
   ({selected,reverse,viewed}=H.pick({selected,reverse,viewed},id,state.arrived));inspect(id);render();dialog.scrollTop=scroll;
   const surface=dialog.querySelector('#lifted-print'),target=viaControl&&focus?.startsWith('photo-')?dialog.querySelector('#'+focus):surface;
   (target?.disabled?surface:target||surface).focus({preventScroll:true});
-  if(outgoing)PaperMotion.browse(surface,outgoing,1,{from,outRect});else PaperMotion.lift(surface,from);
+  void window.PostAudio?.play(outgoing?'photo_slide':'photo_lift');if(outgoing)PaperMotion.browse(surface,outgoing,1,{from,outRect});else PaperMotion.lift(surface,from);
  }
  function step(direction){const coat=selected&&M.neighbour(state,selected,direction);if(coat)select(coat.id,true)}
  function back(){
-  if(selected){cancelClose();PaperMotion.finish(dialog);
+  if(selected){void window.PostAudio?.play('photo_slide');cancelClose();PaperMotion.finish(dialog);
    const old=selected,surface=dialog.querySelector('#lifted-print'),from=surface.getBoundingClientRect(),copy=surface.cloneNode(true),pile=dialog.querySelector('#viewed-pile'),pileRect=pile?.getBoundingClientRect(),pileCopy=pile?.cloneNode(true);
    selected=null;reverse=false;viewed=[];render();dialog.scrollTop=boxScroll;const slot=dialog.querySelector(`.coat-slot[data-coat="${old}"]`),well=dialog.querySelector('#photo-well');
    if(slot){if(slot.offsetTop<well.scrollTop)well.scrollTop=slot.offsetTop;else if(slot.offsetTop+slot.offsetHeight>well.scrollTop+well.clientHeight)well.scrollTop=slot.offsetTop+slot.offsetHeight-well.clientHeight;wellScroll=well.scrollTop}slot?.focus({preventScroll:true});
@@ -96,7 +96,7 @@ window.CompanyBox={create({dialog,getProgress,onNight,getReturnFocus,getSeenKey}
  }
 
  async function open(){
-  const request=++token;cancelClose();PaperMotion.finish(dialog);selected=null;reverse=false;viewed=[];readSeen();ready=false;state=M.read(null);render();dialog.scrollTop=0;if(!dialog.open)dialog.showModal();openingAt=performance.now();openLid();
+  const request=++token;if(!dialog.open)void window.PostAudio?.play('box_open');cancelClose();PaperMotion.finish(dialog);selected=null;reverse=false;viewed=[];readSeen();ready=false;state=M.read(null);render();dialog.scrollTop=0;if(!dialog.open)dialog.showModal();openingAt=performance.now();openLid();
   try{const progress=await getProgress();if(request!==token||!dialog.open)return;state=M.read(progress);ready=true;if(closing)return;PaperMotion.finish(dialog);render();openLid(performance.now()-openingAt);PaperMotion.arrival(dialog.querySelector('.arrival-coat'));dialog.querySelector('#company-back').focus({preventScroll:true})}
   catch{if(request===token&&dialog.open){dialog.querySelector('.box-tally').textContent='The photographs could not be fetched. Put the box away and try again.'}}
  }

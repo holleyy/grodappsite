@@ -10,7 +10,7 @@
   function pose(next){if(frame===next)return;frame=next;button.dataset.pose=next;button.style.backgroundPosition=`${next%4*100/3}% ${Math.floor(next/4)*100}%`}
   function stop(){cancelAnimationFrame(raf);raf=0;pose(0)}
   function tick(now){if(!active()||still()){stop();return}const elapsed=now-start;pose(frameAt(elapsed));if(elapsed<duration)raf=requestAnimationFrame(tick);else{raf=0;if(announced)button.querySelector('[role=status]').textContent='The ginger cat has settled back to sleep.'}}
-  function play(user=false){if(!visible||!active()||still())return;stop();announced=user;if(user)button.querySelector('[role=status]').textContent='';start=performance.now();raf=requestAnimationFrame(tick)}
+  function play(user=false){if(!visible||!active()||still())return;stop();if(user)void root.PostAudio?.play('cat_purr');announced=user;if(user)button.querySelector('[role=status]').textContent='';start=performance.now();raf=requestAnimationFrame(tick)}
   function refresh(){
    const ready=active()&&art.complete&&art.naturalWidth>0;button.hidden=!ready;
    if(ready){const r=art.getBoundingClientRect(),c=container.getBoundingClientRect(),portrait=art.naturalHeight>art.naturalWidth,p=cover({width:r.width,height:r.height,naturalWidth:art.naturalWidth,naturalHeight:art.naturalHeight},portrait?489:730,portrait?829:548,200,340/512,390/512);Object.assign(button.style,{left:p.left+r.left-c.left+'px',top:p.top+r.top-c.top+'px',width:p.width+'px',height:p.width+'px'});}

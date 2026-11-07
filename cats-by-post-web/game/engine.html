@@ -147,16 +147,16 @@
   #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
-<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-8bb875e7691f" type="image/svg+xml">
+<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-105f0a880a2c" type="image/svg+xml">
 <style id="web-host-style">
-@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-8bb875e7691f);font-weight:400;font-display:swap}
-@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-8bb875e7691f);font-weight:500;font-display:swap}
+@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-105f0a880a2c);font-weight:400;font-display:swap}
+@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-105f0a880a2c);font-weight:500;font-display:swap}
 #hud,#shiftCards,#shiftEnding,#shiftDebug,#chapterKicker,#debug,#controls,#atlasPanel{display:none!important}
 html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterScene{font-family:Signika,sans-serif;color:#253e40}
 
 </style>
-<link rel="stylesheet" href="../journey/theme.css?v=web-8bb875e7691f"><script src="../journey/theme.js?v=web-8bb875e7691f"></script><link rel="stylesheet" href="../journey/preferences.css?v=web-8bb875e7691f"><script src="../journey/preferences.js?v=web-8bb875e7691f"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-8bb875e7691f"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-8bb875e7691f"></head>
+<link rel="stylesheet" href="../journey/theme.css?v=web-105f0a880a2c"><script src="../journey/theme.js?v=web-105f0a880a2c"></script><link rel="stylesheet" href="../journey/preferences.css?v=web-105f0a880a2c"><script src="../journey/preferences.js?v=web-105f0a880a2c"></script><script src="../journey/audio.js?v=web-105f0a880a2c"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-105f0a880a2c"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-105f0a880a2c"></head>
 <body>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
@@ -256,7 +256,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "web-8bb875e7691f";
+const BUILD_ID = "web-105f0a880a2c";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -27033,17 +27033,56 @@ function webDrawBoardFeedback(mark){
   sctx.restore();
 }
 
+/* Read-only sound timing from native rule events and their existing animation traces. */
+(function(root){
+ 'use strict';
+ function create(emit){
+  let run='',serial=0,current=null,lastTick=-1,dogHits=0,finished=false;const pending=[];
+  function reset(id){run=id;serial=0;current=null;lastTick=-1;dogHits=0;finished=false;pending.length=0;}
+  function at(event,time){if(Number.isFinite(time)&&pending.length<512)pending.push({event,time,id:run+':'+(++serial)});}
+  function capture(sim,traces,{night=false,time=0}={}){
+   if(sim!==current){current=sim;lastTick=-1;dogHits=0;finished=false;pending.length=0;}
+   if(!sim||lastTick===sim.tick)return;lastTick=sim.tick;
+   let end=0,tick=.6;
+   for(let i=0;i<sim.n;i++){
+    const tr=traces[i];if(!tr||!Number.isFinite(tr.rel))continue;tick=tr.tick;
+    const begin=tr.rel+Math.max(0,tr.n-1)*tr.tick,home=tr.rel+tr.n*tr.tick,ev=sim.ev[i];end=Math.max(end,night?time:home+(tr.homeKind==='flap'?.44:1.2));
+    if(ev===1)at(sim.big[i]?'parcel_heavy_arrive':'cat_arrive',tr.rel-tr.pop*.2);
+    if(ev===6){at('tunnel_enter',begin);at('tunnel_exit',begin+tr.tick*.65);}
+    if(ev===3){if(sim.homeFlap[i]>=0){at('flap_open',home);at('flap_close',home+.44);}else at('cat_settle',night?time:home+.3);}
+    if(ev===4||ev===5)at('ui_unavailable',home);
+   }
+   if(sim.flipCount)at('points_lever',sim.tick*tick);
+   if(sim.dogHits>dogHits)at('dog_woof',Math.max(0,(sim.tick-1)*tick)+tick*.2);dogHits=sim.dogHits;
+   // Terminal outcome comes from the shared rules. Replays are filtered by the bridge.
+   if(sim.outcome==='won'&&!finished){finished=true;at('delivery_complete',end);}
+  }
+  function flush(time){for(let i=0;i<pending.length;){if(pending[i].time>time+1e-8){i++;continue}const e=pending[i];pending.splice(i,1);emit(e);}}
+  return{reset,capture,flush,get pending(){return pending.length}};
+ }
+ const api={create};root.GameAudioEvents=api;if(typeof module==='object'&&module.exports)module.exports=api;
+})(globalThis);
+
 /* The independent web shell sends intents; canonical controllers own every rule and reward. */
 (function(){
   'use strict';
-  const clone=v=>JSON.parse(JSON.stringify(v)),listeners=new Set(),viewListeners=new Set(),seen=new Set(),reasons=new Set(),history=[];
+  const clone=v=>JSON.parse(JSON.stringify(v)),listeners=new Set(),viewListeners=new Set(),audioListeners=new Set(),seen=new Set(),reasons=new Set(),history=[];
   let runNumber=0,runID='web-'+Date.now()+'-'+runNumber,revision=0,intent=0,tactical=false,feedback=null,feedbackID=0,winRecorded=false,replaying=false,dispatching=false;
   let softFrozen=false,presentationAttached=false;
   const continuousCamera=window.WebCamera||null;
   let start=null,events=[],gameFrame=0,presentationFrame=0,loading=false,loadGeneration=0,framing='board',manual=false,insets={top:90,bottom:220,left:12,right:12},roomViews={},pendingView=null;
   let lastTick=-1,lastMode='',lastPresentation='',lastRound=-1,lastSettled=false,practiceResolve=null,practiceReject=null;
-  const native={tap:gTap,clear:gClear,hint:gHint,send:gSend,update:gUpdate,chapter:cpUpdate,finish:gFinish,toEdit:gToEdit,load:gLoadLevel,camera:gCamera,resize:onResize,pan:panBy,hud:gHud,status:gStatus,finale:xcStart,maybeFinale:xcMaybeFinale};
+  const native={tap:gTap,clear:gClear,hint:gHint,send:gSend,update:gUpdate,chapter:cpUpdate,finish:gFinish,toEdit:gToEdit,load:gLoadLevel,camera:gCamera,resize:onResize,pan:panBy,hud:gHud,status:gStatus,tick:gTickRules,shiftTick:nsCaptureTick,shiftSend:nsSend,finale:xcStart,maybeFinale:xcMaybeFinale};
   const finished=new WeakSet();
+  let audioSerial=0;
+  const audioTimeline=window.GameAudioEvents?.create(e=>notifyAudio(e.event,e.id))||null;
+  function notifyAudio(event,id){if(replaying||loading||!presentationAttached||!audioListeners.size)return;const detail={event,id:id||runID+':control:'+ ++audioSerial,runID};for(const fn of audioListeners)try{fn(detail)}catch{}}
+  function transportState(){return{shift:!!gm.shift,running:gm.shift?gm.shift.phase==='running':gm.mode==='running',paused:gm.shift?gm.shift.paused:tactical,tick:gm.shift?gm.shift.current?.sim.tick||0:gm.sim?.tick||0};}
+  function transportSound(before){const after=transportState();if(before.running&&!after.running)notifyAudio('run_cancel');else if(after.running&&!after.paused&&(!before.running||before.paused))notifyAudio(before.running&&before.tick>0?'run_resume':'run_send');else if(before.running&&!before.paused&&after.running&&after.paused)notifyAudio('run_pause');}
+  function captureAudio(sim,traces,options){if(!replaying&&!loading&&presentationAttached&&audioListeners.size)audioTimeline?.capture(sim,traces,options);}
+  gTickRules=function(){native.tick();captureAudio(gm.sim,G_TRACES);};
+  nsCaptureTick=function(shift){native.shiftTick(shift);captureAudio(shift.current.sim,NS_TRACES,{night:true,time:nsui.time});};
+  nsSend=function(){const before=transportState();native.shiftSend();transportSound(before);};
   const story=()=>!gm.custom&&!gm.daily&&!gm.practice&&!gm.shift;
   const presentation=()=>cpActive()?CP.mode:'none';
   const precision=()=>!gm.shift&&gm.mode==='running'&&tactical;
@@ -27051,7 +27090,7 @@ function webDrawBoardFeedback(mark){
   const presentationAvailable=()=>(presentationAttached||replaying)&&!loading&&!gPracticePending&&(replaying||!reasons.has('fidelity'));
   const chapterStoryAvailable=()=>presentationAvailable()&&G_KEEP_PROGRESS&&story()&&/^[45678]-/.test(gm.L.id)&&gm.mode!=='running'&&!cpActive()&&!loading&&!gPracticePending;
   const editable=()=>inputAvailable()&&(gm.shift?(gm.shift.phase==='tea'&&!!gm.shift.cardChoice&&!gm.shift.pendingWalkies||gm.shift.phase==='running'&&gm.shift.paused):gm.mode==='edit'||gm.mode==='lost'||gm.mode==='won'||precision());
-  function epoch(){runID='web-'+Date.now()+'-'+(++runNumber);winRecorded=false;history.length=0;}
+  function epoch(){runID='web-'+Date.now()+'-'+(++runNumber);winRecorded=false;history.length=0;audioSerial=0;audioTimeline?.reset(runID);}
   function emit(name,detail){for(const target of new Set([window,typeof parent==='undefined'?window:parent]))try{if(target.dispatchEvent&&typeof CustomEvent!=='undefined')target.dispatchEvent(new CustomEvent(name,{detail}));}catch{}}
   function changed(){revision++;const s=listeners.size?state():null;for(const fn of listeners)try{fn(s);}catch{}emit('gamechange');emit('labchange');}
   function report(kind,message,x,y,piece){feedback={id:++feedbackID,kind,message,x,y,...piece};gStatus(message);emit('gamefeedback',feedback);emit('labfeedback',feedback);dirty=true;return feedback;}
@@ -27103,10 +27142,10 @@ function webDrawBoardFeedback(mark){
     if(saved&&!after)return report('returned','Turntable returned to the tray.',x,y);
     return report('blocked',saved?.locked?'The hint piece stays fixed.':hud.status.textContent||'That tile is occupied.',x,y);
   };
-  gClear=function(){if(!editable())return report('blocked','Pause to return turntables.');if(precision())edit(()=>{for(const p of gm.chutes)if(!p.locked&&!locked(p.x,p.y))gm.tray[p.type]++;gm.chutes=gm.chutes.filter(p=>p.locked||locked(p.x,p.y));syncPieces();gHud();});else edit(()=>native.clear());};
+  gClear=function(){const previous=gm.chutes.length;if(!editable())return report('blocked','Pause to return turntables.');if(precision())edit(()=>{for(const p of gm.chutes)if(!p.locked&&!locked(p.x,p.y))gm.tray[p.type]++;gm.chutes=gm.chutes.filter(p=>p.locked||locked(p.x,p.y));syncPieces();gHud();});else edit(()=>native.clear());if(gm.chutes.length<previous)notifyAudio('turntable_pickup');};
   gHint=function(){if(gm.mode==='running'||cpActive())return;native.hint();history.length=0;};
-  gToEdit=function(){native.toEdit();if(gm.mode==='edit')winRecorded=false;};
-  gSend=function(){if(gm.mode!=='running'&&!gm.shift)epoch();history.length=0;native.send();};
+  gToEdit=function(){native.toEdit();if(gm.mode==='edit'){winRecorded=false;audioTimeline?.reset(runID);}};
+  gSend=function(){const before=transportState();if(gm.mode!=='running'&&!gm.shift)epoch();history.length=0;native.send();if(!before.shift)transportSound(before);};
   gLoadLevel=function(...args){remember();pendingView=null;if(continuousCamera)continuousCamera.reset();native.load(...args);gm.cursor=false;manual=false;epoch();tactical=false;syncPause();};
   gFinish=function(){if(!gm.sim||finished.has(gm.sim))return;finished.add(gm.sim);native.finish();winRecorded=story()&&gm.mode==='won'&&!!progress.levels[gm.L.id]?.stars?.delivered;changed();};
   xcMaybeFinale=function(){return replaying?false:native.maybeFinale();};
@@ -27114,7 +27153,7 @@ function webDrawBoardFeedback(mark){
   gStatus=function(text){native.status(text);if(loading&&gPracticePending)changed();};
   gHud=function(){native.hud();if(practiceResolve&&!gPracticePending){const resolve=practiceResolve,reject=practiceReject;practiceResolve=practiceReject=null;if(gPracticeChoosing)reject(Error(hud.status.textContent||'No certified Practice route was found.'));else resolve();}};
   function observe(){const tick=gm.sim?.tick||0,mode=gm.mode,p=CP.mode,round=gm.shift?.round||0,settled=homeState()==='settled';if(p!==lastPresentation&&!p)restorePendingView();if(tick!==lastTick||mode!==lastMode||p!==lastPresentation||round!==lastRound||settled!==lastSettled){lastTick=tick;lastMode=mode;lastPresentation=p;lastRound=round;lastSettled=settled;changed();}syncPause();}
-  gUpdate=function(){if(!replaying&&(!presentationAttached||reasons.size>0||(gm.mode==='running'||gm.mode==='edit')&&(tactical||softFrozen)))return;gameFrame++;native.update();observe();};
+  gUpdate=function(){if(!replaying&&(!presentationAttached||reasons.size>0||(gm.mode==='running'||gm.mode==='edit')&&(tactical||softFrozen)))return;gameFrame++;native.update();observe();if(!replaying&&audioListeners.size)audioTimeline?.flush(gm.shift?nsui.time:gm.t);};
   cpUpdate=function(){if(!replaying&&(!presentationAttached||reasons.size>0))return;presentationFrame++;native.chapter();observe();};
   // Restore accounting is rebuilt from native play, but never records the same result twice.
   const account=fn=>function(...args){if(!replaying)return fn(...args);};
@@ -27198,7 +27237,7 @@ function webDrawBoardFeedback(mark){
     if(boardEdits.has(type)&&!editable())return false;
     switch(type){
       case 'tap':gm.cx=a.x;gm.cy=a.y;gm.cursor=true;return gTap(a.x,a.y);
-      case 'select':if(cpActive()||loading||!G_TYPES.includes(a.type)||!(gm.tray[a.type]>0))return false;gm.sel=a.type;gHud();return true;
+      case 'select':if(cpActive()||loading||!G_TYPES.includes(a.type)||!(gm.tray[a.type]>0))return false;if(gm.sel!==a.type)notifyAudio('ui_select');gm.sel=a.type;gHud();return true;
       case 'clear':return gClear();case 'hint':return gHint();case 'undo':return undo();
       case 'pause':if(gm.shift&&gm.shift.phase==='running')NIGHTSHIFT.setPaused(gm.shift,a.value!==false);else if(gm.mode==='running')tactical=a.value!==false;return true;
       case 'resume':tactical=false;softFrozen=false;if(gm.shift&&gm.shift.phase==='running')NIGHTSHIFT.setPaused(gm.shift,false);history.length=0;return true;
@@ -27257,7 +27296,7 @@ function webDrawBoardFeedback(mark){
     }
     return null;
   }
-  function command(c){if(replaying&&c?.type!=='cancelLoad')return{status:'rejected',reason:'session restoration in progress',runID,revision};if(c?.type==='automaticFinale')return{status:'rejected',reason:'internal session checkpoint',runID,revision};if(!c||typeof c.id!=='string'||c.runID!==runID||c.revision!==revision||seen.has(c.id)||!c.id.length||c.id.length>200)return{status:'rejected',reason:'stale or duplicate intent',runID,revision};let invalid;try{invalid=argumentError(c.type,c.payload===undefined?{}:c.payload);}catch{invalid='invalid intent arguments';}if(invalid)return{status:'rejected',reason:invalid,runID,revision};seen.add(c.id);if(seen.size>4096)seen.delete(seen.values().next().value);if(c.type==='load'){const a=c.payload||{},pending=performLoad(a.kind,a.value,a.sample),generation=loadGeneration;return pending.then(ok=>({status:ok?'accepted':generation===loadGeneration?'rejected':'superseded',runID,revision}),error=>({status:'rejected',reason:error.message,runID,revision}));}let value;dispatching=true;try{value=execute(c.type,c.payload||{});}catch(error){return{status:'rejected',reason:error.message,runID,revision};}finally{dispatching=false;}if(value===false)return{status:'rejected',reason:'intent unavailable',runID,revision};if(replayCommands.has(c.type))record(c.type,c.payload);syncPause();dirty=true;changed();return{status:'accepted',value,runID,revision};}
+  function command(c){if(replaying&&c?.type!=='cancelLoad')return{status:'rejected',reason:'session restoration in progress',runID,revision};if(c?.type==='automaticFinale')return{status:'rejected',reason:'internal session checkpoint',runID,revision};if(!c||typeof c.id!=='string'||c.runID!==runID||c.revision!==revision||seen.has(c.id)||!c.id.length||c.id.length>200)return{status:'rejected',reason:'stale or duplicate intent',runID,revision};let invalid;try{invalid=argumentError(c.type,c.payload===undefined?{}:c.payload);}catch{invalid='invalid intent arguments';}if(invalid)return{status:'rejected',reason:invalid,runID,revision};seen.add(c.id);if(seen.size>4096)seen.delete(seen.values().next().value);if(c.type==='load'){const a=c.payload||{},pending=performLoad(a.kind,a.value,a.sample),generation=loadGeneration;return pending.then(ok=>({status:ok?'accepted':generation===loadGeneration?'rejected':'superseded',runID,revision}),error=>({status:'rejected',reason:error.message,runID,revision}));}let value;const audioBefore=['pause','resume','stop','arrange','send'].includes(c.type)?transportState():null;dispatching=true;try{value=execute(c.type,c.payload||{});}catch(error){return{status:'rejected',reason:error.message,runID,revision};}finally{dispatching=false;}if(value===false)return{status:'rejected',reason:'intent unavailable',runID,revision};if(replayCommands.has(c.type))record(c.type,c.payload);syncPause();dirty=true;changed();if(audioBefore&&(c.type!=='send'||!audioBefore.shift&&audioBefore.running&&audioBefore.paused))transportSound(audioBefore);return{status:'accepted',value,runID,revision};}
   function fresh(type,payload){return command({id:'intent-'+(++intent),runID,revision,type,payload});}
   function descriptor(){const baseline={attempts:gm.attempts,hinted:gm.hinted,presentation:presentation()};if(gm.shift)return{kind:'night',value:clone(gm.shift.run),presentation:'none'};if(gm.daily)return{kind:'daily',value:gm.daily.key,...baseline};if(gm.practice)return{kind:'practice',value:{seed:gm.practice.entry.seed,weekday:gm.practice.entry.weekday,date:gm.practice.date},...baseline};return{kind:'story',value:gm.L.id,...baseline};}
   async function presentationReady(generation){if(window.FidelityRooms){reasons.add('fidelity');syncPause();try{await window.FidelityRooms.ensure(ACTIVE_ROOM.id);}finally{if(generation===loadGeneration)reasons.delete('fidelity');}}return generation===loadGeneration;}
@@ -27291,6 +27330,7 @@ function webDrawBoardFeedback(mark){
 
   const api={cancelLoad:()=>fresh('cancelLoad').value===true,state,describeTile,routeFeatures,tile:(x,y)=>target(x,y,{}),command,load,snapshot,restore,sessionSummary:GameSessionCodec.summary,subscribe(fn){listeners.add(fn);return()=>listeners.delete(fn);},suspend:reason=>fresh('suspend',{reason}),unsuspend:reason=>fresh('unsuspend',{reason}),levels:LEVELS.map((L,i)=>({i,id:L.id,title:L.title,room:LEVELROOMS.id(L),board:{...L.board},queueCount:L.hatches.reduce((n,h)=>n+h.cats.length,0),bigCount:L.hatches.reduce((n,h)=>n+h.cats.filter(grCatBig).length,0),hatchCount:L.hatches.length,mechanisms:{dogs:(L.dogs||[]).length,gates:(L.gates||[]).length,tunnels:(L.tunnels||[]).length,flaps:(L.flaps||[]).length}})),face,piece,geometry(){const b=gm.L.board;return[[0,0],[b.w,0],[b.w,b.h],[0,b.h]].map(([x,y])=>project(x,y));},remember,backdrop(){return fresh('camera',{mode:'board'});},layout:a=>fresh('layout',a),freeze:value=>fresh('freeze',{value}),pause:(value=true)=>fresh('pause',{value}),resume:()=>fresh('resume'),camera:mode=>fresh('camera',{mode}),focus:hatch=>fresh('focus',{hatch}),zoom:dir=>fresh('zoom',{dir}),pan:(x,y)=>fresh('pan',{x,y}),tap:(x,y)=>fresh('tap',{x,y}),select:type=>fresh('select',{type}).status==='accepted',clear:()=>fresh('clear'),hint:()=>fresh('hint'),send:()=>fresh('send'),arrange:()=>fresh('arrange'),stop:()=>fresh('stop'),fast:()=>fresh('fast'),card:id=>fresh('card',{id}),nextRound:()=>fresh('nextRound'),grey:value=>fresh('grey',{value}),setCursor:(x,y)=>fresh('setCursor',{x,y}).value,cursor:(dx,dy)=>fresh('setCursor',{x:Number.isSafeInteger(dx)?clamp(gm.cx+dx,0,gm.L.board.w-1):NaN,y:Number.isSafeInteger(dy)?clamp(gm.cy+dy,0,gm.L.board.h-1):NaN}).value,place:()=>fresh('tap',{x:gm.cx,y:gm.cy}),closeup(){fresh('camera',{mode:'board'});return fresh('zoom',{dir:scale*.4});},undo:()=>fresh('undo').value===true,next:()=>fresh('advance'),continue:()=>fresh('continue'),watchDemo:()=>fresh('watchDemo'),chapterStory:()=>fresh('chapterStory'),skip:()=>fresh('skip'),showCredits:()=>fresh('showCredits'),replayEnding:()=>fresh('replayEnding'),back:()=>fresh('back'),cancelPresentation:()=>fresh('cancelPresentation')};
   // Camera presentation is separate from rule-state subscriptions and save intents.
+  api.subscribeAudio=function(fn){audioListeners.add(fn);if(audioListeners.size===1)audioTimeline?.reset(runID);return()=>{audioListeners.delete(fn);if(!audioListeners.size)audioTimeline?.reset(runID);};};
   api.subscribeView=function(fn){viewListeners.add(fn);return()=>viewListeners.delete(fn);};
   api.hatchPosition=function(number,out){if(!gm.L||loading||cpActive()||!Number.isInteger(number)||number<1||number>gm.L.hatches.length)return false;const h=gm.L.hatches[number-1];project(h.x+.5,h.y+.5,out);return true;};
   api.ready=Promise.resolve().then(async()=>{if(!gm.L)return false;if(!start)start=descriptor();const generation=loadGeneration;if(window.CBP_DEFER_PRESENTATION!==true&&await presentationReady(generation))presentationAttached=true;syncPause();changed();return true;});
@@ -27308,5 +27348,5 @@ function webDrawBoardFeedback(mark){
 
 boot();
 </script>
-<script src="../journey/postal-identity.js?v=web-8bb875e7691f"></script><script src="../journey/chapter-presentation.js?v=web-8bb875e7691f"></script></body>
+<script src="../journey/postal-identity.js?v=web-105f0a880a2c"></script><script src="../journey/chapter-presentation.js?v=web-105f0a880a2c"></script></body>
 </html>
