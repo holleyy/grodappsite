@@ -2,7 +2,7 @@
 (function(root){
  'use strict';
  function create({base,fetcher,Audio,now=()=>performance.now()}){
-  let enabled=false,unlocked=false,hidden=false,paused=false,gameActive=false,gameGeneration=0,volume=1,ctx=null,master=null,cues=null,manifest=null,generation=0,ambientGeneration=0,location=null,ambient=null,ambienceQueued=false;
+  let enabled=false,unlocked=false,hidden=false,paused=false,gameActive=false,gameGeneration=0,volume=1,ctx=null,master=null,cues=null,manifest=null,generation=0,ambientGeneration=0,location=null,ambient=null,ambienceQueued=false,resuming=null,warmed=false;
   const buffers=new Map(),loading=new Map(),voices=new Set(),beds=new Set(),last=new Map(),recent=new Map(),keys=new Map(),views=new Map(),listeners=new Set();
   const stats={started:0,dropped:0,errors:0},critical=['ui_select','ui_back','turntable_place','turntable_rotate','turntable_pickup','run_send','stamp_apply'];
   const locations={office:'sorting_office',depot:'town_depot',train:'mail_train',cityhall:'city_hall',hall:'city_hall',parcel:'parcel_room',christmas:'christmas_post',winter:'christmas_post'};
@@ -22,18 +22,26 @@
    const v={source,gain,domain,event,file,stopped:false};voices.add(v);if(loop)beds.add(v);source.onended=()=>{voices.delete(v);beds.delete(v);try{source.disconnect();gain.disconnect()}catch{}};
    source.start();if(loop)gain.gain.setTargetAtTime(level,ctx.currentTime,.18);publish(event,file);return v;
   }
-  async function warm(){const data=await ready();if(!data||!eligible())return;for(const event of critical)for(const file of data[event]?.files||[])void load(file);}
-  async function unlock(){unlocked=true;if(!enabled||hidden||!Audio)return false;try{context();await ctx.resume();if(!eligible())return false;void warm();void ambience();return true}catch{stats.errors++;return false}}
+  async function warm(){const data=await ready();if(!data||!eligible()||warmed)return;warmed=true;for(const event of critical)for(const file of data[event]?.files||[])void load(file);for(const [event,cue]of Object.entries(data))if(!cue.loop&&event!=='cat_yawn'&&!critical.includes(event))for(const file of cue.files)void load(file);}
+  async function unlock(){
+   unlocked=true;if(!enabled||hidden||!Audio)return false;
+   try{context();const pending=Promise.resolve(ctx.resume()).then(()=>{if(!eligible())return false;void warm();void ambience();return true}).catch(()=>{stats.errors++;return false});resuming=pending;
+    try{return await pending}finally{if(resuming===pending)resuming=null}
+   }catch{stats.errors++;return false}
+  }
   function configure(p={}){const next=p.sound===true;if(typeof p.volume==='number'&&Number.isFinite(p.volume))volume=Math.max(0,Math.min(1,p.volume));if(master)master.gain.setTargetAtTime(.55*volume,ctx.currentTime,.03);if(enabled===next)return;enabled=next;generation++;ambientGeneration++;if(!enabled){stop();ambient=null}else if(unlocked)void unlock();}
   async function play(event,{key,domain='ui',maxAge=450}={}){
    const requested=now(),token=generation,gameToken=gameGeneration;if(!enabled||!unlocked||hidden||domain==='game'&&(paused||!gameActive)){stats.dropped++;return false}
    if(key){if(keys.has(key))return false;keys.set(key,true);if(keys.size>512)keys.delete(keys.keys().next().value)}
    const gap=event==='cat_purr'?1200:event==='dog_woof'?650:event==='cat_arrive'||event==='parcel_heavy_arrive'?75:event==='cat_settle'||event==='ui_unavailable'?140:20;
    if(requested-(recent.get(event)??-Infinity)<gap){stats.dropped++;return false}recent.set(event,requested);
-   const data=await ready();if(!data?.[event]||!eligible()){stats.dropped++;return false}const cue=data[event],files=cue.files;
-   const decoded=await Promise.all(files.map(file=>load(file)));if(token!==generation||domain==='game'&&gameToken!==gameGeneration||!eligible()||domain==='game'&&(paused||!gameActive)||now()-requested>maxAge){stats.dropped++;return false}
-   const available=files.filter((file,i)=>decoded[i]);if(!available.length)return false;const index=(available.indexOf(last.get(event))+1)%available.length,file=available[index];
-   if([...voices].filter(v=>!v.source.loop).length>=10){stats.dropped++;return false}last.set(event,file);start(decoded[files.indexOf(file)],event,file,gainFor(cue,file),domain);return true;
+   const data=await ready();if(resuming){let timeout;await Promise.race([resuming,new Promise(resolve=>{timeout=setTimeout(resolve,Math.max(0,maxAge-(now()-requested)))})]);clearTimeout(timeout)}
+   if(!data?.[event]||token!==generation||domain==='game'&&gameToken!==gameGeneration||!eligible()||now()-requested>maxAge){stats.dropped++;return false}const cue=data[event],files=cue.files;
+   let available=files.filter(file=>buffers.has(file));
+   if(!available.length){const first=await Promise.any(files.map(file=>load(file).then(buffer=>{if(!buffer)throw Error('Unavailable audio take');return file}))).catch(()=>null);if(first)available=[first]}
+   if(token!==generation||domain==='game'&&gameToken!==gameGeneration||!eligible()||domain==='game'&&(paused||!gameActive)||now()-requested>maxAge){stats.dropped++;return false}
+   if(!available.length)return false;const index=(available.indexOf(last.get(event))+1)%available.length,file=available[index];
+   if([...voices].filter(v=>!v.source.loop).length>=10){stats.dropped++;return false}last.set(event,file);start(buffers.get(file).buffer,event,file,gainFor(cue,file),domain);for(const other of files)if(other!==file)void load(other);return true;
   }
   async function ambience(){
    const wanted=locations[location]?'ambience_'+locations[location]:null;if(!wanted||!eligible()){if(ambient)stopVoice(ambient,.65);ambient=null;return}

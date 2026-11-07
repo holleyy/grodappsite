@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "e54bc5f045750a8eacceb6a79436c4091f1968f2",
+  "sourceCommit": "e8ac425c0b7c8f6a948fe2eed86faa8aa2fd8993",
   "sourceBranch": "codex/web-interface-integration",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-105f0a880a2c",
-  "engineSha256": "e78308d968767bb9fce9b62370a471e941b04cba91dc8c24f384a8e68354ce4e",
+  "build": "web-62972949cd0c",
+  "engineSha256": "b372fb77798b8e48b8b9fc84b8934906532b959d781561786f2c7e333898ac91",
   "entry": "journey/start.html",
-  "scope": "Existing audio integration, with a separate iPhone Safari sound diagnostic. Game audio behaviour unchanged pending device evidence."
+  "scope": "Intermittent audio fixes: first-ready variations, bounded resume wait and prepared short effects. Approved game, recordings and mix unchanged."
 }
