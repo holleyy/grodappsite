@@ -125,8 +125,9 @@
    $('pane-title').textContent=p.title;paneBackLabel(returnView?'Letters':wide.matches?'All letters':'Map');
    const cats=l.hatches?.reduce((sum,h)=>sum+h.cats.length,0),hatches=l.hatches?.length;
    const action=l.planned?'Still to come':isActive?'Continue sorting':done?'Replay this letter':replacing?'Switch to this letter':'Start sorting';
-   content.innerHTML=`<article class="letter-view" aria-label="${esc((done?'Posted letter ':isActive?'Unfinished letter ':'Letter ')+number(l.id)+', '+l.title)}">${mailPreview(l,p)}${done?earned(l.id)+chapterPostmarks(p,+l.id.split('-')[0]):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span>${l.bigCount?`<span>${l.bigCount} large</span>`:''}</div>`:''}${l.planned?'<p class="planned-note">Not reached yet.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
+   content.innerHTML=`<article class="letter-view" aria-label="${esc((done?'Posted letter ':isActive?'Unfinished letter ':'Letter ')+number(l.id)+', '+l.title)}">${mailPreview(l,p)}${done?earned(l.id)+chapterPostmarks(p,+l.id.split('-')[0]):''}${cats?`<div class="letter-facts"><span>${cats} ${cats===1?'cat':'cats'}</span><span>${hatches} ${hatches===1?'hatch':'hatches'}</span>${l.bigCount?`<span>${l.bigCount} large</span>`:''}</div>`:''}${l.planned?'<p class="planned-note">Not reached yet.</p><p>This place will have its own room and deliveries.</p>':`${replacing?`<p class="route-warning">Opening this letter starts a fresh arrangement. Your unfinished ${number(active().id)} will be put away.</p>`:''}<button id="open-letter" class="primary">${action}</button><div class="letter-secondary"><button id="browse-packet">${done?'Other letters':'Browse this packet'}</button>${l.id==='1-1'&&!done&&!isActive?'<button id="letter-help">How to play</button>':''}${replacing?`<button id="keep-current">Keep sorting ${number(active().id)}</button>`:''}</div>`}</article>`;
    $('preview-print').onclick=()=>inspectPrint(l,p);
+   $('letter-help')?.addEventListener('click',()=>service('help',{returnTo:'letter'}));
    $('open-letter')?.addEventListener('click',()=>startLetter(l.id));$('browse-packet')?.addEventListener('click',()=>openPacket(p.id,+l.id.split('-')[0]));$('keep-current')?.addEventListener('click',()=>openLetter(active().id));
   }
   content.querySelectorAll('[data-inspect-postmark]').forEach(b=>b.onclick=()=>inspectPostmark(places.find(p=>p.id===(view?.place||placeFor(current().id).id)),+b.dataset.inspectPostmark));
@@ -204,12 +205,12 @@
   if(destination==='cats'){view=null;returnView=null;renderPane();setPaneState();renderPins();orient();company.open();return}
   view=null;returnView=null;renderPane();setPaneState();renderPins();orient();
  }
- function returnFromService(){if(serviceReturn==='main-menu')mainMenu();else leave('map')}
+ function returnFromService(){if(serviceReturn==='main-menu')mainMenu();else if(serviceReturn==='letter'){setPlaying(false);setPaneState();$('letter-help')?.focus({preventScroll:true})}else leave('map')}
  async function service(action,{returnTo='map'}={}){
   const request=++letterGeneration;
-  serviceReturn=returnTo==='main-menu'?'main-menu':'map';
+  serviceReturn=returnTo==='letter'&&action==='help'&&view?.type==='letter'?'letter':returnTo==='main-menu'?'main-menu':'map';
   closeDialogs();try{const app=await readyForGame(action==='night'?'Opening the late post…':action==='daily'?'Opening today’s post…':'Opening the sorting desk…',{service:action});if(!app||request!==letterGeneration)return;
-   if(action==='settings'||action==='help'){app.home();app.dispatch(action)}
+   if(action==='settings'||action==='help'){app.home({keepCamera:serviceReturn==='letter'});app.dispatch(action,serviceReturn==='letter'?view.id:undefined)}
    else{const saved=app.savedInfo,canContinue=saved&&saved.kind===(action==='night'?'night':'daily')&&saved.mode!=='won'&&saved.phase!=='ended';if(canContinue){const opened=await app.continueGame();if(request!==letterGeneration)return;if(!opened)throw Error('The saved service could not be resumed.');app.engine.pause(true)}else{app.home();app.dispatch(action)}}
    $('opening').hidden=true;setPlaying(true);
   }catch(e){if(request===letterGeneration)openingError('The post could not be opened.',e)}

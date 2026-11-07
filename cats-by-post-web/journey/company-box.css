@@ -170,7 +170,7 @@
  .photo-table .reverse-writing .coat-origin{font-size:11px;padding-top:7px}
 }
 .lifted-print{perspective:1200px}
-.photo-actions [data-photo-coat=tortoiseshell] span{font-size:.86em;white-space:nowrap;max-width:100%}
+.photo-actions [data-photo-coat=tortoiseshell] span{font-size:.86em;white-space:normal;max-width:100%}
 /* A small print carries a scaled note, rather than full-size text escaping it. */
 .pile-print .print-reverse{overflow:hidden}
 .company-dialog .pile-print .reverse-writing{font-size:clamp(5px,6cqw,9px);line-height:1.2;top:12%}

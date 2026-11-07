@@ -48,7 +48,7 @@ var PlayHUD = (() => {
       $('tile-x').value=t.x; $('tile-y').value=t.y;
       button.textContent=t.action==='turn'?'Turn '+t.reason:t.action==='return'?'Return':t.action==='inspect'?'Inspect':'Place';
       button.disabled=t.action==='blocked';button.setAttribute('aria-label',t.action==='turn'?'Turn '+t.type+' turntable '+t.reason:t.reason);
-      $('tile-description').textContent=`Column ${t.x+1}, row ${t.y+1}. ${t.reason}`;
+      const description=engine.describeTile(t.x,t.y);if($('tile-description').textContent!==description)$('tile-description').textContent=description;
     }
     const lanes = HUDModel.lanes(state, 4);
     if (lanes.length>1 && !lanes.some(l=>l.hatch===activeHatch)) activeHatch=lanes[0].hatch;
@@ -104,7 +104,7 @@ var PlayHUD = (() => {
     $('tile-x').value = x; $('tile-y').value = y;
     const choose = () => {
       const p = engine.setCursor(+$('tile-x').value, +$('tile-y').value);
-      $('tile-description').textContent = `Column ${p.x+1}, row ${p.y+1}. ${engine.tile(p.x,p.y).reason}`;
+      const description=engine.describeTile(p.x,p.y);if($('tile-description').textContent!==description)$('tile-description').textContent=description;
     };
     $('tile-x').onchange = choose; $('tile-y').onchange = choose;
     $('precision-tools').hidden = false; choose(); hooks.poll(); hooks.layout(); hooks.save();

@@ -147,16 +147,16 @@
   #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
-<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-3a8b5b747cd6" type="image/svg+xml">
+<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-ba912b261166" type="image/svg+xml">
 <style id="web-host-style">
-@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-3a8b5b747cd6);font-weight:400;font-display:swap}
-@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-3a8b5b747cd6);font-weight:500;font-display:swap}
+@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-ba912b261166);font-weight:400;font-display:swap}
+@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-ba912b261166);font-weight:500;font-display:swap}
 #hud,#shiftCards,#shiftEnding,#shiftDebug,#chapterKicker,#debug,#controls,#atlasPanel{display:none!important}
 html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterScene{font-family:Signika,sans-serif;color:#253e40}
 
 </style>
-<link rel="stylesheet" href="../journey/preferences.css?v=web-3a8b5b747cd6"><script src="../journey/preferences.js?v=web-3a8b5b747cd6"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-3a8b5b747cd6"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-3a8b5b747cd6"></head>
+<link rel="stylesheet" href="../journey/preferences.css?v=web-ba912b261166"><script src="../journey/preferences.js?v=web-ba912b261166"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-ba912b261166"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-ba912b261166"></head>
 <body>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
@@ -256,7 +256,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "web-3a8b5b747cd6";
+const BUILD_ID = "web-ba912b261166";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -27125,6 +27125,22 @@ function webDrawBoardFeedback(mark){
   present=function(){nativePresent();if(displayFeedback&&gm.L&&gm.cursor&&editable()&&!mouseDrag&&!multiTouch){target(gm.cx,gm.cy,marker,true);webDrawBoardFeedback(marker);}viewPresented();};
   gHover=function(x,y){nativeHover(x,y);if(gPick(x,y)<0)gm.cursor=false;dirty=true;};
   screen.addEventListener('pointerleave',()=>{gm.cursor=false;dirty=true;});
+  const routeFeatures=()=>({dogs:(gm.L.dogs||[]).length,gates:(gm.L.gates||[]).length,tunnels:(gm.L.tunnels||[]).length,flaps:(gm.L.flaps||[]).length});
+  // Explicit text inspection only. The drawing path still uses the reused target record.
+  function describeTile(x,y){
+    const t=target(x,y,{});if(!Number.isInteger(x)||!Number.isInteger(y)||x<0||y<0||x>=gm.L.board.w||y>=gm.L.board.h)return t.reason;
+    const L=gm.L,sim=gm.shift?.current?.sim||gm.sim,parts=[`Column ${x+1}, row ${y+1}.`],at=p=>p.x===x&&p.y===y,dir=d=>targetDirections[G_CW.indexOf(d)];
+    const hatch=(L.hatches||[]).findIndex(at);if(hatch>=0)parts.push(`Hatch ${hatch+1}. Cats enter facing ${dir(L.hatches[hatch].dir)}.`);
+    const basket=(L.baskets||[]).find(at);if(basket)parts.push(`${basket.coat} basket.`);
+    if((L.dogs||[]).some(at))parts.push('A sleeping dog.');
+    for(const door of L.flaps||[])if(at(door))parts.push(`${door.coat} door on the ${dir(door.side)} edge.`);
+    const gate=(L.gates||[]).findIndex(at);if(gate>=0){const exits=L.gates[gate].exits,next=sim?.gateState?.[gate]||0;parts.push(`Points alternate ${dir(exits[0])} and ${dir(exits[1])}. Next exit ${dir(exits[next])}.`)}
+    const tunnel=tunnelPairAt(L.tunnels,x,y);if(tunnel>=0){const pair=L.tunnels[tunnel],other=at(pair.a)?pair.b:pair.a;parts.push(`${pair.symbol} tunnel to column ${other.x+1}, row ${other.y+1}. Cats keep their direction.`)}
+    const piece=gm.chutes.find(at);if(piece)parts.push(`${piece.type} turntable facing ${dir(piece.dir)}${piece.locked?', fixed by a hint':''}.`);
+    if(sim)for(let i=0;i<sim.n;i++)if(sim.st[i]===GL_BOARD&&sim.x[i]===x&&sim.y[i]===y)parts.push(`${sim.big[i]?'Large ':''}${GR_COATS[sim.coat[i]]} cat travelling ${dir(GR_DIRS[sim.dir[i]])}.`);
+    for(const sleeper of gm.shift?.sleepers||[])if(at(sleeper))parts.push(`${sleeper.big?'Large sleeping':'Sleeping'} ${sleeper.coat} cat.`);
+    parts.push(t.action==='turn'?`Turn ${t.reason}.`:t.reason);return parts.join(' ');
+  }
   // Manual views use the same fractional transform as picking and presentation.
   function project(x,y,out={x:0,y:0}){const wx=OX+gTX(x)-gTY(y),wy=OY+(gTX(x)+gTY(y))*.5;if(!continuousCamera||!continuousCamera.project(wx,wy,out)){out.x=dstX+(wx-Math.round(VIEW_CX+WS.camX+view.panX-LW/2))*scale;out.y=dstY+(wy-Math.round(VIEW_CY+WS.camY+view.panY-LH/2))*scale;}const r=screen.getBoundingClientRect();out.x=r.left+out.x*r.width/screen.width;out.y=r.top+out.y*r.height/screen.height;return out;}
   function viewState(){return{zoom:view.zoom,zoomCss:scale/devDpr,dpr:devDpr,x:view.panX,y:view.panY,framing,manual};}
@@ -27254,7 +27270,7 @@ function webDrawBoardFeedback(mark){
   const pieceCache={};
   function piece(type){if(pieceCache[type])return pieceCache[type];const item=PAPER_SPRITE_DATA.pieces.find(s=>s.id==='turntable_'+type+'_E/idle');if(!item)return null;const c=document.createElement('canvas');c.width=item.rect.w*4;c.height=item.rect.h*4;const ctx=c.getContext('2d'),frame=ctx.createImageData(c.width,c.height),out=new Uint32Array(frame.data.buffer),raw=atob(item.pixels);for(let i=0;i<raw.length;i++){const col=raw.charCodeAt(i);out[i]=col===255?0:PAL32[col];}ctx.putImageData(frame,0,0);return pieceCache[type]=c.toDataURL();}
 
-  const api={state,tile:(x,y)=>target(x,y,{}),command,load,snapshot,restore,sessionSummary:GameSessionCodec.summary,subscribe(fn){listeners.add(fn);return()=>listeners.delete(fn);},suspend:reason=>fresh('suspend',{reason}),unsuspend:reason=>fresh('unsuspend',{reason}),levels:LEVELS.map((L,i)=>({i,id:L.id,title:L.title,room:LEVELROOMS.id(L),board:{...L.board},queueCount:L.hatches.reduce((n,h)=>n+h.cats.length,0),bigCount:L.hatches.reduce((n,h)=>n+h.cats.filter(grCatBig).length,0),hatchCount:L.hatches.length,mechanisms:{dogs:(L.dogs||[]).length,gates:(L.gates||[]).length,tunnels:(L.tunnels||[]).length,flaps:(L.flaps||[]).length}})),face,piece,geometry(){const b=gm.L.board;return[[0,0],[b.w,0],[b.w,b.h],[0,b.h]].map(([x,y])=>project(x,y));},remember,backdrop(){return fresh('camera',{mode:'board'});},layout:a=>fresh('layout',a),freeze:value=>fresh('freeze',{value}),pause:(value=true)=>fresh('pause',{value}),resume:()=>fresh('resume'),camera:mode=>fresh('camera',{mode}),focus:hatch=>fresh('focus',{hatch}),zoom:dir=>fresh('zoom',{dir}),pan:(x,y)=>fresh('pan',{x,y}),tap:(x,y)=>fresh('tap',{x,y}),select:type=>fresh('select',{type}).status==='accepted',clear:()=>fresh('clear'),hint:()=>fresh('hint'),send:()=>fresh('send'),arrange:()=>fresh('arrange'),stop:()=>fresh('stop'),fast:()=>fresh('fast'),card:id=>fresh('card',{id}),nextRound:()=>fresh('nextRound'),grey:value=>fresh('grey',{value}),setCursor:(x,y)=>fresh('setCursor',{x,y}).value,cursor:(dx,dy)=>fresh('setCursor',{x:Number.isSafeInteger(dx)?clamp(gm.cx+dx,0,gm.L.board.w-1):NaN,y:Number.isSafeInteger(dy)?clamp(gm.cy+dy,0,gm.L.board.h-1):NaN}).value,place:()=>fresh('tap',{x:gm.cx,y:gm.cy}),closeup(){fresh('camera',{mode:'board'});return fresh('zoom',{dir:scale*.4});},undo:()=>fresh('undo').value===true,next:()=>fresh('advance'),continue:()=>fresh('continue'),watchDemo:()=>fresh('watchDemo'),chapterStory:()=>fresh('chapterStory'),skip:()=>fresh('skip'),showCredits:()=>fresh('showCredits'),replayEnding:()=>fresh('replayEnding'),back:()=>fresh('back'),cancelPresentation:()=>fresh('cancelPresentation')};
+  const api={state,describeTile,routeFeatures,tile:(x,y)=>target(x,y,{}),command,load,snapshot,restore,sessionSummary:GameSessionCodec.summary,subscribe(fn){listeners.add(fn);return()=>listeners.delete(fn);},suspend:reason=>fresh('suspend',{reason}),unsuspend:reason=>fresh('unsuspend',{reason}),levels:LEVELS.map((L,i)=>({i,id:L.id,title:L.title,room:LEVELROOMS.id(L),board:{...L.board},queueCount:L.hatches.reduce((n,h)=>n+h.cats.length,0),bigCount:L.hatches.reduce((n,h)=>n+h.cats.filter(grCatBig).length,0),hatchCount:L.hatches.length,mechanisms:{dogs:(L.dogs||[]).length,gates:(L.gates||[]).length,tunnels:(L.tunnels||[]).length,flaps:(L.flaps||[]).length}})),face,piece,geometry(){const b=gm.L.board;return[[0,0],[b.w,0],[b.w,b.h],[0,b.h]].map(([x,y])=>project(x,y));},remember,backdrop(){return fresh('camera',{mode:'board'});},layout:a=>fresh('layout',a),freeze:value=>fresh('freeze',{value}),pause:(value=true)=>fresh('pause',{value}),resume:()=>fresh('resume'),camera:mode=>fresh('camera',{mode}),focus:hatch=>fresh('focus',{hatch}),zoom:dir=>fresh('zoom',{dir}),pan:(x,y)=>fresh('pan',{x,y}),tap:(x,y)=>fresh('tap',{x,y}),select:type=>fresh('select',{type}).status==='accepted',clear:()=>fresh('clear'),hint:()=>fresh('hint'),send:()=>fresh('send'),arrange:()=>fresh('arrange'),stop:()=>fresh('stop'),fast:()=>fresh('fast'),card:id=>fresh('card',{id}),nextRound:()=>fresh('nextRound'),grey:value=>fresh('grey',{value}),setCursor:(x,y)=>fresh('setCursor',{x,y}).value,cursor:(dx,dy)=>fresh('setCursor',{x:Number.isSafeInteger(dx)?clamp(gm.cx+dx,0,gm.L.board.w-1):NaN,y:Number.isSafeInteger(dy)?clamp(gm.cy+dy,0,gm.L.board.h-1):NaN}).value,place:()=>fresh('tap',{x:gm.cx,y:gm.cy}),closeup(){fresh('camera',{mode:'board'});return fresh('zoom',{dir:scale*.4});},undo:()=>fresh('undo').value===true,next:()=>fresh('advance'),continue:()=>fresh('continue'),watchDemo:()=>fresh('watchDemo'),chapterStory:()=>fresh('chapterStory'),skip:()=>fresh('skip'),showCredits:()=>fresh('showCredits'),replayEnding:()=>fresh('replayEnding'),back:()=>fresh('back'),cancelPresentation:()=>fresh('cancelPresentation')};
   // Camera presentation is separate from rule-state subscriptions and save intents.
   api.subscribeView=function(fn){viewListeners.add(fn);return()=>viewListeners.delete(fn);};
   api.hatchPosition=function(number,out){if(!gm.L||loading||cpActive()||!Number.isInteger(number)||number<1||number>gm.L.hatches.length)return false;const h=gm.L.hatches[number-1];project(h.x+.5,h.y+.5,out);return true;};
@@ -27273,5 +27289,5 @@ function webDrawBoardFeedback(mark){
 
 boot();
 </script>
-<script src="../journey/postal-identity.js?v=web-3a8b5b747cd6"></script><script src="../journey/chapter-presentation.js?v=web-3a8b5b747cd6"></script></body>
+<script src="../journey/postal-identity.js?v=web-ba912b261166"></script><script src="../journey/chapter-presentation.js?v=web-ba912b261166"></script></body>
 </html>
