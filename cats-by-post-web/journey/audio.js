@@ -68,7 +68,9 @@
    const next=best?.location||null,nextPaused=!!best?.paused,nextGame=!!best?.game;if(nextPaused&&!paused||gameActive&&!nextGame){gameGeneration++;stop('game')}paused=nextPaused;gameActive=nextGame;
    if(next!==location){location=next;ambientGeneration++;updateAmbience()}
    for(const v of views.values())if(v.musicHold&&(!best||v.priority>=best.priority))return;
-   const cue=best?Music.cueFor(best):'main',run=best?.musicRun||'',end=best?.musicEnding===true;if(cue!==musicScene||run!==musicRun||end!==musicEnding){musicScene=cue;musicRun=run;musicEnding=end;void music.select(cue,{run,ending:end})}
+   // Browsing inherits the current transport; only actual play selects another score.
+   const playing=best?.game===true,cue=playing?Music.cueFor(best):musicScene||'main',run=playing?best.musicRun||'':musicRun,end=playing?best.musicEnding===true:musicEnding;
+   if(cue!==musicScene||run!==musicRun||end!==musicEnding){musicScene=cue;musicRun=run;musicEnding=end;void music.select(cue,{run,ending:end})}
   }
   function visibility(value){hidden=!!value;generation++;ambientGeneration++;if(hidden){stop();ambient=null;ctx?.suspend().catch(()=>{})}else if((enabled||ambienceEnabled||musicEnabled)&&unlocked)void unlock();void music.wake();}
   return{configure,unlock,play,setView,visibility,stopGame(){gameGeneration++;stop('game')},subscribe(fn){listeners.add(fn);return()=>listeners.delete(fn)},inspect(){return{music:music.inspect(),mix:{music:musicEnabled?musicVolume:0,ambience:ambienceEnabled?ambienceVolume:0,effects:enabled?effectsVolume:0},enabled,unlocked,hidden,paused,gameActive,location,context:ctx?.state||'absent',voices:voices.size,beds:beds.size,bufferCount:buffers.size,ambienceBuffers:[...buffers.values()].filter(v=>v.loop).length,...stats}},destroy(){generation++;ambientGeneration++;music.destroy();stop();void ctx?.close();buffers.clear();loading.clear();listeners.clear()}};

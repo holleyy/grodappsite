@@ -3,6 +3,7 @@
  'use strict';
  const rooms={office:'sorting_office',depot:'town_depot',train:'mail_train',cityhall:'city_hall',hall:'city_hall',parcel:'parcel_room',christmas:'christmas_post',winter:'christmas_post',boxroom:'box_room',box:'box_room'};
  function cueFor(view){if(!view?.active)return null;if(!view.game)return 'main';if(view.service==='night')return 'night_shift';if(view.service==='box')return 'box_room';return rooms[view.location]||'sorting_office'}
+ function loopEndTime(frame){const time=frame/48000;return time*48000>frame?time-Number.EPSILON*Math.max(1,time):time}
  function create({base,fetcher,context,output,decode,canPlay}){
   let wanted=null,run='',ending=false,version=0,manifest=null,voice=null,pending=null,completed=null,lastError=null,decoding=false,queuedDecode=null;
   const cache=new Map(),voices=new Set(),stats={starts:0,errors:0,cancelled:0};
@@ -24,7 +25,8 @@
   function finish(v){if(!v||v.finishing)return;const now=context().currentTime;v.endingAt=Math.max(now,v.started)+(v.end-position(v,now));v.finishing=true;v.source.loop=false}
   function start(id,buffer,cue,offset=0){
    const ctx=context(),source=ctx.createBufferSource(),gain=ctx.createGain(),now=ctx.currentTime,when=now+.025;
-   source.buffer=buffer;source.loop=true;source.loopStart=cue.introFrames/48000;source.loopEnd=(cue.introFrames+cue.loopFrames)/48000;
+   // WebKit can read one outro sample when seconds round just past the loop-end frame.
+   source.buffer=buffer;source.loop=true;source.loopStart=cue.introFrames/48000;source.loopEnd=loopEndTime(cue.introFrames+cue.loopFrames);
    gain.gain.value=0;source.connect(gain);gain.connect(output());
    const v={id,buffer,cue,source,gain,start:source.loopStart,end:source.loopEnd,started:when,offset,finishing:false,stopped:false};
    // Keep at most one departing voice, even during a burst of navigation.
@@ -75,5 +77,5 @@
   function inspect(){const ctx=context(),pos=voice&&ctx?position(voice):0;return{wanted,cue:voice?.id||completed?.id||null,phase:voice?(voice.finishing&&ctx.currentTime>=voice.endingAt?'ending':pos<voice.start?'intro':'loop'):completed?'finished':pending?'loading':lastError?'error':'idle',position:pos,endingAt:voice?.endingAt??null,bufferCount:cache.size,decoding,queued:queuedDecode?.id||null,pending:pending?.id||null,voices:voices.size,lastError,...stats}}
   return{select,wake,inspect,destroy(){wanted=null;invalidate();for(const v of voices)retire(v,.015);cache.clear()}};
  }
- const api={create,cueFor};if(typeof module==='object'&&module.exports)module.exports=api;else root.PostMusic=api;
+ const api={create,cueFor,loopEndTime};if(typeof module==='object'&&module.exports)module.exports=api;else root.PostMusic=api;
 })(globalThis);

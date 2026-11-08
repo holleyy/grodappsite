@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "4cfd50e0119f718099344fb260fa93b5fc3d72c8",
+  "sourceCommit": "eb988d85b193595af0d19de3f391155141bf2737",
   "sourceBranch": "codex/edited-music-review",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-05e23aa633a9",
-  "engineSha256": "88dc10e5082f37adc0b0ee6788b0eadb6d494383e3413469537306eddf4edabe",
+  "build": "web-0a8d9639fc73",
+  "engineSha256": "db24263813d97130a83263a6c81842ae94ed173c9391c8c4ff45a73e4db9932d",
   "entry": "journey/start.html",
-  "scope": "Nine approved edited soundtrack cues, exact lossless loop points and natural endings, independent persistent music/ambience/effects controls and responsive scene/background handling. No music generation or credits. Parcel Room ending-entry listening concern remains unconfirmed."
+  "scope": "User-approved MP3 delivery and uninterrupted menu music. Nine 256k MP3s preserve edit timelines; current cue continues through main menu, map, Settings and return to play. Fresh launch uses the main theme. No generation or credits. Parcel Room ending-entry listening concern remains unconfirmed."
 }
