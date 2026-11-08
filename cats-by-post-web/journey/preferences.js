@@ -4,7 +4,8 @@
  const key='catsByPost.web.preferences.v1',media=matchMedia('(prefers-reduced-motion: reduce)');let applied;
  function normalise(value){
   const p=value&&typeof value==='object'&&!Array.isArray(value)?value:{};
-  return{font:['theme','balthazar','della','grenze'].includes(p.font)?p.font:'theme',large:p.large===true,contrast:p.contrast===true,reduced:typeof p.reduced==='boolean'?p.reduced:media.matches,sound:p.sound===true,haptics:p.haptics===true};
+  const level=(value,fallback)=>typeof value==='number'&&Number.isFinite(value)?Math.max(0,Math.min(1,value)):fallback;
+  return{font:['theme','balthazar','della','grenze'].includes(p.font)?p.font:'theme',large:p.large===true,contrast:p.contrast===true,reduced:typeof p.reduced==='boolean'?p.reduced:media.matches,sound:p.sound===true,ambience:typeof p.ambience==='boolean'?p.ambience:p.sound===true,music:p.music!==false,musicVolume:level(p.musicVolume,.35),ambienceVolume:level(p.ambienceVolume,1),effectsVolume:level(p.effectsVolume,1),haptics:p.haptics===true};
  }
  function read(){try{return normalise(JSON.parse(localStorage.getItem(key)||'{}'))}catch{return applied||normalise()}}
  function apply(value){

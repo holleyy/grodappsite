@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "e8ac425c0b7c8f6a948fe2eed86faa8aa2fd8993",
-  "sourceBranch": "codex/web-interface-integration",
+  "sourceCommit": "4cfd50e0119f718099344fb260fa93b5fc3d72c8",
+  "sourceBranch": "codex/edited-music-review",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-62972949cd0c",
-  "engineSha256": "b372fb77798b8e48b8b9fc84b8934906532b959d781561786f2c7e333898ac91",
+  "build": "web-05e23aa633a9",
+  "engineSha256": "88dc10e5082f37adc0b0ee6788b0eadb6d494383e3413469537306eddf4edabe",
   "entry": "journey/start.html",
-  "scope": "Intermittent audio fixes: first-ready variations, bounded resume wait and prepared short effects. Approved game, recordings and mix unchanged."
+  "scope": "Nine approved edited soundtrack cues, exact lossless loop points and natural endings, independent persistent music/ambience/effects controls and responsive scene/background handling. No music generation or credits. Parcel Room ending-entry listening concern remains unconfirmed."
 }
