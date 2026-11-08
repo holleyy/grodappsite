@@ -7,7 +7,7 @@
   let enabled=false,unlocked=false,hidden=false,paused=false,gameActive=false,gameGeneration=0,volume=1,ctx=null,master=null,cues=null,manifest=null,generation=0,ambientGeneration=0,location=null,ambient=null,ambienceQueued=false,resuming=null,warmed=false;
   const buffers=new Map(),loading=new Map(),voices=new Set(),beds=new Set(),last=new Map(),recent=new Map(),keys=new Map(),views=new Map(),listeners=new Set();
   const stats={started:0,dropped:0,errors:0},critical=['ui_select','ui_back','turntable_place','turntable_rotate','turntable_pickup','run_send','stamp_apply'];
-  let destroyed=false,lifecycle=0,suspending=null,repairing=null,clockTimer=null,needsRepair=false,repairCount=0,automaticRepairUsed=false;
+  let destroyed=false,lifecycle=0,suspending=null,repairing=null,clockTimer=null,clockSample=null,needsRepair=false,repairCount=0,automaticRepairUsed=false;
   const locations={office:'sorting_office',depot:'town_depot',train:'mail_train',cityhall:'city_hall',hall:'city_hall',parcel:'parcel_room',christmas:'christmas_post',winter:'christmas_post'};
   const music=Music.create({base:new URL('../music/',base),fetcher,context:()=>ctx,output:()=>musicBus,canPlay:()=>musicEnabled&&unlocked&&!hidden&&ctx?.state==='running',decode(bytes,rate){if(!decoder){if(!Offline)throw Error('Source-rate music decoding unavailable');decoder=new Offline(2,1,rate)}return decoder.decodeAudioData(bytes)}});
   function publish(event,file){stats.started++;for(const fn of listeners)try{fn({event,file})}catch{};}
@@ -31,7 +31,7 @@
   function activate(){if(!wanted()||ctx?.state!=='running')return false;if(eligible())void warm();void ambience();void music.wake();return true}
   function clearClockCheck(){if(clockTimer!==null)cancel(clockTimer);clockTimer=null}
   function checkClock(allowRepair=true){
-   clearClockCheck();if(!wanted()||!ctx)return;const token=lifecycle,time=ctx.currentTime;
+   clearClockCheck();if(!wanted()||!ctx)return;const token=lifecycle,time=ctx.currentTime;clockSample=time;
    clockTimer=schedule(()=>{clockTimer=null;if(token!==lifecycle||!wanted())return;
     if(ctx.state==='running'&&ctx.currentTime>time+1e-6){needsRepair=false;resuming=null;repairing=null;return}
     needsRepair=true;if(allowRepair&&!repairing&&!automaticRepairUsed)void repairContext();
@@ -57,7 +57,7 @@
   }
   async function unlock({gesture=false}={}){
    if(destroyed)return false;if(gesture&&hidden&&visible())visibility(false,false);unlocked=true;if(!(enabled||ambienceEnabled||musicEnabled)||hidden||!Audio)return false;
-   try{context();if(gesture){automaticRepairUsed=false;checkClock()}if(ctx.state==='interrupted')needsRepair=true;
+   try{context();if(gesture){if(needsRepair&&ctx.state==='running'&&clockSample!==null&&ctx.currentTime>clockSample+1e-6)needsRepair=false;automaticRepairUsed=false;checkClock()}if(ctx.state==='interrupted')needsRepair=true;
     let action;if(needsRepair)action=repairContext(gesture);else if(suspending){checkClock();action=suspending.promise.then(()=>wanted()?ctx.resume():false)}else if(ctx.state!=='running'){checkClock();action=ctx.resume()}else action=Promise.resolve();
     const pending=Promise.resolve(action).then(()=>activate()).catch(()=>{stats.errors++;return false});resuming=pending;
     try{return await pending}finally{if(resuming===pending)resuming=null}

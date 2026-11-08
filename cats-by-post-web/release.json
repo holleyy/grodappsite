@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "8284bf2b95dae40b13a0af2d56aa8d9d621c5ac7",
+  "sourceCommit": "5750431b03544d3be9d12586945bb3b39476bb6c",
   "sourceBranch": "codex/edited-music-review",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
-  "build": "web-8700e4742510",
-  "engineSha256": "b0ddab0ea8c8942b3513d0b1c2fdff8c7201c5409bd24e7731a7b5813acf9c1b",
+  "build": "web-20ccb1b083c3",
+  "engineSha256": "2c7a750ab5b361a338c9f79a135e4308fc2753ce49794182feb2d5c775fdff4f",
   "entry": "journey/start.html",
   "scope": "Safari interruption recovery: late suspend/state reconciliation, bounded stalled-clock repair and trusted-tap recovery from missed foreground events. Same context/music source and MP3 assets preserved. Physical iPhone confirmation remains required. No generation or credits."
 }
