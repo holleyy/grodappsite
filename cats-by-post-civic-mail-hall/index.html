@@ -1185,7 +1185,7 @@ for(let row=0;row<3;row++)for(let col=0;col<10;col++){
  const kind=kinds[(row*3+col)%5];actor('cubby-'+row+'-'+col,0,col<5?'ginger':'blue',kind,.41+col*cw+(cw-.07)*.5,-.61,27+row*34,kind==='nap'?29:kind==='puzzled'?24:28,row);
 }
 actor('desk',1,'ginger','puzzled',-1.28,2.25,74,60);
-actor('gallery',1,'ginger','nap',6.13,-1.28,182,50);
+actor('gallery',1,'ginger','nap',6.4,-.5,182,50);
 Object.freeze(actors);
 const smooth=t=>t*t*(3-2*t);
 class RoomLife{
@@ -1610,7 +1610,7 @@ class Architecture{
   // Only the scenery crossing a live actor needs a separate draw. Bake the
   // rest into the base once, instead of blitting two almost-empty hall layers.
   const cubbies={left:818,top:335,right:1228,bottom:632};
-  const gallery={left:1190,top:380,right:1270,bottom:452};
+  const gallery={left:1158,top:411,right:1238,bottom:483};
   const outside=(p,holes,paint)=>{const c=p.ctx;c.save();for(const b of holes){c.beginPath();c.rect(-2000,-2000,6000,6000);c.rect(b.left,b.top,b.right-b.left,b.bottom-b.top);c.clip('evenodd');}paint(p);c.restore();};
   const middle=p=>{this.cabinetLips(p);this.galleryLower(p);this.counter(p);};
   const front=p=>{this.galleryUpper(p);this.details(p);};
