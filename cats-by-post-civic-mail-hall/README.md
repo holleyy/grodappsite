@@ -1,6 +1,6 @@
 # Civic Mail Hall · life study 04
 
-Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=life-04&view=hall
+Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=contacts-04&view=hall
 
 The papercraft hall now surrounds the accepted playable board: arched windows, terracotta walls, teal columns, a supported sorting gallery and staircase, glazed roof bays, an oak counter, red/blue cubbies and a canal setting. The loading quay connects around the wall to the rear entrance. All structural faces share the board projection. Generated flat artwork supplies material texture and registered decorative fronts.
 
@@ -15,6 +15,10 @@ Choose a delivery, place/rotate turntables and **Send the post**. **Watch this d
 All 15 original Office deliveries retain their rules, inventory and 300 ms cadence. The accepted flat board, centred launch/turn arrows, cats, carriers, baskets, hatch actions and dog reactions are preserved. The hall has one fixed footprint for all board sizes.
 
 The gallery cat now rests on the deck behind its railing. All 30 cubby cats breathe and occasionally wake or turn at different times; the desk cat also stirs. A grounded postal helper checks a manifest beside its trolley. Reflections move gently, and a parcel boat cruises, docks and returns along the canal. These routines are deterministic and share the scenery clock; Motion off and reduced motion freeze them without changing deliveries.
+
+The pillar correction moves the support row clear of the cubby cabinet, onto visible floor, and extends the gallery above it. All five bases retain floor contact and support the deck. The upper parcel stack sits in a clear gallery bay with contact shadows; structural posts and railing draw in front of the parcels.
+
+**Original step4 remains open.** The helper currently performs a parked manifest routine. Complete receiving/processing/dispatch routes, walking/pushing poses, wheel rotation, parcel grips/releases and working scale/stamp/receiving machinery are next. Water and boat motion from step5 was brought forward; further atmosphere work waits for that connected postal cycle. See `docs/rooms/progress/civic-step-4-next.md`.
 
 Physical iPhone/Safari and Swift/Metal performance remain unverified.
 

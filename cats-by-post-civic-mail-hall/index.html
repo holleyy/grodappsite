@@ -1484,12 +1484,14 @@ return Postal;
 })(globalThis,function(P){
 'use strict';
 const palette={stone:{top:'#f6e7c9',left:'#dbc49c',right:'#c9af85'},oak:{top:'#e9bf73',left:'#bc8446',right:'#956337'},teal:{top:'#6c9690',left:'#396964',right:'#29524f'},brick:{top:'#db9974',left:'#be7556',right:'#aa624a'}};
+// The gallery support row clears both the cabinet front and stair landing.
+const galleryFront=-.15,gallerySupportY=galleryFront-.16;
 const stairs=Array.from({length:12},(_,i)=>({x0:-2.91,x1:-1.78,y0:4.65-(i+1)*.4,y1:4.65-i*.4,bottom:i*15,top:(i+1)*15}));
 const extents=[[-5.85,6,-85],[-5.85,-4.7,120],[7.8,-5,145],[7.5,5.6,-105],[-3.3,-2.4,375],[7.4,-2.4,375],[-3.3,5.2,365]];
 const points=extents.map(v=>P.project(...v));
 const bounds={left:Math.min(...points.map(p=>p.x))-36,right:Math.max(...points.map(p=>p.x))+36,top:Math.min(...points.map(p=>p.y))-32,bottom:Math.max(...points.map(p=>p.y))+32};
 const layout={floor:{x0:-3,y0:-2,x1:7.2,y1:5.2},galleryZ:180,landingY:-.15,stairs,bounds,extents,
- solids:[{name:'west wall',x0:-3.2,x1:-3,y0:-2.2,y1:5.2,z0:0,z1:365},{name:'rear wall',x0:-3,x1:7.2,y0:-2.2,y1:-2,z0:0,z1:310},{name:'gallery',x0:-3,x1:7.2,y0:-2,y1:-.65,z0:164,z1:232},{name:'stairs',x0:-2.91,x1:-1.78,y0:-.15,y1:4.65,z0:0,z1:220},{name:'counter',x0:-1.65,x1:-.45,y0:.45,y1:3.5,z0:0,z1:73},{name:'sorting cabinet',x0:.3,x1:6.8,y0:-1.95,y1:-.55,z0:0,z1:151}]};
+ solids:[{name:'west wall',x0:-3.2,x1:-3,y0:-2.2,y1:5.2,z0:0,z1:365},{name:'rear wall',x0:-3,x1:7.2,y0:-2.2,y1:-2,z0:0,z1:310},{name:'gallery',x0:-3,x1:7.2,y0:-2,y1:galleryFront,z0:164,z1:232},{name:'stairs',x0:-2.91,x1:-1.78,y0:-.15,y1:4.65,z0:0,z1:220},{name:'counter',x0:-1.65,x1:-.45,y0:.45,y1:3.5,z0:0,z1:73},{name:'sorting cabinet',x0:.3,x1:6.8,y0:-1.95,y1:-.55,z0:0,z1:151}]};
 
 class Painter{
  constructor(c,images,assets){this.ctx=c;this.images=images;this.assets=assets;this.patterns={};}
@@ -1554,6 +1556,7 @@ class Painter{
   });
  }
  column(x,y,height){
+  this.poly([[x-.17,y-.17,.02],[x+.19,y-.17,.02],[x+.19,y+.2,.02],[x-.17,y+.2,.02]],'#72593424','none');
   this.box(x-.15,y-.15,.3,.3,0,10,'stone');this.box(x-.105,y-.105,.21,.21,10,height-19,'teal');
   this.box(x-.16,y-.16,.32,.32,height-9,9,'stone');
   this.line3([x-.09,y+.11,17],[x-.09,y+.11,height-15],'#9cb9a66b',1.2);
@@ -1575,7 +1578,7 @@ class Painter{
   c.save();c.translate(p.x,p.y-13*size);c.scale(size,size);
   const n=hanging?13:9;for(let i=0;i<n;i++){const a=-Math.PI*.95+i*.74,rr=13+(i%3)*4,ex=Math.cos(a)*rr,ey=hanging?i*5-4:Math.sin(a)*rr-8;c.beginPath();c.moveTo(0,0);c.quadraticCurveTo(ex*.7-10,ey-14,ex,ey);c.quadraticCurveTo(ex*.7+7,ey-6,0,0);c.fillStyle=['#6f8e45','#98a74f','#b8bb66','#819f50'][i%4];c.fill();c.beginPath();c.moveTo(0,0);c.lineTo(ex,ey);c.strokeStyle='#d0d28a77';c.lineWidth=.7;c.stroke();}c.restore();
  }
- parcel(x,y,z,w=.35,h=.32,height=18){this.box(x,y,w,h,z,height,'oak',{top:'#e9c38c',left:'#c69a64',right:'#b58b5c'});this.poly([[x+w*.44,y,z+height+.2],[x+w*.57,y,z+height+.2],[x+w*.57,y+h,z+height+.2],[x+w*.44,y+h,z+height+.2]],'#f5dfad');this.poly([[x+w*.44,y+h,z],[x+w*.57,y+h,z],[x+w*.57,y+h,z+height],[x+w*.44,y+h,z+height]],'#ead29f');}
+ parcel(x,y,z,w=.35,h=.32,height=18){this.poly([[x-.02,y-.02,z+.01],[x+w+.035,y-.02,z+.01],[x+w+.035,y+h+.035,z+.01],[x-.02,y+h+.035,z+.01]],'#72593424','none');this.box(x,y,w,h,z,height,'oak',{top:'#e9c38c',left:'#c69a64',right:'#b58b5c'});this.poly([[x+w*.44,y,z+height+.2],[x+w*.57,y,z+height+.2],[x+w*.57,y+h,z+height+.2],[x+w*.44,y+h,z+height+.2]],'#f5dfad');this.poly([[x+w*.44,y+h,z],[x+w*.57,y+h,z],[x+w*.57,y+h,z+height],[x+w*.44,y+h,z+height]],'#ead29f');}
  lamp(x,y,top){
   const c=this.ctx,p=P.project(x,y,top-43);this.line3([x,y,top],[x,y,top-32],'#a37e43',1.8);
   const glow=c.createRadialGradient(p.x,p.y+4,0,p.x,p.y+4,42);glow.addColorStop(0,'#ffe99d50');glow.addColorStop(1,'#ffe99d00');c.fillStyle=glow;c.fillRect(p.x-42,p.y-38,84,84);
@@ -1701,16 +1704,19 @@ class Architecture{
   p.plant(-1.36,3.14,74,.63);
  }
  galleryLower(p){
-  for(const x of [-2.78,-.35,2.08,4.51,6.94]){p.column(x,-.81,176);p.brace(x,-.81,'x',1,169);if(x>-.4)p.brace(x,-.81,'x',-1,169);}
-  p.box(-3,-2,10.2,1.35,166,14,'stone');p.box(-3,-2,10.2,1.35,180,2,'oak');
-  for(let x=-2.8;x<7.2;x+=.32)p.line3([x,-2,182.2],[x,-.65,182.2],'#aa805336',.7);
+  for(const x of [-2.78,-.35,2.08,4.51,6.94]){p.column(x,gallerySupportY,176);p.brace(x,gallerySupportY,'x',1,169);if(x>-.4)p.brace(x,gallerySupportY,'x',-1,169);}
+  p.box(-3,-2,10.2,galleryFront+2,166,14,'stone');p.box(-3,-2,10.2,galleryFront+2,180,2,'oak');
+  for(let x=-2.8;x<7.2;x+=.32)p.line3([x,-2,182.2],[x,galleryFront,182.2],'#aa805336',.7);
  }
  galleryUpper(p){
+  // Parcels rest on the deck behind the structural posts and front railing.
+  p.parcel(-.8,-1.62,182,.5,.45,23);p.parcel(-.25,-1.55,182,.36,.34,18);p.parcel(-.72,-1.58,205,.34,.33,19);
+  p.parcel(4.7,-1.5,182,.45,.45,25);p.parcel(5.16,-1.45,182,.38,.38,18);
   // Back gallery upper posts and glazed roof bays have explicit joint heights.
-  for(const x of [-2.8,-.35,2.1,4.55,7.0]){p.box(x-.095,-.84,.19,.19,182,129,'teal');p.box(x-.15,-.9,.3,.3,300,8,'stone');p.brace(x,-.77,'x',1,300);if(x>0)p.brace(x,-.77,'x',-1,300);}
-  p.box(-3,-.91,10.2,.28,306,12,'teal');p.box(-3,-.94,10.2,.34,318,5,'stone');
+  for(const x of [-2.8,-.35,2.1,4.55,7.0]){p.box(x-.095,galleryFront-.19,.19,.19,182,129,'teal');p.box(x-.15,galleryFront-.25,.3,.3,300,8,'stone');p.brace(x,galleryFront-.12,'x',1,300);if(x>0)p.brace(x,galleryFront-.12,'x',-1,300);}
+  p.box(-3,galleryFront-.26,10.2,.28,306,12,'teal');p.box(-3,galleryFront-.29,10.2,.34,318,5,'stone');
   for(let i=0;i<4;i++){
-   const x=-2.95+i*2.55,mid=x+1.275,right=x+2.55,back=-2.28,front=-.6,base=324,peak=365;
+   const x=-2.95+i*2.55,mid=x+1.275,right=x+2.55,back=-2.28,front=galleryFront+.05,base=324,peak=365;
    p.poly([[x,back,base],[mid,back,peak],[mid,front,peak],[x,front,base]],'#9dc6c2','stone');
    p.poly([[mid,back,peak],[right,back,base],[right,front,base],[mid,front,peak]],'#c2dbd1','stone');
    p.poly([[x,front,base],[mid,front,peak],[right,front,base]],'#b1d3ce','stone');
@@ -1726,17 +1732,15 @@ class Architecture{
    p.line3([x+.13,back+.17,base+5],[mid-.12,back+.17,peak-3],'#f9ffe660',2);
    p.lamp(mid,-1.25,306);
   }
-  p.rail('x',-1.75,-.62,8.75,182);p.rail('y',-1.87,-2.8,1.68,182);
-  p.parcel(.4,-1.62,182,.5,.45,23);p.parcel(.95,-1.55,182,.36,.34,18);p.parcel(.48,-1.58,205,.34,.33,19);
-  p.parcel(4.7,-1.5,182,.45,.45,25);p.parcel(5.16,-1.45,182,.38,.38,18);
-  p.plant(2.0,-.67,182,1.25,true);p.plant(-2.52,-1.28,182,.9);
+  p.rail('x',-1.75,galleryFront+.03,8.75,182);p.rail('y',-1.87,-2.8,1.68,182);
+  p.plant(2.0,galleryFront-.02,182,1.25,true);p.plant(-2.52,-1.28,182,.9);
  }
  details(p){
   // The title and clock are printed on vertical card planes, never billboards.
   p.face('y',3.86,-2.94,414,c=>{
    const W=3.35*P.HW,H=W*415/670;p.decor('plaque',0,0,W,H);c.textAlign='center';c.fillStyle='#3d5350';c.font='bold 18px Georgia,serif';c.fillText('Civic Mail Hall',W/2,H*.69);c.font='9px Georgia,serif';c.fillText('C A T S   B Y   P O S T',W/2,H*.81);
   });
-  p.face('x',3.06,-.50,211,c=>{
+  p.face('x',3.06,galleryFront+.15,211,c=>{
    const cx=60*258/513,cy=60*262/525;p.decor('clock',0,0,60,60);c.beginPath();c.moveTo(cx-11,cy-13);c.lineTo(cx,cy);c.lineTo(cx+12,cy-5);c.strokeStyle='#40524b';c.lineWidth=2.2;c.stroke();c.beginPath();c.arc(cx,cy,2,0,Math.PI*2);c.fillStyle='#b08b47';c.fill();
   });
   p.plant(6.94,-1.25,0,.95);p.parcel(6.52,-.08,0,.38,.38,22);p.parcel(6.58,-.04,22,.3,.3,18);
