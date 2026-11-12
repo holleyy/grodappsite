@@ -940,17 +940,25 @@ class Pieces{
   const anchorX=mirror?1-u:u;this.asset(name,x+(.5-anchorX)*width,y+(1-v)*h,width,mirror,sy);
  }
  ellipse(x,y,rx,ry,fill,stroke){const c=this.c;c.beginPath();c.ellipse(x,y,rx,ry,0,0,Math.PI*2);c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.lineWidth=1;c.stroke();}}
+ arrow(x,y,d,z,fill){
+  // The arrow's area centroid AND its projected bounding-box centre are zero.
+  // Tail + shaft half-width = 1 balances the tip in both projected axes;
+  // head width balances the triangle's mass against the rectangular shaft.
+  const tail=.82,shaft=.18,shoulder=-.15;
+  const head=3*shaft*(tail*tail-shoulder*shoulder)/((1-shoulder)*(2*shoulder+1)),size=.26;
+  const shape=[[1,0],[shoulder,-head],[shoulder,-shaft],[-tail,-shaft],[-tail,shaft],[shoulder,shaft],[shoulder,head]];
+  const points=shape.map(([u,v])=>P.project(x+.5+size*(DX[d]*u-DY[d]*v),y+.5+size*(DY[d]*u+DX[d]*v),z));
+  this.r.path(points,fill);
+ }
  table(t,spin){
-  const c=this.c,p=P.centre(t.x,t.y),colour=t.type==='ginger'?'#d9913f':t.type==='blue'?'#627f9e':'#467e7b';
-  this.r.shadow(p.x,p.y+9,30,10,.15);
+  const c=this.c,base=P.centre(t.x,t.y),p=P.project(t.x+.5,t.y+.5,3),colour=t.type==='ginger'?'#d9913f':t.type==='blue'?'#627f9e':'#467e7b';
+  this.r.shadow(base.x,base.y+2,30,13,.15);
   const wall=c.createLinearGradient(p.x-30,p.y,p.x+30,p.y+15);wall.addColorStop(0,'#b99b6c');wall.addColorStop(.5,'#ead5a7');wall.addColorStop(1,'#b29464');
-  this.ellipse(p.x,p.y+7,30,15,wall);this.ellipse(p.x,p.y+3,30,15,'#f4dfb5','#bca16d');this.ellipse(p.x,p.y+2,25,12.5,colour);
+  this.ellipse(base.x,base.y,30,15,wall);this.ellipse(p.x,p.y,30,15,'#f4dfb5','#bca16d');this.ellipse(p.x,p.y,25,12.5,colour);
   const turn=spin*.25;
-  for(let i=0;i<12;i++){const a=i*Math.PI/6+turn,x=p.x+27.4*Math.cos(a),y=p.y+3+13.6*Math.sin(a);if(t.type==='ginger'){c.strokeStyle='#9d5a2d';c.lineWidth=2.6;c.beginPath();c.moveTo(x-1,y-1);c.lineTo(x+1,y+1);c.stroke();}else if(t.type==='blue')this.ellipse(x,y,1.35,.7,'#f7edd3');}
-  // Arrow sits in the same2:1 plane as its disc; the rim spins independently.
-  const angle=Math.PI/4+OfficeRules.GR_DIR[t.dir]*Math.PI/2;
-  c.save();c.translate(p.x,p.y+1);c.scale(1,.5);c.rotate(angle);
-  c.beginPath();c.moveTo(19,0);c.lineTo(3,-10);c.lineTo(3,-4);c.lineTo(-15,-4);c.lineTo(-15,4);c.lineTo(3,4);c.lineTo(3,10);c.closePath();c.fillStyle='#fff0cf';c.shadowColor='#4c463a55';c.shadowOffsetY=2;c.shadowBlur=1;c.fill();c.shadowBlur=0;c.shadowOffsetY=0;c.strokeStyle='#ddc18d';c.lineWidth=1.2;c.stroke();c.restore();
+  for(let i=0;i<12;i++){const a=i*Math.PI/6+turn,x=p.x+27.4*Math.cos(a),y=p.y+13.6*Math.sin(a);if(t.type==='ginger'){c.strokeStyle='#9d5a2d';c.lineWidth=2.6;c.beginPath();c.moveTo(x-1,y-1);c.lineTo(x+1,y+1);c.stroke();}else if(t.type==='blue')this.ellipse(x,y,1.35,.7,'#f7edd3');}
+  // Rim, face and printed arrow share one raised plane and centre.
+  this.arrow(t.x,t.y,OfficeRules.GR_DIR[t.dir],3,'#fff0cf');
   if(t.locked){this.ellipse(p.x+22,p.y+12,7,5,'#f7e7c3','#aa874d');c.strokeStyle='#667a72';c.lineWidth=1.5;c.beginPath();c.arc(p.x+22,p.y+8,2.5,Math.PI,0);c.stroke();c.fillStyle='#667a72';c.fillRect(p.x+19.5,p.y+8,5,4);}
  }
  hatch(h,state){
@@ -960,7 +968,7 @@ class Pieces{
   const theta=state.open===2?1.25:state.open===1?.55:0;
   const lid=corners.map(v=>{let x=v[0],y=v[1],dist;if(d===0){dist=x-lo;x=lo+dist*Math.cos(theta);}else if(d===2){dist=hi-x;x=hi-dist*Math.cos(theta);}else if(d===1){dist=y-lo;y=lo+dist*Math.cos(theta);}else{dist=hi-y;y=hi-dist*Math.cos(theta);}return P.project(h.x+x,h.y+y,dist*P.HW*Math.sin(theta));});
   this.r.path(lid,theta?'#d1b37e':'#cebc94','#f5e4be',2.7);
-  if(!theta){const tip=P.project(h.x+.5+DX[d]*.19,h.y+.5+DY[d]*.19),a=P.project(h.x+.5-DX[d]*.09+DY[d]*.13,h.y+.5-DY[d]*.09-DX[d]*.13),b=P.project(h.x+.5-DX[d]*.09-DY[d]*.13,h.y+.5-DY[d]*.09+DX[d]*.13);this.r.path([tip,a,b],'#456e6d');}
+  if(!theta)this.arrow(h.x,h.y,d,0,'#456e6d');
   // Printed portrait tickets remain ordered nearest release first.
   for(let k=state.n-1;k>=0;k--){const coat=state.queue[k].coat===2?'blue':'ginger';const q=P.project(h.x+.5-DX[d]*(.45+k*.22),h.y+.5-DY[d]*(.45+k*.22));this.ellipse(q.x,q.y-8,10,6,'#f6e7c7','#c4ae83');this.asset(coat+'-bust-front',q.x,q.y-9,17);}
   if(state.waiting>4)this.r.label('+'+(state.waiting-4),{x:p.x,y:p.y-30},'#52716b',9);
@@ -1042,6 +1050,33 @@ class Renderer{
  shadow(x,y,rx,ry,alpha=.13){const c=this.ctx;c.fillStyle='rgba(65,51,35,'+alpha+')';c.beginPath();c.ellipse(x,y,rx,ry,0,0,Math.PI*2);c.fill();}
  line(a,b,color='#71918e',width=1.3){const c=this.ctx;c.beginPath();c.moveTo(a.x,a.y);c.lineTo(b.x,b.y);c.strokeStyle=color;c.lineWidth=width;c.stroke();}
  label(text,p,colour='#5e7774',size=12){const c=this.ctx;c.font=size+'px Trebuchet MS, sans-serif';c.textAlign='center';c.fillStyle=colour;c.fillText(text,p.x,p.y);}
+ board(w,h){
+  const c=this.ctx,[a,b,e,d]=P.corners(w,h);
+  // One sheet of card: thickness belongs only to its two outside front edges.
+  this.path([d,e,{x:e.x,y:e.y+3},{x:d.x,y:d.y+3}],'#bba079');
+  this.path([b,e,{x:e.x,y:e.y+3},{x:b.x,y:b.y+3}],'#a88d68');
+  if(!this.paper){
+   const paper=document.createElement('canvas');paper.width=paper.height=64;
+   // Only blue paper grain, well inside the source tile. None of its painted
+   // edges, perspective or bevels can enter the floor geometry.
+   paper.getContext('2d').drawImage(this.images.pieces,128,161,64,32,0,0,64,64);
+   this.paper=c.createPattern(paper,'repeat');
+  }
+  c.save();this.path([a,b,e,d],'#7c8da7');c.clip();
+  c.transform(P.HW/96,P.HH/96,-P.HW/96,P.HH/96,a.x,a.y);
+  c.fillStyle=this.paper;c.fillRect(0,0,w*96,h*96);c.restore();
+  // Small stock variations stay coplanar; they add no raised tile faces.
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+   const tint=((x*17+y*31)%7-3)*.008;
+   this.path([P.project(x,y),P.project(x+1,y),P.project(x+1,y+1),P.project(x,y+1)],tint<0?'rgba(35,53,78,'+(-tint)+')':'rgba(255,248,226,'+tint+')');
+  }
+  // Each seam is a single continuous line through the shared grid vertices.
+  c.beginPath();
+  for(let x=1;x<w;x++){const p=P.project(x,0),q=P.project(x,h);c.moveTo(p.x,p.y);c.lineTo(q.x,q.y);}
+  for(let y=1;y<h;y++){const p=P.project(0,y),q=P.project(w,y);c.moveTo(p.x,p.y);c.lineTo(q.x,q.y);}
+  c.strokeStyle='#ead8b5';c.lineWidth=2.1;c.stroke();
+  this.path([a,b,e,d],null,'#eddbb8',2.6);
+ }
  structure(w,h){
   const x0=-2.8,y0=-2,x1=w+1.3,y1=h+1.4,z=17;
   const a=P.project(x0,y0),b=P.project(x1,y0),d=P.project(x0,y1),e=P.project(x1,y1);
@@ -1092,7 +1127,7 @@ class Renderer{
   c.setTransform(this.dpr,0,0,this.dpr,0,0);c.clearRect(0,0,this.config.width,this.config.height);c.fillStyle='#f5f0e3';c.fillRect(0,0,this.config.width,this.config.height);
   c.save();if(this.gray)c.filter='grayscale(1)';c.translate(this.cam.tx,this.cam.ty);c.scale(this.cam.scale,this.cam.scale);c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';
   this.prepare(s);this.structure(B.w,B.h);
-  for(let depth=0;depth<B.w+B.h-1;depth++)for(let x=0;x<B.w;x++){const y=depth-x;if(y<0||y>=B.h)continue;const p=P.centre(x,y);this.sprite('pieces',0,p.x,p.y+P.HH+3,P.HW*2+.8);}
+  this.board(B.w,B.h);
   if(this.selected){const{x,y}=this.selected;this.path([P.project(x,y),P.project(x+1,y),P.project(x+1,y+1),P.project(x,y+1)],'#fff7d22b','#fff3c8',2);}
   for(const t of s.chutes){let spin=0;for(const o of this.poses)if(o.spinX===t.x&&o.spinY===t.y)spin=Math.max(spin,o.spin);this.pieces.table(t,spin);}
   for(let i=0;i<this.hatches.length;i++)this.pieces.hatch(this.hatches[i],this.hatchStates[i]);
