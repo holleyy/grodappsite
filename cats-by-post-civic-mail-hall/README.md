@@ -25,7 +25,7 @@ python3 studies/civic-mail-hall/foundation/build.py
 node --test studies/civic-mail-hall/foundation/*.test.js
 ```
 
-The `vendor/` snapshot pins the tested Office rule, trace, level and oracle inputs so a checkout and standalone source archive rebuild identical HTML. Original PNG masters, generation prompts, crop metadata and provenance are included. Python3/Pillow is needed only to repack atlases; normal builds use the supplied WebP files. `assets/acting-README.md` distinguishes authored animation components from transformed transitions.
+The `vendor/` snapshot pins the tested Office rule, trace, level and oracle inputs so a checkout and standalone source archive rebuild identical HTML. Generation prompts, crop metadata, provenance and runtime WebP assets are included. The six original PNG masters are supplied separately in `civic-architecture-art-masters.zip`; extract it into the same folder only if you want to repack artwork. Python3/Pillow is needed only for that repacking step. The two source packages keep each upload below the service's 16 MiB request limit. `assets/acting-README.md` distinguishes authored animation components from transformed transitions.
 
 Static architecture bakes after all assets load. Layout and materials remain immutable during play; explicit `architecture.bake()` rebuilds the cache if future tooling replaces those inputs. Switching cameras or deliveries does not rebake it.
 
