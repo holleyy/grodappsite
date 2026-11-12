@@ -1,13 +1,13 @@
 # Cats by Post · Civic Mail Hall
 
-Perspective foundation 01, published 12 November 2026.
+Pieces and motion study02, published12 November2026.
 
-Play: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=foundation-01
+Play: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=pieces-02
 
-This is the geometry checkpoint for the selected papercraft Civic Mail Hall. Board, construction guides and object roots use Lantern Quay’s shared 2:1 projection. All 15 original Office deliveries are available. Choose Board for a closer play view, Whole structure for the common floor plane, or Architecture reference for the intended hall.
+The accepted shared perspective now has patterned turntables, opening hatches and waiting queues, reactive sleeping dogs, distinct round/square baskets, separate cat/carrier acting and independent carrier folding. Use Watch this delivery to play a stored solution. All15 original Office deliveries and300ms cadence remain.
 
-The full architectural layers, separated cat/carrier acting, final Office piece families and canal animation are subsequent stages. This is not the finished room.
+The hall architecture, working postal activity and canal animation are subsequent stages. This is the piece checkpoint, not the finished room.
 
-The page is self-contained and requires no services or external assets. Its SHA-256 is `994b5cd2067897d48f5755c27829d5449987a0c35591a1d87626e6fafdb2c569`.
+The self-contained page requires no services or external assets. SHA-256: `5c3a75475c261d718eb7739d1db4ab4970cc12313dd32edc29f7a303fa774972`.
 
-Validation: 11 foundation tests, 1,084 existing tests, all 15 stored solutions and Chromium interaction checks at four viewport sizes. Physical-device and final scene qualification remain outstanding.
+Verification:22focused Node tests,1084existing tests,5controls browser cases at4viewport sizes and35acting cases. Independent review approved the isolated preview. Physical-device/GPU and full-room qualification remain later work.
