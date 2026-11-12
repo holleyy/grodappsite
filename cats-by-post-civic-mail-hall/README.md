@@ -1,40 +1,38 @@
-# Civic Mail Hall · life study 04
+# Sorting Office · working post
 
-Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=contacts-04&view=hall
+Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=postal-work&view=hall
 
-The papercraft hall now surrounds the accepted playable board: arched windows, terracotta walls, teal columns, a supported sorting gallery and staircase, glazed roof bays, an oak counter, red/blue cubbies and a canal setting. The loading quay connects around the wall to the rear entrance. All structural faces share the board projection. Generated flat artwork supplies material texture and registered decorative fronts.
-
-Cat revision 04 fills all 30 sorting cubbies (15 ginger, 15 blue) with full sitting, crouching and sleeping cats. The desk now uses a complete sitting cat, with paws and a contact shadow on the countertop.
+This upgrades the **Sorting Office**, using the selected Civic Mail Hall architecture. It is not the City Hall chapter. The warmer office keeps its canal, terracotta walls, teal columns and thirty occupied sorting cubbies, with a staff bench, folded throw, ledger, mug and task lamp.
 
 ## Try it
 
-**Explore hall** fits the complete structure; **Play this room →** or **Board** restores the playable view and controls. Construction guides start off. **Reference** shows the chosen architectural concept.
+**Explore office** shows the complete structure and postal routine. **Board** or **Play this room →** returns to the puzzle. **Reference** shows the architectural concept. Construction guides start off.
 
-Choose a delivery, place/rotate turntables and **Send the post**. **Watch this delivery** fills its stored solution and starts the run. Plain tables turn both coats; striped ginger and dotted blue tables only turn their matching cat. Hint collars stay locked. **Motion off** stops decorative motion while delivery actions remain readable.
+Choose a delivery, place/rotate turntables and **Send the post**. **Watch this delivery** fills the stored solution and starts the run. Plain tables turn either coat; striped ginger and dotted blue tables only turn matching cats. Hint collars stay locked. **Motion off** and reduced motion freeze scenery at its current pose while deliveries continue.
 
-All 15 original Office deliveries retain their rules, inventory and 300 ms cadence. The accepted flat board, centred launch/turn arrows, cats, carriers, baskets, hatch actions and dog reactions are preserved. The hall has one fixed footprint for all board sizes.
+The 15 original Office deliveries retain their exact records, inventory and 300ms cadence: six 5×3, two 5×4 and seven 6×4 boards. The board and camera resize within one fixed room footprint. This does not qualify later chapters: the current campaign reaches 10×8 and introduces other mechanisms and room layouts.
 
-The gallery cat now rests on the deck behind its railing. All 30 cubby cats breathe and occasionally wake or turn at different times; the desk cat also stirs. A grounded postal helper checks a manifest beside its trolley. Reflections move gently, and a parcel boat cruises, docks and returns along the canal. These routines are deterministic and share the scenery clock; Motion off and reduced motion freeze them without changing deliveries.
+## Working postal life
 
-The pillar correction moves the support row clear of the cubby cabinet, onto visible floor, and extends the gallery above it. All five bases retain floor contact and support the deck. The upper parcel stack sits in a clear gallery bay with contact shadows; structural posts and railing draw in front of the parcels.
+One continuous 52-second job receives a parcel, carries it to the scale and stamp, loads the trolley, pushes to dispatch, transfers over a supported folding bridge and returns the empty trolley. Visible rollers bring the same parcel back to receiving. Feet plant between steps, palms grip and release, and wheels turn by signed distance. Starts, turns and reverse travel share the board's projection.
 
-**Original step4 remains open.** The helper currently performs a parked manifest routine. Complete receiving/processing/dispatch routes, walking/pushing poses, wheel rotation, parcel grips/releases and working scale/stamp/receiving machinery are next. Water and boat motion from step5 was brought forward; further atmosphere work waits for that connected postal cycle. See `docs/rooms/progress/civic-step-4-next.md`.
+The robot, trolley and machinery are projected folded-card geometry using the existing paper materials. They replace the old flat parked-helper illustration. The counter is narrower and lower to make a real work aisle; its top, scale, trolley and bridge share explicit support heights. The desk cat moves with the bench. Gallery pillars and parcels retain the prior contact and foreground-order corrections.
 
-Physical iPhone/Safari and Swift/Metal performance remain unverified.
+Cubby cats breathe and wake at staggered times. Existing canal reflections and the docking mailboat remain; this phase does not add further atmosphere work. Physical iPhone/Safari and Swift/Metal performance remain unverified.
 
 ## Offline and source
 
-Unzip `civic-life-04.zip` and open **Civic Mail Hall life 04.html**. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
+Unzip `sorting-office-postal.zip` and open **Sorting Office.html**. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
 
-Extract `civic-life-source.zip` into an empty folder and run:
+Extract `sorting-office-postal-source.zip` into an empty folder and run:
 
 ```sh
 python3 studies/civic-mail-hall/foundation/build.py
 node --test studies/civic-mail-hall/foundation/*.test.js
 ```
 
-The `vendor/` snapshot pins the tested Office rule, trace, level and oracle inputs so a checkout and standalone source archive rebuild identical HTML. Generation prompts, crop metadata, provenance and runtime WebP assets are included. The six original PNG masters are supplied separately in `civic-architecture-art-masters.zip`; extract it into the same folder only if you want to repack artwork. Python3/Pillow is needed only for that repacking step. The two source packages keep each upload below the service's 16 MiB request limit. `assets/acting-README.md` distinguishes authored animation components from transformed transitions.
+The `vendor/` snapshot pins the Office rules, traces, levels and production oracles so the checkout and standalone source package rebuild identical HTML. Source includes runtime WebP assets, crop metadata, provenance and generation prompts. The six original PNG masters remain in the optional `civic-architecture-art-masters.zip`; Python3/Pillow is only needed to repack those assets.
 
-Static architecture bakes after all assets load into a base and small shelf/rail occluder patches. Layout and materials remain immutable during play; explicit `architecture.bake()` rebuilds the cache if future tooling replaces those inputs. Switching cameras or deliveries does not rebake it.
+Static architecture and coloured paper stocks bake once. Live work uses a deterministic pose sampler and reusable geometry buffers. Switching levels/views does not rebake the room. See `verification.md` and `docs/rooms/progress/sorting-office-postal.md` for evidence and limitations.
 
-`verification.md` records checks and limitations. Earlier `civic-perspective-foundation.zip` and `civic-pieces-02.zip` retain their accepted checkpoints. Canonical game, native code, other rooms and Lantern Quay remain unchanged.
+Earlier named archives retain their checkpoints. Canonical game, native code, other rooms and Lantern Quay remain unchanged.
