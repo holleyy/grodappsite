@@ -1,8 +1,10 @@
 # Civic Mail Hall · architecture study 03
 
-Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=architecture-03&view=hall
+Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=cats-04&view=hall
 
 The papercraft hall now surrounds the accepted playable board: arched windows, terracotta walls, teal columns, a supported sorting gallery and staircase, glazed roof bays, an oak counter, red/blue cubbies and a canal setting. The loading quay connects around the wall to the rear entrance. All structural faces share the board projection. Generated flat artwork supplies material texture and registered decorative fronts.
+
+Cat revision 04 fills all 30 sorting cubbies (15 ginger, 15 blue) with full sitting, crouching and sleeping cats. The desk now uses a complete sitting cat, with paws and a contact shadow on the countertop.
 
 ## Try it
 
