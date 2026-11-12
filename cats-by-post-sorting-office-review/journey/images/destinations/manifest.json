@@ -1,0 +1,145 @@
+{
+  "sourceCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
+  "method": "Actual accepted renderer RGBA at frame600; alpha from DEPTH_EMPTY only. No scene redrawing or changed gameplay.",
+  "captures": [
+    {
+      "place": "office",
+      "id": "1-1",
+      "room": "office",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 218973,
+      "bounds": [
+        46,
+        22,
+        689,
+        520
+      ],
+      "sourceSize": [
+        840,
+        560
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-81cbeb159e10",
+      "bytes": 115962,
+      "sha256": "63d989abb4e5e1c40a2ead3d7d5650ca8228ff30a5b1a9755d836a00a18f229e"
+    },
+    {
+      "place": "depot",
+      "id": "3-1",
+      "room": "depot",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 98216,
+      "bounds": [
+        60,
+        28,
+        523,
+        374
+      ],
+      "sourceSize": [
+        585,
+        390
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-81cbeb159e10",
+      "bytes": 126674,
+      "sha256": "0768089884055a19360bd93f8bbe70de4abf8fe6db8899322bba2965525f5400"
+    },
+    {
+      "place": "train",
+      "id": "5-1",
+      "room": "train",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 87498,
+      "bounds": [
+        48,
+        29,
+        511,
+        358
+      ],
+      "sourceSize": [
+        561,
+        374
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-81cbeb159e10",
+      "bytes": 107004,
+      "sha256": "a3eea61e4d363042ac25cbec53f2dded999d0bbaf7d9ff41837b291fa2c0bd6b"
+    },
+    {
+      "place": "hall",
+      "id": "6-1",
+      "room": "cityhall",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 96090,
+      "bounds": [
+        55,
+        19,
+        494,
+        352
+      ],
+      "sourceSize": [
+        553,
+        368
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-81cbeb159e10",
+      "bytes": 141588,
+      "sha256": "064757468c1e1689deb1dac442743742f027140efc92e957d830d7833240a44d"
+    },
+    {
+      "place": "parcel",
+      "id": "7-1",
+      "room": "parcel",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 116606,
+      "bounds": [
+        15,
+        24,
+        564,
+        363
+      ],
+      "sourceSize": [
+        580,
+        387
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-81cbeb159e10",
+      "bytes": 125392,
+      "sha256": "de918cc85bfd18de62cb07decc766638d05f627cf6ec994765431e9250ae166a"
+    },
+    {
+      "place": "winter",
+      "id": "8-1",
+      "room": "christmas",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 127053,
+      "bounds": [
+        27,
+        17,
+        578,
+        387
+      ],
+      "sourceSize": [
+        606,
+        404
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-81cbeb159e10",
+      "bytes": 159976,
+      "sha256": "d353d809d85ecbf0578549a36a698e26d6ea0c65ef1bfa35ee4e39a01c97286d"
+    }
+  ],
+  "errors": []
+}

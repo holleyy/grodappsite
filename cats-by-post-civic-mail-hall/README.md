@@ -1,6 +1,6 @@
-# Sorting Office · working post
+# Sorting Office · warm paper and canal
 
-Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=postal-work&view=hall
+Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=warm-paper&view=hall
 
 This upgrades the **Sorting Office**, using the selected Civic Mail Hall architecture. It is not the City Hall chapter. The warmer office keeps its canal, terracotta walls, teal columns and thirty occupied sorting cubbies, with a staff bench, folded throw, ledger, mug and task lamp.
 
@@ -18,13 +18,15 @@ One continuous 52-second job receives a parcel, carries it to the scale and stam
 
 The robot, trolley and machinery are projected folded-card geometry using the existing paper materials. They replace the old flat parked-helper illustration. The counter is narrower and lower to make a real work aisle; its top, scale, trolley and bridge share explicit support heights. The desk cat moves with the bench. Gallery pillars and parcels retain the prior contact and foreground-order corrections.
 
-Cubby cats breathe and wake at staggered times. Existing canal reflections and the docking mailboat remain; this phase does not add further atmosphere work. Physical iPhone/Safari and Swift/Metal performance remain unverified.
+Cubby cats breathe and wake at staggered times. The finish adds neutral paper grain, directional face shading, cut edges, soft contact shadows and local lamp pools. The supported staff bench and coral throw are more visible. The robot shares the room lighting as it turns; raised soles have softer shadows.
+
+Canal currents follow the banks, broken reflections align with real town windows, and the mailboat has a water-plane reflection and a wake whose reach follows its speed. Motion-off and reduced-motion freeze a complete pose. Compact Board controls occupy a separate row above the scene. Physical iPhone/Safari and Swift/Metal performance remain unverified.
 
 ## Offline and source
 
-Unzip `sorting-office-postal.zip` and open **Sorting Office.html**. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
+Unzip `sorting-office-finish.zip` and open **Sorting Office.html**. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
 
-Extract `sorting-office-postal-source.zip` into an empty folder and run:
+Extract `sorting-office-finish-source.zip` into an empty folder and run:
 
 ```sh
 python3 studies/civic-mail-hall/foundation/build.py
@@ -33,6 +35,6 @@ node --test studies/civic-mail-hall/foundation/*.test.js
 
 The `vendor/` snapshot pins the Office rules, traces, levels and production oracles so the checkout and standalone source package rebuild identical HTML. Source includes runtime WebP assets, crop metadata, provenance and generation prompts. The six original PNG masters remain in the optional `civic-architecture-art-masters.zip`; Python3/Pillow is only needed to repack those assets.
 
-Static architecture and coloured paper stocks bake once. Live work uses a deterministic pose sampler and reusable geometry buffers. Switching levels/views does not rebake the room. See `verification.md` and `docs/rooms/progress/sorting-office-postal.md` for evidence and limitations.
+Static architecture and coloured paper stocks bake once. Live work uses a deterministic pose sampler and reusable geometry buffers. Switching levels/views does not rebake the room. See `verification.md` and `docs/rooms/progress/sorting-office-finish.md` for evidence and limitations.
 
-Earlier named archives retain their checkpoints. Canonical game, native code, other rooms and Lantern Quay remain unchanged.
+Earlier named archives retain their checkpoints. This self-contained study leaves canonical saves, native code, other rooms and Lantern Quay unchanged. A separate Office presentation adapter is prepared against the current game for review; it is not merged or deployed over the live main game.

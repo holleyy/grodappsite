@@ -1,0 +1,713 @@
+{
+  "sourceRepository": "holleyy/grodappsite",
+  "localSourceCommit": "1110013",
+  "acceptedPrototypeCommit": "bf233c65fbf1d6fb2811bcaa350b5faff76318a8",
+  "note": "Accepted UI-only import. Old runtime exports and lab bridges excluded; adapted UI source retains its original hash here.",
+  "files": [
+    {
+      "path": "journey/map-surface.css",
+      "sourceSha256": "3434313350e6de2bf2854b586fad0fff74bd54fdf55cefcec21d5f2ed4760488",
+      "bytes": 4783
+    },
+    {
+      "path": "journey/menu-system.css",
+      "sourceSha256": "a3bb750bcad09d8280857ef0728e38e475da9da7cff1e4a249e0930229019142",
+      "bytes": 12641
+    },
+    {
+      "path": "journey/paper-motion.js",
+      "sourceSha256": "e355374ebbccb0e203574bbaebb5291d41ac1d12a4ef908cb62a6d41dc97299f",
+      "bytes": 5053
+    },
+    {
+      "path": "journey/levels.json",
+      "sourceSha256": "a83d10381fb5f70ca0da8e587d0b058538996932594d2134367bc0c6478debe6",
+      "bytes": 10275
+    },
+    {
+      "path": "journey/model.js",
+      "sourceSha256": "86383cb55b236ba0d5234e6fd22e914d5f159a4b285206af2244ebb245f215b5",
+      "bytes": 2032
+    },
+    {
+      "path": "journey/company-model.js",
+      "sourceSha256": "cf649bbd870285ea7d92222f30a9ca74216485540dfd6947e8ce01ff9427e0c6",
+      "bytes": 1605
+    },
+    {
+      "path": "journey/photo-handling.js",
+      "sourceSha256": "cc0aabb242653d8bd7da7aea48f3b2554af7ec452671551f45c765d36cbeec2b",
+      "bytes": 697
+    },
+    {
+      "path": "journey/company-box.css",
+      "sourceSha256": "dc6275f878e29641fd6199d333337fcc74829153f3742b10d3342fcd45186d57",
+      "bytes": 15590
+    },
+    {
+      "path": "journey/office-cat.js",
+      "sourceSha256": "66c1b8cdaa9d7035c1bdb121f2a8824156df262656f828d806e7fc16c2b1b17a",
+      "bytes": 2952
+    },
+    {
+      "path": "journey/index.html",
+      "sourceSha256": "e2f700591b83683ab0526d346283b80a37576fc29e314ad052ca6534cd968a43",
+      "bytes": 9048
+    },
+    {
+      "path": "journey/postal-identity.css",
+      "sourceSha256": "d26ad3182640a7bac3cfa55f7b12cc09fb47203992f5a678ab3e97a7dd8e8c12",
+      "bytes": 3606
+    },
+    {
+      "path": "journey/journey.js",
+      "sourceSha256": "cba288948c21f9d53e933a384fa13249d6bd4c7275a18fc4a8bf6dca05d9a2c2",
+      "bytes": 28970
+    },
+    {
+      "path": "journey/postal-identity.js",
+      "sourceSha256": "78875358687922a1050804db252d8623cb201dbacba2ecee420f708180183599",
+      "bytes": 2102
+    },
+    {
+      "path": "journey/start.html",
+      "sourceSha256": "1521278068bc49ce253ef73091861f503d421345b5e374557cb2fef06a5b102f",
+      "bytes": 5752
+    },
+    {
+      "path": "journey/start.css",
+      "sourceSha256": "9a2a95e9b045f05cc474db45003f74abc7502ec6082b7776f2e6388f59869d21",
+      "bytes": 13445
+    },
+    {
+      "path": "journey/journey.css",
+      "sourceSha256": "20254a558d761b3d9bc19ba450af7953092d662ec6a1a027de3e7045dbb15731",
+      "bytes": 13403
+    },
+    {
+      "path": "journey/letter-insert.css",
+      "sourceSha256": "2ace249c24266406865a3c47ee2fef4b153391216c507ee03e3a4d185a7c12ab",
+      "bytes": 2869
+    },
+    {
+      "path": "journey/start.js",
+      "sourceSha256": "56642b848870b60af5050bc849dc340c651c59b65cb703e254701122a0eef5f6",
+      "bytes": 10958
+    },
+    {
+      "path": "journey/company-box.js",
+      "sourceSha256": "b0d3fe72b000bd631b6e5d24ad0adc8d023d3fbc6289f4e1f546780876ee9f7d",
+      "bytes": 16409
+    },
+    {
+      "path": "journey/images/company-book.webp",
+      "sourceSha256": "9d9e709ae5ddb4a54a0602e5fffb51a74cde55b08f40950dad3f974aa002ee98",
+      "bytes": 270660
+    },
+    {
+      "path": "journey/images/photo-box-closed.webp",
+      "sourceSha256": "df662e4c854ba93044f5cc37ce82c94c13e42872d11f1947e5d249f555a06982",
+      "bytes": 50762
+    },
+    {
+      "path": "journey/images/envelope-open.webp",
+      "sourceSha256": "3e52c3cdd33b51c004e9343ec9ef974b070ae9931793dbee7b0a7b9741f1d021",
+      "bytes": 132510
+    },
+    {
+      "path": "journey/images/photo-mount.webp",
+      "sourceSha256": "e187cc023a8ce62420c49dc800a905ddd204194399b199d674542c15909e7116",
+      "bytes": 214786
+    },
+    {
+      "path": "journey/images/photo-box-open.webp",
+      "sourceSha256": "2c6252d25be5bcf7b77bf9238d5b16937512d576efc44ad03ebbd953ace3264c",
+      "bytes": 169736
+    },
+    {
+      "path": "journey/images/envelope.webp",
+      "sourceSha256": "e7992cd68d7a6c43ad5b2c08c2aaa1512d480762ee58da727bfe9cb8ac6776d9",
+      "bytes": 1607340
+    },
+    {
+      "path": "journey/images/route.webp",
+      "sourceSha256": "cbb2ac28e80b8268f4312c56e2cf27614534b1c428c8af014cf7bf25fca52cd6",
+      "bytes": 2886418
+    },
+    {
+      "path": "journey/images/print-paper.webp",
+      "sourceSha256": "218932013a1bd7200a22d69beb3979711fc6dcf4c7e71126f6af501c3f91e7d7",
+      "bytes": 171988
+    },
+    {
+      "path": "journey/images/paper-button.webp",
+      "sourceSha256": "b908a3bdac6a32719751698e4779b86eab145b21bbb641321cfef48388ee5bd3",
+      "bytes": 20738
+    },
+    {
+      "path": "journey/images/title-label.webp",
+      "sourceSha256": "65756641e1e9455693213cbf2c1a15487b245063dfc4f2b81c6ca93ecfdbeb49",
+      "bytes": 259388
+    },
+    {
+      "path": "journey/play/hud.css",
+      "sourceSha256": "9c1e34d146f0899260bd91479b91e8e02d27b311f80e2ddbfaf88faa11da69cc",
+      "bytes": 20049
+    },
+    {
+      "path": "journey/play/hud-model.js",
+      "sourceSha256": "226ee51a9f7ea37f9370e2a453ab13b0e3bb5e06c0e1eef4857e0434dd285a54",
+      "bytes": 1044
+    },
+    {
+      "path": "journey/play/app.js",
+      "sourceSha256": "dd5e2c833380896b2f871f311972c3871c2c2ae2d6045cac249c4a9f633150ea",
+      "bytes": 47973
+    },
+    {
+      "path": "journey/play/completion.js",
+      "sourceSha256": "db4612578f384b0821bb0b6d830cd00772bb3e51f3072d4fc0c65881f43ca7ef",
+      "bytes": 7881
+    },
+    {
+      "path": "journey/play/handoff.js",
+      "sourceSha256": "0db4d761144cb33ca2992333e5fbb68b528077b4949271610ba3baab424de39c",
+      "bytes": 2118
+    },
+    {
+      "path": "journey/play/app.css",
+      "sourceSha256": "8b14ff9cec1bb63c20b271b7f0dc93b18d545d00a6dca38e72fc56dfc223afe2",
+      "bytes": 30753
+    },
+    {
+      "path": "journey/play/model.js",
+      "sourceSha256": "fa0baa5bdbe528d2d840ddf18b6b88a6814afc1960221355cc59df7524c6c25f",
+      "bytes": 1256
+    },
+    {
+      "path": "journey/play/index.html",
+      "sourceSha256": "4399b3084e109dc7109d27557d8085fa086d088581aa04d7cd1b567d1894d55b",
+      "bytes": 7752
+    },
+    {
+      "path": "journey/play/hud.js",
+      "sourceSha256": "a95c3f260cc29d31cb3ac784e910136e6c0c942bfa080f625ec36305d88d68ab",
+      "bytes": 10369
+    },
+    {
+      "path": "journey/play/completion.css",
+      "sourceSha256": "74de601c70edf63b1d6c79f85f65fbbf209085d4cfd93c2c2cfc200aa9a00d2b",
+      "bytes": 13978
+    },
+    {
+      "path": "journey/icons/LICENSE.txt",
+      "sourceSha256": "b5b1f1da112d18ea2147decfd48ddc1bf2b5aeb6c265381579340e95b15a2bb2",
+      "bytes": 1071
+    },
+    {
+      "path": "journey/icons/arrow-right.svg",
+      "sourceSha256": "e45bc4a12592b8723110db42c6deffdf177e4fe7704cf50324963fa0a59b2d74",
+      "bytes": 245
+    },
+    {
+      "path": "journey/icons/magnifying-glass-plus.svg",
+      "sourceSha256": "17d7d7ed509dbf9ed5951780e6d035c912eb9e20f83bb5e0c33b9027648338a5",
+      "bytes": 393
+    },
+    {
+      "path": "journey/icons/images.svg",
+      "sourceSha256": "7e8e0035864a6cc3e0ea1e0441d073b582001b74c374939fd8ece6ff55101a2b",
+      "bytes": 501
+    },
+    {
+      "path": "journey/icons/crosshair-simple.svg",
+      "sourceSha256": "f4b446a6945d8a6b71b1ff2f646b2a5d9c125a38432d4ce52b86969d7a6bc6ec",
+      "bytes": 396
+    },
+    {
+      "path": "journey/icons/moon-stars.svg",
+      "sourceSha256": "a87d9314c9313a719a3297985a9d8cd1c4aa4602490b9286d8caf5bec82c466d",
+      "bytes": 535
+    },
+    {
+      "path": "journey/icons/calendar-blank.svg",
+      "sourceSha256": "6268583ae0ea04e93fd24f1e70d47a8e8d79c88fc304af397b95b318980215d6",
+      "bytes": 327
+    },
+    {
+      "path": "journey/icons/book-open.svg",
+      "sourceSha256": "b38cdb3a15dcf00cfa4811e318b021e25c6a87b47acbb11888e16d107a5642da",
+      "bytes": 396
+    },
+    {
+      "path": "journey/icons/arrow-right-route.svg",
+      "sourceSha256": "39889a147d7c72cbdd366d00f9d9cd5e786a4251976fe9c027761a28b8ee76a6",
+      "bytes": 300
+    },
+    {
+      "path": "journey/icons/check.svg",
+      "sourceSha256": "cbb89a8c42f283d4f846eb935e05d88c1be04462f16480e068c0f82b9ce40b12",
+      "bytes": 215
+    },
+    {
+      "path": "journey/icons/caret-right.svg",
+      "sourceSha256": "e6dec01e074807965b7f3146b976a9b5e82c31d9c2c88aeb52e77cc2ab16c1d7",
+      "bytes": 219
+    },
+    {
+      "path": "journey/icons/cursor-click.svg",
+      "sourceSha256": "ab146e15194ce11c438aac2f6e45d7a0082bbab5f2cc8d9816140eab848246f4",
+      "bytes": 782
+    },
+    {
+      "path": "journey/icons/gear-six.svg",
+      "sourceSha256": "2bb05ec80cc37505a3f21c74989dbb297ab8442a668f5ffbd6a8f7c1d5794c7b",
+      "bytes": 1462
+    },
+    {
+      "path": "journey/icons/magnifying-glass-minus.svg",
+      "sourceSha256": "fa3ccfc6a2bfd4d53e5e20c438b7cc40f93b5eb82000552ff22c39ba55bc653b",
+      "bytes": 343
+    },
+    {
+      "path": "journey/icons/house.svg",
+      "sourceSha256": "e7f90c141390f7dad08f08c0375717800a17b7f8d0ed3fdd348f8cabaffd8c0a",
+      "bytes": 357
+    },
+    {
+      "path": "journey/icons/list.svg",
+      "sourceSha256": "136cad9195e399a16c8307eb1958fb1e3a45cfd81c21bd3e3dbfd0de2667737e",
+      "bytes": 270
+    },
+    {
+      "path": "journey/icons/envelope-open.svg",
+      "sourceSha256": "538aa142c231df1b004e7dfd2c709be06a3be062adf7a24f0ff52f31e5de3a87",
+      "bytes": 359
+    },
+    {
+      "path": "journey/icons/lock-simple.svg",
+      "sourceSha256": "b99d3713ac86cb610eb66974d69de2aa1223c4f6387fb1053e3d375e62f5dc1c",
+      "bytes": 275
+    },
+    {
+      "path": "journey/icons/arrow-left.svg",
+      "sourceSha256": "3c2001cf957d182fc54927e4b286cc8cf66dd97830f441ca2650d42a63a9006a",
+      "bytes": 248
+    },
+    {
+      "path": "journey/icons/arrow-down.svg",
+      "sourceSha256": "cc6416ae83e20660f14b11f5525c6d05ee679c3f26cee41b696cb37aa905d4f5",
+      "bytes": 239
+    },
+    {
+      "path": "journey/icons/arrow-counter-clockwise.svg",
+      "sourceSha256": "4eb160d5ae781107c674481ac081962e6bce6281a646129e6c3f960b9dd5dac6",
+      "bytes": 325
+    },
+    {
+      "path": "journey/icons/arrow-up.svg",
+      "sourceSha256": "361aa9f9c52a759bf598faf6ed38ccd426f949f541d662c65b5b5d868fa76980",
+      "bytes": 257
+    },
+    {
+      "path": "journey/icons/x.svg",
+      "sourceSha256": "7397b15e1fa66eaf6ff9b59fe91d483cb5c3bcf75b2fe052097ab6f0593b513a",
+      "bytes": 284
+    },
+    {
+      "path": "journey/icons/info.svg",
+      "sourceSha256": "438a1f319d53d86e840af73fb7b1d224c9224a437b9fa449a4e2cb45a82a3552",
+      "bytes": 348
+    },
+    {
+      "path": "journey/icons/map-trifold.svg",
+      "sourceSha256": "ecbfb824b7dc1e0f9ec2c3677d05c24c2dc7eee274f7da341262bb08dba85cdf",
+      "bytes": 447
+    },
+    {
+      "path": "journey/images/level-prints/4-15.webp",
+      "sourceSha256": "1698819e4cbfd5a84fb8aee9d92e4d2d7ffe245721949e76f6ce6a637c9a949e",
+      "bytes": 23436
+    },
+    {
+      "path": "journey/images/level-prints/1-1.webp",
+      "sourceSha256": "dac40096ea36684a05c10f5d6f15f1ee1c32f20d8364bacd018eb4e8b9985fb1",
+      "bytes": 22470
+    },
+    {
+      "path": "journey/images/level-prints/4-13.webp",
+      "sourceSha256": "1d8f02489f62adaba8759fc8725adb8865b7adc53b1bbb1e88e216895537236e",
+      "bytes": 22306
+    },
+    {
+      "path": "journey/images/level-prints/1-3.webp",
+      "sourceSha256": "5e8a59966731f4c1e493dd2fa449d3bc37097c45f800f14c49ae6c2e48d90ef6",
+      "bytes": 22460
+    },
+    {
+      "path": "journey/images/level-prints/4-7.webp",
+      "sourceSha256": "01bbd1257752d63c0d87fc71a83742b1251af0f131680d1bf529aa9efedf6c7e",
+      "bytes": 21904
+    },
+    {
+      "path": "journey/images/level-prints/4-8.webp",
+      "sourceSha256": "68cf16b16ad7897212c39753d028d42f8427d517f7c500d75125376b44c59833",
+      "bytes": 21862
+    },
+    {
+      "path": "journey/images/level-prints/2-6.webp",
+      "sourceSha256": "be3d9083f3c33837bb5961b706bbace29e51b115573418b5386041fd2b27f243",
+      "bytes": 22920
+    },
+    {
+      "path": "journey/images/level-prints/3-10.webp",
+      "sourceSha256": "8dd443ab6b6bfb1988c22c62b616e85aa17bafc5d3c375d22744fdefae69988d",
+      "bytes": 22034
+    },
+    {
+      "path": "journey/images/level-prints/3-9.webp",
+      "sourceSha256": "956f224ab30f481ab3eb290050768df1f256a25c4add4f0e4fcfec693238a92a",
+      "bytes": 21918
+    },
+    {
+      "path": "journey/images/level-prints/2-2.webp",
+      "sourceSha256": "ef64ab5d398f205c30febb028e1c1e3162d24a3e2baa5549414264e3f73c1708",
+      "bytes": 23332
+    },
+    {
+      "path": "journey/images/level-prints/3-7.webp",
+      "sourceSha256": "db62b2bcf23f0f5504d67a0a4656f0941ca87093c8d4d29556c4ce8942adb064",
+      "bytes": 22104
+    },
+    {
+      "path": "journey/images/level-prints/2-5.webp",
+      "sourceSha256": "4aef649b2fcd82fda9f8e5de2ea977d1cbc85596328a510e761a9147193fb583",
+      "bytes": 23062
+    },
+    {
+      "path": "journey/images/level-prints/3-2.webp",
+      "sourceSha256": "681ed9156faeed0ead622983d0227c7c3bb94aa4361bd276e20dd7cf007fc4ab",
+      "bytes": 22012
+    },
+    {
+      "path": "journey/images/level-prints/4-14.webp",
+      "sourceSha256": "a76d70146632b9a2b2dde22a09f1c2206dcda328566e1f90215e15a3549c69ea",
+      "bytes": 22588
+    },
+    {
+      "path": "journey/images/level-prints/1-2.webp",
+      "sourceSha256": "47983532b4d86e973cf8bb8685a2c8e0ec45fb24049d5dd2c2686efbff1a28df",
+      "bytes": 22826
+    },
+    {
+      "path": "journey/images/level-prints/2-1.webp",
+      "sourceSha256": "9adf7cdbd88036352c84b0b5306914e59b9e03e24404ba5e29f711d1b71c63fe",
+      "bytes": 23098
+    },
+    {
+      "path": "journey/images/level-prints/2-4.webp",
+      "sourceSha256": "ca01287ecdf6064fea83c4acffddcc74301964bd638f1a6dde6e87077e1bfc72",
+      "bytes": 24096
+    },
+    {
+      "path": "journey/images/level-prints/3-5.webp",
+      "sourceSha256": "89306ace29e5e98656f40527f2580de629684ea4700dd77c0f86891e19bd95f7",
+      "bytes": 21882
+    },
+    {
+      "path": "journey/images/level-prints/4-2.webp",
+      "sourceSha256": "524efc38846e09b47f559f52320deb200b270608231451b373942e9037353214",
+      "bytes": 21796
+    },
+    {
+      "path": "journey/images/level-prints/4-6.webp",
+      "sourceSha256": "c4a2f2440ca0949a0808fd6c9ccda27cf80ad4579a87badc56f5155b33c7e883",
+      "bytes": 21990
+    },
+    {
+      "path": "journey/images/level-prints/1-5.webp",
+      "sourceSha256": "5220b0710f96d3f0aa74eaa2b40bdb090537e318a873be279990d78b666bdbe5",
+      "bytes": 23174
+    },
+    {
+      "path": "journey/images/level-prints/2-10.webp",
+      "sourceSha256": "c133e2e425d92759022783a43bc53c95861162706717c225ab2f9b46c55dec2a",
+      "bytes": 24392
+    },
+    {
+      "path": "journey/images/level-prints/2-9.webp",
+      "sourceSha256": "a2187fc0a6ef97c63e27febafe70f823ecdab6227e4eb0b12f15a5b5a45593ec",
+      "bytes": 24364
+    },
+    {
+      "path": "journey/images/level-prints/2-3.webp",
+      "sourceSha256": "622da9ed6e8fb290d4e60795a3f53124b2eb9c96802a5e935a8f0647cd8b0e09",
+      "bytes": 23466
+    },
+    {
+      "path": "journey/images/level-prints/4-11.webp",
+      "sourceSha256": "61f7a310c03ab5e93906155474eda0d1e7d3e548d68d4bf7f4dad65a3a92fe09",
+      "bytes": 22230
+    },
+    {
+      "path": "journey/images/level-prints/3-3.webp",
+      "sourceSha256": "b98168c29561cbff896dbcca5b2435dcac0f5408fe811fa3d8e7e0223d7ead04",
+      "bytes": 21970
+    },
+    {
+      "path": "journey/images/level-prints/4-3.webp",
+      "sourceSha256": "8b57e99cd6b5acf5931dfbfa822375ee08a853aaaf1c4f52432f4061b8a21a3f",
+      "bytes": 21994
+    },
+    {
+      "path": "journey/images/level-prints/4-9.webp",
+      "sourceSha256": "ec68241d44a1ef0930b3a91c3717f796c4dcb19893e30ce4f92cd72e57821d30",
+      "bytes": 22066
+    },
+    {
+      "path": "journey/images/level-prints/1-4.webp",
+      "sourceSha256": "dc2b624d218a8c5f1f21e0cb8092e14604d5c6c37703c0965a5135f467b627e7",
+      "bytes": 23082
+    },
+    {
+      "path": "journey/images/level-prints/4-10.webp",
+      "sourceSha256": "02d932bc43909e651b8e4247c82372b917f9894a67f3d2f97081adbd66ee509d",
+      "bytes": 21948
+    },
+    {
+      "path": "journey/images/level-prints/3-8.webp",
+      "sourceSha256": "a1980bbd35c989367e990ab7c84d46c7ef806c0fdab89c6cd29bfb524acd74e7",
+      "bytes": 21844
+    },
+    {
+      "path": "journey/images/level-prints/4-12.webp",
+      "sourceSha256": "2e92a83e05d8e811e0258714d0691ce4d895a4ac82fe436362652acce20453ed",
+      "bytes": 22036
+    },
+    {
+      "path": "journey/images/level-prints/4-4.webp",
+      "sourceSha256": "196b91358cf0d187c5528e61ea734856055616f5fa6bfc5e0d808db2f7a89e67",
+      "bytes": 21738
+    },
+    {
+      "path": "journey/images/level-prints/2-8.webp",
+      "sourceSha256": "b4599186e8888ec421deb211c31de602060dc710d4bd21efaf51afcb0e047717",
+      "bytes": 23498
+    },
+    {
+      "path": "journey/images/level-prints/3-4.webp",
+      "sourceSha256": "c3dd550539fb54736b01b50cd801b3b382a78c46c68fa5c629d00f39e74067fd",
+      "bytes": 21938
+    },
+    {
+      "path": "journey/images/level-prints/3-1.webp",
+      "sourceSha256": "7dbb5333bdda3e46fb986b0033f8efcfeac5c8fe9446fc66794c3d6da17e81c5",
+      "bytes": 21988
+    },
+    {
+      "path": "journey/images/level-prints/4-5.webp",
+      "sourceSha256": "1c149ccb02aead69a2b5e7b46ffa7ad15cebb35d57e64f72f8d3f703aa103287",
+      "bytes": 21898
+    },
+    {
+      "path": "journey/images/level-prints/2-7.webp",
+      "sourceSha256": "5628c49b4be6a17b2857904b9aca32af07cf46fc331133b6052aeb0b7b311998",
+      "bytes": 24210
+    },
+    {
+      "path": "journey/images/level-prints/4-1.webp",
+      "sourceSha256": "26d3ec3e856d0e5477e7d14375d8c28246e5dd2a614ca0e28fd5c5117ea42ff5",
+      "bytes": 21734
+    },
+    {
+      "path": "journey/images/level-prints/3-6.webp",
+      "sourceSha256": "64208e94ba3fb7eb4a327f3fb8d6a40edd7eeaf6525f73ca43e5b9c83b8568db",
+      "bytes": 22064
+    },
+    {
+      "path": "journey/images/coats/tortoiseshell.webp",
+      "sourceSha256": "b7ebccb77768248d47295d359801d58a3ce894b92f0c8b585be80966a1eeb7b9",
+      "bytes": 339684
+    },
+    {
+      "path": "journey/images/coats/cream.webp",
+      "sourceSha256": "e846d26c4b64934e5c0e5cab74f943239f8d2125204f953e194ea10380412a4b",
+      "bytes": 318294
+    },
+    {
+      "path": "journey/images/coats/tabby.webp",
+      "sourceSha256": "77f096c063fadd3706cacb6c3a5f9fcb3c3241b5f7defbf08df3e8804cea224d",
+      "bytes": 368140
+    },
+    {
+      "path": "journey/images/coats/white.webp",
+      "sourceSha256": "7a42766b14b3d25ce378b94a9c31f570151d903e5e1572488d41bba49c7eae18",
+      "bytes": 261156
+    },
+    {
+      "path": "journey/images/coats/black.webp",
+      "sourceSha256": "6c90de5ff7618465f7f888ddc905e7cfc4a52dfdb5e098fcd5c1947a98bc0e55",
+      "bytes": 303332
+    },
+    {
+      "path": "journey/images/coats/calico.webp",
+      "sourceSha256": "d5215095f4127dc27401d1ff8a582c1b28931f7b6f2bf90dac76a9f8ff320b4c",
+      "bytes": 289830
+    },
+    {
+      "path": "journey/images/coats/siamese.webp",
+      "sourceSha256": "185b1e72744d9d008cf64a8bcf85f67f3bc042568294e9c83a4c2835bfe6032e",
+      "bytes": 312868
+    },
+    {
+      "path": "journey/images/coats/smoke.webp",
+      "sourceSha256": "a5ec8a7b1c0d478918a36306d24591ac75a379252c8a59387fc948e5f08a6ec2",
+      "bytes": 329270
+    },
+    {
+      "path": "journey/images/start/desk-portrait.webp",
+      "sourceSha256": "2bcb5d428abc3853d50b013cc536ae00b573ae5a2cafc45398575f56a5bed685",
+      "bytes": 333758
+    },
+    {
+      "path": "journey/images/start/company-box-labelled.webp",
+      "sourceSha256": "bb4da527716b21ad599c03aedafa6bbf2dc63d2fad85a5f31f6e46282c375fef",
+      "bytes": 96334
+    },
+    {
+      "path": "journey/images/start/office-paper-portrait.webp",
+      "sourceSha256": "070446701b41c07d503bb11d603146be0fe73c145362ff7a98bdf7b6eb5357ef",
+      "bytes": 263806
+    },
+    {
+      "path": "journey/images/start/office-portrait.webp",
+      "sourceSha256": "82b5fa0cc50545edf2571a6420e1e6b8dad4debf75547179613cb035096abac1",
+      "bytes": 271276
+    },
+    {
+      "path": "journey/images/start/office-paper-wide.webp",
+      "sourceSha256": "a3685653f0181e7bf73fed4ff013fed2850fdcae167994f7ddcc8906b907e016",
+      "bytes": 330976
+    },
+    {
+      "path": "journey/images/start/office-wide.webp",
+      "sourceSha256": "ce346131328bc14ed080cbb55d06273fec1f395eefc3d15520e3fc49b598594a",
+      "bytes": 299034
+    },
+    {
+      "path": "journey/images/start/desk-wide.webp",
+      "sourceSha256": "597674c88f0d56773b30a95347ef95686d515744299136ce25aa8d3817b292bf",
+      "bytes": 400670
+    },
+    {
+      "path": "journey/images/materials/lid-outside.webp",
+      "sourceSha256": "5ef46befb3fad6c4594af82ff5beb5550a4ff9a8c5a46e817446744c7a2f97cb",
+      "bytes": 360698
+    },
+    {
+      "path": "journey/images/materials/office-portrait-clear.webp",
+      "sourceSha256": "61b86dc3175e755809a1f362266bcb799e7d36832cf13b6d7777abafeaea13e6",
+      "bytes": 228412
+    },
+    {
+      "path": "journey/images/materials/ginger-motion.webp",
+      "sourceSha256": "d8abb2a17200c5763efc4805aa54376cbd939ceeddcbc336eb2656c16aff0c51",
+      "bytes": 227420
+    },
+    {
+      "path": "journey/images/materials/office-wide-clear.webp",
+      "sourceSha256": "9bc3297a0052f8fd5f71a8b69cdd70d4e5310ffa5c510a121fbda2d200de4ac1",
+      "bytes": 259750
+    },
+    {
+      "path": "journey/images/observations/trolley-cat.webp",
+      "sourceSha256": "dbc9b0e659274b71461ca22798e2fc0995ce956578b1f606d8cc97336767a055",
+      "bytes": 21810
+    },
+    {
+      "path": "journey/images/observations/note-paw.webp",
+      "sourceSha256": "169603cd082d65efaaca3bf96e6f55e30b464cce4098690b1cc15782f36877ca",
+      "bytes": 40400
+    },
+    {
+      "path": "journey/images/observations/white-tail.webp",
+      "sourceSha256": "6049d446ecfb9612bb837d26eff38e16009412ab319f377aba80c812205a4b9a",
+      "bytes": 193662
+    },
+    {
+      "path": "journey/images/observations/box-open-chewed.webp",
+      "sourceSha256": "40a8514c90cefd737e5bd092e7927fd187f467933003a794da386625c677fed2",
+      "bytes": 129946
+    },
+    {
+      "path": "journey/images/postmarks/train.webp",
+      "sourceSha256": "eb3f2e20b0c369828e7d971cf8e0c29b089ee84f622b65fcb174f000662b4528",
+      "bytes": 160424
+    },
+    {
+      "path": "journey/images/postmarks/depot.webp",
+      "sourceSha256": "4541f93a9e985c5d28e132c7712a8e45f8b45eeee5d60140b58d52d078cd5dde",
+      "bytes": 186574
+    },
+    {
+      "path": "journey/images/postmarks/office.webp",
+      "sourceSha256": "84adaf55eb58dcc49c7e13fca9630e56fa427d56cc64dad788ad762c91dcf3f5",
+      "bytes": 201050
+    },
+    {
+      "path": "assets/FONT-LICENCES.txt",
+      "sourceSha256": "67b23b4de4b4d3f45d57c36c0bd7a639405be73beff0fa219ff6607d5c996ccb",
+      "bytes": 17596
+    },
+    {
+      "path": "assets/signika.ttf",
+      "sourceSha256": "d918921a3fde82479d4dabcbe8fd4f6359de5ba7ec24068a5c6989fc26e4ba8e",
+      "bytes": 41844
+    },
+    {
+      "path": "assets/balthazar.ttf",
+      "sourceSha256": "c942c03a78d1f39ce8c4aab0e53ad6b4437310841f0592d282209fa94bdf5d93",
+      "bytes": 23012
+    },
+    {
+      "path": "assets/della.ttf",
+      "sourceSha256": "e4afbd6c044f2e81bb0d8374057fc28c027cb907a6f8959f53dff3bb1f86cefc",
+      "bytes": 37064
+    },
+    {
+      "path": "assets/cats-postage.png",
+      "sourceSha256": "1f88e7a4e783966aac7c429fef385b4a3bf8b978b9b83bac292a4ecb3e04e2f3",
+      "bytes": 3551128
+    },
+    {
+      "path": "assets/post-hand.ttf",
+      "sourceSha256": "985edd2fbc7b42f67af52bfe3235081d662a4cee89b8f26438230d387d4a5173",
+      "bytes": 64048
+    },
+    {
+      "path": "assets/office.png",
+      "sourceSha256": "0b05c225cdde229c53a01a6125cd0b1f540f61f6f657053ba0d61e38387a0f04",
+      "bytes": 224052
+    },
+    {
+      "path": "assets/night.png",
+      "sourceSha256": "d6b6a7f699e7db93dcdb5ad47cee4e8bb78bec1bf5bdf6c20ffe588bf8f36da9",
+      "bytes": 198805
+    },
+    {
+      "path": "assets/grenze.ttf",
+      "sourceSha256": "d9091a1ac94cf4764c565876b9de6400075133356d137a4cf357e7a01b2e5e04",
+      "bytes": 27604
+    },
+    {
+      "path": "assets/grape-nuts-LICENSE.txt",
+      "sourceSha256": "eef8b9e234f0f5d6ac7e8ce44d9a8bffa1c41658240a6b4bf061931aa5fa1b11",
+      "bytes": 4394
+    },
+    {
+      "path": "assets/depot.png",
+      "sourceSha256": "7381ec3c79227ff5894de59da19d80fc97f8696256e30e226aaa38a84ea7fc2f",
+      "bytes": 144634
+    }
+  ]
+}

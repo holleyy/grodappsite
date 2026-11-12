@@ -1,0 +1,170 @@
+{
+  "sampleRate": 48000,
+  "channels": 2,
+  "format": "MP3 256 kb/s",
+  "codecHandling": "Each complete edited timeline is encoded once with Xing/LAME gapless metadata. Decode at 48000 Hz and require the exact cue frame count. Compliant Chromium/WebKit decoders apply the new encoder delay/padding; never trim again. FFmpeg skip/discard values are verification evidence, not universal raw tag values.",
+  "cues": {
+    "main": {
+      "file": "main.mp3",
+      "label": "Main theme",
+      "sourceId": "ff0b230a-c2cd-464d-afb6-fff8712dbc25",
+      "frames": 10010880,
+      "introFrames": 1587367,
+      "loopFrames": 6393154,
+      "endingFrames": 2030359,
+      "codec": {
+        "encoder": "libmp3lame",
+        "bitrateKbps": 256,
+        "packetCount": 8691,
+        "rawFrames": 10012032,
+        "ffmpegSkipFrames": 1105,
+        "ffmpegDiscardFrames": 47,
+        "decodedFrames": 10010880
+      }
+    },
+    "sorting_office": {
+      "file": "sorting_office.mp3",
+      "label": "Sorting Office",
+      "sourceId": "d569d362-f9cc-4326-b472-47d4f8029b7e",
+      "frames": 9734400,
+      "introFrames": 1574266,
+      "loopFrames": 6259689,
+      "endingFrames": 1900445,
+      "codec": {
+        "encoder": "libmp3lame",
+        "bitrateKbps": 256,
+        "packetCount": 8451,
+        "rawFrames": 9735552,
+        "ffmpegSkipFrames": 1105,
+        "ffmpegDiscardFrames": 47,
+        "decodedFrames": 9734400
+      }
+    },
+    "town_depot": {
+      "file": "town_depot.mp3",
+      "label": "Town Depot",
+      "sourceId": "f19c4030-d092-4003-9933-49b8446acf69",
+      "frames": 9214080,
+      "introFrames": 1588514,
+      "loopFrames": 6383477,
+      "endingFrames": 1242089,
+      "codec": {
+        "encoder": "libmp3lame",
+        "bitrateKbps": 256,
+        "packetCount": 8000,
+        "rawFrames": 9216000,
+        "ffmpegSkipFrames": 1105,
+        "ffmpegDiscardFrames": 815,
+        "decodedFrames": 9214080
+      }
+    },
+    "mail_train": {
+      "file": "mail_train.mp3",
+      "label": "Mail Train",
+      "sourceId": "166f0b1c-34d4-419c-8583-a86c97051bff",
+      "frames": 9041280,
+      "introFrames": 1577424,
+      "loopFrames": 6230174,
+      "endingFrames": 1233682,
+      "codec": {
+        "encoder": "libmp3lame",
+        "bitrateKbps": 256,
+        "packetCount": 7850,
+        "rawFrames": 9043200,
+        "ffmpegSkipFrames": 1105,
+        "ffmpegDiscardFrames": 815,
+        "decodedFrames": 9041280
+      }
+    },
+    "city_hall": {
+      "file": "city_hall.mp3",
+      "label": "City Hall",
+      "sourceId": "c7af00d8-e79a-4b88-a515-78e634ad22fd",
+      "frames": 10026240,
+      "introFrames": 1573201,
+      "loopFrames": 6282689,
+      "endingFrames": 2170350,
+      "codec": {
+        "encoder": "libmp3lame",
+        "bitrateKbps": 256,
+        "packetCount": 8705,
+        "rawFrames": 10028160,
+        "ffmpegSkipFrames": 1105,
+        "ffmpegDiscardFrames": 815,
+        "decodedFrames": 10026240
+      }
+    },
+    "parcel_room": {
+      "file": "parcel_room.mp3",
+      "label": "Parcel Room",
+      "sourceId": "efac587b-89dc-4d39-9e72-ab98f1ebcc44",
+      "frames": 9734400,
+      "introFrames": 1578841,
+      "loopFrames": 6253685,
+      "endingFrames": 1901874,
+      "codec": {
+        "encoder": "libmp3lame",
+        "bitrateKbps": 256,
+        "packetCount": 8451,
+        "rawFrames": 9735552,
+        "ffmpegSkipFrames": 1105,
+        "ffmpegDiscardFrames": 47,
+        "decodedFrames": 9734400
+      }
+    },
+    "christmas_post": {
+      "file": "christmas_post.mp3",
+      "label": "Christmas Post",
+      "sourceId": "aaab2c85-9a80-49b2-a067-901142210427",
+      "frames": 10056960,
+      "introFrames": 1586760,
+      "loopFrames": 6316371,
+      "endingFrames": 2153829,
+      "codec": {
+        "encoder": "libmp3lame",
+        "bitrateKbps": 256,
+        "packetCount": 8731,
+        "rawFrames": 10058112,
+        "ffmpegSkipFrames": 1105,
+        "ffmpegDiscardFrames": 47,
+        "decodedFrames": 10056960
+      }
+    },
+    "box_room": {
+      "file": "box_room.mp3",
+      "label": "Box Room / Daily",
+      "sourceId": "a898c9fe-d099-4900-b80f-a9cbe63a90f2",
+      "frames": 8734080,
+      "introFrames": 1584101,
+      "loopFrames": 6289295,
+      "endingFrames": 860684,
+      "codec": {
+        "encoder": "libmp3lame",
+        "bitrateKbps": 256,
+        "packetCount": 7583,
+        "rawFrames": 8735616,
+        "ffmpegSkipFrames": 1105,
+        "ffmpegDiscardFrames": 431,
+        "decodedFrames": 8734080
+      }
+    },
+    "night_shift": {
+      "file": "night_shift.mp3",
+      "label": "Night Shift",
+      "sourceId": "2fc30ce7-cdff-4607-9d8b-76d37d9186de",
+      "frames": 10022400,
+      "introFrames": 1589981,
+      "loopFrames": 6392012,
+      "endingFrames": 2040407,
+      "codec": {
+        "encoder": "libmp3lame",
+        "bitrateKbps": 256,
+        "packetCount": 8701,
+        "rawFrames": 10023552,
+        "ffmpegSkipFrames": 1105,
+        "ffmpegDiscardFrames": 47,
+        "decodedFrames": 10022400
+      }
+    }
+  }
+}

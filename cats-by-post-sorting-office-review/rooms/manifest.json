@@ -1,0 +1,89 @@
+{
+  "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
+  "canonicalBuild": "dedb812743",
+  "rooms": {
+    "office": {
+      "build": "sorting-office-paper-62b93e7aaf7a",
+      "source": "src/fidelity/office-paper",
+      "sourceSha256": "baff8aacf9aa16027002d2f4818702744615f676008c5b4ade14aee7c45cef77",
+      "inputs": {
+        "README.md": "dfefbe066832ed0e33b6d9b003dc9fce288a1f0fbfb2c307b31cb4515aaf5804",
+        "acting.js": "ac926761f8281bbc97244a0641bbb2891f8ddd124a81b8452034574c8e584981",
+        "adapter.js": "8256317dc75e165f597969b0d945ad8f1e1906764c24a7e6b5503dded02fb881",
+        "architecture.js": "1de934afb307d4a3cced89600fdb3f3a317f372f4e02e894275a53519b6e01c7",
+        "assets/acting.json": "00f82b101b6c915c4e800d89ec07475e0554573ae4046b24858cfe268467ac03",
+        "assets/acting.webp": "f8df5d9eae05ef115ee20f0ce6c348b861a8f4b061a0e678c3f7b540f2268e5b",
+        "assets/cats.webp": "0ddc08248fb1d0db0097f53da762c59abb6286ee13f268f45917937bbb9c5c0b",
+        "assets/decor.json": "92161eafed04d5f7d0a2ac96da623d260fe289b22fb4febefc4e8ee0e0e6f178",
+        "assets/decor.webp": "a464615f65b66aa0ebe8778c7f1b706bddba166626dfa9cf22ebc94f7b6e0bfb",
+        "assets/fronts.json": "1b5c236427aa057e400e98add513d55136a880b9bd0db15169fa682e46b4c0e2",
+        "assets/fronts.webp": "3156e16738ddf961ad55161dc938077e212a6ae6df2d7d945a81407f8a19d24b",
+        "assets/materials.json": "4e821f864cd9a8911e9edbc8c8d7eee46fefac372ef2ddd957ca337c8c2b1016",
+        "assets/materials.webp": "fd4d2525434a99dd96ab5e0f50d2d60d18b66cc660587bc8c8039d25b8e76e19",
+        "assets/pieces.webp": "f7f21cdab5a8daf6b95f5798669b9d3124fac84d16a0eb7d419ef89246a115de",
+        "assets/rects.json": "e863c3b89f22b7d83cab50af2f5b909a107093e8cd91175036b915d0c72de559",
+        "canal-life.js": "9a68e0d4ffce14a44ae715917ab4dec3284665048060830783fdc974bd57d99a",
+        "exterior.js": "a091a607b00c6ecbd4500f78c2a281c685e66bc5183c7a287d57b52933617030",
+        "office-details.js": "e3e393635f439bdf27c8cbfd56eb897b9284bca5b84bc5573f83f4d134176337",
+        "pieces.js": "e10f8b8308c7d630846843f29516ae4c01eb269f8cbff36530818a8b5af861c7",
+        "postal-life.js": "b0db0c1130ab6c17eea23eb531c255fd9e3d00e287419c96ed39a3a5a3b2edfe",
+        "postal-work-cycle.js": "3ec327111b1d3d7de66ff0613520c44749b6926bbfb4a6b7d909bfee7d95a2f4",
+        "postal-work-layout.js": "fc6d9dbc24d89e7910326017e8e8f5ccc6cfe1db2cccad5990876d9b0620fc2d",
+        "postal-work-rig.js": "bc9e5dfcacad30efe9408f9f8db36ac3211f12d30f05ef009ed52d90e060898e",
+        "projection.js": "8df78b72e37b95f692e14edd60e5b63e53ce70f582d439f72182ea06e260a6da",
+        "renderer.js": "834ee9124ba8c35fa2c5a44cbc2136d6b2cc7307881cc7265846c84201fbd176",
+        "room-life.js": "e54b4bab408542315ec6334e9f40c1b9f060489e6a7867f4dad619d6918e5ec7"
+      },
+      "scope": "15 original Office deliveries; canonical game state and room-manager lifecycle",
+      "bundleSha256": "62b93e7aaf7a7b8485cf9a8320b8bb482c7407543a9f8edbe57e1d7320bde6b5",
+      "bundleBytes": 6085201
+    },
+    "depot": {
+      "build": "depot-contact-3f9fc92684",
+      "frozenPath": "docs/experiments/office-fidelity/depot/bespoke/refinement/interactions/playable.html",
+      "frozenSha256": "6d671e3c1637ff66ebbd4d61177cc7d185cd1da2a0a82c6c533850a80392d5cb",
+      "extensionSha256": "a7162555b6115c50380b4350d66feb6b98587cda5f774fbcb1c90bc90c7d30f9",
+      "bundleSha256": "932be65a2e42e232b07455d4ad66ac4c431793cdb12a48dc4625d0383c02d12d",
+      "bundleBytes": 3337408
+    },
+    "train": {
+      "build": "train-craft-f20d6f0108",
+      "frozenPath": "docs/experiments/office-fidelity/train/craft/playable.html",
+      "frozenSha256": "6b3b21fa3c1153f6980332f29fd83f272c08102f9a4621a02d3d2fa4625e6dd2",
+      "extensionSha256": "02f85fac85ec34f5bc388629c6768ce9472d419188fae15522c582e0cbf4a52c",
+      "bundleSha256": "86503428820e453c85ba15731cd802242b426acf2ab12fad9cfd17cd19c40f76",
+      "bundleBytes": 2986746
+    },
+    "cityhall": {
+      "build": "cityhall-fidelity-527093ea02",
+      "frozenPath": "docs/experiments/office-fidelity/cityhall/playable.html",
+      "frozenSha256": "3bc6f63cf43905af4f706f2b148902297f38ba8bd0fcaf42297ffb055d684236",
+      "extensionSha256": "d2caa78e5d88502c44596ac1f71fa3c7a197fd1b8947a254442e3d1f9595a80a",
+      "bundleSha256": "571dcff6cc895f170af49cf4909d960bdcc088857fa51ac928165722a6cc373d",
+      "bundleBytes": 2970220
+    },
+    "parcel": {
+      "build": "parcel-fidelity-32d74bd062",
+      "frozenPath": "docs/experiments/office-fidelity/parcel/playable.html",
+      "frozenSha256": "ada08b962671475c240d3ced2243e7a8f51b036290e5e7771ada3ca2cbd5e39c",
+      "extensionSha256": "7f2af02e4a46e1b612c619d76d4b2ebc6164f77dbbcc76b271765c41dd9f2f4a",
+      "bundleSha256": "d40ffba890ec4e387ee193b1d94844b5783b3e6853645a9a797dbb7a008bbc26",
+      "bundleBytes": 6211884
+    },
+    "christmas": {
+      "build": "christmas-polish-6fe82d9bab",
+      "frozenPath": "docs/experiments/office-fidelity/christmas/polish/playable.html",
+      "frozenSha256": "6ec5a758a60193371326278e7242ae84fc09a90af3b1283820cecf7c015582d7",
+      "extensionSha256": "9df7b58139ad72a939d0eaa5018e15c89bebd16447a3f0b226469aa07cc52a94",
+      "bundleSha256": "266fa6ff4e69021ca9e6e69a3772d866ddf8cd53d95a8ad09d7ca4cb715410f3",
+      "bundleBytes": 2605154
+    }
+  },
+  "review": {
+    "kind": "isolated-review",
+    "productionBuild": "web-82389ff7ef0c",
+    "storagePrefix": "catsByPost.review.sortingOffice.",
+    "productionStorageUnchanged": true,
+    "note": "Review-only copied host. Production adapter, saves and live game paths are unchanged."
+  }
+}
