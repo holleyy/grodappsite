@@ -3,14 +3,14 @@
   "canonicalBuild": "dedb812743",
   "rooms": {
     "office": {
-      "build": "sorting-office-paper-93ba3657695a",
+      "build": "sorting-office-paper-c122fb681a7e",
       "source": "src/fidelity/office-paper",
-      "sourceSha256": "d0506eb5186c72d24ac25fd359a0a64b7526622fb405900c6a3e7adaee26c17c",
+      "sourceSha256": "65b793b56fad03b79d072b6998b0ecae5be46fb099ca1d3908b0fa69f7939b2e",
       "inputs": {
         "README.md": "9c8138b3968c83c9feacf6b8d47b9b44e0faff60b7b4923321348b48613b49ab",
         "acting.js": "276b11b61f3c3cece4044a627d1237dd22832b736186d256d9cc2d1524c316aa",
         "adapter.js": "6b11f3e90d4dc2a4ff0fd2c055d8906cdbbc2f57905e24d462f1b549787897fd",
-        "architecture.js": "385c1ec13b38b80fee4d4b53fcecda68ce92960e9ca45364ab4f0cdad79a697c",
+        "architecture.js": "fe01d8dba9ea4cc1dacb4c97614df620eb53609db8717b849412610726207d4b",
         "assets/acting.json": "00f82b101b6c915c4e800d89ec07475e0554573ae4046b24858cfe268467ac03",
         "assets/acting.webp": "f8df5d9eae05ef115ee20f0ce6c348b861a8f4b061a0e678c3f7b540f2268e5b",
         "assets/backdrop.webp": "ddad2ed88fef9c2ef749f4012f187126abed45b39698e8b3fcc930d1be10779b",
@@ -40,13 +40,13 @@
         "postwoman-life.js": "81f49bc527f5689647fd1e19fcd99a97c9cfc65ad6ede1e6d9741685f42de417",
         "projection.js": "8df78b72e37b95f692e14edd60e5b63e53ce70f582d439f72182ea06e260a6da",
         "renderer.js": "f52baf7c3d2e80ef8a3b3990b50474e0e4528698da65a653b2339081d1d58482",
-        "room-life.js": "5cfe355f92d1ce7df1e0bb30052491b213e2108e85b450c629a3198fbdac47c9",
+        "room-life.js": "5c7946616248fb4278e61475ca50c8c24c3c72133c32e69b34cfbd8a3de03b6b",
         "scenery-cache.js": "a8ec57860dbb1a21c30d82b6431e475c3952f14ccc2af539d74eb85520c8bccb",
         "ticket-rack.js": "5ca015aa1dde7fca6c81ccc34b32c30774f043c8a4d9580e5a9ca4689304bb09"
       },
       "scope": "15 original Office deliveries; canonical game state and room-manager lifecycle",
-      "bundleSha256": "93ba3657695ae290553e7436c65e80a9954b697806daeef81d7fb4c7f121fe7a",
-      "bundleBytes": 7335010
+      "bundleSha256": "c122fb681a7eefb72a6ea5382a9be1727e8e2bc0fb106f92fcf8b7cafad16c9f",
+      "bundleBytes": 7339726
     },
     "depot": {
       "build": "depot-contact-3f9fc92684",
@@ -91,7 +91,7 @@
   },
   "review": {
     "kind": "isolated-review",
-    "productionBuild": "web-68c3ed993bab",
+    "productionBuild": "web-c5662b5f4a0d",
     "storagePrefix": "catsByPost.review.sortingOffice.",
     "productionStorageUnchanged": true,
     "note": "Review-only copied host. Production adapter, saves and live game paths are unchanged."

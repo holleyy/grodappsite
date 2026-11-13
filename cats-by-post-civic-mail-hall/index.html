@@ -1699,42 +1699,51 @@ function beat(start,end,kind,x,y,z,toX=x,toY=y,toZ=z,back=false,mirror=false){re
 // The ginger only explores the clear bay between the two nearby stanchions.
 // The blue cat rounds the cabinet end and uses a real parcel as its lookout.
 // No cat duplicates its home picture while away, and neither route enters play.
+const PERCH=Object.freeze({x0:6.79,x1:7.19,y0:4.65,y1:5.15,z:22});
+// Anatomical registration, not a fixed crop width: stretched tails and legs
+// must not make the same head shrink. Front-eye spans are measured from the
+// unchanged masters; the low poses share the same approximate head diameter.
+const WIDTHS=Object.freeze({
+ ginger:Object.freeze({'nap':42,'wake':41,'puzzled':41.8,'crouch-front':43,'crouch-rear':42,'push-front':46,'push-rear':42,'walk-front-0':48,'walk-front-1':49,'walk-rear-0':43,'walk-rear-1':44}),
+ blue:Object.freeze({'nap':42,'wake':41,'puzzled':40.8,'crouch-front':42,'crouch-rear':42,'push-front':45.5,'push-rear':42,'walk-front-0':46.5,'walk-front-1':46,'walk-rear-0':43,'walk-rear-1':44})
+});
+const FRAME_WIDTHS={};for(const coat of ['ginger','blue'])for(const pose in WIDTHS[coat])FRAME_WIDTHS[ART[coat][pose]]=WIDTHS[coat][pose];Object.freeze(FRAME_WIDTHS);
 const OUTINGS=Object.freeze({
  'cubby-0-1':Object.freeze({period:76,beats:Object.freeze([
   beat(8,10,'wake',1.317,-.61,27),beat(10,11,'crouch',1.317,-.61,27),
-  beat(11,12.2,'hop',1.317,-.61,27,1.317,-.24,0),
-  beat(12.2,14.6,'walk',1.317,-.24,0,.95,-.24,0,true),
-  beat(14.6,20,'watch',.95,-.24,0),
-  beat(20,22.8,'walk',.95,-.24,0,1.51,-.24,0,false,true),
-  beat(22.8,27,'watch',1.51,-.24,0),
-  beat(27,28.8,'walk',1.51,-.24,0,1.317,-.24,0,true),
-  beat(28.8,30,'crouch',1.317,-.24,0,1.317,-.24,0,true,true),
-  beat(30,31.3,'hop',1.317,-.24,0,1.317,-.61,27,true,true),
+  beat(11,12.2,'hop',1.317,-.61,27,1.317,-.40,0),
+  beat(12.2,14.6,'walk',1.317,-.40,0,.95,-.40,0,true),
+  beat(14.6,20,'watch',.95,-.40,0),
+  beat(20,22.8,'walk',.95,-.40,0,1.51,-.40,0,false,true),
+  beat(22.8,27,'watch',1.51,-.40,0),
+  beat(27,28.8,'walk',1.51,-.40,0,1.317,-.40,0,true),
+  beat(28.8,30,'crouch',1.317,-.40,0,1.317,-.40,0,true,true),
+  beat(30,31.3,'hop',1.317,-.40,0,1.317,-.61,27,true,true),
   beat(31.3,33.5,'settle',1.317,-.61,27)
  ])}),
  'cubby-0-9':Object.freeze({period:92,beats:Object.freeze([
-  beat(26,27,'wake',6.341,-.61,27),beat(27,28,'crouch',6.341,-.61,27),beat(28,29.4,'hop',6.341,-.61,27,6.55,-.10,0),
-  beat(29.4,31,'walk',6.55,-.10,0,6.72,.35,0),
-  beat(31,37,'walk',6.72,.35,0,7,2.1,0),
-  beat(37,38.5,'crouch',7,2.1,0),
-  beat(38.5,39.8,'hop',7,2.1,0,7,2.65,22),
-  beat(39.8,42.5,'watch',7,2.65,22),beat(42.5,43.4,'settle',7,2.65,22),
-  beat(43.4,46,'nap',7,2.65,22),beat(46,47.2,'wake',7,2.65,22),beat(47.2,48,'crouch',7,2.65,22,7,2.65,22,true,true),
-  beat(48,49.3,'hop',7,2.65,22,7,2.1,0,true,true),
-  beat(49.3,55.3,'walk',7,2.1,0,6.72,.35,0,true,true),
-  beat(55.3,56.9,'walk',6.72,.35,0,6.55,-.10,0,true,true),
-  beat(56.9,58.3,'hop',6.55,-.10,0,6.341,-.61,27,true,true),
+  beat(26,27,'wake',6.341,-.61,27),beat(27,28,'crouch',6.341,-.61,27),beat(28,29.4,'hop',6.341,-.61,27,6.55,-.24,0),
+  beat(29.4,31,'walk',6.55,-.24,0,7.04,.65,0),
+  beat(31,37,'walk',7.04,.65,0,7.04,4.35,0),
+  beat(37,38.5,'crouch',7.04,4.35,0),
+  beat(38.5,39.8,'hop',7.04,4.35,0,7.04,4.9,22),
+  beat(39.8,42.5,'watch',7.04,4.9,22),beat(42.5,43.4,'settle',7.04,4.9,22),
+  beat(43.4,46,'nap',7.04,4.9,22),beat(46,47.2,'wake',7.04,4.9,22),beat(47.2,48,'crouch',7.04,4.9,22,7.04,4.9,22,true,true),
+  beat(48,49.3,'hop',7.04,4.9,22,7.04,4.35,0,true,true),
+  beat(49.3,55.3,'walk',7.04,4.35,0,7.04,.65,0,true,true),
+  beat(55.3,56.9,'walk',7.04,.65,0,6.55,-.24,0,true,true),
+  beat(56.9,58.3,'hop',6.55,-.24,0,6.341,-.61,27,true,true),
   beat(58.3,60.3,'settle',6.341,-.61,27)
  ])})
 });
 const actors=[],kinds=['nap','crouch-front','puzzled','crouch-front','nap'],cw=6.28/10;
 function actor(id,group,coat,kind,x,y,z,width,row=-1){
- const index=actors.length,alternate=kind==='crouch-front'?'crouch-rear':'wake',foot=P.project(x,y,z),outing=OUTINGS[id]||null;
+ const index=actors.length,outing=OUTINGS[id]||null,alternate=outing?'nap':kind==='crouch-front'?'crouch-rear':'wake',foot=P.project(x,y,z);
  actors.push(Object.freeze({id,group,coat,row,x,y,z,width,pose:ART[coat][kind],alternate:ART[coat][alternate],alternateWidth:group===0&&alternate==='wake'?25:width,
   px:foot.x,py:foot.y,period:outing?outing.period:32+(index*7)%13,phase:outing?0:index*1.79,breathPhase:index*.91,outing}));
 }
 for(let row=0;row<3;row++)for(let col=0;col<10;col++){
- const kind=kinds[(row*3+col)%5];actor('cubby-'+row+'-'+col,0,col<5?'ginger':'blue',kind,.41+col*cw+(cw-.07)*.5,-.61,27+row*34,kind==='nap'?29:kind==='puzzled'?24:28,row);
+ const roaming=row===0&&(col===1||col===9),kind=roaming?'nap':kinds[(row*3+col)%5];actor('cubby-'+row+'-'+col,0,col<5?'ginger':'blue',kind,.41+col*cw+(cw-.07)*.5,-.61,27+row*34,roaming?42:kind==='nap'?29:kind==='puzzled'?24:28,row);
 }
 actor('desk',1,'ginger','puzzled',L.deskCat.x,L.deskCat.y,L.deskCat.z,L.deskCat.width);
 actor('gallery',1,'ginger','nap',6.4,-.5,182,50);
@@ -1745,23 +1754,42 @@ function sampleOuting(a,t,out){
  if(!b)return;
  const p=clamp((t-b.start)/(b.end-b.start)),travel=b.kind==='hop'?p:b.kind==='walk'?p:smooth(p);
  out.x=b.x+(b.toX-b.x)*travel;out.y=b.y+(b.toY-b.y)*travel;out.z=b.z+(b.toZ-b.z)*travel;
- out.activity=b.kind;out.mirror=out.alternateMirror=b.mirror;out.mix=0;out.alternateWidth=a.width;out.width=a.width;
+ out.activity=b.kind;out.mirror=out.alternateMirror=b.mirror;out.mix=0;
+ // An adult emerges through the opening head first. Complementary fragments
+ // share one image: the rear stays behind the real aperture/lip while the
+ // front passes in front. Changing the body's layer never reveals half a cat.
+ const px=760+(out.x-out.y)*P.HW,plane=(out.y+.55)*P.HW;
+ if(b.z===27&&b.kind!=='hop'){
+  out.registration=1;out.portal=true;
+  out.frontCut=px+(b.kind==='wake'?-80+(plane+80)*smooth(p):b.kind==='settle'?plane+(-80-plane)*smooth(p):plane);
+ }
+ if(b.kind==='hop'&&(b.z===27||b.toZ===27)){
+  const crossing=(-.55-b.y)/(b.toY-b.y),leaving=b.z===27,clearance=leaving?Math.min(.7,crossing+.32):Math.max(.3,crossing-.32);
+  const support=leaving?1-smooth(clamp((p-crossing)/(clearance-crossing))):smooth(clamp((p-clearance)/(crossing-clearance)));
+  out.registration=support;out.portal=true;
+  const reveal=leaving?smooth(clamp((p-crossing)/(clearance+.15-crossing))):1-smooth(clamp((p-clearance)/(crossing-clearance)));
+  out.frontCut=px+plane*(1-reveal)+80*reveal;
+  // Keep the actual hind contact on the shelf while it withdraws/enters.
+  // Only the clear part of the hop descends to, or rises from, the floor.
+  const flight=leaving?clamp((p-clearance)/(1-clearance)):clamp(p/clearance);
+  out.z=leaving?27*(1-flight):27*flight;out.air=4*flight*(1-flight)*6;out.z+=out.air;
+ }out.alternateWidth=a.width;out.width=a.width;
  const face=b.back?'crouch-rear':'crouch-front';
  out.pose=art[face];out.alternate=out.pose;
  if(b.kind==='hop'){
-  out.air=4*p*(1-p)*17;out.z+=out.air;
-  const pushing=p>.17&&p<.67;out.pose=art[pushing?(b.back?'push-rear':'push-front'):face];out.alternate=out.pose;
+  const arc=b.z===27||b.toZ===27?6:17;if(arc===17){out.air=4*p*(1-p)*arc;out.z+=out.air;}
+  const pushing=p>.17&&p<(arc===17?.82:.67);out.pose=art[pushing?(b.back?'push-rear':'push-front'):face];out.alternate=out.pose;
   out.anchorX=out.alternateAnchorX=b.back?.63:pushing?.94:.84;out.anchorY=out.alternateAnchorY=b.back?.90:pushing?.75:.88;
   // A shadow belongs to the shelf, the floor, or the parcel's top, never an
   // interpolated plane in mid-air. It softens while its cat is airborne.
-  out.shadowZ=out.y<-.55?27:a.coat==='blue'&&out.y>=2.40?22:0;
+  out.shadowZ=out.y<-.55?27:out.x>=PERCH.x0&&out.x<=PERCH.x1&&out.y>=PERCH.y0&&out.y<=PERCH.y1?PERCH.z:0;
   out.shadowAlpha=.17*(1-.55*Math.sin(p*Math.PI));
  }else{
   out.shadowZ=out.z;
   if(b.kind==='walk')out.pose=art[b.back?((Math.floor((t-b.start)*6)&1)?'walk-rear-1':'walk-rear-0'):((Math.floor((t-b.start)*6)&1)?'walk-front-1':'walk-front-0')];
-  else if(b.kind==='watch')out.pose=art.puzzled;
+  else if(b.kind==='watch'){out.pose=art['crouch-front'];out.anchorX=out.alternateAnchorX=.84;out.anchorY=out.alternateAnchorY=.88;}
   else if(b.kind==='nap')out.pose=art.nap;
-  else if(b.kind==='wake'){out.pose=a.pose;out.alternate=art.wake;out.mix=smooth(clamp((t-b.start)/.12));}
+  else if(b.kind==='wake'){out.pose=a.pose;out.alternate=art['crouch-front'];out.mix=smooth(clamp((t-b.start)/.12));}
   else if(b.kind==='settle'){
    out.pose=previous&&previous.kind==='hop'?art[previous.back?'crouch-rear':'crouch-front']:art['crouch-front'];out.alternate=a.pose;out.mix=smooth(clamp((t-(b.end-.12))/.12));
    if(previous&&previous.kind==='hop'){out.anchorX=previous.back?.63:.84;out.anchorY=previous.back?.90:.88;out.mirror=previous.mirror;}out.alternateMirror=false;
@@ -1783,19 +1811,32 @@ function sampleOuting(a,t,out){
 class RoomLife{
  static layout(){return actors;}
  static outings(){return OUTINGS;}
- static makeState(){return{x:0,y:0,z:0,scaleY:1,mix:0,pose:'',alternate:'',width:0,alternateWidth:0,layer:0,home:true,activity:'rest',mirror:false,alternateMirror:false,anchorX:.5,anchorY:1,alternateAnchorX:.5,alternateAnchorY:1,air:0,shadowZ:0,shadowAlpha:.17};}
+ static widths(){return WIDTHS;}
+ static perch(){return PERCH;}
+ static pictureRoot(s,rect,width,out,alternate=false){
+  const mirror=alternate?s.alternateMirror:s.mirror,u=alternate?s.alternateAnchorX:s.anchorX,v=alternate?s.alternateAnchorY:s.anchorY,h=width*rect[3]/rect[2]*s.scaleY;
+  out.x=760+(s.x-s.y)*P.HW+(mirror?-1:1)*(u-.5)*width*s.registration;
+  out.y=465+(s.x+s.y)*P.HH-s.z+(v-1)*h*s.registration;return out;
+ }
+ static makeState(){return{x:0,y:0,z:0,scaleY:1,mix:0,pose:'',alternate:'',width:0,alternateWidth:0,layer:0,home:true,activity:'rest',mirror:false,alternateMirror:false,registration:0,portal:false,frontCut:0,anchorX:.5,anchorY:1,alternateAnchorX:.5,alternateAnchorY:1,air:0,shadowZ:0,shadowAlpha:.17};}
  static sample(a,time,out){
   const t=Number.isFinite(time)?time:0,phase=((t+a.phase)%a.period+a.period)%a.period;
   out.x=a.x;out.y=a.y;out.z=a.z;out.pose=a.pose;out.alternate=a.alternate;
-  out.width=a.width;out.alternateWidth=a.alternateWidth;out.layer=a.group;out.home=true;out.activity='rest';out.mirror=out.alternateMirror=false;out.anchorX=out.alternateAnchorX=.5;out.anchorY=out.alternateAnchorY=1;out.air=0;out.shadowZ=a.z;out.shadowAlpha=.17;
+  out.width=a.width;out.alternateWidth=a.alternateWidth;out.layer=a.group;out.home=true;out.activity='rest';out.mirror=out.alternateMirror=false;out.registration=0;out.portal=false;out.frontCut=0;out.anchorX=out.alternateAnchorX=.5;out.anchorY=out.alternateAnchorY=1;out.air=0;out.shadowZ=a.z;out.shadowAlpha=.17;
   out.scaleY=1+.022*Math.sin(phase/a.period*Math.PI*16+a.breathPhase);
   out.mix=phase<.28?smooth(phase/.28):phase<2.12?1:phase<2.4?1-smooth((phase-2.12)/.28):0;
-  if(a.outing)sampleOuting(a,phase,out);
+  if(a.outing){
+   sampleOuting(a,phase,out);out.width=FRAME_WIDTHS[out.pose];out.alternateWidth=FRAME_WIDTHS[out.alternate];
+   if(out.pose===out.alternate&&out.anchorX===out.alternateAnchorX&&out.anchorY===out.alternateAnchorY&&out.mirror===out.alternateMirror)out.mix=0;
+  }
   return out;
  }
- constructor(renderer){this.r=renderer;this.states=actors.map(()=>RoomLife.makeState());}
+ constructor(renderer){
+  this.r=renderer;this.states=actors.map(()=>RoomLife.makeState());this.picturePoint={x:0,y:0};
+  this.homeClips=actors.map(a=>{if(!a.outing)return null;const x=a.x-(cw-.07)*.5,y=-.538,z=24+a.row*34;return Object.freeze([P.project(x,y,z),P.project(x+cw-.07,y,z),P.project(x+cw-.07,y,z+30),P.project(x,y,z+30)]);});
+ }
  picture(rect,s,width,alpha,alternate=false){
-  if(alpha<=0)return;const c=this.r.ctx,h=width*rect[3]/rect[2]*s.scaleY,px=760+(s.x-s.y)*P.HW,py=465+(s.x+s.y)*P.HH-s.z;
+  if(alpha<=0)return;const c=this.r.ctx,h=width*rect[3]/rect[2]*s.scaleY,point=RoomLife.pictureRoot(s,rect,width,this.picturePoint,alternate),px=point.x,py=point.y;
   const mirror=alternate?s.alternateMirror:s.mirror,u=alternate?s.alternateAnchorX:s.anchorX,v=alternate?s.alternateAnchorY:s.anchorY;
   c.save();c.globalAlpha=alpha;c.translate(px,py);if(mirror)c.scale(-1,1);
   c.drawImage(this.r.images.acting,rect[0],rect[1],rect[2],rect[3],-u*width,-v*h,width,h);c.restore();
@@ -1803,10 +1844,27 @@ class RoomLife{
  draw(group,time){
   const c=this.r.ctx,assets=this.r.assets.acting.sprites,t=this.r.motion===false?0:time;c.save();c.fillStyle='#40311f';
   for(let i=0;i<actors.length;i++){
-   const a=actors[i],s=RoomLife.sample(a,t,this.states[i]);if(s.layer!==group)continue;
-   const px=760+(s.x-s.y)*P.HW,py=465+(s.x+s.y)*P.HH-s.shadowZ;
-   c.globalAlpha=s.shadowAlpha;c.beginPath();c.ellipse(px,py,s.width*.34,s.width*.08,0,0,Math.PI*2);c.fill();
+   const a=actors[i],s=RoomLife.sample(a,t,this.states[i]);if(s.portal?group!==0&&group!==2:s.layer!==group)continue;
+   const px=760+(s.x-s.y)*P.HW,py=465+(s.x+s.y)*P.HH-s.shadowZ,clip=group===0?this.homeClips[i]:null,clipped=!!clip||s.portal;
+   if(s.portal){
+    // Contact and cast shadows have their own receiving planes. The body
+    // split must never cut a floor ellipse in half or switch its height.
+    c.save();
+    if(group===0){
+     c.beginPath();c.moveTo(clip[0].x,clip[0].y);for(let j=1;j<4;j++)c.lineTo(clip[j].x,clip[j].y);c.closePath();c.clip();
+     const foot=RoomLife.pictureRoot(s,assets[s.pose].rect,s.width,this.picturePoint);
+     c.globalAlpha=.17*s.registration;c.beginPath();c.ellipse(foot.x,foot.y,s.width*.34,s.width*.08,0,0,Math.PI*2);c.fill();
+    }else{
+     c.globalAlpha=s.shadowAlpha*smooth(clamp((s.y+.55)/.12));c.beginPath();c.ellipse(px,465+(s.x+s.y)*P.HH,s.width*.34,s.width*.08,0,0,Math.PI*2);c.fill();
+    }
+    c.restore();
+   }
+   if(clipped)c.save();
+   if(s.portal){c.beginPath();if(group===2)c.rect(-3000,-3000,s.frontCut+3000,6000);else c.rect(s.frontCut,-3000,6000,6000);c.clip();}
+   if(clip){c.beginPath();c.moveTo(clip[0].x,clip[0].y);for(let j=1;j<4;j++)c.lineTo(clip[j].x,clip[j].y);c.closePath();c.clip();}
+   if(!s.portal){c.globalAlpha=s.shadowAlpha;c.beginPath();c.ellipse(px,py,s.width*.34,s.width*.08,0,0,Math.PI*2);c.fill();}
    this.picture(assets[s.pose].rect,s,s.width,1-s.mix);this.picture(assets[s.alternate].rect,s,s.alternateWidth,s.mix,true);
+   if(clipped)c.restore();
   }
   c.restore();
  }
@@ -3284,7 +3342,7 @@ class Architecture{
   });
   p.plant(6.94,-1.25,0,.95);
   // One broad parcel forms a real perch; the cabinet exit stays clear.
-  p.parcel(6.81,2.40,0,.38,.50,22);
+  p.parcel(6.79,4.65,0,.40,.50,22);
  }
 }
 Architecture.Painter=Painter;return Architecture;

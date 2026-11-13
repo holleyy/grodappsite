@@ -1,0 +1,76 @@
+{
+  "build": "web-c5662b5f4a0d",
+  "focusedTests": 153,
+  "host": {
+    "wins": 45,
+    "cellPicks": 894,
+    "viewports": [
+      "desktop",
+      "phone",
+      "landscape"
+    ],
+    "errors": []
+  },
+  "study": {
+    "results": [
+      {
+        "device": "desktop",
+        "picks": 298,
+        "wins": 15
+      },
+      {
+        "device": "phone",
+        "picks": 298,
+        "wins": 15
+      }
+    ],
+    "errors": []
+  },
+  "reviewIsolation": {
+    "prefix": "http://127.0.0.1:8897/work/office-paper/cat-scale/review-site/",
+    "requestCount": 51,
+    "forbidden": [],
+    "errors": [],
+    "liveKeysPreserved": [
+      "catsByPost.progress",
+      "catsByPost.nightShiftBest",
+      "catsByPost.web.session.v1",
+      "catsByPost.web.preferences.v1"
+    ],
+    "liveKeyAccess": [],
+    "proof": {
+      "build": "web-c5662b5f4a0d",
+      "levels": 100,
+      "active": true,
+      "motion": false,
+      "reviewWin": true,
+      "reviewSession": true,
+      "reviewPreferences": true
+    }
+  },
+  "studySha256": "50f3785c725e49ef8800d5324ce1c34337c0d01b25ea17dbae5df03d956f8239",
+  "reviewEngineSha256": "5d6abe877feddf5b06634cc75e82fc45e72949f024755e9ba519f18088afea13",
+  "reviewOfficeSha256": "c122fb681a7eefb72a6ea5382a9be1727e8e2bc0fb106f92fcf8b7cafad16c9f",
+  "visualReview": "Independent review of both exits and returns confirms consistent body size, continuous cubby visibility, whole fading floor shadows, supported parcel contact, board clearance and column occlusion. No actionable remaining finding.",
+  "preserved": "Source artwork pixels, canonical game, authored levels, rules, other room factories and native files. Existing 76/92-second routines keep their beat timing.",
+  "scope": "Exact-package Chromium checks at desktop/phone/landscape CSS viewports; not a new physical Safari qualification. Full solver-heavy suite was not rerun for this ambient correction.",
+  "motionCapture": {
+    "frames": 2132,
+    "seconds": 38.085,
+    "note": "Actual Canvas recording with capture overhead; not a frame-pacing benchmark."
+  },
+  "gallery": [
+    {
+      "width": 393,
+      "scroll": 393,
+      "images": 13,
+      "seconds": 37.85
+    },
+    {
+      "width": 1200,
+      "scroll": 1200,
+      "images": 13,
+      "seconds": 37.85
+    }
+  ]
+}
