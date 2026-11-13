@@ -1106,6 +1106,9 @@ function foundation(){
  for(const y of [.9,9.6]){const dir=y<2?1:-1,a=y+dir*.29,b=y+dir*1.55;extrudeX('side-brace',20.20,.20,[[a,-1.90],[a,-1.65],[b-dir*.22,beamBottom],[b,beamBottom]],'#c49556');braces.push({contact:[[20.30,a,-1.775],[20.30,b-dir*.11,beamBottom]]});}
 }
 function entrance(){
+ // Backfill meets the deck underside and closes the full first riser.
+ // Its flush upper edge avoids an air slit above the first tread.
+ box('stair-backfill',16.8,10.1,groundZ,2.8,.10,-.34-groundZ,'#e8cfac',0);
  for(let i=0;i<5;i++){
   const t={x:16.8,y:10.2+i*stairs.run,z:groundZ,w:2.8,d:stairs.run,h:-stairs.rise*(i+1)-groundZ};stairs.steps.push(t);
   box('stair-masonry-'+i,t.x,t.y,t.z,t.w,t.d,t.h,'#e8cfac',.025);
