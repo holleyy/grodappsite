@@ -1,6 +1,6 @@
-# Sorting Office · warm paper and canal
+# Sorting Office · canal neighbourhood
 
-Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=warm-paper&view=hall
+Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=neighbourhood&view=hall
 
 This upgrades the **Sorting Office**, using the selected Civic Mail Hall architecture. It is not the City Hall chapter. The warmer office keeps its canal, terracotta walls, teal columns and thirty occupied sorting cubbies, with a staff bench, folded throw, ledger, mug and task lamp.
 
@@ -24,9 +24,9 @@ Canal currents follow the banks, broken reflections align with real town windows
 
 ## Offline and source
 
-Unzip `sorting-office-finish.zip` and open **Sorting Office.html**. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
+Unzip `sorting-office-neighbourhood.zip` and open **Sorting Office.html**. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
 
-Extract `sorting-office-finish-source.zip` into an empty folder and run:
+Extract `sorting-office-neighbourhood-source.zip` into an empty folder and run:
 
 ```sh
 python3 studies/civic-mail-hall/foundation/build.py
@@ -38,3 +38,11 @@ The `vendor/` snapshot pins the Office rules, traces, levels and production orac
 Static architecture and coloured paper stocks bake once. Live work uses a deterministic pose sampler and reusable geometry buffers. Switching levels/views does not rebake the room. See `verification.md` and `docs/rooms/progress/sorting-office-finish.md` for evidence and limitations.
 
 Earlier named archives retain their checkpoints. This self-contained study leaves canonical saves, native code, other rooms and Lantern Quay unchanged. A separate Office presentation adapter is prepared against the current game for review; it is not merged or deployed over the live main game.
+
+## Residential canal update
+
+The approved neighbourhood now surrounds the Office: a wider canal and lower mooring, cottage terrace with paper window fronts, a garden gate/bicycle/postbox, a continuous supported quay and stairs to the existing floor. Warm paper sky and distant rooftops supply the setting. Explore framing keeps the complete Office prominent; nearby scenery continues beyond the view.
+
+Cats now travel in ordinary kraft cardboard boxes through every direction, takeoff and folding state. Their boxes keep the same geometry and animation timing. The last two folding states omit the paper ticket once the side wall becomes too short.
+
+See `docs/rooms/progress/sorting-office-neighbourhood.md` and its review for this stage's evidence. The latest source archive contains both new artwork assets and all rebuild inputs. Earlier finish archives remain available as checkpoints.
