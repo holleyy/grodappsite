@@ -3,14 +3,14 @@
   "canonicalBuild": "dedb812743",
   "rooms": {
     "office": {
-      "build": "sorting-office-paper-e70440fdb68f",
+      "build": "sorting-office-paper-31929e0aee47",
       "source": "src/fidelity/office-paper",
-      "sourceSha256": "47dabb4149f9b6c99d40f9ebdf2f1d1b41fe2402d9acb2b933c85622ce7e5667",
+      "sourceSha256": "ac4650d211f2a7b74f55d4b7ccc84881fc53b384e20c2dfbc0f6e7a8703c25b5",
       "inputs": {
         "README.md": "dfefbe066832ed0e33b6d9b003dc9fce288a1f0fbfb2c307b31cb4515aaf5804",
         "acting.js": "ac926761f8281bbc97244a0641bbb2891f8ddd124a81b8452034574c8e584981",
-        "adapter.js": "78d51705a09175e55f91c811f66b7232d2a56fae6e15d8a9a62373ee9aced74c",
-        "architecture.js": "141a8af112910349568dac9e3b90a906ac861ee9963f4fbf36bafd43f0e68c5c",
+        "adapter.js": "654f00cff7973605f5eae0769a5fcb74c0adeee1ff5699e84b156358892c8162",
+        "architecture.js": "73566713b574514f2f5dace7fb297c05c33655d6e7103c72220ed4532391aed0",
         "assets/acting.json": "00f82b101b6c915c4e800d89ec07475e0554573ae4046b24858cfe268467ac03",
         "assets/acting.webp": "f8df5d9eae05ef115ee20f0ce6c348b861a8f4b061a0e678c3f7b540f2268e5b",
         "assets/backdrop.webp": "ddad2ed88fef9c2ef749f4012f187126abed45b39698e8b3fcc930d1be10779b",
@@ -25,9 +25,9 @@
         "assets/neighbourhood-provenance.json": "278a45b6bad0139e8f85e0dd40c6a65207860d95d108c0f312e6843e0bdf6923",
         "assets/pieces.webp": "f7f21cdab5a8daf6b95f5798669b9d3124fac84d16a0eb7d419ef89246a115de",
         "assets/rects.json": "e863c3b89f22b7d83cab50af2f5b909a107093e8cd91175036b915d0c72de559",
-        "backdrop.js": "bdfbac89bd6a2ad1064da2124afd12b58285534ebad76c9e84306f12eb6fa89b",
-        "canal-life.js": "9a6b885da537bccef4edd3480467dd2d6f9ce7fb2ae5d93bb5b13ebac3a4ea13",
-        "exterior.js": "192c0bd4277086f5fde805efb9580a01c988e9617e325dec543441409f37dbb1",
+        "backdrop.js": "44dc50675a087451e6545d2ce960bd125d8861037bf00b9992a1bfd6bd62ebea",
+        "canal-life.js": "0242cb5b70770455a82bbb27e90b1153a8faff2a8f7d177e9ee8a9d9bb80b5c8",
+        "exterior.js": "ad31c98f1a0df5f78be2ef54e5054c152bef554fa6b920461e554d980fc1c0ae",
         "office-details.js": "e3e393635f439bdf27c8cbfd56eb897b9284bca5b84bc5573f83f4d134176337",
         "pieces.js": "e5ea0d4f14e38a2cb2382960f7c0d2970ebf95d7503aaa3e2370cfc6ddd8802c",
         "postal-life.js": "b0db0c1130ab6c17eea23eb531c255fd9e3d00e287419c96ed39a3a5a3b2edfe",
@@ -35,12 +35,12 @@
         "postal-work-layout.js": "fc6d9dbc24d89e7910326017e8e8f5ccc6cfe1db2cccad5990876d9b0620fc2d",
         "postal-work-rig.js": "bc9e5dfcacad30efe9408f9f8db36ac3211f12d30f05ef009ed52d90e060898e",
         "projection.js": "8df78b72e37b95f692e14edd60e5b63e53ce70f582d439f72182ea06e260a6da",
-        "renderer.js": "2319ca88c77b94105bbe6dbadd8a7b89d3311c36b7244d556630accf67d7f5da",
+        "renderer.js": "0136e56ad55245c8922121f5f9d26a7cdc727333ef7cf749473ea028ccf41fa5",
         "room-life.js": "e54b4bab408542315ec6334e9f40c1b9f060489e6a7867f4dad619d6918e5ec7"
       },
       "scope": "15 original Office deliveries; canonical game state and room-manager lifecycle",
-      "bundleSha256": "e70440fdb68faebbb26aec71b2b54d242eaf08fa0d9f7f4457487252e9d57d26",
-      "bundleBytes": 7134228
+      "bundleSha256": "31929e0aee47ca3c70481f2a8d36a29810f913f9352ebd422bf11c562a430c31",
+      "bundleBytes": 7168575
     },
     "depot": {
       "build": "depot-contact-3f9fc92684",
@@ -85,7 +85,7 @@
   },
   "review": {
     "kind": "isolated-review",
-    "productionBuild": "web-e3d2fee0e8b4",
+    "productionBuild": "web-3250d1ab0253",
     "storagePrefix": "catsByPost.review.sortingOffice.",
     "productionStorageUnchanged": true,
     "note": "Review-only copied host. Production adapter, saves and live game paths are unchanged."

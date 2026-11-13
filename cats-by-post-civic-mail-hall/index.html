@@ -983,25 +983,49 @@ return freeze(layout);
 'use strict';
 const BOUNDS=Object.freeze({left:-800,top:-1100,right:2450,bottom:1600});
 class Backdrop{
- constructor(renderer){this.r=renderer;this.canvas=null;this.bakes=0;this.bounds=BOUNDS;}
+ constructor(renderer){this.r=renderer;this.canvas=null;this.foreground=null;this.bakes=0;this.bounds=BOUNDS;}
  bake(){
   const b=this.bounds,cvs=document.createElement('canvas');cvs.width=2300;cvs.height=1911;
   const c=cvs.getContext('2d'),sx=cvs.width/(b.right-b.left),sy=cvs.height/(b.bottom-b.top);
   c.setTransform(sx,0,0,sy,-b.left*sx,-b.top*sy);
-  c.fillStyle='#c3c3a7';c.fillRect(b.left,b.top,b.right-b.left,b.bottom-b.top);
-  // Keep the image aspect intact. Its rooftops remain distant behind the room;
-  // the garden edge dissolves into the local bank's quiet ground stock.
+  c.fillStyle='#428c85';c.fillRect(b.left,b.top,b.right-b.left,b.bottom-b.top);
+  // The distant gardens retain their colour and depth. Near banks and the
+  // continuous foreground canal cover their base, without a green fog matte.
   c.drawImage(this.r.images.backdrop,-800,-1420,3250,2166.6667);
-  const mist=c.createLinearGradient(0,140,0,600);mist.addColorStop(0,'#c3c3a700');mist.addColorStop(.6,'#c3c3a7b0');mist.addColorStop(1,'#c3c3a7');
-  c.fillStyle=mist;c.fillRect(b.left,140,b.right-b.left,b.bottom-140);
   // Low cream paper clouds frame the roof without moving in reduced motion.
   for(const [x,y,w] of [[120,-94,140],[1510,-65,165]]){
    c.save();c.translate(x,y);c.shadowColor='#8e687632';c.shadowBlur=5;c.shadowOffsetY=4;
    c.beginPath();c.moveTo(-w/2,0);c.quadraticCurveTo(-w*.45,-15,-w*.3,-12);c.bezierCurveTo(-w*.32,-31,-w*.09,-38,0,-23);c.bezierCurveTo(w*.14,-42,w*.3,-26,w*.3,-13);c.quadraticCurveTo(w*.45,-14,w/2,0);c.closePath();c.fillStyle='#f7ddbb';c.fill();c.shadowColor='transparent';c.strokeStyle='#fff0d485';c.lineWidth=1;c.stroke();c.restore();
   }
-  this.canvas=cvs;this.bakes++;
+  this.canvas=cvs;this.bakeForeground();this.bakes++;
  }
- draw(){if(!this.canvas)return;const b=this.bounds;this.r.ctx.drawImage(this.canvas,b.left,b.top,b.right-b.left,b.bottom-b.top);}
+ bakeForeground(){
+  // A nearby cottage roof clips the lower-right frame. Its faces share the
+  // hall projection and never cross the playable board, even at 6 by 4.
+  const b={left:650,top:880,right:1800,bottom:1580},cvs=document.createElement('canvas');cvs.width=1150;cvs.height=700;
+  const c=cvs.getContext('2d');c.translate(-b.left,-b.top);
+  const p=new CivicArchitecture.Painter(c,this.r.images,this.r.assets),x0=10,xm=12.7,x1=15.4,y0=5.6,y1=10.8,eave=-35,ridge=28;
+  p.poly([[x0,y0,eave],[xm,y0,ridge],[xm,y1,ridge],[x0,y1,eave]],'#ce7962','terracotta');
+  p.poly([[xm,y0,ridge],[x1,y0,eave],[x1,y1,eave],[xm,y1,ridge]],'#b46756','terracotta');
+  for(let j=0;j<=7;j++){const y=y0+(y1-y0)*j/7;p.line3([x0,y,eave],[xm,y,ridge],'#f4bc9270',1.8);p.line3([xm,y,ridge],[x1,y,eave],'#df9b7c70',1.8);}
+  for(let i=1;i<6;i++){const t=i/6;p.line3([x0+(xm-x0)*t,y0,eave+(ridge-eave)*t],[x0+(xm-x0)*t,y1,eave+(ridge-eave)*t],'#93554455',1);p.line3([xm+(x1-xm)*t,y0,ridge+(eave-ridge)*t],[xm+(x1-xm)*t,y1,ridge+(eave-ridge)*t],'#834f4355',1);}
+  p.line3([xm,y0,ridge],[xm,y1,ridge],'#edb48d',6);
+  p.box(11.8,7.2,.42,.45,8,82,'brick');p.box(11.72,7.12,.58,.61,83,10,'stone');
+  p.poly([[11.87,7.2,93.1],[12.14,7.2,93.1],[12.14,7.52,93.1],[11.87,7.52,93.1]],'#674c3c','none');
+  this.foreground={canvas:cvs,bounds:b};
+ }
+ draw(){
+  if(!this.canvas)return;const r=this.r,b=this.bounds,c=r.ctx;
+  // Tall room overviews can see beyond the detailed canal cache. Continue
+  // the same quiet water stock instead of revealing a rectangular diorama.
+  c.fillStyle='#428c85';c.fillRect(-r.cam.tx/r.cam.scale,-r.cam.ty/r.cam.scale,r.config.width/r.cam.scale,r.config.height/r.cam.scale);
+  if(-r.cam.ty/r.cam.scale<b.top){c.fillStyle='#f4aba5';c.fillRect(-r.cam.tx/r.cam.scale,-r.cam.ty/r.cam.scale,r.config.width/r.cam.scale,b.top+r.cam.ty/r.cam.scale+1);}
+  c.drawImage(this.canvas,b.left,b.top,b.right-b.left,b.bottom-b.top);
+ }
+ drawForeground(){
+  const r=this.r,c=r.ctx,f=this.foreground,s=r.cam.scale,bottom=(r.config.height-r.cam.ty)/s;
+  if(f)c.drawImage(f.canvas,f.bounds.left,f.bounds.top+Math.max(0,bottom-1110),1150,700);
+ }
 }
 Backdrop.layout=()=>BOUNDS;root.CivicBackdrop=Backdrop;
 if(typeof module==='object'&&module.exports)module.exports=Backdrop;
@@ -1013,7 +1037,8 @@ if(typeof module==='object'&&module.exports)module.exports=Backdrop;
 'use strict';
 const P=root.CivicProjection||(typeof require==='function'?require('./projection.js'):null);
 const LAYOUT=Object.freeze({
- canal:Object.freeze({x0:-7,x1:-3.05,y0:-3.5,y1:9,z:-120}),
+ canal:Object.freeze({x0:-7,x1:-3.05,y0:-3.5,y1:20,z:-120}),
+ frontCanal:Object.freeze({x0:-7,x1:9.4,y0:7.2,y1:20,z:-120}),
  rearCanal:Object.freeze({x0:-7,x1:6.1,y0:-4,y1:-2.2,z:-120}),
  landing:Object.freeze({x0:-4.03,x1:-3,y0:5.3,y1:6.7,z:-91}),
  quay:Object.freeze({x0:-4.03,x1:9.4,y0:-2.8,y1:7.2,z:-91}),
@@ -1021,8 +1046,8 @@ const LAYOUT=Object.freeze({
  hall:Object.freeze({x0:-3,x1:7.2,y0:-2,y1:5.2,z:0})
 });
 const PALETTE={
- water:'#80b6ae',waterDeep:'#609d99',waterDark:'#4c8584',waterLight:'#a9cbc0',
- stone:'#ded3b7',stoneLight:'#f0e5cd',stoneShade:'#b5b49e',stoneDeep:'#939e8e',
+ water:'#528f83',waterDeep:'#39796f',waterDark:'#2b625d',waterLight:'#8eb8a3',
+ stone:'#e3c4a1',stoneLight:'#fae3bb',stoneShade:'#b99a80',stoneDeep:'#867e6c',
  roof:'#99a3a2',roofShade:'#7e9190',roofLight:'#b8bfba',
  timber:'#bda47b',timberLight:'#ddc394',timberShade:'#998369'
 };
@@ -1046,7 +1071,8 @@ class Exterior{
   if(this.bridgeWide)world=world.map(p=>[p[0]<-4.4?p[0]-(Math.min(1,(-4.4-p[0])/1.1))*1.5:p[0],p[1],p[2]]);
   if(this.offsetZ)world=world.map(p=>[p[0],p[1],p[2]+this.offsetZ]);
   const points=world.map(p=>P.project(p[0],p[1],p[2]));
-  this.commands.push({kind:0,points,world,fill,stroke,width,material:this.current.name.includes('water')?'none':'stone'});
+  const translucent=fill&&(/^rgba/.test(fill)||/^#[0-9a-f]{8}$/i.test(fill));
+  this.commands.push({kind:0,points,world,fill,stroke,width,material:this.current.name.includes('water')||translucent?'none':'stone'});
   for(const p of points){grow(this.bounds,p.x,p.y,stroke?width/2:0);grow(this.current.bounds,p.x,p.y,stroke?width/2:0);}
  }
  line(a,b,color,width=1){
@@ -1056,6 +1082,15 @@ class Exterior{
   this.commands.push({kind:1,a:p,b:q,world:[a,b],color,width});
   grow(this.bounds,p.x,p.y,width/2);grow(this.bounds,q.x,q.y,width/2);
   grow(this.current.bounds,p.x,p.y,width/2);grow(this.current.bounds,q.x,q.y,width/2);
+ }
+ glow(x,y,z,radius,aspect,colour){
+  const world=[],points=[],origin=P.project(x,y,z);
+  for(let i=0;i<32;i++){
+   const a=i*Math.PI/16,u=Math.cos(a)*radius,v=Math.sin(a)*radius*aspect;
+   const p=aspect<1?[x+(u/P.HW+v/P.HH)/2,y+(v/P.HH-u/P.HW)/2,z]:[x+u/(P.HW*2),y-u/(P.HW*2),z-v];world.push(p);points.push(P.project(...p));
+  }
+  this.commands.push({kind:3,world,points,origin,radius,aspect,colour});
+  for(const p of points){grow(this.bounds,p.x,p.y);grow(this.current.bounds,p.x,p.y);}
  }
  quad(x0,y0,x1,y1,z,fill,stroke=null,width=1){
   this.path([[x0,y0,z],[x1,y0,z],[x1,y1,z],[x0,y1,z]],fill,stroke,width);
@@ -1095,6 +1130,7 @@ class Exterior{
   this.prop('loading landing',()=>this.landing());
   this.prop('entry stair',()=>this.entryStair());
   this.prop('quayside furniture',()=>this.furniture());
+  this.prop('quayside garden',()=>this.quayGarden());
   for(const y of [-.85,1.05,4.99])this.prop('hall mooring '+y,()=>this.bollard(-3.91,y,-91));
   for(const y of [-1.9,.55,3.05,5.25])this.prop('towpath mooring '+y,()=>this.bollard(-7.12,y,-91,true));
   this.prop('towpath tree',()=>this.tree(-7.38,7.2,-91,60,.26,false));
@@ -1105,17 +1141,17 @@ class Exterior{
  }
  water(){
   const z=-120;
-  // The cut edge makes the water a shallow paper tray, below both banks.
-  this.path([[-7,9,z],[-3.05,9,z],[-3.05,9,z-7],[-7,9,z-7]],'#689794');
-  this.path([[6.1,-4,z],[6.1,-2.2,z],[6.1,-2.2,z-7],[6.1,-4,z-7]],'#6c9b95');
-  this.path([[-7,-4,z],[6.1,-4,z],[6.1,-2.2,z],[-3.05,-2.2,z],[-3.05,9,z],[-7,9,z]],PALETTE.water);
-  this.quad(-7,-3.5,-6.69,9,z,'#70aaa5');
-  this.quad(-3.36,-2.2,-3.05,9,z,'#6ca39e');
-  this.quad(-6.68,-3.5,-6.33,9,z,'#86bbb2');
-  this.quad(-7,-4,6.1,-3.72,z,'#74aba4');
-  this.quad(-3.05,-2.48,6.1,-2.2,z,'#73a69f');
+  // The canal continues beyond the foreground framing. Runtime water comes
+  // from CanalLife; these same shore contacts serve the static replay.
+  this.path([[-7,-4,z],[6.1,-4,z],[6.1,-2.2,z],[-3.05,-2.2,z],[-3.05,7.2,z],[9.4,7.2,z],[9.4,20,z],[-7,20,z]],PALETTE.water);
+  this.quad(-7,-3.5,-6.69,20,z,'#3c7d73');
+  this.quad(-4.32,-2.2,-4.03,7.2,z,'#326f66');
+  this.quad(-6.68,-3.5,-6.33,20,z,'#62998a');
+  this.quad(-7,-4,6.1,-3.72,z,'#3d7c71');
+  this.quad(-3.05,-2.48,6.1,-2.2,z,'#3c7b6f');
+  this.quad(-4.03,7.2,9.4,7.42,z,'#2f695f');
   // Broken paper strips keep the reflections still and less busy than tiles.
-  for(let i=0;i<35;i++){
+  for(let i=0;i<70;i++){
    const x=-6.62+(i*11%17)*.101,y=-3.22+i*.245;
    const length=.14+(i*7%9)*.032;
    this.quad(x,y,Math.min(-3.43,x+length),y+.034,z+.1,i%4===0?'#d9e0c1':i%3===0?'#b8d3c2':'#95c3b7');
@@ -1241,14 +1277,32 @@ class Exterior{
  }
  frontQuay(){
   const q=LAYOUT.quay;
-  this.box(q.x0,q.y0,q.x1,q.y1,-131,q.z,'#ddc6b2','#bd9d87','#a98e7e');
+  this.box(q.x0,q.y0,q.x1,q.y1,-131,q.z,'#dfb995','#b48a6d','#9c785f');
   // Broad paving is deliberately quieter than the board above it.
   for(let y=-2.8,row=0;y<7.2;y+=.48,row++)for(let x=-4.03+(row%2)*.36;x<9.4;x+=.72){
    const x1=Math.min(x+.7,9.4),y1=Math.min(y+.46,7.2);
-   this.quad(x+.02,y+.02,x1,y1,-90.9,['#e3ccb7','#dbc0aa','#ddc5b0','#e8d2bf'][(row+Math.round(x*10)+100)%4]);
+   this.quad(x+.02,y+.02,x1,y1,-90.9,['#e7c5a3','#dcb594','#e0bd9a','#efd0ac'][(row+Math.round(x*10)+100)%4]);
   }
-  this.quad(-4.03,5.25,-3.74,7.2,-90.8,'#efdbc2');
-  for(let y=5.3;y<7.2;y+=.43)this.line([-4.02,y,-90.6],[-3.74,y,-90.6],'#bda38a',.8);
+  // Deep shelter beneath the raised floor is a projected shadow on paving,
+  // leaving the sunny outer walk and every original footing visible.
+  this.quad(-2.98,-1.94,7.15,4.9,-90.67,'rgba(76,57,45,.24)');
+  for(let i=0;i<7;i++)this.quad(-2.98+i*.04,-1.94+i*.04,7.15-i*.035,5.72-i*.105,-90.65+i*.005,'rgba(76,57,45,.073)');
+  for(const x of[-2.8,.25,3.3,6.8])this.path([[x-.12,4.77,-90.6],[x+.38,4.77,-90.6],[x+1.07,5.58,-90.6],[x+.57,5.58,-90.6]],'#65574620');
+  this.quad(-4.03,5.25,-3.74,7.2,-90.5,'#f4d7ad');
+  this.quad(-4.03,6.94,9.4,7.2,-90.5,'#f4d7ad');
+  for(let y=5.3;y<7.2;y+=.43)this.line([-4.02,y,-90.3],[-3.74,y,-90.3],'#b58b67',.8);
+  // Each foreground coping stone has a visible cream top, mortar joint and
+  // moss-darkened waterline, rather than a single floating brown strip.
+  for(let x=-4.03,row=0;x<9.4;x+=.55,row++){
+   const right=Math.min(x+.55,9.4);
+   this.line([x,6.94,-90.3],[x,7.2,-90.3],'#ba916c',.85);
+   this.line([x,7.2,-91],[x,7.2,-108],'#8c6b54',.85);
+   this.line([Math.min(x+.275,9.4),7.2,-108],[Math.min(x+.275,9.4),7.2,-130],'#8c6b54',.85);
+   this.path([[x+.02,7.201,-109],[right-.02,7.201,-109],[right-.02,7.201,-128],[x+.02,7.201,-128]],row%3===0?'#8c8870':'#a18c6d');
+  }
+  this.line([-4.03,7.205,-108],[9.4,7.205,-108],'#977657',.8);
+  this.line([-4.03,7.21,-120],[9.4,7.21,-120],'#547b66',3.2);
+  this.line([-4.03,7.2,-90.4],[9.4,7.2,-90.4],'#ffe7bd',1.5);
  }
  flowerBox(x,y,z,w=.6){
   this.box(x,y,x+w,y+.23,z,z+12,'#d6b28a','#bd946c','#997653');
@@ -1308,10 +1362,73 @@ class Exterior{
   for(const p of points){grow(this.bounds,p.x,p.y);grow(this.current.bounds,p.x,p.y);}
  }
  lantern(x,y,z,h=62){
-  this.box(x-.065,y-.065,x+.065,y+.065,z,z+4,'#a09b7c','#7e846c','#647765');
-  this.line([x,y,z+3],[x,y,z+h],'#60776b',3);
-  this.box(x-.065,y-.065,x+.065,y+.065,z+h-13,z+h+2,'#e8be70','#efcd86','#cea361');
-  this.path([[x-.12,y-.1,z+h+2],[x+.12,y-.1,z+h+2],[x+.12,y+.1,z+h+2],[x,y,z+h+13]],'#637d71');
+  const hero=h>70,w=hero?.115:.065;
+  // Lantern glow is baked with the lantern, then reflected by CanalLife at
+  // the same world position. Its upright remains visibly planted in stone.
+  if(hero){
+   this.glow(x,y,z+h-6,38,1,'#ffc653');
+   this.glow(x,y,z+.1,42,.42,'#ffca69');
+  }
+  this.box(x-w*1.3,y-w*1.3,x+w*1.3,y+w*1.3,z,z+5,'#b89d70','#8f7e57','#655f45');
+  this.box(x-w*.56,y-w*.56,x+w*.56,y+w*.56,z+5,z+h-16,'#bd9657','#8e7650','#5f6650');
+  this.line([x-w*.45,y+w*.57,z+7],[x-w*.45,y+w*.57,z+h-17],'#e9bc79',1.1);
+  this.box(x-w,y-w,x+w,y+w,z+h-16,z+h+4,'#ffe7a5','#ffd36b','#efad46');
+  this.path([[x-w+.012,y+w+.006,z+h-13],[x+w-.012,y+w+.006,z+h-13],[x+w-.012,y+w+.006,z+h+1],[x-w+.012,y+w+.006,z+h+1]],'#fff9c9');
+  this.path([[x+w+.006,y-w+.012,z+h-13],[x+w+.006,y+w-.012,z+h-13],[x+w+.006,y+w-.012,z+h+1],[x+w+.006,y-w+.012,z+h+1]],'#ffe991');
+  this.line([x-w+.035,y+w+.012,z+h-11],[x-w+.035,y+w+.012,z+h-1],'#fffde7',2.1);
+  for(const xx of[x-w,x+w])for(const yy of[y-w,y+w])this.line([xx,yy,z+h-16],[xx,yy,z+h+4],'#9c713a',hero?2.2:1.3);
+  this.box(x-w*1.2,y-w*1.2,x+w*1.2,y+w*1.2,z+h-18,z+h-15,'#c7a15d','#9e743a','#796039');
+  this.path([[x-w*1.45,y-w*1.45,z+h+4],[x+w*1.45,y-w*1.45,z+h+4],[x+w*1.45,y+w*1.45,z+h+4],[x-w*1.45,y+w*1.45,z+h+4]],'#9a7c42');
+  this.path([[x-w*1.45,y+w*1.45,z+h+4],[x+w*1.45,y+w*1.45,z+h+4],[x,y,z+h+17]],'#8b6c3f');
+  this.path([[x+w*1.45,y-w*1.45,z+h+4],[x+w*1.45,y+w*1.45,z+h+4],[x,y,z+h+17]],'#b8914d');
+  this.line([x,y,z+h+15],[x,y,z+h+20],'#d0a058',2);
+ }
+ paperLeaf(x,y,z,dx,dz,width,colour,shade='#768b39',vein='#d1c76c80'){
+  const length=Math.hypot(dx,dz),nx=-dz/length*width,ny=dx/length*width;
+  const p=(u,v)=>[x+u/(P.HW*2),y-u/(P.HW*2),z+v];
+  const base=p(0,0),tip=p(dx,dz),left=[base],right=[base];
+  for(let i=1;i<8;i++){const t=i/8,curve=Math.pow(Math.sin(t*Math.PI),.72);left.push(p(dx*t+nx*curve,dz*t+ny*curve));right.push(p(dx*t-nx*curve,dz*t-ny*curve));}
+  left.push(tip);right.push(tip);
+  this.path(left,colour);this.path(right,shade);
+  this.line(base,tip,vein,.7);
+ }
+ blossom(x,y,z,r,colour){
+  const point=(u,v)=>[x+u/(P.HW*2),y-u/(P.HW*2),z+v];
+  for(let k=0;k<5;k++){
+   const a=k*Math.PI*2/5+.28,ox=Math.cos(a)*r*.6,oy=Math.sin(a)*r*.6,pts=[];
+   for(let j=0;j<8;j++){const b=j*Math.PI/4;pts.push(point(ox+Math.cos(b)*r*.58,oy+Math.sin(b)*r*.58));}
+   this.path(pts,colour);
+  }
+  const centre=[];for(let j=0;j<7;j++){const a=j*Math.PI*2/7;centre.push(point(Math.cos(a)*r*.27,Math.sin(a)*r*.27));}
+  this.path(centre,'#e9b957');
+ }
+ planter(x,y,z,w=.94,d=.47,theme=0){
+  const bottom=z+2,top=z+20;
+  this.quad(x-.04,y-.03,x+w+.1,y+d+.12,z+.1,'#6e63402b');
+  this.box(x+.035,y+.025,x+w-.035,y+d-.025,z,bottom,'#b88e51','#906831','#78542f');
+  this.path([[x+.035,y+d-.025,bottom],[x+w-.035,y+d-.025,bottom],[x+w,y+d,top],[x,y+d,top]],'#bc8f51');
+  this.path([[x+w-.035,y+.025,bottom],[x+w-.035,y+d-.025,bottom],[x+w,y+d,top],[x+w,y,top]],'#a87d41');
+  this.quad(x,y,x+w,y+d,top,'#755633');
+  this.box(x-.025,y+d-.025,x+w+.025,y+d+.035,top-3,top+2,'#e9c281','#c99a58','#ac7f45');
+  this.box(x+w-.025,y-.025,x+w+.035,y+d+.035,top-3,top+2,'#e9c281','#c99a58','#ac7f45');
+  for(let i=1;i<5;i++)this.line([x+w*i/5,y+d-.018,bottom+2],[x+w*i/5,y+d+.004,top-4],'#91693180',.8);
+  // Broad folded leaves form a real canopy, with stems terminating in soil.
+  for(let i=0;i<11;i++){
+   const xx=x+.08+(i*7%11)/11*(w-.12),yy=y+.07+(i%3)*d*.25,b=z+17+(i%2)*4;
+   const dx=((i*11%13)-6)*3.2,dz=13+(i*7%5)*4;
+   this.paperLeaf(xx,yy,b,dx,dz,5+(i%3),['#a7ac45','#9eac4c','#c1bf57','#879a3e'][i%4]);
+  }
+  for(let i=0;i<5;i++){
+   const xx=x+.08+(i*3%5)/5*(w-.1),yy=y+.11+(i%2)*d*.4,head=z+37+(i*3%5)*2.2;
+   this.line([xx,yy,z+18],[xx,yy,head],'#6c873c',1.1);
+   const crown=[];
+   for(let j=0;j<24;j++){const a=j*Math.PI/12,r=10+(j%2)*1.3,u=Math.cos(a)*r; crown.push([xx+u/(P.HW*2),yy-u/(P.HW*2),head+Math.sin(a)*r*.82]);}
+   this.path(crown,theme?'#dfc491':'#d67e86');
+   for(let j=0;j<12;j++){
+    const a=j*2.4,r=2.1+Math.sqrt(j)*2.1,u=Math.cos(a)*r,v=Math.sin(a)*r;
+    this.blossom(xx+u/(P.HW*2),yy-u/(P.HW*2),head+v,3.1+(j%3)*.35,theme?['#fff3cb','#fff8e0','#f4deb0'][(i+j)%3]:['#e994a0','#f8b7bd','#ffd1c5'][(i+j)%3]);
+   }
+  }
  }
  shrub(x,y,z,h,seed){
   this.line([x,y,z],[x,y,z+h*.7],'#89916a',2);
@@ -1321,9 +1438,62 @@ class Exterior{
    this.path(pts,['#8f9f6b','#a9b578','#b5ba80','#98a872'][(i+seed)%4]);
   }
  }
+ gardenPlant(x,y,z,h,seed,flower=0){
+  const footprint=[];
+  for(let j=0;j<18;j++){const a=j*Math.PI/9;footprint.push([x+Math.cos(a)*h*.0072,y+Math.sin(a)*h*.0072,z+.04]);}
+  this.path(footprint,'#373d3025');
+  // Branches carry broad rounded leaves at three heights, avoiding the
+  // repeated bubble silhouettes and bare flat turf of the previous garden.
+  const colours=['#739052','#8a9e59','#a2ad67','#657f4b','#94a85f'];
+  const shades=['#5a7446','#708647','#7e924d','#567047','#728a4a'];
+  for(let i=0;i<13;i++){
+   const angle=((i*137+seed*47)%360)*Math.PI/180;
+   const u=Math.cos(angle)*h*.17,base=z+h*(.16+(i%3)*.12),xx=x+u/(P.HW*2),yy=y-u/(P.HW*2);
+   const dx=Math.cos(angle)*h*.48,dz=h*(.22+(i*3%7)*.035),tone=(i+seed)%5;
+   this.line([x,y,z+1],[xx,yy,base],'#5e7044',.9);
+   this.paperLeaf(xx,yy,base,dx,dz,h*.13,colours[tone],shades[tone],'#bfca8e35');
+  }
+  if(flower){
+   for(let i=0;i<3;i++){
+    const u=(i-1)*h*.19,xx=x+u/(P.HW*2),yy=y-u/(P.HW*2),head=z+h*(.83+(i%2)*.13);
+    this.line([x,y,z+h*.3],[xx,yy,head],'#69804a',1.1);
+    const radius=h*.19,crown=[];
+    for(let j=0;j<24;j++){const a=j*Math.PI/12,r=radius*(1+(j%2)*.08),v=Math.cos(a)*r;crown.push([xx+v/(P.HW*2),yy-v/(P.HW*2),head+Math.sin(a)*r*.84]);}
+    this.path(crown,flower===1?'#c98189':flower===2?'#cfbb8c':'#9280a2');
+    for(let j=0;j<12;j++){
+     const a=j*2.4+seed,r=radius*.21+Math.sqrt(j)*radius*.19,u=Math.cos(a)*r,v=Math.sin(a)*r;
+     this.blossom(xx+u/(P.HW*2),yy-u/(P.HW*2),head+v,Math.max(2,radius*.3),flower===1?['#e8a3a9','#f1bec0','#fbd3c7'][(i+j)%3]:flower===2?['#fff2c9','#f6dfad','#fff7de'][(i+j)%3]:['#b7a5c5','#c8bad4','#ddd0e2'][(i+j)%3]);
+    }
+   }
+  }
+ }
+ gardenBed(x0,y0,x1,y1,z){
+  // Soil is recessed behind individually cut terracotta edging. A few small
+  // stones and mulch flecks leave believable gaps between plant clusters.
+  this.box(x0,y0,x1,y1,z,z+6,'#906c4c','#b68761','#9e714f');
+  this.quad(x0+.055,y0+.055,x1-.055,y1-.055,z+5.2,'#765941');
+  this.box(x0-.025,y0-.025,x0+.075,y1+.025,z,z+9,'#d7ae7c','#ad7c54','#926643');
+  this.box(x0-.025,y1-.075,x1+.025,y1+.025,z,z+9,'#dbb481','#b28058','#996a46');
+  for(let y=y0+.28;y<y1;y+=.34)this.line([x0-.026,y,z+1],[x0-.026,y,z+8],'#80583f80',.7);
+  for(let i=0;i<24;i++){
+   const x=x0+.13+((i*17)%23)/23*(x1-x0-.24),y=y0+.13+((i*11)%23)/23*(y1-y0-.24);
+   this.quad(x,y,x+.025+(i%3)*.009,y+.017,z+5.3,i%3?'#987958':'#b99a71');
+  }
+ }
  garden(){
-  this.box(7.2,-4,9.4,4.9,-131,-91,'#aab08a','#b09b80','#9c8e77');
-  for(let i=0;i<18;i++)this.shrub(7.5+(i%3)*.66,-3.7+Math.floor(i/3)*1.42,-91,45+(i*17%35),i);
+  // The narrow office garden is a paved path and two planted borders, not a
+  // single green foundation. The side supports retain clear stone footings.
+  this.box(7.2,-4,9.4,4.9,-131,-91,'#dfc09c','#b59474','#a18368');
+  for(let y=-4,row=0;y<4.9;y+=.43,row++)for(let x=7.2;x<9.4;x+=.44){
+   this.quad(x+.012,y+.012,Math.min(x+.428,9.4),Math.min(y+.418,4.9),-90.9,['#e6cba7','#dbc09e','#edd2ad'][(row+Math.round(x*10))%3]);
+  }
+  this.gardenBed(7.6,-3.8,8.79,.2,-91);
+  this.gardenBed(7.58,1.78,8.79,4.64,-91);
+  const plants=[
+   [8.47,-3.22,58,1],[7.94,-3.43,26,0],[8.28,-2.39,43,3],[7.86,-1.99,27,0],[8.51,-1.29,55,2],[7.94,-.77,35,0],[8.35,-.22,42,1],
+   [8.43,2.13,49,2],[7.9,2.32,24,0],[8.48,3.01,56,1],[7.92,3.4,33,3],[8.35,3.97,45,0],[7.88,4.25,26,2]
+  ];
+  for(let i=0;i<plants.length;i++){const[x,y,h,flower]=plants[i];this.gardenPlant(x,y,-85.8,h,i,flower);}
   for(const [a,b]of[[-4,.45],[1.55,4.9]]){
    this.box(8.85,a,9.05,b,-91,-37,'#e5cfb2','#c2a28d','#a78b7c');
    for(let y=a+.1;y<b;y+=.44)this.line([9.055,y,-90],[9.055,y,-38],'#b3937f',.7);
@@ -1362,13 +1532,61 @@ class Exterior{
   }
  }
  furniture(){
-  this.lantern(-3.59,6.72,-91,67);this.flowerBox(-3.42,6.82,-91,.57);
-  this.flowerBox(.2,6.86,-91,.76);
-  // The bench has four feet on the quay and separately cut seat/back slats.
-  for(const x of[-1.3,-.3])for(const y of[6.55,6.88])this.line([x,y,-91],[x,y,-65],'#53796a',4);
-  for(let i=0;i<4;i++)this.box(-1.43,6.52+i*.095,-.16,6.59+i*.095,-66,-62,'#cc9a66','#ac7c52','#956d4d');
-  for(let i=0;i<3;i++)this.box(-1.43,6.91,-.16,6.97,-60+i*7,-55+i*7,'#d2a06b','#bf895b','#a47752');
+  this.lantern(-3.59,6.72,-91,82);
+  this.lantern(2.35,6.8,-91,76);
+  this.planter(-3.47,6.67,-91,.47,.43,0);
+  this.planter(-1.49,6.62,-91,.6,.43,0);
+  this.planter(1.45,6.6,-91,.78,.46,1);
+  this.bench(-.82,6.28,-91,2.08);
   for(const y of[5.7,6.8])this.bollard(-3.9,y,-91,true);
+  this.bollard(-2.8,7.05,-91);this.bollard(-.85,7.07,-91);
+ }
+ bench(x,y,z,w){
+  this.quad(x-.04,y-.02,x+w+.08,y+.7,z+.1,'#625d4938');
+  const front=y+.06,back=y+.61;
+  // Cast iron feet, curved arms and separate warm timber slats. The seat is
+  // assembled in world space so its four feet meet the same paving plane.
+  for(const xx of[x+.17,x+w-.17]){
+   for(const yy of[front,back]){
+    this.box(xx-.045,yy-.085,xx+.045,yy+.085,z,z+3,'#5b8775','#315d53','#214b47');
+    this.line([xx,yy,z+3],[xx,yy,z+28],'#285e53',5.8);
+    this.line([xx-.015,yy,z+4],[xx-.015,yy,z+27],'#78a38a',1.1);
+   }
+   this.line([xx,back,z+5],[xx,back+.07,z+55],'#2d6659',5.5);
+   this.line([xx,front,z+24],[xx,back,z+24],'#356b59',5);
+  }
+  for(let i=0;i<5;i++){
+   const yy=y+i*.112;
+   this.box(x,yy,x+w,yy+.09,z+24,z+29,'#dda15c','#bc7846','#a8683e');
+   this.line([x+.02,yy+.089,z+29],[x+w-.02,yy+.089,z+29],'#ffe1a1',.9);
+   for(const xx of[x+.17,x+w-.17])this.line([xx,yy+.04,z+29.2],[xx+.015,yy+.04,z+29.2],'#6a634a',1.5);
+  }
+  for(let i=0;i<3;i++){
+   const low=z+33+i*8.3;
+   this.box(x,back+.04,x+w,back+.11,low,low+6.1,'#e7ae6d','#ca894f','#a66d3f');
+   this.line([x+.02,back+.112,low+6],[x+w-.02,back+.112,low+6],'#ffdfa0',.9);
+   for(const xx of[x+.17,x+w-.17])this.line([xx,back+.12,low+3],[xx+.015,back+.12,low+3],'#80613d',1.4);
+  }
+  for(const xx of[x+.14,x+w-.14]){
+   const curve=[];
+   for(let i=0;i<=14;i++){const t=i/14;curve.push([xx,y+.11+.51*t,z+36+13*Math.sin(t*Math.PI*.73)]);}
+   for(let i=0;i<curve.length-1;i++){
+    this.line(curve[i],curve[i+1],'#2e6c5b',6.2);
+    this.line([curve[i][0]-.018,curve[i][1],curve[i][2]+1.3],[curve[i+1][0]-.018,curve[i+1][1],curve[i+1][2]+1.3],'#8aae80',1.3);
+   }
+   // Turned curl under the arm has an open centre.
+   const curl=[];for(let i=0;i<=17;i++){const a=-Math.PI*.1+i*Math.PI*1.6/17;curl.push([xx,y+.18+Math.cos(a)*.075,z+33+Math.sin(a)*5.4]);}
+   for(let i=0;i<curl.length-1;i++)this.line(curl[i],curl[i+1],'#2c6758',3);
+   this.line([xx,y+.11,z+28],[xx,y+.11,z+36],'#2e6c5b',4.5);
+  }
+ }
+ quayGarden(){
+  // A planted corner softens the outer garden wall without obstructing the
+  // front walk or the largest playable board. Each leaf grows from its bed.
+  this.box(7.35,5.55,8.95,6.68,-91,-75,'#e6c697','#b58b61','#947149');
+  this.quad(7.43,5.63,8.87,6.6,-74.9,'#795b40');
+  for(const [x,y,h,seed,flower]of[[7.72,5.96,38,2,1],[8.29,5.93,47,4,2],[8.62,6.24,26,8,0],[7.94,6.34,25,9,3]])this.gardenPlant(x,y,-74.8,h,seed,flower);
+  this.planter(8.95,4.75,-91,.35,.4,1);
  }
  bollard(x,y,z,small=false){
   const w=small?.055:.068,h=small?15:20;
@@ -1381,7 +1599,10 @@ class Exterior{
   const start=includeWater?0:this.props[0].count;
   for(let i=start;i<this.commands.length;i++){
    const c=this.commands[i];
-   if(c.kind===2){
+   if(c.kind===3){
+    if(r.ctx?.createRadialGradient){const ctx=r.ctx;ctx.save();ctx.translate(c.origin.x,c.origin.y);ctx.scale(1,c.aspect);const g=ctx.createRadialGradient(0,0,0,0,0,c.radius);g.addColorStop(0,c.colour+'70');g.addColorStop(.26,c.colour+'30');g.addColorStop(.68,c.colour+'0c');g.addColorStop(1,c.colour+'00');ctx.fillStyle=g;ctx.fillRect(-c.radius,-c.radius,c.radius*2,c.radius*2);ctx.restore();}
+    else r.path(c.points,null,null,0);
+   }else if(c.kind===2){
     if(r.images?.houseFront&&r.ctx){const ctx=r.ctx;ctx.save();ctx.transform(1,-.5,0,1,c.origin.x,c.origin.y);ctx.drawImage(r.images.houseFront,0,0,c.imageWidth,c.imageHeight);ctx.restore();}
    }else if(c.kind===0){
     if(r.poly&&c.fill){r.poly(c.world,c.fill,c.material);if(c.stroke)r.path(c.points,null,c.stroke,c.width);}
@@ -1447,17 +1668,22 @@ class RoomLife{
 return RoomLife;
 });
 
-/* A paper postal boat and quiet water below the cached Civic architecture.
- * Route time is supplied by the caller; all drawing geometry is made once. */
+/* Quiet paper water beneath the hall; the moored mailboat composites in
+ * front of the quay. Route time is supplied, and geometry is prepared once. */
 (function(root){
 'use strict';
 const HW=380/6,HH=190/6,TAU=Math.PI*2,DURATION=168,FRAMES=192;
 const HULL=Object.freeze([[-.18,-.49],[-.1,-.62],[.1,-.62],[.18,-.49],[.22,.4],[.13,.56],[0,.65],[-.13,.56],[-.22,.4]].map(Object.freeze));
+const MAIL_HULL=Object.freeze([[-.48,-1.75],[.48,-1.75],[.64,-1.43],[.675,.92],[.57,1.32],[.3,1.63],[0,1.78],[-.3,1.63],[-.57,1.32],[-.675,.92],[-.64,-1.43]].map(Object.freeze));
 const LAYOUT=Object.freeze({
  duration:DURATION,phaseOffset:56,keel:-2,gunwale:8,hull:HULL,
- canal:Object.freeze({x0:-7,x1:-4.03,y0:-3.5,y1:9,z:-120}),
+ canal:Object.freeze({x0:-7,x1:-4.03,y0:-3.5,y1:20,z:-120}),
+ frontCanal:Object.freeze({x0:-7,x1:9.4,y0:7.2,y1:20,z:-120}),
+ rightCanal:Object.freeze({x0:9.4,x1:20,y0:-8,y1:20,z:-120}),
  rearCanal:Object.freeze({x0:-7,x1:6.1,y0:-4,y1:-2.8,z:-120}),
- berth:Object.freeze({x:-4.765,y:5.93,z:-120})
+ berth:Object.freeze({x:-4.765,y:5.93,z:-120}),
+ mailBoat:Object.freeze({x:-3,y:8.5,z:-120,heading:-Math.PI/2,keel:-4,gunwale:18,hull:MAIL_HULL,activeMooring:1,
+  moorings:Object.freeze([Object.freeze({x:-2.8,y:7.05,z:-73}),Object.freeze({x:-.85,y:7.07,z:-73})])})
 });
 function wrap(t){return((Number.isFinite(t)?t:0)%DURATION+DURATION)%DURATION;}
 function ease(t){return t*t*t*(t*(t*6-15)+10);}
@@ -1482,72 +1708,180 @@ function command(world,fill,stroke=null,width=1,angle=0,relative=false){
  }
  return{points,fill,stroke,width};
 }
-function replay(c,commands){
- for(let j=0;j<commands.length;j++){
-  const path=commands[j],points=path.points;c.beginPath();
-  for(let i=0;i<points.length;i++){const p=points[i];if(i)c.lineTo(p.x,p.y);else c.moveTo(p.x,p.y);}
-  c.closePath();
-  if(path.fill){c.fillStyle=path.fill;c.fill();}
-  if(path.stroke){c.strokeStyle=path.stroke;c.lineWidth=path.width;c.stroke();}
- }
+function replayPath(c,path){
+ const points=path.points;c.beginPath();
+ for(let i=0;i<points.length;i++){const p=points[i];if(i)c.lineTo(p.x,p.y);else c.moveTo(p.x,p.y);}
+ c.closePath();
+ if(path.fill){c.fillStyle=path.fill;c.fill();}
+ if(path.stroke){c.strokeStyle=path.stroke;c.lineWidth=path.width;c.stroke();}
 }
+function replay(c,commands){for(let i=0;i<commands.length;i++)replayPath(c,commands[i]);}
 class Canal{
  constructor(renderer){
   this.r=renderer;this.pose=sampleBoat(0,{});this.water=[];this.currents=[];this.reflections=[];this.shoreline=[];this.frames=[];
   this.buildWater();
   for(let i=0;i<FRAMES;i++)this.frames.push(this.buildBoat(i*TAU/FRAMES));
+  this.mailBoat=this.buildMailBoat();
  }
  static layout(){return LAYOUT;}
  static sampleBoat(time,out){return sampleBoat(time,out);}
+ bake(){
+  // Static paper colour and grain are prepared once. Motion only composites
+  // these canvases and replays the small prebuilt water/rope fragments.
+  if(typeof document==='undefined'||!root.CivicArchitecture)return;
+  const make=(b,scale)=>{
+   const canvas=document.createElement('canvas');canvas.width=Math.ceil((b.right-b.left)*scale);canvas.height=Math.ceil((b.bottom-b.top)*scale);
+   const c=canvas.getContext('2d');c.setTransform(scale,0,0,scale,-b.left*scale,-b.top*scale);return{canvas,c};
+  };
+  const b=this.waterBounds={left:-970,top:215,right:2220,bottom:1870},water=make(b,1),c=water.c;
+  replay(c,this.water);c.save();
+  const outline=this.water[0].points;c.beginPath();for(let i=0;i<outline.length;i++)i?c.lineTo(outline[i].x,outline[i].y):c.moveTo(outline[i].x,outline[i].y);c.closePath();c.clip();
+  const wash=c.createLinearGradient(0,270,320,1330);wash.addColorStop(0,'#286f6a');wash.addColorStop(.36,'#3d8a7e');wash.addColorStop(.7,'#579e89');wash.addColorStop(1,'#428c85');
+  c.globalAlpha=.52;c.fillStyle=wash;c.fillRect(b.left,b.top,b.right-b.left,b.bottom-b.top);
+  for(const [x,y,r,color]of[[10,650,420,'#75ac8b'],[260,1040,590,'#73aa8b'],[650,1270,440,'#397c77'],[1420,1110,710,'#72aa8b'],[1960,1040,470,'#367c76']]){
+   const g=c.createRadialGradient(x,y,10,x,y,r);g.addColorStop(0,color);g.addColorStop(1,color+'00');c.globalAlpha=.13;c.fillStyle=g;c.fillRect(x-r,y-r,r*2,r*2);
+  }
+  const painter=new root.CivicArchitecture.Painter(c,this.r.images,this.r.assets),paper=painter.material('teal');
+  if(paper){c.globalCompositeOperation='soft-light';c.globalAlpha=.37;c.fillStyle=paper;c.fillRect(b.left,b.top,b.right-b.left,b.bottom-b.top);}
+  // The last two metres dissolve into the backdrop's same teal stock, so a
+  // tall phone composition cannot expose a rectangular end to the canal.
+  c.globalCompositeOperation='source-over';c.globalAlpha=1;
+  const fade=c.createLinearGradient(760-17.8*HW,585+17.8*HH,760+(1.32-20)*HW,585+(1.32+20)*HH);fade.addColorStop(0,'#428c8500');fade.addColorStop(1,'#428c85');c.fillStyle=fade;c.fillRect(b.left,b.top,b.right-b.left,b.bottom-b.top);
+  // Only the distant outer reach fades. The visible water outside the
+  // garden wall keeps the same paper wash and currents as the front canal.
+  const edge=c.createLinearGradient(760+(18.2-10)*HW,585+(18.2+10)*HH,760+(20-11.08)*HW,585+(20+11.08)*HH);edge.addColorStop(0,'#428c8500');edge.addColorStop(1,'#428c85');c.fillStyle=edge;c.fillRect(b.left,b.top,b.right-b.left,b.bottom-b.top);c.restore();
+  this.waterCanvas=water.canvas;
+  let left=Infinity,top=Infinity,right=-Infinity,bottom=-Infinity;
+  for(const path of this.mailBoat.body)for(const p of path.points){left=Math.min(left,p.x);right=Math.max(right,p.x);top=Math.min(top,p.y);bottom=Math.max(bottom,p.y);}
+  const bb=this.mailBoatBounds={left:left-4,top:top-4,right:right+4,bottom:bottom+4},boat=make(bb,2),bc=boat.c;
+  const tint=(hex,amount,target)=>{const a=parseInt(hex.slice(1),16),b=parseInt(target.slice(1),16);return '#'+[16,8,0].map(s=>Math.round(((a>>s)&255)*(1-amount)+((b>>s)&255)*amount).toString(16).padStart(2,'0')).join('');};
+  for(const path of this.mailBoat.body){
+   const points=path.points;bc.beginPath();for(let i=0;i<points.length;i++)i?bc.lineTo(points[i].x,points[i].y):bc.moveTo(points[i].x,points[i].y);bc.closePath();
+   if(path.fill){
+    let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;for(const p of points){x0=Math.min(x0,p.x);y0=Math.min(y0,p.y);x1=Math.max(x1,p.x);y1=Math.max(y1,p.y);}
+    const g=bc.createLinearGradient(x0,y0,x0+(x1-x0)*.4,y1+.1);g.addColorStop(0,tint(path.fill,.08,'#fff1d1'));g.addColorStop(.35,path.fill);g.addColorStop(1,tint(path.fill,.16,'#244d4a'));bc.fillStyle=g;bc.fill();
+    if(paper){bc.save();bc.clip();bc.globalCompositeOperation='soft-light';bc.globalAlpha=.55;bc.fillStyle=paper;bc.fillRect(x0-1,y0-1,x1-x0+2,y1-y0+2);bc.restore();}
+   }
+   if(path.stroke){bc.strokeStyle=path.stroke;bc.lineWidth=path.width;bc.stroke();}
+  }
+  this.mailBoatCanvas=boat.canvas;this.cacheBytes=(water.canvas.width*water.canvas.height+boat.canvas.width*boat.canvas.height+256*256)*4;this.bakes=(this.bakes||0)+1;
+ }
  buildWater(){
   const base=this.water,z=-120;
   const face=(points,fill)=>base.push(command(points,fill));
   const quad=(x0,y0,x1,y1,h,fill,target=base)=>{
-   const q=command([[x0,y0,h],[x1,y0,h],[x1,y1,h],[x0,y1,h]],fill);
-   target.push(q);
+   target.push(command([[x0,y0,h],[x1,y0,h],[x1,y1,h],[x0,y1,h]],fill));
   };
-  // The original paper tray extends under the quays. Shading is layered on
-  // that same plane; no perspective or shoreline geometry is displaced.
-  face([[-7,9,z],[-3.05,9,z],[-3.05,9,z-7],[-7,9,z-7]],'#608f8b');
-  face([[6.1,-4,z],[6.1,-2.2,z],[6.1,-2.2,z-7],[6.1,-4,z-7]],'#68958f');
-  face([[-7,-4,z],[6.1,-4,z],[6.1,-2.2,z],[-3.05,-2.2,z],[-3.05,9,z],[-7,9,z]],'#80aea4');
-  quad(-7,-4,-6.65,9,z,'#73a49d');quad(-6.65,-3.7,-6.41,9,z,'#7aa99f');
-  quad(-4.32,-2.8,-4.03,7.2,z,'#78a79e');quad(-4.14,-2.8,-4.03,7.2,z,'#6d9e97');
-  quad(-7,-4,6.1,-3.72,z,'#73a39b');quad(-3.05,-2.48,6.1,-2.2,z,'#719f96');
-  // Quiet streams travel together. Phase comes from position along each
-  // channel, so neighbouring slivers breathe as a current rather than confetti.
-  for(let i=0;i<37;i++){
-   const x=-6.72+(i*7%11)*.091,y=-3.25+i*.323,length=.13+(i*5%7)*.035,commands=[];
-   quad(x,y,Math.min(-4.15,x+length),y+.018+(i%3)*.005,z,i%5===0?'#b6cbbb':'#96bab0',commands);
-   this.currents.push({commands,phase:y*.83,axis:0});
+  // This surface continues out of the composition. There is no visible tray
+  // edge in the foreground; the native stone banks define the water instead.
+  face([[-7,-4,z],[6.1,-4,z],[6.1,-2.2,z],[-3.05,-2.2,z],[-3.05,7.2,z],[9.4,7.2,z],[9.4,-8,z],[20,-8,z],[20,20,z],[-7,20,z]],'#428c85');
+  quad(-7,-4,-6.65,20,z,'#367e79');quad(-6.65,-3.7,-6.1,20,z,'#3c847c');
+  quad(-6.1,-2.8,-4.32,20,z,'#4c968a');
+  quad(-4.32,-2.8,-4.03,7.2,z,'#347c76');quad(-4.14,-2.8,-4.03,7.2,z,'#2d6e6c');
+  quad(-7,-4,6.1,-3.72,z,'#367c75');quad(-3.05,-2.48,6.1,-2.2,z,'#377d75');
+  // A darker reflected quay starts at the masonry. The broad forewater holds
+  // larger soft paper patches, never a tight repeating checker or glitter.
+  quad(-4.03,7.2,9.4,7.37,z,'#2e6f6d');
+  quad(-4.03,7.37,9.4,7.61,z,'#367d75');
+  quad(-4.03,7.61,9.4,8.15,z,'#40877c');
+  // The outside wall meets the same continuous canal. Its darker reflected
+  // base is fixed to the masonry; moving broken colour sits farther out.
+  quad(9.4,-2.8,9.56,7.2,z,'#2e716d');
+  quad(9.56,-2.8,9.84,7.2,z,'#367f75');
+  quad(9.84,-2.8,10.18,7.2,z,'#408a7c');
+  const wet=(x,y)=>(x>=-6.975&&x<=6.075&&y>=-3.975&&y<=-2.225)||(x>=-6.975&&x<=-4.055&&y>=-3.975&&y<=19.975)||(x>=-6.975&&x<=19.975&&y>=7.225&&y<=19.975)||(x>=9.425&&x<=19.975&&y>=-7.975&&y<=19.975);
+  // Water crests use one oblique plane and a shared travelling phase. Their
+  // paper cut edges are irregular but their direction is coherent.
+  const ripple=(x,y,w,d,fill,target)=>{
+   const points=[[x-w,y+w,z],[x-w*.7+d,y+w*.7+d,z],[x+w*.72+d,y-w*.72+d,z],[x+w,y-w,z],[x+w*.67-d,y-w*.67-d,z],[x-w*.65-d,y+w*.65-d,z]];
+   if(points.every(p=>wet(p[0],p[1])))target.push(command(points,fill));
+  };
+  for(let i=0;i<115;i++){
+   const x=-6.66+(i*7%17)*.141,y=-3.25+i*.196,commands=[];
+   ripple(x,y,.09+(i*5%7)*.027,.009+(i%3)*.003,i%7===0?'#9bbbab':'#72a799',commands);
+   if(commands.length)this.currents.push({commands,phase:y*.83,axis:0});
+  }
+  for(let i=0;i<84;i++){
+   const x=-3.65+(i*11%31)*.398,y=7.8+Math.floor(i/8)*.9+(i%4)*.21,commands=[];
+   ripple(x,y,.14+(i%5)*.055,.012+(i%3)*.003,i%9===0?'#a1c0a9':'#73a99a',commands);
+   if(commands.length)this.currents.push({commands,phase:y*.83,axis:0});
+  }
+  for(let i=0;i<180;i++){
+   const x=9.77+(i*37%173)/173*9.8,y=-2.37+(i*61%179)/179*21.8,commands=[];
+   ripple(x,y,.15+(i*7%9)*.034,.012+(i%4)*.003,i%11===0?'#a4c1ac':i%4===0?'#85b4a2':'#72a79a',commands);
+   if(commands.length)this.currents.push({commands,phase:y*.83,axis:0});
+  }
+  // Continue the reach behind the garden rather than exposing a diagonal
+  // flat triangle when the foreground is viewed close. The physical bank
+  // contact still ends at the real quay; only open water continues here.
+  for(let i=0;i<48;i++){
+   const x=9.77+(i*19%47)/47*9.8,y=-7.58+(i*29%43)/43*5.02,commands=[];
+   ripple(x,y,.15+(i*7%9)*.034,.012+(i%4)*.003,i%11===0?'#a4c1ac':i%4===0?'#85b4a2':'#72a79a',commands);
+   if(commands.length)this.currents.push({commands,phase:y*.83,axis:0});
   }
   for(let i=0;i<19;i++){
    const x=-2.75+i*.45,y=-3.6+(i*5%7)*.11,commands=[];
-   quad(x,y,x+.13+(i%3)*.07,y+.023,z,i%4===0?'#b5c8b7':'#95b8a9',commands);
+   quad(x,y,x+.13+(i%3)*.07,y+.023,z,i%4===0?'#a7be9d':'#6b9e8d',commands);
    this.currents.push({commands,phase:x*.83,axis:1});
   }
-  // The paired muted windows are those on Exterior's eight actual far-bank
-  // houses. Broken daylight reflections stay beneath each source, at the
-  // bank, and use its teal glazing/ivory frame rather than invented lamplight.
+  // Warm reflected light is mapped from real fixture heights. Reflecting a
+  // vertical source across z=-120 shifts its image equally in world x/y,
+  // hence straight down in this camera. Wavelets then break that image up.
+  const light=(source,kind,index)=>{
+   const commands=[],distance=(source.z-z)/(2*HH),baseDistance=Math.max(.93,distance*.8);
+   for(let j=0;j<10;j++){
+    if((j+index*3)%7===4)continue;
+    const travel=baseDistance+j*.14+(j%3)*.022,width=.07+j*.009+((j*5+index*3)%5)*.027;
+    const x=source.x+travel+(j%2?.012:-.012),y=source.y+travel;
+    ripple(x,y,width,.018+(j%4)*.01,['#f5d98d','#efd18a','#ffe5a6','#e7c784'][(j+index)%4],commands);
+   }
+   this.reflections.push({source,kind,commands,phase:(source.x+source.y)*.83,alpha:kind==='quay'?.66:kind==='window'?.37:.54});
+  };
+  for(let i=0;i<5;i++){
+   light({x:-7.79,y:-.9+i*1.75,z:-54},'cottage',i);
+   light({x:-7.925,y:-1.265+i*1.75,z:2},'window',i+5);
+  }
+  light({x:-3.59,y:6.72,z:-15},'quay',10);
+  light({x:2.35,y:6.8,z:-21},'quay',11);
+  // The distant paired windows remain secondary to the closer golden lamps.
   for(const house of[[-5.5,-5.85,.9,.74],[-4.3,-6.3,.95,.8],[-2.95,-5.83,.92,.78],[-1.7,-6.24,1.03,.87],[-.3,-5.72,.94,.79],[1.06,-6.14,1.04,.84],[2.48,-5.69,.95,.82],[3.91,-5.96,1.05,.84]]){
    for(const offset of[.24,.7]){
     const source={x:house[0]+house[2]*offset,y:house[1]+house[3]+.012,z:-67},commands=[];
     for(let j=0;j<4;j++){
      const width=.135+j*.024,x=source.x-width/2+(j%2?.018:-.012),y=-3.94+j*.118;
-     quad(x,y,x+width,y+.026+(3-j)*.005,z,j%2?'#a7bdaa':'#b9c9b5',commands);
+     quad(x,y,x+width,y+.026+(3-j)*.005,z,j%2?'#99b69e':'#adc3a5',commands);
     }
-    this.reflections.push({source,commands,phase:source.x*.83});
+    this.reflections.push({source,kind:'distant',commands,phase:source.x*.83,alpha:.31});
    }
   }
-  // Thin fixed contacts physically join the water to the stone. The pale
-  // broken outer lip belongs to the water and does not slide off the bank.
-  quad(-7,-4,-6.93,9,z,'#568c88',this.shoreline);
-  quad(-4.1,-2.8,-4.03,7.2,z,'#568b85',this.shoreline);
-  quad(-7,-4,6.1,-3.93,z,'#5b8d84',this.shoreline);
-  for(let i=0;i<23;i++){
+  // The garden's actual warm wall reflects across z=-120, giving the newly
+  // visible right reach a source of colour without inventing extra lamps.
+  for(let i=0;i<13;i++){
+   const source={x:9.055,y:-2.56+i*.56,z:-37},commands=[],travel=(source.z-z)/(2*HH);
+   if(source.y>.45&&source.y<1.55)continue; // Open gate has no wall face.
+   for(let j=0;j<5;j++){
+    const distance=travel-.3+j*.14;
+    ripple(source.x+distance,source.y+distance,.12+(j%3)*.06,.019+(j%2)*.007,['#577e70','#6d8b77','#879a80','#b5aa80','#72947e'][(i+j)%5],commands);
+   }
+   this.reflections.push({source,kind:'wall',commands,phase:(source.x+source.y)*.83,alpha:.46});
+  }
+  // Narrow fixed contacts meet the actual banks. They never drift with the
+  // reflection, which keeps the water anchored when scenery motion is off.
+  quad(-7,-4,-6.93,20,z,'#2b6866',this.shoreline);
+  quad(-4.1,-2.8,-4.03,7.2,z,'#2b6866',this.shoreline);
+  quad(-7,-4,6.1,-3.93,z,'#336f66',this.shoreline);
+  quad(-4.03,7.2,9.4,7.255,z,'#285f60',this.shoreline);
+  quad(9.4,-2.8,9.455,7.2,z,'#285f60',this.shoreline);
+  for(let i=0;i<43;i++){
    const y=-3.67+i*.54;
-   quad(-6.925,y,-6.905,y+.18+(i%3)*.052,z,'#a2beb0',this.shoreline);
-   if(y> -2.7&&y<7)quad(-4.125,y+.12,-4.109,y+.32,z,'#96b5a5',this.shoreline);
+   quad(-6.925,y,-6.905,y+.18+(i%3)*.052,z,'#8ab2a0',this.shoreline);
+   if(y> -2.7&&y<7)quad(-4.125,y+.12,-4.109,y+.32,z,'#7fa695',this.shoreline);
+  }
+  for(let i=0;i<24;i++){
+   const x=-3.94+i*.54;quad(x,7.28,x+.24+(i%3)*.045,7.295,z,'#7da693',this.shoreline);
+  }
+  for(let i=0;i<20;i++){
+   const y=-2.63+i*.48;quad(9.48,y,9.495,y+.19+(i%3)*.038,z,'#7fa897',this.shoreline);
   }
  }
  buildBoat(angle){
@@ -1621,9 +1955,194 @@ class Canal{
   }
   return{body,contact,reflection,wake,wakeLong};
  }
- draw(time){
-  const c=this.r.ctx,pose=sampleBoat(time,this.pose),t=wrap(time),frame=this.frames[Math.round(pose.heading/TAU*FRAMES)%FRAMES];
-  c.save();replay(c,this.water);
+ buildMailBoat(){
+  const angle=LAYOUT.mailBoat.heading,body=[],mirror=[],contact=[],reflection=[],ripples=[],ropes=[],a=LAYOUT.mailBoat;
+  const ca=Math.cos(angle),sa=Math.sin(angle),visible=(dx,dy)=>(dx*ca-dy*sa)+(dx*sa+dy*ca)>0;
+  const face=(points,fill,stroke=null,width=1)=>{
+   points=points.map(p=>[p[0],p[1],p[2]+Math.max(0,Math.min(16,(p[2]-34)*.64))]);
+   body.push(command(points,fill,stroke,width,angle,true));
+   if(fill)mirror.push(command(points.map(p=>[p[0],p[1],-p[2]]),fill,null,1,angle,true));
+  };
+  const top=(x0,y0,x1,y1,z,fill)=>face([[x0,y0,z],[x1,y0,z],[x1,y1,z],[x0,y1,z]],fill);
+  const line=(points,color,width=1)=>face(points,null,color,width);
+  const box=(x0,y0,x1,y1,z0,z1,light,front,side)=>{
+   if(visible(0,-1))face([[x1,y0,z0],[x0,y0,z0],[x0,y0,z1],[x1,y0,z1]],side);
+   if(visible(-1,0))face([[x0,y0,z0],[x0,y1,z0],[x0,y1,z1],[x0,y0,z1]],side);
+   if(visible(0,1))face([[x0,y1,z0],[x1,y1,z0],[x1,y1,z1],[x0,y1,z1]],front);
+   if(visible(1,0))face([[x1,y1,z0],[x1,y0,z0],[x1,y0,z1],[x1,y1,z1]],front);
+   top(x0,y0,x1,y1,z1,light);
+  };
+  // Water displacement is one soft dark rim, with a wider broken ring. The
+  // hull stays below that waterline throughout the tiny moored breathing.
+  for(const [scale,color]of[[1.12,'#34766e'],[1.045,'#245e5d']])contact.push(command(MAIL_HULL.map(p=>[p[0]*scale,p[1]*scale,0]),color,null,1,angle,true));
+  for(let i=0;i<MAIL_HULL.length;i++){
+   const p=MAIL_HULL[i],q=MAIL_HULL[(i+1)%MAIL_HULL.length];
+   if(!visible(q[1]-p[1],p[0]-q[0]))continue;
+   const edge=[[p[0],p[1],-4],[q[0],q[1],-4],[q[0]*1.015,q[1]*1.005,12],[p[0]*1.015,p[1]*1.005,12]];
+   face(edge,i%2?'#205f59':'#2a766b');
+   face([[p[0]*1.015,p[1]*1.005,10],[q[0]*1.015,q[1]*1.005,10],[q[0]*1.025,q[1]*1.007,15.5],[p[0]*1.025,p[1]*1.007,15.5]],'#c8845c');
+   face([[p[0]*1.025,p[1]*1.007,15.5],[q[0]*1.025,q[1]*1.007,15.5],[q[0]*1.025,q[1]*1.007,18],[p[0]*1.025,p[1]*1.007,18]],'#f3d8a3');
+   line([[p[0],p[1],1.8],[q[0],q[1],1.8]],'#458f7d',1.1);
+   line([[p[0]*1.025,p[1]*1.007,15.6],[q[0]*1.025,q[1]*1.007,15.6]],'#d9a16d',.8);
+  }
+  face(MAIL_HULL.map(p=>[p[0]*1.025,p[1]*1.007,18]),'#f2dbad');
+  face(MAIL_HULL.map(p=>[p[0]*.9,p[1]*.94,18.15]),'#799e83');
+  face(MAIL_HULL.map(p=>[p[0]*.77,p[1]*.89,18.25]),'#b89563');
+  for(let j=0;j<12;j++){
+   const y=-1.5+j*.25,w=y>1.25?.23:y>1?.4:.49;
+   top(-w,y,w,y+.02,18.4,'#8c7854');
+   line([[-w+.015,y+.037,18.45],[w-.015,y+.037,18.45]],'#d8b779',.55);
+  }
+  const parcel=(x,y,w,d,z,h)=>{
+   box(x,y,x+w,y+d,z,z+h,'#e5b97b','#bb8b52','#ca9b5b');
+   const xm=x+w*.5,ym=y+d*.52;
+   top(xm-.027,y,xm+.027,y+d,z+h+.1,'#f5dda9');
+   top(x,ym-.024,x+w,ym+.024,z+h+.15,'#ead09a');
+   if(visible(-1,0))face([[x-.002,ym-.024,z],[x-.002,ym+.024,z],[x-.002,ym+.024,z+h],[x-.002,ym-.024,z+h]],'#e6c78e');
+   if(visible(0,1))face([[xm-.027,y+d+.002,z],[xm+.027,y+d+.002,z],[xm+.027,y+d+.002,z+h],[xm-.027,y+d+.002,z+h]],'#e6c78e');
+   top(x+.035,y+.04,x+.15,y+.14,z+h+.2,'#f5e5c0');
+   line([[x+.055,y+.065,z+h+.25],[x+.128,y+.065,z+h+.25]],'#aa9367',.55);
+   line([[x+.055,y+.095,z+h+.25],[x+.11,y+.095,z+h+.25]],'#aa9367',.45);
+   line([[x+.01,y+d+.004,z+1],[x+.01,y+d+.004,z+h-1],[x+w-.01,y+d+.004,z+h-1]],'#e8c58c',.5);
+  };
+  // A small stern luggage rack and parcels precede the cabin in native depth.
+  box(-.49,-1.55,.49,-1.1,18.3,21,'#d5b37c','#ae8958','#bd9664');
+  parcel(.06,-1.52,.35,.35,21,16);parcel(-.4,-1.46,.33,.31,21,11);
+  parcel(.09,-1.5,.27,.26,37,11);
+  // Four turned wooden rail posts and a cream rim make the boat a crafted
+  // object rather than the old futuristic carrier enlarged into a vessel.
+  for(const x of[-.51,.51])box(x-.027,-1.47,x+.027,-1.42,18,30,'#f2d6a1','#c19863','#d2aa73');
+  box(-.55,-1.51,.55,-1.44,28,31,'#f0d6a6','#ba8f5d','#c7a06d');
+  // A teal-and-cream wheelhouse with real inset glass, a postal door and a
+  // shallow faceted coral roof. Each face shares the floor's two-to-one axes.
+  box(-.51,-.94,.51,.57,18.4,63,'#ecd7b3','#d9bd8d','#e4c99a');
+  face([[-.515,-.94,20],[-.515,.57,20],[-.515,.57,35],[-.515,-.94,35]],'#7d9b82');
+  for(let j=0;j<8;j++){
+   const y=-.88+j*.19;line([[-.518,y,21],[-.518,y,34]],'#5e826e',.55);
+  }
+  face([[-.52,-.8,37],[-.52,-.11,37],[-.52,-.11,58],[-.52,-.8,58]],'#9b825a');
+  face([[-.525,-.76,39],[-.525,-.15,39],[-.525,-.15,56],[-.525,-.76,56]],'#f6bf55');
+  face([[-.529,-.725,40],[-.529,-.475,40],[-.529,-.475,54],[-.529,-.725,54]],'#ffe9a2');
+  face([[-.529,-.445,40],[-.529,-.18,40],[-.529,-.18,54],[-.529,-.445,54]],'#ffe293');
+  line([[-.532,-.8,37],[-.532,-.8,58],[-.532,-.11,58],[-.532,-.11,37],[-.532,-.8,37]],'#f6e0b5',2.1);
+  line([[-.535,-.46,38],[-.535,-.46,57]],'#d49b51',1.6);
+  line([[-.537,-.77,47],[-.537,-.14,47]],'#e3ac61',1);
+  line([[-.54,-.84,36],[-.54,-.07,36]],'#c7965f',2.1);
+  // A narrow second glazed panel catches cool water behind the warm window.
+  face([[-.525,.09,38],[-.525,.4,38],[-.525,.4,57],[-.525,.09,57]],'#668d79','#f1d7a9',1.4);
+  face([[-.53,.12,40],[-.53,.23,40],[-.53,.36,55],[-.53,.25,55]],'#a6bda0');
+  line([[-.535,.08,47],[-.535,.41,47]],'#f1d7a9',1.2);
+  face([[-.36,.576,20],[.36,.576,20],[.36,.576,61],[-.36,.576,61]],'#406e5f','#f0d7a7',2);
+  for(const x of[-.28,-.14,0,.14,.28])line([[x,.58,21],[x,.58,60]],'#355e53',.55);
+  // Envelope plate is part of the cabin door, in that door's actual plane.
+  face([[-.23,.59,37],[.23,.59,37],[.23,.59,52],[-.23,.59,52]],'#efd19a','#bd945d',.8);
+  line([[-.23,.592,52],[0,.592,43.2],[.23,.592,52]],'#a87445',1.1);
+  line([[-.23,.592,37],[-.055,.592,44],[.055,.592,44],[.23,.592,37]],'#bd8b50',.85);
+  face([[.27,.595,29],[.3,.595,29],[.3,.595,33],[.27,.595,33]],'#e9bd6b');
+  box(-.56,-.985,.56,.615,61.8,64,'#f5ddb2','#d6b78b','#dfc39a');
+  const roof=[[-.6,64],[-.46,68.2],[-.25,71.2],[0,72.3],[.25,71.2],[.46,68.2],[.6,64]];
+  for(let j=0;j<roof.length-1;j++){
+   const p=roof[j],q=roof[j+1];
+   face([[p[0],-1.015,p[1]],[q[0],-1.015,q[1]],[q[0],.665,q[1]],[p[0],.665,p[1]]],['#ef9c71','#e99165','#df825d','#d47754','#c5694c','#b55d45'][j]);
+   line([[p[0],-1.015,p[1]+.15],[p[0],.665,p[1]+.15]],'#f0b48b',.65);
+  }
+  face(roof.map(p=>[p[0],.67,p[1]]).concat([[.6,.67,61.8],[-.6,.67,61.8]]),'#bd7157');
+  line(roof.map(p=>[p[0],.675,p[1]+.2]),'#f1b084',1.4);
+  for(const y of[-.86,-.24,.38])line(roof.map(p=>[p[0],y,p[1]+.3]),'#f4ba92',.65);
+  // Tiny paper fibres follow each large material, rather than a screen noise
+  // overlay that would float independently of this rigid boat.
+  for(let i=0;i<48;i++){
+   const x=-.47+(i*13%43)*.021,y=-.96+(i*11%47)*.033,z=72.3-Math.abs(x)*6.9;
+   line([[x,y,z+.4],[x+.018,y+.032,z+.25]],i%3?'#efb28b':'#b86c52',.3);
+  }
+  // Cargo in the open bow, with ordinary tape and readable folded box rims.
+  parcel(.06,.82,.38,.38,18.5,17);parcel(-.39,.86,.34,.36,18.5,13);
+  parcel(.08,.84,.29,.27,35.5,13);parcel(-.17,1.28,.32,.26,18.5,11);
+  // Fore and side rails are drawn last so contents sit inside their rim.
+  for(let i=0;i<MAIL_HULL.length;i++){
+   const p=MAIL_HULL[i],q=MAIL_HULL[(i+1)%MAIL_HULL.length];
+   if(!visible(q[1]-p[1],p[0]-q[0]))continue;
+   face([[p[0]*1.025,p[1]*1.007,15.5],[q[0]*1.025,q[1]*1.007,15.5],[q[0]*1.025,q[1]*1.007,18.1],[p[0]*1.025,p[1]*1.007,18.1]],'#ecd1a0');
+   line([[p[0]*1.025,p[1]*1.007,18.2],[q[0]*1.025,q[1]*1.007,18.2]],'#fff0c7',1.2);
+  }
+  const fender=(x,y)=>{
+   const ring=[];for(let j=0;j<10;j++){const p=j*TAU/10;ring.push([x+Math.cos(p)*.065,y+Math.sin(p)*.065]);}
+   for(let j=0;j<ring.length;j++){
+    const p=ring[j],q=ring[(j+1)%ring.length];if(!visible(q[1]-p[1],p[0]-q[0]))continue;
+    face([[p[0]*1,p[1],4],[q[0],q[1],4],[q[0],q[1],17],[p[0],p[1],17]],j%2?'#eadcc0':'#d9c9aa');
+   }
+   face(ring.map(p=>[p[0],p[1],17]),'#f5e8cb');
+   line([[x,y,17],[x+.06,y,22],[x+.12,y,18]],'#b4a184',1);
+   line([[x-.04,y,5],[x-.04,y,15]],'#fbf0d8',.8);
+  };
+  fender(-.72,-.87);fender(-.72,.84);fender(-.4,1.56);
+  box(.45,1.39,.51,1.45,18.4,23,'#c5aa77','#62766a','#49665d');
+  box(.42,1.4,.54,1.44,22,24,'#d0b680','#6f7f6b','#526a5c');
+  // One genuine slack mooring line meets the exposed quay bollard. Its boat
+  // endpoint follows bobbing while the stone endpoint remains fixed.
+  const moor=LAYOUT.mailBoat.moorings[LAYOUT.mailBoat.activeMooring],start={x:.48,y:1.42,z:22.5},points=[];
+  const sx=start.x*ca-start.y*sa,sy=start.x*sa+start.y*ca;
+  for(let i=0;i<=28;i++){
+   const u=i/28,x=sx+(moor.x-a.x-sx)*u,y=sy+(moor.y-a.y-sy)*u;
+   const z=start.z+(moor.z-a.z-start.z)*u-Math.sin(u*Math.PI)*13;
+   points.push({x:(x-y)*HW,y:(x+y)*HH-z,boatWeight:1-u});
+  }
+  ropes.push({points,stroke:'#775c40',width:3.4},{points,stroke:'#e5bd79',width:2.15});
+  // Make the hull/cabin reflection from those very faces, reflected below
+  // the water plane and sliced into uneven horizontal paper wavelets once.
+  const clipBand=(points,y0,y1)=>{
+   let out=points;
+   for(const [edge,side]of[[y0,1],[y1,-1]]){
+    const input=out;out=[];if(!input.length)break;
+    let p=input[input.length-1],dp=(p.y-edge)*side;
+    for(const q of input){
+     const dq=(q.y-edge)*side;
+     if((dq>=0)!==(dp>=0)){const u=dp/(dp-dq);out.push({x:p.x+(q.x-p.x)*u,y:edge});}
+     if(dq>=0)out.push(q);p=q;dp=dq;
+    }
+   }
+   return out;
+  };
+  for(let band=0;band<14;band++){
+   const y0=-37+band*10.6+(band%3)*1.3,y1=y0+3.4+(band%4)*1.1,dx=(band%3-1)*3.1;
+   for(const path of mirror){
+    const points=clipBand(path.points,y0,y1);if(points.length<3)continue;
+    const tint=(hex,amount)=>{const c=parseInt(hex.slice(1),16),w=0x428c85;return '#'+[16,8,0].map(s=>Math.round(((c>>s)&255)*(1-amount)+((w>>s)&255)*amount).toString(16).padStart(2,'0')).join('');};
+    reflection.push({points:points.map(p=>({x:p.x+dx,y:p.y})),fill:tint(path.fill,path.fill==='#ffe9a2'||path.fill==='#ffe293'?.12:.48),sourceFill:path.fill,stroke:null,width:1});
+   }
+  }
+  for(let j=0;j<4;j++){
+   const scale=1.09+j*.072;
+   for(let i=1;i<MAIL_HULL.length;i+=2){
+    const p=MAIL_HULL[i],q=MAIL_HULL[(i+1)%MAIL_HULL.length];
+    ripples.push(command([[p[0]*scale,p[1]*scale,0],[q[0]*scale,q[1]*scale,0]],null,j%2?'#86b3a0':'#b1c8a7',.6,angle,true));
+   }
+  }
+  return{body,contact,reflection,ripples,ropes};
+ }
+ drawMailWater(time){
+  const c=this.r.ctx,t=wrap(time),a=LAYOUT.mailBoat,boat=this.mailBoat;
+  c.save();c.translate(760+(a.x-a.y)*HW,465+(a.x+a.y)*HH-a.z);
+  c.save();c.globalAlpha*=.24+Math.sin(t*TAU/28)*.025;c.translate(Math.sin(t*TAU/14)*.8,Math.sin(t*TAU/28)*.4);replay(c,boat.reflection);c.restore();
+  c.save();c.globalAlpha*=.52;replay(c,boat.contact);c.restore();
+  c.save();c.globalAlpha*=.29+Math.sin(t*TAU/7)*.06;replay(c,boat.ripples);c.restore();c.restore();
+ }
+ drawMailBoat(time){
+  const c=this.r.ctx,t=wrap(time),a=LAYOUT.mailBoat,boat=this.mailBoat,bob=Math.sin(t*TAU/7)*.3+Math.sin(t*TAU/12)*.08;
+  c.save();c.translate(760+(a.x-a.y)*HW,465+(a.x+a.y)*HH-a.z);
+  for(let j=0;j<boat.ropes.length;j++){
+   const rope=boat.ropes[j];c.beginPath();
+   for(let i=0;i<rope.points.length;i++){
+    const p=rope.points[i],y=p.y-p.boatWeight*bob;if(i)c.lineTo(p.x,y);else c.moveTo(p.x,y);
+   }
+   c.strokeStyle=rope.stroke;c.lineWidth=rope.width;c.stroke();
+  }
+  c.translate(0,-bob);
+  if(this.mailBoatCanvas){const b=this.mailBoatBounds;c.drawImage(this.mailBoatCanvas,b.left,b.top,b.right-b.left,b.bottom-b.top);}else replay(c,boat.body);c.restore();
+ }
+ drawSurface(time){
+  const c=this.r.ctx,t=wrap(time);c.save();
+  if(this.waterCanvas){const b=this.waterBounds;c.drawImage(this.waterCanvas,b.left,b.top,b.right-b.left,b.bottom-b.top);}else replay(c,this.water);
   for(let i=0;i<this.currents.length;i++){
    const current=this.currents[i],flow=Math.sin(t*TAU/56-current.phase)*.019,cross=Math.sin(t*TAU/28-current.phase)*.005;
    const x=current.axis?flow:cross,y=current.axis?cross:flow;
@@ -1631,10 +2150,18 @@ class Canal{
   }
   for(let i=0;i<this.reflections.length;i++){
    const reflection=this.reflections[i],spread=Math.sin(t*TAU/28-reflection.phase)*.006;
-   c.save();c.globalAlpha*=.42+Math.sin(t*TAU/56-reflection.phase)*.06;
-   c.translate(spread*HW,spread*HH);replay(c,reflection.commands);c.restore();
+   c.save();const alpha=c.globalAlpha;
+   c.translate(spread*HW,spread*HH);
+   for(let j=0;j<reflection.commands.length;j++){
+    c.globalAlpha=alpha*(reflection.alpha+Math.sin(t*TAU/14-reflection.phase+j*.91)*(reflection.kind==='distant'?.035:.09));
+    replayPath(c,reflection.commands[j]);
+   }c.restore();
   }
-  replay(c,this.shoreline);
+  replay(c,this.shoreline);c.restore();
+ }
+ draw(time){
+  const c=this.r.ctx,pose=sampleBoat(time,this.pose),t=wrap(time),frame=this.frames[Math.round(pose.heading/TAU*FRAMES)%FRAMES];
+  this.drawSurface(time);c.save();
   c.translate(760+(pose.x-pose.y)*HW,465+(pose.x+pose.y)*HH-pose.z);
   c.save();c.globalAlpha*=.38;replay(c,frame.reflection);c.restore();
   c.save();c.globalAlpha*=.21;replay(c,frame.contact);c.restore();
@@ -1645,6 +2172,7 @@ class Canal{
    if(reach>0){c.save();c.globalAlpha*=reach*.36;replay(c,frame.wakeLong);c.restore();}
   }
   c.translate(0,-pose.bob);replay(c,frame.body);c.restore();
+  this.drawMailWater(time);
  }
 }
 root.CivicCanal=Canal;
@@ -2299,10 +2827,10 @@ class Architecture{
  // either must call bake() explicitly; camera and level changes reuse the cache.
  bake(){
   const r=this.r,ex=typeof CivicExterior==='function'?new CivicExterior(r):null;
-  const eb=ex?.bounds;
+  const eb=ex?ex.props.filter(p=>p.name!=='canal water').reduce((b,p)=>({left:Math.min(b.left,p.bounds.left),top:Math.min(b.top,p.bounds.top),right:Math.max(b.right,p.bounds.right),bottom:Math.max(b.bottom,p.bounds.bottom)}),{left:Infinity,top:Infinity,right:-Infinity,bottom:-Infinity}):null;
   // Frame the complete Office and its approach; distant banks may continue
   // beyond the viewport. Their much wider cache must not shrink the game.
-  this.bounds={left:-60,right:1670,top:-150,bottom:1070};
+  this.bounds={left:-160,right:1580,top:-145,bottom:1110};
   const make=(b,paint,scale=2)=>{
    const canvas=document.createElement('canvas');canvas.width=Math.ceil((b.right-b.left)*scale);canvas.height=Math.ceil((b.bottom-b.top)*scale);
    const c=canvas.getContext('2d');c.setTransform(scale,0,0,scale,-b.left*scale,-b.top*scale);c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';
@@ -2621,7 +3149,7 @@ const P=CivicProjection;
 const depthOrder=(a,b)=>a.depth-b.depth||a.order-b.order;
 class Renderer{
  constructor(canvas,assets){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.assets=assets;this.images={};this.ready=false;this.config={width:1,height:1,w:5,h:3,mode:'play',zoom:1,panX:0,panY:0};this.guides=false;this.selected=null;this.gray=false;this.motion=true;this.ambient=0;this.acting=CivicActing.create(BOARDANIM);this.pieces=new CivicPieces(this);this.poses=[];this.items=[];this.pool=[];this.sceneLevel=null;this.backdrop=new CivicBackdrop(this);this.roomLife=new CivicRoomLife(this);this.canal=new CivicCanal(this);this.postal=new CivicPostal(this);this.architecture=new CivicArchitecture(this);this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(canvas);this.resize();}
- async load(){await Promise.all(['cats','pieces','acting','materials','decor','fronts','backdrop','houseFront'].map(name=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{this.images[name]=im;resolve();};im.onerror=()=>reject(Error('Artwork did not load: '+name));im.src=this.assets[name].src;})));this.backdrop.bake();this.architecture.bake();this.postal.bake();this.config.sceneBounds=this.architecture.bounds;this.ready=true;}
+ async load(){await Promise.all(['cats','pieces','acting','materials','decor','fronts','backdrop','houseFront'].map(name=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{this.images[name]=im;resolve();};im.onerror=()=>reject(Error('Artwork did not load: '+name));im.src=this.assets[name].src;})));this.backdrop.bake();this.architecture.bake();this.canal.bake();this.postal.bake();this.config.sceneBounds=this.architecture.bounds;this.ready=true;}
  resize(){const r=this.canvas.getBoundingClientRect();this.config.width=r.width;this.config.height=r.height;this.dpr=Math.min(devicePixelRatio||1,2);this.canvas.width=Math.round(r.width*this.dpr);this.canvas.height=Math.round(r.height*this.dpr);this.cam=P.camera(this.config);}
  fit(mode){this.config.mode=mode;this.config.zoom=1;this.config.panX=this.config.panY=0;this.cam=P.camera(this.config);}
  zoom(delta,x,y){const next=Math.max(.7,Math.min(2.5,this.config.zoom+delta)),pan=P.zoomAt(this.config,{x,y},next);Object.assign(this.config,pan,{zoom:next});this.cam=P.camera(this.config);}
@@ -2661,7 +3189,7 @@ class Renderer{
   this.path([a,b,e,d],null,'#eddbb8',2.6);
  }
  structure(w,h){
-  this.backdrop.draw();this.canal.draw(this.ambient);this.architecture.draw();
+  this.backdrop.draw();this.canal.draw(this.ambient);this.architecture.draw();this.canal.drawMailBoat(this.ambient);
   if(!this.guides)return;
   const f=CivicArchitecture.layout().floor;
   for(let x=-3;x<=7;x++)this.line(P.project(x,f.y0),P.project(x,f.y1),'#3b8d8866',.8);
@@ -2710,7 +3238,7 @@ class Renderer{
    case 'cat':this.pieces.loose(o,tr,s.elapsed);break;
   }}
   for(let i=0;i<this.hatches.length;i++)if(this.hatchStates[i].open)this.pieces.hatchFront(this.hatches[i]);
-  this.crew(B.h);
+  this.crew(B.h);this.backdrop.drawForeground();
   if(this.guides){for(let x=0;x<B.w;x++)this.label(String.fromCharCode(65+x),P.project(x+.5,B.h+.28));for(let y=0;y<B.h;y++)this.label(String(y+1),P.project(B.w+.28,y+.5));}
   c.restore();
  }

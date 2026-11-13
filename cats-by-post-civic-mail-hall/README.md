@@ -1,6 +1,8 @@
-# Sorting Office · canal neighbourhood
+# Sorting Office · foreground checkpoint
 
-Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=neighbourhood&view=hall
+Compare and watch: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/foreground/
+
+Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=foreground&view=hall
 
 This upgrades the **Sorting Office**, using the selected Civic Mail Hall architecture. It is not the City Hall chapter. The warmer office keeps its canal, terracotta walls, teal columns and thirty occupied sorting cubbies, with a staff bench, folded throw, ledger, mug and task lamp.
 
@@ -24,9 +26,9 @@ Canal currents follow the banks, broken reflections align with real town windows
 
 ## Offline and source
 
-Unzip `sorting-office-neighbourhood.zip` and open **Sorting Office.html**. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
+Unzip `sorting-office-foreground.zip` and open **Sorting Office.html**, or download the current `index.html` directly. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
 
-Extract `sorting-office-neighbourhood-source.zip` into an empty folder and run:
+Extract `sorting-office-foreground-source.zip` into an empty folder and run:
 
 ```sh
 python3 studies/civic-mail-hall/foundation/build.py
@@ -46,3 +48,11 @@ The approved neighbourhood now surrounds the Office: a wider canal and lower moo
 Cats now travel in ordinary kraft cardboard boxes through every direction, takeoff and folding state. Their boxes keep the same geometry and animation timing. The last two folding states omit the paper ticket once the side wall becomes too short.
 
 See `docs/rooms/progress/sorting-office-neighbourhood.md` and its review for this stage's evidence. The latest source archive contains both new artwork assets and all rebuild inputs. Earlier finish archives remain available as checkpoints.
+
+## Restored foreground
+
+The canal now continues through the foreground and around the right-hand outer wall, with the same cached paper wash, gentle currents and broken reflections across both reaches. A substantial cabin postal boat has ordinary parcels, warm windows and a visible bow mooring. Its reflection draws below the quay; its body and rope draw in front of the landing, preserving the complete roof.
+
+The quay has a larger timber-and-teal bench, full flowering planters, warm lanterns and grounded support shadows. The former uniform right-hand lawn is now soil beds with varied plants beside a clear paved path. Framing leaves were removed following review.
+
+The comparison page contains the original concept, previous build, actual current render and a short motion capture. This is a composition review checkpoint; it does not claim the concept's full material and lighting fidelity. See `docs/rooms/progress/sorting-office-foreground.md` for verified scope.
