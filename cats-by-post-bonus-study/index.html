@@ -1647,10 +1647,12 @@ function update(a,ms,reduced){
    const side=i?-.37:.37,s=a.shoulders[i],h=a.hands[i];s.x=x-fy*side;s.y=a.y+fx*side;s.z=1.57;
    if(!courtyard&&q>=7&&q<11){h.x=9.55+(i?-.20:.20);h.y=1.62;h.z=i?1.62:1.70+.18*(1-a.stamp);}
    else{h.x=x+fx*.37-fy*(i?-.22:.22);h.y=a.y+fy*.37+fx*(i?-.22:.22);h.z=a.carry?1.14:1.01+.12*Math.sin(d/.40*TAU+i*Math.PI)*w;}
-   if(courtyard&&a.service>0){const k=a.service,tx=i?9.74:9.72+.02*Math.sin(q*4),ty=i?1.86:1.68+.02*Math.cos(q*4);h.x+=(tx-h.x)*k;h.y+=(ty-h.y)*k;h.z+=(1.91-h.z)*k;}
-   ik(a.elbows[i],s,h,.44,.44,a.working?fx:0,a.working?fy:1,a.working?.4:-.25);
+   if(courtyard&&a.service>0){const k=a.service,lift=ease(k/.30),reach=ease((k-.30)/.40),lower=ease((k-.70)/.30),tx=i?9.74:9.72+.02*Math.sin(q*4),ty=i?1.86:1.68+.02*Math.cos(q*4);h.x+=(tx-h.x)*reach;h.y+=(ty-h.y)*reach;h.z+=(2.20-h.z)*lift-(i?.29:.23)*lower;}
+   const bend=courtyard?ease((a.service-.30)/.40):a.working?1:0;
+   if(courtyard)ik(a.elbows[i],s,h,.44,.44,0,1-bend,-.25+1.25*bend);
+   else ik(a.elbows[i],s,h,.44,.44,a.working?fx:0,a.working?fy:1,a.working?.4:-.25);
   }
-  if(courtyard){const h=a.hands[0],tip=a.toolTip,k=a.service;tip.x=h.x+(9.49-h.x)*k;tip.y=h.y+(1.51-h.y)*k;tip.z=h.z-.27+(1.685-(h.z-.27))*k;}
+  if(courtyard){const h=a.hands[0],tip=a.toolTip,reach=ease((a.service-.30)/.40),lower=ease((a.service-.70)/.30);tip.x=h.x+(9.49-h.x)*reach;tip.y=h.y+(1.51-h.y)*reach;tip.z=h.z-.27-.015*lower;}
  }else if(a.kind==='wheelbot'){
   const q=(t+1)%22;let x,d,w,fx=-1;
   if(q<3){x=13.15;d=0;w=0;}
