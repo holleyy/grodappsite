@@ -427,7 +427,7 @@ const StudyConfig=(function(){
 'use strict';
 const common={projection:{ux:51,uy:25.5,uz:53,ox:705,oy:285},canvas:{w:1600,h:1100},floor:{w:15,h:12},recipe:'repair-post',roomView:{x:790,y:505,w:1510,h:1060},board:{x:4.5,y:3.65,w:8,h:6,z:.085,surfaceZ:.11},anchors:{workshop:{x:0,y:0},lounge:{x:0,y:0}},resting:[{anchor:'top',w:76,filter:null},{anchor:'cubby',w:52,cubby:true,filter:'hue-rotate(168deg) saturate(.3)'}],ambient:{postbot:'workshop',wheelbot:'workshop',robotcat:'lounge',realcat:'lounge'}};
 const scenes={
- courtyard:{...common,id:'courtyard',label:'Courtyard Repair Post',diagnostic:false,recipe:'courtyard',canvas:{w:2000,h:1350},roomView:{x:925,y:605,w:1820,h:1260},floor:{w:21,h:12}},
+ courtyard:{...common,id:'courtyard',label:'Courtyard Repair Post',diagnostic:false,recipe:'courtyard',canvas:{w:2000,h:1500},roomView:{x:925,y:660,w:1900,h:1400},floor:{w:21,h:12}},
  'bright-post':{...common,id:'bright-post',label:'Bright Future Post',diagnostic:false},
  diagnostic:{...common,id:'diagnostic',label:'Placement diagnostic · reused artwork',diagnostic:true,floor:{w:17,h:12},canvas:{w:1800,h:1200},roomView:{x:840,y:530,w:1650,h:1120},board:{...common.board,x:5.5,y:4.40},anchors:{workshop:{x:1,y:0},lounge:{x:0,y:-.5}}}
 };
@@ -536,7 +536,7 @@ const StudyCourtyard=(function(){
 const layout=Object.freeze({floor:{w:21,h:12},service:{x:14.7,y:2.6,w:1.25,h:7.4},pad:{x:18.6,y:5.15,r:1.75},
  parapet:{id:'terrace-parapet',x:20.5,y:7.9,z:0,w:.5,d:2.2,h:.65},parapetCap:{id:'parapet-cap',x:20.5,y:7.9,z:.65,w:.5,d:2.2,h:.10},
  lanterns:[{id:'window-lantern',support:'floor',x:.96,y:11.35,z:0},{id:'terrace-lantern',support:'parapet-cap',x:20.75,y:9.85,z:.75}],
- planters:[{id:'window-planter',x:2.65,y:.75,z:0,w:1.10,d:1.05,h:.62,scale:88},{id:'terrace-end-planter',x:19.5,y:8.55,z:0,w:.90,d:1.14,h:.42,scale:95},{id:'entry-planter',x:16.05,y:8.9,z:0,w:.80,d:1.0,h:.40,scale:85}],
+ planters:[{id:'window-planter',x:2.65,y:.75,z:0,w:1.10,d:1.05,h:.62,scale:88},{id:'terrace-end-planter',x:19.5,y:8.55,z:0,w:.90,d:1.14,h:.55,scale:95},{id:'entry-planter',x:16.05,y:8.9,z:0,w:.80,d:.78,h:.55,scale:85}],
  trolley:{x:16.12,y:5.25,z:.26,w:.58,d:1.10,h:.13},shuttle:{x:16.8,y:3.4,w:3.6,d:3.5},
  crates:[{id:'parcel-a',support:'floor',x:16.5,y:.6,z:0,w:.62,d:.62,h:.62},{id:'parcel-b',support:'floor',x:17.2,y:.6,z:0,w:.69,d:.69,h:.69},{id:'parcel-c',support:'parcel-b',x:17.3,y:.68,z:.69,w:.49,d:.49,h:.49},{id:'parcel-d',support:'floor',x:19.2,y:.62,z:0,w:.63,d:.62,h:.63}]});
 const CREAM=['#f6ead3','#dec7aa','#bba58e'],IVORY=['#fff3dc','#ead9bd','#c1b5a0'];
@@ -570,12 +570,6 @@ function build(ctx,api){
   StudyPaperMaterial.finish(ctx,[[x,y,z+h],[x+w,y,z+h],[x+w,y+d,z+h],[x,y+d,z+h]],'card');
  }
  ctx.clearRect(0,0,W,H);
- function beam(a,b,r,col){
-  const dx=b[0]-a[0],dy=b[1]-a[1],dz=b[2]-a[2],len=Math.hypot(dx,dy,dz),nx=dy/len*r,ny=-dx/len*r;
-  const q=[[a[0]+nx,a[1]+ny,a[2]+r],[b[0]+nx,b[1]+ny,b[2]+r],[b[0]-nx,b[1]-ny,b[2]+r],[a[0]-nx,a[1]-ny,a[2]+r]];
-  quad(ctx,[q[0],q[1],[q[1][0],q[1][1],q[1][2]-2*r],[q[0][0],q[0][1],q[0][2]-2*r]],col[1]);
-  quad(ctx,[q[1],q[2],[q[2][0],q[2][1],q[2][2]-2*r],[q[1][0],q[1][1],q[1][2]-2*r]],col[2]);quad(ctx,q,col[0]);
- }
  function floor(x,y,w,d){
   box(ctx,x,y,-.34,w,d,.34,CREAM);
   for(let yy=y;yy<y+d;yy+=.9)for(let xx=x;xx<x+w;xx+=1.2){const i=(Math.round(xx*5+yy*7)%4+4)%4,pts=[[xx,yy,.005],[Math.min(xx+1.2,x+w),yy,.005],[Math.min(xx+1.2,x+w),Math.min(yy+.9,y+d),.005],[xx,Math.min(yy+.9,y+d),.005]];quad(ctx,pts,['#ead4b5','#f3e1c6','#e9d6bd','#f0dbc0'][i],'rgba(171,136,96,.23)');StudyPaperMaterial.finish(ctx,pts,'floor');}
@@ -594,11 +588,7 @@ function build(ctx,api){
   quad(ctx,[[x+.10,y+.10,h+.003],[x+w-.10,y+.10,h+.003],[x+w-.10,y+d-.10,h+.003],[x+.10,y+d-.10,h+.003]],'#9b8264');
   sprite(ctx,'courtyardFoliage',x+w*.5,y+d*.5,h+.02,scale||85,leafOptions);
  }
- // Visible piers and braces carry both connected decks down to the terrain.
- for(const [x,y] of [[.65,.6],[7,.6],[14.3,.6],[.65,11.3],[6.3,11.3],[14.3,11.3],[20.2,.65],[20.2,9.45],[16.2,9.45]]){
-  shade(ctx,x+.22,y+.22,.66,.52,.13,-2.35);box(ctx,x-.18,y-.18,-2.32,.80,.80,.21,CREAM);box(ctx,x,y,-2.11,.44,.44,1.93,IVORY);
-  beam([x+.2,y+.2,-1.3],[x+1.2,y+.2,-.35],.10,WOOD);
- }
+ StudyTerrace.buildBase(ctx,api);
  floor(0,0,15,12);floor(15,0,6,10.2);
  // Exposed corrugation and laminated edge, deliberately local to the slab.
  for(let x=.05;x<14.9;x+=.27){quad(ctx,[[x,12.006,-.07],[x+.13,12.006,-.25],[x+.26,12.006,-.07]],'#9e8665');}
@@ -626,17 +616,9 @@ function build(ctx,api){
  StudyReceivingBay.build(ctx,api);
  // The thin service stripe retains the established clear passage.
  quad(ctx,[[15.15,2.7,.017],[15.21,2.7,.017],[15.21,9.7,.017],[15.15,9.7,.017]],'#e2b56c');
- // Courtyard seating and planting form a low perimeter, away from the service route.
- for(const x of [17.0,19.0])for(const y of [8.1,8.65])box(ctx,x,y,0,.11,.11,.65,TEAL);
- for(let y=8.07;y<8.75;y+=.16)box(ctx,16.8,y,.64,2.55,.12,.075,WOOD);
- for(const x of [16.95,19.08])box(ctx,x,8.70,.20,.10,.10,1.23,TEAL);
- for(let z=.9;z<1.45;z+=.18)box(ctx,16.8,8.71,z,2.55,.09,.12,WOOD);
- plant(layout.planters[1]);plant(layout.planters[2]);
- for(const s of [layout.parapet,layout.parapetCap])box(ctx,s.x,s.y,s.z,s.w,s.d,s.h,s===layout.parapetCap?IVORY:CREAM);
- lantern(layout.lanterns[1]);
- // Broad, supported external steps descend from the courtyard terrace.
- for(let i=0;i<5;i++)box(ctx,17.0,10.2+i*.4,-.34-(i+1)*.38,2.4,.42,.38,CREAM);
- for(const x of [16.88,19.40]){box(ctx,x,10.2,-.38,.15,.15,1.10,TEAL);box(ctx,x,12.18,-2.28,.15,.15,1.10,TEAL);beam([x+.07,10.25,.72],[x+.07,12.23,-1.18],.055,TEAL);}
+ // The terrace owns the supported foreground, down to its path and terrain.
+ StudyTerrace.buildFront(ctx,api);
+ lantern(layout.lanterns[1]);lantern(StudyTerrace.beacon);
 }
 function drawMotion(ctx,ms,reduced,api){
  StudyCourtyardMotion.sample(ms,reduced,pose);const {box}=api,x=pose.craneX,z=pose.hoist;
@@ -1058,6 +1040,178 @@ function build(ctx,api){
 return{roof,roofHeight,padTop,shuttle,feet,trolleyBounds,wheels,solids,supports,faces,build};
 })();
 if(typeof module!=='undefined')module.exports=StudyReceivingBay;
+
+/* Ground, load paths and terrace furniture share the courtyard's world planes.
+   Geometry and paper finishes are built once into the existing scenery cache. */
+const StudyTerrace=(function(){
+'use strict';
+const groundZ=-2.40,beamBottom=-.64,baseFaces=[],frontFaces=[],solids=[],piers=[],beams=[],braces=[],railPosts=[];
+let faces=baseFaces;
+const CREAM='#eed5b0',TIMBER='#cc9b59',TEAL='#4d8580';
+function normal(p){const a=p[0],b=p[1],c=p[2],u=b.map((v,i)=>v-a[i]),v=c.map((v,i)=>v-a[i]),n=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]],l=Math.hypot(...n);return l>1e-9?n.map(v=>v/l):null;}
+function light(hex,n){const k=.77+.30*Math.max(0,n[2]*.95+n[1]*.30-n[0]*.45);return '#'+[1,3,5].map((j,i)=>Math.max(0,Math.min(255,Math.round(parseInt(hex.slice(j,j+2),16)*k+(1-k)*[23,12,0][i]))).toString(16).padStart(2,'0')).join('');}
+function face(id,points,colour,material='card',centre){let n=normal(points);if(!n)return;if(points.length>3&&points.slice(3).some(p=>Math.abs(n.reduce((s,v,i)=>s+v*(p[i]-points[0][i]),0))>1e-7)){for(let i=1;i<points.length-1;i++)face(id,[points[0],points[i],points[i+1]],colour,material,centre);return;}if(centre){const m=[0,1,2].map(i=>points.reduce((s,p)=>s+p[i],0)/points.length);if(n.reduce((s,v,i)=>s+v*(m[i]-centre[i]),0)<0){points=points.slice().reverse();n=n.map(v=>-v);}}else if(n[0]+n[1]+n[2]*51/53<0){points=points.slice().reverse();n=n.map(v=>-v);}if(n[0]+n[1]+n[2]*51/53<1e-7)return;faces.push({id,points,fill:colour.startsWith('rgba')?colour:light(colour,n),material});}
+function slab(id,points,colour,material='card'){face(id,points,colour,material);}
+function box(id,x,y,z,w,d,h,colour,bevel=.035,material='card',support){
+ solids.push({id,x,y,z,w,d,h,support});const b=Math.min(bevel,w*.18,d*.18,h*.35),outline=(inset,zz)=>[[x+inset,y+inset,zz],[x+w-inset,y+inset,zz],[x+w-inset,y+d-inset,zz],[x+inset,y+d-inset,zz]],rings=[outline(b,z),outline(0,z+b),outline(0,z+h-b),outline(b,z+h)],centre=[x+w/2,y+d/2,z+h/2];
+ for(let k=0;k<3;k++)for(let i=0;i<4;i++){const j=(i+1)%4;face(id,[rings[k][i],rings[k][j],rings[k+1][j],rings[k+1][i]],colour,material,centre);}
+ face(id,rings[3],colour,material,centre);
+}
+function slopeSolid(id,x,y,w,d,base,top,colour,material){const a=[[x,y,base],[x+w,y,base],[x+w,y+d,base],[x,y+d,base]],b=a.map(p=>[p[0],p[1],top(p[1])]),centre=[x+w/2,y+d/2,(base+top(y+d/2))/2];for(let i=0;i<4;i++){const j=(i+1)%4;face(id,[a[i],a[j],b[j],b[i]],colour,material,centre);}face(id,b,colour,material,centre);return b;}
+function extrudeX(id,x,w,profile,colour){const a=profile.map(([y,z])=>[x,y,z]),b=a.map(p=>[p[0]+w,p[1],p[2]]),centre=[x+w/2,profile.reduce((s,p)=>s+p[0],0)/profile.length,profile.reduce((s,p)=>s+p[1],0)/profile.length];for(let i=0;i<a.length;i++){const j=(i+1)%a.length;face(id,[a[i],a[j],b[j],b[i]],colour,'card',centre);}face(id,a,colour,'card',centre);face(id,b,colour,'card',centre);}
+
+function extrudeY(id,y,d,profile,colour){const a=profile.map(([x,z])=>[x,y,z]),b=a.map(p=>[p[0],p[1]+d,p[2]]),centre=[profile.reduce((s,p)=>s+p[0],0)/profile.length,y+d/2,profile.reduce((s,p)=>s+p[1],0)/profile.length];for(let i=0;i<a.length;i++){const j=(i+1)%a.length;face(id,[a[i],a[j],b[j],b[i]],colour,'card',centre);}face(id,a,colour,'card',centre);face(id,b,colour,'card',centre);}
+const stairs={rise:.39,run:.44,steps:[],landing:{x:16.8,y:12.4,z:groundZ,w:2.8,d:1.25,h:.06}};
+const pathSections=[[[16.8,13.65],[19.6,13.65]],[[16.6,14.45],[18.8,15.55]],[[15.25,14.95],[16.25,17.5]],[[13.7,15.15],[14.4,17.85]],[[11.9,15.25],[12.4,18.0]]];
+const path=pathSections.slice(1).map((end,i)=>({start:pathSections[i],end,y:pathSections[i][0][1],z:groundZ,h:.06}));
+const groundPlants=[{x:1.15,y:14.35,width:59},{x:5.35,y:15.65,width:55},{x:8.8,y:14.8,width:43},{x:20.35,y:12.35,width:63},{x:19.5,y:14.05,width:42}];
+const railHeight=y=>.95-stairs.rise/stairs.run*(y-9.98);
+function stairTop(y){if(y<10.2)return 0;if(y>=12.4)return groundZ+.06;return -(Math.floor((y-10.2+.0000001)/stairs.run)+1)*stairs.rise;}
+const bench={x:17.0,y:8.05,w:2.25,d:.9,seatY:8.12,backY:8.04,seatBottom:.56,frameBottom:.45,legs:[]};
+const planters=StudyCourtyard.layout.planters.slice(1).map(p=>({...p,soilZ:p.z+p.h-.10,foliageZ:p.z+p.h-.088}));
+const entryCap={x:16.32,y:9.77,z:.72,w:.48,d:.43,h:.08};
+const beacon={x:16.56,y:9.985,z:.80};
+const terrainOutline=[[-1.2,1.8],[1,-1],[11,-1.1],[20.9,-.5],[22.4,2.7],[22.8,8],[22,11.5],[20.1,13.6],[18.5,14.4],[17.5,17.7],[13,19.5],[9.8,18.5],[6.2,16.6],[2.0,14.2],[-.8,11.5],[-2,6.4]];
+function terrain(){
+ // A low irregular rock shelf receives every foot; it belongs to the same
+ // projection as the architecture rather than sliding with the panorama.
+ const centre=[10,7,groundZ],colours=['#e3ad96','#e3ad96','#e2ac95','#e2ac95','#e3ad96'];
+ for(let i=0;i<terrainOutline.length;i++){
+  const a=terrainOutline[i],b=terrainOutline[(i+1)%terrainOutline.length];
+  face('terrain-top-'+i,[centre,[...a,groundZ],[...b,groundZ]],colours[i%5],'floor');
+  const aa=[a[0]+(a[0]-10)*.07,a[1]+(a[1]-7)*.07,groundZ-.12-(i%3)*.025],bb=[b[0]+(b[0]-10)*.07,b[1]+(b[1]-7)*.07,groundZ-.12-((i+1)%3)*.025];
+  face('terrain-edge-'+i,[[...a,groundZ],aa,bb,[...b,groundZ]],'#e4ac94','floor',[10,7,groundZ-.3]);
+ }
+ // Restrained broad bedrock seams and scattered relief keep the ground quiet.
+ for(const [x,y,w,d,h]of [[-1.1,7.1,1.1,2,.25],[1.2,13,1.8,1.35,.43],[5.4,14.7,2.1,1.2,.44],[9.1,14.6,1.0,.85,.16],[20.5,10.7,1.5,1.25,.48],[20.5,3.1,1.5,.8,.30],[3.8,15.1,1.4,.5,.22],[19.5,12.9,1.0,.85,.25],[7.6,15.8,.8,.6,.24]]){
+  const top=[[x+.20,y+.10,groundZ+h],[x+w-.12,y,groundZ+h*.88],[x+w,y+d*.7,groundZ+h*.7],[x+w*.45,y+d,groundZ+h],[x,y+d*.55,groundZ+h*.86]],bottom=top.map(p=>[x+(p[0]-x)*1.08,y+(p[1]-y)*1.06,groundZ]);
+  const c=[x+w/2,y+d/2,groundZ+h/2];for(let j=0;j<5;j++)face('bedrock-face',[bottom[j],bottom[(j+1)%5],top[(j+1)%5],top[j]],'#cb978d','card',c);
+  for(let j=1;j<4;j++)face('bedrock-top',[top[0],top[j],top[j+1]],['#daa49a','#d4a093','#e2b09e'][j-1],'floor');
+ }
+}
+function foundation(){
+ for(const [i,[x,y]]of [[.9,.9],[7.2,.9],[14.45,.9],[.9,11.45],[5.5,11.45],[10.1,11.45],[14.45,11.45],[20.3,.9],[20.3,9.6],[16.3,9.6]].entries()){
+  const foot={x:x-.48,y:y-.48,z:groundZ,w:.96,d:.96,h:.18},shaft={x:x-.29,y:y-.29,z:groundZ+.18,w:.58,d:.58,h:1.36},capital={x:x-.46,y:y-.46,z:-.86,w:.92,d:.92,h:.22};
+  piers.push({foot,shaft,capital});for(const [name,s,col,b]of [['foot',foot,'#e2c59f',.055],['shaft',shaft,CREAM,.035],['capital',capital,'#edd1a6',.045]])box('pier-'+i+'-'+name,s.x,s.y,s.z,s.w,s.d,s.h,col,b);
+  // Small vertical paper joints stay on the shaft, not in empty space.
+  for(const z of [-1.77,-1.30])slab('pier-course',[[shaft.x,shaft.y+shaft.d+.002,z],[shaft.x+shaft.w,shaft.y+shaft.d+.002,z],[shaft.x+shaft.w,shaft.y+shaft.d+.002,z+.009],[shaft.x,shaft.y+shaft.d+.002,z+.009]],'#cdb18f');
+ }
+ for(const [x,y,w,d]of [[.42,11.25,14.51,.40],[15.82,9.4,4.96,.4],[20.1,1.1,.4,8.3],[.42,.7,20.36,.4],[.7,1.1,.4,10.15],[16.1,1.1,.4,8.3]]){
+  const b={x,y,z:beamBottom,w,d,h:.30};beams.push(b);box('bearing-beam',x,y,b.z,w,d,b.h,TIMBER,.025);
+ }
+ function brace(x,y,dir){const a=x+dir*.29,b=x+dir*1.55,profile=[[a,-1.90],[a,-1.65],[b-dir*.22,beamBottom],[b,beamBottom]];braces.push({contact:[[a,y,-1.775],[b-dir*.11,y,beamBottom]]});extrudeY('timber-brace',y-.10,.20,profile,'#d1a15d');}
+ for(const x of [.9,5.5,10.1,14.45]){if(x<14)brace(x,11.45,1);if(x>1)brace(x,11.45,-1);}
+ brace(16.3,9.6,1);brace(20.3,9.6,-1);
+ // The return is also braced on its side, with its end on the same beam.
+ for(const y of [.9,9.6]){const dir=y<2?1:-1,a=y+dir*.29,b=y+dir*1.55;extrudeX('side-brace',20.20,.20,[[a,-1.90],[a,-1.65],[b-dir*.22,beamBottom],[b,beamBottom]],'#c49556');braces.push({contact:[[20.30,a,-1.775],[20.30,b-dir*.11,beamBottom]]});}
+}
+function entrance(){
+ for(let i=0;i<5;i++){
+  const t={x:16.8,y:10.2+i*stairs.run,z:groundZ,w:2.8,d:stairs.run,h:-stairs.rise*(i+1)-groundZ};stairs.steps.push(t);
+  box('stair-masonry-'+i,t.x,t.y,t.z,t.w,t.d,t.h,'#e8cfac',.025);
+  // The pale nosing is a folded surface on each tread, with no extra rise.
+  const z=t.z+t.h+.001;slab('stair-nosing',[[t.x+.04,t.y+t.d-.095,z],[t.x+t.w-.04,t.y+t.d-.095,z],[t.x+t.w-.04,t.y+t.d-.025,z],[t.x+.04,t.y+t.d-.025,z]],'#f0d9b5','floor');
+ }
+ const l=stairs.landing;box('bottom-landing',l.x,l.y,l.z,l.w,l.d,l.h,'#e3c49e',.015,'floor');
+ for(const [i,s]of path.entries()){
+  // Parallel cut edges make a continuous turning route, not a zigzag of boxes.
+  const top=groundZ+.06;
+  for(let row=0;row<2;row++)for(let j=0;j<3;j++){
+   const u=j/3,v=(j+1)/3,margin=.008;
+   const cross=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,top];
+   const lerp=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t),a=s.start.map((v,k)=>lerp(v,s.end[k],row/2+.009)),b=s.start.map((v,k)=>lerp(v,s.end[k],(row+1)/2-.009));
+   const q=[cross(...a,u+margin),cross(...a,v-margin),cross(...b,v-margin),cross(...b,u+margin)],bottom=q.map(p=>[p[0],p[1],groundZ]),centre=[q.reduce((n,p)=>n+p[0],0)/4,q.reduce((n,p)=>n+p[1],0)/4,groundZ+.03];
+   for(let k=0;k<4;k++)face('approach-edge',[bottom[k],bottom[(k+1)%4],q[(k+1)%4],q[k]],'#cba581','card',centre);
+   face('approach-paver',q,['#dfbc97','#e4c39c','#dbb892'][(i+j)%3],'floor');
+  }
+ }
+}
+function handrails(){
+ for(const x of [16.80,19.44]){
+  for(const y of [9.98,10.42,11.30,12.62]){
+   const p={x,y:y-.07,z:stairTop(y),w:.16,d:.14};p.top=slopeSolid('stair-rail-post',p.x,p.y,p.w,p.d,p.z,yy=>railHeight(yy)-.06,TEAL,'card');railPosts.push(p);
+  }
+  extrudeX('inclined-handrail',x-.025,.21,[[9.87,railHeight(9.87)-.06],[12.75,railHeight(12.75)-.06],[12.75,railHeight(12.75)+.06],[9.87,railHeight(9.87)+.06]],'#649d91');
+ }
+}
+function seating(){
+ for(const x of [17.12,18.95])for(const y of [7.95,8.73]){const l={x,y,z:0,w:.18,d:.18,h:.45};bench.legs.push(l);box('bench-leg',x,y,0,l.w,l.d,l.h,TEAL,.025);}
+ // End rails carry all five battens and bear directly on the four legs.
+ for(const x of [17.09,18.92])box('bench-end-frame',x,7.95,.45,.24,1.0,.11,TEAL,.015);
+ // Low side ties carry the central stretcher between the two end frames.
+ for(const x of [17.12,18.95])box('bench-low-side',x,8.13,.22,.18,.60,.13,TEAL,.015);
+ box('bench-stretcher',17.30,8.43,.22,1.65,.14,.13,'#477e76',.018);
+ for(let i=0;i<5;i++)box('bench-seat-batten',17.0,8.11+i*.164,.56,2.25,.148,.14,['#dfb372','#d6a66a','#e3ba7c'][i%3],.025);
+ // Back uprights stand on the end rails behind the visible seat.
+ for(const x of [17.12,18.95])box('bench-back-post',x,7.95,.56,.18,.15,.94,TEAL,.018);
+ for(let i=0;i<3;i++)box('bench-back-batten',17.0,8.10,.88+i*.20,2.25,.10,.15,['#deb272','#e2b879','#d6aa6c'][i],.02);
+ for(const x of [17.0,19.10]){
+  for(const y of [8.24,8.70])box('bench-arm-post',x,y,.70,.15,.13,.23,TEAL,.018);
+  box('bench-arm',x-.015,8.22,.93,.18,.65,.12,'#e2b575',.025);
+ }
+}
+function planting(){
+ for(const s of planters){const {x,y,z,w,d,h}=s,b=.105;
+  // Four independent thick walls leave the soil visibly below the opening.
+  box(s.id+'-base',x,y,z,w,d,.12,'#dbc19c',.03);
+  box(s.id+'-back',x,y,z+.12,w,b,h-.12,CREAM,.018);
+  box(s.id+'-front',x,y+d-b,z+.12,w,b,h-.12,CREAM,.018);
+  box(s.id+'-left',x,y+b,z+.12,b,d-2*b,h-.12,CREAM,.018);
+  box(s.id+'-right',x+w-b,y+b,z+.12,b,d-2*b,h-.12,CREAM,.018);
+  slab(s.id+'-soil',[[x+b,y+b,s.soilZ],[x+w-b,y+b,s.soilZ],[x+w-b,y+d-b,s.soilZ],[x+b,y+d-b,s.soilZ]],'#927858','floor');
+ }
+ const l=StudyCourtyard.layout;for(const s of [l.parapet,l.parapetCap])box(s.id,s.x,s.y,s.z,s.w,s.d,s.h,s===l.parapetCap?'#f2dbb7':CREAM,.025);
+ box('entry-pier',16.36,9.80,0,.40,.37,.72,CREAM,.025);
+ const e=entryCap;box('entry-cap',e.x,e.y,e.z,e.w,e.d,e.h,'#f2dbb7',.01);
+ // Short return composes the bench garden without closing the stair opening.
+ box('garden-return',19.66,9.78,0,.84,.32,.50,CREAM,.025);
+ box('garden-return-cap',19.64,9.76,.50,.86,.36,.08,'#f2dbb7',.018);
+}
+terrain();foundation();entrance();
+function order(){
+ const project=p=>[51*(p[0]-p[1]),25.5*(p[0]+p[1])-53*p[2],p[0]+p[1]+p[2]*51/53];
+ const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+ const data=faces.map((f,i)=>{let p=f.points.map(project);if(p.reduce((s,a,j)=>s+a[0]*p[(j+1)%p.length][1]-p[(j+1)%p.length][0]*a[1],0)<0)p=p.slice().reverse();const n=normal(p);return{i,p,n,b:[Math.min(...p.map(p=>p[0])),Math.min(...p.map(p=>p[1])),Math.max(...p.map(p=>p[0])),Math.max(...p.map(p=>p[1]))],to:[],degree:0,depth:p.reduce((s,p)=>s+p[2],0)/p.length};});
+ function overlap(a,b){let p=a.p.map(p=>p.slice(0,2));for(let i=0;i<b.p.length&&p.length;i++){const q=[],u=b.p[i],v=b.p[(i+1)%b.p.length];for(let j=0;j<p.length;j++){const c=p[j],d=p[(j+1)%p.length],s=cross(u,v,c),t=cross(u,v,d);if(s>=-1e-7)q.push(c);if((s<0&&t>0)||(s>0&&t<0)){const k=s/(s-t);q.push([c[0]+k*(d[0]-c[0]),c[1]+k*(d[1]-c[1])]);}}p=q;}return p;}
+ const depth=(a,p)=>a.p[0][2]-(a.n[0]*(p[0]-a.p[0][0])+a.n[1]*(p[1]-a.p[0][1]))/a.n[2];
+ for(let i=0;i<data.length;i++)for(let j=i+1;j<data.length;j++){const a=data[i],b=data[j];if(a.b[2]<=b.b[0]+.001||b.b[2]<=a.b[0]+.001||a.b[3]<=b.b[1]+.001||b.b[3]<=a.b[1]+.001)continue;const p=overlap(a,b);if(p.length<3)continue;const area=Math.abs(p.reduce((s,v,k)=>s+v[0]*p[(k+1)%p.length][1]-p[(k+1)%p.length][0]*v[1],0))/2;if(area<.003)continue;const c=[p.reduce((s,p)=>s+p[0],0)/p.length,p.reduce((s,p)=>s+p[1],0)/p.length],d=depth(a,c)-depth(b,c),from=d>.00001?b:a,to=d>.00001?a:b;from.to.push(to);to.degree++;}
+ const result=[],ready=data.filter(d=>d.degree===0);while(ready.length){ready.sort((a,b)=>b.depth-a.depth||b.i-a.i);const a=ready.pop();result.push(faces[a.i]);for(const b of a.to)if(--b.degree===0)ready.push(b);}
+ if(result.length!==faces.length){const visiting=new Set(),done=new Set();function cycle(a,path){if(visiting.has(a))return path.slice(path.indexOf(a)).concat(a);if(done.has(a))return null;visiting.add(a);for(const b of a.to){const c=cycle(b,path.concat(a));if(c)return c;}visiting.delete(a);done.add(a);return null;}let c;for(const a of data)if((c=cycle(a,[])))break;throw Error('Terrace has intersecting painter dependencies: '+c.map(a=>faces[a.i].id+JSON.stringify(faces[a.i].points)).join(' → '));}faces.splice(0,faces.length,...result);
+}
+
+order();faces=frontFaces;handrails();seating();planting();order();
+function render(ctx,api,list){for(const f of list){
+ api.quad(ctx,f.points,f.fill);if(f.material)StudyPaperMaterial.finish(ctx,f.points,f.material);
+ if(/^entry-|^stair-masonry-[0-2]$/.test(f.id)){
+  const q=api.p(beacon.x,beacon.y,beacon.z+.30),g=ctx.createRadialGradient(q.x,q.y,0,q.x,q.y,125);g.addColorStop(0,'rgba(255,223,147,.18)');g.addColorStop(1,'rgba(255,223,147,0)');ctx.save();api.path(ctx,f.points.map(p=>api.p(...p)));ctx.clip();ctx.fillStyle=g;ctx.fill();ctx.restore();
+ }
+}}
+function buildBase(ctx,api){
+ // Terrain is drawn first, then a soft cast on that actual plane, then solids.
+ const terrain=baseFaces.filter(f=>f.id.startsWith('terrain-')),rest=baseFaces.filter(f=>!f.id.startsWith('terrain-'));
+ if(typeof document==='undefined')render(ctx,api,terrain);
+ else{
+  const layer=document.createElement('canvas');layer.width=api.W;layer.height=api.H;const ink=layer.getContext('2d');render(ink,api,terrain);
+  // The dust at the edge merges into the distant art; feet stay well inside
+  // the solid ground. This mask is baked once and moves with the scenery.
+  ink.save();ink.globalCompositeOperation='destination-in';ink.filter='blur(20px)';api.path(ink,terrainOutline.map(v=>api.p(...v,groundZ)));ink.fillStyle='#fff';ink.fill();ink.restore();ctx.drawImage(layer,0,0);
+ }
+ ctx.save();ctx.shadowBlur=24;ctx.shadowColor='rgba(85,52,39,.16)';
+ api.quad(ctx,[[.55,.20,groundZ+.003],[20.6,.20,groundZ+.003],[21.5,9.7,groundZ+.003],[15.8,10.4,groundZ+.003],[15.8,12.3,groundZ+.003],[.65,12.3,groundZ+.003]],'rgba(103,65,66,.16)');ctx.restore();
+ for(const {foot:f}of piers)api.shade(ctx,f.x+f.w/2+.05,f.y+f.d/2-.03,.64,.60,.23,groundZ+.007);
+ render(ctx,api,rest);
+ for(const s of groundPlants){api.shade(ctx,s.x,s.y,.35,.24,.13,groundZ+.005);api.sprite(ctx,'courtyardFoliage',s.x,s.y,groundZ+.012,s.width,{anchorX:.5,anchorY:1});}
+}
+function buildFront(ctx,api){
+ // Small contact shadows keep the garden and furniture seated on the terrace.
+ for(const s of [...planters,...bench.legs])api.shade(ctx,s.x+s.w/2,s.y+s.d/2,s.w*.60,s.d*.60,.17,.012);
+ api.quad(ctx,[[17,8.05,.013],[19.25,8.05,.013],[19.72,8.63,.013],[19.25,9.0,.013],[17,9.0,.013]],'rgba(84,59,36,.10)');
+ render(ctx,api,frontFaces);
+ for(const s of planters)api.sprite(ctx,'courtyardFoliage',s.x+s.w/2,s.y+s.d/2,s.foliageZ,s.scale,{anchorX:.5,anchorY:1});
+}
+return{groundZ,beamBottom,baseFaces,frontFaces,solids,piers,beams,braces,stairs,path,railPosts,railHeight,stairTop,bench,planters,entryCap,beacon,buildBase,buildFront};
+})();
+if(typeof module!=='undefined')module.exports=StudyTerrace;
 
 /* Room-local construction. Renderer and contact checks consume these same faces. */
 const StudyRoom=(function(){
