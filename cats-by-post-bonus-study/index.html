@@ -535,7 +535,7 @@ const StudyCourtyard=(function(){
 'use strict';
 const layout=Object.freeze({floor:{w:21,h:12},service:{x:14.7,y:2.6,w:1.25,h:7.4},pad:{x:18.6,y:5.15,r:1.75},
  parapet:{id:'terrace-parapet',x:20.5,y:7.9,z:0,w:.5,d:2.2,h:.65},parapetCap:{id:'parapet-cap',x:20.5,y:7.9,z:.65,w:.5,d:2.2,h:.10},
- lanterns:[{id:'window-lantern',support:'floor',x:.50,y:11.35,z:0},{id:'terrace-lantern',support:'parapet-cap',x:20.75,y:9.85,z:.75}],
+ lanterns:[{id:'window-lantern',support:'floor',x:.96,y:11.35,z:0},{id:'terrace-lantern',support:'parapet-cap',x:20.75,y:9.85,z:.75}],
  planters:[{id:'window-planter',x:2.65,y:.75,z:0,w:1.10,d:1.05,h:.62,scale:88},{id:'terrace-end-planter',x:19.5,y:8.55,z:0,w:.90,d:1.14,h:.42,scale:95},{id:'entry-planter',x:16.05,y:8.9,z:0,w:.80,d:1.0,h:.40,scale:85}],
  trolley:{x:16.35,y:2.48,z:.26,w:1.02,d:.74,h:.13},shuttle:{x:16.8,y:3.4,w:3.6,d:3.5},
  crates:[{id:'parcel-a',support:'floor',x:16.5,y:.6,z:0,w:.62,d:.62,h:.62},{id:'parcel-b',support:'floor',x:17.2,y:.6,z:0,w:.69,d:.69,h:.69},{id:'parcel-c',support:'parcel-b',x:17.3,y:.68,z:.69,w:.49,d:.49,h:.49},{id:'parcel-d',support:'floor',x:19.2,y:.62,z:0,w:.63,d:.62,h:.63}]});
@@ -683,7 +683,8 @@ if(typeof module!=='undefined')module.exports=StudyCourtyard;
 const StudyPaperCorner=(function(){
 'use strict';
 const palette={cream:'#ead0a5',light:'#fff0cb',teal:'#477f7c',deepTeal:'#315e60',honey:'#e8ad43',linen:'#f5dfb2',recess:'#78644b'};
-const window={frontX:.82,glassX:.20,sillTop:2.10,apertureBottom:2.25,apertureTop:4.08};
+const window={wallFrontX:.68,frontX:.76,sashFrontX:.28,glassX:.14,farY:2.10,nearY:10.95,openingBottom:2.10,openingTop:4.38,corner:.20};
+Object.assign(window,{sillTop:window.openingBottom,apertureBottom:window.openingBottom+.10,apertureTop:window.openingTop-.10});
 const windowCommands=[];
 function rgb(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16));}
 function light(hex,n){const c=rgb(hex),d=.77+.30*Math.max(0,n[2]*.95+n[1]*.30-n[0]*.45);return '#'+c.map((v,i)=>Math.max(0,Math.min(255,Math.round(v*d+(1-d)*[23,12,0][i]))).toString(16).padStart(2,'0')).join('');}
@@ -726,24 +727,38 @@ function runner(out,support){
 }
 function prism(out,id,profile,y0,y1,colour){const a=profile.map(p=>[p[0],y0,p[1]]),b=profile.map(p=>[p[0],y1,p[1]]),centre=[profile.reduce((s,p)=>s+p[0],0)/profile.length,(y0+y1)/2,profile.reduce((s,p)=>s+p[1],0)/profile.length],parts=[];for(let i=0;i<a.length;i++){const j=(i+1)%a.length;litFace(parts,id,[a[i],a[j],b[j],b[i]],colour,null,centre);}litFace(parts,id,b,colour,null,centre);parts.sort((a,b)=>depth(a.points)-depth(b.points));out.push(...parts);}
 function shadow(out,id,points,alpha,blur=3,flags){out.push({type:'paperShadow',id,points,alpha,blur,...flags});}
-function windowRing(out,id,outer,inner,x0,x1,colours){for(let i=0;i<outer.length;i++){const j=(i+1)%outer.length;face(out,id+'-'+i,[[x0,...outer[i]],[x0,...outer[j]],[x1,...inner[j]],[x1,...inner[i]]],colours[i%colours.length]);}}
 function oct(y0,z0,y1,z1,c){return [[y0+c,z0],[y1-c,z0],[y1,z0+c],[y1,z1-c],[y1-c,z1],[y0+c,z1],[y0,z1-c],[y0,z0+c]];}
-function buildWindow(){const out=windowCommands;
- bevel(out,'window-lower-wall',0,0,0,.64,12,1.87,.06,'#e8cda7');
- bevel(out,'window-head',0,0,4.46,.68,12,.48,.07,'#e8cda7');
- bevel(out,'window-far-pier',0,0,1.86,.68,2.10,2.62,.06,'#e8cda7');
- bevel(out,'window-near-pier',0,10.95,1.86,.68,1.05,2.62,.06,'#e8cda7');
- const outer=oct(2.10,1.87,10.95,4.46,.27),lip=oct(2.22,1.99,10.83,4.34,.26),mouth=oct(2.43,2.20,10.62,4.13,.23);
- for(const [y,z,sy,sz]of [[2.10,1.87,1,1],[10.95,1.87,-1,1],[10.95,4.46,-1,-1],[2.10,4.46,1,-1]])face(out,'window-corner-fill',[[.68,y,z],[.68,y+sy*.27,z],[.68,y,z+sz*.27]],'#e7cda7');
- windowRing(out,'window-outer-bevel',outer,lip,.68,.82,['#f8e4bd','#e3c394','#cfaa79','#ead0a6','#fff0cd','#f5dfb7','#e1bf90','#d0ab7f']);
- windowRing(out,'window-frame',lip,mouth,.82,.82,['#f8e1b3','#e9c897','#dbb680','#eacb9b','#f9e4bf','#f7e0b5','#e6c394','#e0bd8f']);
- windowRing(out,'window-reveal',mouth,mouth,.82,.22,['#ffe8b9','#ead09e','#c9aa7d','#b99a70','#9e815b','#b99569','#dcc297','#efd7aa']);
- const glass=oct(2.49,2.25,10.56,4.08,.22);windowRing(out,'window-gasket',mouth,glass,.24,.24,['#6a9b91','#467d78','#365f60','#3c6c67','#3b6260','#50847b','#64968c','#86aba0']);
- face(out,'window-glass',glass.map(p=>[.20,...p]),'rgba(147,191,184,.055)',{paper:false});
- face(out,'window-glass-reflection',[[.205,7.8,4.08],[.205,8.18,4.08],[.205,10.55,2.65],[.205,10.55,2.39]],'rgba(255,245,213,.12)',{paper:false});
- bevel(out,'window-mullion',.20,6.48,2.22,.16,.095,1.90,.02,'#5a8980');
- bevel(out,'window-sill',.12,2.08,1.84,.72,8.90,.26,.055,'#f1d7a9');
- bevel(out,'window-cornice',0,0,4.87,.90,12,.27,.07,'#efd4a5');
+function buildWindow(){const out=windowCommands,w=window,wallTop=4.94;
+ const opening=oct(w.farY,w.openingBottom,w.nearY,w.openingTop,w.corner);
+ const glass=oct(w.farY+.10,w.apertureBottom,w.nearY-.10,w.apertureTop,w.corner-.06);
+ const at=(loop,x)=>loop.map(([y,z])=>[x,y,z]);
+ const ring=(id,outer,inner,x0,x1,colour)=>{for(let i=0;i<outer.length;i++){const j=(i+1)%outer.length;litFace(out,id+'-'+i,[[x0,...outer[i]],[x0,...outer[j]],[x1,...inner[j]],[x1,...inner[i]]],colour);}};
+ // Glazing and its entire sash share one recessed plane, behind all wall returns.
+ face(out,'window-glass',at(glass,w.glassX),'rgba(147,191,184,.055)',{paper:false});
+ face(out,'window-glass-reflection',[[w.glassX+.001,6.95,4.12],[w.glassX+.001,7.15,4.12],[w.glassX+.001,8.75,2.32],[w.glassX+.001,8.55,2.32]],'rgba(255,245,213,.10)',{paper:false});
+ ring('window-sash-glass-return',glass,glass,w.sashFrontX,w.glassX,'#6e9a8d');
+ const y=6.48,m=.12,lo=w.apertureBottom,hi=w.apertureTop;
+ face(out,'window-mullion-side',[[w.glassX,y+m,lo],[w.sashFrontX,y+m,lo],[w.sashFrontX,y+m,hi],[w.glassX,y+m,hi]],light('#6e9a8d',[0,1,0]));
+ face(out,'window-mullion-front',[[w.sashFrontX,y,lo],[w.sashFrontX,y+m,lo],[w.sashFrontX,y+m,hi],[w.sashFrontX,y,hi]],light('#6e9a8d',[1,0,0]));
+ ring('window-sash-front',opening,glass,w.sashFrontX,w.sashFrontX,'#6e9a8d');
+ // Only camera-facing returns are visible: the wall masks the opposite jamb/head.
+ ring('window-reveal',opening,opening,w.wallFrontX,w.sashFrontX,palette.cream);
+ // A single extruded wall surrounds the cut-out; no separately bevelled wall blocks.
+ const outer=oct(0,0,12,wallTop,0);
+ face(out,'window-wall-top',[[0,0,wallTop],[w.wallFrontX,0,wallTop],[w.wallFrontX,12,wallTop],[0,12,wallTop]],'#f0d6ac');
+ face(out,'window-wall-end',[[0,12,0],[w.wallFrontX,12,0],[w.wallFrontX,12,wallTop],[0,12,wallTop]],'#d8ba91');
+ for(let i=0;i<8;i++){const j=(i+1)%8,points=[[w.wallFrontX,...outer[i]],[w.wallFrontX,...outer[j]],[w.wallFrontX,...opening[j]],[w.wallFrontX,...opening[i]]],unique=points.filter((p,k)=>k===0||p.some((v,n)=>v!==points[k-1][n]));face(out,'window-wall-face-'+i,unique,light(palette.cream,[1,0,0]));}
+ ring('window-trim-return',opening,opening,w.frontX,w.wallFrontX,palette.cream);
+ const trimOuter=oct(w.farY-.14,w.openingBottom-.14,w.nearY+.14,w.openingTop+.14,w.corner+.04),trimLip=oct(w.farY-.08,w.openingBottom-.08,w.nearY+.08,w.openingTop+.08,w.corner+.02);
+ ring('window-trim-bevel',trimOuter,trimLip,w.wallFrontX,w.frontX,'#f5ddb6');
+ ring('window-trim-front',trimLip,opening,w.frontX,w.frontX,'#efd4a5');
+ // The reveal floor and projecting sill are one level. End wings stay outside the wall.
+ const z=w.sillTop,sillFront=1.03,bevelX=.99,topColour=light(palette.cream,[0,0,1]);
+ face(out,'window-sill-top',[[w.frontX,w.farY,z],[bevelX,w.farY,z],[bevelX,w.nearY,z],[w.frontX,w.nearY,z]],topColour);
+ face(out,'window-sill-bevel',[[bevelX,w.farY,z],[sillFront,w.farY,z-.04],[sillFront,w.nearY,z-.04],[bevelX,w.nearY,z]],'#ead0a5');
+ face(out,'window-sill-fascia',[[sillFront,w.farY,z-.04],[sillFront,w.farY,z-.15],[sillFront,w.nearY,z-.15],[sillFront,w.nearY,z-.04]],'#c6a77c');
+ face(out,'window-sill-end',[[w.frontX,w.nearY,z],[bevelX,w.nearY,z],[sillFront,w.nearY,z-.04],[sillFront,w.nearY,z-.15],[w.frontX,w.nearY,z-.15]],'#ddbd8f');
+ bevel(out,'window-cornice',0,0,wallTop,.90,12,.20,.04,'#efd4a5');
  // Two supported amber wall lamps warm the window returns.
  for(const [y,z]of [[1.40,2.75],[11.46,2.55]]){
   bevel(out,'window-lamp-mount',.64,y-.13,z-.14,.20,.26,.40,.035,palette.deepTeal);
