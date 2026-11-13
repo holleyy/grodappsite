@@ -867,8 +867,36 @@ return freeze(layout);
       out.effects={hatchX:-1,hatchY:-1,hatchOpen:0,spinX:-1,spinY:-1,spin:0,bumpX:-1,bumpY:-1,bumpAge:-1,homeX:-1,homeY:-1,cushionOccupied:false,flapOpen:0,puzzled:false};
       return out;
     }
-    // Study-local source-equivalent paper override. It deliberately has no art
-    // gate: missing artwork must never change the accepted arrival clock.
+    // The rule trace still supplies every action and deadline. Its original
+    // two-world-unit pixel snapping becomes large jumps at this scene's scale,
+    // so sample floor travel continuously without changing those action fields.
+    function glide(out,tr,now){
+      if(out.anim===A.POP){
+        const f=(now-(tr.rel-tr.pop))/tr.pop;
+        out.z=-8+ease((f-.15)/.6)*8;return;
+      }
+      if(out.anim!==A.TRAVEL&&out.anim!==A.BOUNCE&&out.anim!==A.STOP)return;
+      const k=Math.floor((now-tr.rel)/tr.tick);
+      if(k<0||k>=tr.n||tr.homeKind==='flap'||tr.ev[k]===BA.EV_TUNNEL)return;
+      const f=(now-tr.rel-k*tr.tick)/tr.tick,d=tr.d0[k],ev=tr.ev[k];
+      const x0=tr.ox+tr.x0[k]*16+8,y0=tr.oy+tr.y0[k]*16+8;
+      let x1=tr.ox+tr.x1[k]*16+8,y1=tr.oy+tr.y1[k]*16+8;
+      if(tr.bn[k]){
+        const F=Math.max(1,Math.round(tr.tick*BA.FPS)),b0=F>=4?1:0,fTurn=Math.min(.99,(b0+3)/F);
+        const nudge=3*ease(f/.2),nx=x0+DX[d]*nudge,ny=y0+DY[d]*nudge;
+        const g=F<4?(f-2/F)*F:(f-fTurn)/(1-fTurn),m=ease(g);
+        out.x=lerp(nx,x1,m);out.y=lerp(ny,y1,m);return;
+      }
+      const turned=tr.d1[k]!==d&&ev===BA.EV_MOVED;
+      // Straight tiles form one uninterrupted route. A real turn retains its
+      // original arrival/looking/turning hold; basket approach retains support.
+      let m=turned?ease(f/.6):clamp(f);
+      if(ev!==BA.EV_MOVED){x1-=DX[d]*14;y1-=DY[d]*14;m=ease(f/.6);}
+      out.x=lerp(x0,x1,m);out.y=lerp(y0,y1,m);
+      out.bob=Math.sin(Math.PI*m)*.6;
+    }
+    // Study-local supported paper override. It deliberately has no art gate:
+    // missing artwork must never change the accepted arrival clock.
     function paper(out,tr,now){
       if(tr.homeKind==='flap'||tr.n===0||tr.coat<1||tr.coat>2||(tr.end!==BA.END_HOME&&tr.end!==BA.END_WRONG))return;
       const j=tr.n-1,d=tr.d0[j],T=now-(tr.rel+tr.n*tr.tick);
@@ -876,7 +904,7 @@ return freeze(layout);
       if(T<0){
         if(T<-tr.tick||tr.bn[j]||out.anim===A.HIDDEN||out.anim===A.POP)return;
         const u=ease((T+tr.tick)/(tr.tick*.6));
-        out.x=q(lerp(tr.ox+tr.x0[j]*16+8,bx,u));out.y=q(lerp(tr.oy+tr.y0[j]*16+8,by,u));return;
+        out.x=lerp(tr.ox+tr.x0[j]*16+8,bx,u);out.y=lerp(tr.oy+tr.y0[j]*16+8,by,u);return;
       }
       const wrong=tr.end===BA.END_WRONG;
       if(!wrong&&now>=tr.napUntil){
@@ -886,7 +914,7 @@ return freeze(layout);
       }
       if(T<.2){out.x=bx;out.y=by;return;}
       const fade=wrong?0:clamp((T-.75)/(1.2-.75)),slide=ease(fade);
-      out.boxX=q(bx-Math.SQRT1_2*12*slide);out.boxY=q(by+Math.SQRT1_2*12*slide);out.boxFade=fade;
+      out.boxX=bx-Math.SQRT1_2*12*slide;out.boxY=by+Math.SQRT1_2*12*slide;out.boxFade=fade;
       out.boxFold=wrong||T<.45?0:T<.75?1+Math.floor((T-.45)*10+1e-6):T<1.2?4:-1;
       if(T>=.6){if(!wrong)out.z=3;return;}
       const mirrored=d===0||d===3,away=d===2||d===3,sx=mirrored?-2:2,u=clamp((T-.4)/(.6-.4));
@@ -899,7 +927,7 @@ return freeze(layout);
       finite(time);const now=time+1e-9; // Exactly one effective production epsilon.
       resetBase(out.base);BA.pose(tr,now,out.base);
       for(let k=0;k<keys.length;k++)out[keys[k]]=out.base[keys[k]];
-      out.takeoff=-1;out.takeoffSupported=0;paper(out,tr,now);
+      out.takeoff=-1;out.takeoffSupported=0;glide(out,tr,now);paper(out,tr,now);
       const visible=out.anim!==A.HIDDEN,terminal=tr.n>0&&(tr.end===BA.END_HOME||tr.end===BA.END_WRONG),T=terminal?now-(tr.rel+tr.n*tr.tick):-Infinity;
       const loose=out.takeoff>=0||out.anim===A.TURN||out.anim===A.CURL||out.anim===A.NAP||out.anim===A.WAKE||out.anim===A.LEAVE||out.anim===A.PUZZLED||out.anim===A.HOP;
       const boxed=visible&&!loose,r=out.root,c=out.cat,b=out.box,rim=out.rim,e=out.effects;
@@ -985,6 +1013,7 @@ const BOUNDS=Object.freeze({left:-800,top:-1100,right:2450,bottom:1600});
 class Backdrop{
  constructor(renderer){this.r=renderer;this.canvas=null;this.foreground=null;this.bakes=0;this.bounds=BOUNDS;}
  bake(){
+  if(this.r.scenery)this.r.scenery.clear();
   const b=this.bounds,cvs=document.createElement('canvas');cvs.width=2300;cvs.height=1911;
   const c=cvs.getContext('2d'),sx=cvs.width/(b.right-b.left),sy=cvs.height/(b.bottom-b.top);
   c.setTransform(sx,0,0,sy,-b.left*sx,-b.top*sy);
@@ -1020,11 +1049,11 @@ class Backdrop{
   // the same quiet water stock instead of revealing a rectangular diorama.
   c.fillStyle='#428c85';c.fillRect(-r.cam.tx/r.cam.scale,-r.cam.ty/r.cam.scale,r.config.width/r.cam.scale,r.config.height/r.cam.scale);
   if(-r.cam.ty/r.cam.scale<b.top){c.fillStyle='#f4aba5';c.fillRect(-r.cam.tx/r.cam.scale,-r.cam.ty/r.cam.scale,r.config.width/r.cam.scale,b.top+r.cam.ty/r.cam.scale+1);}
-  c.drawImage(this.canvas,b.left,b.top,b.right-b.left,b.bottom-b.top);
+  this.r.scenery.draw(this.canvas,b.left,b.top,b.right-b.left,b.bottom-b.top);
  }
  drawForeground(){
   const r=this.r,c=r.ctx,f=this.foreground,s=r.cam.scale,bottom=(r.config.height-r.cam.ty)/s;
-  if(f)c.drawImage(f.canvas,f.bounds.left,f.bounds.top+Math.max(0,bottom-1110),1150,700);
+  if(f)this.r.scenery.draw(f.canvas,f.bounds.left,f.bounds.top+Math.max(0,bottom-1110),1150,700);
  }
 }
 Backdrop.layout=()=>BOUNDS;root.CivicBackdrop=Backdrop;
@@ -1533,51 +1562,66 @@ class Exterior{
  }
  furniture(){
   this.lantern(-3.59,6.72,-91,82);
-  this.lantern(2.35,6.8,-91,76);
+  // Leave clear paving between the planter rim and the complete lamp foot.
+  // The additional gap also separates their silhouettes in the fixed view.
+  this.lantern(2.95,6.8,-91,76);
   this.planter(-3.47,6.67,-91,.47,.43,0);
   this.planter(-1.49,6.62,-91,.6,.43,0);
-  this.planter(1.45,6.6,-91,.78,.46,1);
   this.bench(-.82,6.28,-91,2.08);
+  // This planter is nearer than the bench: paint it last so it correctly
+  // occludes the far foot instead of receiving a green leg on its soil.
+  this.planter(1.45,6.6,-91,.78,.46,1);
   for(const y of[5.7,6.8])this.bollard(-3.9,y,-91,true);
   this.bollard(-2.8,7.05,-91);this.bollard(-.85,7.07,-91);
  }
  bench(x,y,z,w){
   this.quad(x-.04,y-.02,x+w+.08,y+.7,z+.1,'#625d4938');
-  const front=y+.06,back=y+.61;
-  // Cast iron feet, curved arms and separate warm timber slats. The seat is
-  // assembled in world space so its four feet meet the same paving plane.
-  for(const xx of[x+.17,x+w-.17]){
-   for(const yy of[front,back]){
-    this.box(xx-.045,yy-.085,xx+.045,yy+.085,z,z+3,'#5b8775','#315d53','#214b47');
-    this.line([xx,yy,z+3],[xx,yy,z+28],'#285e53',5.8);
-    this.line([xx-.015,yy,z+4],[xx-.015,yy,z+27],'#78a38a',1.1);
-   }
-   this.line([xx,back,z+5],[xx,back+.07,z+55],'#2d6659',5.5);
-   this.line([xx,front,z+24],[xx,back,z+24],'#356b59',5);
-  }
-  for(let i=0;i<5;i++){
-   const yy=y+i*.112;
-   this.box(x,yy,x+w,yy+.09,z+24,z+29,'#dda15c','#bc7846','#a8683e');
-   this.line([x+.02,yy+.089,z+29],[x+w-.02,yy+.089,z+29],'#ffe1a1',.9);
-   for(const xx of[x+.17,x+w-.17])this.line([xx,yy+.04,z+29.2],[xx+.015,yy+.04,z+29.2],'#6a634a',1.5);
+  // The bench faces the canal (+y). Its back is on the far side of the seat,
+  // so the two front uprights and the low armrests remain plainly visible.
+  const back=y+.10,front=y+.61,seatBottom=z+24,seatTop=z+29,backTop=z+56;
+  const supports=[x+.08,x+w-.08],woodLeft=x+.10,woodRight=x+w-.10;
+  const backY=height=>back-.07*(height-(z+3))/(backTop-(z+3));
+  const strut=(xx,y0,z0,y1,z1)=>{
+   const a=.04,b=.03;
+   this.path([[xx-a,y0+b,z0],[xx+a,y0+b,z0],[xx+a,y1+b,z1],[xx-a,y1+b,z1]],'#2d6659');
+   this.path([[xx+a,y0-b,z0],[xx+a,y0+b,z0],[xx+a,y1+b,z1],[xx+a,y1-b,z1]],'#214e47');
+   this.quad(xx-a,y1-b,xx+a,y1+b,z1,'#6f9680');
+   this.line([xx-a+.01,y0+b+.002,z0+1],[xx-a+.01,y1+b+.002,z1-1],'#83ab8a',.85);
+  };
+  const foot=(xx,yy)=>{
+   this.quad(xx-.07,yy-.105,xx+.075,yy+.11,z+.12,'#40574928');
+   this.box(xx-.045,yy-.085,xx+.045,yy+.085,z,z+3,'#5b8775','#315d53','#214b47');
+  };
+  // Rear uprights grow directly from their feet. Both back rails and the arm
+  // attachment use this same leaning line; no support projects above the top.
+  for(const xx of supports){
+   foot(xx,back);strut(xx,back,z+3,backY(backTop),backTop);
+   this.box(xx-.06,back-.045,xx+.06,front+.035,seatBottom-3,seatBottom,'#5a8973','#315f52','#224c43');
   }
   for(let i=0;i<3;i++){
-   const low=z+33+i*8.3;
-   this.box(x,back+.04,x+w,back+.11,low,low+6.1,'#e7ae6d','#ca894f','#a66d3f');
-   this.line([x+.02,back+.112,low+6],[x+w-.02,back+.112,low+6],'#ffdfa0',.9);
-   for(const xx of[x+.17,x+w-.17])this.line([xx,back+.12,low+3],[xx+.015,back+.12,low+3],'#80613d',1.4);
+   const low=z+33+i*9,high=low+(i===2?9:7),lo=backY(low),hi=backY(high);
+   this.path([[woodLeft,lo+.04,low],[woodRight,lo+.04,low],[woodRight,hi+.04,high],[woodLeft,hi+.04,high]],'#ca894f');
+   this.path([[woodRight,lo-.03,low],[woodRight,lo+.04,low],[woodRight,hi+.04,high],[woodRight,hi-.03,high]],'#a66d3f');
+   this.quad(woodLeft,hi-.03,woodRight,hi+.04,high,'#e7ae6d');
+   this.line([woodLeft+.02,hi+.041,high],[woodRight-.02,hi+.041,high],'#ffdfa0',.9);
+   for(const xx of[woodLeft+.04,woodRight-.04]){const middle=low+3,yy=backY(middle)+.041;this.line([xx,yy,middle],[xx+.015,yy,middle],'#80613d',1.4);}
   }
-  for(const xx of[x+.14,x+w-.14]){
-   const curve=[];
-   for(let i=0;i<=14;i++){const t=i/14;curve.push([xx,y+.11+.51*t,z+36+13*Math.sin(t*Math.PI*.73)]);}
+  for(let i=0;i<5;i++){
+   const yy=y+.08+i*.112;
+   this.box(woodLeft,yy,woodRight,yy+.09,seatBottom,seatTop,'#dda15c','#bc7846','#a8683e');
+   this.line([woodLeft+.02,yy+.089,seatTop],[woodRight-.02,yy+.089,seatTop],'#ffe1a1',.9);
+   for(const xx of[woodLeft+.04,woodRight-.04])this.line([xx,yy+.04,seatTop+.2],[xx+.015,yy+.04,seatTop+.2],'#6a634a',1.5);
+  }
+  // The nearer posts are continuous from foot to arm. Draw them after the
+  // timber seat, then join each arm directly to its corresponding back post.
+  for(const xx of supports){
+   const armLow=z+42,armHigh=z+46,armBack=backY(armHigh),curve=[];
+   foot(xx,front);strut(xx,front,z+3,front,armLow);
+   for(let i=0;i<=14;i++){const t=i/14;curve.push([xx,front+(armBack-front)*t,armLow+(armHigh-armLow)*t+1.8*Math.sin(t*Math.PI)]);}
    for(let i=0;i<curve.length-1;i++){
     this.line(curve[i],curve[i+1],'#2e6c5b',6.2);
     this.line([curve[i][0]-.018,curve[i][1],curve[i][2]+1.3],[curve[i+1][0]-.018,curve[i+1][1],curve[i+1][2]+1.3],'#8aae80',1.3);
    }
-   // Turned curl under the arm has an open centre.
-   const curl=[];for(let i=0;i<=17;i++){const a=-Math.PI*.1+i*Math.PI*1.6/17;curl.push([xx,y+.18+Math.cos(a)*.075,z+33+Math.sin(a)*5.4]);}
-   for(let i=0;i<curl.length-1;i++)this.line(curl[i],curl[i+1],'#2c6758',3);
-   this.line([xx,y+.11,z+28],[xx,y+.11,z+36],'#2e6c5b',4.5);
   }
  }
  quayGarden(){
@@ -1726,6 +1770,7 @@ class Canal{
  static layout(){return LAYOUT;}
  static sampleBoat(time,out){return sampleBoat(time,out);}
  bake(){
+  if(this.r.scenery)this.r.scenery.clear();
   // Static paper colour and grain are prepared once. Motion only composites
   // these canvases and replays the small prebuilt water/rope fragments.
   if(typeof document==='undefined'||!root.CivicArchitecture)return;
@@ -1842,7 +1887,7 @@ class Canal{
    light({x:-7.925,y:-1.265+i*1.75,z:2},'window',i+5);
   }
   light({x:-3.59,y:6.72,z:-15},'quay',10);
-  light({x:2.35,y:6.8,z:-21},'quay',11);
+  light({x:2.95,y:6.8,z:-21},'quay',11);
   // The distant paired windows remain secondary to the closer golden lamps.
   for(const house of[[-5.5,-5.85,.9,.74],[-4.3,-6.3,.95,.8],[-2.95,-5.83,.92,.78],[-1.7,-6.24,1.03,.87],[-.3,-5.72,.94,.79],[1.06,-6.14,1.04,.84],[2.48,-5.69,.95,.82],[3.91,-5.96,1.05,.84]]){
    for(const offset of[.24,.7]){
@@ -2142,7 +2187,7 @@ class Canal{
  }
  drawSurface(time){
   const c=this.r.ctx,t=wrap(time);c.save();
-  if(this.waterCanvas){const b=this.waterBounds;c.drawImage(this.waterCanvas,b.left,b.top,b.right-b.left,b.bottom-b.top);}else replay(c,this.water);
+  if(this.waterCanvas){const b=this.waterBounds;this.r.scenery.draw(this.waterCanvas,b.left,b.top,b.right-b.left,b.bottom-b.top);}else replay(c,this.water);
   for(let i=0;i<this.currents.length;i++){
    const current=this.currents[i],flow=Math.sin(t*TAU/56-current.phase)*.019,cross=Math.sin(t*TAU/28-current.phase)*.005;
    const x=current.axis?flow:cross,y=current.axis?cross:flow;
@@ -2815,7 +2860,7 @@ class Painter{
 class Architecture{
  static layout(){return layout;}
  constructor(renderer){this.r=renderer;this.cache=null;this.bakes=0;this.bounds=bounds;}
- drawLayer(layer){const b=layer.bounds;this.r.ctx.drawImage(layer.canvas,b.left,b.top,b.right-b.left,b.bottom-b.top);}
+ drawLayer(layer){const b=layer.bounds;this.r.scenery.draw(layer.canvas,b.left,b.top,b.right-b.left,b.bottom-b.top);}
  draw(){
   if(!this.cache)this.bake();const r=this.r;
   if(this.exteriorLayer)this.drawLayer(this.exteriorLayer);
@@ -2826,6 +2871,7 @@ class Architecture{
  // Assets and layout are immutable after renderer.load(). A caller replacing
  // either must call bake() explicitly; camera and level changes reuse the cache.
  bake(){
+  if(this.r.scenery)this.r.scenery.clear();
   const r=this.r,ex=typeof CivicExterior==='function'?new CivicExterior(r):null;
   const eb=ex?ex.props.filter(p=>p.name!=='canal water').reduce((b,p)=>({left:Math.min(b.left,p.bounds.left),top:Math.min(b.top,p.bounds.top),right:Math.max(b.right,p.bounds.right),bottom:Math.max(b.bottom,p.bounds.bottom)}),{left:Infinity,top:Infinity,right:-Infinity,bottom:-Infinity}):null;
   // Frame the complete Office and its approach; distant banks may continue
@@ -3051,36 +3097,65 @@ class Pieces{
   for(let d=0;d<4;d++)for(let fold=0;fold<=4;fold++)for(let front=0;front<2;front++){
    const canvas=document.createElement('canvas');canvas.width=256;canvas.height=192;
    const c=canvas.getContext('2d');c.scale(2,2);c.translate(64,56);
-   const height=[27,21,14,8,3][fold],spread=[9,11,12,13,14][fold];
+   const height=[27,21,14,8,3][fold],spread=[7,8,10,12,14][fold];
    const point=(x,y,z=0)=>({x:(x-y)*32,y:(x+y)*16+4-z});
    const A=point(-.5,-.5),B=point(.5,-.5),C=point(.5,.5),D=point(-.5,.5);
    const a=point(-.5,-.5,height),b=point(.5,-.5,height),cc=point(.5,.5,height),dd=point(-.5,.5,height);
-   const face=(pts,fill,grain=true)=>{
-    c.beginPath();c.moveTo(pts[0].x,pts[0].y);for(let i=1;i<pts.length;i++)c.lineTo(pts[i].x,pts[i].y);c.closePath();
-    c.fillStyle=fill;c.fill();c.strokeStyle='#8c643e';c.lineWidth=.65;c.stroke();
-    if(grain){c.save();c.clip();c.strokeStyle='rgba(95,62,31,.10)';c.lineWidth=.35;
-     for(let i=0;i<75;i++){const x=((i*37)%89)-44,y=((i*19)%67)-40;c.beginPath();c.moveTo(x,y);c.lineTo(x+1.5+(i%3),y-.3);c.stroke();}c.restore();}
+   const trace=pts=>{c.beginPath();c.moveTo(pts[0].x,pts[0].y);for(let i=1;i<pts.length;i++)c.lineTo(pts[i].x,pts[i].y);c.closePath();};
+   // These are real layered card panels: directional face shading, fibres and
+   // a separate cut edge. The bake carries that relief into every fold state.
+   const face=(pts,light,dark,grain=true)=>{
+    const ys=pts.map(p=>p.y),top=Math.min(...ys),bottom=Math.max(...ys);
+    const shade=c.createLinearGradient(-24,top,18,bottom+8);shade.addColorStop(0,light);shade.addColorStop(.25,light);shade.addColorStop(1,dark);
+    trace(pts);c.fillStyle=shade;c.fill();
+    if(grain){c.save();c.clip();
+     for(let i=0;i<1650;i++){
+      const hash=((i+17)*2654435761)>>>0,x=(hash%193)/2-48,y=((hash>>>10)%173)/2-52;
+      c.fillStyle=i%3?'rgba(255,238,196,.13)':'rgba(96,58,28,.14)';c.fillRect(x,y,.3+(i%3)*.13,.35+(i%2)*.2);
+     }
+     c.strokeStyle='rgba(104,64,31,.09)';c.lineWidth=.32;
+     for(let i=0;i<90;i++){const x=((i*37)%89)-44,y=((i*19)%83)-48;c.beginPath();c.moveTo(x,y);c.lineTo(x+1+(i%3)*.55,y-.2);c.stroke();}c.restore();}
    };
    const line=(x,y,u,v,colour,width)=>{c.strokeStyle=colour;c.lineWidth=width;c.beginPath();c.moveTo(x,y);c.lineTo(u,v);c.stroke();};
+   const edge=(p,q,width=2)=>{
+    const lowerP={x:p.x,y:p.y+width},lowerQ={x:q.x,y:q.y+width};
+    face([p,q,lowerQ,lowerP],'#d5ad74','#a87744',false);
+    const length=Math.hypot(q.x-p.x,q.y-p.y),n=Math.ceil(length/1.65);
+    for(let k=0;k<n;k++){const u=(k+.3)/n,x=p.x+(q.x-p.x)*u,y=p.y+(q.y-p.y)*u;line(x,y+.45,x+.1,y+width-.2,'rgba(119,77,38,.48)',.42);}
+    line(p.x,p.y,q.x,q.y,'#f0d6a4',.6);
+   };
+   const flap=(p,q,dx,dy,light,dark)=>{
+    const farP={x:p.x+dx,y:p.y+dy},farQ={x:q.x+dx,y:q.y+dy};
+    face([p,q,farQ,farP],light,dark);
+    edge(farP,farQ);edge(q,farQ,1.2);
+    line(p.x,p.y,q.x,q.y,'#956a3c',1.2);line(p.x,p.y-.6,q.x,q.y-.6,'#e3c18b',.65);
+   };
    if(!front){
     // Back panels and outward folded flaps expose the darker uncoated interior.
-    face([A,B,b,a],'#ad7e49');face([A,D,dd,a],'#b58952');
-    face([a,b,{x:b.x+spread,y:b.y-spread*.5},{x:a.x+spread,y:a.y-spread*.5}],'#cfaa71');
-    face([a,dd,{x:dd.x-spread,y:dd.y-spread*.5},{x:a.x-spread,y:a.y-spread*.5}],'#c39a61');
-    face([A,B,C,D],'#9d7346');
+    face([A,B,b,a],'#af8554','#745132');face([A,D,dd,a],'#bf9765','#87613c');
+    flap(a,b,spread,-spread*.5,'#d7b582','#b68a54');
+    flap(a,dd,-spread,-spread*.5,'#e3c391','#bf9766');
+    face([A,B,C,D],'#af8656','#795334');
     // The floor seam is visible once the cat leaves, without a separate empty sprite.
     line(-15,4,15,4,'#bb925c',3);line(-15,3.3,15,3.3,'#d6b987',.6);
    }
-   face([D,C,cc,dd],'#c2975e');face([B,C,cc,b],'#b3834b');
-   face([dd,cc,{x:cc.x-spread,y:cc.y+spread*.5},{x:dd.x-spread,y:dd.y+spread*.5}],'#d3ae76');
-   face([b,cc,{x:cc.x+spread,y:cc.y+spread*.5},{x:b.x+spread,y:b.y+spread*.5}],'#cba36c');
+   face([D,C,cc,dd],'#d1aa74','#ac7b47');face([B,C,cc,b],'#bd8d55','#946335');
+   // Compressed bottom folds and the rounded paper-wrapped corner give the
+   // carrier weight. Soft under-flap shadows belong to its walls, not the cat.
+   line(D.x,D.y-1,C.x,C.y-1,'#a77944',1.5);line(B.x,B.y-1,C.x,C.y-1,'#886033',1.5);
+   line(cc.x,cc.y+1,C.x,C.y-1,'#e4be87',1.7);line(C.x+1,cc.y+2,C.x+1,C.y-1,'#ac7a42',.65);
+   c.save();trace([D,C,cc,dd]);c.clip();line(dd.x,dd.y+2.8,cc.x,cc.y+2.8,'rgba(103,66,31,.20)',4.5);c.restore();
+   c.save();trace([B,C,cc,b]);c.clip();line(b.x,b.y+2.8,cc.x,cc.y+2.8,'rgba(87,53,24,.22)',4.5);c.restore();
+   flap(dd,cc,-spread,spread*.5+1.25,'#e4c28c','#bd905a');
+   flap(b,cc,spread,spread*.5+1.25,'#d9b47d','#af7d47');
    // Fold scores, a narrow paper tape repair and a small pasted postal ticket.
    line(dd.x,dd.y,cc.x,cc.y,'#e0bf8b',.9);line(b.x,b.y,cc.x,cc.y,'#dfbb81',.8);
    if(fold<3){
     const left=d===1||d===2,sign=left?-1:1,x=sign*13,y=13.5-height*.5;
     c.save();c.translate(x,y);c.transform(1,sign*-.5,0,1,0,0);
-    c.fillStyle='#d6b783';c.fillRect(-2,-height*.28,4,height*.58);
-    c.fillStyle='#f1e5c8';c.fillRect(-7,-4,14,8);c.strokeStyle='#aa8759';c.lineWidth=.4;c.strokeRect(-7,-4,14,8);
+    c.fillStyle='rgba(244,218,166,.36)';c.fillRect(-2,-height*.28,4,height*.58);
+    c.fillStyle='rgba(77,48,25,.18)';c.fillRect(-6.6,-3.5,14,8);
+    c.fillStyle='#f1e2bf';c.fillRect(-7,-4,14,8);c.strokeStyle='#fbedd0';c.lineWidth=.45;c.strokeRect(-7,-4,14,8);
     line(-4,-1,2,-1,'#786b52',.6);line(-4,1,4,1,'#94846a',.45);c.fillStyle='#966d43';c.fillRect(3,-2.8,2,2);c.restore();
    }
    frames.push(canvas);
@@ -3141,6 +3216,33 @@ class Pieces{
 root.CivicPieces=Pieces;
 })(globalThis);
 
+/* High-quality scenery is resampled only when the view changes. The prepared
+ * visible pixels are then copied one-to-one, without filtering giant layers
+ * on every delivery frame. Moving water fragments, actors and pieces stay live. */
+(function(root){
+'use strict';
+class SceneryCache{
+ constructor(renderer){this.r=renderer;this.entries=new Map();this.bytes=0;this.bakes=0;}
+ clear(){for(const e of this.entries.values())e.canvas.width=e.canvas.height=1;this.entries.clear();this.bytes=0;}
+ draw(image,x,y,w,h){
+  const r=this.r,c=r.ctx,cam=r.cam,d=r.dpr,s=cam.scale*d,tx=cam.tx*d,ty=cam.ty*d;
+  const cw=c.canvas.width,ch=c.canvas.height;let e=this.entries.get(image);
+  if(!e){e={canvas:document.createElement('canvas'),valid:false,bytes:0};e.canvas.width=e.canvas.height=1;this.entries.set(image,e);}
+  if(!e.valid||e.s!==s||e.tx!==tx||e.ty!==ty||e.cw!==cw||e.ch!==ch||e.x!==x||e.y!==y||e.w!==w||e.h!==h){
+   e.s=s;e.tx=tx;e.ty=ty;e.cw=cw;e.ch=ch;e.x=x;e.y=y;e.w=w;e.h=h;e.valid=true;
+   const l=Math.max(0,Math.floor(x*s+tx)),t=Math.max(0,Math.floor(y*s+ty)),right=Math.min(cw,Math.ceil((x+w)*s+tx)),bottom=Math.min(ch,Math.ceil((y+h)*s+ty));
+   e.visible=right>l&&bottom>t;e.left=l;e.top=t;this.bytes-=e.bytes;
+   e.canvas.width=e.visible?right-l:1;e.canvas.height=e.visible?bottom-t:1;e.bytes=e.canvas.width*e.canvas.height*4;this.bytes+=e.bytes;
+   if(e.visible){const cache=e.canvas.getContext('2d');cache.imageSmoothingEnabled=true;cache.imageSmoothingQuality='high';cache.setTransform(s,0,0,s,tx-l,ty-t);cache.drawImage(image,x,y,w,h);}
+   this.bakes++;
+  }
+  if(e.visible){c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(e.canvas,e.left,e.top);c.restore();}
+ }
+}
+root.CivicSceneryCache=SceneryCache;
+if(typeof module==='object'&&module.exports)module.exports=SceneryCache;
+})(typeof globalThis!=='undefined'?globalThis:this);
+
 /* Civic architecture study: cached paper hall, registered live pieces and
  * unchanged Office trace clocks on the shared floor plane. */
 (function(root){
@@ -3148,7 +3250,7 @@ root.CivicPieces=Pieces;
 const P=CivicProjection;
 const depthOrder=(a,b)=>a.depth-b.depth||a.order-b.order;
 class Renderer{
- constructor(canvas,assets){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.assets=assets;this.images={};this.ready=false;this.config={width:1,height:1,w:5,h:3,mode:'play',zoom:1,panX:0,panY:0};this.guides=false;this.selected=null;this.gray=false;this.motion=true;this.ambient=0;this.acting=CivicActing.create(BOARDANIM);this.pieces=new CivicPieces(this);this.poses=[];this.items=[];this.pool=[];this.sceneLevel=null;this.backdrop=new CivicBackdrop(this);this.roomLife=new CivicRoomLife(this);this.canal=new CivicCanal(this);this.postal=new CivicPostal(this);this.architecture=new CivicArchitecture(this);this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(canvas);this.resize();}
+ constructor(canvas,assets){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.assets=assets;this.images={};this.ready=false;this.config={width:1,height:1,w:5,h:3,mode:'play',zoom:1,panX:0,panY:0};this.scenery=new CivicSceneryCache(this);this.guides=false;this.selected=null;this.gray=false;this.motion=true;this.ambient=0;this.acting=CivicActing.create(BOARDANIM);this.pieces=new CivicPieces(this);this.poses=[];this.items=[];this.pool=[];this.sceneLevel=null;this.backdrop=new CivicBackdrop(this);this.roomLife=new CivicRoomLife(this);this.canal=new CivicCanal(this);this.postal=new CivicPostal(this);this.architecture=new CivicArchitecture(this);this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(canvas);this.resize();}
  async load(){await Promise.all(['cats','pieces','acting','materials','decor','fronts','backdrop','houseFront'].map(name=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{this.images[name]=im;resolve();};im.onerror=()=>reject(Error('Artwork did not load: '+name));im.src=this.assets[name].src;})));this.backdrop.bake();this.architecture.bake();this.canal.bake();this.postal.bake();this.config.sceneBounds=this.architecture.bounds;this.ready=true;}
  resize(){const r=this.canvas.getBoundingClientRect();this.config.width=r.width;this.config.height=r.height;this.dpr=Math.min(devicePixelRatio||1,2);this.canvas.width=Math.round(r.width*this.dpr);this.canvas.height=Math.round(r.height*this.dpr);this.cam=P.camera(this.config);}
  fit(mode){this.config.mode=mode;this.config.zoom=1;this.config.panX=this.config.panY=0;this.cam=P.camera(this.config);}

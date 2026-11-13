@@ -1,3 +1,7 @@
+# Sorting Office · delivery and furniture review
+
+Current comparison: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/refinements/
+
 # Sorting Office · foreground checkpoint
 
 Compare and watch: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/foreground/
@@ -26,9 +30,9 @@ Canal currents follow the banks, broken reflections align with real town windows
 
 ## Offline and source
 
-Unzip `sorting-office-foreground.zip` and open **Sorting Office.html**, or download the current `index.html` directly. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
+Unzip `sorting-office-refinements.zip` and open **Sorting Office.html**, or download the current `index.html` directly. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
 
-Extract `sorting-office-foreground-source.zip` into an empty folder and run:
+Extract `sorting-office-refinements-source.zip` into an empty folder and run:
 
 ```sh
 python3 studies/civic-mail-hall/foundation/build.py
@@ -56,3 +60,10 @@ The canal now continues through the foreground and around the right-hand outer w
 The quay has a larger timber-and-teal bench, full flowering planters, warm lanterns and grounded support shadows. The former uniform right-hand lawn is now soil beds with varied plants beside a clear paved path. Framing leaves were removed following review.
 
 The comparison page contains the original concept, previous build, actual current render and a short motion capture. This is a composition review checkpoint; it does not claim the concept's full material and lighting fidelity. See `docs/rooms/progress/sorting-office-foreground.md` for verified scope.
+
+
+## Delivery and furniture corrections
+
+Straight delivery travel now uses continuous subpixel positions through the complete300ms rule beat. Turns, bumps and basket contacts keep their existing clocks. Camera-sized high-quality scenery caches remove repeated resampling of the large static layers, while water and room activity stay live.
+
+The kraft box has corrugated cut edges, richer folds and face shading. The right quay lamp and its reflection move clear of the planter. Connected bench supports and correct planter occlusion replace the floating-looking leg and disconnected ironwork. See `docs/rooms/progress/sorting-office-refinements.md` for checks and measured browser limits.

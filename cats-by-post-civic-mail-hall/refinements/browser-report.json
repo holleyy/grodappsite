@@ -1,0 +1,57 @@
+{
+  "scope": "Linux Chromium CSS viewports and DPR emulation, not physical iPhone/Safari",
+  "results": [
+    {
+      "device": "desktop",
+      "picks": 298,
+      "wins": 15,
+      "cacheBytes": 118397264,
+      "bakes": 1,
+      "backdropBakes": 1,
+      "waterBakes": 1,
+      "sceneryBytes": 19036640,
+      "sceneryEntries": 7,
+      "foliageRemoved": true
+    },
+    {
+      "motionOff": "stable complete pose"
+    },
+    {
+      "device": "phone",
+      "picks": 298,
+      "wins": 15,
+      "cacheBytes": 108961820,
+      "bakes": 1,
+      "backdropBakes": 1,
+      "waterBakes": 1,
+      "sceneryBytes": 9601196,
+      "sceneryEntries": 7,
+      "foliageRemoved": true
+    },
+    {
+      "device": "small-phone",
+      "picks": 298,
+      "wins": 15,
+      "cacheBytes": 105215036,
+      "bakes": 1,
+      "backdropBakes": 1,
+      "waterBakes": 1,
+      "sceneryBytes": 5854412,
+      "sceneryEntries": 7,
+      "foliageRemoved": true
+    },
+    {
+      "device": "landscape",
+      "picks": 298,
+      "wins": 15,
+      "cacheBytes": 106600064,
+      "bakes": 1,
+      "backdropBakes": 1,
+      "waterBakes": 1,
+      "sceneryBytes": 7239440,
+      "sceneryEntries": 7,
+      "foliageRemoved": true
+    }
+  ],
+  "errors": []
+}
