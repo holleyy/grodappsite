@@ -1555,18 +1555,34 @@ class Exterior{
   this.line([x,y+.1,z+48],[x,y+.27,z+49],'#64786a',2.3);
  }
  entryStair(){
-  const s=LAYOUT.stairs,run=(s.y1-s.y0)/s.steps,rise=91/s.steps;
-  // Each solid riser starts on the quay; the last tread meets the office edge.
+  const s=LAYOUT.stairs,run=(s.y1-s.y0)/s.steps,rise=(s.z1-s.z0)/s.steps;
+  const lastNose=s.y0+run,railTop=s.z1+34;
+  const rail=x=>{
+   // The slope follows the tread noses, then levels across the last tread.
+   for(let i=0;i<s.steps;i+=2){const y=s.y1-i*run,z=s.z0+(i+1)*rise;this.line([x,y,z],[x,y,z+34],'#bc955b',3);}
+   // The landing already owns the far newel at this shared endpoint.
+   if(x>s.x0+.02)this.line([x,s.y0,s.z1],[x,s.y0,railTop],'#bc955b',3);
+   this.line([x,s.y1,s.z0+rise+34],[x,lastNose,railTop],'#d9b472',4);
+   this.line([x,lastNose,railTop],[x,s.y0,railTop],'#d9b472',4);
+   this.line([x,s.y1,s.z0+rise+35],[x,lastNose,railTop+1],'#f5d89a',1.2);
+   this.line([x,lastNose,railTop+1],[x,s.y0,railTop+1],'#f5d89a',1.2);
+  };
+  rail(s.x0+.01);
+  // One continuous side closes the flight down to the quay. Internal block
+  // faces must not paint over the nearer treads or the feet of the far rail.
+  const side=[[s.x1,s.y1,s.z0]];
   for(let i=0;i<s.steps;i++){
-   const y1=s.y1-i*run,y0=y1-run,top=s.z0+(i+1)*rise;
-   this.box(s.x0,y0,s.x1,y1,s.z0,top,'#f0dbc0','#ceb296','#b39a80');
+   const y=s.y1-i*run,z=s.z0+(i+1)*rise;
+   side.push([s.x1,y,z],[s.x1,y-run,z]);
+  }
+  side.push([s.x1,s.y0,s.z0]);this.path(side,'#b39a80');
+  for(let i=s.steps-1;i>=0;i--){
+   const y1=s.y1-i*run,y0=y1-run,bottom=s.z0+i*rise,top=bottom+rise;
+   this.path([[s.x0,y1,bottom],[s.x1,y1,bottom],[s.x1,y1,top],[s.x0,y1,top]],'#ceb296');
+   this.quad(s.x0,y0,s.x1,y1,top,'#f0dbc0');
    this.line([s.x0,y1,top],[s.x1,y1,top],'#fff0d1',1.5);
   }
-  for(const x of[s.x0+.01,s.x1-.06]){
-   for(let i=0;i<=s.steps;i+=2){const y=s.y1-i*run,z=s.z0+Math.min(s.steps,i+1)*rise;this.line([x,y,z],[x,y,z+34],'#bc955b',3);}
-   this.line([x,s.y1,s.z0+rise+34],[x,s.y0,34],'#d9b472',4);
-   this.line([x,s.y1,s.z0+rise+35],[x,s.y0,35],'#f5d89a',1.2);
-  }
+  rail(s.x1-.06);
  }
  furniture(){
   this.lantern(-2.55,6.18,-91,82);
