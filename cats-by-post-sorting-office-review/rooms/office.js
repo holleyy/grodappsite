@@ -323,9 +323,10 @@ const LAYOUT=Object.freeze({
  canal:Object.freeze({x0:-7,x1:-3.05,y0:-3.5,y1:20,z:-120}),
  frontCanal:Object.freeze({x0:-7,x1:9.4,y0:7.2,y1:20,z:-120}),
  rearCanal:Object.freeze({x0:-7,x1:6.1,y0:-4,y1:-2.2,z:-120}),
- landing:Object.freeze({x0:-4.03,x1:-3,y0:5.3,y1:6.7,z:-91}),
+ landing:Object.freeze({x0:-4.03,x1:-3,y0:2.35,y1:4.85,z:0}),
+ entrance:Object.freeze({x:-3,y0:2.5,y1:4.0,top:240,leafTop:150,stairFoot:2.35}),
  quay:Object.freeze({x0:-4.03,x1:9.4,y0:-2.8,y1:7.2,z:-91}),
- stairs:Object.freeze({x0:-2.78,x1:-1.58,y0:5.2,y1:6.9,z0:-91,z1:0,steps:7}),
+ stairs:Object.freeze({x0:-4.01,x1:-3.28,y0:4.85,y1:6.4,z0:-91,z1:0,steps:7}),
  hall:Object.freeze({x0:-3,x1:7.2,y0:-2,y1:5.2,z:0})
 });
 const PALETTE={
@@ -410,11 +411,11 @@ class Exterior{
   this.prop('canal bridge',()=>this.bridge());
   this.prop('hall quay',()=>this.quay());
   this.prop('rear door landing',()=>this.rearLanding());
-  this.prop('loading landing',()=>this.landing());
+  this.prop('entry landing',()=>this.landing());
   this.prop('entry stair',()=>this.entryStair());
   this.prop('quayside furniture',()=>this.furniture());
   this.prop('quayside garden',()=>this.quayGarden());
-  for(const y of [-.85,1.05,4.99])this.prop('hall mooring '+y,()=>this.bollard(-3.91,y,-91));
+  for(const y of [-.85,1.05,2.9])this.prop('hall mooring '+y,()=>this.bollard(-3.91,y,-91));
   for(const y of [-1.9,.55,3.05,5.25])this.prop('towpath mooring '+y,()=>this.bollard(-7.12,y,-91,true));
   this.prop('towpath tree',()=>this.tree(-7.38,7.2,-91,60,.26,false));
   this.prop('towpath shrubs',()=>{
@@ -553,10 +554,17 @@ class Exterior{
   this.line([-4.03,-2.8,-6],[-1.02,-2.8,-6],'#f3e6ca',1.4);
  }
  landing(){
-  const l=LAYOUT.landing;
-  this.box(l.x0,l.y0,l.x1,l.y1,-100,l.z,PALETTE.timberLight,PALETTE.timber,PALETTE.timberShade);
-  for(let y=l.y0+.17;y<l.y1;y+=.17)this.line([l.x0,y,l.z+.1],[l.x1,y,l.z+.1],'#b39a72',.85);
-  this.bollard(-3.87,5.42,l.z,true);this.bollard(-3.87,6.54,l.z,true);
+  const l=LAYOUT.landing,railX=LAYOUT.stairs.x0+.01;
+  // The upper tread turns east across this supported deck into the west door.
+  for(const y of[l.y0+.15,l.y1-.15])this.box(-3.96,y-.09,-3.76,y+.09,-91,-12,PALETTE.stoneLight,PALETTE.stone,PALETTE.stoneShade);
+  this.box(l.x0,l.y0,l.x1,l.y1,-12,l.z,PALETTE.stoneLight,PALETTE.stone,PALETTE.stoneShade);
+  for(let y=l.y0+.3;y<l.y1;y+=.3)this.line([l.x0,y,.1],[l.x1,y,.1],'#c6a984',.75);
+  // Guard the canal and north edge; keep the stair mouth and doorway open.
+  for(const y of[l.y0,l.y0+.6,l.y0+1.2,l.y0+1.8,l.y1])this.line([railX,y,0],[railX,y,34],'#b68c50',3);
+  this.line([railX,l.y0,34],[railX,l.y1,34],'#e0ba77',4);
+  this.line([railX,l.y0,35],[railX,l.y1,35],'#ffdf9e',1.2);
+  this.line([railX,l.y0,34],[-3.24,l.y0,34],'#e0ba77',4);
+  for(const x of[-3.6,-3.24])this.line([x,l.y0,0],[x,l.y0,34],'#b68c50',3);
  }
  frontQuay(){
   const q=LAYOUT.quay;
@@ -808,24 +816,24 @@ class Exterior{
    this.box(s.x0,y0,s.x1,y1,s.z0,top,'#f0dbc0','#ceb296','#b39a80');
    this.line([s.x0,y1,top],[s.x1,y1,top],'#fff0d1',1.5);
   }
-  for(const x of[s.x0+.06,s.x1-.06]){
+  for(const x of[s.x0+.01,s.x1-.06]){
    for(let i=0;i<=s.steps;i+=2){const y=s.y1-i*run,z=s.z0+Math.min(s.steps,i+1)*rise;this.line([x,y,z],[x,y,z+34],'#bc955b',3);}
    this.line([x,s.y1,s.z0+rise+34],[x,s.y0,34],'#d9b472',4);
    this.line([x,s.y1,s.z0+rise+35],[x,s.y0,35],'#f5d89a',1.2);
   }
  }
  furniture(){
-  this.lantern(-3.59,6.72,-91,82);
+  this.lantern(-2.55,6.18,-91,82);
   // Leave clear paving between the planter rim and the complete lamp foot.
   // The additional gap also separates their silhouettes in the fixed view.
   this.lantern(2.95,6.8,-91,76);
-  this.planter(-3.47,6.67,-91,.47,.43,0);
+  this.planter(-1.9,5.75,-91,.47,.43,0);
   this.planter(-1.49,6.62,-91,.6,.43,0);
   this.bench(-.82,6.28,-91,2.08);
   // This planter is nearer than the bench: paint it last so it correctly
   // occludes the far foot instead of receiving a green leg on its soil.
   this.planter(1.45,6.6,-91,.78,.46,1);
-  for(const y of[5.7,6.8])this.bollard(-3.9,y,-91,true);
+  this.bollard(-3.95,6.98,-91,true);
   this.bollard(-2.8,7.05,-91);this.bollard(-.85,7.07,-91);
  }
  bench(x,y,z,w){
@@ -1198,7 +1206,7 @@ class Canal{
    light({x:-7.79,y:-.9+i*1.75,z:-54},'cottage',i);
    light({x:-7.925,y:-1.265+i*1.75,z:2},'window',i+5);
   }
-  light({x:-3.59,y:6.72,z:-15},'quay',10);
+  light({x:-2.55,y:6.18,z:-15},'quay',10);
   light({x:2.95,y:6.8,z:-21},'quay',11);
   // The distant paired windows remain secondary to the closer golden lamps.
   for(const house of[[-5.5,-5.85,.9,.74],[-4.3,-6.3,.95,.8],[-2.95,-5.83,.92,.78],[-1.7,-6.24,1.03,.87],[-.3,-5.72,.94,.79],[1.06,-6.14,1.04,.84],[2.48,-5.69,.95,.82],[3.91,-5.96,1.05,.84]]){
@@ -2043,19 +2051,26 @@ const CivicOfficeDetails=globalThis.CivicOfficeDetails;
 (function(root,factory){
  const P=typeof module==='object'&&module.exports?require('./projection.js'):root.CivicProjection;
  const L=typeof module==='object'&&module.exports?require('./postal-work-layout.js'):root.CivicPostalLayout;
- const A=factory(P,L);if(typeof module==='object'&&module.exports)module.exports=A;root.CivicArchitecture=A;
-})(globalThis,function(P,L){
+ const E=typeof module==='object'&&module.exports?require('./exterior.js'):root.CivicExterior;
+ const A=factory(P,L,E.layout());if(typeof module==='object'&&module.exports)module.exports=A;root.CivicArchitecture=A;
+})(globalThis,function(P,L,X){
 'use strict';
 const palette={stone:{top:'#f8ead2',left:'#dfc8ab',right:'#bea48b'},oak:{top:'#dbb17e',left:'#ba845d',right:'#91664e'},teal:{top:'#86aaa0',left:'#467c75',right:'#2b5756'},brick:{top:'#dda28b',left:'#c2826b',right:'#9f6458'}};
 function tint(hex,target,amount){const a=parseInt(hex.slice(1),16),b=parseInt(target.slice(1),16);return '#'+[16,8,0].map(s=>Math.round(((a>>s)&255)*(1-amount)+((b>>s)&255)*amount).toString(16).padStart(2,'0')).join('');}
 // The gallery support row clears both the cabinet front and stair landing.
-const galleryFront=-.15,gallerySupportY=galleryFront-.16;
-const stairs=Array.from({length:12},(_,i)=>({x0:-2.91,x1:-1.78,y0:4.65-(i+1)*.4,y1:4.65-i*.4,bottom:i*15,top:(i+1)*15}));
+const galleryFront=-.15,gallerySupportY=galleryFront-.16,entrance=X.entrance;
+const stairRun=(entrance.stairFoot-galleryFront)/12;
+const leafWidth=(entrance.y1-entrance.y0)/2-.04;
+const doorLeaves=[
+ {name:'outward north door',axis:'x',reverse:true,x0:-3.205-leafWidth,x1:-3.205,y0:entrance.y0-.055,y1:entrance.y0,z0:0,z1:entrance.leafTop},
+ {name:'outward south door',axis:'y',reverse:true,x0:-3.255,x1:-3.215,y0:entrance.y1,y1:entrance.y1+leafWidth,z0:0,z1:entrance.leafTop}
+];
+const stairs=Array.from({length:12},(_,i)=>({x0:-2.91,x1:-1.78,y0:entrance.stairFoot-(i+1)*stairRun,y1:entrance.stairFoot-i*stairRun,bottom:i*15,top:(i+1)*15}));
 const extents=[[-5.85,6,-85],[-5.85,-4.7,120],[7.8,-5,145],[7.5,5.6,-105],[-3.3,-2.4,375],[7.4,-2.4,375],[-3.3,5.2,365]];
 const points=extents.map(v=>P.project(...v));
 const bounds={left:Math.min(...points.map(p=>p.x))-36,right:Math.max(...points.map(p=>p.x))+36,top:Math.min(...points.map(p=>p.y))-32,bottom:Math.max(...points.map(p=>p.y))+32};
 const layout={floor:{x0:-3,y0:-2,x1:7.2,y1:5.2},galleryZ:180,landingY:-.15,stairs,bounds,extents,
- solids:[{name:'west wall',x0:-3.2,x1:-3,y0:-2.2,y1:5.2,z0:0,z1:365},{name:'rear wall',x0:-3,x1:7.2,y0:-2.2,y1:-2,z0:0,z1:310},{name:'gallery',x0:-3,x1:7.2,y0:-2,y1:galleryFront,z0:164,z1:232},{name:'stairs',x0:-2.91,x1:-1.78,y0:-.15,y1:4.65,z0:0,z1:220},{name:'counter',x0:L.bench.x0,x1:L.bench.x1,y0:L.bench.y0,y1:L.bench.y1,z0:0,z1:L.bench.top},{name:'sorting cabinet',x0:.3,x1:6.8,y0:-1.95,y1:-.55,z0:0,z1:151}]};
+ solids:[...doorLeaves,{name:'west wall',x0:-3.2,x1:-3,y0:-2.2,y1:entrance.y0,z0:0,z1:365},{name:'west entrance pier',x0:-3.2,x1:-3,y0:entrance.y1,y1:5.2,z0:0,z1:365},{name:'entrance fanlight',x0:-3.2,x1:-3,y0:entrance.y0,y1:entrance.y1,z0:entrance.leafTop,z1:365},{name:'rear wall',x0:-3,x1:7.2,y0:-2.2,y1:-2,z0:0,z1:310},{name:'gallery',x0:-3,x1:7.2,y0:-2,y1:galleryFront,z0:164,z1:232},{name:'stairs',x0:-2.91,x1:-1.78,y0:-.15,y1:entrance.stairFoot,z0:0,z1:220},{name:'counter',x0:L.bench.x0,x1:L.bench.x1,y0:L.bench.y0,y1:L.bench.y1,z0:0,z1:L.bench.top},{name:'sorting cabinet',x0:.3,x1:6.8,y0:-1.95,y1:-.55,z0:0,z1:151}]};
 
 class Painter{
  constructor(c,images,assets){this.ctx=c;this.images=images;this.assets=assets;this.patterns={};}
@@ -2208,7 +2223,7 @@ class Architecture{
   const front=p=>{this.galleryUpper(p);this.details(p);};
   this.exteriorLayer=ex?make({left:eb.left-4,top:eb.top-4,right:eb.right+4,bottom:eb.bottom+4},p=>{ex.r=p;ex.draw(false);},1.25):null;
   this.layers=[
-   make(bounds,p=>{this.foundation(p);this.walls(p);this.stair(p);this.cabinet(p);outside(p,[cubbies],middle);outside(p,[cubbies,gallery],front);}),
+   make(bounds,p=>{this.foundation(p);this.entryDoors(p);this.walls(p);this.stair(p);this.entry(p);this.cabinet(p);outside(p,[cubbies],middle);outside(p,[cubbies,gallery],front);}),
    make(cubbies,p=>{middle(p);outside(p,[gallery],front);}),
    make(gallery,front)
   ];
@@ -2238,14 +2253,18 @@ class Architecture{
   floorContext.restore();
  }
  walls(p){
-  p.box(-3.2,-2.2,.2,7.4,0,310,'brick');p.brickWall('y',5.2,-3,7.2,310);
+  // Cut the entrance through both brick faces; its sill is on the floor.
+  const west=p.ctx;west.save();
+  p.face('y',entrance.y1,-2.985,entrance.top,c=>p.arch(c,0,0,(entrance.y1-entrance.y0)*P.HW,entrance.top));
+  west.rect(-500,-500,2600,2000);west.clip('evenodd');
+  p.box(-3.2,-2.2,.2,7.4,0,310,'brick');p.brickWall('y',5.2,-3,7.2,310);west.restore();
   // An actual arched opening reveals the canal scenery already behind it.
   const c=p.ctx;c.save();
   p.face('x',-2.6,-1.985,145,c=>p.arch(c,0,0,1.5*P.HW,145));
   c.rect(-500,-500,2600,2000);
   c.clip('evenodd');p.box(-3,-2.2,10.2,.2,0,310,'brick');p.brickWall('x',-3,-2,10.2,310);c.restore();
-  p.box(-3.01,-2,.08,7.2,0,28,'stone');p.box(-3,-2.01,.4,.08,0,28,'stone');p.box(-1.1,-2.01,8.3,.08,0,28,'stone');
-  for(const start of [4.94,2.65,.36])p.window('y',start,-2.985,1.87,274,235);
+  p.box(-3.01,-2,.08,entrance.y0+2,0,28,'stone');p.box(-3.01,entrance.y1,.08,5.2-entrance.y1,0,28,'stone');p.box(-3,-2.01,.4,.08,0,28,'stone');p.box(-1.1,-2.01,8.3,.08,0,28,'stone');
+  for(const start of [2.25,.15])p.window('y',start,-2.985,1.87,274,235);
   for(const start of [-2.65,-.65,1.35,3.35,5.35])p.window('x',start,-1.975,1.18,296,97);
   p.face('x',.68,-1.96,288,()=>p.decor('postEarly',0,0,34,45));p.face('x',4.69,-1.96,288,()=>p.decor('catsByPost',0,0,34,44));
   p.face('x',-3,-1.96,178,c=>{const g=c.createLinearGradient(0,0,0,78);g.addColorStop(0,'#5a382633');g.addColorStop(1,'#5a382600');c.fillStyle=g;c.fillRect(0,0,10.2*P.HW,78);});
@@ -2260,14 +2279,49 @@ class Architecture{
   p.box(6.98,-2.15,.32,.36,0,316,'stone');
  }
  stair(p){
-  // Solid treads and two folded teal stringers meet the upper landing exactly.
+  // The shorter flight leaves a turning landing at the entrance; its upper
+  // tread and gallery contact are unchanged.
   for(let i=stairs.length-1;i>=0;i--){const s=stairs[i];p.box(s.x0,s.y0,s.x1-s.x0,s.y1-s.y0,0,s.top,'stone');p.line3([s.x0,s.y1,s.top],[s.x1,s.y1,s.top],'#fff3d6',1.5);p.line3([s.x0,s.y1,s.top-2],[s.x1,s.y1,s.top-2],'#b89b7355',.7);}
-  for(const x of [-2.94,-1.75])p.poly([[x,-.15,181],[x,4.65,1],[x,4.65,-6],[x,-.15,166]],'#436e65','teal');
+  for(const x of [-2.94,-1.75])p.poly([[x,-.15,181],[x,entrance.stairFoot,1],[x,entrance.stairFoot,-6],[x,-.15,166]],'#436e65','teal');
   for(const x of [-2.9,-1.79]){
-   p.line3([x,-.15,224],[x,4.65,44],'#aa7d3b',4.4);p.line3([x,-.15,226],[x,4.65,46],'#f5d591',1.4);
-   for(let i=0;i<=12;i++){const y=4.65-i*.4,z=i*15;p.line3([x,y,z+2],[x,y,z+44],'#c69b54',3);}
+   p.line3([x,-.15,224],[x,entrance.stairFoot,44],'#aa7d3b',4.4);p.line3([x,-.15,226],[x,entrance.stairFoot,46],'#f5d591',1.4);
+   for(let i=0;i<=12;i++){const y=entrance.stairFoot-i*stairRun,z=i*15;p.line3([x,y,z+2],[x,y,z+44],'#c69b54',3);}
   }
   p.box(-2.94,-.65,1.2,.5,168,12,'stone');
+ }
+ entry(p){
+  const d=entrance,W=(d.y1-d.y0)*P.HW,H=d.top;
+  p.box(-3.23,d.y0-.035,.34,d.y1-d.y0+.07,-3,3,'stone');
+  p.face('y',d.y1,-2.974,d.top,c=>{
+   // A glazed fanlight retains the arched rhythm; below it is an open doorway.
+   c.save();p.arch(c,0,0,W,H);c.clip();
+   const g=c.createLinearGradient(0,0,0,H-d.leafTop);g.addColorStop(0,'#a4ccc6');g.addColorStop(1,'#e8e5c9');c.fillStyle=g;c.fillRect(0,0,W,H-d.leafTop);
+   c.strokeStyle='#edca8c';c.lineWidth=3;
+   for(const x of[W/3,2*W/3]){c.beginPath();c.moveTo(x,0);c.lineTo(x,H-d.leafTop);c.stroke();}
+   c.beginPath();c.moveTo(0,52);c.lineTo(W,52);c.stroke();c.restore();
+   c.beginPath();c.moveTo(0,H);c.lineTo(0,W/2);c.arc(W/2,W/2,W/2,Math.PI,Math.PI*2);c.lineTo(W,H);c.strokeStyle='#eed6af';c.lineWidth=9;c.stroke();
+   c.strokeStyle='#ba9869';c.lineWidth=1.2;c.stroke();
+   c.fillStyle='#66877b';c.fillRect(2,H-d.leafTop-3,W-4,7);c.fillStyle='#efcf96';c.fillRect(2,H-d.leafTop-3,W-4,1.5);
+  });
+ }
+ entryDoors(p){
+  // Both leaves push outwards. Hold the south leaf fully back outside the
+  // wall to clear the arriving stair; the north leaf opens over the landing.
+  const d=entrance,w=leafWidth;
+  for(const leaf of doorLeaves){
+   const alongX=leaf.axis==='x';
+   p.box(leaf.x0,leaf.y0,leaf.x1-leaf.x0,leaf.y1-leaf.y0,0,d.leafTop,'teal');
+   p.face(leaf.axis,alongX?leaf.x0+.055:leaf.y1-.055,alongX?leaf.y1+.002:leaf.x1+.002,d.leafTop-8,c=>{
+    const ww=(w-.11)*P.HW;c.fillStyle='#ead3a7';c.fillRect(0,0,ww,82);
+    const g=c.createLinearGradient(0,0,ww,78);g.addColorStop(0,'#9bc5bf');g.addColorStop(.55,'#d9e3ce');g.addColorStop(1,'#7ca79e');c.fillStyle=g;c.fillRect(2,2,ww-4,78);
+    c.fillStyle='#fff4d84d';c.beginPath();c.moveTo(5,2);c.lineTo(13,2);c.lineTo(ww-7,80);c.lineTo(ww-15,80);c.fill();
+    c.strokeStyle='#e8c68c';c.lineWidth=1.3;c.strokeRect(2,2,ww-4,78);c.beginPath();c.moveTo(2,39);c.lineTo(ww-2,39);c.stroke();
+    c.fillStyle='#375e58';c.fillRect(2,99,ww-4,29);c.strokeStyle='#86a698';c.strokeRect(2,99,ww-4,29);
+   });
+   const at=(u,z)=>alongX?[leaf.reverse?leaf.x1-u:leaf.x0+u,leaf.y1+.015,z]:[leaf.x1+.015,leaf.reverse?leaf.y0+u:leaf.y1-u,z];
+   for(const z of[22,74,132])p.line3(at(.025,z-3),at(.025,z+3),'#d8b66c',2.6);
+   p.line3(at(w-.08,54),at(w-.08,65),'#f1d393',3);
+  }
  }
  cabinet(p){
   const x=.3,y=-1.95,w=6.5,front=-.55;
