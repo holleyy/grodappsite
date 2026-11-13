@@ -1,0 +1,23 @@
+{
+  "build": "web-aaf28f969fb9",
+  "sourceCopies": {
+    "acting.js": "276b11b61f3c3cece4044a627d1237dd22832b736186d256d9cc2d1524c316aa",
+    "exterior.js": "af7669881b16ae69b960a674448d1c15e5ba38b22417fce9162119090df23f42",
+    "canal-life.js": "29485acf606fcefdbc38f73c66c709c1f6e38704f53e5877edbe61c28139c9c0",
+    "architecture.js": "4e5d0784f41a0b29fdcfca21c1915a94106596f3a2f50ac4278b86e3d5248880",
+    "backdrop.js": "96eb3ac511da2f3753ed7341f2935acd4bd021fa01dc8d2e65eed722ca656aba",
+    "scenery-cache.js": "a8ec57860dbb1a21c30d82b6431e475c3952f14ccc2af539d74eb85520c8bccb",
+    "ticket-rack.js": "5ca015aa1dde7fca6c81ccc34b32c30774f043c8a4d9580e5a9ca4689304bb09"
+  },
+  "protectedDiff": [],
+  "otherFactories": {
+    "depot": "932be65a2e42e232b07455d4ad66ac4c431793cdb12a48dc4625d0383c02d12d",
+    "train": "86503428820e453c85ba15731cd802242b426acf2ab12fad9cfd17cd19c40f76",
+    "cityhall": "571dcff6cc895f170af49cf4909d960bdcc088857fa51ac928165722a6cc373d",
+    "parcel": "d40ffba890ec4e387ee193b1d94844b5783b3e6853645a9a797dbb7a008bbc26",
+    "christmas": "266fa6ff4e69021ca9e6e69a3772d866ddf8cd53d95a8ad09d7ca4cb715410f3"
+  },
+  "engineSha256": "df668f0d033fd7e6f835026a6f5096921c3ef79a3d72f913ce36c9da1a1a08e1",
+  "officeSha256": "39095004596099f58b5d3639f8921bc1bea131a68a8d366c7d44047da10d84ad",
+  "noMainMerge": true
+}

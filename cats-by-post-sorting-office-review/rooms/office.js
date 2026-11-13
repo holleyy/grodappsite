@@ -2414,9 +2414,7 @@ class Pieces{
   const lid=this.lidPoints;for(let i=0;i<4;i++){const v=corners[i];let x=v[0],y=v[1],dist;if(d===0){dist=x-lo;x=lo+dist*Math.cos(theta);}else if(d===2){dist=hi-x;x=hi-dist*Math.cos(theta);}else if(d===1){dist=y-lo;y=lo+dist*Math.cos(theta);}else{dist=hi-y;y=hi-dist*Math.cos(theta);}projectTo(lid[i],h.x+x,h.y+y,dist*P.HW*Math.sin(theta));}
   this.r.path(lid,theta?'#d1b37e':'#cebc94','#f5e4be',2.7);
   if(!theta)this.arrow(h.x,h.y,d,0,'#456e6d');
-  // Printed portrait tickets remain ordered nearest release first.
-  for(let k=state.n-1;k>=0;k--){const coat=state.queue[k].coat===2?'blue':'ginger';const q=this.project(h.x+.5-DX[d]*(.45+k*.22),h.y+.5-DY[d]*(.45+k*.22));this.ellipse(q.x,q.y-8,10,6,'#f6e7c7','#c4ae83');this.asset(ART[coat]['bust-front'],q.x,q.y-9,17);}
-  if(state.waiting>4)this.label('+'+(state.waiting-4),p.x,p.y-30,'#52716b',9);
+
  }
  hatchFront(h){const pts=this.frontPoints;projectTo(pts[0],h.x+.14,h.y+.86);projectTo(pts[1],h.x+.86,h.y+.86);projectTo(pts[2],h.x+.86,h.y+.14);this.c.beginPath();this.c.moveTo(pts[0].x,pts[0].y);this.c.lineTo(pts[1].x,pts[1].y);this.c.lineTo(pts[2].x,pts[2].y);this.c.strokeStyle='#efdbb2';this.c.lineWidth=4;this.c.stroke();}
  dog(d,index,state){const p=this.centre(d.x,d.y),frame=this.motion||state.earLift?state.frame:0;this.r.shadow(p.x,p.y+16,31,11,.14);this.asset(DOG[frame],p.x,p.y+22,80,!!state.mirror);if(this.motion&&!state.earLift){const t=state.glyph;if(t.visible){this.c.save();this.c.globalAlpha=1-t.fade;this.label('z',p.x+24,p.y-35-t.z*2,'#8a9d99',t.big?14:10);this.c.restore();}}}
@@ -2547,6 +2545,73 @@ root.CivicPieces=Pieces;
 })(globalThis);
 
 const CivicPieces=globalThis.CivicPieces;
+/* A corner-mounted postal ticket holder. Printed portraits replace loose
+ * miniature cats; its complete footprint clears both hatch crossing lanes. */
+(function(root){
+'use strict';
+const HW=380/6,HH=190/6;
+const LAYOUT=Object.freeze({x0:.002,x1:.138,y0:.862,y1:.998,cx:.07,cy:.93,slots:2});
+class TicketRack{
+ constructor(renderer){this.r=renderer;this.frames=[];this.bytes=0;this.counts=[];for(let i=0;i<100;i++)this.counts.push('+'+i);}
+ static layout(){return LAYOUT;}
+ static count(state,edit){return Math.min(2,Math.max(0,state.n-(edit?1:0)));}
+ static frame(state,edit){const skip=edit?1:0,n=TicketRack.count(state,edit);let bits=0;for(let k=0;k<n;k++)if(state.queue[k+skip].coat===2)bits|=1<<k;return(1<<n)-1+bits;}
+ bake(){
+  const r=this.r;
+  for(let n=0;n<=2;n++)for(let bits=0;bits<(1<<n);bits++){
+   const canvas=document.createElement('canvas');canvas.width=96;canvas.height=128;const c=canvas.getContext('2d');c.scale(2,2);c.translate(24,52);
+   const point=(x,y,z)=>({x:(x-y)*HW,y:(x+y)*HH-z});
+   const polygon=(p,fill)=>{c.beginPath();c.moveTo(p[0].x,p[0].y);for(let i=1;i<p.length;i++)c.lineTo(p[i].x,p[i].y);c.closePath();c.fillStyle=fill;c.fill();};
+   const box=(x0,y0,x1,y1,z0,z1)=>{
+    polygon([point(x0,y1,z0),point(x1,y1,z0),point(x1,y1,z1),point(x0,y1,z1)],'#a97643');
+    polygon([point(x1,y0,z0),point(x1,y1,z0),point(x1,y1,z1),point(x1,y0,z1)],'#8b613c');
+    polygon([point(x0,y0,z1),point(x1,y0,z1),point(x1,y1,z1),point(x0,y1,z1)],'#d9b477');
+   };
+   // All geometry is relative to the same supported corner of the floor tile.
+   c.fillStyle='#493e292b';c.beginPath();c.ellipse(0,1.3,9,4.3,0,0,Math.PI*2);c.fill();
+   box(-.068,-.068,.068,.068,0,3);
+   // A fixed two-step back and supporting ledges remain when tickets leave.
+   const back=c.createLinearGradient(-7,-17,7,1);back.addColorStop(0,'#d2a76d');back.addColorStop(.6,'#b68650');back.addColorStop(1,'#8f6139');
+   polygon([{x:-7.6,y:0},{x:-7.6,y:-17},{x:6.6,y:-17},{x:6.6,y:0}],back);
+   c.strokeStyle='#efce99';c.lineWidth=.55;c.beginPath();c.moveTo(-7,-16.4);c.lineTo(6,-16.4);c.stroke();
+   for(let k=1;k>=0;k--){
+    if(k<n){const coat=(bits>>k)&1?'blue':'ginger',q=r.assets.acting.sprites[coat+'-bust-front'].rect;
+    const left=-6.3-k*.45,top=-25-k*10.5,w=12.6,h=22.4;
+    c.fillStyle='#513d2840';c.fillRect(left+.7,top+.8,w,h);
+    const paper=c.createLinearGradient(left,top,left+w,top+h);paper.addColorStop(0,'#fff5df');paper.addColorStop(1,'#e9d7b5');c.fillStyle=paper;c.fillRect(left,top,w,h);
+    c.strokeStyle='#c9ac7c';c.lineWidth=.5;c.strokeRect(left,top,w,h);
+    c.fillStyle=coat==='ginger'?'#c47f3d':'#57798a';c.fillRect(left+.6,top+.7,w-1.2,1.5);
+    // The face is ink within the paper border, with printed address rules and
+    // a cancellation ring. It has no independent floor shadow or body.
+    c.save();c.beginPath();c.rect(left+1,top+2.8,w-2,10);c.clip();c.globalAlpha=.88;
+    const pw=9.2,ph=pw*q[3]/q[2];c.drawImage(r.images.acting,q[0],q[1],q[2],q[3],left+(w-pw)/2,top+3,pw,ph);c.restore();
+    c.strokeStyle='#a3987b';c.lineWidth=.4;for(let j=0;j<2;j++){c.beginPath();c.moveTo(left+2,top+14+j*1.8);c.lineTo(left+w-2-j,top+14+j*1.8);c.stroke();}
+    c.strokeStyle='#9d7f59';c.lineWidth=.35;c.beginPath();c.arc(left+w-2.7,top+11.3,1.5,0,Math.PI*2);c.stroke();
+    if(!k){c.fillStyle='#3e7470';c.fillRect(left+2,top+17.4,w-4,2);}
+    }
+    // Paint each slot with its card, rear first, so its lip cannot cross the next portrait.
+    const y=-3-k*10.5;
+    polygon([{x:-8,y:y},{x:7.5,y:y},{x:7.5,y:y+3.1},{x:-8,y:y+3.1}],'#b98750');
+    c.strokeStyle='#f2d29c';c.lineWidth=.7;c.beginPath();c.moveTo(-8,y);c.lineTo(7.5,y);c.stroke();
+    c.strokeStyle='#8b603d';c.lineWidth=.45;c.beginPath();c.moveTo(-7,y+2.7);c.lineTo(6.5,y+2.7);c.stroke();
+   }
+   c.fillStyle='#e9c784';c.fillRect(-3.4,-.2,6.8,1.5);c.fillStyle='#786849';c.fillRect(-2,-.05,4,.35);
+   this.frames.push(canvas);this.bytes+=canvas.width*canvas.height*4;
+  }
+ }
+ draw(h,state,edit){
+  if(h.cats.length<2)return;
+  const r=this.r,c=r.ctx,x=760+(h.x+LAYOUT.cx-h.y-LAYOUT.cy)*HW,y=465+(h.x+LAYOUT.cx+h.y+LAYOUT.cy)*HH;
+  c.drawImage(this.frames[TicketRack.frame(state,edit)],x-24,y-52,48,64);
+  const extra=Math.max(0,state.waiting-(edit?1:0)-TicketRack.count(state,edit));
+  if(extra){c.font='7px Trebuchet MS,sans-serif';c.textAlign='center';c.fillStyle='#345f5c';c.fillText(this.counts[Math.min(extra,99)],x,y-40);}
+ }
+}
+root.CivicTicketRack=TicketRack;
+if(typeof module==='object'&&module.exports)module.exports=TicketRack;
+})(typeof globalThis!=='undefined'?globalThis:this);
+
+const CivicTicketRack=globalThis.CivicTicketRack;
 /* Civic architecture study: cached paper hall, registered live pieces and
  * unchanged Office trace clocks on the shared floor plane. */
 (function(root){
@@ -2554,8 +2619,8 @@ const CivicPieces=globalThis.CivicPieces;
 const P=CivicProjection;
 const depthOrder=(a,b)=>a.depth-b.depth||a.order-b.order;
 class Renderer{
- constructor(canvas,assets,managed=false){this.managed=managed;this.cam={tx:0,ty:0,scale:1};this.dpr=1;this.boardCaches=new Map();this.selectedPoints=[{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];this.fonts=[];for(let n=0;n<=40;n++)this.fonts[n]=n+'px Trebuchet MS, sans-serif';this.canvas=canvas;this.ctx=canvas.getContext('2d');this.assets=assets;this.images={};this.ready=false;this.config={width:1,height:1,w:5,h:3,mode:'play',zoom:1,panX:0,panY:0};this.scenery=new CivicSceneryCache(this);this.guides=false;this.selected=null;this.gray=false;this.motion=true;this.ambient=0;this.acting=CivicActing.create(BOARDANIM);this.pieces=new CivicPieces(this);this.poses=[];this.posePool=[];for(let i=0;i<32;i++)this.posePool.push(this.acting.makeOut());this.items=[];this.pool=[];for(let i=0;i<64;i++)this.pool.push({kind:0,index:0,depth:0,order:0});this.sceneLevel=null;this.roomLife=new CivicRoomLife(this);this.canal=new CivicCanal(this);this.backdrop=new CivicBackdrop(this);this.postal=new CivicPostal(this);this.architecture=new CivicArchitecture(this);this.observer=null;if(!managed){this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(canvas);this.resize();}}
- async load(){await Promise.all(['cats','pieces','acting','materials','decor','fronts','backdrop','houseFront'].map(name=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{this.images[name]=im;resolve();};im.onerror=()=>reject(Error('Artwork did not load: '+name));im.src=this.assets[name].src;})));this.backdrop.bake();this.canal.bake();this.architecture.bake();this.postal.bake();this.config.sceneBounds=this.architecture.bounds;this.bakeBoard(5,3);this.bakeBoard(5,4);this.bakeBoard(6,4);this.bakeGuides();this.ready=true;}
+ constructor(canvas,assets,managed=false){this.managed=managed;this.cam={tx:0,ty:0,scale:1};this.dpr=1;this.boardCaches=new Map();this.selectedPoints=[{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];this.fonts=[];for(let n=0;n<=40;n++)this.fonts[n]=n+'px Trebuchet MS, sans-serif';this.canvas=canvas;this.ctx=canvas.getContext('2d');this.assets=assets;this.images={};this.ready=false;this.config={width:1,height:1,w:5,h:3,mode:'play',zoom:1,panX:0,panY:0};this.scenery=new CivicSceneryCache(this);this.guides=false;this.selected=null;this.gray=false;this.motion=true;this.ambient=0;this.acting=CivicActing.create(BOARDANIM);this.pieces=new CivicPieces(this);this.tickets=new CivicTicketRack(this);this.poses=[];this.posePool=[];for(let i=0;i<32;i++)this.posePool.push(this.acting.makeOut());this.items=[];this.pool=[];for(let i=0;i<64;i++)this.pool.push({kind:0,index:0,depth:0,order:0});this.sceneLevel=null;this.roomLife=new CivicRoomLife(this);this.canal=new CivicCanal(this);this.backdrop=new CivicBackdrop(this);this.postal=new CivicPostal(this);this.architecture=new CivicArchitecture(this);this.observer=null;if(!managed){this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(canvas);this.resize();}}
+ async load(){await Promise.all(['cats','pieces','acting','materials','decor','fronts','backdrop','houseFront'].map(name=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>{this.images[name]=im;resolve();};im.onerror=()=>reject(Error('Artwork did not load: '+name));im.src=this.assets[name].src;})));this.backdrop.bake();this.canal.bake();this.architecture.bake();this.postal.bake();this.tickets.bake();this.config.sceneBounds=this.architecture.bounds;this.bakeBoard(5,3);this.bakeBoard(5,4);this.bakeBoard(6,4);this.bakeGuides();this.ready=true;}
  resize(){if(this.managed)return;const r=this.canvas.getBoundingClientRect();this.config.width=r.width;this.config.height=r.height;this.dpr=Math.min(devicePixelRatio||1,2);this.canvas.width=Math.round(r.width*this.dpr);this.canvas.height=Math.round(r.height*this.dpr);this.updateCamera();}
  updateCamera(){
   if(this.managed)return;const q=this.config;let left=-200,right=1700,top=0,bottom=1100;
@@ -2649,8 +2714,10 @@ class Renderer{
    if(o.box.visible&&!o.box.occupied)this.item('box',i,465+(o.boxX/16+o.boxY/16)*P.HH+1);
    this.item(o.cat.boxed?'boxed':'cat',i,465+(o.x/16+o.y/16)*P.HH+2,o.anim===BOARDANIM.A.PUZZLED?8:1);
   }
+  for(let i=0;i<this.hatches.length;i++){const h=this.hatches[i];this.item('tickets',i,465+(h.x+h.y+1)*P.HH+5,4);}
   this.items.sort(depthOrder);
   for(const item of this.items){const i=item.index,o=this.poses[i],tr=s.traces[i];switch(item.kind){
+   case 'tickets':this.tickets.draw(this.hatches[i],this.hatchStates[i],s.mode==='edit');break;
    case 'basket':this.pieces.basket(L.baskets[i]);break;
    case 'basket-front':this.pieces.basket(L.baskets[i],true);break;
    case 'dog':this.pieces.dog(L.dogs[i],i,this.dogStates[i]);break;
@@ -2677,13 +2744,16 @@ const officeSavedView={cx:VIEW_CX,cy:VIEW_CY,w:ROOM_FIT_W,h:ROOM_FIT_H,px:PAN_MA
 const officeState={level:null,chutes:null,mode:'edit',elapsed:0,traces:[]};
 const officeTraceSources=[],officeTraceViews=[];
 const officeSelection={x:0,y:0};
+// The host's accessible hatch button follows this floor corner, leaving the
+// cat and its postal tickets clear. This is presentation metadata only.
+const officeHatchMarker=Object.freeze({x:.96,y:.04});
 const officeMedia=matchMedia('(prefers-reduced-motion: reduce)');
 const officeScale=16/CivicProjection.HW;
 let officeRenderer=null,officeCanvas=null,officeMounted=false,officeOutput=false,officeDensity=1,officeGeometry=false,officeBytes=0;
 let officeMotion=true;
 // The room manager keeps this record. View-sized scenery caches are prepared
 // after mount and resized with the camera, so report their current backing.
-const officeResources={get bytes(){return officeBytes+(officeRenderer?.scenery?.bytes||0);},buffers:0,scope:'architecture, exterior, backdrop, foreground, canal, board and carrier canvas backing estimate, plus live scenery view caches; excludes decoded images, other caches, live output and process peak'};
+const officeResources={get bytes(){return officeBytes+(officeRenderer?.scenery?.bytes||0);},buffers:0,scope:'architecture, exterior, backdrop, foreground, canal, board and carrier canvas backing estimate, plus ticket and live scenery view caches; excludes decoded images, other caches, live output and process peak'};
 function officeMotionAllowed(){return officeMotion&&(window.PostPreferences?!document.documentElement.classList.contains('reduced'):!officeMedia.matches);}
 function officeEligible(){
  if(!officeMounted||!GAME_MODE||!G_KEEP_PROGRESS||ACTIVE_ROOM.id!=='office'||lightSetName==='night'||cpActive()||gm.custom||gm.daily||gm.practice||gm.shift||!gm.L||!officeIds.has(gm.L.id)||paperAtlasBuilding||G_GALLERY.length)return false;
@@ -2749,7 +2819,7 @@ function officeInstall(){
  paperOutputScale=function(){return officeOutput&&officeEligible()?officeDensity:officeNative.paperOutputScale();};
  update=function(){if(officeEligible()&&officeMotionAllowed()&&!document.hidden)officeRenderer.ambient+=DT;return officeNative.update();};
  api.hooks({night:()=>false});
- window.OfficePaper={active:officeEligible,motion:officeSetMotion,
+ window.OfficePaper={active:officeEligible,motion:officeSetMotion,hatchMarker:officeHatchMarker,
   seek(seconds){if(!Number.isFinite(seconds)||seconds<0)throw RangeError('Office time must be nonnegative');officeRenderer.ambient=seconds;dirty=true;},
   state(){return {active:officeEligible(),time:officeRenderer.ambient,motion:officeMotionAllowed(),ready:officeMounted,bakes:officeRenderer.architecture.bakes,level:gm.L.id,density:officeDensity};}};
 }
@@ -2765,6 +2835,7 @@ return {
   count(officeRenderer.architecture.exteriorLayer?.canvas);count(officeRenderer.backdrop?.canvas);count(officeRenderer.backdrop?.foreground?.canvas);
   officeBytes+=officeRenderer.canal?.cacheBytes||0;
   for(const canvas of officeRenderer.pieces?.carriers||[])count(canvas);
+  officeBytes+=officeRenderer.tickets?.bytes||0;
   if(officeRenderer.boardCaches)for(const layer of officeRenderer.boardCaches.values())count(layer.canvas);
   dirty=true;
  },

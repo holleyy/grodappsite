@@ -1,0 +1,16 @@
+{
+  "build": "web-aaf28f969fb9",
+  "level": "2-10",
+  "frames": 180,
+  "ticketFrames": 7,
+  "ticketBytes": 344064,
+  "sceneryEntries": 7,
+  "sceneryBakes": 7,
+  "sceneryBytes": 15890716,
+  "reportedResources": {
+    "bytes": 123723132,
+    "buffers": 0,
+    "scope": "architecture, exterior, backdrop, foreground, canal, board and carrier canvas backing estimate, plus ticket and live scenery view caches; excludes decoded images, other caches, live output and process peak"
+  },
+  "scope": "Actual host renderer; projection/canvas/gradient traps and prepared storage identities. Not a process-allocation or device-performance benchmark."
+}

@@ -1,12 +1,8 @@
-# Sorting Office · delivery and furniture review
+# Sorting Office · postal tickets
 
-Current comparison: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/refinements/
+Compare and watch: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/tickets/
 
-# Sorting Office · foreground checkpoint
-
-Compare and watch: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/foreground/
-
-Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=foreground&view=hall
+Explore: https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/?v=tickets&view=hall
 
 This upgrades the **Sorting Office**, using the selected Civic Mail Hall architecture. It is not the City Hall chapter. The warmer office keeps its canal, terracotta walls, teal columns and thirty occupied sorting cubbies, with a staff bench, folded throw, ledger, mug and task lamp.
 
@@ -17,6 +13,10 @@ This upgrades the **Sorting Office**, using the selected Civic Mail Hall archite
 Choose a delivery, place/rotate turntables and **Send the post**. **Watch this delivery** fills the stored solution and starts the run. Plain tables turn either coat; striped ginger and dotted blue tables only turn matching cats. Hint collars stay locked. **Motion off** and reduced motion freeze scenery at its current pose while deliveries continue.
 
 The 15 original Office deliveries retain their exact records, inventory and 300ms cadence: six 5×3, two 5×4 and seven 6×4 boards. The board and camera resize within one fixed room footprint. This does not qualify later chapters: the current campaign reaches 10×8 and introduces other mechanisms and room layouts.
+
+## Hatch tickets
+
+Multi-cat launches hold printed portrait tickets in a small wooden rack beside the box. The front/lower ticket is next, with the later ticket above it. The full preview box represents the first cat, so its portrait is not repeated. A ticket leaves when its cat starts rising from the hatch. Single-cat launches have no rack. Try `?level=1-5` to see three cats in order. The separate main-game review moves the accessible hatch number to the opposite tile corner so it clears the cat's face.
 
 ## Working postal life
 
@@ -30,9 +30,9 @@ Canal currents follow the banks, broken reflections align with real town windows
 
 ## Offline and source
 
-Unzip `sorting-office-refinements.zip` and open **Sorting Office.html**, or download the current `index.html` directly. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
+Unzip `sorting-office-tickets.zip` and open **Sorting Office.html**, or download the current `index.html` directly. The page needs no services, accounts, fonts or external assets. Canonical saves remain untouched.
 
-Extract `sorting-office-refinements-source.zip` into an empty folder and run:
+Extract `sorting-office-tickets-source.zip` into an empty folder and run:
 
 ```sh
 python3 studies/civic-mail-hall/foundation/build.py

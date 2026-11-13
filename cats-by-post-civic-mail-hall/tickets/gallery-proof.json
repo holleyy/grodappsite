@@ -1,0 +1,18 @@
+{
+  "images": [
+    {
+      "src": "after-close.png",
+      "width": 1200
+    },
+    {
+      "src": "desktop-host-1-5.jpg",
+      "width": 1448
+    },
+    {
+      "src": "phone-host-1-5.jpg",
+      "width": 786
+    }
+  ],
+  "deepLinkLevel": "1-5",
+  "errors": []
+}

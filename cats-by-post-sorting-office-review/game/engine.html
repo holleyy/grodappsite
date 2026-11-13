@@ -147,16 +147,16 @@
   #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
-<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-e4ee30346005" type="image/svg+xml">
+<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-aaf28f969fb9" type="image/svg+xml">
 <style id="web-host-style">
-@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-e4ee30346005);font-weight:400;font-display:swap}
-@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-e4ee30346005);font-weight:500;font-display:swap}
+@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-aaf28f969fb9);font-weight:400;font-display:swap}
+@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-aaf28f969fb9);font-weight:500;font-display:swap}
 #hud,#shiftCards,#shiftEnding,#shiftDebug,#chapterKicker,#debug,#controls,#atlasPanel{display:none!important}
 html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterScene{font-family:Signika,sans-serif;color:#253e40}
 
 </style>
-<link rel="stylesheet" href="../journey/theme.css?v=web-e4ee30346005"><script src="../journey/theme.js?v=web-e4ee30346005"></script><link rel="stylesheet" href="../journey/preferences.css?v=web-e4ee30346005"><script src="../journey/preferences.js?v=web-e4ee30346005"></script><script src="../journey/music.js?v=web-e4ee30346005"></script><script src="../journey/audio.js?v=web-e4ee30346005"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-e4ee30346005"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-e4ee30346005"></head>
+<link rel="stylesheet" href="../journey/theme.css?v=web-aaf28f969fb9"><script src="../journey/theme.js?v=web-aaf28f969fb9"></script><link rel="stylesheet" href="../journey/preferences.css?v=web-aaf28f969fb9"><script src="../journey/preferences.js?v=web-aaf28f969fb9"></script><script src="../journey/music.js?v=web-aaf28f969fb9"></script><script src="../journey/audio.js?v=web-aaf28f969fb9"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-aaf28f969fb9"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-aaf28f969fb9"></head>
 <body>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
@@ -256,7 +256,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "web-e4ee30346005";
+const BUILD_ID = "web-aaf28f969fb9";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -27348,7 +27348,7 @@ function webDrawBoardFeedback(mark){
   // Camera presentation is separate from rule-state subscriptions and save intents.
   api.subscribeAudio=function(fn){audioListeners.add(fn);if(audioListeners.size===1)audioTimeline?.reset(runID);return()=>{audioListeners.delete(fn);if(!audioListeners.size)audioTimeline?.reset(runID);};};
   api.subscribeView=function(fn){viewListeners.add(fn);return()=>viewListeners.delete(fn);};
-  api.hatchPosition=function(number,out){if(!gm.L||loading||cpActive()||!Number.isInteger(number)||number<1||number>gm.L.hatches.length)return false;const h=gm.L.hatches[number-1];project(h.x+.5,h.y+.5,out);return true;};
+  api.hatchPosition=function(number,out){if(!gm.L||loading||cpActive()||!Number.isInteger(number)||number<1||number>gm.L.hatches.length)return false;const h=gm.L.hatches[number-1],paper=window.OfficePaper,anchor=paper&&paper.active()?paper.hatchMarker:null;project(h.x+(anchor?anchor.x:.5),h.y+(anchor?anchor.y:.5),out);return true;};
   api.ready=Promise.resolve().then(async()=>{if(!gm.L)return false;if(!start)start=descriptor();const generation=loadGeneration;if(window.CBP_DEFER_PRESENTATION!==true&&await presentationReady(generation))presentationAttached=true;syncPause();changed();return true;});
   window.GameBridge=Object.freeze(api);
   // Native picking remains in this frame; the accepted host owns puzzle shortcuts.
@@ -27364,5 +27364,5 @@ function webDrawBoardFeedback(mark){
 
 boot();
 </script>
-<script src="../journey/postal-identity.js?v=web-e4ee30346005"></script><script src="../journey/chapter-presentation.js?v=web-e4ee30346005"></script></body>
+<script src="../journey/postal-identity.js?v=web-aaf28f969fb9"></script><script src="../journey/chapter-presentation.js?v=web-aaf28f969fb9"></script></body>
 </html>

@@ -3,13 +3,13 @@
   "canonicalBuild": "dedb812743",
   "rooms": {
     "office": {
-      "build": "sorting-office-paper-7e0703ba373c",
+      "build": "sorting-office-paper-390950045960",
       "source": "src/fidelity/office-paper",
-      "sourceSha256": "22355eff24d8feafbf7dbfbddb70400fff5691cfbe156de5afa58f2234b3dfb1",
+      "sourceSha256": "88dc9a9155517e6c9c1050bd9aa1784ebbc52aa8ca489bdd987ce1802ba85c91",
       "inputs": {
         "README.md": "dfefbe066832ed0e33b6d9b003dc9fce288a1f0fbfb2c307b31cb4515aaf5804",
         "acting.js": "276b11b61f3c3cece4044a627d1237dd22832b736186d256d9cc2d1524c316aa",
-        "adapter.js": "d2aeb7dff7e4839d1c77d87d213aff9f0c34934c881186324b9cc2e68420cbf4",
+        "adapter.js": "45a6ae98bad42e20dab496a138d542dfdf1fbe81a9848c877b3794a69d5d017b",
         "architecture.js": "4e5d0784f41a0b29fdcfca21c1915a94106596f3a2f50ac4278b86e3d5248880",
         "assets/acting.json": "00f82b101b6c915c4e800d89ec07475e0554573ae4046b24858cfe268467ac03",
         "assets/acting.webp": "f8df5d9eae05ef115ee20f0ce6c348b861a8f4b061a0e678c3f7b540f2268e5b",
@@ -29,19 +29,20 @@
         "canal-life.js": "29485acf606fcefdbc38f73c66c709c1f6e38704f53e5877edbe61c28139c9c0",
         "exterior.js": "af7669881b16ae69b960a674448d1c15e5ba38b22417fce9162119090df23f42",
         "office-details.js": "e3e393635f439bdf27c8cbfd56eb897b9284bca5b84bc5573f83f4d134176337",
-        "pieces.js": "8847a605ed6878b20ce8fb84a8f150809afdaebc11180cbe781bb71127f72bb2",
+        "pieces.js": "6431f93b7619fa56cdd734f108fed9a06420e6fd1f0733410fb040756515bfb9",
         "postal-life.js": "b0db0c1130ab6c17eea23eb531c255fd9e3d00e287419c96ed39a3a5a3b2edfe",
         "postal-work-cycle.js": "3ec327111b1d3d7de66ff0613520c44749b6926bbfb4a6b7d909bfee7d95a2f4",
         "postal-work-layout.js": "fc6d9dbc24d89e7910326017e8e8f5ccc6cfe1db2cccad5990876d9b0620fc2d",
         "postal-work-rig.js": "bc9e5dfcacad30efe9408f9f8db36ac3211f12d30f05ef009ed52d90e060898e",
         "projection.js": "8df78b72e37b95f692e14edd60e5b63e53ce70f582d439f72182ea06e260a6da",
-        "renderer.js": "a6fded13cfa96d185e52099d719e223e97dd90c4e56cff4262e6389ffb77059d",
+        "renderer.js": "875207dd35f1918d767549725809da9c51d1b2bfd707763c2f2a342fe68d3021",
         "room-life.js": "e54b4bab408542315ec6334e9f40c1b9f060489e6a7867f4dad619d6918e5ec7",
-        "scenery-cache.js": "a8ec57860dbb1a21c30d82b6431e475c3952f14ccc2af539d74eb85520c8bccb"
+        "scenery-cache.js": "a8ec57860dbb1a21c30d82b6431e475c3952f14ccc2af539d74eb85520c8bccb",
+        "ticket-rack.js": "5ca015aa1dde7fca6c81ccc34b32c30774f043c8a4d9580e5a9ca4689304bb09"
       },
       "scope": "15 original Office deliveries; canonical game state and room-manager lifecycle",
-      "bundleSha256": "7e0703ba373ccb0bfcd1461ad427c935db57e22b8d778358a854dd9be6fc8616",
-      "bundleBytes": 7175565
+      "bundleSha256": "39095004596099f58b5d3639f8921bc1bea131a68a8d366c7d44047da10d84ad",
+      "bundleBytes": 7180349
     },
     "depot": {
       "build": "depot-contact-3f9fc92684",
@@ -86,7 +87,7 @@
   },
   "review": {
     "kind": "isolated-review",
-    "productionBuild": "web-e4ee30346005",
+    "productionBuild": "web-aaf28f969fb9",
     "storagePrefix": "catsByPost.review.sortingOffice.",
     "productionStorageUnchanged": true,
     "note": "Review-only copied host. Production adapter, saves and live game paths are unchanged."
