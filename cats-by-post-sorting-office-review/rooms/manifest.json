@@ -87,7 +87,7 @@
   },
   "review": {
     "kind": "isolated-review",
-    "productionBuild": "web-09c8c3aece50",
+    "productionBuild": "web-f304d08435c8",
     "storagePrefix": "catsByPost.review.sortingOffice.",
     "productionStorageUnchanged": true,
     "note": "Review-only copied host. Production adapter, saves and live game paths are unchanged."

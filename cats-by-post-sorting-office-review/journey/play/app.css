@@ -46,7 +46,9 @@
 /* The map owns the starting screen in this experiment. */
 body[data-view="home"] #home,body[data-view="home"] #wash{visibility:hidden}
 /* The chapter owns the scene; native cinematic controls remain inside its host. */
-.campaign-scene #play-head,.campaign-scene #arrival-panel,.campaign-scene #desk,.campaign-scene #hatch-labels,.campaign-scene #precision-tools{display:none!important}
+.campaign-scene:not(.office-chapter) #play-head,.campaign-scene:not(.office-chapter) #arrival-panel,.campaign-scene:not(.office-chapter) #desk,.campaign-scene #hatch-labels,.campaign-scene #precision-tools{display:none!important}
+/* Office entry lands in this same footprint when the letter closes. */
+.office-chapter #play-head,.office-chapter #arrival-panel,.office-chapter #desk{visibility:hidden;pointer-events:none}
 .campaign-scene #world{pointer-events:auto}
 .room-loading #world{pointer-events:none}
 .room-loading #app>section{visibility:hidden}

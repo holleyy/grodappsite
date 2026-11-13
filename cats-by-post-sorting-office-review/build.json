@@ -1,9 +1,9 @@
 {
-  "build": "web-09c8c3aece50",
+  "build": "web-f304d08435c8",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
   "canonicalBuild": "dedb812743",
   "canonicalSha256": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
-  "engineSha256": "ffc8cca3c3ea2aa8d38562946f28c550aae9589a5420cfc700c1ea6ec9db433c",
+  "engineSha256": "2578362e466527d1d67cc1244a851202bfa093a925dad30fa59c027044cd309f",
   "engineBytes": 17404877,
   "levels": 100,
   "rooms": {
@@ -93,7 +93,7 @@
   "limits": "Physical Safari, total peak memory, thermal behaviour and frame pacing require actual device qualification.",
   "review": {
     "kind": "isolated-review",
-    "productionBuild": "web-09c8c3aece50",
+    "productionBuild": "web-f304d08435c8",
     "storagePrefix": "catsByPost.review.sortingOffice.",
     "productionStorageUnchanged": true,
     "note": "Review-only copied host. Production adapter, saves and live game paths are unchanged."
