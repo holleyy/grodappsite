@@ -2756,7 +2756,7 @@ let officeMotion=true;
 const officeResources={get bytes(){return officeBytes+(officeRenderer?.scenery?.bytes||0);},buffers:0,scope:'architecture, exterior, backdrop, foreground, canal, board and carrier canvas backing estimate, plus ticket and live scenery view caches; excludes decoded images, other caches, live output and process peak'};
 function officeMotionAllowed(){return officeMotion&&(window.PostPreferences?!document.documentElement.classList.contains('reduced'):!officeMedia.matches);}
 function officeEligible(){
- if(!officeMounted||!GAME_MODE||!G_KEEP_PROGRESS||ACTIVE_ROOM.id!=='office'||lightSetName==='night'||cpActive()||gm.custom||gm.daily||gm.practice||gm.shift||!gm.L||!officeIds.has(gm.L.id)||paperAtlasBuilding||G_GALLERY.length)return false;
+ if(!officeMounted||!GAME_MODE||!G_KEEP_PROGRESS||ACTIVE_ROOM.id!=='office'||lightSetName==='night'||(cpActive()&&!window.OfficeChapter?.active())||gm.custom||gm.daily||gm.practice||gm.shift||!gm.L||!officeIds.has(gm.L.id)||paperAtlasBuilding||G_GALLERY.length)return false;
  const L=gm.L,B=L.board;
  return B.w>=5&&B.w<=6&&B.h>=3&&B.h<=4&&!(L.gates&&L.gates.length)&&!(L.flaps&&L.flaps.length)&&!(L.tunnels&&L.tunnels.length);
 }
@@ -2777,11 +2777,11 @@ function officeView(eligible){
  }
 }
 function officePrepare(){
- const run=gm.mode!=='edit'&&gm.sim,n=run?gm.sim.n:0;
- officeState.level=gm.L;officeState.chutes=gm.chutes;officeState.mode=gm.mode;officeState.elapsed=gm.t;
+ const demo=window.OfficeChapter?.demo,run=gm.mode!=='edit'&&gm.sim,n=demo?demo.traces.length:run?gm.sim.n:0;
+ officeState.level=demo?demo.level:gm.L;officeState.chutes=demo?demo.turns:gm.chutes;officeState.mode=demo?'running':gm.mode;officeState.elapsed=demo?(CP.frame%(demo.loop*60))/60:gm.t;
  officeState.traces.length=n;
  for(let i=0;i<n;i++){
-  const tr=G_TRACES[i];
+  const tr=demo?demo.traces[i]:G_TRACES[i];
   if(officeTraceSources[i]!==tr){
    officeTraceSources[i]=tr;
    // Reused facades inherit current scalar/typed-array trace fields. Only the
@@ -2792,7 +2792,7 @@ function officePrepare(){
  }
  const r=officeRenderer;
  officeSelection.x=gm.cx;officeSelection.y=gm.cy;
- r.selected=gm.cursor&&gm.mode!=='running'?officeSelection:null;
+ r.selected=!cpActive()&&gm.cursor&&gm.mode!=='running'?officeSelection:null;
  r.motion=officeMotionAllowed();r.gray=grayscale;
 }
 function officeDraw(){
@@ -2819,7 +2819,7 @@ function officeInstall(){
  paperOutputScale=function(){return officeOutput&&officeEligible()?officeDensity:officeNative.paperOutputScale();};
  update=function(){if(officeEligible()&&officeMotionAllowed()&&!document.hidden)officeRenderer.ambient+=DT;return officeNative.update();};
  api.hooks({night:()=>false});
- window.OfficePaper={active:officeEligible,motion:officeSetMotion,hatchMarker:officeHatchMarker,
+ window.OfficePaper={active:officeEligible,motionAllowed:officeMotionAllowed,motion:officeSetMotion,hatchMarker:officeHatchMarker,
   seek(seconds){if(!Number.isFinite(seconds)||seconds<0)throw RangeError('Office time must be nonnegative');officeRenderer.ambient=seconds;dirty=true;},
   state(){return {active:officeEligible(),time:officeRenderer.ambient,motion:officeMotionAllowed(),ready:officeMounted,bakes:officeRenderer.architecture.bakes,level:gm.L.id,density:officeDensity};}};
 }
@@ -2828,7 +2828,7 @@ return {
   api.check();officeCanvas=document.createElement('canvas');officeRenderer=new CivicRenderer(officeCanvas,OfficePaperAssets,true);
   officeRenderer.cam={tx:0,ty:0,scale:officeScale};officeRenderer.guides=false;
   await officeRenderer.load();api.check();officeMounted=true;
-  officeMedia.addEventListener('change',officePreference);officeInstall();officeView(officeEligible());
+  officeMedia.addEventListener('change',officePreference);officeInstall();officeView(officeEligible());window.OfficeChapter?.invalidate();if(window.OfficeChapter?.active())cpWorld();
   officeBytes=0;
   const count=canvas=>{if(canvas)officeBytes+=canvas.width*canvas.height*4;};
   for(const layer of officeRenderer.architecture.layers)count(layer.canvas);

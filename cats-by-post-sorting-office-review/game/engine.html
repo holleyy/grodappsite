@@ -147,16 +147,16 @@
   #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
-<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-aaf28f969fb9" type="image/svg+xml">
+<link rel="icon" href="../journey/icons/envelope-open.svg?v=web-09c8c3aece50" type="image/svg+xml">
 <style id="web-host-style">
-@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-aaf28f969fb9);font-weight:400;font-display:swap}
-@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-aaf28f969fb9);font-weight:500;font-display:swap}
+@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=web-09c8c3aece50);font-weight:400;font-display:swap}
+@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=web-09c8c3aece50);font-weight:500;font-display:swap}
 #hud,#shiftCards,#shiftEnding,#shiftDebug,#chapterKicker,#debug,#controls,#atlasPanel{display:none!important}
 html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterScene{font-family:Signika,sans-serif;color:#253e40}
 
 </style>
-<link rel="stylesheet" href="../journey/theme.css?v=web-aaf28f969fb9"><script src="../journey/theme.js?v=web-aaf28f969fb9"></script><link rel="stylesheet" href="../journey/preferences.css?v=web-aaf28f969fb9"><script src="../journey/preferences.js?v=web-aaf28f969fb9"></script><script src="../journey/music.js?v=web-aaf28f969fb9"></script><script src="../journey/audio.js?v=web-aaf28f969fb9"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-aaf28f969fb9"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-aaf28f969fb9"></head>
+<link rel="stylesheet" href="../journey/theme.css?v=web-09c8c3aece50"><script src="../journey/theme.js?v=web-09c8c3aece50"></script><link rel="stylesheet" href="../journey/preferences.css?v=web-09c8c3aece50"><script src="../journey/preferences.js?v=web-09c8c3aece50"></script><script src="../journey/music.js?v=web-09c8c3aece50"></script><script src="../journey/audio.js?v=web-09c8c3aece50"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=web-09c8c3aece50"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=web-09c8c3aece50"></head>
 <body>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
@@ -256,7 +256,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "web-aaf28f969fb9";
+const BUILD_ID = "web-09c8c3aece50";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -26811,6 +26811,160 @@ const FidelityRooms=makeFidelityRoomManager({
 window.FidelityRooms=FidelityRooms;
 
 window.CBP_DEFER_PRESENTATION=new URLSearchParams(location.search).get('deferPresentation')==='1';
+/* Web Office correspondence and independent demonstrations. No campaign level
+ * or progress is borrowed for the examples. Swift: immutable chapter records
+ * and traces prepared by the shared rule engine on scene entry. */
+(function(root){
+'use strict';
+const node=typeof module!=='undefined'&&module.exports;
+const R=node?require('../sim/10_rules.js'):{grCreate,grTick,grResult,GR_DIR,GE_RELEASED,GE_MOVED,GO_RUNNING};
+const B=node?require('../sim/12_boardanim.js'):BOARDANIM;
+const arrivals={
+ 1:{title:'Welcome to the sorting office',text:'The canal post has arrived, and the cats are ready for their first delivery. Place a turntable, point it towards a basket, then send them on their way.'},
+ 2:{title:'Ginger and blue',text:'There is more post on the counter today. Coloured turntables turn only cats of the matching colour; the others carry straight on.'}
+};
+const boundaries={
+ '1-5':{mode:'intro',next:'2-1'},
+ '2-1':{mode:'growth',next:'2-2',title:'A little more room',text:'Another row of blue paper opens the sorting floor. There is room for a longer route — and a sleeping dog to work around.'},
+ '2-3':{mode:'growth',next:'2-4',title:'The whole sorting floor',text:'One more column, and the whole floor is yours. Six columns, four rows, and plenty of ways to get the post home.'},
+ '2-10':{mode:'exit',next:'3-1',title:'The last of the canal post',text:'Every basket is full. Leave the cats to their naps: the next delivery is waiting at the town depot.'}
+};
+function demo(chapter){
+ const colour=chapter===2;
+ const level={id:'office-teaching-'+chapter,board:{w:5,h:3,roomX:0,roomY:0},timeLimit:32,
+  hatches:[{x:0,y:colour?1:2,dir:'R',cats:colour?['ginger','blue']:['ginger']}],
+  baskets:colour?[{x:4,y:1,coat:'ginger'},{x:3,y:2,coat:'blue'}]:[{x:2,y:0,coat:'ginger'}],
+  dogs:[],gates:[],tray:{plain:colour?0:1,ginger:0,blue:colour?1:0}};
+ const turns=[colour?{x:3,y:1,type:'blue',dir:'D'}:{x:2,y:2,type:'plain',dir:'U'}];
+ const sim=R.grCreate(level,turns),traces=[],ends=[];
+ for(let i=0;i<sim.n;i++){
+  const tr=B.makeTrace(34),h=level.hatches[0];
+  tr.ox=64;tr.oy=48;tr.tick=.3;tr.pop=.3;tr.coat=sim.coat[i];tr.hx=h.x;tr.hy=h.y;
+  tr.hatchDir=R.GR_DIR[h.dir];tr.bw=5;tr.bh=3;tr.look=i;tr.blinkPhase=i*7;traces.push(tr);
+ }
+ while(sim.outcome===R.GO_RUNNING){
+  const time=(sim.tick+1)*.3;R.grTick(sim);
+  for(let i=0;i<sim.n;i++){const tr=traces[i];if(sim.ev[i]===R.GE_RELEASED)tr.rel=time;else if(sim.ev[i]>=R.GE_MOVED){B.record(tr,sim.px[i],sim.py[i],sim.pdir[i],sim.x[i],sim.y[i],sim.dir[i],sim.ev[i],sim.bounced[i]);B.recordDestination(tr,sim,i);}}
+ }
+ // Rest in the baskets until the demonstration restarts. No unexplained
+ // departure or disappearance while the accompanying letter is being read.
+ for(const tr of traces){tr.napUntil=60;tr.leaveDir=3;ends.push(tr.rel+tr.n*tr.tick+B.T_NAP+2);}
+ return {level,turns,traces,ends,loop:Math.ceil(Math.max(...ends)+1),gates:B.makeGateTrace(1),final:R.grResult(sim)};
+}
+const api={intro:chapter=>arrivals[chapter===2?2:1],after:id=>boundaries[id]||null,demo};
+root.OfficeChapterModel=api;if(node)module.exports=api;
+})(globalThis);
+
+/* Web-only Office lifecycle, installed before GameBridge captures chapter
+ * clocks. It remains available during artwork loading and session replay. */
+(function(){
+'use strict';
+const native={intro:cpIntro,picked:cpPicked,demo:cpDemo,next:cpNext,begin:cpBegin,world:cpWorld,cancel:cpCancel,finish:cpFinishEntry,entry:cpPrepareEntry};
+const seen=new Set(),demos=new Map();
+let owned=false,chapter=1,bridge=null,targetX=0,targetY=0,finished=false;
+const frame={left:0,top:0,width:1,height:1},bounds={x0:0,x1:0,y0:0,y1:0};
+let cardWidth=-1,cardHeight=-1,viewportWidth=-1,viewportHeight=-1,frameMode='',fitScale=1,fitX=0,fitY=0;
+const available=()=>GAME_MODE&&G_KEEP_PROGRESS&&!gm.custom&&!gm.daily&&!gm.practice&&!gm.shift&&ACTIVE_ROOM.id==='office'&&lightSetName!=='night'&&(gm.L.id[0]==='1'||gm.L.id[0]==='2')&&gm.L.id[1]==='-';
+const active=()=>owned&&cpActive()&&available();
+const motion=()=>window.OfficePaper?window.OfficePaper.motionAllowed():!document.documentElement.classList.contains('reduced');
+function invalidate(){cardWidth=-1;}
+function beginCard(mode,title,text,primary,secondary){
+ owned=true;finished=false;CP.train=CP.hall=CP.parcel=CP.christmas=false;CP.room=G_ROOM;
+ cpCard(mode,title,text,primary,secondary);CP.panel.dataset.officeChapter='true';invalidate();cpWorld();
+}
+function clear(){owned=false;delete CP.panel.dataset.officeChapter;invalidate();}
+cpIntro=function(){
+ if(!available())return native.intro();if(gm.mode==='running')return;
+ chapter=gm.L.id[0]==='2'?2:1;seen.add(chapter);const card=OfficeChapterModel.intro(chapter);
+ beginCard('intro',card.title,card.text,'Start sorting','Watch the post');
+};
+cpPicked=function(){
+ if(!available())return native.picked();
+ if((gm.L.id==='1-1'||gm.L.id==='2-1')&&!seen.has(Number(gm.L.id[0]))&&!progress.levels[gm.L.id]?.stars?.delivered)cpIntro();
+};
+function prepareDemo(){
+ let record=demos.get(chapter);if(record)return record;
+ const d=OfficeChapterModel.demo(chapter),s=makeBoardSrc(d.traces.length);
+ s.ox=64;s.oy=48;s.w=d.level.board.w;s.h=d.level.board.h;s.n=d.traces.length;s.rails=true;s.traces=d.traces;
+ for(const h of d.level.hatches)s.hatches.push({x:h.x,y:h.y,dir:GR_DIR[h.dir]});
+ for(const b of d.level.baskets)s.baskets.push({x:b.x,y:b.y,coat:GR_COAT[b.coat]});
+ for(const t of d.turns)s.turntables.push({x:t.x,y:t.y,dir:GR_DIR[t.dir],kind:GR_TYPE[t.type]});
+ record={demo:d,src:s};demos.set(chapter,record);return record;
+}
+cpDemo=function(){
+ if(!active())return native.demo();if(CP.mode!=='intro'&&CP.mode!=='demo')return;
+ const record=prepareDemo();CP.demo=record.demo;CP.src=record.src;
+ beginCard('demo',chapter===1?'A turn towards home':'A turn for blue',chapter===1?
+  'The plain turntable points the cat towards its basket. This is an example route; your own delivery is waiting just as you left it.':
+  'Ginger passes straight over the blue turntable. Blue takes the turn into its own basket. A coloured turntable only turns the matching cat.',
+  'Start sorting','Replay demo');
+};
+cpNext=function(){
+ if(!available())return native.next();
+ const next=OfficeChapterModel.after(gm.L.id);if(!next)return false;
+ if(next.mode==='exit'){beginCard('exit',next.title,next.text,'On to the town depot');return true;}
+ gLoad(LEVELS.findIndex(L=>L.id===next.next));
+ if(next.mode==='intro')cpIntro();else beginCard('growth',next.title,next.text,'Continue sorting');
+ return true;
+};
+cpBegin=function(){
+ if(!active())return native.begin();
+ if(CP.mode==='exit'){cpCancel();gLoad(LEVELS.findIndex(L=>L.id==='3-1'));return;}
+ return native.begin();
+};
+cpCancel=function(){const was=owned;native.cancel();if(was)clear();};
+cpFinishEntry=function(){
+ const was=owned;native.finish();if(was){clear();finished=true;if(bridge)bridge.entry();}
+};
+cpPrepareEntry=function(){
+ if(!active()||!bridge)return native.entry();
+ // Prepare two real host views once. The finishing frame uses exactly the
+ // same board fit as normal play, including the host's current HUD insets.
+ CP.sourceView=cpSaveView();const mode=CP.mode;CP.mode='';bridge.entry();CP.mode=mode;
+ CP.targetScale=scale;targetX=WS.camX+view.panX;targetY=WS.camY+view.panY;view.panX=view.panY=0;CP.targetView=cpSaveView();
+ offCanvas.width=Math.max(CP.sourceView.LW,CP.targetView.LW);offCanvas.height=Math.max(CP.sourceView.LH,CP.targetView.LH);
+ if(CP.sourceView.paper&&CP.targetView.paper){paperCanvas.width=Math.max(CP.sourceView.paper.width,CP.targetView.paper.width);paperCanvas.height=Math.max(CP.sourceView.paper.height,CP.targetView.paper.height);}
+ if(motion()){cpUseView(CP.sourceView);view.zoom=CP.enterScale;CP.visualScale=CP.enterScale;}
+ else{cpUseView(CP.targetView);view.zoom=CP.targetScale;CP.visualScale=CP.targetScale;}
+};
+function fit(){
+ const w=CP.card.offsetWidth,h=CP.card.offsetHeight;
+ if(w===cardWidth&&h===cardHeight&&devW===viewportWidth&&devH===viewportHeight&&frameMode===CP.mode)return;
+ cardWidth=w;cardHeight=h;viewportWidth=devW;viewportHeight=devH;frameMode=CP.mode;
+ const margin=18*devDpr,landscape=innerWidth>innerHeight&&innerHeight<=520;
+ frame.left=margin;frame.top=margin;frame.width=devW-2*margin;frame.height=devH-2*margin;
+ if(landscape){frame.left=(w+30)*devDpr;frame.width=Math.max(60*devDpr,devW-frame.left-margin);}
+ else if(innerWidth>=1000){if(CP.mode==='demo')frame.width=Math.max(100*devDpr,devW-(w+54)*devDpr);else{frame.top=0;frame.height=devH-100*devDpr;}}
+ else frame.height=Math.max(100*devDpr,devH-(h+48)*devDpr);
+ if(CP.mode==='demo'){
+  const B=CP.demo.level.board,x=gTX(0),y=gTY(0);
+  bounds.x0=OX+x-y-B.h*16-12;bounds.x1=OX+x+B.w*16-y+12;
+  bounds.y0=OY+(x+y)/2-32;bounds.y1=OY+(x+y+(B.w+B.h)*16)/2+20;
+ }else{
+  bounds.x0=VIEW_CX+G_CAM_X-ROOM_FIT_W/2;bounds.x1=bounds.x0+ROOM_FIT_W;
+  bounds.y0=VIEW_CY+G_CAM_Y-ROOM_FIT_H/2;bounds.y1=bounds.y0+ROOM_FIT_H;
+ }
+ fitScale=Math.min(frame.width/(bounds.x1-bounds.x0),frame.height/(bounds.y1-bounds.y0));
+ // The legacy lower zoom bound fits the entire viewport. Chapter correspondence
+ // reserves part of it, so the Office chapter permits the smaller fitted view.
+ view.zoom=fitScale;applyScale();
+ fitX=(bounds.x0+bounds.x1)/2-VIEW_CX+(devW/2-frame.left-frame.width/2)/scale;
+ fitY=(bounds.y0+bounds.y1)/2-VIEW_CY+(devH/2-frame.top-frame.height/2)/scale;
+}
+cpWorld=function(){
+ if(!active())return native.world();
+ if(CP.mode==='enter'){
+  const t=motion()?Math.min(1,CP.frame/72):1,u=t*t*(3-2*t);
+  CP.visualScale=CP.enterScale+(CP.targetScale-CP.enterScale)*u;
+  WS.camX=CP.enterX+(targetX-CP.enterX)*u;WS.camY=CP.enterY+(targetY-CP.enterY)*u;
+ }else{fit();WS.camX=fitX;WS.camY=fitY;}
+ dirty=true;
+};
+const nativeLimits=scaleLimits;
+scaleLimits=function(w,h){const out=nativeLimits(w,h);if(active()&&CP.mode!=='enter')out[0]=Math.min(out[0],fitScale);return out;};
+window.OfficeChapter={active,available,invalidate,connect(value){bridge=value;},get demo(){return active()&&CP.mode==='demo'?CP.demo:null;},get finished(){return finished&&available();}};
+})();
+
 /* Continuous camera transforms. Device coordinates and world coordinates stay separate. */
 (function(root){
  'use strict';
@@ -27104,7 +27258,7 @@ function webDrawBoardFeedback(mark){
   const precision=()=>!gm.shift&&gm.mode==='running'&&tactical;
   const inputAvailable=()=>(presentationAttached||replaying)&&!cpActive()&&!loading&&!gPracticePending&&(replaying||reasons.size===0);
   const presentationAvailable=()=>(presentationAttached||replaying)&&!loading&&!gPracticePending&&(replaying||!reasons.has('fidelity'));
-  const chapterStoryAvailable=()=>presentationAvailable()&&G_KEEP_PROGRESS&&story()&&/^[45678]-/.test(gm.L.id)&&gm.mode!=='running'&&!cpActive()&&!loading&&!gPracticePending;
+  const chapterStoryAvailable=()=>presentationAvailable()&&G_KEEP_PROGRESS&&story()&&(/^[45678]-/.test(gm.L.id)||window.OfficeChapter.available())&&gm.mode!=='running'&&!cpActive()&&!loading&&!gPracticePending;
   const editable=()=>inputAvailable()&&(gm.shift?(gm.shift.phase==='tea'&&!!gm.shift.cardChoice&&!gm.shift.pendingWalkies||gm.shift.phase==='running'&&gm.shift.paused):gm.mode==='edit'||gm.mode==='lost'||gm.mode==='won'||precision());
   function epoch(){runID='web-'+Date.now()+'-'+(++runNumber);winRecorded=false;history.length=0;audioSerial=0;audioTimeline?.reset(runID);}
   function emit(name,detail){for(const target of new Set([window,typeof parent==='undefined'?window:parent]))try{if(target.dispatchEvent&&typeof CustomEvent!=='undefined')target.dispatchEvent(new CustomEvent(name,{detail}));}catch{}}
@@ -27237,7 +27391,7 @@ function webDrawBoardFeedback(mark){
   function restorePendingView(){const v=pendingView;if(!v||cpActive())return;pendingView=null;if(v.levelId===gm.L.id&&v.camera.room===ACTIVE_ROOM.id)restoreCamera(v.camera);}
   function restoreRoomView(){const v=savedView();if(!v)return false;restoreCamera(v.camera);return true;}
   panBy=function(dx,dy){if(!cpActive())manual=true;return native.pan(dx,dy);};
-  onResize=function(){const protectedView=cpActive(),point=!protectedView&&manual&&presentationAttached?cameraCheckpoint():null;native.resize();if(protectedView)return;if(point)restoreCamera(point);else if(presentationAttached&&!cpActive())camera(framing);if(continuousCamera)continuousCamera.layoutChanged();changed();};
+  onResize=function(){const protectedView=cpActive(),point=!protectedView&&manual&&presentationAttached?cameraCheckpoint():null;native.resize();if(protectedView){if(window.OfficeChapter.finished&&!cpActive())camera(framing);return;}if(point)restoreCamera(point);else if(presentationAttached&&!cpActive())camera(framing);if(continuousCamera)continuousCamera.layoutChanged();changed();};
   if(window.removeEventListener)window.removeEventListener('resize',native.resize);window.addEventListener('resize',onResize);
   function queue(){const s=gm.shift;if(s){const c=s.current;return c.releaseOrder.map((id,j)=>({order:j+1,hatch:c.releaseHatches[j]+1,coat:GR_COATS[c.sim.coat[id]],big:!!c.sim.big[id],size:c.sim.big[id]?'big':'small',status:GL_STATES[c.sim.st[id]],released:j<c.released,releaseTick:j*c.params.releaseGap,releasedAt:c.sim.releaseTick[id]<0?null:c.sim.releaseTick[id],releaseEvery:c.params.releaseGap,moveEvery:c.sim.big[id]?2:1,tickMs:c.params.tickMs}));}
     const q=[];for(let h=0;h<gm.L.hatches.length;h++){const H=gm.L.hatches[h],S=gm.sim?.hatches[h];H.cats.forEach((cat,j)=>q.push({order:j+1,hatch:h+1,coat:GR_COATS[grCatCoat(cat)],big:grCatBig(cat),size:grCatBig(cat)?'big':'small',status:S&&gm.mode!=='edit'?GL_STATES[gm.sim.st[S.first+j]]:'waiting',released:!!S&&gm.mode!=='edit'&&gm.sim.st[S.first+j]!==GL_WAIT,releaseTick:j*GR_RELEASE_EVERY,releasedAt:S&&gm.mode!=='edit'&&gm.sim.st[S.first+j]!==GL_WAIT?j*GR_RELEASE_EVERY:null,releaseEvery:GR_RELEASE_EVERY,moveEvery:grCatBig(cat)?2:1,tickMs:GR_TICK_MS}));}return q;}
@@ -27344,6 +27498,7 @@ function webDrawBoardFeedback(mark){
   const pieceCache={};
   function piece(type){if(pieceCache[type])return pieceCache[type];const item=PAPER_SPRITE_DATA.pieces.find(s=>s.id==='turntable_'+type+'_E/idle');if(!item)return null;const c=document.createElement('canvas');c.width=item.rect.w*4;c.height=item.rect.h*4;const ctx=c.getContext('2d'),frame=ctx.createImageData(c.width,c.height),out=new Uint32Array(frame.data.buffer),raw=atob(item.pixels);for(let i=0;i<raw.length;i++){const col=raw.charCodeAt(i);out[i]=col===255?0:PAL32[col];}ctx.putImageData(frame,0,0);return pieceCache[type]=c.toDataURL();}
 
+  window.OfficeChapter.connect({entry:()=>{if(pendingView&&pendingView.levelId===gm.L.id&&pendingView.camera.room===ACTIVE_ROOM.id)restoreCamera(pendingView.camera);else camera('board');}});
   const api={cancelLoad:()=>fresh('cancelLoad').value===true,state,describeTile,routeFeatures,tile:(x,y)=>target(x,y,{}),command,load,snapshot,restore,sessionSummary:GameSessionCodec.summary,subscribe(fn){listeners.add(fn);return()=>listeners.delete(fn);},suspend:reason=>fresh('suspend',{reason}),unsuspend:reason=>fresh('unsuspend',{reason}),levels:LEVELS.map((L,i)=>({i,id:L.id,title:L.title,room:LEVELROOMS.id(L),board:{...L.board},queueCount:L.hatches.reduce((n,h)=>n+h.cats.length,0),bigCount:L.hatches.reduce((n,h)=>n+h.cats.filter(grCatBig).length,0),hatchCount:L.hatches.length,mechanisms:{dogs:(L.dogs||[]).length,gates:(L.gates||[]).length,tunnels:(L.tunnels||[]).length,flaps:(L.flaps||[]).length}})),face,piece,geometry(){const b=gm.L.board;return[[0,0],[b.w,0],[b.w,b.h],[0,b.h]].map(([x,y])=>project(x,y));},remember,backdrop(){return fresh('camera',{mode:'board'});},layout:a=>fresh('layout',a),freeze:value=>fresh('freeze',{value}),pause:(value=true)=>fresh('pause',{value}),resume:()=>fresh('resume'),camera:mode=>fresh('camera',{mode}),focus:hatch=>fresh('focus',{hatch}),zoom:dir=>fresh('zoom',{dir}),pan:(x,y)=>fresh('pan',{x,y}),tap:(x,y)=>fresh('tap',{x,y}),select:type=>fresh('select',{type}).status==='accepted',clear:()=>fresh('clear'),hint:()=>fresh('hint'),send:()=>fresh('send'),arrange:()=>fresh('arrange'),stop:()=>fresh('stop'),fast:()=>fresh('fast'),card:id=>fresh('card',{id}),nextRound:()=>fresh('nextRound'),grey:value=>fresh('grey',{value}),setCursor:(x,y)=>fresh('setCursor',{x,y}).value,cursor:(dx,dy)=>fresh('setCursor',{x:Number.isSafeInteger(dx)?clamp(gm.cx+dx,0,gm.L.board.w-1):NaN,y:Number.isSafeInteger(dy)?clamp(gm.cy+dy,0,gm.L.board.h-1):NaN}).value,place:()=>fresh('tap',{x:gm.cx,y:gm.cy}),closeup(){fresh('camera',{mode:'board'});return fresh('zoom',{dir:scale*.4});},undo:()=>fresh('undo').value===true,next:()=>fresh('advance'),continue:()=>fresh('continue'),watchDemo:()=>fresh('watchDemo'),chapterStory:()=>fresh('chapterStory'),skip:()=>fresh('skip'),showCredits:()=>fresh('showCredits'),replayEnding:()=>fresh('replayEnding'),back:()=>fresh('back'),cancelPresentation:()=>fresh('cancelPresentation')};
   // Camera presentation is separate from rule-state subscriptions and save intents.
   api.subscribeAudio=function(fn){audioListeners.add(fn);if(audioListeners.size===1)audioTimeline?.reset(runID);return()=>{audioListeners.delete(fn);if(!audioListeners.size)audioTimeline?.reset(runID);};};
@@ -27364,5 +27519,5 @@ function webDrawBoardFeedback(mark){
 
 boot();
 </script>
-<script src="../journey/postal-identity.js?v=web-aaf28f969fb9"></script><script src="../journey/chapter-presentation.js?v=web-aaf28f969fb9"></script></body>
+<script src="../journey/postal-identity.js?v=web-09c8c3aece50"></script><script src="../journey/chapter-presentation.js?v=web-09c8c3aece50"></script></body>
 </html>
