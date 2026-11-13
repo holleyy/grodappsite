@@ -537,7 +537,7 @@ const layout=Object.freeze({floor:{w:21,h:12},service:{x:14.7,y:2.6,w:1.25,h:7.4
  parapet:{id:'terrace-parapet',x:20.5,y:7.9,z:0,w:.5,d:2.2,h:.65},parapetCap:{id:'parapet-cap',x:20.5,y:7.9,z:.65,w:.5,d:2.2,h:.10},
  lanterns:[{id:'window-lantern',support:'floor',x:.96,y:11.35,z:0},{id:'terrace-lantern',support:'parapet-cap',x:20.75,y:9.85,z:.75}],
  planters:[{id:'window-planter',x:2.65,y:.75,z:0,w:1.10,d:1.05,h:.62,scale:88},{id:'terrace-end-planter',x:19.5,y:8.55,z:0,w:.90,d:1.14,h:.42,scale:95},{id:'entry-planter',x:16.05,y:8.9,z:0,w:.80,d:1.0,h:.40,scale:85}],
- trolley:{x:16.35,y:2.48,z:.26,w:1.02,d:.74,h:.13},shuttle:{x:16.8,y:3.4,w:3.6,d:3.5},
+ trolley:{x:16.12,y:5.25,z:.26,w:.58,d:1.10,h:.13},shuttle:{x:16.8,y:3.4,w:3.6,d:3.5},
  crates:[{id:'parcel-a',support:'floor',x:16.5,y:.6,z:0,w:.62,d:.62,h:.62},{id:'parcel-b',support:'floor',x:17.2,y:.6,z:0,w:.69,d:.69,h:.69},{id:'parcel-c',support:'parcel-b',x:17.3,y:.68,z:.69,w:.49,d:.49,h:.49},{id:'parcel-d',support:'floor',x:19.2,y:.62,z:0,w:.63,d:.62,h:.63}]});
 const CREAM=['#f6ead3','#dec7aa','#bba58e'],IVORY=['#fff3dc','#ead9bd','#c1b5a0'];
 const TEAL=['#75b4b2','#397c80','#285f65'],CORAL=['#efaa8d','#d7846c','#aa6655'];
@@ -622,43 +622,10 @@ function build(ctx,api){
  plant(layout.planters[0]);
  buildFurniture(ctx);
  lantern(layout.lanterns[0]);
- // Receiving bay sits behind the service passage, clear of all gameplay cells.
- box(ctx,15.30,.15,0,5.20,.26,2.8,CREAM);
- quad(ctx,[[15.56,.418,.06],[20.2,.418,.06],[20.2,.418,2.55],[15.56,.418,2.55]],'#887b6b');
- for(let x=15.55;x<20.25;x+=.75)quad(ctx,[[x,.42,.06],[x+.025,.42,.06],[x+.025,.42,2.55],[x,.42,2.55]],'#716e62');
- for(const s of layout.crates){
-  const {x,y,z,w,d,h}=s;shade(ctx,x+w*.5,y+d*.5,w*.55,d*.55,.18,z+.005);
-  box(ctx,x,y,z,w,d,h,WOOD);box(ctx,x+w*.45,y+d+.006,z,.08,.012,h,IVORY);box(ctx,x+w*.45,y,z+h,.08,d,.012,IVORY);
- }
- // Near jambs occlude parcels behind them and meet the underside of the roof.
- for(const x of [15.3,20.23]){
-  quad(ctx,[[x+.27,.40,0],[x+.27,2.30,0],[x+.27,2.30,2.25],[x+.27,.40,2.66]],IVORY[2]);
-  StudyPaperMaterial.finish(ctx,[[x+.27,.40,0],[x+.27,2.30,0],[x+.27,2.30,2.25],[x+.27,.40,2.66]],'masonry');
-  quad(ctx,[[x,2.30,0],[x+.27,2.30,0],[x+.27,2.30,2.25],[x,2.30,2.25]],IVORY[1]);
-  StudyPaperMaterial.finish(ctx,[[x,2.30,0],[x+.27,2.30,0],[x+.27,2.30,2.25],[x,2.30,2.25]],'masonry');
- }
- // Roof masks parcels beneath it; it is deliberately painted after its contents.
- quad(ctx,[[15.16,.18,2.85],[20.68,.18,2.85],[20.68,2.30,2.39],[15.16,2.30,2.39]],CORAL[0],'#f6c9a8');
- StudyPaperMaterial.finish(ctx,[[15.16,.18,2.85],[20.68,.18,2.85],[20.68,2.30,2.39],[15.16,2.30,2.39]],'card');
- for(let x=15.2;x<20.6;x+=.65)beam([x,.18,2.87],[x,2.3,2.41],.018,IVORY);
- box(ctx,15.15,2.26,2.25,5.55,.12,.17,CORAL);
- // A thin printed service stripe follows the open route alongside the board.
+ // The complete receiving section owns its geometry, finishes and landing contacts.
+ StudyReceivingBay.build(ctx,api);
+ // The thin service stripe retains the established clear passage.
  quad(ctx,[[15.15,2.7,.017],[15.21,2.7,.017],[15.21,9.7,.017],[15.15,9.7,.017]],'#e2b56c');
- const pad=layout.pad,ring=[];
- for(let i=0;i<64;i++){const a=i*Math.PI/32;ring.push([pad.x+Math.cos(a)*pad.r,pad.y+Math.sin(a)*pad.r,.045]);}
- quad(ctx,ring,'#cfb9a8','#fbebce');
- for(let k=0;k<12;k++){const a=k*Math.PI/6,b=a+.32,r=pad.r-.20,r2=r-.09;quad(ctx,[[pad.x+Math.cos(a)*r,pad.y+Math.sin(a)*r,.05],[pad.x+Math.cos(b)*r,pad.y+Math.sin(b)*r,.05],[pad.x+Math.cos(b)*r2,pad.y+Math.sin(b)*r2,.05],[pad.x+Math.cos(a)*r2,pad.y+Math.sin(a)*r2,.05]],'#edc05f');}
- // Parked parcel trolley: wheel contacts, chassis, handle and supported parcels.
- const tx=layout.trolley.x+.08,ty=layout.trolley.y+.08;
- for(const x of [tx,tx+.85])for(const y of [ty,ty+.55]){
-  shade(ctx,x,y,.09,.13,.20,.012);const wheel=[];for(let i=0;i<24;i++){const a=i*Math.PI/12;wheel.push([x+.045,y+Math.cos(a)*.15,.16+Math.sin(a)*.15]);}quad(ctx,wheel,'#386b70','#a5bfb5');
- }
- box(ctx,tx-.08,ty-.08,.26,1.02,.74,.13,TEAL);box(ctx,tx+.07,ty+.04,.39,.67,.49,.54,WOOD);
- beam([tx-.05,ty,.35],[tx-.35,ty,1.02],.045,TEAL);beam([tx-.05,ty+.60,.35],[tx-.35,ty+.60,1.02],.045,TEAL);beam([tx-.35,ty,1.02],[tx-.35,ty+.60,1.02],.045,TEAL);
- // Register the three landing feet against the pad, not the bottom of the image canvas.
- shade(ctx,pad.x,pad.y,1.05,.76,.10,.055);
- for(const [dx,dy]of [[-.61,.72],[.34,.32],[.38,-1.05]])shade(ctx,pad.x+dx,pad.y+dy,.19,.12,.26,.058);
- sprite(ctx,'courtyardShuttle',pad.x,pad.y,.07,230,shipOptions);
  // Courtyard seating and planting form a low perimeter, away from the service route.
  for(const x of [17.0,19.0])for(const y of [8.1,8.65])box(ctx,x,y,0,.11,.11,.65,TEAL);
  for(let y=8.07;y<8.75;y+=.16)box(ctx,16.8,y,.64,2.55,.12,.075,WOOD);
@@ -943,6 +910,154 @@ function finish(ctx,points,type='card',id=''){
 }
 return{prepare,kind,finish};
 })();
+
+/* Static receiving construction. Every finish is baked into the courtyard cache. */
+const StudyReceivingBay=(function(){
+'use strict';
+const layout=StudyCourtyard.layout,faces=[],solids=[],supports=[],wheels=[];
+const roof={x0:15.14,x1:20.66,y0:.08,y1:1.65,thickness:.18},padTop=.12;
+const roofHeight=y=>3.17-(y-roof.y0)*.21;
+const shuttle={x:layout.pad.x,y:layout.pad.y,z:padTop+.025,width:230,options:{anchorX:.42,anchorY:.92}};
+const feet=[[-.61,.72],[.34,.32],[.38,-1.05]].map(([x,y])=>({x:shuttle.x+x,y:shuttle.y+y,z:padTop+.003}));
+const trolleyBounds={x:16.10,y:4.98,w:.64,d:1.37};
+function normal(p){const a=p[0],b=p[1],c=p[2],u=b.map((v,i)=>v-a[i]),v=c.map((v,i)=>v-a[i]),n=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]],l=Math.hypot(...n);return l>1e-9?n.map(v=>v/l):null;}
+function light(hex,n){const k=.77+.30*Math.max(0,n[2]*.95+n[1]*.30-n[0]*.45);return '#'+[1,3,5].map((j,i)=>Math.max(0,Math.min(255,Math.round(parseInt(hex.slice(j,j+2),16)*k+(1-k)*[23,12,0][i]))).toString(16).padStart(2,'0')).join('');}
+function face(id,points,colour,material='card',centre){let n=normal(points);if(!n)return;if(centre){const m=[0,1,2].map(i=>points.reduce((s,p)=>s+p[i],0)/points.length);if(n.reduce((s,v,i)=>s+v*(m[i]-centre[i]),0)<0){points=points.slice().reverse();n=n.map(v=>-v);}}else if(n[0]+n[1]+n[2]*51/53<0){points=points.slice().reverse();n=n.map(v=>-v);}if(n[0]+n[1]+n[2]*51/53<1e-7)return;faces.push({id,points,fill:colour.startsWith('rgba')?colour:light(colour,n),material});}
+function slab(id,points,colour,material='card'){face(id,points,colour,material);}
+function box(id,x,y,z,w,d,h,colour,bevel=.035,material='card',support){
+ solids.push({id,x,y,z,w,d,h,support});const b=Math.min(bevel,w*.18,d*.18,h*.35),outline=(inset,zz)=>[[x+inset,y+inset,zz],[x+w-inset,y+inset,zz],[x+w-inset,y+d-inset,zz],[x+inset,y+d-inset,zz]],rings=[outline(b,z),outline(0,z+b),outline(0,z+h-b),outline(b,z+h)],centre=[x+w/2,y+d/2,z+h/2];
+ for(let k=0;k<3;k++)for(let i=0;i<4;i++){const j=(i+1)%4;face(id,[rings[k][i],rings[k][j],rings[k+1][j],rings[k+1][i]],colour,material,centre);}
+ face(id,rings[3],colour,material,centre);
+}
+function slopeSolid(id,x,y,w,d,base,top,colour,material){const a=[[x,y,base],[x+w,y,base],[x+w,y+d,base],[x,y+d,base]],b=a.map(p=>[p[0],p[1],top(p[1])]),centre=[x+w/2,y+d/2,(base+top(y+d/2))/2];for(let i=0;i<4;i++){const j=(i+1)%4;face(id,[a[i],a[j],b[j],b[i]],colour,material,centre);}face(id,b,colour,material,centre);return b;}
+function extrudeX(id,x,w,profile,colour){const a=profile.map(([y,z])=>[x,y,z]),b=a.map(p=>[p[0]+w,p[1],p[2]]),centre=[x+w/2,profile.reduce((s,p)=>s+p[0],0)/profile.length,profile.reduce((s,p)=>s+p[1],0)/profile.length];for(let i=0;i<a.length;i++){const j=(i+1)%a.length;face(id,[a[i],a[j],b[j],b[i]],colour,'card',centre);}face(id,a,colour,'card',centre);face(id,b,colour,'card',centre);}
+function disk(id,x,y,z,r,h,colour){const n=64,a=[],b=[],centre=[x,y,z+h/2];for(let i=0;i<n;i++){const t=i*Math.PI*2/n;a.push([x+Math.cos(t)*r,y+Math.sin(t)*r,z]);b.push([x+Math.cos(t)*r,y+Math.sin(t)*r,z+h]);}for(let i=0;i<n;i++)face(id,[a[i],a[(i+1)%n],b[(i+1)%n],b[i]],colour,'card',centre);face(id,b,colour,'floor',centre);}
+function wheel(id,x,y,z,r){wheels.push({x,y,z,r});const a=[],b=[],c=[x,y,z];for(let i=0;i<24;i++){const t=i*Math.PI/12;a.push([x-.055,y+Math.cos(t)*r,z+Math.sin(t)*r]);b.push([x+.055,y+Math.cos(t)*r,z+Math.sin(t)*r]);}for(let i=0;i<24;i++)face(id,[a[i],a[(i+1)%24],b[(i+1)%24],b[i]],'#3b6969','card',c);face(id,b,'#477873','card',c);const hub=b.map(p=>[p[0]+.002,y+(p[1]-y)*.41,z+(p[2]-z)*.41]);face(id+'-hub',hub,'#dcb066','card',c);}
+function parcel(s){
+ const {id,x,y,z,w,d,h}=s;
+ if(s.support==='floor'){
+  const dx=h*.35,dy=-h*.22;
+  slab(id+'-cast',[[x,y,.013],[x+dx,Math.max(.451,y+dy),.013],[x+w+dx,Math.max(.451,y+dy),.013],[x+w+dx,y+d+dy,.013],[x+w,y+d,.013],[x,y+d,.013]],'rgba(78,51,29,.16)',null);
+ }
+ box(id,x,y,z,w,d,h,'#d6a267',.035,'card',s.support);
+ // Wrapping follows the two visible faces and the folded top. No floating strips.
+ const band=.075,xx=x+w*.47,zz=z+h+.003,yy=y+d+.003;
+ slab(id+'-tape-top',[[xx,y+.035,zz],[xx+band,y+.035,zz],[xx+band,y+d-.035,zz],[xx,y+d-.035,zz]],'#eddbb7');
+ slab(id+'-tape-front',[[xx,yy,z+.035],[xx+band,yy,z+.035],[xx+band,yy,z+h-.035],[xx,yy,z+h-.035]],'#eddbb7');
+ slab(id+'-fold',[[x+.04,y+d*.49,zz],[x+w-.04,y+d*.49,zz],[x+w-.04,y+d*.51,zz],[x+.04,y+d*.51,zz]],'#ab8051');
+ const lx=x+w*.10,lz=z+h*.27,lw=w*.27,lh=h*.23;
+ slab(id+'-label',[[lx,yy+.002,lz],[lx+lw,yy+.002,lz],[lx+lw,yy+.002,lz+lh],[lx,yy+.002,lz+lh]],'#f6e8c7');
+ for(let i=0;i<2;i++)slab(id+'-ink-'+i,[[lx+.025,yy+.004,lz+.03+i*.045],[lx+lw-.025,yy+.004,lz+.03+i*.045],[lx+lw-.025,yy+.004,lz+.043+i*.045],[lx+.025,yy+.004,lz+.043+i*.045]],'#6b8780');
+}
+function buildGeometry(){
+ const under=y=>roofHeight(y)-roof.thickness;
+ // Returns and rear wall have the same sloped upper cut as the canopy underside.
+ for(const [id,x,y,w,d]of [['bay-back',15.30,.15,5.20,.30],['bay-far-return',15.30,.45,.34,1.05],['bay-near-return',20.16,.45,.34,1.05]]){
+  const contact=slopeSolid(id,x,y,w,d,id==='bay-back'?0:.19,under,'#ead0a6','masonry');supports.push({id,contact});
+ }
+ // Recess floor and cream threshold are flush with the trolley route.
+ slab('bay-floor',[[15.70,.451,.009],[20.10,.451,.009],[20.10,1.50,.009],[15.70,1.50,.009]],'#d6bc98','floor');
+ slab('bay-threshold',[[15.70,1.36,.011],[20.10,1.36,.011],[20.10,1.51,.011],[15.70,1.51,.011]],'#f0d6a8','floor');
+ for(let x=15.75;x<20.0;x+=.44)slab('threshold-inlay',[[x,1.37,.014],[x+.12,1.37,.014],[x+.24,1.50,.014],[x+.12,1.50,.014]],'#ce9e51');
+ // A teal loading shutter behind the stacked parcels gives the cavity real depth.
+ box('shutter-frame',15.93,.452,.07,3.94,.06,2.36,'#bda17a',.045);
+ box('shutter-recess',16.06,.515,.12,3.68,.015,2.18,'#4f7771',.004);
+ for(let x=16.11;x<19.73;x+=.27){box('shutter-plank',x,.534,.16,.245,.025,2.10,'#668b7c',.015);}
+ box('shutter-foot-rail',16.05,.561,.14,3.69,.025,.12,'#4e7269',.02);
+ const lampContact=slopeSolid('bay-lamp-housing',16.85,1.49,2.20,.16,2.48,under,'#d6ab65','card');supports.push({id:'bay-lamp-housing',contact:lampContact});
+ box('bay-lamp-glass',16.94,roof.y1,2.52,2.02,.012,.085,'#ffe4a3',.006,null);
+ for(const f of faces)if(f.id==='bay-lamp-glass')f.fill='#ffe7a0';
+ // A suspended postal sign is fixed to the light housing by two short straps.
+ for(const x of [17.15,18.60])box('bay-sign-strap',x,1.53,2.32,.055,.08,.16,'#a77d43',.009);
+ box('bay-sign',16.95,1.49,2.07,2.00,.18,.25,'#eed3a4',.025);
+ face('bay-sign-lettering',[[17.02,1.673,2.12],[18.88,1.673,2.12],[18.88,1.673,2.28],[17.02,1.673,2.28]],'rgba(0,0,0,0)',null);faces.at(-1).text='PARCEL POST';
+ // Side returns have a durable plinth and a chamfered front arris.
+ for(const x of [15.30,20.16]){
+  box('bay-plinth',x-.025,.45,0,.39,.81,.19,'#d7b88e',.025);
+  box('bay-front-foot',x-.045,1.26,0,.43,.29,.19,'#f0dab3',.03);
+  box('bay-front-trim',x+.015,1.50,.19,.31,.055,2.37,'#f0d9ad',.025);
+ }
+ // Each diagonal is attached to a return and ends exactly on the roof underside.
+ for(const x of [15.64,19.96]){
+  supports.push({id:'canopy-bracket',contact:[[x,.60,under(.60)],[x,1.45,under(1.45)]]});
+  box('bracket-backplate',x-.01,.45,1.65,.22,.15,.88,'#ae7a35',.02);
+ }
+ // Separate rails and diagonals leave genuinely open bracket triangles.
+ for(const x of [15.64,19.96]){
+  extrudeX('canopy-bracket-rail',x,.20,[[.60,under(.60)],[1.45,under(1.45)],[1.45,under(1.45)-.17],[.60,under(.60)-.17]],'#d6a753');
+  extrudeX('canopy-bracket-diagonal',x,.20,[[.60,1.67],[.60,1.90],[1.23,under(1.23)-.17],[1.45,under(1.45)-.17]],'#d6a753');
+ }
+ for(const s of layout.crates)parcel(s);
+ // Folded card roofing: one shared slope, shallow raised seams, real exposed edge.
+ const {x0,x1,y0,y1}=roof,top=[[x0,y0,roofHeight(y0)],[x1,y0,roofHeight(y0)],[x1,y1,roofHeight(y1)],[x0,y1,roofHeight(y1)]];
+ face('canopy-bed',top,'#c67f62');
+ face('canopy-front-fold',[[x0,y1,under(y1)],[x1,y1,under(y1)],[x1,y1,roofHeight(y1)],[x0,y1,roofHeight(y1)]],'#d48a6d');
+ face('canopy-side-fold',[[x1,y0,under(y0)],[x1,y1,under(y1)],[x1,y1,roofHeight(y1)],[x1,y0,roofHeight(y0)]],'#c77d61');
+ for(let i=0;i<8;i++){
+  const x=x0+i*(x1-x0)/8,a=x+.012,b=x+(x1-x0)/8-.012,colour=['#e5a080','#eaa688','#e6a385','#e0a084'][i%4];
+  slab('canopy-panel-'+i,[[a,y0,roofHeight(y0)],[b,y0,roofHeight(y0)],[b,y1,roofHeight(y1)],[a,y1,roofHeight(y1)]],colour);
+  face('canopy-fold-'+i,[[a,y1+.003,under(y1)+.025],[b,y1+.003,under(y1)+.025],[b,y1+.003,roofHeight(y1)-.018],[a,y1+.003,roofHeight(y1)-.018]],'#dfa080');
+  if(i>0)extrudeX('canopy-seam',x-.012,.026,[[y0,roofHeight(y0)],[y1,roofHeight(y1)],[y1,roofHeight(y1)+.018],[y0,roofHeight(y0)+.018]],'#f1b796');
+ }
+ // Trolley has four grounded wheels, a thick folded tray and a tied parcel.
+ const t=layout.trolley;
+ for(const x of [t.x+.08,t.x+t.w-.08])for(const y of [t.y+.16,t.y+t.d-.16])wheel('trolley-wheel',x,y,.16,.16);
+ box('trolley-chassis',t.x,t.y,t.z,t.w,t.d,t.h,'#387a76',.035);
+ parcel({id:'trolley-load',x:t.x+.075,y:t.y+.18,z:t.z+t.h,w:.43,d:.72,h:.54,support:'trolley-chassis'});
+ box('trolley-tray-front',t.x,t.y+t.d-.055,t.z+t.h,t.w,.055,.07,'#659a89',.018);
+ for(const x of [t.x+.035,t.x+t.w-.10])extrudeX('trolley-handle-upright',x,.065,[[4.99,.975],[5.055,.975],[t.y,.34],[t.y-.065,.34]],'#528d82');
+ box('trolley-grip',t.x+.02,4.98,.975,t.w-.04,.085,.085,'#dcb36d',.025);
+ // Shallow pad keeps all existing landing contacts and provides a tactile rim.
+ const p=layout.pad;disk('pad-edge',p.x,p.y,.015,p.r,.075,'#ddc5a0');disk('pad-surface',p.x,p.y,.09,p.r-.045,.03,'#b9aa94');
+ disk('pad-inset',p.x,p.y,padTop+.001,p.r-.16,.002,'#a79e93');
+ for(let i=0;i<12;i++){
+  const a=i*Math.PI/6,b=a+.29,r=p.r-.23,r2=r-.095,points=[];for(let j=0;j<=4;j++){const t=a+(b-a)*j/4;points.push([p.x+Math.cos(t)*r,p.y+Math.sin(t)*r,padTop+.005]);}for(let j=4;j>=0;j--){const t=a+(b-a)*j/4;points.push([p.x+Math.cos(t)*r2,p.y+Math.sin(t)*r2,padTop+.005]);}slab('pad-marking',points,'#e9bc61','floor');
+ }
+ // A quiet postal stamp is visible around the parked ship without competing with board cues.
+ slab('pad-envelope',[[p.x-.45,p.y-.26,padTop+.006],[p.x+.45,p.y-.26,padTop+.006],[p.x+.45,p.y+.26,padTop+.006],[p.x-.45,p.y+.26,padTop+.006]],'#d9c6a4','floor');
+ slab('pad-envelope-fold',[[p.x-.43,p.y-.24,padTop+.008],[p.x,p.y+.08,padTop+.008],[p.x+.43,p.y-.24,padTop+.008],[p.x,p.y+.015,padTop+.008]],'#a99a85','floor');
+}
+// Resolve opaque painter order from overlapping projected convex faces once.
+// Centroid sorting alone lets a long roof or return paint through nearby cargo.
+function order(){
+ const project=p=>[51*(p[0]-p[1]),25.5*(p[0]+p[1])-53*p[2],p[0]+p[1]+p[2]*51/53];
+ const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+ const data=faces.map((f,i)=>{let p=f.points.map(project);if(p.reduce((s,a,j)=>s+a[0]*p[(j+1)%p.length][1]-p[(j+1)%p.length][0]*a[1],0)<0)p=p.slice().reverse();const n=normal(p);return{i,p,n,b:[Math.min(...p.map(p=>p[0])),Math.min(...p.map(p=>p[1])),Math.max(...p.map(p=>p[0])),Math.max(...p.map(p=>p[1]))],to:[],degree:0,depth:p.reduce((s,p)=>s+p[2],0)/p.length};});
+ function overlap(a,b){let p=a.p.map(p=>p.slice(0,2));for(let i=0;i<b.p.length&&p.length;i++){const q=[],u=b.p[i],v=b.p[(i+1)%b.p.length];for(let j=0;j<p.length;j++){const c=p[j],d=p[(j+1)%p.length],s=cross(u,v,c),t=cross(u,v,d);if(s>=-1e-7)q.push(c);if((s<0&&t>0)||(s>0&&t<0)){const k=s/(s-t);q.push([c[0]+k*(d[0]-c[0]),c[1]+k*(d[1]-c[1])]);}}p=q;}return p;}
+ const depth=(a,p)=>a.p[0][2]-(a.n[0]*(p[0]-a.p[0][0])+a.n[1]*(p[1]-a.p[0][1]))/a.n[2];
+ for(let i=0;i<data.length;i++)for(let j=i+1;j<data.length;j++){const a=data[i],b=data[j];if(a.b[2]<=b.b[0]+.001||b.b[2]<=a.b[0]+.001||a.b[3]<=b.b[1]+.001||b.b[3]<=a.b[1]+.001)continue;const p=overlap(a,b);if(p.length<3)continue;const area=Math.abs(p.reduce((s,v,k)=>s+v[0]*p[(k+1)%p.length][1]-p[(k+1)%p.length][0]*v[1],0))/2;if(area<.003)continue;const c=[p.reduce((s,p)=>s+p[0],0)/p.length,p.reduce((s,p)=>s+p[1],0)/p.length],d=depth(a,c)-depth(b,c),from=d>.00001?b:a,to=d>.00001?a:b;from.to.push(to);to.degree++;}
+ const result=[],ready=data.filter(d=>d.degree===0);while(ready.length){ready.sort((a,b)=>b.depth-a.depth||b.i-a.i);const a=ready.pop();result.push(faces[a.i]);for(const b of a.to)if(--b.degree===0)ready.push(b);}
+ if(result.length!==faces.length)throw Error('Receiving bay has intersecting painter dependencies');faces.splice(0,faces.length,...result);
+}
+buildGeometry();order();
+function recessLight(ctx,f,api){
+ if(!/^bay-back$|^shutter-|^bay-floor$|^bay-far-return$/.test(f.id))return;
+ const p=api.p,points=f.points.map(v=>p(...v));ctx.save();api.path(ctx,points);ctx.clip();
+ const a=p(17.9,.59,2.80),b=p(17.9,.59,.05),shade=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
+ shade.addColorStop(0,'rgba(72,46,29,.26)');shade.addColorStop(.55,'rgba(72,46,29,.03)');shade.addColorStop(1,'rgba(72,46,29,.12)');ctx.fillStyle=shade;ctx.fill();
+ const q=p(17.92,1.45,2.22),glow=ctx.createRadialGradient(q.x,q.y,0,q.x,q.y,128);
+ glow.addColorStop(0,'rgba(255,217,132,.30)');glow.addColorStop(.55,'rgba(255,204,123,.11)');glow.addColorStop(1,'rgba(255,204,123,0)');ctx.fillStyle=glow;ctx.fill();ctx.restore();
+}
+function lettering(ctx,f,api){
+ if(!f.text)return;const a=api.p(16.95,1.676,2.07),b=api.p(17.95,1.676,2.07),c=api.p(16.95,1.676,3.07);
+ ctx.save();ctx.transform(b.x-a.x,b.y-a.y,a.x-c.x,a.y-c.y,a.x,a.y);ctx.fillStyle='#456b66';ctx.font='600 .14px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(f.text,1,-.125);ctx.restore();
+}
+function build(ctx,api){
+ const {quad,shade,sprite}=api,p=layout.pad;
+ // Casts follow the existing light (-X,+Y,above) and sit on their real planes.
+ ctx.save();ctx.shadowBlur=7;ctx.shadowColor='rgba(88,54,28,.16)';
+ quad(ctx,[[15.30,.44,.012],[20.50,.44,.012],[20.9,1.05,.012],[20.50,1.58,.012],[15.64,1.58,.012]],'rgba(83,57,33,.13)');ctx.restore();
+ shade(ctx,p.x+.10,p.y-.06,p.r+.07,p.r+.03,.13,.012);
+ for(const w of wheels)shade(ctx,w.x,w.y,.085,.13,.16,.012);
+ for(const f of faces){quad(ctx,f.points,f.fill);if(f.material)StudyPaperMaterial.finish(ctx,f.points,f.material);recessLight(ctx,f,api);lettering(ctx,f,api);}
+ // All landing shadows share the raised surface used by the registered sprite.
+ shade(ctx,p.x+.08,p.y-.04,1.05,.76,.12,padTop+.003);
+ for(const f of feet)shade(ctx,f.x,f.y,.19,.12,.26,f.z);
+ sprite(ctx,'courtyardShuttle',shuttle.x,shuttle.y,shuttle.z,shuttle.width,shuttle.options);
+}
+return{roof,roofHeight,padTop,shuttle,feet,trolleyBounds,wheels,solids,supports,faces,build};
+})();
+if(typeof module!=='undefined')module.exports=StudyReceivingBay;
 
 /* Room-local construction. Renderer and contact checks consume these same faces. */
 const StudyRoom=(function(){
