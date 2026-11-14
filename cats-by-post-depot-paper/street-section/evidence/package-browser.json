@@ -1,0 +1,18 @@
+{
+  "rows": [
+    {
+      "width": 390,
+      "images": 10,
+      "links": 16,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "images": 10,
+      "links": 16,
+      "overflow": false
+    }
+  ],
+  "phoneControls": true,
+  "errors": []
+}
