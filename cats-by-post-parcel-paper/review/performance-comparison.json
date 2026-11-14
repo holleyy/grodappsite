@@ -1,0 +1,43 @@
+{
+  "environment": "Software Chromium; same viewport, maximum board and frame. Concurrent Node tests. Diagnostic only, not hardware performance qualification.",
+  "records": [
+    {
+      "page": "working-life-baseline.html",
+      "samples": 90,
+      "medianMs": 10.300000004470348,
+      "p95Ms": 87.10000000149012,
+      "workingLifeCacheBytes": 3094916,
+      "vanCacheBytes": 70253144,
+      "totalPreparedBytes": 73348060,
+      "vanPoses": 51,
+      "architectureBakes": 1,
+      "exteriorBakes": 1,
+      "canonicalUnchanged": true,
+      "camera": {
+        "tx": 66,
+        "ty": 162.5263157894737,
+        "scale": 0.25263157894736843
+      }
+    },
+    {
+      "page": "index.html",
+      "samples": 90,
+      "medianMs": 10,
+      "p95Ms": 84.59999999403954,
+      "workingLifeCacheBytes": 2157044,
+      "vanCacheBytes": 71750960,
+      "totalPreparedBytes": 73908004,
+      "vanPoses": 52,
+      "architectureBakes": 1,
+      "exteriorBakes": 1,
+      "canonicalUnchanged": true,
+      "camera": {
+        "tx": 66,
+        "ty": 162.5263157894737,
+        "scale": 0.25263157894736843
+      }
+    }
+  ],
+  "workingLifeCacheDeltaBytes": -937872,
+  "totalCacheDeltaBytes": 559944
+}

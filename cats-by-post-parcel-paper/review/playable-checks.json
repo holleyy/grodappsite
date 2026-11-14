@@ -457,8 +457,8 @@
     "presentationMotion": false
   },
   "perf": {
-    "renderMsMedian": 9.899999998509884,
-    "renderMsP95": 72.89999999850988,
+    "renderMsMedian": 13.200000002980232,
+    "renderMsP95": 85.89999999850988,
     "bakes": 1
   },
   "phoneCamera": {
