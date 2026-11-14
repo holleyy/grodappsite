@@ -1,0 +1,313 @@
+{
+  "states": [
+    {
+      "frame": 0,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 48,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 96,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 144,
+      "pose": 1,
+      "clipped": 0
+    },
+    {
+      "frame": 192,
+      "pose": 1,
+      "clipped": 0
+    },
+    {
+      "frame": 240,
+      "pose": 1,
+      "clipped": 0
+    },
+    {
+      "frame": 288,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 336,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 384,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 432,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 480,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 528,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 576,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 624,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 672,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 720,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 768,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 816,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 864,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 912,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 960,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1008,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1056,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1104,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1152,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1200,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1248,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1296,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1344,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1392,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1440,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1488,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1536,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1584,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1632,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1680,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1728,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1776,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1824,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1872,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1920,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 1968,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 2016,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 2064,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 2112,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 2160,
+      "pose": 0,
+      "clipped": 0
+    },
+    {
+      "frame": 2208,
+      "pose": 1,
+      "clipped": 0
+    },
+    {
+      "frame": 2256,
+      "pose": 1,
+      "clipped": 0
+    },
+    {
+      "frame": 2304,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2352,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2400,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2448,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2496,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2544,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2592,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2640,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2688,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2736,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2784,
+      "pose": 2,
+      "clipped": 0
+    },
+    {
+      "frame": 2832,
+      "pose": 2,
+      "clipped": 0
+    }
+  ],
+  "finale": "won",
+  "cache": {
+    "left": -64,
+    "top": -216,
+    "width": 302,
+    "height": 241
+  },
+  "gallery": true,
+  "studySha256": "8a92e573ddb32799591eaa58c84bd87fbaa764d9bc1ac303fad9866652905562"
+}

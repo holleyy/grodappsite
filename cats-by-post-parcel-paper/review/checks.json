@@ -303,11 +303,11 @@
   ],
   "finale": "won",
   "cache": {
-    "left": -64,
-    "top": -216,
-    "width": 302,
-    "height": 241
+    "left": -60,
+    "top": -219,
+    "width": 298,
+    "height": 242
   },
   "gallery": true,
-  "studySha256": "8a92e573ddb32799591eaa58c84bd87fbaa764d9bc1ac303fad9866652905562"
+  "studySha256": "ed80b4ed8c02a9770c8701efe0e1465bdad577cb745a4a1ecc17ae8c770f9712"
 }

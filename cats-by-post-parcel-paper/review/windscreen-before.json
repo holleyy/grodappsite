@@ -1,0 +1,32 @@
+[
+  {
+    "f": 96,
+    "name": "cab window",
+    "rgb": [
+      157,
+      174,
+      161
+    ],
+    "pass": true
+  },
+  {
+    "f": 96,
+    "name": "recessed windscreen",
+    "rgb": [
+      43,
+      49,
+      46
+    ],
+    "pass": false
+  },
+  {
+    "f": 132,
+    "name": "cab window",
+    "rgb": [
+      151,
+      169,
+      156
+    ],
+    "pass": true
+  }
+]

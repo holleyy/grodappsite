@@ -4,18 +4,25 @@
     {
       "page": "court-performance-baseline.html",
       "samples": 90,
-      "medianMs": 7.399999998509884,
-      "p95Ms": 62.30000000074506,
+      "medianMs": 8.799999997019768,
+      "p95Ms": 67.79999999701977,
       "architectureBakes": 1,
-      "exteriorBakes": 1
+      "exteriorBakes": 1,
+      "van": null
     },
     {
       "page": "index.html",
       "samples": 90,
-      "medianMs": 7.800000000745058,
-      "p95Ms": 59.69999999925494,
+      "medianMs": 8,
+      "p95Ms": 61.100000001490116,
       "architectureBakes": 1,
-      "exteriorBakes": 1
+      "exteriorBakes": 1,
+      "van": {
+        "prepareMs": 5218.199999999255,
+        "poses": 51,
+        "cacheBytes": 70253144,
+        "faces": 3234
+      }
     }
   ]
 }

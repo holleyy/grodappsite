@@ -1,0 +1,21 @@
+{
+  "environment": "Software Chromium, same viewport/board/frame; concurrent Node test suite. Diagnostic only, not a device frame-rate guarantee.",
+  "records": [
+    {
+      "page": "court-performance-baseline.html",
+      "samples": 90,
+      "medianMs": 7.399999998509884,
+      "p95Ms": 62.30000000074506,
+      "architectureBakes": 1,
+      "exteriorBakes": 1
+    },
+    {
+      "page": "index.html",
+      "samples": 90,
+      "medianMs": 7.800000000745058,
+      "p95Ms": 59.69999999925494,
+      "architectureBakes": 1,
+      "exteriorBakes": 1
+    }
+  ]
+}

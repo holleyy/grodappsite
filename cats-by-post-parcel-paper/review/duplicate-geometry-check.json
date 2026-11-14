@@ -1,0 +1,19 @@
+{
+  "beforeFaces": 3234,
+  "afterFaces": 3018,
+  "identicalPixels": true,
+  "evidence": [
+    {
+      "angle": 0,
+      "sha256": "d158f4de1410e49d912e02bdea8f3e109e6573cfa12ba2d47233bea705910b70"
+    },
+    {
+      "angle": 1.5707963267948966,
+      "sha256": "3327c3a8255fc7be56e23306c934521e63b35d4dca498254bbcbb5ab65f1866a"
+    },
+    {
+      "angle": 1.0053096491487339,
+      "sha256": "dca17feeca09390391fbd55a1997e2d1636361198da936c951b5908a0f032cdf"
+    }
+  ]
+}
