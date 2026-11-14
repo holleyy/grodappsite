@@ -1,0 +1,24 @@
+{
+  "runtimeSource": "e95567bdef0e68c498ee961eacba9b452ffb3ee7",
+  "runtimeSHA256": "8da420a6f93b7fb3f21855a2a26b88d6f60256b01f8bbae53b274f455d923f81",
+  "runtimeBytes": 15043562,
+  "broadSuite": {
+    "passed": 1707,
+    "failed": 0,
+    "stage": "After main review fixes; before the final rear-palm/relaxed-hand follow-up"
+  },
+  "finalFocused": {
+    "passed": 53,
+    "failed": 0,
+    "stage": "Final frozen runtime"
+  },
+  "preReviewBroad": 1704,
+  "deliveries": 25,
+  "cellPicks": 721,
+  "boardCachesPixelExact": 4,
+  "canonicalInputsExact": 10,
+  "officeProvenanceExact": 20,
+  "hardwareFPSClaim": false,
+  "sharedSourcePush": false,
+  "merge": false
+}

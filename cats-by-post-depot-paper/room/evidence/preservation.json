@@ -1,0 +1,41 @@
+{
+  "acceptedCornerBase": "b7a532c2",
+  "unchangedOwnedInputs": [
+    {
+      "path": "src/fidelity/depot-paper/structure.js",
+      "sha256": "f0b06dffdd343241e95a8bf7680d50004292dbe1ef6ee1f889b19630007c0e2e",
+      "unchanged": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/projection.js",
+      "sha256": "a96bd64b599c7ce830297f18c6064fac22dac725bdab8b3771a7facded86fd4f",
+      "unchanged": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/chapter.js",
+      "sha256": "093d67829f13509ff14df46f2110ec8ccca7d1e662853893a80fc412b3c58a78",
+      "unchanged": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/session.js",
+      "sha256": "9c59fa34864478c21ee63c7eecdb20a629b5626da62eada5e832d90276535751",
+      "unchanged": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/acting.js",
+      "sha256": "9fdd878fd8dc3db79aa142d40351184458da965aab7916a96384a335623422e6",
+      "unchanged": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/pieces.js",
+      "sha256": "365187bec6d391ba27de11b1ece703dd413d7d57336b122b46b1e77b9283d5c5",
+      "unchanged": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/portals.js",
+      "sha256": "0ec3ec907a2475aa3e6a19fda8fd4de229bb8590a47b4717a3d56d6ecbbbbc4e",
+      "unchanged": true
+    }
+  ],
+  "canonicalAndOffice": "../ownership.json"
+}

@@ -1,0 +1,167 @@
+{
+  "records": [
+    {
+      "file": "round.mp4",
+      "start": 0,
+      "duration": 48,
+      "width": 1280,
+      "height": 810,
+      "bounds": [
+        20,
+        1810,
+        -85,
+        1040
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "collect.mp4",
+      "start": 4.5,
+      "duration": 3.5,
+      "width": 900,
+      "height": 800,
+      "bounds": [
+        640,
+        895,
+        240,
+        470
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "scale.mp4",
+      "start": 10.2,
+      "duration": 3.5,
+      "width": 900,
+      "height": 800,
+      "bounds": [
+        330,
+        590,
+        340,
+        590
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "dispatch.mp4",
+      "start": 14.5,
+      "duration": 4.5,
+      "width": 900,
+      "height": 800,
+      "bounds": [
+        470,
+        780,
+        220,
+        520
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "van.mp4",
+      "start": 20,
+      "duration": 4,
+      "width": 900,
+      "height": 800,
+      "bounds": [
+        1190,
+        1530,
+        355,
+        670
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "tea.mp4",
+      "start": 31.7,
+      "duration": 5,
+      "width": 900,
+      "height": 800,
+      "bounds": [
+        200,
+        500,
+        445,
+        715
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "growth-one.mp4",
+      "start": 0,
+      "duration": 3,
+      "width": 1000,
+      "height": 750,
+      "bounds": [
+        320,
+        1250,
+        540,
+        1040
+      ],
+      "chapter": "growth1",
+      "index": 16,
+      "fps": 24
+    },
+    {
+      "file": "growth-two.mp4",
+      "start": 0,
+      "duration": 3,
+      "width": 1000,
+      "height": 750,
+      "bounds": [
+        320,
+        1250,
+        540,
+        1040
+      ],
+      "chapter": "growth2",
+      "index": 19,
+      "fps": 24
+    },
+    {
+      "file": "exit.mp4",
+      "start": 0,
+      "duration": 4.4,
+      "width": 1280,
+      "height": 810,
+      "bounds": [
+        20,
+        1810,
+        -85,
+        1040
+      ],
+      "chapter": "exit",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "demo.mp4",
+      "start": 0,
+      "duration": 10,
+      "width": 1280,
+      "height": 810,
+      "bounds": [
+        20,
+        1810,
+        -85,
+        1040
+      ],
+      "chapter": "demo",
+      "index": 10,
+      "fps": 24
+    }
+  ],
+  "errors": [],
+  "source": "Actual Canvas renderer, exact seekable ambient/chapter time, 24 fps H.264",
+  "runtimeSHA256": "8da420a6f93b7fb3f21855a2a26b88d6f60256b01f8bbae53b274f455d923f81"
+}
