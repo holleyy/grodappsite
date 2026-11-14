@@ -1,0 +1,12 @@
+{
+  "command": "npm test",
+  "runtimeSourceCommit": "0f071ba9b862b0a05ac0a20d0f750d41703d9316",
+  "tests": 1673,
+  "passed": 1673,
+  "failed": 0,
+  "durationMs": 534071.242354,
+  "logSha256": "2ee9a15746a2bde459fd383167a82607f4a401dbb07b2036654cf5b2541dcc86",
+  "ownedTests": 18,
+  "reviewFixes": "cab receiving-face/detail order and persistent paving pattern; focused regressions observed fail then pass",
+  "canonicalHtmlSha256": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66"
+}

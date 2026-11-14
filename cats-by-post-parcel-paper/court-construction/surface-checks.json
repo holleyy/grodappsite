@@ -1,0 +1,30 @@
+[
+  {
+    "name": "middle landing",
+    "rgb": [
+      224,
+      217,
+      201
+    ],
+    "expected": [
+      224,
+      217,
+      201
+    ],
+    "pass": true
+  },
+  {
+    "name": "canopy over rear crate",
+    "rgb": [
+      154,
+      169,
+      162
+    ],
+    "expected": [
+      154,
+      169,
+      162
+    ],
+    "pass": true
+  }
+]

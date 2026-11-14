@@ -1,0 +1,32 @@
+[
+  {
+    "f": 96,
+    "name": "cab window",
+    "rgb": [
+      194,
+      202,
+      186
+    ],
+    "pass": true
+  },
+  {
+    "f": 96,
+    "name": "windscreen mullion",
+    "rgb": [
+      194,
+      177,
+      139
+    ],
+    "pass": true
+  },
+  {
+    "f": 132,
+    "name": "cab window",
+    "rgb": [
+      194,
+      202,
+      187
+    ],
+    "pass": true
+  }
+]

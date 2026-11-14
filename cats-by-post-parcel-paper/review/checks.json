@@ -304,10 +304,10 @@
   "finale": "won",
   "cache": {
     "left": -64,
-    "top": -190,
-    "width": 298,
-    "height": 213
+    "top": -216,
+    "width": 302,
+    "height": 241
   },
   "gallery": true,
-  "studySha256": "bd2a13d169a18bdc59cc5c83acdbea971326e769d7b0a89954b59a61847c2f46"
+  "studySha256": "8a92e573ddb32799591eaa58c84bd87fbaa764d9bc1ac303fad9866652905562"
 }
