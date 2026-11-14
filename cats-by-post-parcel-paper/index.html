@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parcel Room · Morning Dispatch study</title>
+<style>
+  html, body { margin: 0; height: 100%; background: var(--page-background, #e9e4d8); overflow: hidden; }
+  body { touch-action: none; -webkit-user-select: none; user-select: none; }
+  #screen { position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+            image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
+  #atlas { position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+           background: rgba(29, 26, 34, 0.55); }
+  #atlas.on { display: flex; }
+  #atlasBox { background: #e9e4d8; border: 4px solid #1d1a22; padding: 16px; display: flex; max-width: calc(100vw - 48px);
+              flex-direction: column; align-items: center; gap: 12px; box-shadow: 8px 8px 0 #2e2a33; box-sizing: border-box; }
+  #atlasScroll { max-width: 100%; max-height: calc(100vh - 170px); overflow: auto; }
+  #atlasCanvas { image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
+  #atlasBox .row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  #atlasBox button { font: 600 14px/1 ui-monospace, Menlo, monospace; color: #fff7e3; background: #a8322f;
+                     border: 3px solid #1d1a22; padding: 8px 14px; cursor: pointer; }
+  #atlasBox button:hover { background: #d6493c; }
+  #atlasHint { font: 12px/1.2 ui-monospace, Menlo, monospace; color: #4a2f24; }
+  #hud { position: fixed; left: 8px; right: 8px; bottom: 10px; margin: 0 auto; width: max-content; display: none; flex-direction: column;
+         gap: 6px; padding: 8px 10px; max-width: calc(100vw - 22px); box-sizing: border-box; background: #e9e4d8; border: 3px solid #1d1a22;
+         box-shadow: 4px 4px 0 #2e2a33; font: 13px/1.3 ui-monospace, Menlo, monospace; color: #1d1a22; }
+  #hud.on { display: flex; }
+  #hud .row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  #lvlPick { font: 700 13px/1.2 ui-monospace, Menlo, monospace; color: #1d1a22; background: #fff7e3; border: 2px solid #1d1a22;
+             padding: 4px 6px; margin-right: 6px; max-width: min(38ch, calc(100vw - 60px)); cursor: pointer; }
+  #stars { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; font-weight: 700; }
+  #stars .star { color: #8f8a80; } #stars .star.on { color: #a8322f; }
+  #catQueue { display: flex; flex-direction: column; gap: 3px; }
+  #catQueue[hidden] { display: none; }
+  .queue-hatch { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; }
+  .queue-label { min-width: 78px; font-weight: 700; }
+  .queue-faces { display: flex; flex-wrap: wrap; gap: 3px; margin: 0; padding: 0; list-style: none; }
+  .queue-cat { position: relative; display: grid; place-items: center; width: 31px; height: 28px; box-sizing: border-box;
+               border: 2px solid #1d1a22; background: #fff7e3; }
+  .queue-cat img { width: 27px; height: 24px; image-rendering: pixelated; }
+  .queue-cat::after { content: attr(data-order); position: absolute; right: 0; bottom: 0; padding: 0 1px;
+                      font: 700 9px/1 ui-monospace, Menlo, monospace; background: #fff7e3; }
+  .queue-cat.next { border-color: #a8322f; box-shadow: inset 0 0 0 1px #a8322f; }
+  .queue-cat.released { opacity: 0.4; }
+  #hud.christmas-rush .queue-hatch { flex-wrap: nowrap; gap: 4px; }
+  #hud.christmas-rush .queue-label { min-width: 52px; font-size: 11px; }
+  #hud.christmas-rush .queue-faces { flex-wrap: nowrap; gap: 2px; }
+  #hud.christmas-rush .queue-cat { width: 25px; height: 26px; }
+  #hud.christmas-rush .queue-cat img { width: 23px; height: 22px; }
+  #hud.christmas-rush .queue-cat.queue-big { height: 36px; padding-bottom: 10px; }
+  #hud.christmas-rush .queue-cat.queue-big::after { bottom: 10px; }
+  .shift-queue .queue-cat { width: 35px; height: 32px; }
+  .shift-queue .queue-cat::before { content: attr(data-hatch); position: absolute; left: 0; top: 0; padding: 0 1px;
+                                   font: 700 9px/1 ui-monospace, Menlo, monospace; color: #fff7e3; background: #1d1a22; }
+  #dailyInfo { margin: 0; color: #4a2f24; }
+  #practiceInfo { margin: 0; color: #4a2f24; }
+  #shiftInfo { margin: 0; font-weight: 700; }
+  #shiftResult { margin: 0; font-weight: 700; }
+  #shiftCards { position: fixed; z-index: 3; top: calc(12px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%);
+                width: min(510px, calc(100vw - 16px)); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+  #shiftCards[hidden] { display: none; }
+  #shiftCards button { min-width: 0; min-height: 116px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+                       padding: 7px 3px; border: 3px solid #1d1a22; background: #fff7e3; color: #1d1a22;
+                       box-shadow: 4px 4px 0 #2e2a33; cursor: pointer; font: 700 12px/1.1 ui-monospace, Menlo, monospace; }
+  #shiftCards button:hover, #shiftCards button:focus-visible { background: #f5dc8a; transform: translateY(-2px); }
+  #shiftCards svg { display: block; width: 46px; height: 46px; image-rendering: pixelated; }
+  #shiftCards small { font: clamp(9px, 2.6vw, 10px)/1.1 ui-monospace, Menlo, monospace; white-space: nowrap; }
+  #shiftEnding { position: fixed; inset: 0; display: grid; place-items: start center; padding-top: 16px; pointer-events: none; }
+  #shiftEnding[hidden] { display: none; }
+  #shiftEnding div { padding: 12px 18px; border: 3px solid #1d1a22; background: #fff7e3; box-shadow: 5px 5px 0 #2e2a33;
+                     font: 700 18px/1.3 ui-monospace, Menlo, monospace; text-align: center; }
+  #shiftDebug { position: fixed; top: 8px; right: 8px; width: min(330px, calc(100vw - 16px)); max-height: calc(100vh - 16px); overflow: auto;
+                box-sizing: border-box; padding: 8px 10px; border: 3px solid #1d1a22; background: #e9e4d8; box-shadow: 4px 4px 0 #2e2a33;
+                font: 12px/1.35 ui-monospace, Menlo, monospace; color: #1d1a22; }
+  #shiftDebug[hidden] { display: none; }
+  #shiftDebug .row { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin-bottom: 5px; }
+  #shiftDebug input, #shiftDebug textarea { box-sizing: border-box; border: 2px solid #1d1a22; background: #fff7e3; color: #1d1a22; font: inherit; }
+  #shiftDebug input[type=number] { width: 9em; }
+  #shiftDebug textarea { width: 100%; resize: vertical; }
+  #shiftDebug button { border: 2px solid #1d1a22; background: #e2b77f; color: #1d1a22; font: 700 12px ui-monospace, Menlo, monospace; padding: 4px 6px; cursor: pointer; }
+  #shiftDebug pre { white-space: pre-wrap; margin: 5px 0; }
+  #hud button { font: 600 13px/1 ui-monospace, Menlo, monospace; color: #1d1a22; background: #e2b77f;
+                border: 2px solid #1d1a22; padding: 6px 9px; cursor: pointer; }
+  #hud button:hover:not(:disabled) { background: #f5dc8a; }
+  #hud button:disabled { opacity: 0.45; cursor: default; }
+  #hud button[aria-pressed="true"] { outline: 3px solid #1d1a22; outline-offset: 1px; background: #fff7e3; }
+  #hud .sw { display: inline-block; width: 10px; height: 10px; margin-right: 5px; border: 2px solid #1d1a22; vertical-align: -2px; }
+  #hud .sw.plain { background: #c38f5a; } #hud .sw.ginger { background: #d97a36; } #hud .sw.blue { background: #56638f; }
+  #btnSend { background: #d6493c !important; color: #fff7e3 !important; }
+  #btnSend:hover { background: #f07a5e !important; }
+  #status { margin: 0; min-height: 1.3em; max-width: 70ch; }
+  #editor { position: fixed; top: 8px; right: 8px; display: none; flex-direction: column; gap: 6px; width: 300px;
+            max-width: calc(100vw - 22px); max-height: calc(100vh - 16px); overflow: auto; box-sizing: border-box; padding: 8px 10px;
+            background: #e9e4d8; border: 3px solid #1d1a22; box-shadow: 4px 4px 0 #2e2a33; font: 12px/1.35 ui-monospace, Menlo, monospace; color: #1d1a22; }
+  #editor.on { display: flex; }
+  #editor.cityhall { max-width: min(300px, 38vw); }
+  @media (orientation: portrait) {
+    #editor.cityhall { top: auto; bottom: 8px; left: 8px; right: 8px; width: auto;
+                       max-width: none; max-height: 40vh; }
+  }
+  #editor .row { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+  #editor b.h { font-size: 13px; }
+  #editor button { font: 600 12px/1 ui-monospace, Menlo, monospace; color: #1d1a22; background: #e2b77f; border: 2px solid #1d1a22; padding: 5px 7px; cursor: pointer; }
+  #editor button:hover { background: #f5dc8a; }
+  #editor button[aria-pressed="true"] { background: #fff7e3; outline: 2px solid #1d1a22; }
+  #editor input, #editor select, #editor textarea { font: 12px ui-monospace, Menlo, monospace; border: 2px solid #1d1a22; background: #fff7e3; color: #1d1a22; padding: 3px 4px; }
+  #editor input[type=number] { width: 3.2em; }
+  #editor textarea { width: 100%; box-sizing: border-box; }
+  #edStatus { margin: 0; min-height: 2.6em; }
+  #edBack { display: none; }
+  #perf { position: fixed; top: calc(6px + env(safe-area-inset-top)); right: calc(6px + env(safe-area-inset-right)); margin: 0;
+          padding: 4px 6px; white-space: pre; pointer-events: none; font: 11px/1.35 ui-monospace, Menlo, monospace;
+          color: #fff7e3; background: rgba(29, 26, 34, 0.75); }
+  #editor [hidden], #hud [hidden] { display: none !important; }
+  @media (max-height: 520px) and (orientation: landscape) {        /* phone on its side: HUD top-left, clear of the board */
+    #hud { left: 8px; right: auto; top: 8px; bottom: auto; margin: 0; max-width: 36vw; font-size: 12px;
+           max-height: calc(100vh - 16px); overflow-y: auto; }
+    #lvlPick { max-width: 100%; min-width: 0; }
+    #hud button { padding: 5px 7px; font-size: 12px; }
+  }
+  #chapterScene { position:fixed; inset:0; z-index:20; }
+  .queue-cat.queue-big { height:40px; padding-bottom:12px; }
+  .shift-queue .queue-big { height:44px; }
+  .queue-cat.queue-big::after { bottom:12px; }
+  .queue-size { position:absolute; bottom:0; left:0; right:0; text-align:center; font:bold 9px/1 monospace; padding:1px 2px; background:#f3e6c5; color:#28394b; }
+  #chapterCard { position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
+    box-sizing:border-box; width:min(560px,calc(100vw - 28px)); padding:18px 22px;
+    background:#f3ead3; color:#28394b; border:1px solid #b39559; border-radius:3px;
+    box-shadow:0 4px 0 #a4865c,0 8px 24px #20273530; font-family:Georgia,serif; }
+  #chapterKicker { margin:0 0 5px; font:11px/1.4 monospace; letter-spacing:.12em; text-transform:uppercase; }
+  #chapterTitle { margin:0; font-size:26px; font-weight:normal; }
+  #chapterText { margin:8px 0 14px; font-size:16px; line-height:1.45; }
+  #chapterCard .row { gap:9px; }
+  #chapterCard button { font:13px/1.3 monospace; padding:9px 13px; border:1px solid #887044;
+    border-radius:2px; background:#e0c496; color:#28394b; cursor:pointer; }
+  #chapterCard button.primary { background:#28394b; color:#fff7e3; border-color:#28394b; }
+  #chapterCard button:focus-visible { outline:3px solid #b39559; outline-offset:3px; }
+  @media (max-height:520px) and (orientation:landscape) {
+    #chapterCard { left:10px; bottom:10px; transform:none; width:32vw; max-height:calc(100vh - 20px); overflow:auto; padding:12px; }
+    #chapterKicker { display:none; }
+    #chapterTitle { font-size:18px; } #chapterText { font-size:13px; line-height:1.3; margin:7px 0 10px; }
+    #chapterCard button { font-size:11px; padding:7px 8px; }
+  }
+  #chapterScene.christmas-ending-scene #chapterCard { width:auto; max-width:calc(100vw - 24px); padding:8px; background:rgba(233,228,216,.9); }
+  #chapterScene.christmas-ending-scene #chapterKicker, #chapterScene.christmas-ending-scene #chapterTitle, #chapterScene.christmas-ending-scene #chapterText { display:none; }
+  @keyframes christmasThanksIn { from { opacity:0; } to { opacity:1; } }
+  #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
+  @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
+/* Study-owned shell. Original controls still dispatch canonical game actions. */
+body{font-family:Trebuchet MS,Arial,sans-serif;color:#314d50;background:#e6ebe4}
+#screen{image-rendering:auto}
+#paperHeader{position:fixed;z-index:8;top:0;left:0;right:0;display:flex;justify-content:space-between;gap:12px;align-items:center;padding:15px 24px;background:#f6f1e5;border-bottom:1px solid #d9ddcc}
+#paperHeader p{font-size:9px;letter-spacing:2px;margin:0 0 5px}#paperHeader h1{font-size:25px;margin:0;font-weight:600}#paperSize{font-size:12px;font-weight:normal;margin-left:12px;color:#77847a}
+#paperHeader nav{display:flex;align-items:center;gap:8px}#paperHeader button,#paperHeader select,#paperHeader summary,#hud button,#lvlPick{font:12px/1.2 Trebuchet MS,Arial,sans-serif;border:1px solid #c9cfbf;border-radius:7px;background:#faf7ee;color:#36575a;padding:10px 12px;cursor:pointer;min-height:38px}
+#paperHeader button:hover,#hud button:hover{background:#e6ebdf}#paperHeader button:focus-visible,#paperHeader select:focus-visible,#hud button:focus-visible{outline:3px solid #d9a751;outline-offset:2px}
+#paperHeader select{max-width:240px}#paperHeader details{position:relative;font-size:12px}#paperHeader details[open]{background:#f6f1e5;padding:8px;position:absolute;right:16px;top:10px;border:1px solid #cad0c2;border-radius:8px;box-shadow:0 5px 20px #45504b22}#paperHeader details[open] button,#paperHeader a{display:block;margin-top:5px}#paperHeader a{color:#34666b;padding:8px}
+#hud{background:#f7f2e6ed;border:1px solid #c9cebc;border-radius:12px;box-shadow:0 8px 25px #34484a14;font:12px/1.4 Trebuchet MS,Arial,sans-serif;color:#36575a;padding:12px 16px;bottom:12px;gap:9px}
+#hud #btnSend{background:#326e70;color:#fff7e4;border-color:#326e70;font-weight:bold}#hud #lvlPick{display:none}#hud .queue-hatch{font:12px/1.3 Trebuchet MS,Arial,sans-serif}#hud button:disabled{opacity:.45}#hud #status{font-size:12px}#hud .queue-cat{border-color:#cfccbb;border-radius:6px}
+#chapterCard{font-family:Trebuchet MS,Arial,sans-serif;background:#f8f1df;border:1px solid #c9c6aa;border-radius:15px;box-shadow:0 10px 40px #36474722;color:#36575a}#chapterCard h1{font-family:Georgia,serif}#chapterCard button{border-radius:7px;font-family:inherit;border:1px solid #aebcae}#chapterCard .primary{background:#326e70;color:#fff4da;border-color:#326e70}
+#paperLoading{position:fixed;inset:0;z-index:50;background:#f6f1e5;display:grid;place-items:center;font-size:18px}.paper-loading #screen,.paper-loading #hud{visibility:hidden}
+body #hud #btnSend{background:#326e70!important;border-color:#326e70!important}body #hud #tray button{border:1px solid #c9cebc;border-radius:7px;box-shadow:none}body #hud #tray button[aria-pressed=true]{outline:2px solid #6a9691;outline-offset:1px}
+@media(max-width:700px){#paperHeader{padding:10px 12px;align-items:flex-start;flex-direction:column;gap:8px}#paperHeader h1{font-size:21px}#paperHeader nav{gap:5px;width:100%}#paperHeader button,#paperHeader select,#paperHeader summary{font-size:10px;padding:8px;min-height:34px}#paperHeader select{width:145px}#paperHeader details{margin-left:auto}#paperStory{display:none}#hud{padding:9px;bottom:7px;gap:5px}#hud button{padding:8px;font-size:11px;min-height:36px}}
+@media(max-height:520px) and (orientation:landscape){#paperHeader{padding:5px 12px;height:36px}#paperHeader h1{font-size:19px}#paperHeader p{display:none}#paperHeader button,#paperHeader select,#paperHeader summary{padding:6px;min-height:30px}#hud{right:7px;left:auto;width:235px;max-height:calc(100vh - 62px);overflow-y:auto;bottom:7px}#paperSize{display:none}}
+
+</style>
+</head>
+<body class="paper-loading"><header id="paperHeader"><div><p>CATS BY POST · MORNING DISPATCH</p><h1>Parcel Room <span id="paperSize"></span></h1></div><nav aria-label="Parcel study"><select id="paperPick" aria-label="Delivery"></select><button id="paperView">Closer to the board</button><button id="paperMotion" aria-pressed="true">Motion on</button><button id="paperStory">The story</button><details><summary>Study tools</summary><button id="paperSolve">Place solution</button><button id="paperGray">Grayscale</button><a href="review/">Construction review</a></details></nav></header><div id="paperLoading" role="status">Opening the parcel room…</div>
+<canvas id="screen"></canvas>
+<div id="hud" aria-label="Cats by Post">
+  <div class="row"><select id="lvlPick" aria-label="Level: pick one to play"></select>
+    <span id="tray" class="row" role="group" aria-label="Turntable tray">
+      <button type="button" data-type="plain" aria-pressed="true"><i class="sw plain"></i>Plain <b></b></button>
+      <button type="button" data-type="ginger" aria-pressed="false"><i class="sw ginger"></i>Ginger <b></b></button>
+      <button type="button" data-type="blue" aria-pressed="false"><i class="sw blue"></i>Blue <b></b></button>
+    </span>
+  </div>
+  <div id="catQueue" role="group" aria-label="Cat arrival order" hidden></div>
+  <div class="row">
+    <button type="button" id="btnSend">Send the post</button>
+    <button type="button" id="btnClear">Clear turntables</button>
+    <button type="button" id="btnHint">Hint</button>
+    <button type="button" id="btnNext" disabled>Next level</button>
+    <button type="button" id="btnPracticeChange" hidden>Change difficulty</button>
+    <button type="button" id="btnShiftPause" hidden>Pause</button>
+    <button type="button" id="btnShiftFast" hidden aria-pressed="false">Fast ×2</button>
+    <button type="button" id="btnShiftNext" hidden>Set up next round</button>
+    <button type="button" id="btnShiftRestart" hidden>Restart shift</button>
+    <button type="button" id="btnShiftWeekly" hidden>Weekly shift</button>
+    <button type="button" id="btnShiftNew" hidden>Random shift</button>
+    <button type="button" id="btnShare" hidden>Share</button>
+    <button type="button" id="edBack">Back to editor</button>
+  </div>
+  <div class="row" id="practiceChoose" hidden>
+    <label>Practice difficulty <select id="practiceDay" aria-label="Practice difficulty">
+      <option value="0">Monday</option><option value="1">Tuesday</option><option value="2">Wednesday</option>
+      <option value="3">Thursday</option><option value="4">Friday</option><option value="5">Saturday</option><option value="6">Sunday</option>
+    </select></label>
+    <button type="button" id="btnPracticeStart">New puzzle</button>
+  </div>
+  <p id="status" role="status" aria-live="polite"></p>
+  <p id="stars" hidden></p>
+  <p id="dailyInfo" hidden></p>
+  <p id="practiceInfo" hidden></p>
+  <p id="shiftInfo" hidden></p>
+  <p id="shiftResult" hidden></p>
+</div>
+<div id="shiftCards" role="group" aria-label="Choose one tea break card" hidden></div>
+<div id="chapterScene" role="dialog" aria-modal="true" aria-labelledby="chapterTitle" aria-describedby="chapterText" hidden>
+  <div id="chapterCard">
+    <p id="chapterKicker">The town depot · Chapter 4</p>
+    <h1 id="chapterTitle"></h1><p id="chapterText"></p>
+    <div class="row"><button id="chapterPrimary" class="primary" type="button">Start sorting</button>
+      <button id="chapterSecondary" type="button">Watch the post</button></div>
+  </div>
+</div>
+<div id="shiftEnding" hidden aria-live="polite"><div>Time for tea, sorter!</div></div>
+<aside id="shiftDebug" hidden aria-label="Night Shift debug panel">
+  <div class="row"><b>Night Shift debug</b></div>
+  <div class="row"><label>Seed <input id="shiftDebugSeed" type="number" min="0" max="4294967295" step="1"></label><button type="button" id="shiftDebugRestart">Restart</button></div>
+  <label>Settings JSON <textarea id="shiftDebugSettings" rows="12" spellcheck="false"></textarea></label>
+  <div class="row"><button type="button" id="shiftDebugApply">Apply settings</button></div>
+  <div class="row"><label>Round <input id="shiftDebugRound" type="number" min="1" step="1"></label><button type="button" id="shiftDebugSkip">Skip</button></div>
+  <div class="row"><button type="button" id="shiftDebugRecord">Record from start</button><button type="button" id="shiftDebugReplay">Replay</button></div>
+  <p id="shiftDebugStatus" role="status"></p>
+  <pre id="shiftDebugReadout"></pre>
+  <label>Recording JSON <textarea id="shiftDebugRecording" rows="6" spellcheck="false"></textarea></label>
+</aside>
+<div id="editor" aria-label="Level editor">
+  <div class="row"><b class="h">Level editor</b>
+    <select id="edLoad" aria-label="Start from"></select></div>
+  <div class="row"><label>id <input id="edId" size="5"></label> <label>title <input id="edTitle" size="14"></label></div>
+  <div class="row" id="edRoomRow"><label>Room <select id="edRoom"><option value="office">The sorting office</option><option value="depot">The town depot</option><option value="train">The mail train</option><option value="cityhall">The city sorting hall</option><option value="christmas">Christmas Eve</option><option value="parcel">The parcel warehouse</option></select></label></div>
+  <div class="row">Board
+    <button type="button" data-ed="w-" aria-label="Narrower">&minus;</button><span id="edW"></span><button type="button" data-ed="w+" aria-label="Wider">+</button>
+    &times;
+    <button type="button" data-ed="h-" aria-label="Shorter">&minus;</button><span id="edH"></span><button type="button" data-ed="h+" aria-label="Taller">+</button>
+    <label>time limit <input id="edTime" type="number" min="6" max="240" aria-describedby="edTimeHint"></label> <span id="edTimeHint">ticks</span></div>
+  <div class="row" role="group" aria-label="Tool">
+    <button type="button" data-tool="hatch">Hatch</button><button type="button" data-tool="basket-ginger">Ginger basket</button>
+    <button type="button" data-tool="basket-blue">Blue basket</button><button type="button" data-tool="dog">Dog</button>
+    <button type="button" data-tool="erase">Erase</button><button type="button" data-tool="gate" title="Gate / railway points: cycle twelve pairs, including opposite exits">Gate</button></div>
+  <div class="row" role="group" aria-label="Edge flaps">
+    <button type="button" data-tool="flap-ginger">Ginger flap</button><button type="button" data-tool="flap-blue">Blue flap</button>
+    <label>Edge <select id="edSide"><option value="U">Up</option><option value="R" selected>Right</option><option value="D">Down</option><option value="L">Left</option></select></label></div>
+  <div class="row" role="group" aria-label="Paired tunnels">
+    <button type="button" data-tool="tunnel-circle">○ Tunnel</button><button type="button" data-tool="tunnel-square">□ Tunnel</button>
+    <button type="button" data-tool="tunnel-triangle">△ Tunnel</button><button type="button" data-tool="tunnel-diamond">◇ Tunnel</button></div>
+  <div class="row"><label>Cats <input id="edCats" size="9" placeholder="gb" aria-describedby="edCatsHint"></label> <span id="edCatsHint"></span></div>
+  <div class="row"><label>Queue cat <select id="edCatIndex" aria-label="Cat to resize"></select></label><label><input id="edCatBig" type="checkbox"> Big cat · every other beat</label></div>
+  <div class="row">Turntables <label>plain <input id="edTP" type="number" min="0" max="6"></label>
+    <label>ginger <input id="edTG" type="number" min="0" max="6"></label> <label>blue <input id="edTB" type="number" min="0" max="6"></label></div>
+  <div class="row"><button type="button" id="edCheck">Check</button><button type="button" id="edTry">Try it</button><button type="button" id="edExport">Export JSON</button></div>
+  <div class="row"><label>Import JSON <input id="edImportFile" type="file" accept="application/json,.json"></label></div>
+  <p id="edStatus" role="status" aria-live="polite"></p>
+  <textarea id="edOut" rows="8" readonly hidden aria-label="Level JSON"></textarea>
+  <div class="row" id="edOutRow" hidden><button type="button" id="edCopy">Copy</button><button type="button" id="edDl">Download .json</button></div>
+</div>
+<div id="atlas"><div id="atlasBox">
+  <div id="atlasScroll"><canvas id="atlasCanvas"></canvas></div>
+  <div class="row"><button type="button" data-file="atlas.png">atlas.png</button><button type="button" data-file="atlas-index.png">atlas-index.png</button>
+    <button type="button" data-file="atlas.json">atlas.json</button><button type="button" data-file="palette.json">palette.json</button><button type="button" data-file="backdrops.json">backdrops.json</button></div>
+  <div id="atlasHint">S to close</div>
+</div></div>
+<script>Promise.all(["runtime/scene-00b83ca44e9b-0.txt", "runtime/scene-00b83ca44e9b-1.txt", "runtime/scene-00b83ca44e9b-2.txt", "runtime/scene-00b83ca44e9b-3.txt", "runtime/scene-00b83ca44e9b-4.txt"].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Could not load the Parcel study: '+r.status);return r.text();})).then(parts=>{const script=document.createElement('script');script.textContent=parts.join('');document.body.appendChild(script);}).catch(error=>{document.getElementById('paperLoading').textContent=error.message;console.error(error);});</script>
+</body>
+</html>

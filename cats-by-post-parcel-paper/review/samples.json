@@ -1,0 +1,202 @@
+[
+  {
+    "frame": 0,
+    "van": {
+      "x": 110,
+      "y": -2,
+      "loaded": false,
+      "departing": false,
+      "closed": true,
+      "cargo": "incoming",
+      "trip": 0
+    },
+    "parcel": {
+      "x": 110,
+      "y": -14,
+      "z": 11,
+      "visible": true,
+      "place": "van",
+      "wrapped": false
+    }
+  },
+  {
+    "frame": 100,
+    "van": {
+      "x": 168.27224794238683,
+      "y": -2,
+      "loaded": false,
+      "departing": false,
+      "closed": true,
+      "cargo": "incoming",
+      "trip": 0
+    },
+    "parcel": {
+      "x": 168.27224794238683,
+      "y": -14,
+      "z": 11,
+      "visible": true,
+      "place": "van",
+      "wrapped": false
+    }
+  },
+  {
+    "frame": 170,
+    "van": {
+      "x": 185,
+      "y": 9.359396433470508,
+      "loaded": false,
+      "departing": false,
+      "closed": false,
+      "cargo": "incoming",
+      "trip": 0
+    },
+    "parcel": {
+      "x": 185,
+      "y": -2.6406035665294922,
+      "z": 11,
+      "visible": true,
+      "place": "van",
+      "wrapped": false
+    }
+  },
+  {
+    "frame": 600,
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": false,
+      "departing": false,
+      "closed": false,
+      "cargo": "empty",
+      "trip": 0
+    },
+    "parcel": {
+      "x": 124.97222222222223,
+      "y": 65,
+      "z": 10,
+      "visible": true,
+      "place": "hand",
+      "wrapped": false
+    }
+  },
+  {
+    "frame": 2160,
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": false,
+      "departing": false,
+      "closed": false,
+      "cargo": "empty",
+      "trip": 0
+    },
+    "parcel": {
+      "x": 185,
+      "y": 2.5980463624435046,
+      "z": 10.76381396705059,
+      "visible": true,
+      "place": "transfer",
+      "wrapped": true
+    }
+  },
+  {
+    "frame": 2196,
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": true,
+      "departing": false,
+      "closed": false,
+      "cargo": "outgoing",
+      "trip": 0
+    },
+    "parcel": {
+      "x": 185,
+      "y": 0,
+      "z": 11,
+      "visible": true,
+      "place": "van",
+      "wrapped": true
+    }
+  },
+  {
+    "frame": 2268,
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": true,
+      "departing": false,
+      "closed": true,
+      "cargo": "outgoing",
+      "trip": 0
+    },
+    "parcel": {
+      "x": 185,
+      "y": 0,
+      "z": 11,
+      "visible": true,
+      "place": "van",
+      "wrapped": true
+    }
+  },
+  {
+    "frame": 2368,
+    "van": {
+      "x": 185,
+      "y": 5.698962962962963,
+      "loaded": true,
+      "departing": true,
+      "closed": true,
+      "cargo": "outgoing",
+      "trip": 0
+    },
+    "parcel": {
+      "x": 185,
+      "y": -6.301037037037037,
+      "z": 11,
+      "visible": true,
+      "place": "van",
+      "wrapped": true
+    }
+  },
+  {
+    "frame": 2500,
+    "van": {
+      "x": 165.55555555555554,
+      "y": -2,
+      "loaded": true,
+      "departing": true,
+      "closed": true,
+      "cargo": "outgoing",
+      "trip": 0
+    },
+    "parcel": {
+      "x": 165.55555555555554,
+      "y": -14,
+      "z": 11,
+      "visible": true,
+      "place": "van",
+      "wrapped": true
+    }
+  },
+  {
+    "frame": 2700,
+    "van": {
+      "x": 110,
+      "y": -2,
+      "loaded": true,
+      "departing": false,
+      "closed": true,
+      "cargo": "outgoing",
+      "trip": 0
+    },
+    "parcel": {
+      "x": 110,
+      "y": -14,
+      "z": 11,
+      "visible": true,
+      "place": "van",
+      "wrapped": true
+    }
+  }
+]
