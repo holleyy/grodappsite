@@ -1,0 +1,42 @@
+✔ Flap R: supported entry and empty-box deadlines match canonical arrival (7.514875ms)
+✔ Flap D: supported entry and empty-box deadlines match canonical arrival (3.740311ms)
+✔ Flap L: supported entry and empty-box deadlines match canonical arrival (1.176765ms)
+✔ Flap U: supported entry and empty-box deadlines match canonical arrival (1.078089ms)
+✔ Frame sampling reuses output and rewinds without stale flap/box state (1.75315ms)
+✔ Depot 3-1: original solution, tick clock and ordered gate events (7.305401ms)
+✔ Depot 3-2: original solution, tick clock and ordered gate events (0.609106ms)
+✔ Depot 3-3: original solution, tick clock and ordered gate events (0.799505ms)
+✔ Depot 3-4: original solution, tick clock and ordered gate events (0.578299ms)
+✔ Depot 3-5: original solution, tick clock and ordered gate events (0.540167ms)
+✔ Depot 3-6: original solution, tick clock and ordered gate events (0.56819ms)
+✔ Depot 3-7: original solution, tick clock and ordered gate events (0.345229ms)
+✔ Depot 3-8: original solution, tick clock and ordered gate events (0.635667ms)
+✔ Depot 3-9: original solution, tick clock and ordered gate events (1.364518ms)
+✔ Depot 3-10: original solution, tick clock and ordered gate events (2.846758ms)
+✔ Depot 4-1: original solution, tick clock and ordered gate events (0.567137ms)
+✔ Depot 4-2: original solution, tick clock and ordered gate events (0.645696ms)
+✔ Depot 4-3: original solution, tick clock and ordered gate events (0.58947ms)
+✔ Depot 4-4: original solution, tick clock and ordered gate events (0.241074ms)
+✔ Depot 4-5: original solution, tick clock and ordered gate events (0.603145ms)
+✔ Depot 4-6: original solution, tick clock and ordered gate events (0.283975ms)
+✔ Depot 4-7: original solution, tick clock and ordered gate events (0.286068ms)
+✔ Depot 4-8: original solution, tick clock and ordered gate events (0.362001ms)
+✔ Depot 4-9: original solution, tick clock and ordered gate events (0.238729ms)
+✔ Depot 4-10: original solution, tick clock and ordered gate events (1.661758ms)
+✔ Depot 4-11: original solution, tick clock and ordered gate events (0.554944ms)
+✔ Depot 4-12: original solution, tick clock and ordered gate events (0.249329ms)
+✔ Depot 4-13: original solution, tick clock and ordered gate events (0.411976ms)
+✔ Depot 4-14: original solution, tick clock and ordered gate events (2.247554ms)
+✔ Depot 4-15: original solution, tick clock and ordered gate events (0.998299ms)
+✔ All cells pick correctly in every canonical board origin (4.855921ms)
+✔ Study save is isolated, resumes planning and validates inventory (3.220181ms)
+✔ Chapter demo uses canonical rules and never mutates planning (1.101714ms)
+✔ Final exit settles the visible trace without another live rule tick (4.837005ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 242.671585

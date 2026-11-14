@@ -1,0 +1,182 @@
+[
+  {
+    "side": "R",
+    "age": 0.5,
+    "name": "flap-R-0_5.png",
+    "clip": {
+      "x": 693,
+      "y": 568,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": true,
+    "boxVisible": true,
+    "boxFold": 0,
+    "flapPose": 4
+  },
+  {
+    "side": "R",
+    "age": 0.9,
+    "name": "flap-R-0_9.png",
+    "clip": {
+      "x": 693,
+      "y": 568,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": true,
+    "boxVisible": true,
+    "boxFold": 0,
+    "flapPose": 6
+  },
+  {
+    "side": "R",
+    "age": 1.35,
+    "name": "flap-R-1_35.png",
+    "clip": {
+      "x": 693,
+      "y": 568,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": false,
+    "boxVisible": true,
+    "boxFold": 1,
+    "flapPose": -1
+  },
+  {
+    "side": "D",
+    "age": 0.5,
+    "name": "flap-D-0_5.png",
+    "clip": {
+      "x": 167,
+      "y": 568,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": true,
+    "boxVisible": true,
+    "boxFold": 0,
+    "flapPose": 4
+  },
+  {
+    "side": "D",
+    "age": 0.9,
+    "name": "flap-D-0_9.png",
+    "clip": {
+      "x": 167,
+      "y": 568,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": true,
+    "boxVisible": true,
+    "boxFold": 0,
+    "flapPose": 6
+  },
+  {
+    "side": "D",
+    "age": 1.35,
+    "name": "flap-D-1_35.png",
+    "clip": {
+      "x": 167,
+      "y": 568,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": false,
+    "boxVisible": true,
+    "boxFold": 1,
+    "flapPose": -1
+  },
+  {
+    "side": "L",
+    "age": 0.5,
+    "name": "flap-L-0_5.png",
+    "clip": {
+      "x": 219,
+      "y": 331,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": true,
+    "boxVisible": true,
+    "boxFold": 0,
+    "flapPose": 2
+  },
+  {
+    "side": "L",
+    "age": 0.9,
+    "name": "flap-L-0_9.png",
+    "clip": {
+      "x": 219,
+      "y": 331,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": true,
+    "boxVisible": true,
+    "boxFold": 0,
+    "flapPose": 5
+  },
+  {
+    "side": "L",
+    "age": 1.35,
+    "name": "flap-L-1_35.png",
+    "clip": {
+      "x": 219,
+      "y": 331,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": false,
+    "boxVisible": true,
+    "boxFold": 1,
+    "flapPose": -1
+  },
+  {
+    "side": "U",
+    "age": 0.5,
+    "name": "flap-U-0_5.png",
+    "clip": {
+      "x": 641,
+      "y": 331,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": true,
+    "boxVisible": true,
+    "boxFold": 0,
+    "flapPose": 2
+  },
+  {
+    "side": "U",
+    "age": 0.9,
+    "name": "flap-U-0_9.png",
+    "clip": {
+      "x": 641,
+      "y": 331,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": true,
+    "boxVisible": true,
+    "boxFold": 0,
+    "flapPose": 5
+  },
+  {
+    "side": "U",
+    "age": 1.35,
+    "name": "flap-U-1_35.png",
+    "clip": {
+      "x": 641,
+      "y": 331,
+      "width": 280,
+      "height": 220
+    },
+    "catVisible": false,
+    "boxVisible": true,
+    "boxFold": 1,
+    "flapPose": -1
+  }
+]

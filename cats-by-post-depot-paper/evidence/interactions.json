@@ -1,0 +1,42 @@
+{
+  "trustedPlacement": true,
+  "reloadPlanning": true,
+  "productionSave": "PROTECTED",
+  "saved": "{\"version\":1,\"id\":\"3-1\",\"chutes\":[{\"x\":0,\"y\":0,\"type\":\"plain\",\"dir\":\"U\"}],\"hinted\":false,\"completed\":[]}",
+  "stop": true,
+  "camera": {
+    "before": {
+      "x": 0,
+      "y": 94,
+      "width": 980,
+      "height": 806
+    },
+    "after": {
+      "x": 0,
+      "y": 94,
+      "width": 980,
+      "height": 806
+    }
+  },
+  "chapterIsolation": true,
+  "rehearsalRestoresPlanning": true,
+  "blurPausesClock": true,
+  "reducedMotionStable": true,
+  "resource": {
+    "boards": 4,
+    "initialBoards": 4,
+    "bakes": 1,
+    "initialBakes": 1,
+    "canvases": 1,
+    "afterCanvases": 1
+  },
+  "dragDoesNotPlace": true,
+  "zoom": {
+    "cell": {
+      "x": 2,
+      "y": 2
+    },
+    "finite": true
+  },
+  "errors": []
+}

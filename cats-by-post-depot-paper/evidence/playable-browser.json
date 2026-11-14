@@ -1,0 +1,402 @@
+{
+  "rows": [
+    {
+      "id": "3-1",
+      "board": {
+        "w": 5,
+        "h": 4,
+        "roomX": 1,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 6,
+      "picks": 20,
+      "flaps": 0,
+      "gateEvents": 2
+    },
+    {
+      "id": "3-2",
+      "board": {
+        "w": 5,
+        "h": 4,
+        "roomX": 1,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 7,
+      "picks": 20,
+      "flaps": 0,
+      "gateEvents": 2
+    },
+    {
+      "id": "3-3",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 11,
+      "picks": 24,
+      "flaps": 0,
+      "gateEvents": 3
+    },
+    {
+      "id": "3-4",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 10,
+      "picks": 24,
+      "flaps": 0,
+      "gateEvents": 2
+    },
+    {
+      "id": "3-5",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 10,
+      "picks": 24,
+      "flaps": 0,
+      "gateEvents": 3
+    },
+    {
+      "id": "3-6",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 13,
+      "picks": 30,
+      "flaps": 0,
+      "gateEvents": 6
+    },
+    {
+      "id": "3-7",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 8,
+      "picks": 30,
+      "flaps": 0,
+      "gateEvents": 2
+    },
+    {
+      "id": "3-8",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 15,
+      "picks": 35,
+      "flaps": 0,
+      "gateEvents": 4
+    },
+    {
+      "id": "3-9",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 16,
+      "picks": 35,
+      "flaps": 0,
+      "gateEvents": 12
+    },
+    {
+      "id": "3-10",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 30,
+      "picks": 35,
+      "flaps": 0,
+      "gateEvents": 18
+    },
+    {
+      "id": "4-1",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 7,
+      "picks": 24,
+      "flaps": 1,
+      "gateEvents": 0
+    },
+    {
+      "id": "4-2",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 5,
+      "picks": 24,
+      "flaps": 1,
+      "gateEvents": 0
+    },
+    {
+      "id": "4-3",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 9,
+      "picks": 24,
+      "flaps": 2,
+      "gateEvents": 0
+    },
+    {
+      "id": "4-4",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 8,
+      "picks": 24,
+      "flaps": 1,
+      "gateEvents": 0
+    },
+    {
+      "id": "4-5",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 10,
+      "picks": 24,
+      "flaps": 2,
+      "gateEvents": 0
+    },
+    {
+      "id": "4-6",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 11,
+      "picks": 24,
+      "flaps": 2,
+      "gateEvents": 2
+    },
+    {
+      "id": "4-7",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 9,
+      "picks": 30,
+      "flaps": 1,
+      "gateEvents": 0
+    },
+    {
+      "id": "4-8",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 9,
+      "picks": 30,
+      "flaps": 2,
+      "gateEvents": 0
+    },
+    {
+      "id": "4-9",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 12,
+      "picks": 30,
+      "flaps": 1,
+      "gateEvents": 2
+    },
+    {
+      "id": "4-10",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 10,
+      "picks": 35,
+      "flaps": 2,
+      "gateEvents": 4
+    },
+    {
+      "id": "4-11",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 26,
+      "picks": 35,
+      "flaps": 2,
+      "gateEvents": 8
+    },
+    {
+      "id": "4-12",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 12,
+      "picks": 35,
+      "flaps": 3,
+      "gateEvents": 0
+    },
+    {
+      "id": "4-13",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 17,
+      "picks": 35,
+      "flaps": 2,
+      "gateEvents": 12
+    },
+    {
+      "id": "4-14",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 31,
+      "picks": 35,
+      "flaps": 3,
+      "gateEvents": 18
+    },
+    {
+      "id": "4-15",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "tick": 14,
+      "picks": 35,
+      "flaps": 6,
+      "gateEvents": 12
+    }
+  ],
+  "mobile": {
+    "width": 390,
+    "overflow": false,
+    "view": {
+      "width": 390,
+      "height": 434,
+      "w": 7,
+      "h": 5,
+      "mode": "play",
+      "zoom": 1,
+      "panX": 0,
+      "panY": 0,
+      "sceneBounds": {
+        "left": -75,
+        "right": 1635,
+        "top": -120,
+        "bottom": 1080
+      },
+      "roomX": 0,
+      "roomY": 0
+    },
+    "queuesVisible": true,
+    "tickets": 12,
+    "send": {
+      "x": 124.03125,
+      "y": 700,
+      "width": 118.671875,
+      "height": 44,
+      "top": 700,
+      "right": 242.703125,
+      "bottom": 744,
+      "left": 124.03125
+    },
+    "scene": {
+      "x": 0,
+      "y": 80,
+      "width": 390,
+      "height": 434,
+      "top": 80,
+      "right": 390,
+      "bottom": 514,
+      "left": 0
+    }
+  },
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:8765/studies/depot-paper/playable.html?level=3-1"
+  ]
+}
