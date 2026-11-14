@@ -10119,11 +10119,60 @@ class Renderer{
 root.ParcelRenderer=Renderer;
 })(globalThis);
 
+/* Private study input. Production and native camera ownership stays with the host. */
+let parcelPaperGestureScale=1,parcelPaperGestureActive=false,parcelPaperGesturePointers=false;
+function parcelPaperResetInput(){
+ PTR.clear();multiTouch=false;mouseDrag=false;pinchD0=0;wheelAcc=0;gestureScale=parcelPaperGestureScale=1;parcelPaperGestureActive=parcelPaperGesturePointers=false;
+}
+function parcelPaperZoom(next,mx,my){
+ if(!parcelPaperEligible()||cpActive()||!Number.isFinite(next)||next<=0)return;
+ const limits=scaleLimits(devW,devH),target=clamp(next,limits[0],limits[1]);if(target===scale)return;
+ const wx=VIEW_CX+WS.camX+view.panX-LW/2+(mx-dstX)/scale;
+ const wy=VIEW_CY+WS.camY+view.panY-LH/2+(my-dstY)/scale;
+ view.zoom=target;applyScale();gCamera();
+ // Framing can move the camera as scale changes. Keep the same world point
+ // beneath the pointer after that framing update, including the moving centroid.
+ panBy(wx-(mx-dstX)/scale-(VIEW_CX+WS.camX+view.panX-LW/2),
+       wy-(my-dstY)/scale-(VIEW_CY+WS.camY+view.panY-LH/2));
+}
+function parcelPaperInstallInput(){
+ // Keep the canonical pointer down/up/tap classifier. Capture only the pinch
+ // move before its old threshold handler, so a gesture cannot also place a tile.
+ screen.addEventListener('pointerdown',()=>{if(parcelPaperEligible()&&parcelPaperGestureActive)parcelPaperGesturePointers=true;},{capture:true});
+ screen.addEventListener('pointermove',e=>{
+  if(!parcelPaperEligible()||PTR.size<2)return;const p=PTR.get(e.pointerId);if(!p)return;
+  p.x=devX(e);p.y=devY(e);const pair=pinchNow(),d=pair[0],mx=pair[1],my=pair[2];
+  panBy(-(mx-pinchMX)/scale,-(my-pinchMY)/scale);
+  if(pinchD0>0&&d>0)parcelPaperZoom(scale*d/pinchD0,mx,my);
+  pinchD0=d;pinchMX=mx;pinchMY=my;e.preventDefault();e.stopImmediatePropagation();
+ },{capture:true,passive:false});
+ screen.addEventListener('wheel',e=>{
+  if(!parcelPaperEligible())return;e.preventDefault();e.stopImmediatePropagation();
+  if(parcelPaperGestureActive)return;const unit=e.deltaMode===1?33:e.deltaMode===2?400:1;
+  parcelPaperZoom(scale*Math.exp(clamp(-e.deltaY*unit*.0015,-1,1)),devX(e),devY(e));
+ },{capture:true,passive:false});
+ document.addEventListener('gesturestart',e=>{
+  if(!parcelPaperEligible())return;e.preventDefault();e.stopImmediatePropagation();parcelPaperGestureScale=Number.isFinite(e.scale)&&e.scale>0?e.scale:1;parcelPaperGestureActive=true;parcelPaperGesturePointers=PTR.size>0;
+ },{capture:true,passive:false});
+ document.addEventListener('gesturechange',e=>{
+  if(!parcelPaperEligible())return;e.preventDefault();e.stopImmediatePropagation();
+  if(PTR.size)parcelPaperGesturePointers=true;
+  if(!parcelPaperGestureActive||parcelPaperGesturePointers||!Number.isFinite(e.scale)||e.scale<=0)return;
+  const x=Number.isFinite(e.clientX)?devX(e):devW/2,y=Number.isFinite(e.clientY)?devY(e):devH/2;
+  parcelPaperZoom(scale*e.scale/parcelPaperGestureScale,x,y);parcelPaperGestureScale=e.scale;
+ },{capture:true,passive:false});
+ document.addEventListener('gestureend',()=>{parcelPaperGestureScale=1;parcelPaperGestureActive=parcelPaperGesturePointers=false;});
+ screen.addEventListener('lostpointercapture',e=>{if(parcelPaperEligible())endPointer(e,true);});
+ window.addEventListener('blur',()=>{if(parcelPaperEligible())parcelPaperResetInput();});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&parcelPaperEligible())parcelPaperResetInput();});
+ zoomStep=function(dir,x,y){if(!parcelPaperEligible())return parcelPaperNative.zoomStep(dir,x,y);parcelPaperZoom(scale*Math.pow(1.15,dir),x,y);};
+}
+
 /* Private study adapter. Integration owns production installation and camera hooks. */
 const OfficeRules={GR_DIR};
 const parcelPaper={ready:false,error:null,motion:true,view:'room',renderer:null,canvas:null};
 window.ParcelPaper=parcelPaper;
-const parcelPaperNative={resolve,paperOutputCanvas,paperOutputScale,gLoad,gHud,cpBegin,gCamera,defaultScale,scaleLimits,cpWorld,present,renderFrame,gPick,applyScale};
+const parcelPaperNative={resolve,paperOutputCanvas,paperOutputScale,gLoad,gHud,cpBegin,gCamera,defaultScale,scaleLimits,cpWorld,present,renderFrame,gPick,applyScale,zoomStep};
 const parcelPaperScale=16/ParcelProjection.HW,parcelPaperSelection={x:0,y:0};
 let parcelPaperOutput=false,parcelPaperDensity=1;
 const parcelPaperMedia=matchMedia('(prefers-reduced-motion: reduce)');
@@ -10192,6 +10241,7 @@ function parcelPaperGeometry(){
 }
 function parcelPaperFit(mode){
  if(mode==='court'&&cpActive())return;
+ parcelPaperResetInput();
  parcelPaper.view=mode;parcelPaperExploreUI();
  document.getElementById('paperView').textContent=mode==='court'?'Board':mode==='board'?'Explore the room':'Closer to the board';
  for(const id of ['paperCourt','paperCourtSmall']){const b=document.getElementById(id);b.textContent='Explore courtyard';b.setAttribute('aria-pressed',String(mode==='court'));}
@@ -10261,7 +10311,7 @@ async function parcelPaperBoot(){
   paperOutputScale=function(){return parcelPaperOutput?parcelPaperDensity:parcelPaperNative.paperOutputScale();};
   renderFrame=function(){
    if(!parcelPaperEligible())return parcelPaperNative.renderFrame();
-   viewX=Math.round(VIEW_CX+WS.camX+view.panX-LW/2);viewY=Math.round(VIEW_CY+WS.camY+view.panY-LH/2);
+   viewX=VIEW_CX+WS.camX+view.panX-LW/2;viewY=VIEW_CY+WS.camY+view.panY-LH/2;
    parcelPaperDraw();
   };
   present=function(){
@@ -10271,6 +10321,7 @@ async function parcelPaperBoot(){
    sctx.imageSmoothingEnabled=true;sctx.imageSmoothingQuality='high';
    sctx.drawImage(parcelPaper.canvas,0,0,LW*parcelPaperDensity,LH*parcelPaperDensity,CP.mode==='enter'?(devW-w)/2:dstX,CP.mode==='enter'?(devH-h)/2:dstY,w,h);
   };
+  parcelPaperInstallInput();
   gLoad=parcelPaperLoad;
   gHud=parcelPaperHud;
   cpBegin=function(){if(!parcelPaperExit())return parcelPaperNative.cpBegin();};

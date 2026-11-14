@@ -1,0 +1,123 @@
+{
+  "canvasPixels": 3013524,
+  "devicePixels": 3013524,
+  "ready": true,
+  "pan": {
+    "viewBakes": 0,
+    "layers": {
+      "background": {
+        "left": -96,
+        "top": -96,
+        "x": 308.2019681638697,
+        "y": 1329.6225629318856,
+        "scale": 0.2731984205330701,
+        "width": 1371,
+        "height": 2748
+      },
+      "walls": {
+        "left": 241,
+        "top": 1258,
+        "x": 308.2019681638697,
+        "y": 1329.6225629318856,
+        "scale": 0.2731984205330701,
+        "width": 633,
+        "height": 411
+      },
+      "foreground": {
+        "left": 693,
+        "top": 1392,
+        "x": 308.2019681638697,
+        "y": 1329.6225629318856,
+        "scale": 0.2731984205330701,
+        "width": 68,
+        "height": 60
+      },
+      "near-garden": {
+        "left": 108,
+        "top": 1463,
+        "x": 308.2019681638697,
+        "y": 1329.6225629318856,
+        "scale": 0.2731984205330701,
+        "width": 653,
+        "height": 325
+      }
+    }
+  },
+  "resize": {
+    "legacyImageUnchanged": true,
+    "legacyPaperUnchanged": true,
+    "width": 973,
+    "height": 2110,
+    "expectedWidth": 973,
+    "expectedHeight": 2110
+  },
+  "output": {
+    "resets": 0,
+    "width": 1179,
+    "height": 2556,
+    "deviceWidth": 1179,
+    "deviceHeight": 2556,
+    "sourceFits": true,
+    "shared": {
+      "img": {
+        "bytes": 751464,
+        "bufferBytes": 751464,
+        "duplicate": false
+      },
+      "paperImage": {
+        "bytes": 12023424,
+        "bufferBytes": 12023424,
+        "duplicate": false
+      },
+      "paperDepth": {
+        "bytes": 6011712,
+        "bufferBytes": 6011712,
+        "duplicate": false
+      },
+      "paperIndex": {
+        "bytes": 3005856,
+        "bufferBytes": 3005856,
+        "duplicate": false
+      },
+      "fIdx": {
+        "bytes": 187866,
+        "bufferBytes": 187866,
+        "duplicate": false
+      },
+      "fLvl": {
+        "bytes": 187866,
+        "bufferBytes": 187866,
+        "duplicate": false
+      },
+      "fDep": {
+        "bytes": 375732,
+        "bufferBytes": 375732,
+        "duplicate": false
+      }
+    },
+    "sharedBytes": 22543920
+  },
+  "prepared": {
+    "architectureBakes": 0,
+    "exteriorBakes": 0,
+    "vanSource": "prepared"
+  },
+  "composite": {
+    "layerPixels": 7297311,
+    "screenPixels": 3013524
+  },
+  "sky": {
+    "on": [
+      251,
+      199,
+      176,
+      255
+    ],
+    "off": [
+      216,
+      219,
+      208,
+      255
+    ]
+  }
+}
