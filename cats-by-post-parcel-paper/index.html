@@ -169,9 +169,21 @@ body #hud #btnSend{background:#326e70!important;border-color:#326e70!important}b
 #paperHeader #paperCourtSmall{display:none}
 @media(max-width:1359px){#paperHeader #paperCourt{display:none}#paperHeader #paperCourtSmall{display:block}}
 
+/* Explore uses the full scene height; the retained HUD still measures exactly. */
+body.paper-explore #hud{visibility:hidden;pointer-events:none}
+body.paper-explore #screen{cursor:grab!important}
+body.paper-explore #paperPick,body.paper-explore #paperSize,body.paper-explore #paperSolve,body.paper-explore #paperStory,body.paper-explore #paperCourtSmall{display:none!important}
+body.paper-explore #paperHeader #paperCourt{display:block;background:#326e70;color:#fff7e4;border-color:#326e70}
+#paperPlay{position:fixed;z-index:7;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);min-height:44px;padding:11px 23px;font:600 14px/1.2 Trebuchet MS,Arial,sans-serif;border:1px solid #286266;border-radius:9px;background:#326e70;color:#fff7e4;box-shadow:0 4px 16px #304f5030;cursor:pointer;white-space:nowrap}
+#paperPlay[hidden]{display:none}#paperPlay:focus-visible{outline:3px solid #d9a751;outline-offset:3px}
+@media(max-width:700px){body.paper-explore #paperHeader nav{justify-content:space-between}body.paper-explore #paperHeader details{margin-left:0}#paperPlay{font-size:12px}}
+@media(max-height:520px) and (orientation:landscape){#paperPlay{bottom:max(10px,env(safe-area-inset-bottom));min-height:38px;padding:8px 18px}}
+
+body.paper-explore #paperHeader summary{box-sizing:border-box;white-space:nowrap}
+
 </style>
 </head>
-<body class="paper-loading"><header id="paperHeader"><div><p>CATS BY POST · MORNING DISPATCH</p><h1>Parcel Room <span id="paperSize"></span></h1></div><nav aria-label="Parcel study"><select id="paperPick" aria-label="Delivery"></select><button id="paperView">Closer to the board</button><button id="paperCourt">Explore courtyard</button><button id="paperMotion" aria-pressed="true">Motion on</button><button id="paperStory">The story</button><details><summary>Study tools</summary><button id="paperCourtSmall">Explore courtyard</button><button id="paperSolve">Place solution</button><button id="paperGray">Grayscale</button><a href="review/">Scene review</a></details></nav></header><div id="paperLoading" role="status">Opening the parcel room…</div>
+<body class="paper-loading"><header id="paperHeader"><div><p>CATS BY POST · MORNING DISPATCH</p><h1>Parcel Room <span id="paperSize"></span></h1></div><nav aria-label="Parcel study"><select id="paperPick" aria-label="Delivery"></select><button id="paperView">Closer to the board</button><button id="paperCourt">Explore courtyard</button><button id="paperMotion" aria-pressed="true">Motion on</button><button id="paperStory">The story</button><details><summary>Study tools</summary><button id="paperCourtSmall">Explore courtyard</button><button id="paperSolve">Place solution</button><button id="paperGray">Grayscale</button><a href="review/">Explore review</a></details></nav></header><button id="paperPlay" type="button" hidden>Play this room →</button><div id="paperLoading" role="status">Opening the parcel room…</div>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
   <div class="row"><select id="lvlPick" aria-label="Level: pick one to play"></select>
@@ -268,6 +280,6 @@ body #hud #btnSend{background:#326e70!important;border-color:#326e70!important}b
     <button type="button" data-file="atlas.json">atlas.json</button><button type="button" data-file="palette.json">palette.json</button><button type="button" data-file="backdrops.json">backdrops.json</button></div>
   <div id="atlasHint">S to close</div>
 </div></div>
-<script>Promise.all(["runtime/scene-4a157f0dac8a-0.txt", "runtime/scene-4a157f0dac8a-1.txt", "runtime/scene-4a157f0dac8a-2.txt", "runtime/scene-4a157f0dac8a-3.txt", "runtime/scene-4a157f0dac8a-4.txt"].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Could not load the Parcel study: '+r.status);return r.text();})).then(parts=>{const script=document.createElement('script');script.textContent=parts.join('');document.body.appendChild(script);}).catch(error=>{document.getElementById('paperLoading').textContent=error.message;console.error(error);});</script>
+<script>Promise.all(["runtime/scene-130645f232f2-0.txt", "runtime/scene-130645f232f2-1.txt", "runtime/scene-130645f232f2-2.txt", "runtime/scene-130645f232f2-3.txt", "runtime/scene-130645f232f2-4.txt"].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Could not load the Parcel study: '+r.status);return r.text();})).then(parts=>{const script=document.createElement('script');script.textContent=parts.join('');document.body.appendChild(script);}).catch(error=>{document.getElementById('paperLoading').textContent=error.message;console.error(error);});</script>
 </body>
 </html>

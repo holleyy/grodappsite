@@ -8518,10 +8518,11 @@ function roomFloor(m){
  });
 }
 function ground(m,z=-18){
- m.plane([-500,-390,z+.08],[1100,0,0],[0,1000,0],(c,w,h)=>{
-  // Broad sun and cool shade soften the continuous stone field without blur.
-  let g=c.createLinearGradient(0,0,w*.75,h);g.addColorStop(0,'#9aaeb12a');g.addColorStop(.48,'#f8e3ba16');g.addColorStop(1,'#4c66722b');c.fillStyle=g;c.fillRect(0,0,w,h);
-  g=c.createRadialGradient(580,580,18,580,580,390);g.addColorStop(0,'#fff1d11b');g.addColorStop(.55,'#f9eac30a');g.addColorStop(1,'#e5e5d000');c.fillStyle=g;c.fillRect(0,0,w,h);
+ m.plane([-2000,-2000,z+.08],[4000,0,0],[0,4000,0],(c,w,h)=>{
+  // Keep the original light coordinates across the entire street plane;
+  // the wider portrait view must never reveal a rectangular lighting edge.
+  let g=c.createLinearGradient(1500,1610,2325,2610);g.addColorStop(0,'#9aaeb12a');g.addColorStop(.48,'#f8e3ba16');g.addColorStop(1,'#4c66722b');c.fillStyle=g;c.fillRect(0,0,w,h);
+  g=c.createRadialGradient(2080,2190,18,2080,2190,390);g.addColorStop(0,'#fff1d11b');g.addColorStop(.55,'#f9eac30a');g.addColorStop(1,'#e5e5d000');c.fillStyle=g;c.fillRect(0,0,w,h);
  });
 }
 root.ParcelSceneLight={face,roomFloor,ground};
@@ -9460,6 +9461,9 @@ class Exterior{
   if(this.debug)return;const im=this.r.images.town,c=document.createElement('canvas');c.width=im.width;c.height=im.height;const q=c.getContext('2d');q.drawImage(im,0,0);q.globalCompositeOperation='destination-in';let g=q.createLinearGradient(0,0,0,c.height);g.addColorStop(0,'#000');g.addColorStop(.52,'#000');g.addColorStop(.87,'#0000');q.fillStyle=g;q.fillRect(0,0,c.width,c.height);
   g=q.createLinearGradient(0,0,c.width,0);g.addColorStop(0,'#0000');g.addColorStop(.1,'#000');g.addColorStop(.9,'#000');g.addColorStop(1,'#0000');q.fillStyle=g;q.fillRect(0,0,c.width,c.height);
   this.skyCanvas=c;const b=this.bounds,w=b.right-b.left+1600;this.skyBounds={left:b.left-800,right:b.right+800,top:b.top-1300,bottom:b.top-1300+w*2/3};
+  // Mirror a quiet paper-sky strip at its seams to continue above the artwork.
+  // The town image and skyline keep their original world registration.
+  const tile=this.skyCeiling=document.createElement('canvas');tile.width=im.width;tile.height=256;const t=tile.getContext('2d');t.drawImage(im,0,0,im.width,128,0,0,im.width,128);t.translate(0,256);t.scale(1,-1);t.drawImage(im,0,0,im.width,128,0,0,im.width,128);this.skyCeilingPattern=this.r.ctx.createPattern(tile,'repeat');
  }
  surface(o,u,v,kind,shade=0){if(!this.debug)this.s.face(o,u,v,kind,shade);}
  plant(name,x,y,z,width,flip=false){
@@ -9644,7 +9648,11 @@ class Exterior{
   }
   const c=r.ctx;c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(v.canvas,0,0);c.restore();
  }
- draw(){if(this.skyCanvas)this.r.architecture.drawLayer('court-sky',this.skyCanvas,this.skyBounds);this.drawStreet();if(this.setting)this.setting.drawBack();this.r.architecture.drawLayer('court',this.canvas,this.bounds);}
+ drawSkyCeiling(){
+  const r=this.r,b=this.skyBounds,s=(b.right-b.left)/this.skyCeiling.width,top=(-r.cam.ty/r.cam.scale-b.top)/s;if(top>=0)return;
+  const c=r.ctx;c.save();c.translate(b.left,b.top);c.scale(s,s);c.fillStyle=this.skyCeilingPattern;c.fillRect((-r.cam.tx/r.cam.scale-b.left)/s,top,r.config.width/r.cam.scale/s,-top+.5);c.restore();
+ }
+ draw(){if(this.r.explore&&this.skyCeilingPattern)this.drawSkyCeiling();if(this.skyCanvas)this.r.architecture.drawLayer('court-sky',this.skyCanvas,this.skyBounds);this.drawStreet();if(this.setting)this.setting.drawBack();this.r.architecture.drawLayer('court',this.canvas,this.bounds);}
 }
 root.ParcelExterior=Exterior;
 })(globalThis);
@@ -9933,7 +9941,7 @@ root.ParcelRenderer=Renderer;
 const OfficeRules={GR_DIR};
 const parcelPaper={ready:false,error:null,motion:true,view:'room',renderer:null,canvas:null};
 window.ParcelPaper=parcelPaper;
-const parcelPaperNative={resolve,paperOutputCanvas,paperOutputScale,gLoad,gHud,cpBegin,gCamera,defaultScale,scaleLimits,cpWorld,present,renderFrame};
+const parcelPaperNative={resolve,paperOutputCanvas,paperOutputScale,gLoad,gHud,cpBegin,gCamera,defaultScale,scaleLimits,cpWorld,present,renderFrame,gPick};
 const parcelPaperScale=16/ParcelProjection.HW,parcelPaperSelection={x:0,y:0};
 let parcelPaperOutput=false,parcelPaperDensity=1;
 const parcelPaperMedia=matchMedia('(prefers-reduced-motion: reduce)');
@@ -9942,6 +9950,18 @@ const parcelPaperMedia=matchMedia('(prefers-reduced-motion: reduce)');
 const parcelPaperFrame={x:0,y:0,w:1,h:1,cx:0,cy:0,width:1,height:1};
 const parcelPaperReserve={id:'',width:0,height:0,w:0,h:0};
 let parcelPaperLoadingLevel=false;
+const parcelPaperCourtBounds={...ParcelExteriorLayout.bounds};
+const parcelPaperGameKeys=new Set(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter',' ','1','2','3','n','N','h','H']);
+function parcelPaperExploring(){return parcelPaper.view==='court'&&!cpActive();}
+function parcelPaperExploreUI(){
+ const exploring=parcelPaperExploring();if(parcelPaper.exploring===exploring)return;
+ parcelPaper.exploring=exploring;document.body.classList.toggle('paper-explore',exploring);
+ hud.root.inert=exploring;if(exploring)hud.root.setAttribute('aria-hidden','true');else hud.root.removeAttribute('aria-hidden');
+ const button=document.getElementById('paperPlay'),active=document.activeElement;button.hidden=!exploring;
+ if(exploring&&(hud.root.contains(active)||active.id==='paperCourtSmall'||active.id==='paperPick'))button.focus({preventScroll:true});
+ if(!exploring&&active===button)screen.focus({preventScroll:true});
+}
+
 function parcelPaperReserveControls(force=false){
  const q=parcelPaperReserve;
  if(parcelPaperLoadingLevel||!force&&q.id===gm.L.id&&q.width===innerWidth&&q.height===innerHeight)return;
@@ -9961,12 +9981,13 @@ function parcelPaperLoad(index){
  if(parcelPaper.ready){parcelPaperReserveControls(true);parcelPaperGeometry();parcelPaperFit(parcelPaper.view);}
 }
 function parcelPaperFrameFor(mode){
+ parcelPaperExploreUI();
  const f=parcelPaperFrame,d=devDpr,chapter=cpActive()&&CP.mode!=='enter',side=devW>devH&&innerHeight<=520||innerWidth>=1180&&innerHeight>=650;
  const panel=chapter?CP.card:hud.root,header=document.getElementById('paperHeader').offsetHeight;
  parcelPaperReserveControls();
- const pw=side?(chapter?panel.offsetWidth:parcelPaperReserve.w)+18:0,ph=side?0:(chapter?panel.offsetHeight:parcelPaperReserve.h)+20;
+ const exploring=mode==='court'&&parcelPaperExploring(),pw=exploring?0:side?(chapter?panel.offsetWidth:parcelPaperReserve.w)+18:0,ph=exploring?0:side?0:(chapter?panel.offsetHeight:parcelPaperReserve.h)+20;
  f.x=12*d;f.y=(header+12)*d;f.w=Math.max(80*d,devW-(24+pw)*d);f.h=Math.max(80*d,devH-(header+24+ph)*d);
- if(mode==='room'||mode==='court'){const b=mode==='court'?ParcelExteriorLayout.bounds:ParcelLayout.bounds;f.cx=OX+((b.left+b.right)/2-760)*parcelPaperScale;f.cy=OY+80+((b.top+b.bottom)/2-465)*parcelPaperScale;f.width=(b.right-b.left)*parcelPaperScale;f.height=(b.bottom-b.top)*parcelPaperScale;}
+ if(mode==='room'||mode==='court'){const b=mode==='court'?parcelPaperCourtBounds:ParcelLayout.bounds;f.cx=OX+((b.left+b.right)/2-760)*parcelPaperScale;f.cy=OY+80+((b.top+b.bottom)/2-465)*parcelPaperScale;f.width=(b.right-b.left)*parcelPaperScale;f.height=(b.bottom-b.top)*parcelPaperScale;}
  else{const B=CP.mode==='demo'?CP.src:gm.L.board;f.cx=OX+(B.w-B.h)*8;f.cy=OY+80+(B.w+B.h)*4-3;f.width=(B.w+B.h)*16+36;f.height=(B.w+B.h)*8+60;}
  return f;
 }
@@ -9988,11 +10009,12 @@ function parcelPaperGeometry(){
  VIEW_CY=y+((b.top+b.bottom)/2-465)*parcelPaperScale-8;
 }
 function parcelPaperFit(mode){
- parcelPaper.view=mode;parcelPaperGeometry();view.panX=view.panY=0;
- view.zoom=parcelPaperDefault(devW,devH,devDpr);
+ if(mode==='court'&&cpActive())return;
+ parcelPaper.view=mode;parcelPaperExploreUI();
+ document.getElementById('paperView').textContent=mode==='court'?'Board':mode==='board'?'Explore the room':'Closer to the board';
+ for(const id of ['paperCourt','paperCourtSmall']){const b=document.getElementById(id);b.textContent='Explore courtyard';b.setAttribute('aria-pressed',String(mode==='court'));}
+ parcelPaperGeometry();view.panX=view.panY=0;view.zoom=parcelPaperDefault(devW,devH,devDpr);
  applyScale();gCamera();dirty=true;
- document.getElementById('paperView').textContent=mode==='board'?'Explore the room':'Closer to the board';
- for(const id of ['paperCourt','paperCourtSmall'])document.getElementById(id).textContent=mode==='court'?'Back to the room':'Explore courtyard';
 }
 function parcelStudySelect(id){
  const index=LEVELS.findIndex(l=>l.id===id);if(index<0||!/^7-/.test(id))throw RangeError('Parcel study owns 7-1–7-15');
@@ -10009,8 +10031,8 @@ function parcelPaperDraw(){
  if(c.width!==w||c.height!==h){c.width=w;c.height=h;}
  parcelPaperDensity=S;r.dpr=S;r.config.width=LW;r.config.height=LH;
  r.cam.scale=parcelPaperScale;r.cam.tx=OX-760*parcelPaperScale-viewX;r.cam.ty=OY+80-465*parcelPaperScale-viewY;
- r.gray=grayscale;r.motion=parcelPaper.motion&&!parcelPaperMedia.matches;r.ambient=loopFrame/60;
- parcelPaperSelection.x=gm.cx;parcelPaperSelection.y=gm.cy;r.selected=gm.cursor&&gm.mode!=='running'&&!cpActive()?parcelPaperSelection:null;
+ r.gray=grayscale;r.explore=parcelPaperExploring();r.motion=parcelPaper.motion&&!parcelPaperMedia.matches;r.ambient=loopFrame/60;
+ parcelPaperSelection.x=gm.cx;parcelPaperSelection.y=gm.cy;r.selected=gm.cursor&&gm.mode!=='running'&&!cpActive()&&!parcelPaperExploring()?parcelPaperSelection:null;
  gPrepareSrc();r.draw(gBoardSource());parcelPaperOutput=true;paperReady=false;
 }
 function parcelPaperExit(){if(CP.parcel&&CP.mode==='exit'){cpCancel();parcelPaperFit('room');return true;}return false;}
@@ -10018,11 +10040,21 @@ async function parcelPaperBoot(){
  try{
   __so.pause(true);cpCancel();parcelPaperNative.gLoad(LEVELS.findIndex(l=>l.id==='7-1'));
   const c=parcelPaper.canvas=document.createElement('canvas'),r=parcelPaper.renderer=new ParcelRenderer(c,ParcelPaperAssets);await r.load();
-  parcelPaper.ready=true;
+  parcelPaper.ready=true;screen.tabIndex=0;
+  const setting=r.exterior.setting;if(setting){for(const b of [setting.bounds,setting.foregroundBounds]){parcelPaperCourtBounds.left=Math.min(parcelPaperCourtBounds.left,b.left-24);parcelPaperCourtBounds.right=Math.max(parcelPaperCourtBounds.right,b.right+24);parcelPaperCourtBounds.top=Math.min(parcelPaperCourtBounds.top,b.top-24);parcelPaperCourtBounds.bottom=Math.max(parcelPaperCourtBounds.bottom,b.bottom+24);}}
+  gPick=function(x,y){return parcelPaperEligible()&&parcelPaperExploring()?-1:parcelPaperNative.gPick(x,y);};
+  window.addEventListener('keydown',e=>{
+   if(!parcelPaperEligible()||!parcelPaperExploring())return;
+   const tag=e.target?.tagName;if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT')return;
+   if(tag==='BUTTON'&&(e.key==='Enter'||e.key===' '))return;
+   if((tag==='SUMMARY'||tag==='A')&&(e.key==='Enter'||e.key===' ')){e.stopImmediatePropagation();return;}
+   if(parcelPaperGameKeys.has(e.key)){e.preventDefault();e.stopImmediatePropagation();}
+  },true);
   gCamera=parcelPaperCamera;defaultScale=parcelPaperDefault;
   scaleLimits=function(w,h){const lim=parcelPaperNative.scaleLimits(w,h);if(parcelPaperEligible())lim[0]=.3*devDpr;return lim;};
   cpWorld=function(){
    if(!parcelPaperEligible()||!CP.parcel)return parcelPaperNative.cpWorld();
+   if(parcelPaper.view==='court')parcelPaperFit('room');
    pcWorld();
    if(CP.mode==='enter'){const u=Math.min(1,CP.frame/72),v=u*u*(3-2*u);CP.visualScale=CP.enterScale+(CP.targetScale-CP.enterScale)*v;parcelPaperCamera(CP.targetScale);WS.camX=CP.enterX+(WS.camX-CP.enterX)*v;WS.camY=CP.enterY+(WS.camY-CP.enterY)*v;}
    else{const s=parcelPaperDefault(devW,devH,devDpr);if(Math.abs(s-scale)>.001){view.zoom=s;applyScale();}parcelPaperCamera();}
@@ -10049,9 +10081,10 @@ async function parcelPaperBoot(){
   CP.primary.addEventListener('click',e=>{if(parcelPaperExit()){e.preventDefault();e.stopImmediatePropagation();}},true);
   const pick=document.getElementById('paperPick');for(const l of LEVELS.filter(l=>/^7-/.test(l.id))){const o=document.createElement('option');o.value=l.id;o.textContent=l.id+' · '+l.title;pick.append(o);}pick.onchange=()=>parcelStudySelect(pick.value);
   document.getElementById('paperView').onclick=()=>parcelPaperFit(parcelPaper.view==='board'?'room':'board');
-  document.getElementById('paperCourtSmall').onclick=document.getElementById('paperCourt').onclick=()=>parcelPaperFit(parcelPaper.view==='court'?'room':'court');
+  document.getElementById('paperCourtSmall').onclick=document.getElementById('paperCourt').onclick=()=>{parcelPaperFit('court');document.querySelector('#paperHeader details').open=false;};
+  document.getElementById('paperPlay').onclick=()=>parcelPaperFit('board');
   document.getElementById('paperMotion').onclick=e=>{parcelPaper.motion=!parcelPaper.motion;e.currentTarget.setAttribute('aria-pressed',String(parcelPaper.motion));e.currentTarget.textContent=parcelPaper.motion?'Motion on':'Motion off';dirty=true;};
-  document.getElementById('paperStory').onclick=()=>{pcIntro();};
+  document.getElementById('paperStory').onclick=()=>{if(parcelPaperExploring())parcelPaperFit('room');pcIntro();};
   document.getElementById('paperSolve').onclick=()=>{if(gm.mode==='running'||cpActive())return;gm.chutes=gm.L.solution.map(p=>({...p}));gm.tray={...gm.L.tray};for(const p of gm.chutes)gm.tray[p.type]--;gSyncSrc();gHud();dirty=true;};
   document.getElementById('paperGray').onclick=()=>{grayscale=!grayscale;dirty=true;};
   parcelPaper.state=()=>({ready:parcelPaper.ready,error:parcelPaper.error,level:gm.L.id,mode:gm.mode,chapter:CP.mode,frame:CP.frame,size:[gBoardSource().w,gBoardSource().h],motion:r.motion,bakes:r.architecture.bakes});
