@@ -1,0 +1,109 @@
+{
+  "type": "Generated exterior concepts, not runtime screenshots",
+  "baseline": "d38994059debe759394182d40484f9dd027353a3",
+  "runtimeSource": "e95567bdef0e68c498ee961eacba9b452ffb3ee7",
+  "runtimeUnchanged": true,
+  "method": "Three independent sequential ImageGen calls. Four local references attached to each. Original PNG bytes copied without image edits. Close-ups use CSS viewport framing.",
+  "requestedDimensions": [
+    1800,
+    1140
+  ],
+  "references": [
+    {
+      "path": "docs/review-images/depot-paper/room/maximum.webp",
+      "bytes": 371306,
+      "sha256": "d4e6c6a5735106686415cbe9d3152186f737224e8d28a709a8225b9695dbd267",
+      "dimensions": [
+        1800,
+        1140
+      ]
+    },
+    {
+      "path": "docs/review-images/depot-paper/office-reference.png",
+      "bytes": 1736927,
+      "sha256": "a416cbd372b713c5fd6567120b84f5d67c581c95d19216debd570b9f0d31fd2a",
+      "dimensions": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "path": "studies/depot-paper/compositions/goods-yard-lanterns-refined.png",
+      "bytes": 3260731,
+      "sha256": "3c3d71951c14c12ca2d8412d6a8c08165c98c1a43bbe4f811f637ac9c03dbb30",
+      "dimensions": [
+        1487,
+        1058
+      ]
+    },
+    {
+      "path": "docs/review-images/depot-paper/exterior/lantern-reference.png",
+      "bytes": 1328799,
+      "sha256": "2b7956b7d6adb5a0b89b98e7e10d77ba5eab551398a12425af8b76d1e653d7da",
+      "dimensions": [
+        1440,
+        1000
+      ]
+    }
+  ],
+  "lanternReferenceSource": "Fresh local browser capture of https://raw.githubusercontent.com/holleyy/grodappsite/main/cats-by-post-lantern-quay/index.html; not the exact original user screenshot",
+  "compositions": [
+    {
+      "displayNumber": 1,
+      "name": "Station Street",
+      "path": "studies/depot-paper/exterior/station-street.png",
+      "bytes": 3293991,
+      "sha256": "89336d5ac93a8a151e9fb373dce102c33f0afc1ecf48c05d1b15a18ed76366bf",
+      "dimensions": [
+        1576,
+        998
+      ],
+      "prompt": "prompts/station-street.txt"
+    },
+    {
+      "displayNumber": 2,
+      "name": "Sheltered Goods Court",
+      "path": "studies/depot-paper/exterior/goods-court.png",
+      "bytes": 3163302,
+      "sha256": "38b508b7c78d4264bd74fdd333f4686d0b2d8efe6a4692e226ed7bb5a46aba39",
+      "dimensions": [
+        1576,
+        998
+      ],
+      "prompt": "prompts/goods-court.txt"
+    },
+    {
+      "displayNumber": 3,
+      "name": "Railway Terrace",
+      "path": "studies/depot-paper/exterior/railway-terrace.png",
+      "bytes": 3263140,
+      "sha256": "10fa3c0befd17fd4a8f24ba572fde9bc0a33926a74bb963ebb04bd465c2e3ace",
+      "dimensions": [
+        1576,
+        998
+      ],
+      "prompt": "prompts/railway-terrace.txt"
+    }
+  ],
+  "actualRendererComparisons": [
+    {
+      "path": "studies/depot-paper/exterior/reference-first.webp",
+      "bytes": 349058,
+      "sha256": "6fbf5ed8c03db12615705cc50026ec3858694f717328ef3e9fbc4376bedb8d49",
+      "dimensions": [
+        1800,
+        1140
+      ]
+    },
+    {
+      "path": "studies/depot-paper/exterior/reference-maximum.webp",
+      "bytes": 371306,
+      "sha256": "d4e6c6a5735106686415cbe9d3152186f737224e8d28a709a8225b9695dbd267",
+      "dimensions": [
+        1800,
+        1140
+      ]
+    }
+  ],
+  "lanternSourceHTMLSHA256": "1edb28554cdae6aab3453e8c00c2c63569bf695d35c7b83502f837b2c084d3c6"
+}
