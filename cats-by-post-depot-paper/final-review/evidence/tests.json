@@ -1,0 +1,18 @@
+{
+  "broad": {
+    "command": "npm test",
+    "tests": 1723,
+    "passed": 1723,
+    "failed": 0,
+    "durationMs": 990325.21392,
+    "note": "Broad run started after the route and entry fixes, before the final scenery-cache bottom was extended by114 world pixels. Final focused/browser/cache checks and recaptures follow that last correction. Canonical simulation files and all files imported by the broad suite remain unchanged by the crop adjustment."
+  },
+  "finalFocused": {
+    "command": "node --test tests/depot-paper-*.test.js",
+    "tests": 68,
+    "passed": 68,
+    "failed": 0,
+    "durationMs": 2044.224845
+  },
+  "runtimeSHA256": "5f0d1e9c2f0094d33b5a6830ae13dbcfa21c8b7814b7ab7cb1a981a918b44240"
+}

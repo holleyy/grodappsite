@@ -1,0 +1,49 @@
+{
+  "entryCases": 16,
+  "records": {
+    "created": 0,
+    "boards": 4,
+    "bakes": 1,
+    "viewBakes": 2
+  },
+  "boards": [
+    {
+      "id": "3-1",
+      "pick": {
+        "x": 1,
+        "y": 1
+      }
+    },
+    {
+      "id": "4-1",
+      "pick": {
+        "x": 1,
+        "y": 1
+      }
+    },
+    {
+      "id": "4-7",
+      "pick": {
+        "x": 1,
+        "y": 1
+      }
+    },
+    {
+      "id": "4-15",
+      "pick": {
+        "x": 1,
+        "y": 1
+      }
+    }
+  ],
+  "errors": [],
+  "runtimeSHA256": "5f0d1e9c2f0094d33b5a6830ae13dbcfa21c8b7814b7ab7cb1a981a918b44240",
+  "reviewer": "depot_final_polish_review / GPT-6 Astra",
+  "focusedTests": 68,
+  "findings": {
+    "critical": 0,
+    "important": 0,
+    "minor": 0
+  },
+  "sampledFrames": 240
+}

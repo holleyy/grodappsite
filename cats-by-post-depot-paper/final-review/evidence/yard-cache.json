@@ -1,0 +1,11 @@
+{
+  "runtimeSHA256": "5f0d1e9c2f0094d33b5a6830ae13dbcfa21c8b7814b7ab7cb1a981a918b44240",
+  "bounds": {
+    "left": 1880,
+    "top": -140,
+    "width": 1320,
+    "height": 1534
+  },
+  "actualBottom": 1394,
+  "requiredBottom": 1389.6666666666667
+}

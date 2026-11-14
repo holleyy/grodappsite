@@ -1,0 +1,144 @@
+{
+  "runtimeSHA256": "5f0d1e9c2f0094d33b5a6830ae13dbcfa21c8b7814b7ab7cb1a981a918b44240",
+  "rows": [
+    {
+      "layout": "phone",
+      "id": "3-1",
+      "board": {
+        "w": 5,
+        "h": 4,
+        "roomX": 1,
+        "roomY": 0
+      },
+      "canvas": {
+        "width": 390,
+        "height": 434
+      },
+      "pointsInside": true,
+      "sendInside": true,
+      "overflow": false
+    },
+    {
+      "layout": "phone",
+      "id": "4-1",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "canvas": {
+        "width": 390,
+        "height": 434
+      },
+      "pointsInside": true,
+      "sendInside": true,
+      "overflow": false
+    },
+    {
+      "layout": "phone",
+      "id": "4-7",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "canvas": {
+        "width": 390,
+        "height": 434
+      },
+      "pointsInside": true,
+      "sendInside": true,
+      "overflow": false
+    },
+    {
+      "layout": "phone",
+      "id": "4-15",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "canvas": {
+        "width": 390,
+        "height": 434
+      },
+      "pointsInside": true,
+      "sendInside": true,
+      "overflow": false
+    },
+    {
+      "layout": "wide",
+      "id": "3-1",
+      "board": {
+        "w": 5,
+        "h": 4,
+        "roomX": 1,
+        "roomY": 0
+      },
+      "canvas": {
+        "width": 1140,
+        "height": 906
+      },
+      "pointsInside": true,
+      "sendInside": true,
+      "overflow": false
+    },
+    {
+      "layout": "wide",
+      "id": "4-1",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "canvas": {
+        "width": 1140,
+        "height": 906
+      },
+      "pointsInside": true,
+      "sendInside": true,
+      "overflow": false
+    },
+    {
+      "layout": "wide",
+      "id": "4-7",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "canvas": {
+        "width": 1140,
+        "height": 906
+      },
+      "pointsInside": true,
+      "sendInside": true,
+      "overflow": false
+    },
+    {
+      "layout": "wide",
+      "id": "4-15",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "canvas": {
+        "width": 1140,
+        "height": 906
+      },
+      "pointsInside": true,
+      "sendInside": true,
+      "overflow": false
+    }
+  ],
+  "chapter3Gates": true,
+  "respectsReducedMotion": true,
+  "errors": []
+}

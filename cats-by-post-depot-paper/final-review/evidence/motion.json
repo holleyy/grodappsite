@@ -1,0 +1,119 @@
+{
+  "records": [
+    {
+      "file": "postal-round.mp4",
+      "start": 0,
+      "duration": 48,
+      "width": 1280,
+      "height": 840,
+      "bounds": [
+        -220,
+        2200,
+        -180,
+        1350
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "station-life.mp4",
+      "start": 0,
+      "duration": 16,
+      "width": 1200,
+      "height": 900,
+      "bounds": [
+        1300,
+        1880,
+        -80,
+        590
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "van-route.mp4",
+      "start": 20,
+      "duration": 28,
+      "width": 1400,
+      "height": 800,
+      "bounds": [
+        1180,
+        3100,
+        300,
+        1450
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "chapter-demo.mp4",
+      "start": 0,
+      "duration": 10,
+      "width": 1200,
+      "height": 780,
+      "bounds": [
+        -220,
+        2200,
+        -180,
+        1350
+      ],
+      "chapter": "demo",
+      "index": 10,
+      "fps": 24
+    },
+    {
+      "file": "growth-one.mp4",
+      "start": 0,
+      "duration": 3,
+      "width": 1200,
+      "height": 780,
+      "bounds": [
+        -220,
+        2200,
+        -180,
+        1350
+      ],
+      "chapter": "growth1",
+      "index": 16,
+      "fps": 24
+    },
+    {
+      "file": "growth-two.mp4",
+      "start": 0,
+      "duration": 3,
+      "width": 1200,
+      "height": 780,
+      "bounds": [
+        -220,
+        2200,
+        -180,
+        1350
+      ],
+      "chapter": "growth2",
+      "index": 19,
+      "fps": 24
+    },
+    {
+      "file": "exit.mp4",
+      "start": 0,
+      "duration": 4.4,
+      "width": 1200,
+      "height": 780,
+      "bounds": [
+        -220,
+        2200,
+        -180,
+        1350
+      ],
+      "chapter": "exit",
+      "index": 24,
+      "fps": 24
+    }
+  ],
+  "errors": [],
+  "source": "Actual Canvas renderer, exact seekable ambient/chapter time, 24 fps H.264",
+  "runtimeSHA256": "5f0d1e9c2f0094d33b5a6830ae13dbcfa21c8b7814b7ab7cb1a981a918b44240"
+}

@@ -1,0 +1,17 @@
+{
+  "base": "8a3c88271853b48dafe481c3b86783d829b5feda",
+  "canonical": {
+    "src/sim/10_rules.js": "eaeeff8565f68d32ae6d8489be34664dacf4948a71f2bdf0b0835579454691c4",
+    "src/sim/12_boardanim.js": "5c181265db6570a822ee9fc08400a19cf4eff91beea5e12a6779d46876c88885",
+    "src/sim/19f_depot_chapter.js": "8aa0a4e3412edccf4d9fc1ae81a2abad17f43900003f18d71d1b54f988f6b113",
+    "src/sim/19b_depot.js": "28c670bac69fdc8b457573a7f97ef185fcc09828e7c8fe9bb7df7bc565949d4d",
+    "src/sim/19c_depot_world.js": "108b804752ee58749801c13c763cdc95417d16874a2b38eaaf5a8992b3b67f85",
+    "src/data/depot.json": "50f59fb8bf5aaec5b587ba1406eede3a28a5629d12719e25ba09128d4dcacc3b",
+    "src/data/levels.json": "be1c22ee6456819c200e42d6f8abb48b9c4cc4db9c414928c7fc60ea10cf40a7",
+    "src/data/edge_portals.json": "69e79ce69af8bc38c43def48e594ae88a4cc530e214888d71ead112ca312d7d2",
+    "src/render/24a_paper_data.js": "a08370d963cecfa4548ed1224f057413800d89e7943ebf8eea86cc9a38f6c2d4",
+    "src/data/palette.json": "2682d6e8baabbdb535ecf73a884c5918c4743d035c87f75913e025e8b2dc5f2d"
+  },
+  "htmlSHA256": "5f0d1e9c2f0094d33b5a6830ae13dbcfa21c8b7814b7ab7cb1a981a918b44240",
+  "deliveries": 25
+}
