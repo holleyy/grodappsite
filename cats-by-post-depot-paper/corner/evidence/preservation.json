@@ -1,0 +1,64 @@
+{
+  "sourceBase": "9916d89265a3c8be347352d3f6592c620c34cdb0",
+  "originalMainBase": "8a3c88271853b48dafe481c3b86783d829b5feda",
+  "acceptedBeforePublication": "91c772fe39fe75a60bdf34da1b1785db125f23f0",
+  "beforeRuntimeSHA256": "b822a0657d6534ded0b1740af39983337d080c51a489617bb704c3be36e9de0d",
+  "frozenSources": [
+    {
+      "path": "src/fidelity/depot-paper/structure.js",
+      "sha256": "f0b06dffdd343241e95a8bf7680d50004292dbe1ef6ee1f889b19630007c0e2e",
+      "exact": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/projection.js",
+      "sha256": "a96bd64b599c7ce830297f18c6064fac22dac725bdab8b3771a7facded86fd4f",
+      "exact": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/renderer.js",
+      "sha256": "9b50feb611c276529760d63a5bd9373e275199f9207750932e15de359f48e743",
+      "exact": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/postal-life.js",
+      "sha256": "57e6ad266488417e2fdb2ff9a98915aace0ca72c1e929c4ad14f8f3d2d845f8f",
+      "exact": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/session.js",
+      "sha256": "9c59fa34864478c21ee63c7eecdb20a629b5626da62eada5e832d90276535751",
+      "exact": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/storage.js",
+      "sha256": "947f36ea87aef631bbce23bef73fa759257ee53d93e4995477d83120ed1a7d08",
+      "exact": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/chapter.js",
+      "sha256": "093d67829f13509ff14df46f2110ec8ccca7d1e662853893a80fc412b3c58a78",
+      "exact": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/acting.js",
+      "sha256": "9fdd878fd8dc3db79aa142d40351184458da965aab7916a96384a335623422e6",
+      "exact": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/pieces.js",
+      "sha256": "365187bec6d391ba27de11b1ece703dd413d7d57336b122b46b1e77b9283d5c5",
+      "exact": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/portals.js",
+      "sha256": "0ec3ec907a2475aa3e6a19fda8fd4de229bb8590a47b4717a3d56d6ecbbbbc4e",
+      "exact": true
+    },
+    {
+      "path": "src/fidelity/depot-paper/ticket-rack.js",
+      "sha256": "22d90eab95eb62dea1587f8a3a58e0fccc220b4e82bc8583a8678d35be63a075",
+      "exact": true
+    }
+  ],
+  "runtimeSHA256": "a4e8ca0c6baa9c97009014a7c453a3a6f9289d2dfeca7f07322ea625545aa981"
+}

@@ -1,0 +1,23 @@
+{
+  "CORNER-HANDOVER.md": "c44dbbe8b67c6620ddb4b80abcfae1c147a54067b3d117dc2ce3bdb191dbe192",
+  "CORNER-REVIEW.md": "a529426d09affd8f50e08039d1f7b32bac617571c2f603434349014c489b6ef3",
+  "evidence/before-loading.webp": "c8ee865653e017302283acd1e0ed0731a4c5066079edef711823b0f3a87045af",
+  "evidence/before-loft.webp": "6f7541531a36367e8f0330dcdde16a4982f3457166b6850f70489b43d584cac0",
+  "evidence/before-maximum.webp": "02ef478f9cb938d4bbd2a660911800117a3603de23e53ad6c8c7ca2f74a11b0b",
+  "evidence/browser.json": "51a0b74eb58e9fc72974a90ce5285b5c95ff90ce7dcbbbe9b71f19166ce3a640",
+  "evidence/first.webp": "8c371f505af2ec983b8e2a51e1291570b56211a0a6f268a501b062d15a8fd329",
+  "evidence/full-tests.log": "68e5690d08788884bf98a4604684d6013ea2609c564d6f848c1c4f18f288665d",
+  "evidence/grayscale.webp": "6f4cc8dd0c7c6e2efbcec4a2bfb1ff9feae11368199201aff753ce393a0ff121",
+  "evidence/interactions.json": "f23418939b4349c74bb76b6d53ca74262d52fbb85e60df25174ebee1a70d646c",
+  "evidence/loading.webp": "6f1b694cc023bc8c8936d5c5c7c2e6656f9aadf3001baeae520c2a8290be7a01",
+  "evidence/loft.webp": "4919126d8e062f5dec9df85be533f132beca411e2ba5c602e296abbce4773055",
+  "evidence/maximum.webp": "4c8f8a67daf00d1fdac5ae3b8e6fafe5ba913122af58f46b930e2c088bdd8848",
+  "evidence/office-reference.png": "a416cbd372b713c5fd6567120b84f5d67c581c95d19216debd570b9f0d31fd2a",
+  "evidence/package-browser.json": "2d6799d2bc827acb655494bda645a06cf515d0690fa7a703855cfb2c41b85180",
+  "evidence/phone.png": "cd4cc4cb3c662ec1bb744764ce123ef4e544bc97b3363913dd077843c04a6839",
+  "evidence/preservation.json": "c282aec85e120a7cf3ea0dc48dc8c4d1d2013c4c9f141d2a9300fa4dea83aad6",
+  "evidence/selected-reference.png": "3c3d71951c14c12ca2d8412d6a8c08165c98c1a43bbe4f811f637ac9c03dbb30",
+  "evidence/unit-tests.log": "066f310ac2b6af4051b1a5e854b29992f06e4dfe32f275f3f790ee8d5450c78b",
+  "index.html": "5f23efa920df4c6c70319ca380ef1596c30516ac19889517972d7845cc65b92b",
+  "playable.html": "a4e8ca0c6baa9c97009014a7c453a3a6f9289d2dfeca7f07322ea625545aa981"
+}
