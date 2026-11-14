@@ -1,0 +1,266 @@
+[
+  {
+    "frame": 600,
+    "worker": {
+      "x": 128.97222222222223,
+      "y": 61,
+      "z": 0,
+      "face": 2,
+      "action": "carry-walk",
+      "frame": 1,
+      "handling": -1,
+      "grip": true,
+      "handX": 124.97222222222223,
+      "handY": 65,
+      "handZ": 10
+    },
+    "parcel": {
+      "x": 124.97222222222223,
+      "y": 65,
+      "z": 10,
+      "visible": true,
+      "place": "hand",
+      "wrapped": false
+    },
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": false,
+      "departing": false,
+      "closed": false,
+      "cargo": "empty",
+      "trip": 0
+    }
+  },
+  {
+    "frame": 1008,
+    "worker": {
+      "x": 67,
+      "y": 61,
+      "z": 0,
+      "face": 3,
+      "action": "sort",
+      "frame": 0,
+      "handling": -1,
+      "grip": false,
+      "handX": 71,
+      "handY": 57,
+      "handZ": 10
+    },
+    "parcel": {
+      "x": 67,
+      "y": 49,
+      "z": 9,
+      "visible": true,
+      "place": "bench",
+      "wrapped": true
+    },
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": false,
+      "departing": false,
+      "closed": false,
+      "cargo": "empty",
+      "trip": 0
+    }
+  },
+  {
+    "frame": 1584,
+    "worker": {
+      "x": 152,
+      "y": 61,
+      "z": 0,
+      "face": 3,
+      "action": "read",
+      "frame": 0,
+      "handling": -1,
+      "grip": false,
+      "handX": 156,
+      "handY": 57,
+      "handZ": 10
+    },
+    "parcel": {
+      "x": 154,
+      "y": 50,
+      "z": 8,
+      "visible": true,
+      "place": "scale",
+      "wrapped": true
+    },
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": false,
+      "departing": false,
+      "closed": false,
+      "cargo": "empty",
+      "trip": 0
+    }
+  },
+  {
+    "frame": 1760,
+    "worker": {
+      "x": 176.89473684210526,
+      "y": 61,
+      "z": 0,
+      "face": 1,
+      "action": "carry-walk",
+      "frame": 2,
+      "handling": -1,
+      "grip": true,
+      "handX": 180.89473684210526,
+      "handY": 57,
+      "handZ": 10
+    },
+    "parcel": {
+      "x": 180.89473684210526,
+      "y": 57,
+      "z": 10,
+      "visible": true,
+      "place": "hand",
+      "wrapped": true
+    },
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": false,
+      "departing": false,
+      "closed": false,
+      "cargo": "empty",
+      "trip": 0
+    }
+  },
+  {
+    "frame": 2020,
+    "worker": {
+      "x": 185,
+      "y": 31.81159420289855,
+      "z": 0,
+      "face": 3,
+      "action": "push",
+      "frame": 2,
+      "handling": -1,
+      "grip": false,
+      "handX": 189,
+      "handY": 27.81159420289855,
+      "handZ": 10
+    },
+    "parcel": {
+      "x": 185,
+      "y": 19.81159420289855,
+      "z": 10,
+      "visible": true,
+      "place": "dispatch",
+      "wrapped": true
+    },
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": false,
+      "departing": false,
+      "closed": false,
+      "cargo": "empty",
+      "trip": 0
+    }
+  },
+  {
+    "frame": 2160,
+    "worker": {
+      "x": 185,
+      "y": 23,
+      "z": 0,
+      "face": 3,
+      "action": "read",
+      "frame": 0,
+      "handling": -1,
+      "grip": false,
+      "handX": 189,
+      "handY": 19,
+      "handZ": 10
+    },
+    "parcel": {
+      "x": 185,
+      "y": 2.5980463624435046,
+      "z": 10.76381396705059,
+      "visible": true,
+      "place": "transfer",
+      "wrapped": true
+    },
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": false,
+      "departing": false,
+      "closed": false,
+      "cargo": "empty",
+      "trip": 0
+    }
+  },
+  {
+    "frame": 2268,
+    "worker": {
+      "x": 185,
+      "y": 23,
+      "z": 0,
+      "face": 0,
+      "action": "carry-walk",
+      "frame": 0,
+      "handling": -1,
+      "grip": false,
+      "handX": 181,
+      "handY": 27,
+      "handZ": 10
+    },
+    "parcel": {
+      "x": 185,
+      "y": 0,
+      "z": 11,
+      "visible": true,
+      "place": "van",
+      "wrapped": true
+    },
+    "van": {
+      "x": 185,
+      "y": 12,
+      "loaded": true,
+      "departing": false,
+      "closed": true,
+      "cargo": "outgoing",
+      "trip": 0
+    }
+  },
+  {
+    "frame": 2500,
+    "worker": {
+      "x": 168.08333333333334,
+      "y": 61,
+      "z": 0,
+      "face": 2,
+      "action": "walk",
+      "frame": 3,
+      "handling": -1,
+      "grip": false,
+      "handX": 164.08333333333334,
+      "handY": 65,
+      "handZ": 10
+    },
+    "parcel": {
+      "x": 165.55555555555554,
+      "y": -14,
+      "z": 11,
+      "visible": true,
+      "place": "van",
+      "wrapped": true
+    },
+    "van": {
+      "x": 165.55555555555554,
+      "y": -2,
+      "loaded": true,
+      "departing": true,
+      "closed": true,
+      "cargo": "outgoing",
+      "trip": 0
+    }
+  }
+]

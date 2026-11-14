@@ -162,6 +162,9 @@ body #hud #btnSend{background:#326e70!important;border-color:#326e70!important}b
 @media(max-width:700px){#paperHeader{padding:10px 12px;align-items:flex-start;flex-direction:column;gap:8px}#paperHeader h1{font-size:21px}#paperHeader nav{gap:5px;width:100%}#paperHeader button,#paperHeader select,#paperHeader summary{font-size:10px;padding:8px;min-height:34px}#paperHeader select{width:145px}#paperHeader details{margin-left:auto}#paperStory{display:none}#hud{padding:9px;bottom:7px;gap:5px}#hud button{padding:8px;font-size:11px;min-height:36px}}
 @media(max-height:520px) and (orientation:landscape){#paperHeader{padding:5px 12px;height:36px}#paperHeader h1{font-size:19px}#paperHeader p{display:none}#paperHeader button,#paperHeader select,#paperHeader summary{padding:6px;min-height:30px}#hud{right:7px;left:auto;width:235px;max-height:calc(100vh - 62px);overflow-y:auto;bottom:7px}#paperSize{display:none}}
 
+/* Wider study framing keeps the maximum board visible alongside its controls. */
+@media(min-width:1180px) and (min-height:650px){#hud{left:auto;right:18px;bottom:28px;width:292px;max-width:292px;margin:0;max-height:calc(100vh - 145px);overflow-y:auto}#chapterCard{left:auto;right:18px;transform:none;width:292px;bottom:28px;max-height:calc(100vh - 145px);overflow:auto}}
+
 </style>
 </head>
 <body class="paper-loading"><header id="paperHeader"><div><p>CATS BY POST · MORNING DISPATCH</p><h1>Parcel Room <span id="paperSize"></span></h1></div><nav aria-label="Parcel study"><select id="paperPick" aria-label="Delivery"></select><button id="paperView">Closer to the board</button><button id="paperMotion" aria-pressed="true">Motion on</button><button id="paperStory">The story</button><details><summary>Study tools</summary><button id="paperSolve">Place solution</button><button id="paperGray">Grayscale</button><a href="review/">Material review</a></details></nav></header><div id="paperLoading" role="status">Opening the parcel room…</div>
@@ -261,6 +264,6 @@ body #hud #btnSend{background:#326e70!important;border-color:#326e70!important}b
     <button type="button" data-file="atlas.json">atlas.json</button><button type="button" data-file="palette.json">palette.json</button><button type="button" data-file="backdrops.json">backdrops.json</button></div>
   <div id="atlasHint">S to close</div>
 </div></div>
-<script>Promise.all(["runtime/scene-899dc5198cda-0.txt", "runtime/scene-899dc5198cda-1.txt", "runtime/scene-899dc5198cda-2.txt", "runtime/scene-899dc5198cda-3.txt", "runtime/scene-899dc5198cda-4.txt"].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Could not load the Parcel study: '+r.status);return r.text();})).then(parts=>{const script=document.createElement('script');script.textContent=parts.join('');document.body.appendChild(script);}).catch(error=>{document.getElementById('paperLoading').textContent=error.message;console.error(error);});</script>
+<script>Promise.all(["runtime/scene-335b28b3e12c-0.txt", "runtime/scene-335b28b3e12c-1.txt", "runtime/scene-335b28b3e12c-2.txt", "runtime/scene-335b28b3e12c-3.txt", "runtime/scene-335b28b3e12c-4.txt"].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Could not load the Parcel study: '+r.status);return r.text();})).then(parts=>{const script=document.createElement('script');script.textContent=parts.join('');document.body.appendChild(script);}).catch(error=>{document.getElementById('paperLoading').textContent=error.message;console.error(error);});</script>
 </body>
 </html>
