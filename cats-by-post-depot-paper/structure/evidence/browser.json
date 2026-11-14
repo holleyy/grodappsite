@@ -1,0 +1,354 @@
+{
+  "rows": [
+    {
+      "id": "3-1",
+      "board": {
+        "w": 5,
+        "h": 4,
+        "roomX": 1,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 20
+    },
+    {
+      "id": "3-2",
+      "board": {
+        "w": 5,
+        "h": 4,
+        "roomX": 1,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 20
+    },
+    {
+      "id": "3-3",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "3-4",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "3-5",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "3-6",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 30
+    },
+    {
+      "id": "3-7",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 30
+    },
+    {
+      "id": "3-8",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "3-9",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "3-10",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-1",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-2",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-3",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-4",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-5",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-6",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-7",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 30
+    },
+    {
+      "id": "4-8",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 30
+    },
+    {
+      "id": "4-9",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 30
+    },
+    {
+      "id": "4-10",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-11",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-12",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-13",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-14",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-15",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    }
+  ],
+  "frontRailAfterParcels": true,
+  "lastLoftParcel": 27,
+  "frontRail": 28,
+  "stableBakes": true,
+  "stableBoards": true,
+  "phone": {
+    "width": 390,
+    "overflow": false,
+    "tickets": 12,
+    "sendBottom": 744
+  },
+  "errors": [],
+  "captures": [
+    {
+      "file": "maximum.png",
+      "width": 1800,
+      "height": 1140,
+      "bounds": {
+        "left": 20,
+        "right": 1810,
+        "top": -85,
+        "bottom": 1040
+      },
+      "index": 24
+    },
+    {
+      "file": "loft.png",
+      "width": 1200,
+      "height": 1120,
+      "bounds": {
+        "left": 680,
+        "right": 1250,
+        "top": 45,
+        "bottom": 590
+      },
+      "index": 24
+    },
+    {
+      "file": "access.png",
+      "width": 900,
+      "height": 1150,
+      "bounds": {
+        "left": 950,
+        "right": 1180,
+        "top": 280,
+        "bottom": 590
+      },
+      "index": 24
+    },
+    {
+      "file": "loading.png",
+      "width": 1300,
+      "height": 1100,
+      "bounds": {
+        "left": 1160,
+        "right": 1810,
+        "top": 230,
+        "bottom": 800
+      },
+      "index": 24
+    },
+    {
+      "file": "first.png",
+      "width": 1800,
+      "height": 1140,
+      "bounds": {
+        "left": 20,
+        "right": 1810,
+        "top": -85,
+        "bottom": 1040
+      },
+      "index": 0
+    }
+  ],
+  "runtimeSHA256": "b822a0657d6534ded0b1740af39983337d080c51a489617bb704c3be36e9de0d"
+}

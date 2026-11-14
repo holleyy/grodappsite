@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 980" role="img" aria-labelledby="title desc"><title id="title">Town Depot — floor and loft access</title><desc id="desc">The fixed seven by five board retains a half-cell clear apron. The compact loft has a connected ladder, clear landing and walking strip. The rear loading yard joins a ramp down to the pavement.</desc><rect width="1440" height="980" fill="#f7f2e5"/><style>text{font-family:Arial,sans-serif;fill:#284b4a} .title{font-size:28px;font-weight:700}.small{font-size:16px}.label{font-size:18px;font-weight:600}</style><text x="45" y="50" class="title">Town Depot · structural plan</text><text x="45" y="80" class="small">Coordinates come directly from the rendered layout. Board data and its position are unchanged.</text>
+<rect x="58" y="144.5" width="643.5" height="634.5" fill="#dfd6c2" stroke="#a9987c" stroke-width="2" />
+<rect x="94.00000000000001" y="266" width="522.0000000000001" height="423" fill="#fff8e8" stroke="#a9987c" stroke-width="2" />
+<rect x="460.75" y="149" width="238.50000000000003" height="116.99999999999999" fill="#c9d1c6" stroke="#a9987c" stroke-width="2" />
+<rect x="622.75" y="266" width="76.50000000000004" height="198.00000000000003" fill="#c9d1c6" stroke="#a9987c" stroke-width="2" />
+<rect x="476.5" y="253.4" width="123.74999999999996" height="22.5" fill="#f4e3c3" stroke="#416f69" stroke-width="2" />
+<rect x="197.5" y="387.5" width="360" height="270" fill="none" stroke="#a77947" stroke-width="2" stroke-dasharray="7 5"/>
+<rect x="220" y="410" width="315" height="225" fill="#8596ac" stroke="#e9d6af" stroke-width="2" />
+<path d="M265 410v225" stroke="#ead9b6"/>
+<path d="M310 410v225" stroke="#ead9b6"/>
+<path d="M355 410v225" stroke="#ead9b6"/>
+<path d="M400 410v225" stroke="#ead9b6"/>
+<path d="M445 410v225" stroke="#ead9b6"/>
+<path d="M490 410v225" stroke="#ead9b6"/>
+<path d="M220 455h315" stroke="#ead9b6"/>
+<path d="M220 500h315" stroke="#ead9b6"/>
+<path d="M220 545h315" stroke="#ead9b6"/>
+<path d="M220 590h315" stroke="#ead9b6"/>
+<rect x="93.77499999999999" y="271.625" width="9.45" height="9.45" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="147.775" y="271.625" width="9.45" height="9.45" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="345.775" y="271.625" width="9.45" height="9.45" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="460.525" y="271.625" width="9.450000000000038" height="9.45" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="602.275" y="271.625" width="9.450000000000038" height="9.45" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="152.95" y="349.25" width="9.899999999999999" height="9.90000000000001" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="339.25" y="349.25" width="9.90000000000001" height="9.90000000000001" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="162.4" y="274.1" width="175.50000000000003" height="71.10000000000001" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="350.5" y="320.9" width="53.10000000000001" height="33.3" fill="#d8b77d" stroke="#a9987c" stroke-width="2" />
+<rect x="102.1" y="419.9" width="40.050000000000004" height="200.7" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="424.75" y="276.8" width="24.749999999999993" height="26.1" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="428.79999999999995" y="281.3" width="16.200000000000014" height="17.099999999999994" fill="#69938a" stroke="#a9987c" stroke-width="2" />
+<rect x="152.5" y="266" width="198.00000000000003" height="94.5" fill="none" stroke="#8c7148" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="45" y="125" class="label">GROUND FLOOR</text>
+<text x="310" y="535" class="label">7 × 5 · fixed board</text>
+<text x="207" y="681.5" class="small">Dashed border: half-cell portal apron</text>
+<text x="460.75" y="135" class="small">Rear loading yard · level with hall</text>
+<text x="625" y="302" class="small">Ramp ↓</text>
+<text x="625" y="437" class="small">to pavement</text>
+<text x="45" y="795" class="label">The rear wall moves back; the board stays put.</text>
+<text x="45" y="825" class="small">The van has a continuous yard → ramp → pavement route.</text>
+<text x="45" y="855" class="small">The ladder and cabinet stay outside the board’s edge clearance.</text>
+<text x="825" y="125" class="label">LOFT · ABOVE THE SORTING CABINET</text>
+<rect x="881.28" y="153.59999999999997" width="420.24" height="214.20000000000002" fill="#ebd1a0" stroke="#8c7148" stroke-width="2"/>
+<rect x="867" y="192.36" width="14.27999999999999" height="175.43999999999997" fill="#ebd1a0" stroke="#8c7148" stroke-width="2"/>
+<rect x="1301.52" y="192.36" width="14.280000000000012" height="175.43999999999997" fill="#ebd1a0" stroke="#8c7148" stroke-width="2"/>
+<rect x="889.44" y="276" width="412.08" height="81.60000000000001" fill="#d9e7cc" stroke="#7f9b6c" stroke-width="2"/>
+<rect x="1228.08" y="276" width="87.71999999999998" height="81.60000000000001" fill="#c0d8b7" stroke="#7f9b6c" stroke-width="2"/>
+<rect x="902.7" y="202.56" width="68.33999999999999" height="55.080000000000005" fill="#bb986a" stroke="#8c7148" stroke-width="2"/>
+<rect x="992.46" y="199.5" width="65.28" height="56.09999999999998" fill="#bb986a" stroke="#8c7148" stroke-width="2"/>
+<rect x="1083.24" y="201.54000000000002" width="69.36" height="54.05999999999998" fill="#bb986a" stroke="#8c7148" stroke-width="2"/>
+<rect x="1173" y="205.62" width="44.879999999999995" height="49.979999999999976" fill="#bb986a" stroke="#8c7148" stroke-width="2"/>
+<rect x="856.29" y="166.34999999999997" width="21.419999999999995" height="21.419999999999995" fill="#3f7067" stroke="#8c7148" stroke-width="2"/>
+<rect x="1305.09" y="166.34999999999997" width="21.419999999999995" height="21.419999999999995" fill="#3f7067" stroke="#8c7148" stroke-width="2"/>
+<path d="M870.06 192.36L870.06 364.74" stroke="#aa7631" stroke-width="5"/>
+<path d="M870.06 364.74L1312.74 364.74" stroke="#aa7631" stroke-width="5"/>
+<path d="M1312.74 192.36L1312.74 269.88000000000005" stroke="#aa7631" stroke-width="5"/>
+<path d="M1312.74 361.68L1312.74 364.74" stroke="#aa7631" stroke-width="5"/>
+<path d="M1249.5 316.79999999999995h66.3" fill="none" stroke="#315f50" stroke-width="3"/><path d="M1297.44 308.79999999999995l18.36 8l-18.36 8" fill="none" stroke="#315f50" stroke-width="3"/>
+<text x="825" y="455" class="small">Green: continuous walking strip and landing</text>
+<text x="825" y="485" class="small">Right opening: ladder meets the deck at the same height</text>
+<text x="825" y="515" class="small">Rear corners: deck and rails stop beside the columns</text>
+<text x="825" y="545" class="small">Brown: supported parcel stacks, clear of the route</text>
+<text x="825" y="625" class="label">This is a geometry review.</text>
+<text x="825" y="655" class="small">Material finish, light and full postal acting</text>
+<text x="825" y="680" class="small">remain the next stages.</text>
+</svg>
