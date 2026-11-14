@@ -2005,6 +2005,7 @@ const StudyCatForms=(function(){
 'use strict';
 const N=192,TAU=Math.PI*2,textures=Object.create(null);let atlas=null;
 const lx=new Float64Array(25),ly=new Float64Array(25),lr=new Float64Array(25),order=[0,1,2,3];
+const skinTip={x:0,y:0,z:0};
 const FUR=[79,68,70],CREAM=[232,220,195];
 function prepare(fibre,views){
  atlas=views;
@@ -2023,12 +2024,12 @@ function oval(ctx,x,y,z,fx,fy,rf,rs,rz,key){
  ctx.save();ctx.transform(sx,shear,0,sy,705+(x-y)*51,285+(x+y)*25.5-z*53);ctx.drawImage(textures[key],-1,-1,2,2);ctx.restore();
 }
 function limb(ctx,a,i){
- const p0=a.hips[i],p1=a.knees[i],p2=a.hocks[i],p3=a.feet[i];let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+ const p0=a.hips[i],p1=a.knees[i],p2=a.hocks[i],p3=skinTip;skinTip.x=a.feet[i].x;skinTip.y=a.feet[i].y;skinTip.z=a.feet[i].z+.045;let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
  // One tapered skin outline covers the chain. The knee/hock alter the curve;
  // there are no exposed cylinders, separate cuffs or mechanical joint caps.
  for(let k=0;k<=24;k++){const t=k/24*3,seg=Math.min(2,Math.floor(t)),u=t-seg,b=seg===0?p0:seg===1?p1:p2,c=seg===0?p1:seg===1?p2:p3,prev=seg===0?p0:seg===1?p0:p1,next=seg===0?p2:p3,u2=u*u,u3=u2*u;
   const x=.5*((2*b.x)+(-prev.x+c.x)*u+(2*prev.x-5*b.x+4*c.x-next.x)*u2+(-prev.x+3*b.x-3*c.x+next.x)*u3),y=.5*((2*b.y)+(-prev.y+c.y)*u+(2*prev.y-5*b.y+4*c.y-next.y)*u2+(-prev.y+3*b.y-3*c.y+next.y)*u3),z=.5*((2*b.z)+(-prev.z+c.z)*u+(2*prev.z-5*b.z+4*c.z-next.z)*u2+(-prev.z+3*b.z-3*c.z+next.z)*u3);
-  lx[k]=705+(x-y)*51;ly[k]=285+(x+y)*25.5-z*53;lr[k]=(i<2?.060+.026*(1-k/24):.052+.075*(1-k/24)**2)*51;minX=Math.min(minX,lx[k]-lr[k]);maxX=Math.max(maxX,lx[k]+lr[k]);minY=Math.min(minY,ly[k]-lr[k]);maxY=Math.max(maxY,ly[k]+lr[k]);
+  lx[k]=705+(x-y)*51;ly[k]=285+(x+y)*25.5-z*53;lr[k]=(i<2?.060+.026*(1-k/24):.052+.075*(1-k/24)**2)*(1-.78*(k/24)**3)*51;minX=Math.min(minX,lx[k]-lr[k]);maxX=Math.max(maxX,lx[k]+lr[k]);minY=Math.min(minY,ly[k]-lr[k]);maxY=Math.max(maxY,ly[k]+lr[k]);
  }
  ctx.save();ctx.beginPath();for(let side=0;side<2;side++)for(let j=0;j<=24;j++){const k=side?24-j:j,l=Math.max(0,k-1),r=Math.min(24,k+1),dx=lx[r]-lx[l],dy=ly[r]-ly[l],len=Math.max(.001,Math.hypot(dx,dy)),sgn=side?-1:1,x=lx[k]-dy/len*lr[k]*sgn,y=ly[k]+dx/len*lr[k]*sgn;if(!side&&!j)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.closePath();ctx.clip();ctx.drawImage(textures.furTile,minX,minY,maxX-minX,maxY-minY);ctx.restore();
  const f=a.feet[i];oval(ctx,f.x+f.fx*.018,f.y+f.fy*.018,f.z+.045,f.fx,f.fy,.082,.056,.045,'cream');
