@@ -1,0 +1,25 @@
+{
+  "baseline": {
+    "command": "npm test",
+    "tests": 1714,
+    "passed": 1714,
+    "failed": 0,
+    "durationMs": 1021014.850427
+  },
+  "broad": {
+    "command": "npm test",
+    "tests": 1720,
+    "passed": 1720,
+    "failed": 0,
+    "durationMs": 1131557.445904,
+    "note": "Run began before the final station-reader horizontal-position adjustment. Final focused and browser checks follow that adjustment on the frozen runtime."
+  },
+  "finalFocused": {
+    "command": "node --test tests/depot-paper-*.test.js",
+    "tests": 65,
+    "passed": 65,
+    "failed": 0,
+    "durationMs": 2306.261642
+  },
+  "runtimeSHA256": "ba0abfd531a72d6ed6c0030c27b4012e4fd31f2016017b7553e7e59a5a8df2aa"
+}

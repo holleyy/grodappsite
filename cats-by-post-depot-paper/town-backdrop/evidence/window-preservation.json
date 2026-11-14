@@ -1,0 +1,178 @@
+{
+  "changedGlassPixels": 55021,
+  "outsideGlassPixels": 0,
+  "maxOutsideDelta": 0,
+  "examples": [],
+  "barSamples": [
+    {
+      "start": -0.1,
+      "u": 232,
+      "v": 125,
+      "delta": 0
+    },
+    {
+      "start": -0.1,
+      "u": 144,
+      "v": 206,
+      "delta": 0
+    },
+    {
+      "start": -0.1,
+      "u": 173,
+      "v": 173,
+      "delta": 0
+    },
+    {
+      "start": -0.1,
+      "u": 292,
+      "v": 173,
+      "delta": 0
+    },
+    {
+      "start": -0.1,
+      "u": 322,
+      "v": 211,
+      "delta": 0
+    },
+    {
+      "start": -0.1,
+      "u": 170,
+      "v": 600,
+      "delta": 0
+    },
+    {
+      "start": -0.1,
+      "u": 299,
+      "v": 600,
+      "delta": 0
+    },
+    {
+      "start": -0.1,
+      "u": 240,
+      "v": 494,
+      "delta": 0
+    },
+    {
+      "start": -0.1,
+      "u": 240,
+      "v": 779,
+      "delta": 0
+    },
+    {
+      "start": 2.4,
+      "u": 232,
+      "v": 125,
+      "delta": 0
+    },
+    {
+      "start": 2.4,
+      "u": 144,
+      "v": 206,
+      "delta": 0
+    },
+    {
+      "start": 2.4,
+      "u": 173,
+      "v": 173,
+      "delta": 0
+    },
+    {
+      "start": 2.4,
+      "u": 292,
+      "v": 173,
+      "delta": 0
+    },
+    {
+      "start": 2.4,
+      "u": 322,
+      "v": 211,
+      "delta": 0
+    },
+    {
+      "start": 2.4,
+      "u": 170,
+      "v": 600,
+      "delta": 0
+    },
+    {
+      "start": 2.4,
+      "u": 299,
+      "v": 600,
+      "delta": 0
+    },
+    {
+      "start": 2.4,
+      "u": 240,
+      "v": 494,
+      "delta": 0
+    },
+    {
+      "start": 2.4,
+      "u": 240,
+      "v": 779,
+      "delta": 0
+    },
+    {
+      "start": 4.9,
+      "u": 232,
+      "v": 125,
+      "delta": 0
+    },
+    {
+      "start": 4.9,
+      "u": 144,
+      "v": 206,
+      "delta": 0
+    },
+    {
+      "start": 4.9,
+      "u": 173,
+      "v": 173,
+      "delta": 0
+    },
+    {
+      "start": 4.9,
+      "u": 292,
+      "v": 173,
+      "delta": 0
+    },
+    {
+      "start": 4.9,
+      "u": 322,
+      "v": 211,
+      "delta": 0
+    },
+    {
+      "start": 4.9,
+      "u": 170,
+      "v": 600,
+      "delta": 0
+    },
+    {
+      "start": 4.9,
+      "u": 299,
+      "v": 600,
+      "delta": 0
+    },
+    {
+      "start": 4.9,
+      "u": 240,
+      "v": 494,
+      "delta": 0
+    },
+    {
+      "start": 4.9,
+      "u": 240,
+      "v": 779,
+      "delta": 0
+    }
+  ],
+  "baseDimensions": [
+    2055,
+    1525
+  ],
+  "maskMarginSourcePixels": 8,
+  "counterAndSupportsExact": true,
+  "fourBoardsExact": true,
+  "runtimeSHA256": "ba0abfd531a72d6ed6c0030c27b4012e4fd31f2016017b7553e7e59a5a8df2aa"
+}

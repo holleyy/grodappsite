@@ -1,0 +1,19 @@
+{
+  "runtimeSHA256": "ba0abfd531a72d6ed6c0030c27b4012e4fd31f2016017b7553e7e59a5a8df2aa",
+  "rows": [
+    {
+      "width": 390,
+      "images": 11,
+      "links": 17,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "images": 11,
+      "links": 17,
+      "overflow": false
+    }
+  ],
+  "phoneControls": true,
+  "errors": []
+}

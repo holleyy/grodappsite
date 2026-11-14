@@ -1,0 +1,638 @@
+{
+  "rows": [
+    {
+      "id": "3-1",
+      "board": {
+        "w": 5,
+        "h": 4,
+        "roomX": 1,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 20
+    },
+    {
+      "id": "3-2",
+      "board": {
+        "w": 5,
+        "h": 4,
+        "roomX": 1,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 20
+    },
+    {
+      "id": "3-3",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "3-4",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "3-5",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "3-6",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 30
+    },
+    {
+      "id": "3-7",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 30
+    },
+    {
+      "id": "3-8",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "3-9",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "3-10",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-1",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-2",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-3",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-4",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-5",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-6",
+      "board": {
+        "w": 6,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 24
+    },
+    {
+      "id": "4-7",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 30
+    },
+    {
+      "id": "4-8",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 30
+    },
+    {
+      "id": "4-9",
+      "board": {
+        "w": 6,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 30
+    },
+    {
+      "id": "4-10",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-11",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-12",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-13",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-14",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    },
+    {
+      "id": "4-15",
+      "board": {
+        "w": 7,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "mode": "won",
+      "picks": 35
+    }
+  ],
+  "frontRailAfterParcels": true,
+  "lastLoftParcel": 26,
+  "frontRail": 27,
+  "stableBakes": true,
+  "stableBoards": true,
+  "windowPreservation": {
+    "changedGlassPixels": 55021,
+    "outsideGlassPixels": 0,
+    "maxOutsideDelta": 0,
+    "examples": [],
+    "barSamples": [
+      {
+        "start": -0.1,
+        "u": 232,
+        "v": 125,
+        "delta": 0
+      },
+      {
+        "start": -0.1,
+        "u": 144,
+        "v": 206,
+        "delta": 0
+      },
+      {
+        "start": -0.1,
+        "u": 173,
+        "v": 173,
+        "delta": 0
+      },
+      {
+        "start": -0.1,
+        "u": 292,
+        "v": 173,
+        "delta": 0
+      },
+      {
+        "start": -0.1,
+        "u": 322,
+        "v": 211,
+        "delta": 0
+      },
+      {
+        "start": -0.1,
+        "u": 170,
+        "v": 600,
+        "delta": 0
+      },
+      {
+        "start": -0.1,
+        "u": 299,
+        "v": 600,
+        "delta": 0
+      },
+      {
+        "start": -0.1,
+        "u": 240,
+        "v": 494,
+        "delta": 0
+      },
+      {
+        "start": -0.1,
+        "u": 240,
+        "v": 779,
+        "delta": 0
+      },
+      {
+        "start": 2.4,
+        "u": 232,
+        "v": 125,
+        "delta": 0
+      },
+      {
+        "start": 2.4,
+        "u": 144,
+        "v": 206,
+        "delta": 0
+      },
+      {
+        "start": 2.4,
+        "u": 173,
+        "v": 173,
+        "delta": 0
+      },
+      {
+        "start": 2.4,
+        "u": 292,
+        "v": 173,
+        "delta": 0
+      },
+      {
+        "start": 2.4,
+        "u": 322,
+        "v": 211,
+        "delta": 0
+      },
+      {
+        "start": 2.4,
+        "u": 170,
+        "v": 600,
+        "delta": 0
+      },
+      {
+        "start": 2.4,
+        "u": 299,
+        "v": 600,
+        "delta": 0
+      },
+      {
+        "start": 2.4,
+        "u": 240,
+        "v": 494,
+        "delta": 0
+      },
+      {
+        "start": 2.4,
+        "u": 240,
+        "v": 779,
+        "delta": 0
+      },
+      {
+        "start": 4.9,
+        "u": 232,
+        "v": 125,
+        "delta": 0
+      },
+      {
+        "start": 4.9,
+        "u": 144,
+        "v": 206,
+        "delta": 0
+      },
+      {
+        "start": 4.9,
+        "u": 173,
+        "v": 173,
+        "delta": 0
+      },
+      {
+        "start": 4.9,
+        "u": 292,
+        "v": 173,
+        "delta": 0
+      },
+      {
+        "start": 4.9,
+        "u": 322,
+        "v": 211,
+        "delta": 0
+      },
+      {
+        "start": 4.9,
+        "u": 170,
+        "v": 600,
+        "delta": 0
+      },
+      {
+        "start": 4.9,
+        "u": 299,
+        "v": 600,
+        "delta": 0
+      },
+      {
+        "start": 4.9,
+        "u": 240,
+        "v": 494,
+        "delta": 0
+      },
+      {
+        "start": 4.9,
+        "u": 240,
+        "v": 779,
+        "delta": 0
+      }
+    ],
+    "baseDimensions": [
+      2055,
+      1525
+    ],
+    "maskMarginSourcePixels": 8,
+    "counterAndSupportsExact": true,
+    "fourBoardsExact": true,
+    "runtimeSHA256": "ba0abfd531a72d6ed6c0030c27b4012e4fd31f2016017b7553e7e59a5a8df2aa"
+  },
+  "boardPixels": [
+    {
+      "key": 117,
+      "sha256": "9174c11e48df35d395f2469bf02a95cfa16cd0297d69272b36955dbb6fa42e6c",
+      "unchanged": true
+    },
+    {
+      "key": 101,
+      "sha256": "f03c60bcd23a280ac83f33714e37da3aeb20aadb070a987147b89c4e876eb2e6",
+      "unchanged": true
+    },
+    {
+      "key": 84,
+      "sha256": "14d0ff6e4072c17fa8fa4d32d9c5aa8bd2ed61307ca55f9280f22a7ef5569060",
+      "unchanged": true
+    },
+    {
+      "key": 100,
+      "sha256": "7712e40494bcdfaa42ac8009caf136a553ea229fcefeb203e361fa39c0b4786c",
+      "unchanged": true
+    }
+  ],
+  "phone": {
+    "width": 390,
+    "overflow": false,
+    "tickets": 12,
+    "sendBottom": 744
+  },
+  "errors": [],
+  "captures": [
+    {
+      "file": "station.webp",
+      "width": 1400,
+      "height": 1100,
+      "bounds": {
+        "left": 1160,
+        "right": 1880,
+        "top": -140,
+        "bottom": 620
+      },
+      "index": 24
+    },
+    {
+      "file": "windows.webp",
+      "width": 1300,
+      "height": 1200,
+      "bounds": {
+        "left": 220,
+        "right": 740,
+        "top": 45,
+        "bottom": 565
+      },
+      "index": 24
+    },
+    {
+      "file": "neighbours.webp",
+      "width": 1100,
+      "height": 1100,
+      "bounds": {
+        "left": -120,
+        "right": 440,
+        "top": 80,
+        "bottom": 800
+      },
+      "index": 24
+    },
+    {
+      "file": "maximum.webp",
+      "width": 1800,
+      "height": 1140,
+      "bounds": {
+        "left": -120,
+        "right": 1880,
+        "top": -140,
+        "bottom": 1170
+      },
+      "index": 24
+    },
+    {
+      "file": "loft.webp",
+      "width": 1200,
+      "height": 1120,
+      "bounds": {
+        "left": 680,
+        "right": 1250,
+        "top": 45,
+        "bottom": 590
+      },
+      "index": 24
+    },
+    {
+      "file": "pavement.webp",
+      "width": 1500,
+      "height": 950,
+      "bounds": {
+        "left": 30,
+        "right": 1270,
+        "top": 540,
+        "bottom": 1170
+      },
+      "index": 24
+    },
+    {
+      "file": "shelter.webp",
+      "width": 1100,
+      "height": 1100,
+      "bounds": {
+        "left": -120,
+        "right": 440,
+        "top": 100,
+        "bottom": 800
+      },
+      "index": 24
+    },
+    {
+      "file": "grayscale.webp",
+      "width": 1800,
+      "height": 1140,
+      "bounds": {
+        "left": -120,
+        "right": 1880,
+        "top": -140,
+        "bottom": 1170
+      },
+      "index": 24
+    },
+    {
+      "file": "loading.webp",
+      "width": 1300,
+      "height": 1100,
+      "bounds": {
+        "left": 1250,
+        "right": 1880,
+        "top": 350,
+        "bottom": 1050
+      },
+      "index": 24
+    },
+    {
+      "file": "first.webp",
+      "width": 1800,
+      "height": 1140,
+      "bounds": {
+        "left": -120,
+        "right": 1880,
+        "top": -140,
+        "bottom": 1170
+      },
+      "index": 0
+    },
+    {
+      "file": "six-four.webp",
+      "width": 1800,
+      "height": 1140,
+      "bounds": {
+        "left": -120,
+        "right": 1880,
+        "top": -140,
+        "bottom": 1170
+      },
+      "index": 10
+    },
+    {
+      "file": "six-five.webp",
+      "width": 1800,
+      "height": 1140,
+      "bounds": {
+        "left": -120,
+        "right": 1880,
+        "top": -140,
+        "bottom": 1170
+      },
+      "index": 16
+    }
+  ],
+  "runtimeSHA256": "ba0abfd531a72d6ed6c0030c27b4012e4fd31f2016017b7553e7e59a5a8df2aa"
+}

@@ -1,0 +1,102 @@
+{
+  "runtimeSHA256": "ba0abfd531a72d6ed6c0030c27b4012e4fd31f2016017b7553e7e59a5a8df2aa",
+  "rows": [
+    {
+      "url": "http://127.0.0.1:8778/playable.html",
+      "median": 30.399999998509884,
+      "min": 18.900000002235174,
+      "max": 48.899999998509884,
+      "front": [
+        514,
+        360
+      ],
+      "supports": [
+        [
+          93,
+          263
+        ],
+        [
+          94,
+          272
+        ]
+      ],
+      "viewport": [
+        1140,
+        906
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:8765/studies/depot-paper/playable.html",
+      "median": 29,
+      "min": 23.5,
+      "max": 156.89999999850988,
+      "front": [
+        514,
+        360
+      ],
+      "supports": [
+        [
+          93,
+          263
+        ],
+        [
+          94,
+          272
+        ]
+      ],
+      "viewport": [
+        1140,
+        906
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:8778/playable.html",
+      "median": 29,
+      "min": 20.199999999254942,
+      "max": 65.69999999925494,
+      "front": [
+        514,
+        360
+      ],
+      "supports": [
+        [
+          93,
+          263
+        ],
+        [
+          94,
+          272
+        ]
+      ],
+      "viewport": [
+        1140,
+        906
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:8765/studies/depot-paper/playable.html",
+      "median": 29.399999998509884,
+      "min": 19.300000000745058,
+      "max": 41.30000000074506,
+      "front": [
+        514,
+        360
+      ],
+      "supports": [
+        [
+          93,
+          263
+        ],
+        [
+          94,
+          272
+        ]
+      ],
+      "viewport": [
+        1140,
+        906
+      ]
+    }
+  ],
+  "note": "Headless Chromium software drawing under current machine load; not physical-device FPS"
+}

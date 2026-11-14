@@ -1,0 +1,103 @@
+{
+  "records": [
+    {
+      "file": "town-round.mp4",
+      "start": 0,
+      "duration": 48,
+      "width": 1280,
+      "height": 840,
+      "bounds": [
+        -120,
+        1880,
+        -140,
+        1170
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "station-life.mp4",
+      "start": 0,
+      "duration": 16,
+      "width": 1200,
+      "height": 900,
+      "bounds": [
+        1300,
+        1880,
+        -80,
+        590
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "van-route.mp4",
+      "start": 20,
+      "duration": 28,
+      "width": 1200,
+      "height": 850,
+      "bounds": [
+        1180,
+        1880,
+        330,
+        1060
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "chapter-demo.mp4",
+      "start": 0,
+      "duration": 10,
+      "width": 1200,
+      "height": 780,
+      "bounds": [
+        -120,
+        1880,
+        -140,
+        1170
+      ],
+      "chapter": "demo",
+      "index": 10,
+      "fps": 24
+    },
+    {
+      "file": "growth.mp4",
+      "start": 0,
+      "duration": 3,
+      "width": 1200,
+      "height": 780,
+      "bounds": [
+        -120,
+        1880,
+        -140,
+        1170
+      ],
+      "chapter": "growth1",
+      "index": 16,
+      "fps": 24
+    },
+    {
+      "file": "exit.mp4",
+      "start": 0,
+      "duration": 4.4,
+      "width": 1200,
+      "height": 780,
+      "bounds": [
+        -120,
+        1880,
+        -140,
+        1170
+      ],
+      "chapter": "exit",
+      "index": 24,
+      "fps": 24
+    }
+  ],
+  "errors": [],
+  "source": "Actual Canvas renderer, exact seekable ambient/chapter time, 24 fps H.264",
+  "runtimeSHA256": "ba0abfd531a72d6ed6c0030c27b4012e4fd31f2016017b7553e7e59a5a8df2aa"
+}
