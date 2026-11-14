@@ -1610,7 +1610,7 @@ const TAU=Math.PI*2;
 const clamp=x=>Math.max(0,Math.min(1,x));
 const ease=x=>{x=clamp(x);return x*x*(3-2*x);};
 function point(){return{x:0,y:0,z:0};}
-function create(kind){return{kind,x:0,y:0,z:0,fx:1,fy:0,radius:kind==='postbot'?.43:kind==='wheelbot'?.30:.30,distance:0,walk:0,turn:0,head:0,blink:0,stamp:0,carry:0,service:0,toolTip:point(),crouch:0,hop:0,wheel:0,tail:0,feet:Array.from({length:kind==='wheelbot'?0:kind==='postbot'?2:4},point),knees:Array.from({length:4},point),hips:Array.from({length:4},point),hands:[point(),point()],elbows:[point(),point()],shoulders:[point(),point()]};}
+function create(kind){const a={kind,x:0,y:0,z:0,fx:1,fy:0,radius:kind==='postbot'?.43:kind==='wheelbot'?.30:.30,distance:0,walk:0,turn:0,head:0,blink:0,stamp:0,carry:0,service:0,toolTip:point(),crouch:0,hop:0,wheel:0,tail:0,feet:Array.from({length:kind==='wheelbot'?0:kind==='postbot'?2:4},point),knees:Array.from({length:4},point),hips:Array.from({length:4},point),hands:[point(),point()],elbows:[point(),point()],shoulders:[point(),point()]};if(StudyConfig.current.recipe==='courtyard'&&(kind==='robotcat'||kind==='realcat')){a.hocks=Array.from({length:4},point);for(const f of a.feet){f.fx=1;f.fy=0;f.angle=0;}a.bodyZ=0;a.bodyPitch=0;a.catPhase=0;}return a;}
 // Relative travel cancels the moving root during stance, giving an exact foot lock.
 function foot(out,a,distance,stride,phase,side,fore,walk,lift){
  const n=distance/stride+phase,f=n-Math.floor(n),stance=.68;
@@ -1629,6 +1629,39 @@ function ik(out,a,b,l1,l2,bx,by,bz){
 }
 function setRoot(a,x,y,fx,fy,distance,walk){a.x=x;a.y=y;a.fx=fx;a.fy=fy;a.distance=distance;a.walk=walk;}
 function shift(points,offset,count){for(let i=0;i<count;i++){points[i].x+=offset.x;points[i].y+=offset.y;}}
+// Paw placements are planned in world space. Stance is a held anchor, including
+// during turns; every moving segment begins and ends with a supported pose.
+const catPose=point(),catFrom=point(),catTo=point();
+function route(start,items){let x=start[0],y=start[1],angle=start[2];const parts=[];for(const [t0,t1,nx,ny,na,kind,rounds]of items){parts.push({t0,t1,x0:x,y0:y,a0:angle,x1:nx,y1:ny,a1:na,kind,rounds});x=nx;y=ny;angle=na;}return{start,parts};}
+const robotHeading=Math.atan2(-.45,.25),catHeading=Math.atan2(.18,-.25),catHomeHeading=Math.atan2(-.02,.06);
+const robotRoute=route([2.70,10.90,robotHeading],[[1,5,2.95,10.45,robotHeading,'walk',3],[9,11.4,2.95,10.45,robotHeading+Math.PI,'turn',3],[11.4,15.4,2.70,10.90,robotHeading+Math.PI,'walk',3],[15.4,17.8,2.70,10.90,robotHeading+TAU,'turn',3]]);
+const realRoute=route([4.03,10.30,catHeading],[[2,6,3.78,10.48,catHeading,'walk',2],[9,9.7,3.97,10.32,catHeading,'hop',0],[10.4,12.8,3.97,10.32,catHomeHeading,'turn',3],[12.8,16.8,4.03,10.30,catHomeHeading,'walk',1],[16.8,19.2,4.03,10.30,catHeading,'turn',3]]);
+const realOrder=[1,3,0,2],robotOrder=[0,2,3,1];
+function routePose(r,t,out){out.x=r.start[0];out.y=r.start[1];out.angle=r.start[2];for(const s of r.parts){if(t<s.t0)break;const u=ease((t-s.t0)/(s.t1-s.t0));out.x=s.x0+(s.x1-s.x0)*u;out.y=s.y0+(s.y1-s.y0)*u;out.angle=s.a0+(s.a1-s.a0)*u;if(t<s.t1)break;}return out;}
+function pawAnchor(r,t,i,out){routePose(r,t,catPose);const fx=Math.cos(catPose.angle),fy=Math.sin(catPose.angle),fore=i<2?.23:-.23,side=i&1?-.12:.12;out.x=catPose.x+fx*fore-fy*side;out.y=catPose.y+fy*fore+fx*side;out.z=0;out.angle=catPose.angle;out.fx=fx;out.fy=fy;}
+function stepTarget(r,s,i,wave,slot,order,out){const at=wave===s.rounds-1?s.t1:Math.min(s.t1,s.t0+(wave*4+order+.72+1.8)*slot);pawAnchor(r,at,i,out);}
+function catPaw(r,i,t,robot,out){
+ pawAnchor(r,0,i,out);for(const s of r.parts){if(t<s.t0)break;if(t>=s.t1){pawAnchor(r,s.t1,i,out);continue;}
+  if(s.kind==='hop'){const u=clamp((t-s.t0)/(i<2?.67:.70));pawAnchor(r,s.t0,i,catFrom);pawAnchor(r,s.t1,i,catTo);const k=ease(u);out.x=catFrom.x+(catTo.x-catFrom.x)*k;out.y=catFrom.y+(catTo.y-catFrom.y)*k;out.angle=catFrom.angle+(catTo.angle-catFrom.angle)*k;out.fx=Math.cos(out.angle);out.fy=Math.sin(out.angle);out.z=u===0||u===1?0:Math.sin(u*Math.PI)*(i<2?.30:.26);return;}
+  const slot=(s.t1-s.t0)/(s.rounds*4),order=(robot?robotOrder:realOrder)[i],wave=Math.floor(((t-s.t0)/slot-order)/4);if(wave<0)return;
+  if(wave===0)pawAnchor(r,s.t0,i,catFrom);else stepTarget(r,s,i,wave-1,slot,order,catFrom);stepTarget(r,s,i,wave,slot,order,catTo);
+  const u=clamp((t-s.t0-(wave*4+order)*slot)/(slot*(robot?.80:.66))),travel=robot?ease((u-.18)/.64):ease(u);out.x=catFrom.x+(catTo.x-catFrom.x)*travel;out.y=catFrom.y+(catTo.y-catFrom.y)*travel;out.angle=catFrom.angle+(catTo.angle-catFrom.angle)*travel;out.fx=Math.cos(out.angle);out.fy=Math.sin(out.angle);
+  out.z=u===0||u===1?0:robot?.065*(u<.25?ease(u/.25):u>.75?ease((1-u)/.25):1):.043*Math.sin(u*Math.PI)**2;return;
+ }
+}
+function courtyardCat(a,ms,reduced){
+ const q=reduced?0:((ms%32000)+32000)%32000/1000,robot=a.kind==='robotcat',r=robot?robotRoute:realRoute;a.catPhase=q;routePose(r,q,catPose);let x=catPose.x,y=catPose.y,angle=catPose.angle,walk=0;
+ for(const s of r.parts)if(q>=s.t0&&q<s.t1&&s.kind==='walk'){const u=(q-s.t0)/(s.t1-s.t0);walk=4*u*(1-u);}
+ const fx=Math.cos(angle),fy=Math.sin(angle);setRoot(a,x,y,fx,fy,0,walk);a.radius=.28;
+ if(!robot){if(q>=8.7&&q<9)a.crouch=.095*ease((q-8.7)/.3);else if(q>=9&&q<9.7){const u=(q-9)/.7;a.z=.26*Math.sin(u*Math.PI);a.hop=Math.sin(u*Math.PI);a.crouch=.095*(1-ease(u/.18));}else if(q>=9.7&&q<10.4)a.crouch=.085*Math.sin((q-9.7)/.7*Math.PI)**2;}
+ const bob=robot?0:.007*Math.sin(q*TAU/2)*walk,sway=robot?0:.008*Math.sin(q*TAU/2)*walk;a.x-=fy*sway;a.y+=fx*sway;a.bodyZ=a.z+.23-a.crouch+bob;a.bodyPitch=robot?0:.018*Math.sin(q*TAU/2)*walk;
+ a.head=(robot?.02:.035)*Math.sin(q*TAU/8);a.tail=(robot?.09:.18)*Math.sin(q*TAU/8);
+ for(let i=0;i<4;i++){
+  catPaw(r,i,q,robot,a.feet[i]);const fore=i<2?.22:-.22,side=i&1?-.12:.12,h=a.hips[i],ankle=a.hocks[i];h.x=a.x+fx*fore-fy*side;h.y=a.y+fy*fore+fx*side;h.z=a.z+(i<2?.52:.50)-a.crouch+bob+(i<2?a.bodyPitch:-a.bodyPitch);
+  ankle.x=a.feet[i].x-a.feet[i].fx*(i<2?.015:.085);ankle.y=a.feet[i].y-a.feet[i].fy*(i<2?.015:.085);ankle.z=a.feet[i].z+(i<2?.055:robot?.125:.145);
+  ik(a.knees[i],h,ankle,i<2?.24:.23,i<2?.27:.24,fx*(i<2?-1:1),fy*(i<2?-1:1),0);
+ }
+}
 function update(a,ms,reduced){
  const t=reduced?0:ms/1000;a.z=0;a.service=0;a.working=false;a.stamp=0;a.carry=0;a.crouch=0;a.hop=0;
  if(a.kind==='postbot'){
@@ -1672,6 +1705,7 @@ function update(a,ms,reduced){
   else if(q<18){x=8.77+(q-12)*.73;d=4.38+x-8.77;w=1;fx=1;}
   else{x=13.15;d=8.76;w=0;fx=1;}
   setRoot(a,x,3.14,fx,0,d,w);a.wheel=(13.15-x)/.23;a.carry=q>=9&&q<20?1:0;a.head=Math.sin(t*1.3)*.06;
+ }else if(StudyConfig.current.recipe==='courtyard'){courtyardCat(a,ms,reduced);
  }else{
   const robot=a.kind==='robotcat',q=t%18;let x=robot?2.70:3.88,y=robot?10.90:10.10,fx=robot?.45:-.45,fy=robot?-.89:.89,d=0,w=0;
   if(robot){
@@ -1698,11 +1732,12 @@ function update(a,ms,reduced){
    ik(a.knees[i],h,a.feet[i],.245,.245,fx*(i<2?1:-1),fy*(i<2?1:-1),0);
   }
  }
- a.blink=!reduced&&((t*1000+(a.kind==='realcat'?700:0))%4700<110)?1:0;
+ const blinkTime=a.catPhase===undefined?t:a.catPhase;
+ a.blink=!reduced&&((blinkTime*1000+(a.kind==='realcat'?700:0))%4700<110)?1:0;
  const offset=StudyConfig.current.anchors[StudyConfig.current.ambient[a.kind]];
  if(offset&&(offset.x||offset.y)){
   a.x+=offset.x;a.y+=offset.y;
-  shift(a.feet,offset,a.feet.length);shift(a.knees,offset,a.feet.length);shift(a.hips,offset,a.feet.length);if(a.kind==='postbot'){shift(a.hands,offset,2);shift(a.elbows,offset,2);shift(a.shoulders,offset,2);}
+  shift(a.feet,offset,a.feet.length);shift(a.knees,offset,a.feet.length);shift(a.hips,offset,a.feet.length);if(a.hocks)shift(a.hocks,offset,a.hocks.length);if(a.kind==='postbot'){shift(a.hands,offset,2);shift(a.elbows,offset,2);shift(a.shoulders,offset,2);}
  }
  return a;
 }
@@ -2040,7 +2075,30 @@ function tail(ctx,a,col,k){
  bone(ctx,v2,v3,.052*size,col);
  v4.x=v3.x+fx*.10*size-fy*a.tail*.16*size;v4.y=v3.y+fy*.10*size+fx*a.tail*.16*size;v4.z=v3.z+.11*size;bone(ctx,v3,v4,.045*size,col);
 }
+// Rounded paper sections give the organic legs haunches and compact paws;
+// the robot retains folded links and visible mechanical bearings.
+const FUR=['#8b7f7b','#6d625f','#504a49'],PAW=['#f4e9d5','#ded1bc','#b7ad9d'];
+const limbX=new Float64Array(32),limbY=new Float64Array(32),limbZ=new Float64Array(32),legOrder=[0,1,2,3];
+function softLimb(ctx,a,b,r0,r1,col){
+ const dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,len=Math.max(.001,Math.hypot(dx,dy,dz)),ux=dx/len,uy=dy/len,uz=dz/len;let nx=-uy,ny=ux;const n=Math.hypot(nx,ny);if(n<.001){nx=1;ny=0;}else{nx/=n;ny/=n;}const bx=-uz*ny,by=uz*nx,bz=ux*ny-uy*nx;
+ for(let row=0;row<4;row++){const t=row===0?0:row===1?.16:row===2?.80:1,r=(r0+(r1-r0)*t)*(row===0||row===3?.67:1);for(let k=0;k<8;k++){const angle=k*TAU/8,c=Math.cos(angle)*r,d=Math.sin(angle)*r,i=row*8+k;limbX[i]=a.x+dx*t+nx*c+bx*d;limbY[i]=a.y+dy*t+ny*c+by*d;limbZ[i]=a.z+dz*t+bz*d;}}
+ for(let row=0;row<3;row++)for(let k=0;k<8;k++){const i=row*8+k,j=row*8+(k+1)%8,l=j+8,m=i+8,ax=limbX[j]-limbX[i],ay=limbY[j]-limbY[i],az=limbZ[j]-limbZ[i],cx=limbX[m]-limbX[i],cy=limbY[m]-limbY[i],cz=limbZ[m]-limbZ[i];let vx=ay*cz-az*cy,vy=az*cx-ax*cz,vz=ax*cy-ay*cx;const midx=(limbX[i]+limbX[j]+limbX[l]+limbX[m])/4-(a.x+b.x)/2,midy=(limbY[i]+limbY[j]+limbY[l]+limbY[m])/4-(a.y+b.y)/2,midz=(limbZ[i]+limbZ[j]+limbZ[l]+limbZ[m])/4-(a.z+b.z)/2;if(vx*midx+vy*midy+vz*midz<0){vx=-vx;vy=-vy;vz=-vz;}if(vx+vy+vz*51/53<=0)continue;const length=Math.hypot(vx,vy,vz),light=(-.35*vx+.22*vy+vz)/length;ctx.fillStyle=col[light>.45?0:light>-.12?1:2];ctx.beginPath();for(let q=0;q<4;q++){const ii=q===0?i:q===1?j:q===2?l:m,x=705+(limbX[ii]-limbY[ii])*51,y=285+(limbX[ii]+limbY[ii])*25.5-limbZ[ii]*53;if(q)ctx.lineTo(x,y);else ctx.moveTo(x,y);}ctx.closePath();ctx.fill();}
+ for(let end=0;end<2;end++){if((ux+uy+uz*51/53)*(end?1:-1)<=0)continue;ctx.beginPath();for(let k=0;k<8;k++){const i=end*24+k,x=705+(limbX[i]-limbY[i])*51,y=285+(limbX[i]+limbY[i])*25.5-limbZ[i]*53;if(k)ctx.lineTo(x,y);else ctx.moveTo(x,y);}ctx.closePath();ctx.fillStyle=col[1];ctx.fill();}
+}
+function catUpper(ctx,a,i){const robot=a.kind==='robotcat';if(robot){bone(ctx,a.hips[i],a.knees[i],i<2?.052:.068,WHITE);ball(ctx,a.knees[i],.052,GOLD);}else softLimb(ctx,a.hips[i],a.knees[i],i<2?.073:.115,i<2?.052:.073,FUR);}
+function catLower(ctx,a,i){const robot=a.kind==='robotcat';if(robot){bone(ctx,a.knees[i],a.hocks[i],.040,METAL);ball(ctx,a.hocks[i],.043,GOLD);bone(ctx,a.hocks[i],a.feet[i],.035,WHITE);shoe(ctx,a.feet[i],a.feet[i].fx,a.feet[i].fy,GOLD,.48);}else{softLimb(ctx,a.knees[i],a.hocks[i],i<2?.053:.067,.038,FUR);softLimb(ctx,a.hocks[i],a.feet[i],.038,.040,FUR);const p=a.feet[i];v1.x=p.x-p.fx*.035;v1.y=p.y-p.fy*.035;v1.z=p.z+.045;v2.x=p.x+p.fx*.075;v2.y=p.y+p.fy*.075;v2.z=p.z+.045;softLimb(ctx,v1,v2,.045,.044,PAW);}}
+function courtyardCat(ctx,a,t){
+ const robot=a.kind==='robotcat',rear=!front(a),mir=mirror(a);tail(ctx,a,robot?WHITE:FUR);
+ for(let i=0;i<4;i++)legOrder[i]=i;for(let i=1;i<4;i++){const k=legOrder[i],d=a.feet[k].x+a.feet[k].y;let j=i-1;while(j>=0&&a.feet[legOrder[j]].x+a.feet[legOrder[j]].y>d){legOrder[j+1]=legOrder[j];j--;}legOrder[j+1]=k;}
+ for(let j=0;j<4;j++){const i=legOrder[j];catUpper(ctx,a,i);catLower(ctx,a,i);}
+ head(ctx,(robot?'bot':'cat')+'2'+(rear?3:2),a.x,a.y,a.bodyZ,robot?49:51,mir,a.bodyPitch);
+ // The torso masks all upper attachments; lower legs emerge below its belly.
+
+ let id=(robot?'bot':'cat')+'2'+(rear?1:0);if(!robot&&!rear&&R.sprites.expr20)id='expr2'+(a.blink?1:a.catPhase>8.7&&a.catPhase<10.4?3:a.catPhase>6&&a.catPhase<8.7?2:0);
+ head(ctx,id,a.x+a.fx*.32,a.y+a.fy*.32,a.bodyZ+.26,robot?39:40,mir,a.head+a.bodyPitch);
+}
 function cat(ctx,a,t){
+ if(a.hocks){courtyardCat(ctx,a,t);return;}
  const robotic=a.kind==='robotcat',row=robotic?2:2,col=robotic?WHITE:DARK,legs=robotic?METAL:DARK,rear=!front(a),mir=mirror(a);
  tail(ctx,a,col);
  for(let i=0;i<4;i++)if(a.hips[i].x+a.hips[i].y<=a.x+a.y){bone(ctx,a.hips[i],a.knees[i],.062,legs);if(robotic)ball(ctx,a.knees[i],.072,GOLD);bone(ctx,a.knees[i],a.feet[i],.055,legs);shoe(ctx,a.feet[i],a.fx,a.fy,robotic?GOLD:WHITE,.65);}
