@@ -1,0 +1,510 @@
+{
+  "expected": [
+    {
+      "id": "7-1",
+      "endTick": 18,
+      "hash": "61c3c038606803d298eb4b4b607ab09a1f956d83345d8b5484e781587065c662"
+    },
+    {
+      "id": "7-2",
+      "endTick": 12,
+      "hash": "8f89decf153a335469c6d5d80dd46c022ad124520af763f7c4891422e89f6eb7"
+    },
+    {
+      "id": "7-3",
+      "endTick": 14,
+      "hash": "c490145d1e37e52dd8f7a2a576c3eaefa0dc793c818ac8ad80dd91b1fdae62a5"
+    },
+    {
+      "id": "7-4",
+      "endTick": 12,
+      "hash": "cbd9f0f43843cb88e7484aefe69ef474a09d917fad161c89e79138e870cab18b"
+    },
+    {
+      "id": "7-5",
+      "endTick": 18,
+      "hash": "d3a466006ec6cc8a2768dd3e1f94b31e5133269195fdf30728f531f285376c95"
+    },
+    {
+      "id": "7-6",
+      "endTick": 17,
+      "hash": "2f02568aa2082b07715c635d63bb6b5dcb8a29e283017f3706be3821858294dd"
+    },
+    {
+      "id": "7-7",
+      "endTick": 18,
+      "hash": "b5dc6264bc1487921ff53079d25285458da00deeba6cb02c953bdb266181f94d"
+    },
+    {
+      "id": "7-8",
+      "endTick": 8,
+      "hash": "6b21ccef06e9be6728287eea7a8a6d672295cb8c9e4dbca8ecf67f21e23b4b08"
+    },
+    {
+      "id": "7-9",
+      "endTick": 26,
+      "hash": "ae3d52bb66eaa2ffaa8defd0c74fb7b1880749a9fdc5a22e637dcf32615fe555"
+    },
+    {
+      "id": "7-10",
+      "endTick": 18,
+      "hash": "f5488102f27f8ba751b61dac248a685defbe707e7a3979ef2d4a5e7b3eb7e31f"
+    },
+    {
+      "id": "7-11",
+      "endTick": 22,
+      "hash": "191586a520f10bdc1ecb9b688b2b0989bc2f115e137ea1b847362f00eb033b16"
+    },
+    {
+      "id": "7-12",
+      "endTick": 15,
+      "hash": "0524c35846a605036eff64bf4fdc7b459009da5bea3d83660df554f578ab13b7"
+    },
+    {
+      "id": "7-13",
+      "endTick": 16,
+      "hash": "4e1a25e52c2665401d59941dc4c09e69c520ca53822a8e529b983e19069b5223"
+    },
+    {
+      "id": "7-14",
+      "endTick": 30,
+      "hash": "894b51abd359ba34cc3943feac3d90842f67a369fd7f6175121ee4cbac7023ef"
+    },
+    {
+      "id": "7-15",
+      "endTick": 28,
+      "hash": "f753ef24b88348556c28a78195c9e3b4b1cf02f1421a6b8b0039281d31276495"
+    }
+  ],
+  "rules": {
+    "rows": [
+      {
+        "id": "7-1",
+        "endTick": 18,
+        "steps": 343
+      },
+      {
+        "id": "7-2",
+        "endTick": 12,
+        "steps": 235
+      },
+      {
+        "id": "7-3",
+        "endTick": 14,
+        "steps": 271
+      },
+      {
+        "id": "7-4",
+        "endTick": 12,
+        "steps": 235
+      },
+      {
+        "id": "7-5",
+        "endTick": 18,
+        "steps": 343
+      },
+      {
+        "id": "7-6",
+        "endTick": 17,
+        "steps": 325
+      },
+      {
+        "id": "7-7",
+        "endTick": 18,
+        "steps": 343
+      },
+      {
+        "id": "7-8",
+        "endTick": 8,
+        "steps": 163
+      },
+      {
+        "id": "7-9",
+        "endTick": 26,
+        "steps": 487
+      },
+      {
+        "id": "7-10",
+        "endTick": 18,
+        "steps": 343
+      },
+      {
+        "id": "7-11",
+        "endTick": 22,
+        "steps": 415
+      },
+      {
+        "id": "7-12",
+        "endTick": 15,
+        "steps": 289
+      },
+      {
+        "id": "7-13",
+        "endTick": 16,
+        "steps": 307
+      },
+      {
+        "id": "7-14",
+        "endTick": 30,
+        "steps": 558
+      },
+      {
+        "id": "7-15",
+        "endTick": 28,
+        "steps": 522
+      }
+    ],
+    "picks": 781,
+    "cadence": {
+      "bigMoves": 242,
+      "bigWaits": 242,
+      "smallMoves": 293
+    },
+    "keys": [
+      "catsByPost.parcelPaperStudy.v1:catsByPost.progress"
+    ]
+  },
+  "pointer": true,
+  "chapters": [
+    {
+      "mode": "intro",
+      "size": [
+        7,
+        6
+      ]
+    },
+    {
+      "mode": "demo",
+      "size": [
+        7,
+        6
+      ],
+      "cats": 3
+    },
+    {
+      "from": "7-5",
+      "mode": "growth",
+      "frames": [
+        {
+          "f": 0,
+          "w": 7,
+          "h": 6,
+          "x": 200,
+          "y": 168,
+          "worker": [
+            204,
+            158.5
+          ]
+        },
+        {
+          "f": 180,
+          "w": 7,
+          "h": 6,
+          "x": 200,
+          "y": 180.65625,
+          "worker": [
+            204,
+            171.15625
+          ]
+        },
+        {
+          "f": 329,
+          "w": 7,
+          "h": 6,
+          "x": 200,
+          "y": 207.9979224537037,
+          "worker": [
+            204,
+            198.4979224537037
+          ]
+        },
+        {
+          "f": 330,
+          "w": 8,
+          "h": 6,
+          "x": 200,
+          "y": 208,
+          "worker": [
+            204,
+            198.5
+          ]
+        },
+        {
+          "f": 390,
+          "w": 8,
+          "h": 6,
+          "x": 200,
+          "y": 208,
+          "worker": [
+            204,
+            198.5
+          ]
+        }
+      ]
+    },
+    {
+      "from": "7-8",
+      "mode": "growth",
+      "frames": [
+        {
+          "f": 0,
+          "w": 8,
+          "h": 6,
+          "x": 184,
+          "y": 184,
+          "worker": [
+            188,
+            174.5
+          ]
+        },
+        {
+          "f": 180,
+          "w": 8,
+          "h": 6,
+          "x": 184,
+          "y": 191.59375,
+          "worker": [
+            188,
+            182.09375
+          ]
+        },
+        {
+          "f": 329,
+          "w": 8,
+          "h": 6,
+          "x": 184,
+          "y": 207.99875347222223,
+          "worker": [
+            188,
+            198.49875347222223
+          ]
+        },
+        {
+          "f": 330,
+          "w": 8,
+          "h": 7,
+          "x": 184,
+          "y": 208,
+          "worker": [
+            188,
+            198.5
+          ]
+        },
+        {
+          "f": 390,
+          "w": 8,
+          "h": 7,
+          "x": 184,
+          "y": 208,
+          "worker": [
+            188,
+            198.5
+          ]
+        }
+      ]
+    },
+    {
+      "from": "7-10",
+      "mode": "growth",
+      "frames": [
+        {
+          "f": 0,
+          "w": 8,
+          "h": 7,
+          "x": 216,
+          "y": 184,
+          "worker": [
+            220,
+            174.5
+          ]
+        },
+        {
+          "f": 180,
+          "w": 8,
+          "h": 7,
+          "x": 216,
+          "y": 191.59375,
+          "worker": [
+            220,
+            182.09375
+          ]
+        },
+        {
+          "f": 329,
+          "w": 8,
+          "h": 7,
+          "x": 216,
+          "y": 207.99875347222223,
+          "worker": [
+            220,
+            198.49875347222223
+          ]
+        },
+        {
+          "f": 330,
+          "w": 9,
+          "h": 7,
+          "x": 216,
+          "y": 208,
+          "worker": [
+            220,
+            198.5
+          ]
+        },
+        {
+          "f": 390,
+          "w": 9,
+          "h": 7,
+          "x": 216,
+          "y": 208,
+          "worker": [
+            220,
+            198.5
+          ]
+        }
+      ]
+    }
+  ],
+  "exit": {
+    "frames": [
+      {
+        "f": 0,
+        "world": 1908,
+        "bag": true,
+        "closed": false,
+        "van": [
+          185,
+          12
+        ]
+      },
+      {
+        "f": 180,
+        "world": 2088,
+        "bag": true,
+        "closed": false,
+        "van": [
+          185,
+          12
+        ]
+      },
+      {
+        "f": 330,
+        "world": 2238,
+        "bag": true,
+        "closed": false,
+        "van": [
+          185,
+          12
+        ]
+      },
+      {
+        "f": 492,
+        "world": 2400,
+        "bag": false,
+        "closed": true,
+        "van": [
+          185,
+          -2
+        ]
+      },
+      {
+        "f": 792,
+        "world": 2699,
+        "bag": false,
+        "closed": true,
+        "van": [
+          110.00249444444445,
+          -2
+        ]
+      },
+      {
+        "f": 1200,
+        "world": 2699,
+        "bag": false,
+        "closed": true,
+        "van": [
+          110.00249444444445,
+          -2
+        ]
+      }
+    ],
+    "preserved": true,
+    "mode": "exit"
+  },
+  "chapterResize": {
+    "reserve": {
+      "id": "7-15",
+      "width": 393,
+      "height": 852,
+      "w": 371,
+      "h": 301
+    },
+    "hudHeight": 269,
+    "mode": "",
+    "frame": {
+      "x": 24,
+      "y": 264,
+      "w": 738,
+      "h": 774,
+      "cx": 337,
+      "cy": 241,
+      "width": 292,
+      "height": 188
+    }
+  },
+  "motion": {
+    "simulationAdvanced": true,
+    "presentationMotion": false
+  },
+  "perf": {
+    "renderMsMedian": 8,
+    "renderMsP95": 82.5,
+    "bakes": 1
+  },
+  "phoneCamera": {
+    "before": [
+      182,
+      -16,
+      2.5273972602739727
+    ],
+    "running": [
+      182,
+      -16,
+      2.5273972602739727
+    ],
+    "won": [
+      182,
+      -16,
+      2.5273972602739727
+    ],
+    "mode": "won"
+  },
+  "phone": {
+    "cells": 63,
+    "scale": 2.5273972602739727,
+    "tileWidth": 40.43835616438356
+  },
+  "landscapeCamera": {
+    "before": [
+      162,
+      113,
+      3.425531914893617
+    ],
+    "running": [
+      162,
+      113,
+      3.425531914893617
+    ],
+    "won": [
+      162,
+      113,
+      3.425531914893617
+    ],
+    "mode": "won"
+  },
+  "landscape": {
+    "cells": 63,
+    "scale": 3.425531914893617,
+    "tileWidth": 54.808510638297875
+  }
+}

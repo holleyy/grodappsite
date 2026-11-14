@@ -165,9 +165,13 @@ body #hud #btnSend{background:#326e70!important;border-color:#326e70!important}b
 /* Wider study framing keeps the maximum board visible alongside its controls. */
 @media(min-width:1180px) and (min-height:650px){#hud{left:auto;right:18px;bottom:28px;width:292px;max-width:292px;margin:0;max-height:calc(100vh - 145px);overflow-y:auto}#chapterCard{left:auto;right:18px;transform:none;width:292px;bottom:28px;max-height:calc(100vh - 145px);overflow:auto}}
 
+/* Keep the existing narrow-header footprint; courtyard remains in its menu. */
+#paperHeader #paperCourtSmall{display:none}
+@media(max-width:1359px){#paperHeader #paperCourt{display:none}#paperHeader #paperCourtSmall{display:block}}
+
 </style>
 </head>
-<body class="paper-loading"><header id="paperHeader"><div><p>CATS BY POST · MORNING DISPATCH</p><h1>Parcel Room <span id="paperSize"></span></h1></div><nav aria-label="Parcel study"><select id="paperPick" aria-label="Delivery"></select><button id="paperView">Closer to the board</button><button id="paperMotion" aria-pressed="true">Motion on</button><button id="paperStory">The story</button><details><summary>Study tools</summary><button id="paperSolve">Place solution</button><button id="paperGray">Grayscale</button><a href="review/">Material review</a></details></nav></header><div id="paperLoading" role="status">Opening the parcel room…</div>
+<body class="paper-loading"><header id="paperHeader"><div><p>CATS BY POST · MORNING DISPATCH</p><h1>Parcel Room <span id="paperSize"></span></h1></div><nav aria-label="Parcel study"><select id="paperPick" aria-label="Delivery"></select><button id="paperView">Closer to the board</button><button id="paperCourt">Explore courtyard</button><button id="paperMotion" aria-pressed="true">Motion on</button><button id="paperStory">The story</button><details><summary>Study tools</summary><button id="paperCourtSmall">Explore courtyard</button><button id="paperSolve">Place solution</button><button id="paperGray">Grayscale</button><a href="review/">Court review</a></details></nav></header><div id="paperLoading" role="status">Opening the parcel room…</div>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
   <div class="row"><select id="lvlPick" aria-label="Level: pick one to play"></select>
@@ -264,6 +268,6 @@ body #hud #btnSend{background:#326e70!important;border-color:#326e70!important}b
     <button type="button" data-file="atlas.json">atlas.json</button><button type="button" data-file="palette.json">palette.json</button><button type="button" data-file="backdrops.json">backdrops.json</button></div>
   <div id="atlasHint">S to close</div>
 </div></div>
-<script>Promise.all(["runtime/scene-335b28b3e12c-0.txt", "runtime/scene-335b28b3e12c-1.txt", "runtime/scene-335b28b3e12c-2.txt", "runtime/scene-335b28b3e12c-3.txt", "runtime/scene-335b28b3e12c-4.txt"].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Could not load the Parcel study: '+r.status);return r.text();})).then(parts=>{const script=document.createElement('script');script.textContent=parts.join('');document.body.appendChild(script);}).catch(error=>{document.getElementById('paperLoading').textContent=error.message;console.error(error);});</script>
+<script>Promise.all(["runtime/scene-bc72e6d798a0-0.txt", "runtime/scene-bc72e6d798a0-1.txt", "runtime/scene-bc72e6d798a0-2.txt", "runtime/scene-bc72e6d798a0-3.txt", "runtime/scene-bc72e6d798a0-4.txt"].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Could not load the Parcel study: '+r.status);return r.text();})).then(parts=>{const script=document.createElement('script');script.textContent=parts.join('');document.body.appendChild(script);}).catch(error=>{document.getElementById('paperLoading').textContent=error.message;console.error(error);});</script>
 </body>
 </html>

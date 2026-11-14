@@ -8033,6 +8033,30 @@ const ParcelPaperAssets={"acting":{"width":3072,"height":1920,"sprites":{"ginger
  return {unit,world,furniture,extents,bounds,floor:{x:-5.25,y:-5.25,w:16.5,h:14.5},sizes:[[7,6],[8,6],[8,7],[9,7]]};
 });
 
+/* Private study geometry, in canonical native coordinates. No actor inputs. */
+(function(root,factory){const node=typeof module==='object'&&module.exports;const api=factory(node?require('./projection.js'):root.ParcelProjection,node?require('./layout.js'):root.ParcelLayout);if(node)module.exports=api;root.ParcelExteriorLayout=api;})(globalThis,function(P,L){'use strict';
+ const levels={street:-18,court:0,terrace:60};
+ const street=[-144,-126,-20,348,292,-18];
+ const court=[[72,-62,-18,320,0,0],[260,0,-18,320,110,0]];
+ const ramp={x:270,X:312,y:110,Y:182,top:0,bottom:-18};
+ const terrace=[-136,-88,-18,174,-62,60],wing=[-58,-124,60,146,-90,146];
+ const stairs={x:-134,X:-98,run:6,rise:3,flights:[],landings:[[-134,-62,-18,-98,-48,60],[-134,30,-18,-98,48,21],[-134,126,-20,-98,150,-18]]};
+ for(const [y,z] of [[-48,60],[48,21]]){const flight=[];for(let i=0;i<13;i++)flight.push([-134,y+i*6,-18,-98,y+(i+1)*6,z-(i+1)*3]);stairs.flights.push(flight);}
+ const canopy={posts:[],beams:[[274,-56,41,277,-14,42],[313,-56,41,316,-14,42],[274,-55,41,317,-52,42],[274,-18,41,317,-15,42]],roof:[272,-58,42,319,-12,43]};
+ for(const y of [-55,-18])for(const x of [275,313])canopy.posts.push([x,y,0,x+3,y+3,41]);
+ const guard={x:-97,X:171,y:-62,z:60,top:76};
+ const obstacles=[terrace,[174,-68,-18,320,-62,20],[-137,-62,-18,-134,150,78],[280,-53,0,310,-31,18]];
+ // Bounds are projected from explicit solid corners.
+ obstacles.push(...canopy.posts,...canopy.beams,canopy.roof,[253,-5,0,255,-2,7]);
+ const boxes=[street,terrace,wing,[-58,-124,146,146,-90,159],[33,-119,146,60,-91,183],[-138,-62,-18,-96,150,80],[260,-68,-18,320,182,48]];
+ const points=[];for(const q of boxes)for(const x of [q[0],q[3]])for(const y of [q[1],q[4]])for(const z of [q[2],q[5]]){const w=L.world(x,y,z);points.push(P.project(w.x,w.y,w.z));}
+ const bounds={left:Math.floor(Math.min(...points.map(p=>p.x)))-32,right:Math.ceil(Math.max(...points.map(p=>p.x)))+32,top:Math.floor(Math.min(...points.map(p=>p.y)))-32,bottom:Math.ceil(Math.max(...points.map(p=>p.y)))+32};
+ function rampHeight(y){return ramp.top+(ramp.bottom-ramp.top)*(y-ramp.y)/(ramp.Y-ramp.y);}
+ function courtContains(q){return q[0]>=72&&q[3]<=320&&q[1]>=-62&&q[4]<=16;}
+ function overlaps(a,b){return a[0]<b[3]&&a[3]>b[0]&&a[1]<b[4]&&a[4]>b[1]&&a[2]<b[5]&&a[5]>b[2];}
+ return {levels,street,court,ramp,terrace,wing,stairs,canopy,guard,obstacles,bounds,rampHeight,courtContains,overlaps};
+});
+
 /* Room-owned solid construction, in unchanged native world units. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;root.ParcelConstruction=api;})(globalThis,function(){'use strict';
  const frame={beams:[[0,0,80,4,224,86],[4,0,80,260,4,86]],posts:[],braces:[]};
@@ -8834,8 +8858,6 @@ class Workroom{
  }
  floor(){
   const a=this.a,m=this.m,p=a.p,c=a.c;
-  this.backdrop();
-  m.face([-10,-62,-18],[276,0,0],[0,296,0],'cobbles','#b5aa98',0,false,0);
   c.save();c.shadowColor='#51452a66';c.shadowBlur=16;c.shadowOffsetY=4;a.poly([[-4,-4,-18],[260,-4,-18],[260,228,-18],[-4,228,-18]],'#51452a50','none');c.restore();
   // Deep masonry is below the unchanged floor. The loading yard stays at z0.
   a.box(-4,-4,264,232,-18,16,'brick',{top:'#e4c3a0',left:'#aa7557',right:'#8e604b'});
@@ -8850,9 +8872,6 @@ class Workroom{
   for(const x of [-4,252])for(const y of [220]){m.solid([x,y,-18,x+8,y+8,-2],'plaster',4);a.line([x,y+8,-10],[x+8,y+8,-10],'#a4907560',.7);}
   for(const x of [47,128,209])this.vent(x,228,-12,15,8,'x');
   this.vent(260,74,-12,15,8,'y');this.vent(260,168,-12,15,8,'y');
-  a.box(96,-58,160,58,-18,17,'stone',{top:'#beb59f',left:'#a29985',right:'#8f8b7c'});
-  a.solid(ParcelConstruction.yard.bed,'stone',{top:'#acbec4',left:'#91a8ae',right:'#8399a4'});
-  m.face([96,-58,0],[160,0,0],[0,58,0],'cobbles','#b5aa98',0,false,0);
   // Tight wall and foot contacts are on the receiving floor, never offset down.
   for(const q of ParcelConstruction.frame.posts)m.contact(q,false);
   for(const r of ParcelConstruction.racks)for(const q of r.posts)m.contact(q,false);
@@ -9036,6 +9055,135 @@ class Architecture{
 root.ParcelArchitecture=Architecture;
 })(globalThis);
 
+/* Service court: construction geometry before the environmental material pass. */
+(function(root){'use strict';
+const E=ParcelExteriorLayout,U=ParcelLayout.unit,P=ParcelProjection;
+const stone={top:'#e0d9c9',left:'#c6bead',right:'#aaa99c'},wall={top:'#e9dfca',left:'#d8ceba',right:'#bdb5a2'},steel={top:'#8d9b97',left:'#6f827f',right:'#586e70'},paving={top:'#b8c1ba',left:'#9fa9a1',right:'#909f99'};
+class Exterior{
+ constructor(r){this.r=r;this.bounds=E.bounds;this.bakes=0;}
+ bake(){
+  const b=this.bounds,d=1.35,c=document.createElement('canvas');c.width=Math.ceil((b.right-b.left)*d);c.height=Math.ceil((b.bottom-b.top)*d);
+  const ctx=c.getContext('2d');ctx.setTransform(d,0,0,d,-b.left*d,-b.top*d);
+  this.a=new ParcelArchitecture(this.r);this.a.p=new ParcelPainter(ctx,this.r.images,this.r.assets);this.a.c=ctx;
+  this.c=ctx;this.ground();this.civic();this.stair();this.yard();this.street();this.canvas=c;this.bakes++;
+ }
+ box(q,col=stone){this.a.solid(q,'none',col);}
+ poly(v,fill,stroke){this.a.poly(v,fill,'none',stroke);}
+ line(a,b,col='#8d998e',w=1){this.a.line(a,b,col,w);}
+ plane(x,y,z,X,Y,col){this.poly([[x,y,z],[X,y,z],[X,Y,z],[x,Y,z]],col);}
+ contact(x,y,X,Y,z){
+  const c=this.c;c.save();c.shadowColor='#394a4650';c.shadowBlur=7;c.shadowOffsetY=2;this.plane(x,y,z,X,Y,'#47524b24');c.restore();
+ }
+ ground(){
+  // Street carries through the edge of the inspection frame, not an isolated pad.
+  this.plane(-400,-400,-18,650,650,'#d8dbd0');
+  for(let y=-136;y<370;y+=14)for(let x=-120+(y%28?0:14);x<430;x+=28){
+   this.plane(x+.3,y+.3,-17.98,x+27.7,y+13.7,'#d8dbd0');
+   this.line([x,y,-17.95],[x+28,y,-17.95],'#adb8ac38',.6);this.line([x,y,-17.95],[x,y+14,-17.95],'#adb8ac38',.6);
+  }
+  for(const q of E.court)this.box(q,paving);
+  // A single cobbled court meets the bay at exactly z0. Coarse joints are
+  // construction cues; surface fibres and chipped edges are a later pass.
+  for(let y=-62;y<110;y+=8)for(let x=72;x<320;x+=16){if(y>=0&&x<260)continue;
+   const xx=x+(y%16?0:8),X=Math.min(320,xx+16);if(xx>=320)continue;
+   this.line([xx,y,.03],[X,y,.03],'#899e9970',.8);this.line([xx,y,.03],[xx,Math.min(y+8,110),.03],'#899e9970',.8);
+  }
+  const r=E.ramp;this.poly([[r.x,r.y,0],[r.X,r.y,0],[r.X,r.Y,-18],[r.x,r.Y,-18]],'#b3bdb5');
+  for(const x of [r.x,r.X])this.poly([[x,r.y,-18],[x,r.y,0],[x,r.Y,-18]],'#9baa9f');
+  for(let y=118;y<182;y+=8){const z=E.rampHeight(y);this.line([r.x,y,z+.03],[r.X,y,z+.03],'#85988c80',.7);}
+  for(const q of [[260,0,-1,264,109,1],[316,0,-1,320,110,1]])this.box(q,stone);
+  // Return kerb ends at the top of the ramp; the ramp stays open at both ends.
+  for(const x of [268,312])this.poly([[x,110,1],[x+2,110,1],[x+2,182,-17],[x,182,-17]],'#d7d6c6');
+ }
+ civic(){
+  this.box([-136,-126,-18,146,-88,60],stone);this.box(E.terrace,stone);this.box(E.wing,wall);
+  // Jointed lower retaining face establishes the terrace's real height.
+  for(let z=-18;z<60;z+=9){this.line([-12,-61.97,z],[174,-61.97,z],'#8a938374',.8);for(let x=-12+(z%18?9:0);x<174;x+=22)this.line([x,-61.97,z],[x,-61.97,z+9],'#8a93834f',.7);}
+  this.box([-137,-89,59,175,-61,60],stone);
+  for(let x=-133;x<174;x+=18)this.line([x,-88,60.04],[x,-62,60.04],'#abae9e',.7);
+  // Front pilasters, recessed windows and cornice share the wing's planes.
+  for(const x of [-58,-20,11,42,73,104,141]){this.box([x,-91,60,x+5,-87,143],wall);this.box([x-1,-92,60,x+6,-86,65],stone);this.box([x-1,-92,138,x+6,-86,143],stone);}
+  for(const x of [-43,-12,19,50,81,112])this.window(x,-89.96,88,18,43);
+  this.box([-43,-90,60,-25,-88.5,85],steel);this.line([-41,-88.45,82],[-27,-88.45,82],'#cbd0be',1);this.line([-28,-88.4,70],[-28,-88.4,73],'#d5d5bf',2);
+  this.box([-60,-126,143,148,-88,147],stone);
+  this.poly([[-60,-126,147],[148,-126,147],[148,-107,159],[-60,-107,159]],'#8d9c99');
+  this.poly([[-60,-107,159],[148,-107,159],[148,-88,147],[-60,-88,147]],'#9eaaa1');
+  this.line([-60,-107,159],[148,-107,159],'#c8d0c1',2);
+  // Small clock lantern above the service wing, with a real curb and roof.
+  this.box([32,-120,146,57,-94,171],wall);this.box([30,-122,169,59,-92,173],stone);
+  this.poly([[29,-123,173],[60,-123,173],[45,-108,183]],'#8a9a97');this.poly([[60,-123,173],[60,-91,173],[45,-108,183]],'#738a8a');this.poly([[60,-91,173],[29,-91,173],[45,-108,183]],'#a2ada2');
+  this.disc(44.5,-93.95,160,7,'#e8dec4','#8a9b8b',1.5);this.line([44.5,-93.9,160],[44.5,-93.9,165],'#61756e',2);this.line([44.5,-93.9,160],[48,-93.9,158],'#61756e',2);
+  // Open upper landing and rail: the left bay is the stair entrance.
+  const g=E.guard;
+  for(const x of [-97,-61,-25,11,47,83,119,155,170]){this.box([x,g.y-1,g.z,x+1.1,g.y+.1,g.top],steel);this.box([x-1,g.y-2,g.z,x+2,g.y+.8,g.z+.5],stone);}
+  this.box([g.x,g.y-.6,g.top-.6,g.X,g.y+.6,g.top+.6],steel);this.box([g.x,g.y-.4,68,g.X,g.y+.3,68.7],steel);
+  for(let x=g.x+5;x<g.X;x+=6)this.box([x,g.y-.4,g.z,x+.45,g.y+.05,g.top],steel);
+ }
+ window(x,y,z,w,h){
+  // Physical recess/frame in the facade. Arch curves use native x/z units.
+  const arc=(pad,colour)=>{const r=(w-pad*2)/2,Z=z+h-r,v=[[x+pad,y,z],[x+w-pad,y,z],[x+w-pad,y,Z]];for(let i=0;i<=24;i++){const t=i*Math.PI/24;v.push([x+w/2+Math.cos(t)*r,y,Z+Math.sin(t)*r]);}this.poly(v,colour);};
+  arc(0,'#b6b7a6');arc(1.6,'#728a88');
+  this.box([x-1,y-.2,z-2,x+w+1,y+2.3,z],stone);
+  for(const xx of [x+w/2])this.line([xx,y+.05,z+1.6],[xx,y+.05,z+h-1.6],'#d5d5bf',2.4);
+  for(const zz of [z+13,z+26])this.line([x+1.6,y+.05,zz],[x+w-1.6,y+.05,zz],'#cbd0be',2);
+ }
+ stair(){
+  const s=E.stairs;
+  // Continuous stringers meet the landings. Rail posts are seated on treads.
+  const segments=[[-62,60,-48,60],[-48,60,30,21],[30,21,48,21],[48,21,126,-18],[126,-18,150,-18]];
+  const side=x=>{
+   for(const [y,z,Y,Z] of segments){
+    this.poly([[x+2,y,-18],[x+2,Y,-18],[x+2,Y,Z+3],[x+2,y,z+3]],'#a7ad9e');
+    this.poly([[x,y,z+3],[x+2,y,z+3],[x+2,Y,Z+3],[x,Y,Z+3]],'#d5d4c1');
+    this.line([x+1,y,z+16],[x+1,Y,Z+16],'#6a807b',3.5);
+    this.line([x+1,y,z+9],[x+1,Y,Z+9],'#85968a',1.5);
+   }
+   for(const [y,z] of [[-61,60],[-48,60],[-24,48],[0,36],[29,21],[48,21],[72,9],[96,-3],[125,-18],[149,-18]]){
+    this.box([x+.35,y-.5,z+2,x+1.65,y+.8,z+16],steel);
+   }
+  };
+  side(-136);
+  this.box(s.landings[0],stone);
+  for(let f=0;f<s.flights.length;f++){
+   for(const q of s.flights[f]){this.box(q,stone);this.line([q[0],q[4],q[5]+.02],[q[3],q[4],q[5]+.02],'#eee8d3',1.25);}
+   this.box(s.landings[f+1],stone);
+  }
+  side(-98);
+ }
+ yard(){
+  this.box([174,-68,-18,320,-62,20],stone);this.box([173,-69,20,321,-61,22],stone);
+  for(let x=174;x<320;x+=24)this.line([x,-61.97,0],[x,-61.97,20],'#87968a66',.8);
+  const post=q=>{this.contact(q[0]-1,q[1]-1,q[3]+1,q[4]+1,0);this.box(q,steel);this.box([q[0]-.7,q[1]-.7,0,q[3]+.7,q[4]+.7,.8],stone);};
+  post(E.canopy.posts[0]);
+  for(const [x,y,w,d,h] of [[280,-53,13,12,16],[295,-52,14,17,10],[282,-39,13,8,7]]){this.contact(x,y,x+w,y+d,0);this.box([x,y,0,x+w,y+d,h],{top:'#c5c4af',left:'#afaf9c',right:'#969f91'});this.box([x-.3,y+d-.2,1,x+w+.3,y+d+.5,2.2],stone);this.box([x-.3,y+d-.2,h-2,x+w+.3,y+d+.5,h-.8],stone);}
+
+  for(let i=1;i<E.canopy.posts.length;i++)post(E.canopy.posts[i]);
+  for(const q of E.canopy.beams)this.box(q,steel);
+  this.box(E.canopy.roof,{top:'#9aa9a2',left:'#788e87',right:'#6e8581'});
+  // Wheel guards flank the berth; nothing is placed inside its swept envelope.
+  for(const x of [253]){this.contact(x-1,-6,x+3,-1,0);this.box([x,-5,0,x+2,-2,7],steel);}
+ }
+ disc(x,y,z,r,fill,stroke,width=1){const v=[];for(let i=0;i<64;i++){const t=i*Math.PI/32;v.push([x+Math.cos(t)*r,y,z+Math.sin(t)*r]);}this.poly(v,fill);for(let i=0;i<64;i++)this.line(v[i],v[(i+1)%64],stroke,width);}
+ street(){
+  // Low street edges frame rather than screen the maximum board.
+  for(const q of [[-58,266,-18,154,273,-8],[326,34,-18,333,212,-8]]){this.contact(q[0],q[1],q[3],q[4],-18);this.box(q,stone);this.box([q[0]-1,q[1]-1,-8,q[3]+1,q[4]+1,-6.8],wall);}
+  for(const x of [-49,13,75,137]){this.box([x,268,-18,x+10,278,-5],stone);this.box([x-1,267,-5,x+11,279,-3.5],wall);}
+  for(const x of [-35,30,95]){this.box([x,278,-18,x+34,289,-15],stone);this.plane(x+1,279,-14.95,x+33,288,'#9da594');
+   for(let i=0;i<5;i++){const xx=x+4+i*6,yy=282+(i%2)*3;this.poly([[xx-4,yy,-14],[xx-5,yy,-9],[xx,yy-3,-5-(i%2)*2],[xx+5,yy,-9],[xx+4,yy,-14]],i%2?'#a5b29a':'#92a58e');}
+  }
+  // Bicycle construction includes two ground-contact tyres and connected frame.
+  const y=261,z=-18;
+  for(const x of [210,232]){this.disc(x,y,z+6,6,'#c8cec0','#72877c',2);this.disc(x,y+.03,z+6,4.8,'#ccd0c3','#a1ad9c',.8);for(let i=0;i<8;i++){const t=i*Math.PI/4;this.line([x,y+.06,z+6],[x+4.8*Math.cos(t),y+.06,z+6+4.8*Math.sin(t)],'#a4af9f',.6);}}
+  const lines=[[[210,6],[219,15]],[[219,15],[223,6]],[[223,6],[210,6]],[[219,15],[229,16]],[[229,16],[223,6]],[[229,16],[232,6]],[[219,15],[219,18]],[[217,18],[222,18]],[[229,16],[227,20]],[[227,20],[231,20]]];
+  for(const [a,b] of lines)this.line([a[0],y+.1,z+a[1]],[b[0],y+.1,z+b[1]],'#6b857c',2.6);
+  for(const x of [208,233])this.box([x,263,-18,x+1,264,-4],steel);this.box([208,263,-5,234,264,-4],steel);
+  this.contact(295,214,304,223,-18);this.box([297,215,-18,302,220,-15],stone);this.box([298,216,-15,301,219,-5],steel);this.box([295,213,-5,304,222,10],{top:'#abb6a1',left:'#829a8b',right:'#6b877c'});this.line([296,222.02,6],[303,222.02,6],'#4f7068',2);
+ }
+ draw(){this.r.architecture.drawLayer('court',this.canvas,this.bounds);}
+}
+root.ParcelExterior=Exterior;
+})(globalThis);
+
 /* Room-local artwork on the original PARCEL life anchors and chapter clock. */
 (function(root){'use strict';
 const P=ParcelProjection,U=ParcelLayout.unit;
@@ -9154,7 +9302,7 @@ class Renderer{
   this.tables=Array.from({length:64},()=>({x:0,y:0,dir:'R',type:'plain',locked:false}));
   this.hatches=Array.from({length:8},()=>({x:0,y:0,dir:'R'}));this.hatchStates=Array.from({length:8},()=>({open:0}));
   this.baskets=Array.from({length:16},()=>({x:0,y:0,coat:'ginger'}));this.dogs=Array.from({length:16},()=>this.acting.makeDogOut());
-  this.pieces=new ParcelPieces(this);this.architecture=new ParcelArchitecture(this);this.life=new ParcelLifeArt(this);this.point={x:0,y:0};this.polygon=Array.from({length:4},()=>({x:0,y:0}));
+  this.pieces=new ParcelPieces(this);this.architecture=new ParcelArchitecture(this);this.life=new ParcelLifeArt(this);this.exterior=new ParcelExterior(this);this.point={x:0,y:0};this.polygon=Array.from({length:4},()=>({x:0,y:0}));
  }
  async load(){
   const names=Object.keys(this.assets.files);
@@ -9164,7 +9312,7 @@ class Renderer{
   for(const [id,name] of Object.entries(mapping)){const q=this.assets.fronts.sprites[name].atlasRect,c=document.createElement('canvas');c.width=q[2];c.height=q[3];c.getContext('2d').drawImage(this.images.fronts,...q,0,0,q[2],q[3]);this.images[id]=c;}
   const dial=this.assets.mechanical.sprites['scale-dial'].atlasRect,dc=document.createElement('canvas');dc.width=dial[2];dc.height=dial[3];dc.getContext('2d').drawImage(this.images.mechanical,...dial,0,0,dial[2],dial[3]);this.images['mechanical-scale-dial']=dc;
   this.bedArt={};for(const coat of ['ginger','blue'])for(const state of ['empty','compressed']){const id='big_basket_'+coat+'/'+state;this.bedArt[coat+state]={image:this.images[id],rect:this.assets.original[id].rect};}
-  this.architecture.bake();this.life.prepare();for(const [w,h] of ParcelLayout.sizes){this.bakeBoard(w,h);this.pieces.prepareBoard(w,h);}this.ready=true;
+  this.architecture.bake();this.exterior.bake();this.life.prepare();for(const [w,h] of ParcelLayout.sizes){this.bakeBoard(w,h);this.pieces.prepareBoard(w,h);}this.ready=true;
  }
  sprite(sheet,index,x,bottom,width){const r=this.assets[sheet].rects[index];this.ctx.drawImage(this.images[sheet],r[0],r[1],r[2],r[3],x-width/2,bottom-width*r[3]/r[2],width,width*r[3]/r[2]);}
  path(points,fill,stroke,width=1){const c=this.ctx;c.beginPath();for(let i=0;i<points.length;i++){const p=points[i];if(i)c.lineTo(p.x,p.y);else c.moveTo(p.x,p.y);}c.closePath();if(fill){c.fillStyle=fill;c.fill();}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke();}}
@@ -9254,10 +9402,10 @@ class Renderer{
  draw(src){
   if(!this.ready)return;const c=this.ctx,B=src;
   c.setTransform(this.dpr,0,0,this.dpr,0,0);c.clearRect(0,0,this.config.width,this.config.height);
-  c.fillStyle='#e6ebe4';c.fillRect(0,0,this.config.width,this.config.height);
+  c.fillStyle='#d8dbd0';c.fillRect(0,0,this.config.width,this.config.height);
   c.save();if(this.gray)c.filter='grayscale(1)';c.translate(this.cam.tx,this.cam.ty);c.scale(this.cam.scale,this.cam.scale);c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';
   this.prepare(src);const life=this.motion||CP.parcel?PARCELIFE:this.life.frozen;
-  this.architecture.drawFloor();this.life.vanShadow(life);this.architecture.draw();this.life.van(life);this.architecture.drawForeground();this.board(B.w,B.h);
+  this.exterior.draw();this.architecture.drawFloor();this.life.vanShadow(life);this.architecture.draw();this.life.van(life);this.architecture.drawForeground();this.board(B.w,B.h);
   if(this.selected){const s=this.selected;const points=this.polygon;Object.assign(points[0],this.pieces.project(s.x,s.y));Object.assign(points[1],this.pieces.project(s.x+1,s.y));Object.assign(points[2],this.pieces.project(s.x+1,s.y+1));Object.assign(points[3],this.pieces.project(s.x,s.y+1));this.path(points,'#fff8da33','#fff0b8',3);}
   for(let i=0;i<src.turntables.length;i++){const t=src.turntables[i],v=this.tables[i];v.x=t.x;v.y=t.y;v.dir=DIR[t.dir];v.type=TYPES[t.kind];v.locked=t.locked;let spin=0;for(let j=0;j<src.n;j++){const o=this.poses[j];if(o.spinX===t.x&&o.spinY===t.y)spin=Math.max(spin,o.spin);}this.pieces.table(v,spin);}
   for(const g of src.gates)this.gate(g);
@@ -9323,7 +9471,7 @@ function parcelPaperFrameFor(mode){
  parcelPaperReserveControls();
  const pw=side?(chapter?panel.offsetWidth:parcelPaperReserve.w)+18:0,ph=side?0:(chapter?panel.offsetHeight:parcelPaperReserve.h)+20;
  f.x=12*d;f.y=(header+12)*d;f.w=Math.max(80*d,devW-(24+pw)*d);f.h=Math.max(80*d,devH-(header+24+ph)*d);
- if(mode==='room'){const b=ParcelLayout.bounds;f.cx=OX+((b.left+b.right)/2-760)*parcelPaperScale;f.cy=OY+80+((b.top+b.bottom)/2-465)*parcelPaperScale;f.width=(b.right-b.left)*parcelPaperScale;f.height=(b.bottom-b.top)*parcelPaperScale;}
+ if(mode==='room'||mode==='court'){const b=mode==='court'?ParcelExteriorLayout.bounds:ParcelLayout.bounds;f.cx=OX+((b.left+b.right)/2-760)*parcelPaperScale;f.cy=OY+80+((b.top+b.bottom)/2-465)*parcelPaperScale;f.width=(b.right-b.left)*parcelPaperScale;f.height=(b.bottom-b.top)*parcelPaperScale;}
  else{const B=CP.mode==='demo'?CP.src:gm.L.board;f.cx=OX+(B.w-B.h)*8;f.cy=OY+80+(B.w+B.h)*4-3;f.width=(B.w+B.h)*16+36;f.height=(B.w+B.h)*8+60;}
  return f;
 }
@@ -9348,7 +9496,8 @@ function parcelPaperFit(mode){
  parcelPaper.view=mode;parcelPaperGeometry();view.panX=view.panY=0;
  view.zoom=parcelPaperDefault(devW,devH,devDpr);
  applyScale();gCamera();dirty=true;
- document.getElementById('paperView').textContent=mode==='room'?'Closer to the board':'Explore the room';
+ document.getElementById('paperView').textContent=mode==='board'?'Explore the room':'Closer to the board';
+ for(const id of ['paperCourt','paperCourtSmall'])document.getElementById(id).textContent=mode==='court'?'Back to the room':'Explore courtyard';
 }
 function parcelStudySelect(id){
  const index=LEVELS.findIndex(l=>l.id===id);if(index<0||!/^7-/.test(id))throw RangeError('Parcel study owns 7-1–7-15');
@@ -9395,7 +9544,7 @@ async function parcelPaperBoot(){
   present=function(){
    if(!parcelPaperOutput)return parcelPaperNative.present();
    const zoom=CP.mode==='enter'?CP.visualScale:scale,w=LW*zoom,h=LH*zoom;
-   sctx.fillStyle=grayscale?'#e8e8e8':'#e6ebe4';sctx.fillRect(0,0,screen.width,screen.height);
+   sctx.fillStyle=grayscale?'#e8e8e8':'#d8dbd0';sctx.fillRect(0,0,screen.width,screen.height);
    sctx.imageSmoothingEnabled=true;sctx.imageSmoothingQuality='high';
    sctx.drawImage(parcelPaper.canvas,0,0,LW*parcelPaperDensity,LH*parcelPaperDensity,CP.mode==='enter'?(devW-w)/2:dstX,CP.mode==='enter'?(devH-h)/2:dstY,w,h);
   };
@@ -9404,7 +9553,8 @@ async function parcelPaperBoot(){
   cpBegin=function(){if(!parcelPaperExit())return parcelPaperNative.cpBegin();};
   CP.primary.addEventListener('click',e=>{if(parcelPaperExit()){e.preventDefault();e.stopImmediatePropagation();}},true);
   const pick=document.getElementById('paperPick');for(const l of LEVELS.filter(l=>/^7-/.test(l.id))){const o=document.createElement('option');o.value=l.id;o.textContent=l.id+' · '+l.title;pick.append(o);}pick.onchange=()=>parcelStudySelect(pick.value);
-  document.getElementById('paperView').onclick=()=>parcelPaperFit(parcelPaper.view==='room'?'board':'room');
+  document.getElementById('paperView').onclick=()=>parcelPaperFit(parcelPaper.view==='board'?'room':'board');
+  document.getElementById('paperCourtSmall').onclick=document.getElementById('paperCourt').onclick=()=>parcelPaperFit(parcelPaper.view==='court'?'room':'court');
   document.getElementById('paperMotion').onclick=e=>{parcelPaper.motion=!parcelPaper.motion;e.currentTarget.setAttribute('aria-pressed',String(parcelPaper.motion));e.currentTarget.textContent=parcelPaper.motion?'Motion on':'Motion off';dirty=true;};
   document.getElementById('paperStory').onclick=()=>{pcIntro();};
   document.getElementById('paperSolve').onclick=()=>{if(gm.mode==='running'||cpActive())return;gm.chutes=gm.L.solution.map(p=>({...p}));gm.tray={...gm.L.tray};for(const p of gm.chutes)gm.tray[p.type]--;gSyncSrc();gHud();dirty=true;};
@@ -9412,7 +9562,8 @@ async function parcelPaperBoot(){
   parcelPaper.state=()=>({ready:parcelPaper.ready,error:parcelPaper.error,level:gm.L.id,mode:gm.mode,chapter:CP.mode,frame:CP.frame,size:[gBoardSource().w,gBoardSource().h],motion:r.motion,bakes:r.architecture.bakes});
   parcelPaper.select=parcelStudySelect;parcelPaper.fit=parcelPaperFit;
   if(innerWidth<700||innerHeight<520)parcelPaper.view='board';
-  parcelStudySelect(new URLSearchParams(location.search).get('level')||'7-1');__so.seek(600);__so.pause(false);
+  const query=new URLSearchParams(location.search);if(['room','board','court'].includes(query.get('view')))parcelPaper.view=query.get('view');
+  parcelStudySelect(query.get('level')||'7-1');__so.seek(600);__so.pause(false);
   window.addEventListener('resize',()=>{if(parcelPaperEligible()&&!cpActive())parcelPaperFit(parcelPaper.view);});
   document.body.classList.remove('paper-loading');document.getElementById('paperLoading').remove();
  }catch(e){parcelPaper.error=e.stack||String(e);document.getElementById('paperLoading').textContent='The study could not load. '+e.message;console.error(e);}
