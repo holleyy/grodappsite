@@ -164,7 +164,7 @@ body #hud #btnSend{background:#326e70!important;border-color:#326e70!important}b
 
 </style>
 </head>
-<body class="paper-loading"><header id="paperHeader"><div><p>CATS BY POST · MORNING DISPATCH</p><h1>Parcel Room <span id="paperSize"></span></h1></div><nav aria-label="Parcel study"><select id="paperPick" aria-label="Delivery"></select><button id="paperView">Closer to the board</button><button id="paperMotion" aria-pressed="true">Motion on</button><button id="paperStory">The story</button><details><summary>Study tools</summary><button id="paperSolve">Place solution</button><button id="paperGray">Grayscale</button><a href="review/">Construction review</a></details></nav></header><div id="paperLoading" role="status">Opening the parcel room…</div>
+<body class="paper-loading"><header id="paperHeader"><div><p>CATS BY POST · MORNING DISPATCH</p><h1>Parcel Room <span id="paperSize"></span></h1></div><nav aria-label="Parcel study"><select id="paperPick" aria-label="Delivery"></select><button id="paperView">Closer to the board</button><button id="paperMotion" aria-pressed="true">Motion on</button><button id="paperStory">The story</button><details><summary>Study tools</summary><button id="paperSolve">Place solution</button><button id="paperGray">Grayscale</button><a href="review/">Material review</a></details></nav></header><div id="paperLoading" role="status">Opening the parcel room…</div>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
   <div class="row"><select id="lvlPick" aria-label="Level: pick one to play"></select>
@@ -261,6 +261,6 @@ body #hud #btnSend{background:#326e70!important;border-color:#326e70!important}b
     <button type="button" data-file="atlas.json">atlas.json</button><button type="button" data-file="palette.json">palette.json</button><button type="button" data-file="backdrops.json">backdrops.json</button></div>
   <div id="atlasHint">S to close</div>
 </div></div>
-<script>Promise.all(["runtime/scene-00b83ca44e9b-0.txt", "runtime/scene-00b83ca44e9b-1.txt", "runtime/scene-00b83ca44e9b-2.txt", "runtime/scene-00b83ca44e9b-3.txt", "runtime/scene-00b83ca44e9b-4.txt"].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Could not load the Parcel study: '+r.status);return r.text();})).then(parts=>{const script=document.createElement('script');script.textContent=parts.join('');document.body.appendChild(script);}).catch(error=>{document.getElementById('paperLoading').textContent=error.message;console.error(error);});</script>
+<script>Promise.all(["runtime/scene-899dc5198cda-0.txt", "runtime/scene-899dc5198cda-1.txt", "runtime/scene-899dc5198cda-2.txt", "runtime/scene-899dc5198cda-3.txt", "runtime/scene-899dc5198cda-4.txt"].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('Could not load the Parcel study: '+r.status);return r.text();})).then(parts=>{const script=document.createElement('script');script.textContent=parts.join('');document.body.appendChild(script);}).catch(error=>{document.getElementById('paperLoading').textContent=error.message;console.error(error);});</script>
 </body>
 </html>
