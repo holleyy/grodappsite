@@ -1,9 +1,9 @@
 {
   "prefix": "cats-by-post-parcel-paper",
-  "sourceCommit": "2ca84bfa2b54f4ddc86b965cefdcb8578735fc2d",
+  "sourceCommit": "85c7d5900d63b55aff08e05ed55da84849a27ad8",
   "sourceStudySha256": "a1b66cdac77cb26245bf49d5140371fdd8fd17475c8606fa2f5b98706dd774aa",
   "storagePrefix": "catsByPost.parcelPaperStudy.v1:",
-  "status": "whole-room materials, support corrections and town setting; user visual review pending",
+  "status": "material checkpoint plus City Hall service-court proposal; environment implementation pending",
   "scriptSha256": "335b28b3e12c5d1dc91ea4c4a195031c3b4f59943446008f3af4c75142e12b12",
   "scriptChunks": [
     "runtime/scene-335b28b3e12c-0.txt",
@@ -1299,9 +1299,9 @@
       "bytes": 25497
     },
     "next.html": {
-      "sha256": "f0d9538b1ae3f1db2b607f5ceca394b963338f48d218624b5d65f15d5f4b017c",
-      "gitBlob": "d0d6192a6905c09c08db4b0162620bebdb3d2303",
-      "bytes": 1948
+      "sha256": "3cb3386572fa2d5fa6d2ef5283a3a280c3c46bbb9ab4d93f70eca0d8361aaf94",
+      "gitBlob": "778fb00d5efec6286e47b223ea722e6410e116d0",
+      "bytes": 1967
     },
     "reference/morning-dispatch.png": {
       "sha256": "8c7bfb88e11d3e25b29b8b4b8cf5992251251a7f68b6a1706cf09a71b97b2060",
@@ -1389,9 +1389,9 @@
       "bytes": 580286
     },
     "review/index.html": {
-      "sha256": "c25b2f9f87facbd4bee3e87cf27d68faaab3135e9f74db09510591dabc162ad1",
-      "gitBlob": "dfe1ff93ce02fb974a5578224f62ed70efea7962",
-      "bytes": 9267
+      "sha256": "5f10a1a38b16a3c889f5bd5ac04d3fccae80390935f2717db9eb48c17011368b",
+      "gitBlob": "34476c9d7c88192da7b02231e58bfc8100ccd2be",
+      "bytes": 9472
     },
     "review/joinery.webp": {
       "sha256": "2cbe397b0d113631b782c1c0fdc303ee28d5034d3e2ee01cdb358d171071bc31",
@@ -1557,6 +1557,21 @@
       "sha256": "2838495b5db83c6295c8bbebd2009c211fa5ef1fab91eb4e117d6b3ce582ad6a",
       "gitBlob": "ebf015350380ca8a7d5976f4d4b91a77e7894a4d",
       "bytes": 725527
+    },
+    "setting/city-hall-service-court.webp": {
+      "sha256": "262000499966ac737ad866de7818e67436ff8bacc118cd9fc02db034bab0a47c",
+      "gitBlob": "9ea0ccc0e472e07885c63117a019918fcc2bfe36",
+      "bytes": 761772
+    },
+    "setting/current-room.webp": {
+      "sha256": "9e4bf21afa5e85bff5eee2ef31bf1df9e57a7477f50aef44bc669d7cde5d84b2",
+      "gitBlob": "31097ab1760222c406a2449b57a0c76becefc1a0",
+      "bytes": 155094
+    },
+    "setting/index.html": {
+      "sha256": "9d9667f36775e474087c5f1d8da556b1ad0cdeb1a9a5a9f2c317df8ba4953d89",
+      "gitBlob": "49c8156194d078d8a21a45b35f34ad9348782527",
+      "bytes": 4224
     }
   }
 }
