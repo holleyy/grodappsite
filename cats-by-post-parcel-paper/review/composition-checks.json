@@ -1,0 +1,68 @@
+{
+  "baseline": {
+    "paving": {
+      "mean": 184.67455694618394,
+      "deviation": 8.654238003420916,
+      "edge": 3.1996421813964844
+    },
+    "cam": {
+      "tx": 66,
+      "ty": 162.5263157894737,
+      "scale": 0.25263157894736843
+    },
+    "foregroundBoardChecks": []
+  },
+  "current": {
+    "paving": {
+      "mean": 187.76051389220396,
+      "deviation": 3.73497336284536,
+      "edge": 1.379425048828125
+    },
+    "cam": {
+      "tx": 66,
+      "ty": 162.5263157894737,
+      "scale": 0.25263157894736843
+    },
+    "foregroundBoardChecks": [
+      {
+        "id": "7-1",
+        "samples": 41565,
+        "changed": 0
+      },
+      {
+        "id": "7-6",
+        "samples": 47597,
+        "changed": 0
+      },
+      {
+        "id": "7-9",
+        "samples": 55677,
+        "changed": 0
+      },
+      {
+        "id": "7-15",
+        "samples": 62733,
+        "changed": 0
+      }
+    ],
+    "preparedBytes": 43513408,
+    "layerBounds": {
+      "back": {
+        "left": 567.6,
+        "right": 3030,
+        "top": -926.8,
+        "bottom": 771.6000000000001
+      },
+      "front": {
+        "left": -722.6,
+        "right": 1647.8000000000002,
+        "top": 497.2,
+        "bottom": 1670
+      }
+    },
+    "edgeCoverage": [
+      0,
+      0
+    ]
+  }
+}

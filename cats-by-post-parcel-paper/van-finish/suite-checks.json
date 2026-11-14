@@ -1,0 +1,11 @@
+{
+  "tests": 1680,
+  "passed": 1680,
+  "failed": 0,
+  "durationMs": 511537.342452,
+  "ownedTests": 25,
+  "suiteLogSha256": "4b053daf642fb8d85779da270d24d4a07723d429ca9b4cb81f02b5b766024291",
+  "productionHtmlSha256": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
+  "note": "Full suite after implementation. Subsequent duplicate-face removal preserves all rendered pixels at three angles; final owned geometry/raster tests pass after cleanup.",
+  "runtimeCommit": "2aef7f4fefbc76425a25d3494407ebce7389015c"
+}
