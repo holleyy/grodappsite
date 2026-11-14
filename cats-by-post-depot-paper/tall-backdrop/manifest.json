@@ -1,0 +1,23 @@
+{
+  "HANDOVER.md": "6a7db7dad0ea487266af41527192971066d3022db2811f7b1a4483117481a01a",
+  "INTEGRATION.md": "7a9bc0f97a09d9f95b5136270345c6b7931443c8cd2185aa9c09815b68911005",
+  "REVIEW.md": "6675efa9832b99e421bf8a61138dce149ddbae9e32bedbac5cc6b27ee65036de",
+  "build-manifest.json": "278113fbf2ee6b59de6854e1d702bd4d315eed152dc1077300187e8ca6bf7507",
+  "evidence/before-phone.webp": "4b53b421447181b03dce8b7047c0ffd9a9f59373308a8ebbe28f968b177446cf",
+  "evidence/browser.json": "a79d82498e478a1033b73c755071c525018b3a1507653fd591cc45d6decda3e2",
+  "evidence/chapter-exit.webp": "453a820670edf83b266078a1bed9e624839f0a8428127a4584e4957f73c68133",
+  "evidence/chapter-growth1.webp": "aa553314d4d611c811377ca30d69addf6c6b42a40ee3c2855ce6c8438f7bd2a6",
+  "evidence/chapter-growth2.webp": "8f4737f8bcdd7d77c5b7e7dd3ce64de886203d73ef90374eb2f951db7e32e095",
+  "evidence/chapter-intro.webp": "077c8e3b1f52325248c240340b7e7a18aa1c66fa78a4582da7cb8d2572bb4840",
+  "evidence/host-1100.webp": "7f74dd63cd58fede5cdaf2a4ca9b9add2c431e18705a88d9d654498830624851",
+  "evidence/host-844.webp": "551cd0fc540afcb996495922282b2d857dbcff723e9fff9ed0ff37f0dc12ad79",
+  "evidence/landscape.webp": "946a80d7ddc650f1814e754b80eb26e85e4328e3961520a3bee7c9cd96d56541",
+  "evidence/performance.json": "517d39e97dd6e4c79372e4acfb77ef8ec16d9d23eaf96dd78771cb443548f7d0",
+  "evidence/phone-board.webp": "b28378c2508d9db9ef0b7d30daf639b3748866abc0ac35e32c78f5883eee11e6",
+  "evidence/phone.webp": "2fd1a9b8dbd3ddbe54d3b4ed6cbd8a1fd9ba3d38b1db213e235fdfc3c1526262",
+  "evidence/preservation.json": "a5e5b2b9ec012de53bf3ddc6ccf1e1a800eaf5fdab5944f8dd3cc57c9bc2aab4",
+  "evidence/review-fixes.json": "420598f8f6a0bc88acbb5b336a6438b6a83117d3a0c2a93648f544d7648cd0d4",
+  "evidence/tests.json": "684808edb7b73c2ec9bfdce621081408c5377fe6482ab6456445c7bb8ff2b267",
+  "index.html": "678d9a160d6cb2a73d7d40127eb4c7f7c433650d577e641e14b4ea27a73b6029",
+  "playable.html": "31d04ecef16f0595db9bf974ee505101f9c736530d5beb0435be25b4fad947e4"
+}

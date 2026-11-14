@@ -1,0 +1,18 @@
+{
+  "broad": {
+    "command": "npm test",
+    "tests": 1720,
+    "passed": 1720,
+    "failed": 0,
+    "durationMs": 1098789.046454,
+    "note": "The full run began before the final backdrop composition and van-aperture fixes. Final focused and actual-browser checks follow those changes; canonical gameplay sources remain exact."
+  },
+  "finalFocused": {
+    "command": "node --test tests/depot-paper-*.test.js",
+    "tests": 65,
+    "passed": 65,
+    "failed": 0,
+    "durationMs": 1213.073415
+  },
+  "runtimeSHA256": "31d04ecef16f0595db9bf974ee505101f9c736530d5beb0435be25b4fad947e4"
+}

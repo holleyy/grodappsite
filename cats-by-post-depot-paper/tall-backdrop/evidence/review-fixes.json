@@ -1,0 +1,54 @@
+{
+  "runtimeSHA256": "31d04ecef16f0595db9bf974ee505101f9c736530d5beb0435be25b4fad947e4",
+  "van": [
+    {
+      "t": 0,
+      "visible": 13258,
+      "outside": 0
+    },
+    {
+      "t": 27,
+      "visible": 13244,
+      "outside": 0
+    },
+    {
+      "t": 29,
+      "visible": 4416,
+      "outside": 0
+    },
+    {
+      "t": 31,
+      "visible": 0,
+      "outside": 0
+    },
+    {
+      "t": 43,
+      "visible": 0,
+      "outside": 0
+    },
+    {
+      "t": 44,
+      "visible": 0,
+      "outside": 0
+    },
+    {
+      "t": 46,
+      "visible": 13253,
+      "outside": 0
+    },
+    {
+      "t": 48,
+      "visible": 13258,
+      "outside": 0
+    }
+  ],
+  "labelsFollowMode": true,
+  "panZoomPreservesRoute": true,
+  "groundColourSamples": 49,
+  "cache": {
+    "canvasesCreatedDuringSteadyMotion": 0,
+    "bakes": 1,
+    "initialViewBakes": 8,
+    "finalViewBakes": 8
+  }
+}
