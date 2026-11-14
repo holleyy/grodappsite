@@ -1,0 +1,46 @@
+[
+  {
+    "mode": "court",
+    "scale": 1.0878988770977296,
+    "source": [
+      1178.1944838968411,
+      2555.4744623025667
+    ],
+    "changed": 0,
+    "maxDelta": 0,
+    "interiorChanged": 0
+  },
+  {
+    "mode": "court",
+    "scale": 1.2652501850937807,
+    "source": [
+      1177.9479223223098,
+      2555.8053738894373
+    ],
+    "changed": 0,
+    "maxDelta": 0,
+    "interiorChanged": 0
+  },
+  {
+    "mode": "board",
+    "scale": 3.791095890410959,
+    "source": [
+      1175.2397260273974,
+      2555.1986301369866
+    ],
+    "changed": 0,
+    "maxDelta": 0,
+    "interiorChanged": 0
+  },
+  {
+    "mode": "board",
+    "scale": 6.065753424657535,
+    "source": [
+      776,
+      1684
+    ],
+    "changed": 8311,
+    "maxDelta": 30,
+    "interiorChanged": 0
+  }
+]

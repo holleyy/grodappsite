@@ -1,0 +1,20 @@
+{
+  "court": {
+    "meanRgbDifference": 0.9455636214168749
+  },
+  "board": {
+    "meanRgbDifference": 0.9293374357286243
+  },
+  "zoom": {
+    "meanRgbDifference": 1.1779447141176467
+  },
+  "pan": {
+    "meanRgbDifference": 0.8041452465618327
+  },
+  "van": {
+    "meanRgbDifference": 0.9464269517459737
+  },
+  "handoff": {
+    "meanRgbDifference": 0.9454188296935193
+  }
+}

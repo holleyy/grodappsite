@@ -1,0 +1,2875 @@
+{
+  "environment": "Software Chromium, 393×852 at DPR 3; diagnostic, not iOS Safari",
+  "inventory": [
+    {
+      "path": "renderer.canvas",
+      "type": "canvas",
+      "width": 1179,
+      "height": 2556,
+      "bytes": 12054096
+    },
+    {
+      "path": "renderer.images.materials",
+      "type": "image",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 4194304
+    },
+    {
+      "path": "renderer.images.cats",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.pieces",
+      "type": "image",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 6290064
+    },
+    {
+      "path": "renderer.images.cornerPendant",
+      "type": "image",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 6290064
+    },
+    {
+      "path": "renderer.images.acting",
+      "type": "image",
+      "width": 3072,
+      "height": 1920,
+      "bytes": 23592960
+    },
+    {
+      "path": "renderer.images.decor",
+      "type": "image",
+      "width": 1216,
+      "height": 1144,
+      "bytes": 5564416
+    },
+    {
+      "path": "renderer.images.foliage",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.fronts",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.town",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.workroom",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.corner",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.face-shelf",
+      "type": "image",
+      "width": 256,
+      "height": 232,
+      "bytes": 237568
+    },
+    {
+      "path": "renderer.images.van",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.face-cabinet",
+      "type": "canvas",
+      "width": 430,
+      "height": 373,
+      "bytes": 641560
+    },
+    {
+      "path": "renderer.images.court",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.face-door",
+      "type": "canvas",
+      "width": 396,
+      "height": 403,
+      "bytes": 638352
+    },
+    {
+      "path": "renderer.images.face-correspondence",
+      "type": "canvas",
+      "width": 432,
+      "height": 404,
+      "bytes": 698112
+    },
+    {
+      "path": "renderer.images.face-parcel",
+      "type": "image",
+      "width": 96,
+      "height": 96,
+      "bytes": 36864
+    },
+    {
+      "path": "renderer.images.face-dial",
+      "type": "canvas",
+      "width": 378,
+      "height": 392,
+      "bytes": 592704
+    },
+    {
+      "path": "renderer.images.face-tea",
+      "type": "canvas",
+      "width": 450,
+      "height": 316,
+      "bytes": 568800
+    },
+    {
+      "path": "renderer.images.face-coats",
+      "type": "canvas",
+      "width": 405,
+      "height": 437,
+      "bytes": 707940
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/rest",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.foregroundPlants",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/waddle1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/waddle3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/waddle2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/blink",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.plants",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/yawn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/offended",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/right_rest",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/right_waddle1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/right_waddle2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/right_waddle3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/right_blink",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/right_yawn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/right_offended",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/climb0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/climb1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/flop",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/turn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/sit",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/curl0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/curl1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/wake",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/walk0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/walk1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/walk2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/sulk",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/walk3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/flap0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/flap3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/flap1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/flap2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/flap4",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/flap5",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/flap7",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_towards/flap6",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/waddle1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/rest",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/waddle2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/waddle3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/blink",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/yawn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/offended",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/right_rest",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/right_waddle1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/right_waddle2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/right_blink",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/right_waddle3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/right_offended",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/right_yawn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/climb1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/climb0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/flop",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/sit",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/turn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/curl1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/wake",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/curl0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/walk0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/walk1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/walk2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/walk3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/sulk",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/flap0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/flap1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/flap2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/flap3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/flap4",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/flap5",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/waddle1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/flap6",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_ginger_away/flap7",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/rest",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/waddle2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/waddle3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/blink",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/offended",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/yawn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/right_rest",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/right_waddle1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/right_waddle2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/right_waddle3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/right_blink",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/right_yawn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/right_offended",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/climb0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/climb1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/turn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/flop",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/sit",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/curl0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/curl1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/wake",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/walk0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/walk1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/walk2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/walk3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/sulk",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/flap0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/flap1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/flap2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/flap3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/flap5",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/flap4",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/flap6",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_towards/flap7",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/waddle1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/rest",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/waddle2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/waddle3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/blink",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/yawn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/offended",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/right_rest",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/right_waddle1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/right_waddle2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/right_waddle3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/right_blink",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/right_yawn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/right_offended",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/climb0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/turn",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/flop",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/sit",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/curl0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/climb1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/curl1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/wake",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/walk2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/walk1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/walk0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/walk3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/flap0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/sulk",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/flap1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/flap2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/flap3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/flap4",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/flap6",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/flap5",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_blue_away/flap7",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fold2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/open",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/flat",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fold3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fold1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/rim",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade4",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade5",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade6",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade7",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade8",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade9",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade10",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade12",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade11",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade13",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade14",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_ginger/fade15",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/open",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fold1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fold3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/rim",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fold2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/flat",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade2",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade3",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade4",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade5",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade6",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade7",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade8",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade9",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade10",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade12",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade13",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade15",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade11",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_box_blue/fade14",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.big_basket_ginger/empty",
+      "type": "image",
+      "width": 88,
+      "height": 64,
+      "bytes": 22528
+    },
+    {
+      "path": "renderer.images.big_basket_ginger/compressed",
+      "type": "image",
+      "width": 88,
+      "height": 64,
+      "bytes": 22528
+    },
+    {
+      "path": "renderer.images.big_basket_blue/empty",
+      "type": "image",
+      "width": 120,
+      "height": 80,
+      "bytes": 38400
+    },
+    {
+      "path": "renderer.images.big_basket_blue/compressed",
+      "type": "image",
+      "width": 120,
+      "height": 80,
+      "bytes": 38400
+    },
+    {
+      "path": "renderer.images.actor-head-front",
+      "type": "image",
+      "width": 79,
+      "height": 84,
+      "bytes": 26544
+    },
+    {
+      "path": "renderer.images.actor-head-back",
+      "type": "image",
+      "width": 80,
+      "height": 83,
+      "bytes": 26560
+    },
+    {
+      "path": "renderer.images.actor-coat-front",
+      "type": "image",
+      "width": 72,
+      "height": 93,
+      "bytes": 26784
+    },
+    {
+      "path": "renderer.images.actor-coat-back",
+      "type": "image",
+      "width": 72,
+      "height": 92,
+      "bytes": 26496
+    },
+    {
+      "path": "renderer.images.actor-shoe",
+      "type": "image",
+      "width": 40,
+      "height": 41,
+      "bytes": 6560
+    },
+    {
+      "path": "renderer.images.actor-sleeve",
+      "type": "image",
+      "width": 28,
+      "height": 56,
+      "bytes": 6272
+    },
+    {
+      "path": "renderer.images.actor-hand",
+      "type": "image",
+      "width": 32,
+      "height": 36,
+      "bytes": 4608
+    },
+    {
+      "path": "renderer.images.actor-pm-curl-0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.actor-pm-curl-1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.actor-pm-stretch-0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.actor-pm-watch-0-0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.actor-pm-watch-0-1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.actor-pm-stretch-1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.actor-pm-watch-1-0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.actor-pm-watch-1-1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.actor-pm-watch-2-1",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.actor-pm-watch-2-0",
+      "type": "image",
+      "width": 128,
+      "height": 144,
+      "bytes": 73728
+    },
+    {
+      "path": "renderer.images.mechanical",
+      "type": "image",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.images.mechanical-scale-dial",
+      "type": "canvas",
+      "width": 440,
+      "height": 457,
+      "bytes": 804320
+    },
+    {
+      "path": "renderer.boardCaches.118.canvas",
+      "type": "canvas",
+      "width": 1656,
+      "height": 838,
+      "bytes": 5550912
+    },
+    {
+      "path": "renderer.boardCaches.134.canvas",
+      "type": "canvas",
+      "width": 1782,
+      "height": 902,
+      "bytes": 6429456
+    },
+    {
+      "path": "renderer.boardCaches.135.canvas",
+      "type": "canvas",
+      "width": 1910,
+      "height": 964,
+      "bytes": 7364960
+    },
+    {
+      "path": "renderer.boardCaches.151.canvas",
+      "type": "canvas",
+      "width": 2036,
+      "height": 1028,
+      "bytes": 8372032
+    },
+    {
+      "path": "renderer.pieces.carriers.0",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.1",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.2",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.3",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.4",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.5",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.6",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.7",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.8",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.9",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.10",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.11",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.12",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.13",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.14",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.15",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.16",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.17",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.18",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.19",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.20",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.21",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.22",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.23",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.24",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.25",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.26",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.27",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.28",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.29",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.30",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.31",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.32",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.33",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.34",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.35",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.36",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.37",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.38",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.pieces.carriers.39",
+      "type": "canvas",
+      "width": 256,
+      "height": 192,
+      "bytes": 196608
+    },
+    {
+      "path": "renderer.architecture.canvas",
+      "type": "canvas",
+      "width": 4598,
+      "height": 2973,
+      "bytes": 54679416
+    },
+    {
+      "path": "renderer.architecture.views.court-sky.canvas",
+      "type": "canvas",
+      "width": 1354,
+      "height": 964,
+      "bytes": 5221024
+    },
+    {
+      "path": "renderer.architecture.views.street.canvas",
+      "type": "canvas",
+      "width": 1371,
+      "height": 2748,
+      "bytes": 15070032
+    },
+    {
+      "path": "renderer.architecture.views.near-town.canvas",
+      "type": "canvas",
+      "width": 677,
+      "height": 469,
+      "bytes": 1270052
+    },
+    {
+      "path": "renderer.architecture.views.court.canvas",
+      "type": "canvas",
+      "width": 1007,
+      "height": 661,
+      "bytes": 2662508
+    },
+    {
+      "path": "renderer.architecture.views.floor.canvas",
+      "type": "canvas",
+      "width": 633,
+      "height": 411,
+      "bytes": 1040652
+    },
+    {
+      "path": "renderer.architecture.views.walls.canvas",
+      "type": "canvas",
+      "width": 633,
+      "height": 411,
+      "bytes": 1040652
+    },
+    {
+      "path": "renderer.architecture.views.foreground.canvas",
+      "type": "canvas",
+      "width": 68,
+      "height": 60,
+      "bytes": 16320
+    },
+    {
+      "path": "renderer.architecture.views.near-garden.canvas",
+      "type": "canvas",
+      "width": 653,
+      "height": 325,
+      "bytes": 848900
+    },
+    {
+      "path": "renderer.architecture.p.ctx.canvas",
+      "type": "canvas",
+      "width": 462,
+      "height": 402,
+      "bytes": 742896
+    },
+    {
+      "path": "renderer.architecture.corner.swatches.steel",
+      "type": "canvas",
+      "width": 512,
+      "height": 512,
+      "bytes": 1048576
+    },
+    {
+      "path": "renderer.architecture.floorCanvas",
+      "type": "canvas",
+      "width": 3449,
+      "height": 2230,
+      "bytes": 30765080
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.0.pixels",
+      "type": "buffer",
+      "bytes": 989168
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.0.ys",
+      "type": "buffer",
+      "bytes": 494584
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.1.pixels",
+      "type": "buffer",
+      "bytes": 979792
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.1.ys",
+      "type": "buffer",
+      "bytes": 489896
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.2.pixels",
+      "type": "buffer",
+      "bytes": 973104
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.2.ys",
+      "type": "buffer",
+      "bytes": 486552
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.3.pixels",
+      "type": "buffer",
+      "bytes": 957168
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.3.ys",
+      "type": "buffer",
+      "bytes": 478584
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.4.pixels",
+      "type": "buffer",
+      "bytes": 941360
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.4.ys",
+      "type": "buffer",
+      "bytes": 470680
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.5.pixels",
+      "type": "buffer",
+      "bytes": 919184
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.5.ys",
+      "type": "buffer",
+      "bytes": 459592
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.6.pixels",
+      "type": "buffer",
+      "bytes": 900480
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.6.ys",
+      "type": "buffer",
+      "bytes": 450240
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.7.pixels",
+      "type": "buffer",
+      "bytes": 875600
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.7.ys",
+      "type": "buffer",
+      "bytes": 437800
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.8.pixels",
+      "type": "buffer",
+      "bytes": 839280
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.8.ys",
+      "type": "buffer",
+      "bytes": 419640
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.9.pixels",
+      "type": "buffer",
+      "bytes": 807936
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.9.ys",
+      "type": "buffer",
+      "bytes": 403968
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.10.pixels",
+      "type": "buffer",
+      "bytes": 778240
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.10.ys",
+      "type": "buffer",
+      "bytes": 389120
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.11.pixels",
+      "type": "buffer",
+      "bytes": 742016
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.11.ys",
+      "type": "buffer",
+      "bytes": 371008
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.12.pixels",
+      "type": "buffer",
+      "bytes": 702720
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.12.ys",
+      "type": "buffer",
+      "bytes": 351360
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.13.pixels",
+      "type": "buffer",
+      "bytes": 665280
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.13.ys",
+      "type": "buffer",
+      "bytes": 332640
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.14.pixels",
+      "type": "buffer",
+      "bytes": 629408
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.14.ys",
+      "type": "buffer",
+      "bytes": 314704
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.15.pixels",
+      "type": "buffer",
+      "bytes": 590208
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.15.ys",
+      "type": "buffer",
+      "bytes": 295104
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.16.pixels",
+      "type": "buffer",
+      "bytes": 628704
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.16.ys",
+      "type": "buffer",
+      "bytes": 314352
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.17.pixels",
+      "type": "buffer",
+      "bytes": 665280
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.17.ys",
+      "type": "buffer",
+      "bytes": 332640
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.18.pixels",
+      "type": "buffer",
+      "bytes": 702720
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.18.ys",
+      "type": "buffer",
+      "bytes": 351360
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.19.pixels",
+      "type": "buffer",
+      "bytes": 738048
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.19.ys",
+      "type": "buffer",
+      "bytes": 369024
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.20.pixels",
+      "type": "buffer",
+      "bytes": 771120
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.20.ys",
+      "type": "buffer",
+      "bytes": 385560
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.21.pixels",
+      "type": "buffer",
+      "bytes": 807936
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.21.ys",
+      "type": "buffer",
+      "bytes": 403968
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.22.pixels",
+      "type": "buffer",
+      "bytes": 839280
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.22.ys",
+      "type": "buffer",
+      "bytes": 419640
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.23.pixels",
+      "type": "buffer",
+      "bytes": 871200
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.23.ys",
+      "type": "buffer",
+      "bytes": 435600
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.24.pixels",
+      "type": "buffer",
+      "bytes": 892800
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.24.ys",
+      "type": "buffer",
+      "bytes": 446400
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.25.pixels",
+      "type": "buffer",
+      "bytes": 919184
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.25.ys",
+      "type": "buffer",
+      "bytes": 459592
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.26.pixels",
+      "type": "buffer",
+      "bytes": 941360
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.26.ys",
+      "type": "buffer",
+      "bytes": 470680
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.27.pixels",
+      "type": "buffer",
+      "bytes": 957168
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.27.ys",
+      "type": "buffer",
+      "bytes": 478584
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.28.pixels",
+      "type": "buffer",
+      "bytes": 973104
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.28.ys",
+      "type": "buffer",
+      "bytes": 486552
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.29.pixels",
+      "type": "buffer",
+      "bytes": 989168
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.29.ys",
+      "type": "buffer",
+      "bytes": 494584
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.30.pixels",
+      "type": "buffer",
+      "bytes": 998544
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.30.ys",
+      "type": "buffer",
+      "bytes": 499272
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.31.pixels",
+      "type": "buffer",
+      "bytes": 1006656
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.31.ys",
+      "type": "buffer",
+      "bytes": 503328
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.32.pixels",
+      "type": "buffer",
+      "bytes": 1011360
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.32.ys",
+      "type": "buffer",
+      "bytes": 505680
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.33.pixels",
+      "type": "buffer",
+      "bytes": 1020768
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.33.ys",
+      "type": "buffer",
+      "bytes": 510384
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.35.pixels",
+      "type": "buffer",
+      "bytes": 1011520
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.35.ys",
+      "type": "buffer",
+      "bytes": 505760
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.36.pixels",
+      "type": "buffer",
+      "bytes": 1002144
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.36.ys",
+      "type": "buffer",
+      "bytes": 501072
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.38.pixels",
+      "type": "buffer",
+      "bytes": 974112
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.38.ys",
+      "type": "buffer",
+      "bytes": 487056
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.41.pixels",
+      "type": "buffer",
+      "bytes": 898560
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.41.ys",
+      "type": "buffer",
+      "bytes": 449280
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.43.pixels",
+      "type": "buffer",
+      "bytes": 835456
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.43.ys",
+      "type": "buffer",
+      "bytes": 417728
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.45.pixels",
+      "type": "buffer",
+      "bytes": 766592
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.45.ys",
+      "type": "buffer",
+      "bytes": 383296
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.47.pixels",
+      "type": "buffer",
+      "bytes": 858480
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.47.ys",
+      "type": "buffer",
+      "bytes": 429240
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.49.pixels",
+      "type": "buffer",
+      "bytes": 940160
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.49.ys",
+      "type": "buffer",
+      "bytes": 470080
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.52.pixels",
+      "type": "buffer",
+      "bytes": 1036384
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.52.ys",
+      "type": "buffer",
+      "bytes": 518192
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.54.pixels",
+      "type": "buffer",
+      "bytes": 1088304
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.54.ys",
+      "type": "buffer",
+      "bytes": 544152
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.55.pixels",
+      "type": "buffer",
+      "bytes": 1108960
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.55.ys",
+      "type": "buffer",
+      "bytes": 554480
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.57.pixels",
+      "type": "buffer",
+      "bytes": 1125120
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.57.ys",
+      "type": "buffer",
+      "bytes": 562560
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.58.pixels",
+      "type": "buffer",
+      "bytes": 1129808
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.58.ys",
+      "type": "buffer",
+      "bytes": 564904
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.59.pixels",
+      "type": "buffer",
+      "bytes": 1133664
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.59.ys",
+      "type": "buffer",
+      "bytes": 566832
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.60.pixels",
+      "type": "buffer",
+      "bytes": 1134496
+    },
+    {
+      "path": "renderer.life.finishedVan.headings.60.ys",
+      "type": "buffer",
+      "bytes": 567248
+    },
+    {
+      "path": "renderer.life.finishedVan.poses.0.pixels",
+      "type": "buffer",
+      "bytes": 998544
+    },
+    {
+      "path": "renderer.life.finishedVan.poses.0.ys",
+      "type": "buffer",
+      "bytes": 499272
+    },
+    {
+      "path": "renderer.life.finishedVan.poses.1.pixels",
+      "type": "buffer",
+      "bytes": 998544
+    },
+    {
+      "path": "renderer.life.finishedVan.poses.1.ys",
+      "type": "buffer",
+      "bytes": 499272
+    },
+    {
+      "path": "renderer.life.finishedVan.poses.3.pixels",
+      "type": "buffer",
+      "bytes": 998544
+    },
+    {
+      "path": "renderer.life.finishedVan.poses.3.ys",
+      "type": "buffer",
+      "bytes": 499272
+    },
+    {
+      "path": "renderer.life.finishedVan.cache.canvas",
+      "type": "canvas",
+      "width": 596,
+      "height": 484,
+      "bytes": 1153856
+    },
+    {
+      "path": "renderer.life.finishedVan.frame.data",
+      "type": "buffer",
+      "bytes": 1153856
+    },
+    {
+      "path": "renderer.life.workerArt.coats.0",
+      "type": "canvas",
+      "width": 216,
+      "height": 276,
+      "bytes": 238464
+    },
+    {
+      "path": "renderer.life.workerArt.coats.1",
+      "type": "canvas",
+      "width": 216,
+      "height": 276,
+      "bytes": 238464
+    },
+    {
+      "path": "renderer.life.workerArt.hands.0",
+      "type": "canvas",
+      "width": 80,
+      "height": 88,
+      "bytes": 28160
+    },
+    {
+      "path": "renderer.life.workerArt.hands.1",
+      "type": "canvas",
+      "width": 80,
+      "height": 88,
+      "bytes": 28160
+    },
+    {
+      "path": "renderer.life.workerArt.hands.2",
+      "type": "canvas",
+      "width": 80,
+      "height": 88,
+      "bytes": 28160
+    },
+    {
+      "path": "renderer.life.workerArt.grain",
+      "type": "canvas",
+      "width": 256,
+      "height": 256,
+      "bytes": 262144
+    },
+    {
+      "path": "renderer.life.parcels.0.image",
+      "type": "canvas",
+      "width": 146,
+      "height": 119,
+      "bytes": 69496
+    },
+    {
+      "path": "renderer.life.parcels.1.image",
+      "type": "canvas",
+      "width": 146,
+      "height": 119,
+      "bytes": 69496
+    },
+    {
+      "path": "renderer.life.scaleDials.0.image",
+      "type": "canvas",
+      "width": 160,
+      "height": 179,
+      "bytes": 114560
+    },
+    {
+      "path": "renderer.life.scaleDials.1.image",
+      "type": "canvas",
+      "width": 160,
+      "height": 179,
+      "bytes": 114560
+    },
+    {
+      "path": "renderer.life.scaleDials.2.image",
+      "type": "canvas",
+      "width": 160,
+      "height": 179,
+      "bytes": 114560
+    },
+    {
+      "path": "renderer.life.toy.image",
+      "type": "canvas",
+      "width": 14,
+      "height": 20,
+      "bytes": 1120
+    },
+    {
+      "path": "renderer.life.satchel.image",
+      "type": "canvas",
+      "width": 37,
+      "height": 42,
+      "bytes": 6216
+    },
+    {
+      "path": "renderer.life.cart.image",
+      "type": "canvas",
+      "width": 115,
+      "height": 93,
+      "bytes": 42780
+    },
+    {
+      "path": "renderer.life.rollers.0.image",
+      "type": "canvas",
+      "width": 264,
+      "height": 136,
+      "bytes": 143616
+    },
+    {
+      "path": "renderer.life.rollers.1.image",
+      "type": "canvas",
+      "width": 264,
+      "height": 136,
+      "bytes": 143616
+    },
+    {
+      "path": "renderer.life.rollers.2.image",
+      "type": "canvas",
+      "width": 264,
+      "height": 136,
+      "bytes": 143616
+    },
+    {
+      "path": "renderer.life.rollers.3.image",
+      "type": "canvas",
+      "width": 264,
+      "height": 136,
+      "bytes": 143616
+    },
+    {
+      "path": "renderer.life.trucks.0.image",
+      "type": "canvas",
+      "width": 101,
+      "height": 140,
+      "bytes": 56560
+    },
+    {
+      "path": "renderer.life.trucks.1.image",
+      "type": "canvas",
+      "width": 101,
+      "height": 140,
+      "bytes": 56560
+    },
+    {
+      "path": "renderer.life.trucks.2.image",
+      "type": "canvas",
+      "width": 101,
+      "height": 140,
+      "bytes": 56560
+    },
+    {
+      "path": "renderer.life.trucks.3.image",
+      "type": "canvas",
+      "width": 101,
+      "height": 140,
+      "bytes": 56560
+    },
+    {
+      "path": "renderer.exterior.a.p.ctx.canvas",
+      "type": "canvas",
+      "width": 4951,
+      "height": 3242,
+      "bytes": 64204568
+    },
+    {
+      "path": "renderer.exterior.plants.hydrangea",
+      "type": "canvas",
+      "width": 512,
+      "height": 512,
+      "bytes": 1048576
+    },
+    {
+      "path": "renderer.exterior.plants.ivy",
+      "type": "canvas",
+      "width": 512,
+      "height": 512,
+      "bytes": 1048576
+    },
+    {
+      "path": "renderer.exterior.plants.sage",
+      "type": "canvas",
+      "width": 512,
+      "height": 512,
+      "bytes": 1048576
+    },
+    {
+      "path": "renderer.exterior.plants.lavender",
+      "type": "canvas",
+      "width": 512,
+      "height": 512,
+      "bytes": 1048576
+    },
+    {
+      "path": "renderer.exterior.plants.tree",
+      "type": "canvas",
+      "width": 512,
+      "height": 512,
+      "bytes": 1048576
+    },
+    {
+      "path": "renderer.exterior.skyCanvas",
+      "type": "canvas",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 6291456
+    },
+    {
+      "path": "renderer.exterior.skyCeiling",
+      "type": "canvas",
+      "width": 1536,
+      "height": 256,
+      "bytes": 1572864
+    },
+    {
+      "path": "renderer.exterior.setting.back",
+      "type": "canvas",
+      "width": 3078,
+      "height": 2123,
+      "bytes": 26138376
+    },
+    {
+      "path": "renderer.exterior.setting.front",
+      "type": "canvas",
+      "width": 2963,
+      "height": 1466,
+      "bytes": 17375032
+    }
+  ],
+  "totalKnownRoomBytes": 492394420,
+  "van": {
+    "prepareMs": 5102.10000000149,
+    "poses": 52,
+    "cacheBytes": 71750960,
+    "faces": 3018
+  },
+  "canvas": [
+    1179,
+    2556
+  ],
+  "logical": [
+    1090,
+    2363
+  ],
+  "scale": 1.0814104146100691,
+  "density": 1.0814104146100691,
+  "scenarios": [
+    {
+      "kind": "idle",
+      "samples": 48,
+      "medianMs": 15.399999998509884,
+      "p95Ms": 36.399999998509884,
+      "maxMs": 37.400000005960464,
+      "componentMs": {
+        "gamePoses": 0.30000000447034836,
+        "staticLayers": 3.1999999955296516,
+        "street": 0.5000000074505806,
+        "van": 0.19999999552965164,
+        "life": 9.800000011920929
+      },
+      "viewBakes": 0,
+      "canvas": [
+        1179,
+        2556
+      ],
+      "density": 1.0814104146100691
+    },
+    {
+      "kind": "van",
+      "samples": 48,
+      "medianMs": 17.100000001490116,
+      "p95Ms": 39.100000001490116,
+      "maxMs": 41.29999999701977,
+      "componentMs": {
+        "gamePoses": 0.4999999925494194,
+        "staticLayers": 2.4000000208616257,
+        "street": 0.29999999701976776,
+        "van": 62.30000000447035,
+        "life": 8.800000011920929
+      },
+      "viewBakes": 0,
+      "canvas": [
+        1179,
+        2556
+      ],
+      "density": 1.0814104146100691
+    },
+    {
+      "kind": "gameplay",
+      "samples": 48,
+      "medianMs": 23.200000002980232,
+      "p95Ms": 53.69999999552965,
+      "maxMs": 99.89999999850988,
+      "componentMs": {
+        "gamePoses": 6.3000000193715096,
+        "staticLayers": 503.79999999701977,
+        "street": 0.19999999552965164,
+        "van": 0.19999998807907104,
+        "life": 126.80000004172325
+      },
+      "viewBakes": 0,
+      "canvas": [
+        1176,
+        2556
+      ],
+      "density": 3.791095890410959
+    },
+    {
+      "kind": "pan",
+      "samples": 48,
+      "medianMs": 43.5,
+      "p95Ms": 66.39999999850988,
+      "maxMs": 83.70000000298023,
+      "componentMs": {
+        "gamePoses": 0.3999999910593033,
+        "staticLayers": 3.900000013411045,
+        "street": 0.4999999925494194,
+        "van": 0.5000000074505806,
+        "life": 8.5
+      },
+      "viewBakes": 0,
+      "canvas": [
+        1179,
+        2556
+      ],
+      "density": 1.0814104146100691
+    },
+    {
+      "kind": "zoom",
+      "samples": 48,
+      "medianMs": 98.90000000596046,
+      "p95Ms": 132.70000000298023,
+      "maxMs": 212.09999999403954,
+      "componentMs": {
+        "gamePoses": 0.6999999955296516,
+        "staticLayers": 338.69999999552965,
+        "street": 233.30000000447035,
+        "van": 0.09999999403953552,
+        "life": 13.600000016391277
+      },
+      "viewBakes": 16,
+      "canvas": [
+        1179,
+        2556
+      ],
+      "density": 1.3863681515301087
+    }
+  ]
+}
