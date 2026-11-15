@@ -1,0 +1,530 @@
+{
+  "build": {
+    "sha256": "d1752ab292e0c6623a09f96f5d39d205d0a94026da3da208f5a6cb5796c292a3",
+    "bytes": 21036854,
+    "canonicalInputs": {
+      "sorting_office.html": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
+      "src/data/levels.json": "be1c22ee6456819c200e42d6f8abb48b9c4cc4db9c414928c7fc60ea10cf40a7",
+      "src/sim/10_rules.js": "eaeeff8565f68d32ae6d8489be34664dacf4948a71f2bdf0b0835579454691c4",
+      "src/sim/12_boardanim.js": "5c181265db6570a822ee9fc08400a19cf4eff91beea5e12a6779d46876c88885",
+      "src/app/43e_train_chapter.js": "87d330ddb51a860e020b4e10e11f9fa625a7a2dc542a71ad4f2fc9fb243a1fc4"
+    },
+    "base": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb"
+  },
+  "roomTests": 40,
+  "campaign": {
+    "wins": 15,
+    "geometry": [
+      {
+        "width": 1440,
+        "height": 1000,
+        "dpr": 1,
+        "count": 460,
+        "bad": 0,
+        "visible": 460
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "dpr": 3,
+        "count": 460,
+        "bad": 0,
+        "visible": 460
+      },
+      {
+        "width": 720,
+        "height": 400,
+        "dpr": 2,
+        "count": 460,
+        "bad": 0,
+        "visible": 460
+      }
+    ],
+    "interactions": {
+      "lockSurvives": true,
+      "stopped": true,
+      "failed": "lost",
+      "retry": "won"
+    },
+    "errors": []
+  },
+  "chapters": {
+    "preserved": true,
+    "states": [
+      {
+        "frame": 0,
+        "n": 4,
+        "gate": 0
+      },
+      {
+        "frame": 30,
+        "n": 4,
+        "gate": 0
+      },
+      {
+        "frame": 60,
+        "n": 4,
+        "gate": 1
+      },
+      {
+        "frame": 90,
+        "n": 4,
+        "gate": 0
+      },
+      {
+        "frame": 120,
+        "n": 4,
+        "gate": 1
+      },
+      {
+        "frame": 180,
+        "n": 4,
+        "gate": 0
+      },
+      {
+        "frame": 300,
+        "n": 4,
+        "gate": 0
+      },
+      {
+        "frame": 719,
+        "n": 4,
+        "gate": 0
+      },
+      {
+        "frame": 720,
+        "n": 4,
+        "gate": 0
+      }
+    ],
+    "at71": "enter",
+    "at72": "",
+    "stations": [
+      {
+        "from": "5-3",
+        "to": "5-4",
+        "mode": "station",
+        "rows": [
+          {
+            "frame": 0,
+            "gap": 0,
+            "joint": 3,
+            "phase": 0
+          },
+          {
+            "frame": 44,
+            "gap": 0,
+            "joint": 3,
+            "phase": 0
+          },
+          {
+            "frame": 45,
+            "gap": 0,
+            "joint": 3,
+            "phase": 1
+          },
+          {
+            "frame": 164,
+            "gap": 0,
+            "joint": 3,
+            "phase": 1
+          },
+          {
+            "frame": 165,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 173,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 181,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 189,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 212,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 213,
+            "gap": 0,
+            "joint": 3,
+            "phase": 3
+          }
+        ],
+        "blocked": true,
+        "ends": [
+          "engine",
+          "sorting",
+          "brake"
+        ]
+      },
+      {
+        "from": "5-7",
+        "to": "5-8",
+        "mode": "station",
+        "rows": [
+          {
+            "frame": 0,
+            "gap": -6,
+            "joint": 0,
+            "phase": 0
+          },
+          {
+            "frame": 44,
+            "gap": -6,
+            "joint": 0,
+            "phase": 0
+          },
+          {
+            "frame": 45,
+            "gap": -6,
+            "joint": 0,
+            "phase": 1
+          },
+          {
+            "frame": 164,
+            "gap": -0.0012430555555553724,
+            "joint": 0,
+            "phase": 1
+          },
+          {
+            "frame": 165,
+            "gap": 0,
+            "joint": 0,
+            "phase": 2
+          },
+          {
+            "frame": 173,
+            "gap": 0,
+            "joint": 1,
+            "phase": 2
+          },
+          {
+            "frame": 181,
+            "gap": 0,
+            "joint": 2,
+            "phase": 2
+          },
+          {
+            "frame": 189,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 212,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 213,
+            "gap": 0,
+            "joint": 3,
+            "phase": 3
+          }
+        ],
+        "blocked": true,
+        "ends": [
+          "engine",
+          "sorting",
+          "mail",
+          "brake"
+        ]
+      },
+      {
+        "from": "5-11",
+        "to": "5-12",
+        "mode": "station",
+        "rows": [
+          {
+            "frame": 0,
+            "gap": 0,
+            "joint": 3,
+            "phase": 0
+          },
+          {
+            "frame": 44,
+            "gap": 0,
+            "joint": 3,
+            "phase": 0
+          },
+          {
+            "frame": 45,
+            "gap": 0,
+            "joint": 3,
+            "phase": 1
+          },
+          {
+            "frame": 164,
+            "gap": 0,
+            "joint": 3,
+            "phase": 1
+          },
+          {
+            "frame": 165,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 173,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 181,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 189,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 212,
+            "gap": 0,
+            "joint": 3,
+            "phase": 2
+          },
+          {
+            "frame": 213,
+            "gap": 0,
+            "joint": 3,
+            "phase": 3
+          }
+        ],
+        "blocked": true,
+        "ends": [
+          "engine",
+          "sorting",
+          "mail",
+          "brake"
+        ]
+      }
+    ],
+    "exit": {
+      "mode": "exit",
+      "live": "5-15",
+      "settled": "won",
+      "progressSame": true,
+      "fallback": "6-1",
+      "room": "cityhall"
+    },
+    "privacy": [
+      {
+        "kind": "sentinel",
+        "id": "5-1",
+        "sentinel": "PRODUCTION SENTINEL"
+      },
+      {
+        "kind": "malformed",
+        "id": "5-1",
+        "sentinel": "PRODUCTION SENTINEL"
+      },
+      {
+        "kind": "denied",
+        "id": "5-1",
+        "sentinel": null
+      }
+    ],
+    "errors": []
+  },
+  "geometry": {
+    "basketSlopes": [
+      0.49964132621817864,
+      -0.49969381506429883
+    ],
+    "openings": [
+      {
+        "dir": 0,
+        "recessPixels": 11130
+      },
+      {
+        "dir": 1,
+        "recessPixels": 11130
+      },
+      {
+        "dir": 2,
+        "recessPixels": 11130
+      },
+      {
+        "dir": 3,
+        "recessPixels": 11130
+      }
+    ],
+    "pop": [
+      {
+        "age": 0.03,
+        "z": -8,
+        "drawn": 11088,
+        "belowFloorPixels": 0
+      },
+      {
+        "age": 0.08,
+        "z": -7.210219436968449,
+        "drawn": 12427,
+        "belowFloorPixels": 0
+      },
+      {
+        "age": 0.16,
+        "z": -2.376200212825788,
+        "drawn": 21069,
+        "belowFloorPixels": 0
+      },
+      {
+        "age": 0.25,
+        "z": 0,
+        "drawn": 23233,
+        "belowFloorPixels": 0
+      }
+    ],
+    "pan": {
+      "meshBakes": 0,
+      "prepareMs": [
+        5,
+        3.9000000059604645,
+        4.0999999940395355,
+        4.200000002980232
+      ]
+    },
+    "resources": {
+      "surfaces": 19,
+      "surfacePixels": 4593933,
+      "images": 5,
+      "textureBytes": 12582912,
+      "poses": 32,
+      "bakes": 6
+    },
+    "errors": [],
+    "build": {
+      "sha256": "d1752ab292e0c6623a09f96f5d39d205d0a94026da3da208f5a6cb5796c292a3",
+      "bytes": 21036854,
+      "canonicalInputs": {
+        "sorting_office.html": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
+        "src/data/levels.json": "be1c22ee6456819c200e42d6f8abb48b9c4cc4db9c414928c7fc60ea10cf40a7",
+        "src/sim/10_rules.js": "eaeeff8565f68d32ae6d8489be34664dacf4948a71f2bdf0b0835579454691c4",
+        "src/sim/12_boardanim.js": "5c181265db6570a822ee9fc08400a19cf4eff91beea5e12a6779d46876c88885",
+        "src/app/43e_train_chapter.js": "87d330ddb51a860e020b4e10e11f9fa625a7a2dc542a71ad4f2fc9fb243a1fc4"
+      },
+      "base": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb"
+    }
+  },
+  "review": {
+    "entries": [
+      {
+        "mode": "board",
+        "live": {
+          "x": 673.9822247706423,
+          "y": 574.197247706422,
+          "scale": 106.93807339449542,
+          "zoom": 1.5625,
+          "panX": 355.0000000000001,
+          "panY": 53.6875
+        },
+        "endpoint": {
+          "x": 673.9822073991486,
+          "y": 574.1972762804764,
+          "scale": 106.93807515960475
+        },
+        "returned": {
+          "x": 673.9822247706423,
+          "y": 574.197247706422,
+          "scale": 106.93807339449542,
+          "zoom": 1.5625,
+          "panX": 355.0000000000001,
+          "panY": 53.6875
+        }
+      },
+      {
+        "mode": "journey",
+        "live": {
+          "x": 895.6730769230771,
+          "y": 370.1923076923076,
+          "scale": 44.831730769230774,
+          "zoom": 1.5625,
+          "panX": 355.0000000000002,
+          "panY": 53.68749999999997
+        },
+        "endpoint": {
+          "x": 895.6730769230771,
+          "y": 370.1923076923076,
+          "scale": 44.831730769230774
+        },
+        "returned": {
+          "x": 895.6730769230771,
+          "y": 370.1923076923076,
+          "scale": 44.831730769230774,
+          "zoom": 1.5625,
+          "panX": 355.0000000000002,
+          "panY": 53.68749999999997
+        }
+      }
+    ],
+    "together": {
+      "x": 579.1857798165138,
+      "y": 569.3577981651375,
+      "scale": 85.55045871559633,
+      "zoom": 1.25,
+      "panX": 180.00000000000006,
+      "panY": 62.74999999999994
+    },
+    "separate": {
+      "x": 579.1857798165138,
+      "y": 569.3577981651375,
+      "scale": 85.55045871559633,
+      "zoom": 1.25,
+      "panX": 180.00000000000006,
+      "panY": 62.74999999999994
+    },
+    "errors": []
+  },
+  "visual": {
+    "samples": 360,
+    "attachmentOverlapSamples": 0,
+    "movingBoardSamples": 0,
+    "stableCamera": true,
+    "stableCache": true,
+    "paused": {
+      "ambientHeld": true,
+      "gameAdvanced": true
+    },
+    "initial": {
+      "surfaces": 19,
+      "surfacePixels": 6950558,
+      "images": 5,
+      "textureBytes": 12582912,
+      "poses": 32,
+      "bakes": 1
+    },
+    "last": {
+      "surfaces": 19,
+      "surfacePixels": 6950558,
+      "images": 5,
+      "textureBytes": 12582912,
+      "poses": 32,
+      "bakes": 24
+    },
+    "errors": []
+  },
+  "assetsUnchangedFrom": "fa367b4d3571b4986cba1bb010da03c01c5480db"
+}

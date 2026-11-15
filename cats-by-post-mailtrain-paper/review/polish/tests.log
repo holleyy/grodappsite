@@ -1,0 +1,48 @@
+✔ a nearer carrier and supported cat cover the basket rim; a farther carrier is behind it (13.844296ms)
+✔ flight lands exactly on canonical home and wrong-basket roots, including queued home offsets (3.829818ms)
+✔ sorting and flight reuse fixed records across reverse seeks and retain every campaign object (8.950835ms)
+✔ flight clears both rims and meets the supported and landing soles on the original .4–.6 second clock (32.401201ms)
+✔ carriage end closes the seat-side opening but retains the aligned cab doorway (2.016977ms)
+✔ pinch translation and zoom agree whether a render happened between pointer actions (5.702432ms)
+✔ chapter entry endpoint exactly matches live camera after custom zoom, pan and view (3.232794ms)
+✔ powered shunt uses the unchanged 45/165/213 clock and all four joint poses (1.590604ms)
+✔ entry camera reaches the live board at the original 72-frame boundary (0.313039ms)
+✔ locomotive has a longitudinal boiler, transverse front beam and a separate rear cab (10.87609ms)
+✔ opaque locomotive faces are sorted on the common camera depth and the far smokebox cap is culled (11.528928ms)
+✔ near geometry wins per pixel even when a large floor face has a nearer centroid (13.917253ms)
+✔ equal projected floor axes and height share the same inverse (2.528017ms)
+✔ all 460 canonical cell centres pick their cells at three viewport sizes (9.455987ms)
+✔ one-tile edge snapping and out-of-range rejection preserve canonical input (0.383432ms)
+✔ study store never reads or overwrites the production key (1.76408ms)
+✔ denied storage remains playable without leaking to another store (0.352233ms)
+✔ malformed serialisation reaches canonical parser unchanged (0.247747ms)
+✔ engine, sorting coach and unique last van have physically filled couplings (1.885469ms)
+✔ all axle contacts share continuous rails and the dispatch bay clears maximum board (0.52596ms)
+✔ world travel and wheel rotation agree at the rail contact, including reverse seeks (1.836446ms)
+✔ reduced motion holds one supported complete pose without reading puzzle time (1.25422ms)
+✔ worker route never enters the maximum sorting floor and held props have authored states (5.914993ms)
+✔ postal worker returns continuously through tea and watch stops (0.379314ms)
+✔ room lighting follows the four existing board stages without changing the level (0.424048ms)
+✔ parcel bands are attached to exterior faces, never visible interior slabs (4.266811ms)
+✔ cabinet is prepared as depth-tested faces so panels cannot paint through shelves (28.900723ms)
+✔ prepared solid raster is reused for camera translation and replaced only for scale (1.920996ms)
+✔ hatch lids retain a directional hinge and clear the open aperture (1.265372ms)
+✔ all twelve points pairs keep both arrows within their printable disc (6.564024ms)
+✔ basket registration corrects unequal contact slopes while retaining column heights (1.564995ms)
+✔ basket near-wall mask preserves the rounded contact contour at its centre (0.698635ms)
+✔ Train smooth poses retain all canonical action and arrival deadlines without changing traces (211.373829ms)
+✔ repeated and reverse sampling reuses every private pose record (1.852877ms)
+✔ arrival soles hold on the carrier until flight, including mirrored rear-facing cats (5.067406ms)
+✔ folding carton panels retain their card length as they rotate flat (8.998206ms)
+✔ empty carrier folding is continuous across canonical frame boundaries (11.93387ms)
+✔ departure keeps the carried satchel and reaches the enclosed coach along a clear floor route (1.99216ms)
+✔ tea break is beside the tea table with continuous travel and unchanged phase boundaries (5.894408ms)
+✔ couplings support every joined passage and never span an open shunting gap (1.859239ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 690.831249

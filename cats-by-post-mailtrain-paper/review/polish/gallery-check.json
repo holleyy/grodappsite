@@ -1,0 +1,75 @@
+{
+  "url": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/",
+  "images": [
+    {
+      "src": "polish/matrix/desktop-5-1-active.jpg",
+      "width": 1440
+    },
+    {
+      "src": "polish/matrix/desktop-5-15-active.jpg",
+      "width": 1440
+    },
+    {
+      "src": "polish/before-fold-0.65.jpg",
+      "width": 560
+    },
+    {
+      "src": "polish/after-fold-0.65.jpg",
+      "width": 560
+    },
+    {
+      "src": "polish/after-couplings.jpg",
+      "width": 1440
+    },
+    {
+      "src": "polish/matrix/phone-5-15-active.jpg",
+      "width": 780
+    },
+    {
+      "src": "polish/matrix/landscape-station-8.jpg",
+      "width": 1440
+    }
+  ],
+  "videos": [
+    {
+      "src": "polish/fold.webm",
+      "duration": 4.2
+    },
+    {
+      "src": "polish/departure.webm",
+      "duration": 5.083
+    },
+    {
+      "src": "polish/tea.webm",
+      "duration": 10.5
+    }
+  ],
+  "links": [
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/?level=5-15",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/review/polish/matrix/index.html",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/review/arrival.html",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/review/atmosphere.html",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/source.zip",
+      "status": 200
+    }
+  ],
+  "overflow": false,
+  "errors": []
+}

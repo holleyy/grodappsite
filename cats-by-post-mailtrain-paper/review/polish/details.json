@@ -1,0 +1,135 @@
+{
+  "beforeSource": "fa367b4d",
+  "afterBuild": {
+    "sha256": "d1752ab292e0c6623a09f96f5d39d205d0a94026da3da208f5a6cb5796c292a3",
+    "bytes": 21036854,
+    "canonicalInputs": {
+      "sorting_office.html": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
+      "src/data/levels.json": "be1c22ee6456819c200e42d6f8abb48b9c4cc4db9c414928c7fc60ea10cf40a7",
+      "src/sim/10_rules.js": "eaeeff8565f68d32ae6d8489be34664dacf4948a71f2bdf0b0835579454691c4",
+      "src/sim/12_boardanim.js": "5c181265db6570a822ee9fc08400a19cf4eff91beea5e12a6779d46876c88885",
+      "src/app/43e_train_chapter.js": "87d330ddb51a860e020b4e10e11f9fa625a7a2dc542a71ad4f2fc9fb243a1fc4"
+    },
+    "base": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb"
+  },
+  "rows": [
+    {
+      "file": "before-fold-0.45.jpg",
+      "phase": "before",
+      "age": 0.45,
+      "level": "5-1"
+    },
+    {
+      "file": "before-fold-0.55.jpg",
+      "phase": "before",
+      "age": 0.55,
+      "level": "5-1"
+    },
+    {
+      "file": "before-fold-0.65.jpg",
+      "phase": "before",
+      "age": 0.65,
+      "level": "5-1"
+    },
+    {
+      "file": "before-fold-0.75.jpg",
+      "phase": "before",
+      "age": 0.75,
+      "level": "5-1"
+    },
+    {
+      "file": "before-fold-0.85.jpg",
+      "phase": "before",
+      "age": 0.85,
+      "level": "5-1"
+    },
+    {
+      "file": "before-departure-130.jpg",
+      "phase": "before",
+      "frame": 130,
+      "chapter": "exit"
+    },
+    {
+      "file": "before-departure-180.jpg",
+      "phase": "before",
+      "frame": 180,
+      "chapter": "exit"
+    },
+    {
+      "file": "before-departure-204.jpg",
+      "phase": "before",
+      "frame": 204,
+      "chapter": "exit"
+    },
+    {
+      "file": "before-departure-300.jpg",
+      "phase": "before",
+      "frame": 300,
+      "chapter": "exit"
+    },
+    {
+      "file": "before-couplings.jpg",
+      "phase": "before",
+      "level": "5-8"
+    },
+    {
+      "file": "after-fold-0.45.jpg",
+      "phase": "after",
+      "age": 0.45,
+      "level": "5-1"
+    },
+    {
+      "file": "after-fold-0.55.jpg",
+      "phase": "after",
+      "age": 0.55,
+      "level": "5-1"
+    },
+    {
+      "file": "after-fold-0.65.jpg",
+      "phase": "after",
+      "age": 0.65,
+      "level": "5-1"
+    },
+    {
+      "file": "after-fold-0.75.jpg",
+      "phase": "after",
+      "age": 0.75,
+      "level": "5-1"
+    },
+    {
+      "file": "after-fold-0.85.jpg",
+      "phase": "after",
+      "age": 0.85,
+      "level": "5-1"
+    },
+    {
+      "file": "after-departure-130.jpg",
+      "phase": "after",
+      "frame": 130,
+      "chapter": "exit"
+    },
+    {
+      "file": "after-departure-180.jpg",
+      "phase": "after",
+      "frame": 180,
+      "chapter": "exit"
+    },
+    {
+      "file": "after-departure-204.jpg",
+      "phase": "after",
+      "frame": 204,
+      "chapter": "exit"
+    },
+    {
+      "file": "after-departure-300.jpg",
+      "phase": "after",
+      "frame": 300,
+      "chapter": "exit"
+    },
+    {
+      "file": "after-couplings.jpg",
+      "phase": "after",
+      "level": "5-8"
+    }
+  ]
+}

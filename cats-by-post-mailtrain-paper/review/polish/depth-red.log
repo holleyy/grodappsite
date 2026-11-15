@@ -1,0 +1,9 @@
+AssertionError [ERR_ASSERTION]: courier paints over nearer furniture: [{"frame":75,"samples":5611,"leakedPixels":43},{"frame":80,"samples":5611,"leakedPixels":266},{"frame":85,"samples":5611,"leakedPixels":422},{"frame":90,"samples":5611,"leakedPixels":241},{"frame":95,"samples":5611,"leakedPixels":47},{"frame":100,"samples":1410,"leakedPixels":9},{"frame":105,"samples":1410,"leakedPixels":13},{"frame":110,"samples":1410,"leakedPixels":11}]
+    at /workspace/cosysortie-mailtrain/studies/mailtrain-paper/check-polish.cjs:17:736 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

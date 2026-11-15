@@ -1,0 +1,54 @@
+✔ folding carton panels retain their card length as they rotate flat (12.614347ms)
+✔ empty carrier folding is continuous across canonical frame boundaries (14.343893ms)
+✖ departure keeps the carried satchel and reaches the enclosed coach along a clear floor route (2.169424ms)
+✖ tea break is beside the tea table with continuous travel and unchanged phase boundaries (7.131796ms)
+✔ couplings support every joined passage and never span an open shunting gap (2.561292ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 193.835378
+
+✖ failing tests:
+
+test at tests/mailtrain-paper-polish.test.js:16:1
+✖ departure keeps the carried satchel and reaches the enclosed coach along a clear floor route (2.169424ms)
+  AssertionError [ERR_ASSERTION]: courier passes behind the foreground desk/trolley
+      at TestContext.<anonymous> (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-polish.test.js:21:32)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/mailtrain-paper-polish.test.js:26:1
+✖ tea break is beside the tea table with continuous travel and unchanged phase boundaries (7.131796ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    a(pose.workerY===.35)
+
+      at TestContext.<anonymous> (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-polish.test.js:27:96)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

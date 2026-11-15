@@ -1,0 +1,65 @@
+✖ folding carton panels retain their card length as they rotate flat (12.955346ms)
+✖ empty carrier folding is continuous across canonical frame boundaries (17.940376ms)
+✖ departure keeps the carried satchel and reaches the enclosed coach along a clear floor route (1.894314ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 183.749432
+
+✖ failing tests:
+
+test at tests/mailtrain-paper-polish.test.js:4:1
+✖ folding carton panels retain their card length as they rotate flat (12.955346ms)
+  AssertionError [ERR_ASSERTION]: card wall shrinks at fold 0.1
+      at TestContext.<anonymous> (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-polish.test.js:6:115)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/mailtrain-paper-polish.test.js:8:1
+✖ empty carrier folding is continuous across canonical frame boundaries (17.940376ms)
+  AssertionError [ERR_ASSERTION]: fold jumps at 0.45
+      at TestContext.<anonymous> (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-polish.test.js:13:35)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/mailtrain-paper-polish.test.js:16:1
+✖ departure keeps the carried satchel and reaches the enclosed coach along a clear floor route (1.894314ms)
+  AssertionError [ERR_ASSERTION]: courier walks into furniture/board at 148
+      at TestContext.<anonymous> (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-polish.test.js:20:28)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

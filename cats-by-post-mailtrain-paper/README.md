@@ -1,27 +1,22 @@
 # Valley Mail — Mail Train playable study
 
-[Open the study](https://holleyy.github.io/grodappsite/cats-by-post-mailtrain-paper/)
+[Play the study](https://holleyy.github.io/grodappsite/cats-by-post-mailtrain-paper/)
+· [Latest review](review/) · [Room source and integration handover](source.zip).
 
-Standalone papercraft review of all existing Train deliveries, 5-1–5-15.
+All15 existing deliveries, their four board sizes and chapter presentations.
+The latest visual sweep includes89 desktop/portrait/landscape views, rigid card
+folding, foreground furniture depth, a complete courier departure and the full
+tea routine. Previous arrival and atmosphere galleries remain linked.
 
-Latest: [end-wall and atmosphere review](review/) · [room source bundle](source.zip).
-The reported seat-side gap is closed; the cab doorway remains open. This phase
-adds continuous worker routes, architecture lighting, clock and hot-mug details.
-The review includes before/after, phone captures and a sampled48-second clip.
-Use the Delivery selector to inspect any board, Journey view for the complete
-train and landscape, and Review → Fill original solution for a demonstration.
-The maximum board is available with `?level=5-15`.
+Use Delivery to select any board, Journey view for the complete train, and
+Review → Fill original solution for a demonstration. Maximum board: `?level=5-15`.
+The exact packaged HTML passes40 room regressions, all15 canonical wins and
+1,380 cell picks, plus phone-size touch/save/HUD checks. It retains original
+rules, levels, timing and save serialization in a private study namespace.
 
-The HTML is copied byte-for-byte from the tested source build. `build.json`
-records its SHA-256 and provenance. It preserves the original game rules,
-timing and level data and uses a private study save namespace. It does not
-modify progress in the live game or other studies.
-
-Publication authorised by the user on 2026-11-15. This directory is owned by
-the Mail Train fidelity chat; see `ownership.json`. No existing site prefix,
-shared source, native code or production game is changed by this deployment.
-
-This remains a visual review checkpoint. Browser phone-size checks are not
-physical-device Safari qualification. Original textures and latest geometry
-fixes are included; the initial download is approximately 21 MB before HTTP
-compression because the study contains its own assets and original engine.
+`build.json` records the byte-identical HTML hash and source/archive provenance.
+Publication to this owned prefix is explicitly authorised by the user.
+Other site prefixes and source-main integration remain untouched. See ownership.json.
+Physical iPhone/Safari and sustained performance are not qualified. The initial
+HTML is approximately21MB before HTTP compression, including embedded original
+engine and artwork. Review clips are sampled frames, not FPS benchmarks.

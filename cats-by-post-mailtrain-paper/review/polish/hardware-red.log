@@ -1,0 +1,9 @@
+AssertionError [ERR_ASSERTION]: coupling hardware paints through an opaque coach face: [{"face":"sorting-floor","samples":1600,"hardwareVisibleThroughFace":915},{"face":"brake-wall","samples":1600,"hardwareVisibleThroughFace":276}]
+    at /workspace/cosysortie-mailtrain/studies/mailtrain-paper/check-polish.cjs:10:210 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

@@ -26886,8 +26886,15 @@ function enclosed(p,x,w,brake){p.box(x,-1.15,2.35,w,6.55,.72,'wood','#734237');p
  p.line(x+.15,5.43,3.45,x+w-.15,5.43,3.45,'#dfb66c',.035);p.line(x+.15,5.43,6.45,x+w-.15,5.43,6.45,'#dfb66c',.04);seal(p,x+w*.5,5.44,4.05);roof(p,x,w,true);
  if(brake){for(let j=0;j<2;j++){p.box(x+w+.02,.15+j*3.8,3.4,.15,.28,.42,'brass','#bd3d32');p.disk(x+w+.2,.3+j*3.8,3.65,.14,'#ffbd68');}p.box(x+w,-.3,2.65,.4,4.8,.12,'slate');}
 }
+function dispatch(p){
+ desk(p,12.2,.4,2.65,1.25);parcel(p,13.6,.55,4.36,.7,.68,.65);parcel(p,12.55,.53,4.36,.64,.55,.37);envelope(p,12.35,1.1,4.37,.46);
+ p.cylinder(14.35,1.25,4.36,.2,.05,'brass');p.line(14.35,1.25,4.4,14.35,1.25,5.05,'#29474c',.07);p.line(14.35,1.25,5.05,14.03,1.25,5.3,'#29474c',.07);p.cylinder(14.04,1.25,5.15,.2,.13,'brass');
+}
+function trolley(p){
+ p.box(12.5,2.25,3.36,1.45,.86,.12,'teal');for(let i=0;i<2;i++)for(let j=0;j<2;j++)p.cylinder(12.66+i*1.1,2.4+j*.56,3.1,.13,.25,'#3c4540','#c8a573');parcel(p,12.85,2.35,3.48,.8,.61,.59);p.line(12.5,2.25,3.45,12.5,2.25,4.25,'#355956',.06);p.line(12.5,3.1,3.45,12.5,3.1,4.25,'#355956',.06);p.line(12.5,2.25,4.25,12.5,3.1,4.25,'#355956',.06);
+}
 function draw(p,extra,attachments=true,section='all'){
- if(section==='tail'){if(attachments){for(let i=0;i<(extra?2:1);i++)enclosed(p,16.35+i*5.7,5.35,i===(extra?1:0));if(extra)p.box(21.7,.35,2.4,.35,3.8,.15,'#363c38');}return;}
+ if(section==='tail'){if(attachments){for(let i=0;i<(extra?2:1);i++)enclosed(p,16.35+i*5.7,5.35,i===(extra?1:0));}return;}
  if(attachments)MailtrainEngine.draw(p);
  p.box(0,-1.15,2.72,16,6.55,.38,'wood','#a14836');
  // Long scored planks, staggered board joints and bright cut edges.
@@ -26904,16 +26911,14 @@ function draw(p,extra,attachments=true,section='all'){
  p.box(.08,-.9,3.1,.8,1.65,.5,'wood');p.box(.06,-.95,3.6,.84,1.7,.13,'#8b3c46');p.box(.08,-1.02,3.62,.8,.1,1,'wood','#8b3c46');p.shadow(.48,-.1,3.74,.25,.09);p.sprite('worker','postmistress',.48,-.12,3.74,1.45);
  desk(p,1.25,-.95,2,.88);p.cylinder(2.3,-.53,4.36,.24,.76,'brass');p.cylinder(2.3,-.53,5.12,.3,.07,'brass');p.line(2.54,-.53,4.7,2.75,-.53,4.7,'#8f6533',.08);p.cylinder(1.8,-.37,4.37,.12,.19,'cream','#4e3525');envelope(p,2.7,-.55,4.37,.36);
  cabinet(p,3.65,3.7,'#a64433');cabinet(p,7.7,3.05,'#2d6075');
- // Dispatch desk and supported trolley occupy the real end bay.
- desk(p,12.2,.4,2.65,1.25);parcel(p,13.6,.55,4.36,.7,.68,.65);parcel(p,12.55,.53,4.36,.64,.55,.37);envelope(p,12.35,1.1,4.37,.46);
- p.cylinder(14.35,1.25,4.36,.2,.05,'brass');p.line(14.35,1.25,4.4,14.35,1.25,5.05,'#29474c',.07);p.line(14.35,1.25,5.05,14.03,1.25,5.3,'#29474c',.07);p.cylinder(14.04,1.25,5.15,.2,.13,'brass');
- p.box(12.5,2.25,3.36,1.45,.86,.12,'teal');for(let i=0;i<2;i++)for(let j=0;j<2;j++)p.cylinder(12.66+i*1.1,2.4+j*.56,3.1,.13,.25,'#3c4540','#c8a573');parcel(p,12.85,2.35,3.48,.8,.61,.59);p.line(12.5,2.25,3.45,12.5,2.25,4.25,'#355956',.06);p.line(12.5,3.1,3.45,12.5,3.1,4.25,'#355956',.06);p.line(12.5,2.25,4.25,12.5,3.1,4.25,'#355956',.06);
+ // Foreground furniture is prepared separately for actor depth in the live renderer.
+ if(section!=='head'){dispatch(p);trolley(p);}
  for(let i=0;i<3;i++)bag(p,12.3+i*.75,-.7,5.12);for(let i=0;i<5;i++)lamp(p,1.5+i*3.2);
  // Small wall clock is printed in the wall plane, with full rim thickness.
  const c=p.c,x=.5,y=-1.02,z=5.67;c.save();c.translate(p.px(x,y),p.py(x,y,z));c.transform(1,.5,0,1,0,0);c.beginPath();c.arc(0,0,p.cam.scale*.36,0,Math.PI*2);c.fillStyle='#eed5a2';c.fill();c.strokeStyle='#b88742';c.lineWidth=p.cam.scale*.06;c.stroke();c.restore();
- if(attachments){if(section!=='head')for(let i=0;i<(extra?2:1);i++)enclosed(p,16.35+i*5.7,5.35,i===(extra?1:0));const form=formation(extra);for(const j of form.joints){if(section==='head'&&j.a>=16)continue;p.box(j.a,.35,2.4,j.b-j.a,3.8,.15,'#363c38');for(let y=0;y<2;y++)p.box(j.a,.7+y*3,2.15,j.b-j.a,.16,.18,'slate');}}
+ if(attachments){if(section!=='head')for(let i=0;i<(extra?2:1);i++)enclosed(p,16.35+i*5.7,5.35,i===(extra?1:0));}
 }
-return {formation,draw,envelope,parcel,cabinet,bulkhead};
+return {formation,draw,envelope,parcel,cabinet,bulkhead,dispatch,trolley};
 });
 
 /* Read-only adaptation of accepted Office paper acting. No assets, renderer, clocks or rule changes. */
@@ -27100,19 +27105,28 @@ return {formation,draw,envelope,parcel,cabinet,bulkhead};
 class Pieces{
  constructor(p,BA){this.p=p;this.BA=BA;this.acting=MailtrainActing.create(BA);this.poses=[];this.hatches=[];this.dogs=[];this.order=new Int16Array(128);this.depth=new Float64Array(128);this.kind=new Uint8Array(128);this.item=new Int16Array(128);this.count=0;this.flightPose={x:0,y:0,z:0,u:0,v:0,au:0,av:0,rear:false};for(let i=0;i<32;i++)this.poses.push(this.acting.makeOut());for(let i=0;i<4;i++)this.hatches.push(this.acting.makeHatchOut());for(let i=0;i<8;i++)this.dogs.push(this.acting.makeDogOut());this.x=1;this.y=.8;this.lid=Array.from({length:4},()=>({x:0,y:0,z:0}));this.hatchOpen=new Float64Array(4);}
  arrow(x,y,z,d,col,size=.25){const p=this.p,c=p.c;c.beginPath();const dx=DX[d],dy=DY[d];p.v(x+dx*size,y+dy*size,z,true);p.v(x-dx*size*.12-dy*size*.75,y-dy*size*.12+dx*size*.75,z);p.v(x-dx*size*.12-dy*size*.28,y-dy*size*.12+dx*size*.28,z);p.v(x-dx*size-dy*size*.28,y-dy*size+dx*size*.28,z);p.v(x-dx*size+dy*size*.28,y-dy*size-dx*size*.28,z);p.v(x-dx*size*.12+dy*size*.28,y-dy*size*.12-dx*size*.28,z);p.v(x-dx*size*.12+dy*size*.75,y-dy*size*.12-dx*size*.75,z);c.closePath();c.fillStyle=col;c.fill();}
- carrier(x,y,z,front=false,fold=0,fade=0){if(fold<0||fade>=1)return;const p=this.p,c=p.c,h=fold>=4?.025:.34*(1-fold/5),r=.31,t=.018,spread=.065+fold*.032;c.save();c.globalAlpha*=1-fade;
+ carrier(x,y,z,front=false,fold=0,fade=0){if(fold<0||fade>=1)return;const p=this.p,c=p.c,q=Math.max(0,Math.min(1,fold/4)),u=front?Math.max(0,(q-.12)/.88):Math.min(1,q/.8),angle=u*u*(3-2*u)*Math.PI/2,cs=Math.cos(angle),sn=Math.sin(angle),h=.34*cs,inset=.34*sn,base=q*(front?.026:.018),r=.31,t=.018,spread=.065,lip=.025*(1-q),zz=z+base,top=zz+h;
+ c.save();c.globalAlpha*=1-fade;
+ // Each wall is a rigid card panel hinged at its bottom edge. Far walls fold
+ // first, then near walls settle over them. Their lengths never shrink.
  if(!front){p.shadow(x,y,z,.48,.17,.16);
- p.quad(x-r,y-r,z,x+r,y-r,z,x+r,y-r,z+h,x-r,y-r,z+h,'cream',.22);p.quad(x-r,y-r,z,x-r,y+r,z,x-r,y+r,z+h,x-r,y-r,z+h,'cream',.16);
- p.quad(x-r,y-r,z+h,x+r,y-r,z+h,x+r,y-r-spread,z+h-.025,x-r,y-r-spread,z+h-.025,'cream',.12);
- p.quad(x-r,y-r,z+h,x-r,y+r,z+h,x-r-spread,y+r,z+h-.025,x-r-spread,y-r,z+h-.025,'cream',.07);
  p.plane(x-r+t,y-r+t,z+.012,(r-t)*2,(r-t)*2,'cream',.20);p.line(x-r+.08,y-r+.08,z+.014,x+r-.08,y+r-.08,z+.014,'#bf9a66',.018);
+ p.quad(x-r,y-r,zz,x+r,y-r,zz,x+r,y-r+inset,top,x-r,y-r+inset,top,'cream',.22);
+ p.quad(x-r,y-r,zz,x-r,y+r,zz,x-r+inset,y+r,top,x-r+inset,y-r,top,'cream',.16);
+ p.quad(x-r,y-r+inset,top,x+r,y-r+inset,top,x+r,y-r+inset-spread,top-lip,x-r,y-r+inset-spread,top-lip,'cream',.12);
+ p.quad(x-r+inset,y-r,top,x-r+inset,y+r,top,x-r+inset-spread,y+r,top-lip,x-r+inset-spread,y-r,top-lip,'cream',.07);
  }else{
- p.quad(x-r,y+r,z,x+r,y+r,z,x+r,y+r,z+h,x-r,y+r,z+h,'cream',.08);p.quad(x+r,y-r,z,x+r,y+r,z,x+r,y+r,z+h,x+r,y-r,z+h,'cream',.18);
- p.quad(x-r,y+r,z+h,x+r,y+r,z+h,x+r,y+r+spread,z+h-.025,x-r,y+r+spread,z+h-.025,'cream',.04);
- p.quad(x+r,y-r,z+h,x+r,y+r,z+h,x+r+spread,y+r,z+h-.025,x+r+spread,y-r,z+h-.025,'cream',.12);
- p.line(x-r,y+r,z+h,x+r,y+r,z+h,'#bb9761',t);p.line(x+r,y-r,z+h,x+r,y+r,z+h,'#b08b58',t);p.line(x+r,y+r,z,x+r,y+r,z+h,'#e4c99a',t);
- p.line(x-r,y+r,z+.012,x+r,y+r,z+.012,'#b79562',.02);p.line(x+r,y-r,z+.012,x+r,y+r,z+.012,'#a78250',.02);
- if(!fold){p.quad(x-.09,y+r+.004,z+.06,x+.15,y+r+.004,z+.06,x+.15,y+r+.004,z+.23,x-.09,y+r+.004,z+.23,'#f1d6a8');p.line(x-.07,y+r+.009,z+.20,x+.03,y+r+.009,z+.12,'#ad4b3a',.02);p.line(x+.13,y+r+.009,z+.20,x+.03,y+r+.009,z+.12,'#ad4b3a',.02);}}
+ p.quad(x-r,y+r,zz,x+r,y+r,zz,x+r,y+r-inset,top,x-r,y+r-inset,top,'cream',.08);
+ p.quad(x+r,y-r,zz,x+r,y+r,zz,x+r-inset,y+r,top,x+r-inset,y-r,top,'cream',.18);
+ p.quad(x-r,y+r-inset,top,x+r,y+r-inset,top,x+r,y+r-inset+spread,top-lip,x-r,y+r-inset+spread,top-lip,'cream',.04);
+ p.quad(x+r-inset,y-r,top,x+r-inset,y+r,top,x+r-inset+spread,y+r,top-lip,x+r-inset+spread,y-r,top-lip,'cream',.12);
+ p.line(x-r,y+r-inset,top,x+r,y+r-inset,top,'#bb9761',t);p.line(x+r-inset,y-r,top,x+r-inset,y+r,top,'#b08b58',t);
+ p.line(x+r,y+r,zz,x+r,y+r-inset,top,'#e4c99a',t);
+ p.line(x-r,y+r,zz+.012,x+r,y+r,zz+.012,'#b79562',.02);p.line(x+r,y-r,zz+.012,x+r,y+r,zz+.012,'#a78250',.02);
+ // The postal label remains attached to the same near panel throughout.
+ const py=y+r+.004;p.quad(x-.09,py-sn*.06,zz+cs*.06,x+.15,py-sn*.06,zz+cs*.06,x+.15,py-sn*.23,zz+cs*.23,x-.09,py-sn*.23,zz+cs*.23,'#f1d6a8');
+ p.line(x-.07,py+.005-sn*.20,zz+cs*.20,x+.03,py+.005-sn*.12,zz+cs*.12,'#ad4b3a',.02);p.line(x+.13,py+.005-sn*.20,zz+cs*.20,x+.03,py+.005-sn*.12,zz+cs*.12,'#ad4b3a',.02);
+ }
  c.restore();}
  boxed(o,tr){const p=this.p,x=this.x+(o.x-tr.ox)/16,y=this.y+(o.y-tr.oy)/16,z=3.125+o.z/16;const c=p.c;c.save();if(o.anim===this.BA.A.POP){const hx=this.x+tr.hx,hy=this.y+tr.hy;c.beginPath();c.moveTo(p.px(hx+.12,hy+.88),p.py(hx+.12,hy+.88,3.125));p.v(hx+.88,hy+.88,3.125);p.v(hx+.88,hy+.12,3.125);c.lineTo(p.px(hx+.88,hy+.12),p.py(hx+.88,hy+.12,3.125)-3*p.cam.scale);c.lineTo(p.px(hx+.12,hy+.88),p.py(hx+.12,hy+.88,3.125)-3*p.cam.scale);c.closePath();c.clip();}this.carrier(x,y,z);const rear=o.head===2||o.head===3,coat=COAT[tr.coat]||'ginger',name=coat+'-'+(o.ears===this.BA.EARS_BACK?(rear?'bump-rear':'bump-front'):(rear?'bust-rear':o.eyes?'blink':'bust-front'));p.sprite('acting',name,x,y,z+.22,.78,o.head===0||o.head===3);this.carrier(x,y,z,true);c.restore();}
  // Shared world-space trajectory for drawing AND depth. The canonical .4–.6s
@@ -27172,7 +27186,7 @@ class Pieces{
  for(let j=0;j<this.count;j++){const k=this.order[j],i=this.item[k],kind=this.kind[k];
   if(kind===0||kind===3)this.basket(s.baskets[i],kind===3);
   else if(kind===4){const d=s.dogs[i];this.acting.dog(d,i,this.poses,frame.motion?frame.worldFrame/60:0,this.dogs[i]);const x=this.x+d.x+.5,y=this.y+d.y+.5;p.shadow(x,y,z,.55,.19);p.sprite('acting','dog-'+this.dogs[i].frame,x,y,z-.2,.96,!!(i&1));}
-  else{const o=this.poses[i],tr=s.traces[i];if(kind===1){const x=this.x+(o.box.x-tr.ox)/16,y=this.y+(o.box.y-tr.oy)/16;this.carrier(x,y,z,false,o.box.fold,o.box.fade);this.carrier(x,y,z,true,o.box.fold,o.box.fade);}else if(o.cat.boxed)this.boxed(o,tr);else this.loose(o,tr,s.times[i]);}
+  else{const o=this.poses[i],tr=s.traces[i];if(kind===1){const x=this.x+(o.box.x-tr.ox)/16,y=this.y+(o.box.y-tr.oy)/16;const fold=o.box.fold>0?Math.max(0,Math.min(4,(o.root.terminalAge-.45)/.3*4)):o.box.fold;this.carrier(x,y,z,false,fold,o.box.fade);this.carrier(x,y,z,true,fold,o.box.fade);}else if(o.cat.boxed)this.boxed(o,tr);else this.loose(o,tr,s.times[i]);}
  }
  for(let i=0;i<s.hatches.length;i++)this.hatch(s.hatches[i],this.hatchOpen[i],true);
  if(s.cursor>=0){const x=this.x+s.cursor%s.w,y=this.y+Math.floor(s.cursor/s.w);p.line(x+.04,y+.04,z+.02,x+.96,y+.04,z+.02,'#fff0ab',.045);p.line(x+.96,y+.04,z+.02,x+.96,y+.96,z+.02,'#fff0ab',.045);p.line(x+.96,y+.96,z+.02,x+.04,y+.96,z+.02,'#fff0ab',.045);p.line(x+.04,y+.96,z+.02,x+.04,y+.04,z+.02,'#fff0ab',.045);}
@@ -27185,10 +27199,10 @@ root.MailtrainPieces=Pieces;
 'use strict';const state={},lighting={};const mod=(v,m)=>((v%m)+m)%m;
 function sample(frame,motion,o){const f=motion?frame:0,d=f/30,phase=mod(f,2880);o.distance=d;o.sleeper=mod(d,.8);o.arch=mod(d,6);o.wheelAngle=d/.7;o.workerZ=3.1;o.workerY=.35;o.workerX=6.5;o.mirror=false;
  if(phase<900)o.workerPose=phase%180<95?'sort-hold':'sort-place';
- else if(phase<1320){const u=(phase-900)/420;o.workerX=6.5+(12-6.5)*u;o.workerY=.35-.5*u;o.workerPose=Math.floor(phase/16)%2?'walk-0':'walk-1';}
- else if(phase<1740){o.workerX=12;o.workerY=-.15;o.workerPose=phase%240<150?'tea-rest':'tea-sip';}
- else if(phase<1980){o.workerX=12;o.workerY=-.15;o.workerPose='watch';}
- else if(phase<2400){const u=(phase-1980)/420;o.workerX=12-(12-6.5)*u;o.workerY=-.15+.5*u;o.workerPose=Math.floor(phase/16)%2?'walk-0':'walk-1';o.mirror=true;}
+ else if(phase<1320){const u=(phase-900)/420;o.workerX=6.5-4.7*u;o.mirror=true;o.workerPose=Math.floor(phase/16)%2?'walk-0':'walk-1';}
+ else if(phase<1740){o.workerX=1.8;o.workerPose=phase%240<150?'tea-rest':'tea-sip';}
+ else if(phase<1980){o.workerX=1.8;o.workerPose='watch';}
+ else if(phase<2400){const u=(phase-1980)/420;o.workerX=1.8+4.7*u;o.workerPose=Math.floor(phase/16)%2?'walk-0':'walk-1';}
  else o.workerPose='sort-hold';return o;}
 function illumination(level,o){const stage=level.board.w<10?0:level.board.h===4?2:1;o.shade=stage===2?.14:stage===1?.065:0;o.warmth=stage===2?.24:stage===1?.16:.07;return o;}
 // Prepared architecture only: live floor colours, coats and targets remain exact.
@@ -27211,6 +27225,16 @@ function background(p,f){sample(f.chapterMode==='station'?0:f.worldFrame,true,st
  if(f.level.board.w>=10){c.fillStyle='#27345a';c.globalAlpha=f.level.board.h===4?.52:.24;c.fillRect(0,0,W,H);c.globalAlpha=1;}}
 function station(p){p.box(-12,-6.8,-.2,47,5,2.75,'cream','stone');for(let i=-12;i<35;i++)p.box(i,-2.05,2.55,.97,.25,.08,'cream');p.box(-3,-8,2.55,6,2.5,3.2,'stone');p.box(-3.15,-8.15,5.75,6.3,2.8,.18,'#8c574e');for(let i=0;i<3;i++){p.quad(-2.4+i*1.7,-5.48,3.3,-1.5+i*1.7,-5.48,3.3,-1.5+i*1.7,-5.48,4.8,-2.4+i*1.7,-5.48,4.8,'#f3ce8b');}for(let i=0;i<5;i++){const x=6+i*6;p.cylinder(x,-3.7,2.55,.065,3.6,'#31504e','#31504e');p.box(x-.19,-3.9,6.15,.38,.38,.48,'brass','#ffeab1');p.box(x-.24,-3.95,6.63,.48,.48,.08,'teal');}p.box(10,-3.8,3.75,3,.13,.8,'teal');p.text(11.5,-3.65,4.03,'MAIL COLLECTION',.19,'#f6dfb1');for(let i=0;i<3;i++)MailtrainArchitecture.parcel(p,14+i*.7,-3.4,2.55,.6,.6,.55);}
 function foreground(p,f){sample(f.chapterMode==='station'?0:f.worldFrame,true,state);const W=f.viewport.width,H=f.viewport.height,iw=Math.max(W,H*1.5),shift=mod(state.distance*1.7,iw);p.c.save();if(f.level.board.w>=10)p.c.filter=f.grayscale?(f.level.board.h===4?'grayscale(1) brightness(.6)':'grayscale(1) brightness(.8)'):(f.level.board.h===4?'brightness(.6)':'brightness(.8)');p.c.drawImage(p.assets.foreground,shift-iw,-H*.18,iw,H*1.18);p.c.drawImage(p.assets.foreground,shift,-H*.18,iw,H*1.18);p.c.restore();}
+function couplings(p,f,form){const shunt=f.chapterMode==='station'&&f.stationStage===2,offset=shunt?f.chapterPose.headOffset:0;
+ // Underfloor hardware belongs behind every coach body. The stationary tail
+ // cannot connect across the open shunting gap; the engine/coach joint moves
+ // with the powered head. A narrow gangway supports the centre passage.
+ for(let i=0;i<form.joints.length;i++){if(i===1&&offset<0)continue;const j=form.joints[i],shift=i===0?offset:0,x=j.a+shift,w=j.b-j.a;
+  p.box(x,.35,2.4,w,3.8,.15,'#363c38');for(let y=0;y<2;y++)p.box(x,.7+y*3,2.15,w,.16,.18,'slate');
+  p.box(x,1.65,3.07,w,1.1,.03,'slate');
+  if(i===1&&shunt)for(let k=0;k<=f.chapterPose.joint;k++)p.line(x+k*w/4,1.7,3.105,x+k*w/4,2.7,3.105,'#b4a57c',.02);
+ }
+}
 function world(p,f,form){sample(f.chapterMode==='station'?0:f.worldFrame,true,state);
  if(f.chapterMode==='station')station(p);
  // Both bridge edges repeat continuously; the camera follows the train, not the masonry.
@@ -27219,14 +27243,25 @@ function world(p,f,form){sample(f.chapterMode==='station'?0:f.worldFrame,true,st
  for(let i=-5;i<8;i++)arch(p,i*6+state.arch,4.8);
  for(let i=-40;i<80;i++){const x=i*.8+state.sleeper;p.box(x,.05,.34,.23,4.3,.14,'#7b6552');}
  p.box(-35,.665,.48,90,.07,.22,'#c9c6ab','#5e6b65');p.box(-35,3.665,.48,90,.07,.22,'#c9c6ab','#5e6b65');
+ couplings(p,f,form);
  for(const v of form.vehicles){const shift=f.chapterMode==='station'&&f.stationStage===2&&(v.kind==='engine'||v.kind==='sorting')?f.chapterPose.headOffset:0;p.c.save();p.c.translate(shift*p.cam.scale,shift*p.cam.scale*.5);p.box(v.a+.2,.4,1.65,v.b-v.a-.4,3.9,.62,'#263c3c');for(const x of v.axles){wheel(p,x,.7,(shift?-shift:state.distance)/v.radius,v.radius,v.wheelZ);wheel(p,x,3.7,(shift?-shift:state.distance)/v.radius,v.radius,v.wheelZ);p.box(x-.5,.4,1.85,1,3.5,.18,'#3f4b43');}if(v.kind==='engine'){const a=(shift?-shift:state.distance)/v.radius,dx=Math.cos(a)*.24,dz=Math.sin(a)*.24;p.line(v.axles[0]+dx,3.76,v.wheelZ+dz,v.axles[2]+dx,3.76,v.wheelZ+dz,'#c1b690',.10);}p.c.restore();}
  // One restrained distance-driven steam trail behind the funnel, outside live tiles.
  if(f.motion)for(let i=0;i<4;i++){const age=mod(f.worldFrame/60+i*.65,2.6);const c=p.c;c.save();c.globalAlpha=.2*(1-age/2.6);p.disk(-8.05+age*.8,2.2,6.2+age*.65,.2+age*.12,'#fff1cf');c.restore();}
 }
-function people(p,f){sample(f.chapterMode==='station'?0:f.worldFrame,true,state);if(f.chapterMode==='exit'){const u=Math.max(0,Math.min(1,(f.chapterFrame-24)/180));state.workerX=6.5+u*8;state.workerPose=u<1?(Math.floor(f.chapterFrame/16)%2?'walk-0':'walk-1'):'sort-hold';state.mirror=false;}
+function departure(frame,o){let d=Math.max(0,Math.min(1,(frame-24)/180))*15.45;o.workerZ=3.1;o.mirror=false;
+ // Follow the clear aisle around the front of both desk and trolley, then
+ // cross the centre gangway. The attached coach occludes the final pose.
+ if(d<5.05){o.workerX=6.5+d;o.workerY=.35;}
+ else if((d-=5.05)<3.2){o.workerX=11.55;o.workerY=.35+d;o.mirror=true;}
+ else if((d-=3.2)<3.85){o.workerX=11.55+d;o.workerY=3.55;}
+ else if((d-=3.85)<1.35){o.workerX=15.4;o.workerY=3.55-d;}
+ else{o.workerX=15.4+d-1.35;o.workerY=2.2;}
+ o.workerPose=Math.floor(frame/16)%2?'walk-0':'walk-1';return o;
+}
+function people(p,f){sample(f.chapterMode==='station'?0:f.worldFrame,true,state);if(f.chapterMode==='exit')departure(f.chapterFrame,state);
  p.shadow(state.workerX,state.workerY,state.workerZ,.31,.12,.2);p.sprite('worker',state.workerPose,state.workerX,state.workerY,state.workerZ,2.1,state.mirror);
 }
-return {sample,illumination,light,details,background,foreground,world,people};
+return {sample,illumination,light,details,background,foreground,couplings,world,departure,people};
 });
 
 /* The existing chapter clock supplies the shunt; only its visual staging changes. */
@@ -27240,6 +27275,15 @@ return {sample,illumination,light,details,background,foreground,world,people};
 async function load(defs){const assets={};await Promise.all(Object.keys(defs).map(async name=>{const image=new Image();image.src=defs[name].src;await image.decode();assets[name]={...defs[name],image};}));assets.stockTiles={};assets.stockPixels={};for(const name of Object.keys(assets['paper-stock'].rects)){const tile=document.createElement('canvas');tile.width=tile.height=128;const r=assets['paper-stock'].rects[name];tile.getContext('2d').drawImage(assets['paper-stock'].image,r[0],r[1],r[2],r[3],0,0,128,128);assets.stockTiles[name]=tile;const full=document.createElement('canvas');full.width=full.height=512;const fc=full.getContext('2d');fc.drawImage(assets['paper-stock'].image,r[0],r[1],r[2],r[3],0,0,512,512);assets.stockPixels[name]=fc.getImageData(0,0,512,512).data;full.width=full.height=0;assets.stockSize=512;}const worker=document.createElement('canvas');worker.width=assets.worker.image.width;worker.height=assets.worker.image.height;worker.getContext('2d').drawImage(assets.worker.image,0,0);assets.workerPixels=worker.getContext('2d').getImageData(0,0,worker.width,worker.height).data;const foreground=document.createElement('canvas');foreground.width=assets.countryside.image.width;foreground.height=assets.countryside.image.height;const fc=foreground.getContext('2d');fc.drawImage(assets['foreground-mask'].image,0,0,foreground.width,foreground.height);const mask=fc.getImageData(0,0,foreground.width,foreground.height);fc.clearRect(0,0,foreground.width,foreground.height);fc.drawImage(assets.countryside.image,0,0);const art=fc.getImageData(0,0,foreground.width,foreground.height);for(let i=3;i<art.data.length;i+=4)art.data[i]=mask.data[i-3];fc.putImageData(art,0,0);assets.foreground=foreground;assets.baskets=MailtrainRegistration.prepare(assets.acting);return assets;}
 function create({canvas,assets,BOARDANIM}){
  const G=MailtrainGeometry,c=canvas.getContext('2d'),cam=G.createCamera(),target=G.createCamera(),layer=document.createElement('canvas'),tail=document.createElement('canvas'),lc=layer.getContext('2d'),tc=tail.getContext('2d'),p=new MailtrainMaterials.Painter(c,cam,assets),lp=new MailtrainMaterials.Painter(lc,cam,assets),tp=new MailtrainMaterials.Painter(tc,cam,assets),pieces=new MailtrainPieces(p,BOARDANIM),scratch={};
+ // Two cropped foreground props retain their paper shading while the courier
+ // passes behind them. They are baked only with the other prepared layers.
+ const worker={},props=[{name:'dispatch',bounds:[12.08,.3,3.07,14.98,1.76,5.36],frontX:14.93,frontY:1.71},{name:'trolley',bounds:[12.42,2.17,3.04,14.05,3.2,4.32],frontX:13.95,frontY:3.11}];
+ for(const prop of props){prop.canvas=document.createElement('canvas');prop.camera=G.createCamera();prop.painter=new MailtrainMaterials.Painter(prop.canvas.getContext('2d'),prop.camera,assets);}
+ function prepareProps(f){const d=f.viewport.dpr,s=cam.scale;for(const prop of props){const a=prop.bounds;prop.x=Math.floor((cam.x+(a[0]-a[4])*s)*d-2)/d;prop.y=Math.floor((cam.y+((a[0]+a[1])*.5-a[5])*s)*d-2)/d;
+  prop.canvas.width=Math.ceil((cam.x+(a[3]-a[1])*s-prop.x)*d+2);prop.canvas.height=Math.ceil((cam.y+((a[3]+a[4])*.5-a[2])*s-prop.y)*d+2);
+  prop.camera.x=cam.x-prop.x;prop.camera.y=cam.y-prop.y;prop.camera.scale=s;prop.painter.c.setTransform(d,0,0,d,0,0);MailtrainArchitecture[prop.name](prop.painter);MailtrainLife.light(prop.painter,f.level);
+ }}
+ function furniture(f,foreground){if(f.chapterMode==='exit')MailtrainLife.departure(f.chapterFrame,worker);for(const prop of props){const near=f.chapterMode==='exit'&&worker.workerX<prop.frontX&&worker.workerY<prop.frontY;if(near===foreground)c.drawImage(prop.canvas,prop.x,prop.y,prop.canvas.width/f.viewport.dpr,prop.canvas.height/f.viewport.dpr);}}
  let mode='board',frame=null,invalid=true,bakes=0,disposed=false,form=null,attachments=true,shunt=false;
  function fitCameras(f,actualMode){G.fit(cam,f.level,f.viewport.width,f.viewport.height,f.insets,actualMode);target.zoom=cam.zoom;target.panX=cam.panX;target.panY=cam.panY;G.fit(target,f.level,f.viewport.width,f.viewport.height,f.insets,mode);if(shunt){cam.scale*=.85;cam.x+=cam.scale*1.8;}}
  const prev={level:null,w:0,h:0,d:0,bottom:0,right:0,mode:'',chapter:''};
@@ -27249,7 +27293,7 @@ function create({canvas,assets,BOARDANIM}){
  const extra=f.level.room==='train'&&f.level.board.w===10;invalid=false;prev.level=f.level;prev.w=f.viewport.width;prev.h=f.viewport.height;prev.d=f.viewport.dpr;prev.bottom=f.insets.bottom;prev.right=f.insets.right;prev.mode=actualMode;prev.chapter=f.chapterMode;
  form=MailtrainArchitecture.formation(extra);shunt=f.chapterMode==='station'&&f.stationStage===2;fitCameras(f,actualMode);
  const d=f.viewport.dpr,w=Math.round(f.viewport.width*d),h=Math.round(f.viewport.height*d);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}layer.width=w;layer.height=h;tail.width=w;tail.height=h;lc.setTransform(d,0,0,d,0,0);lc.clearRect(0,0,w/d,h/d);tc.setTransform(d,0,0,d,0,0);
- MailtrainArchitecture.draw(lp,extra,attachments,'head');MailtrainArchitecture.draw(tp,extra,attachments,'tail');MailtrainLife.light(lp,f.level);MailtrainLife.light(tp,f.level,false);
+ MailtrainArchitecture.draw(lp,extra,attachments,'head');MailtrainArchitecture.draw(tp,extra,attachments,'tail');MailtrainLife.light(lp,f.level);MailtrainLife.light(tp,f.level,false);prepareProps(f);
  const x=1+(f.level.board.roomX||0),y=.8+(f.level.board.roomY||0),B=f.level.board;lp.plane(x-.055,y-.055,3.115,B.w+.11,B.h+.11,'brass');
  for(let row=0;row<B.h;row++)for(let col=0;col<B.w;col++)lp.plane(x+col+.012,y+row+.012,3.125,.976,.976,'slate',((row+col)&1)?-.04:.02);
  for(let col=0;col<B.w;col++)lp.text(x+col+.5,y+B.h+.14,3.125,String(col+1),.12,'#edd6ad');
@@ -27259,11 +27303,11 @@ function create({canvas,assets,BOARDANIM}){
  if(f.chapterMode==='enter'){const ratio=target.scale/cam.scale,s=1+(ratio-1)*ch.entry,tx=(target.x-cam.x*ratio)*ch.entry,ty=(target.y-cam.y*ratio)*ch.entry;c.transform(s,0,0,s,tx,ty);}
  MailtrainLife.world(p,f,form);c.save();c.setTransform(d,0,0,d,0,0);MailtrainLife.foreground(p,f);c.restore();
  const offset=shunt?ch.headOffset*cam.scale:0;
- c.save();c.translate(offset,offset*.5);c.drawImage(layer,0,0,layer.width,layer.height,0,0,f.viewport.width,f.viewport.height);MailtrainLife.details(p,f);MailtrainLife.people(p,f);pieces.draw(f);c.restore();
- c.drawImage(tail,0,0,tail.width,tail.height,0,0,f.viewport.width,f.viewport.height);if(shunt){if(ch.headOffset===0){const y=2.2,z=2.5;p.box(16,y,z,.35,.2,.16,'#3f4541');for(let k=0;k<=ch.joint;k++)p.line(16+k*.1,y-.15,z,16+k*.1,y+.35,z,'#b4a57c',.035);}}
+ c.save();c.translate(offset,offset*.5);c.drawImage(layer,0,0,layer.width,layer.height,0,0,f.viewport.width,f.viewport.height);MailtrainLife.details(p,f);furniture(f,false);MailtrainLife.people(p,f);furniture(f,true);pieces.draw(f);c.restore();
+ c.drawImage(tail,0,0,tail.width,tail.height,0,0,f.viewport.width,f.viewport.height);
  c.filter='none';
  }
- return {prepare,draw,pick(x,y,out){if(!frame){out.valid=false;out.x=out.y=-1;return out;}return G.pick(cam,frame.level,x,y,out);},setView(m){mode=m;cam.zoom=1;cam.panX=cam.panY=0;invalid=true;},zoomAt(x,y,factor){if(!frame)return;fitCameras(frame,prev.mode);G.inverse(cam,x,y,3.125,scratch);const wx=scratch.x,wy=scratch.y;cam.zoom=Math.max(.75,Math.min(3.5,cam.zoom*factor));fitCameras(frame,prev.mode);G.project(cam,wx,wy,3.125,scratch);cam.panX+=x-scratch.x;cam.panY+=y-scratch.y;fitCameras(frame,prev.mode);invalid=true;},panBy(x,y){if(!frame)return;cam.panX=Math.max(-frame.viewport.width,Math.min(frame.viewport.width,cam.panX+x));cam.panY=Math.max(-frame.viewport.height,Math.min(frame.viewport.height,cam.panY+y));fitCameras(frame,prev.mode);invalid=true;},resources(){if(disposed)return {surfaces:0,surfacePixels:0,images:0,poses:0,bakes};let solids=4,solidPixels=0;for(const a of Object.values(assets.baskets))solidPixels+=a.full.width*a.full.height+a.front.width*a.front.height;for(const painter of [p,lp,tp])for(const e of painter.solids.values()){solids++;solidPixels+=e.surface.width*e.surface.height;}return {surfaces:10+solids,surfacePixels:solidPixels+6*128*128+assets.foreground.width*assets.foreground.height+canvas.width*canvas.height+layer.width*layer.height+tail.width*tail.height,images:5,textureBytes:6*assets.stockSize*assets.stockSize*4+assets.workerPixels.byteLength,poses:pieces.poses.length,bakes};},dispose(){disposed=true;layer.width=layer.height=tail.width=tail.height=0;frame=null;for(const painter of [p,lp,tp]){for(const e of painter.solids.values())e.surface.width=e.surface.height=0;painter.solids.clear();painter.patterns={};}p.assets=lp.assets=tp.assets=null;assets=null;},get camera(){return cam;},get layout(){return form;},set attachments(value){attachments=value;invalid=true;}};
+ return {prepare,draw,pick(x,y,out){if(!frame){out.valid=false;out.x=out.y=-1;return out;}return G.pick(cam,frame.level,x,y,out);},setView(m){mode=m;cam.zoom=1;cam.panX=cam.panY=0;invalid=true;},zoomAt(x,y,factor){if(!frame)return;fitCameras(frame,prev.mode);G.inverse(cam,x,y,3.125,scratch);const wx=scratch.x,wy=scratch.y;cam.zoom=Math.max(.75,Math.min(3.5,cam.zoom*factor));fitCameras(frame,prev.mode);G.project(cam,wx,wy,3.125,scratch);cam.panX+=x-scratch.x;cam.panY+=y-scratch.y;fitCameras(frame,prev.mode);invalid=true;},panBy(x,y){if(!frame)return;cam.panX=Math.max(-frame.viewport.width,Math.min(frame.viewport.width,cam.panX+x));cam.panY=Math.max(-frame.viewport.height,Math.min(frame.viewport.height,cam.panY+y));fitCameras(frame,prev.mode);invalid=true;},resources(){if(disposed)return {surfaces:0,surfacePixels:0,images:0,poses:0,bakes};let solids=4+props.length,solidPixels=0;for(const prop of props)solidPixels+=prop.canvas.width*prop.canvas.height;for(const a of Object.values(assets.baskets))solidPixels+=a.full.width*a.full.height+a.front.width*a.front.height;for(const painter of [p,lp,tp])for(const e of painter.solids.values()){solids++;solidPixels+=e.surface.width*e.surface.height;}return {surfaces:10+solids,surfacePixels:solidPixels+6*128*128+assets.foreground.width*assets.foreground.height+canvas.width*canvas.height+layer.width*layer.height+tail.width*tail.height,images:5,textureBytes:6*assets.stockSize*assets.stockSize*4+assets.workerPixels.byteLength,poses:pieces.poses.length,bakes};},dispose(){disposed=true;layer.width=layer.height=tail.width=tail.height=0;frame=null;for(const prop of props){prop.canvas.width=prop.canvas.height=0;prop.painter.assets=null;prop.painter.patterns={};}for(const painter of [p,lp,tp]){for(const e of painter.solids.values())e.surface.width=e.surface.height=0;painter.solids.clear();painter.patterns={};}p.assets=lp.assets=tp.assets=null;assets=null;},get camera(){return cam;},get layout(){return form;},set attachments(value){attachments=value;invalid=true;}};
 }
 root.MailtrainPaper={load,create};
 })(globalThis);

@@ -1,0 +1,136 @@
+{
+  "url": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/",
+  "checkedAt": "2026-11-15T19:46:02.917Z",
+  "screens": [
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "dpr": 3,
+      "hash": "d1752ab292e0c6623a09f96f5d39d205d0a94026da3da208f5a6cb5796c292a3",
+      "touchWin": true,
+      "savedWinReloaded": true,
+      "level": "5-15",
+      "board": {
+        "w": 10,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "documentWidth": 390,
+      "allStoragePrivate": true,
+      "controls": [
+        {
+          "id": "mp-level",
+          "x": 141.15625,
+          "y": 16.5,
+          "width": 102,
+          "height": 33
+        },
+        {
+          "id": "mp-view",
+          "x": 249.15625,
+          "y": 17.5,
+          "width": 79.3125,
+          "height": 31
+        },
+        {
+          "id": "btnSend",
+          "x": 24,
+          "y": 736.109375,
+          "width": 123.75,
+          "height": 29
+        }
+      ],
+      "coveredCells": [],
+      "errors": []
+    },
+    {
+      "name": "landscape",
+      "width": 720,
+      "height": 400,
+      "dpr": 2,
+      "hash": "d1752ab292e0c6623a09f96f5d39d205d0a94026da3da208f5a6cb5796c292a3",
+      "touchWin": true,
+      "savedWinReloaded": true,
+      "level": "5-15",
+      "board": {
+        "w": 10,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "documentWidth": 720,
+      "allStoragePrivate": true,
+      "controls": [
+        {
+          "id": "mp-level",
+          "x": 277.609375,
+          "y": 17.5,
+          "width": 102,
+          "height": 33
+        },
+        {
+          "id": "mp-view",
+          "x": 391.609375,
+          "y": 16.5,
+          "width": 103.125,
+          "height": 35
+        },
+        {
+          "id": "btnSend",
+          "x": 465.8125,
+          "y": 221,
+          "width": 111.921875,
+          "height": 26
+        }
+      ],
+      "coveredCells": [],
+      "errors": []
+    },
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "dpr": 1,
+      "hash": "d1752ab292e0c6623a09f96f5d39d205d0a94026da3da208f5a6cb5796c292a3",
+      "touchWin": true,
+      "savedWinReloaded": true,
+      "level": "5-15",
+      "board": {
+        "w": 10,
+        "h": 4,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "documentWidth": 1440,
+      "allStoragePrivate": true,
+      "controls": [
+        {
+          "id": "mp-level",
+          "x": 997.609375,
+          "y": 17.5,
+          "width": 102,
+          "height": 33
+        },
+        {
+          "id": "mp-view",
+          "x": 1111.609375,
+          "y": 16.5,
+          "width": 103.125,
+          "height": 35
+        },
+        {
+          "id": "btnSend",
+          "x": 418.1875,
+          "y": 927.109375,
+          "width": 123.75,
+          "height": 29
+        }
+      ],
+      "coveredCells": [],
+      "errors": []
+    }
+  ],
+  "sha256": "d1752ab292e0c6623a09f96f5d39d205d0a94026da3da208f5a6cb5796c292a3"
+}
