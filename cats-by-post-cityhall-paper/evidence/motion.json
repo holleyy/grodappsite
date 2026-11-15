@@ -1,0 +1,57 @@
+{
+  "runtimeSha256": "a33263a0a0096c386f1ee7c8f2808a39acb1dd1a7215635f0ff8b59d1c02871e",
+  "method": "Actual Canvas captureStream, VP9/12fps, deterministic presentation clocks; not an FPS measurement",
+  "clips": [
+    {
+      "file": "hall-life.webm",
+      "sha256": "2198bafbbee8d325e59e730635ed335ba07bb6b2cc6a7e95afbdac849db395b5",
+      "bytes": 2613686,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "vp9",
+          "width": 1138,
+          "height": 881
+        }
+      ],
+      "format": {
+        "duration": "48.029894"
+      }
+    },
+    {
+      "file": "tunnel-demo.webm",
+      "sha256": "a0e92dd1b64495ccb75d09777a2b3355fa23bf3b55a1f1d17e65be28077d0b69",
+      "bytes": 869731,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "vp9",
+          "width": 1138,
+          "height": 881
+        }
+      ],
+      "format": {
+        "duration": "14.926502"
+      }
+    },
+    {
+      "file": "satchel-dispatch.webm",
+      "sha256": "2e8dee23c8d7c771d00c46774c4d9f51639535e3a7567479846a78e32cc20b00",
+      "bytes": 878412,
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "vp9",
+          "width": 1138,
+          "height": 881
+        }
+      ],
+      "format": {
+        "duration": "14.917116"
+      }
+    }
+  ]
+}

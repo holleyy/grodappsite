@@ -1,0 +1,98 @@
+{
+  "sourceCommit": "55ac87e461bfa3b558dcbc8608262d54d2bc42a0",
+  "runtimeSha256": "a33263a0a0096c386f1ee7c8f2808a39acb1dd1a7215635f0ff8b59d1c02871e",
+  "files": {
+    "HANDOVER.md": {
+      "bytes": 2599,
+      "sha256": "eab86371358872b5c608150c5104ec6cf43c0080de08d8d0633dd9d8ddfd9552"
+    },
+    "REVIEW.md": {
+      "bytes": 2146,
+      "sha256": "d9fff729ab75ba628361d3670a9bee78466b1ab805a22dad49747c079ce4188e"
+    },
+    "build-manifest.json": {
+      "bytes": 29756,
+      "sha256": "fb55d89df886c7f5dd5a884d1f6e96bc7f54e8221cac28e53c5974f63435783f"
+    },
+    "evidence/board-preservation.json": {
+      "bytes": 619,
+      "sha256": "2231bd8d3daf9212249185d82d7112b4784c9b7a84e663f256dd70139eeca93b"
+    },
+    "evidence/browser-report.json": {
+      "bytes": 5964,
+      "sha256": "66906faecd00dc9e1d0f8131a460604392e118ecc652ae2cb529b9db0936c4ba"
+    },
+    "evidence/departure.webp": {
+      "bytes": 72626,
+      "sha256": "bf0942f189f21da920c9bc9a2f2d7ec30424f9f6f5e71531ee1770a0fd00e6d5"
+    },
+    "evidence/finale.webp": {
+      "bytes": 153746,
+      "sha256": "64eff6ac91087eaa671c5bbd5cee1967a4512267f165576ccc45e0df98109796"
+    },
+    "evidence/grayscale.webp": {
+      "bytes": 176956,
+      "sha256": "77332c5914522416727b9bbf0347b232fa555b6711c902fc06061cd34a2e6629"
+    },
+    "evidence/hall-life.webm": {
+      "bytes": 2613686,
+      "sha256": "2198bafbbee8d325e59e730635ed335ba07bb6b2cc6a7e95afbdac849db395b5"
+    },
+    "evidence/hall.webp": {
+      "bytes": 206638,
+      "sha256": "941e69b9d5d2c897a09f394942518d6529636ba21550dcb245bfd5aefcddf42f"
+    },
+    "evidence/motion.json": {
+      "bytes": 1391,
+      "sha256": "0158cfc4c973f5ec4d13aad1ac4e16d515286ba5bd841a3560991dae4760e3f9"
+    },
+    "evidence/packet-report.json": {
+      "bytes": 412,
+      "sha256": "9036ed584f1b9a9e96e106e473fb9b702825e18457279b6d721a8a96b683d08c"
+    },
+    "evidence/phone.webp": {
+      "bytes": 66376,
+      "sha256": "065487085e779d49f9ee292933652cf817c88aef5d04882d1f511da4595ff4f3"
+    },
+    "evidence/protected-inputs.json": {
+      "bytes": 20072,
+      "sha256": "16130511b612432fbaa61f5491a90ffd8b79a006420c8e8f522048a2c891379e"
+    },
+    "evidence/qualification-report.json": {
+      "bytes": 2161,
+      "sha256": "1f8311e087637b795e052f799c6839ce88ab1fe9e3c72a4f8f4f1a17ac380095"
+    },
+    "evidence/satchel-dispatch.webm": {
+      "bytes": 878412,
+      "sha256": "2e8dee23c8d7c771d00c46774c4d9f51639535e3a7567479846a78e32cc20b00"
+    },
+    "evidence/tunnel-demo.webm": {
+      "bytes": 869731,
+      "sha256": "a0e92dd1b64495ccb75d09777a2b3355fa23bf3b55a1f1d17e65be28077d0b69"
+    },
+    "evidence/verification.json": {
+      "bytes": 1583,
+      "sha256": "285c1e6c94712b1e7c015ac76648174fd1784a2226383f9c8dab1876bb97f273"
+    },
+    "index.html": {
+      "bytes": 3417,
+      "sha256": "7e5c56ad7f8fdb7375b83c1019dd69e9d8dac593e2c60ccd5970be6038520b0a"
+    },
+    "ownership.json": {
+      "bytes": 540,
+      "sha256": "d07cecc0c40abbc0eb652eb381e0d580bd29bb364f8d2f12f5acb5f4251e84b7"
+    },
+    "playable.html": {
+      "bytes": 22130277,
+      "sha256": "a33263a0a0096c386f1ee7c8f2808a39acb1dd1a7215635f0ff8b59d1c02871e"
+    },
+    "selected-reference.webp": {
+      "bytes": 492608,
+      "sha256": "0bf2a188ac31cad8b561d3d24402384c8d81d0613fd2733f4ffffd82d5b3803c"
+    },
+    "source.zip": {
+      "bytes": 9330912,
+      "sha256": "af73eeeff14dc0f6c75cd9efc2347ba9f66442a1b61b21c9987ab5b90273fa99"
+    }
+  }
+}
