@@ -1,0 +1,45 @@
+{
+  "buildSha256": "a33263a0a0096c386f1ee7c8f2808a39acb1dd1a7215635f0ff8b59d1c02871e",
+  "htmlBytes": 22130277,
+  "protectedInputs": 195,
+  "protectedMismatches": [],
+  "deterministicRebuild": "HTML and build.json byte-exact",
+  "focusedTests": 23,
+  "browserChecks": 72,
+  "qualificationChecks": 26,
+  "broadTests": 1687,
+  "broadScope": "Full suite passed before final backdrop and compact queue refinements; final focused/browser verification covers those refinements.",
+  "resources": {
+    "initial": {
+      "bytes": 65915080,
+      "buffers": 51,
+      "bakes": 9,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    },
+    "final": {
+      "bytes": 65915080,
+      "buffers": 51,
+      "bakes": 9,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    },
+    "newCanvases": 0,
+    "drawCallMs": {
+      "median": 15.699999999254942,
+      "p95": 39.09999999962747,
+      "max": 145.7999999988824
+    },
+    "scope": "120 synchronous Canvas draw calls in cloud Chromium; not presented FPS or physical-device performance"
+  },
+  "freshReview": {
+    "model": "gpt-6-astra",
+    "effort": "max",
+    "codeCommit": "f070cfb366a803c342a89dc92e4fe517959ac268",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "correctionPass": "not needed"
+  },
+  "boardRasterPreservation": "All three board bake images match 402a5371 exactly",
+  "nestedPacketChecks": 12,
+  "motionPlayback": "All three recordings played in actual Chromium video elements"
+}

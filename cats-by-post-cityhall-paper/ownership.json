@@ -1,0 +1,12 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/",
+  "room": "cityhall",
+  "addOnly": true,
+  "purpose": "Isolated City Hall visual review; no regular-game or other-preview changes",
+  "saveNamespace": "catsByPost.cityhallPaper.study.v1.",
+  "sourceRepository": "holleyy/cosysortie",
+  "sourceBranch": "codex/cityhall-paper-fidelity",
+  "sourceBase": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+  "sourceCommit": "55ac87e461bfa3b558dcbc8608262d54d2bc42a0",
+  "runtimeSha256": "a33263a0a0096c386f1ee7c8f2808a39acb1dd1a7215635f0ff8b59d1c02871e"
+}

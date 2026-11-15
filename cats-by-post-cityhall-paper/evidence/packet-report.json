@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "packet link playable.html",
+    "packet link selected-reference.webp",
+    "packet link HANDOVER.md",
+    "packet link source.zip",
+    "packet link REVIEW.md",
+    "actual video playback 0",
+    "actual video playback 1",
+    "actual video playback 2",
+    "nested standalone ready",
+    "nested real finale wins",
+    "phone complete queues fit",
+    "no page errors"
+  ],
+  "errors": []
+}
