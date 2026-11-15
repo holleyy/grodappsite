@@ -1,0 +1,186 @@
+{
+  "sourceCommit": "869594a6c8d0998899cf4ccbd92b55b35abbf3e8",
+  "runtimeSha256": "4e9ae07ef39fab2dfdeab78699f425a456ce7c46af82a1e8ca45e45cc00d8d4b",
+  "files": {
+    "after-board.webp": {
+      "bytes": 226916,
+      "sha256": "a70b49379ff75ea4da58aa2d46b61f3cd3e152b52d1eb6af85d60abce01164e8"
+    },
+    "after-detail.webp": {
+      "bytes": 260288,
+      "sha256": "21fbc0d52ae09640a11c6dcfcfd2d3a0fb945e3760f3ea689dafdcf594e39397"
+    },
+    "after-gray.webp": {
+      "bytes": 174768,
+      "sha256": "8694cd483dd0541c5fb212908363589490b6801381d3da991ddb189a830a68ad"
+    },
+    "after-hall.webp": {
+      "bytes": 283284,
+      "sha256": "99b57ed5c8c9ddad396317f1157c62b907265be09f53ca5462fc506b8c3326a6"
+    },
+    "after-light.webp": {
+      "bytes": 275188,
+      "sha256": "47185f3c4c14926cfd0505d043cfed95200c1a56c5b9821595771a23dfb1f50b"
+    },
+    "after-phone-first.webp": {
+      "bytes": 81414,
+      "sha256": "413ef365257cf78d14e4fdf4f139c99e7fce207602709d864a098ca15cbe921e"
+    },
+    "after-phone-hall.webp": {
+      "bytes": 85590,
+      "sha256": "4861cba2a6abd5000a00f08718d897cf95c24b1a2500eb88ce0117fc0de21861"
+    },
+    "after-phone-short.webp": {
+      "bytes": 44884,
+      "sha256": "c495912705556e7ff5cc71f509067416fed4333649db0aec505fbd707aa228fb"
+    },
+    "after-phone-tall.webp": {
+      "bytes": 96766,
+      "sha256": "a979501e989ea65df2cac2e12f1bc759cff91dbb529dad84aa8cb2ca95c9aaad"
+    },
+    "after-phone.webp": {
+      "bytes": 87492,
+      "sha256": "5f689d59d8ec11ab9b16b81a02fd5c5ef6a69cb4064b436fde0ee88db82b3816"
+    },
+    "after-rasters.json": {
+      "bytes": 262,
+      "sha256": "f9d3e95918276c712c4159aa43e2879620200ffcbb6f156501846b3cc0cec998"
+    },
+    "after-square.webp": {
+      "bytes": 264482,
+      "sha256": "8ba04247d3e0edfc3b541c0c70b1871f42fa66ad4f72c14f46aa93b2b67e6f34"
+    },
+    "before-board.webp": {
+      "bytes": 227252,
+      "sha256": "8593daff20c024e30e44e077015794bd71581f3ece7b77c033703e858712e34a"
+    },
+    "before-detail.webp": {
+      "bytes": 262274,
+      "sha256": "ddcd4b47773b9f65a1496b5285a9073c29cfc66d055cc43b644ed649839cd938"
+    },
+    "before-gray.webp": {
+      "bytes": 175938,
+      "sha256": "5581e934e02d22d19213c8c5d558f332098a596a2a4d7a4f0643636a9e8eee9d"
+    },
+    "before-hall.webp": {
+      "bytes": 290054,
+      "sha256": "84743ba5691eb7ca31d703f3d68c28062c26354a6bc5e66c4c5ca6dba8f5f624"
+    },
+    "before-light.webp": {
+      "bytes": 275674,
+      "sha256": "1bce08fa1b3712a160814b72ed09d9286a8bebcd2e51f0afd65194465ae64e73"
+    },
+    "before-phone-first.webp": {
+      "bytes": 82034,
+      "sha256": "cdb13eb87f46a12317f33954d115ca1a27f1e4e25419aadee63b674a9eff4afb"
+    },
+    "before-phone-hall.webp": {
+      "bytes": 85638,
+      "sha256": "13d0dadd11a72a43bdd2629948253b6744249aabc24274c57932d3ff21a2227d"
+    },
+    "before-phone-short.webp": {
+      "bytes": 44710,
+      "sha256": "eac101984a91b31c384790439c444800d0082116e09780b725b9427ce701271f"
+    },
+    "before-phone-tall.webp": {
+      "bytes": 93702,
+      "sha256": "cc331cf2c2a1a6dcfcb0cb6965542137122a6b2e48c556e18e9039f8570fd218"
+    },
+    "before-phone.webp": {
+      "bytes": 88052,
+      "sha256": "8b17c74b340e5242994af8bdf5989aa62c43b71636cba2ac95a2367003bfe694"
+    },
+    "before-rasters.json": {
+      "bytes": 262,
+      "sha256": "f9d3e95918276c712c4159aa43e2879620200ffcbb6f156501846b3cc0cec998"
+    },
+    "before-square.webp": {
+      "bytes": 267912,
+      "sha256": "c3b1c4b705dac426b3d2b850f68f9db3a5002c74e868cb43043354922059444a"
+    },
+    "browser-report.json": {
+      "bytes": 5961,
+      "sha256": "2f5bb086733ff01bf7c297147f4a8e38fd540e7fb5e69a6b19605b1c64eaa821"
+    },
+    "build-manifest.json": {
+      "bytes": 32496,
+      "sha256": "c8e15d7575aa7348f5d4adcc65b42d3bd48416bffbd784dfc62621306d7627c1"
+    },
+    "capture-hashes.json": {
+      "bytes": 6143,
+      "sha256": "1cece36361d9db62de738402b3c2c570abddb5388aa5e423c41cfc9533f1f457"
+    },
+    "checkpoint.md": {
+      "bytes": 1722,
+      "sha256": "757c21ab85968f55ec18ba9d9364e274c7289c10b171961bda92163b3817d10b"
+    },
+    "comparison-build.json": {
+      "bytes": 487,
+      "sha256": "7a1085d9218bf19e5999b792c71d2a7f534ec14ad94be6f8d64bf4147f1cfb4b"
+    },
+    "design-qa.md": {
+      "bytes": 1936,
+      "sha256": "4018b555c48e01b4162befb011781bbd5c8fb365a9e0ff7e55dd6ba25982f9cb"
+    },
+    "index.html": {
+      "bytes": 7937,
+      "sha256": "a9258804a62d53ba80bb2ee566d0d0a774bad2a5cf3f66eaac86f8969f1fea86"
+    },
+    "old-framing.webp": {
+      "bytes": 80396,
+      "sha256": "d57e375e2b0cf3009f31adcee864d6c38155018543df7a8ab7427bad447ebaff"
+    },
+    "ownership.json": {
+      "bytes": 479,
+      "sha256": "f011c404d52c1b8dfbce92c2e3c084c38a735de60a79d162d9fbb19ff32d2fbe"
+    },
+    "phone-life.webm": {
+      "bytes": 2313081,
+      "sha256": "e497fd44ef027ed610c5ac84cbd57edb78f9a52a69a2c980bbe7a38a200fda4f"
+    },
+    "phone-report.json": {
+      "bytes": 10764,
+      "sha256": "a4c304129c83d3658d645f684468092191b93cf15f6dc906752ee3247324523f"
+    },
+    "playable.html": {
+      "bytes": 26597761,
+      "sha256": "4e9ae07ef39fab2dfdeab78699f425a456ce7c46af82a1e8ca45e45cc00d8d4b"
+    },
+    "preservation.json": {
+      "bytes": 20969,
+      "sha256": "e446f2039d31f021756a44f5d1f91517455441e3f35b66dfab8b0e49e687480a"
+    },
+    "previous-build.json": {
+      "bytes": 31394,
+      "sha256": "24cbee1b4e38e31d09fbca6332fc0fac54e8d827d59a8555f28157d20d171110"
+    },
+    "production-footprint.json": {
+      "bytes": 1421,
+      "sha256": "3d3a6f7bbaffb6641b297db523e223e5b39057d33e1b4b33fb664ad641378251"
+    },
+    "production-phone.webp": {
+      "bytes": 86120,
+      "sha256": "b4431b6301e038b3bc4d987b545161a6fe7951b1b42fdaa9218cddb3119634ed"
+    },
+    "qualification-report.json": {
+      "bytes": 2148,
+      "sha256": "0728d33633499716d1b19f23e7cae02d52f758acb246a4d69c3da83a43641de3"
+    },
+    "review.md": {
+      "bytes": 1698,
+      "sha256": "08037a8f38bb703afebee8a68fae1a74f8176c0c22a91d9a6d3ef28155bd0e61"
+    },
+    "selected-reference.webp": {
+      "bytes": 492608,
+      "sha256": "0bf2a188ac31cad8b561d3d24402384c8d81d0613fd2733f4ffffd82d5b3803c"
+    },
+    "source.zip": {
+      "bytes": 31261223,
+      "sha256": "26f20af18b584e9a56d79b181dac625620a61d3b96c764ff38ec330b74e18d04"
+    },
+    "verification.json": {
+      "bytes": 1120,
+      "sha256": "eafaab6babd35accab556df4ae188f3c9d0ccd942e44bce9fd6a60b71633380f"
+    }
+  }
+}

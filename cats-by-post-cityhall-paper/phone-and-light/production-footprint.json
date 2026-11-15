@@ -1,0 +1,77 @@
+{
+  "data": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "rects": {
+      "world": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "play-head": {
+        "x": 12,
+        "y": 10,
+        "width": 366,
+        "height": 46.984375,
+        "top": 10,
+        "right": 378,
+        "bottom": 56.984375,
+        "left": 12
+      },
+      "arrival-panel": {
+        "x": 12,
+        "y": 64.984375,
+        "width": 366,
+        "height": 185,
+        "top": 64.984375,
+        "right": 378,
+        "bottom": 249.984375,
+        "left": 12
+      },
+      "desk": {
+        "x": 12,
+        "y": 667,
+        "width": 366,
+        "height": 167,
+        "top": 667,
+        "right": 378,
+        "bottom": 834,
+        "left": 12
+      },
+      "piece-tray": {
+        "x": 23,
+        "y": 678,
+        "width": 344,
+        "height": 54,
+        "top": 678,
+        "right": 367,
+        "bottom": 732,
+        "left": 23
+      },
+      "camera-tools": {
+        "x": 334,
+        "y": 11.484375,
+        "width": 44,
+        "height": 44,
+        "top": 11.484375,
+        "right": 378,
+        "bottom": 55.484375,
+        "left": 334
+      }
+    },
+    "layout": {
+      "top": 260,
+      "bottom": 189,
+      "left": 12,
+      "right": 12
+    }
+  },
+  "errors": []
+}

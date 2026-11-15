@@ -1,0 +1,9 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/phone-and-light/",
+  "addOnly": true,
+  "purpose": "City Hall full-height phone framing and daylight checkpoint; all previous checkpoints and other previews preserved",
+  "sourceCommit": "869594a6c8d0998899cf4ccbd92b55b35abbf3e8",
+  "sourceBase": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+  "runtimeSha256": "4e9ae07ef39fab2dfdeab78699f425a456ce7c46af82a1e8ca45e45cc00d8d4b",
+  "saveNamespace": "catsByPost.cityhallPaper.study.v1."
+}
