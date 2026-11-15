@@ -1,0 +1,122 @@
+{
+  "sourceCommit": "4d846d3ca7551a9de77e1be3b032d716a4781ba9",
+  "runtimeSha256": "e64e10ccfdd0e7ef2b075d3dcc376a5ebdd6de95932ab9e947c4bfb7f94842a4",
+  "files": {
+    "after-board.webp": {
+      "bytes": 198812,
+      "sha256": "1404897fe3f0e19f9967a501a482208e7f1c30e065d2b69195e6e37b8a6daa65"
+    },
+    "after-detail.webp": {
+      "bytes": 222614,
+      "sha256": "586ca987bcaf454a262407142ffa73b218fa6b412faa97c98d54f55045a4e51c"
+    },
+    "after-gray.webp": {
+      "bytes": 153910,
+      "sha256": "ea9dbb4061b5bbea7a9a1387d70dc57f38368ab6d7b96328415c0e968b6f7cdf"
+    },
+    "after-hall.webp": {
+      "bytes": 261272,
+      "sha256": "f8e90c41bf027cd6a0fdc4c3acc632a2612ca8e9216a454593247e483fc50176"
+    },
+    "after-phone-hall.webp": {
+      "bytes": 85242,
+      "sha256": "a3f7da81d27468d757e027df5d6ad233b9bba1e3cb9babbaeceb4efe083481bc"
+    },
+    "after-phone.webp": {
+      "bytes": 81698,
+      "sha256": "8bedcf8bd4b89b87eaf58ffccc3971a36d869f10f996e13aa1dc4567a25b3edd"
+    },
+    "before-board.webp": {
+      "bytes": 193206,
+      "sha256": "35858fd6fd8ad32ff1b319cd95a3642d1a7d5b9b4a20e584ab764ed2af40433d"
+    },
+    "before-build.json": {
+      "bytes": 29756,
+      "sha256": "fb55d89df886c7f5dd5a884d1f6e96bc7f54e8221cac28e53c5974f63435783f"
+    },
+    "before-detail.webp": {
+      "bytes": 204898,
+      "sha256": "9df3390d874cfb81d643bdd8dc9b179ee61b505961e0d590aad67c44a27f86b6"
+    },
+    "before-gray.webp": {
+      "bytes": 150352,
+      "sha256": "8ebc6eb5fdae29ed50afa0597e079cb7188f5d2b1229516c9e662cc479c7dfd6"
+    },
+    "before-hall.webp": {
+      "bytes": 259374,
+      "sha256": "d2a65071feb5fc0fb56f0b835746a70bbc247c9ccf546e50445862b0b03bf882"
+    },
+    "before-phone-hall.webp": {
+      "bytes": 84896,
+      "sha256": "6171942f3d7cf00f483ffb46e1fb040f7da6d10dde61fe3a42a3d600522f4d10"
+    },
+    "before-phone.webp": {
+      "bytes": 80192,
+      "sha256": "81fa5f5a1a5b78df4dec73d141778f2cf5b82d320207deedcb5a1723054ba0d3"
+    },
+    "board-preservation.json": {
+      "bytes": 377,
+      "sha256": "9837b25d9f2f24dd9483bc011fda87a954038da633d5f83e6f1c567877ea402a"
+    },
+    "browser-report.json": {
+      "bytes": 5964,
+      "sha256": "66906faecd00dc9e1d0f8131a460604392e118ecc652ae2cb529b9db0936c4ba"
+    },
+    "build-manifest.json": {
+      "bytes": 30264,
+      "sha256": "a19aae98a430b740bf024fb15d79a23cffeaeeb231d48ca2696054c2463bd2e3"
+    },
+    "captures.json": {
+      "bytes": 1759,
+      "sha256": "25a8139717c75b61a9373e1923180c0380bd110dccdfe9ca96ee272da8875fd1"
+    },
+    "checkpoint.md": {
+      "bytes": 1563,
+      "sha256": "1aca830d2431ed2e4324c7119a9b96bcaac9d8e8272a922c5c1f14d1862ed826"
+    },
+    "design-qa.md": {
+      "bytes": 2293,
+      "sha256": "21b1c67692b9731584dc210268f252ef1caf37098ec771c0e5e5f39b32ef8a04"
+    },
+    "gallery-motion.webm": {
+      "bytes": 1544554,
+      "sha256": "f288a38b35df5885df4edee579acf048f18fb16e08b1d53eaef90aed2b66488e"
+    },
+    "index.html": {
+      "bytes": 5839,
+      "sha256": "fd61c9c5b7f772ce7fc8d5fce3157025808857e882264dfd27422f9d6634f1f5"
+    },
+    "ownership.json": {
+      "bytes": 447,
+      "sha256": "5b9e0999e30bd3a1f37004e5f8808bc5283bf9e31468a314d5b32d3b8e6c5c8d"
+    },
+    "playable.html": {
+      "bytes": 23895631,
+      "sha256": "e64e10ccfdd0e7ef2b075d3dcc376a5ebdd6de95932ab9e947c4bfb7f94842a4"
+    },
+    "qualification-report.json": {
+      "bytes": 2150,
+      "sha256": "126900a99c936fb4d231c7458726147dd3e561db8617f941e7fde2405a75f90b"
+    },
+    "review.md": {
+      "bytes": 1708,
+      "sha256": "7b45109230f021a292c73f8546ed576b23f603a46e48e91783bcb15415324601"
+    },
+    "selected-reference.webp": {
+      "bytes": 492608,
+      "sha256": "0bf2a188ac31cad8b561d3d24402384c8d81d0613fd2733f4ffffd82d5b3803c"
+    },
+    "source.zip": {
+      "bytes": 17223888,
+      "sha256": "a2fb951b537d027164dcaa5b87697e84136f2573f86976df1d050109afcb054c"
+    },
+    "verification.json": {
+      "bytes": 490,
+      "sha256": "fb6578ef69f3068209d64a82a953743f48bc84ec1f2b92896873107870ecbd8e"
+    },
+    "packet-report.json": {
+      "bytes": 872,
+      "sha256": "378bf27b1c775ad2d8586cd6da223e0c617bfaafe93802f471818a6a8771f576"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "checks": [
+    "gallery opens",
+    "comparison detail",
+    "comparison hall",
+    "comparison board",
+    "comparison gray",
+    "comparison phone",
+    "comparison phone-hall",
+    "before control",
+    "after control",
+    "linked file /cats-by-post-cityhall-paper/clock-bay/playable.html",
+    "linked file /cats-by-post-cityhall-paper/",
+    "linked file /cats-by-post-cityhall-paper/clock-bay/source.zip",
+    "linked file /cats-by-post-cityhall-paper/clock-bay/checkpoint.md",
+    "linked file /cats-by-post-cityhall-paper/clock-bay/design-qa.md",
+    "linked file /cats-by-post-cityhall-paper/clock-bay/review.md",
+    "linked file /cats-by-post-cityhall-paper/clock-bay/verification.json",
+    "actual motion video plays",
+    "gallery fits phone width",
+    "nested playable finale wins",
+    "private saves",
+    "no browser errors"
+  ],
+  "errors": []
+}
