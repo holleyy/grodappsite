@@ -148,6 +148,12 @@
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
 <style>#mp-review{position:fixed;inset:0 0 auto;z-index:60;min-height:54px;background:#f4eddd;box-shadow:0 1px 0 #b8a88a;display:flex;gap:12px;align-items:center;padding:7px 18px;color:#294f50;font:14px system-ui}#mp-review strong{font:700 23px Georgia,serif;margin-right:auto}#mp-review small{display:block;font:9px system-ui;letter-spacing:2px;margin-top:3px}#mp-review button,#mp-review select{font:inherit;color:#294f50;background:#fffaf0;border:1px solid #b8b7a5;border-radius:7px;padding:7px 9px}#mp-review label{font-size:11px}#mp-review details{position:relative}#mp-review summary{cursor:pointer}#mp-review details[open]{background:#f4eddd}#mp-review details button{display:block;white-space:nowrap;margin:8px 0}#mp-review details[open]{position:absolute;right:12px;top:12px;padding:10px;box-shadow:0 3px 16px #0002}#hud{background:#f4eddded!important;color:#294f50!important;backdrop-filter:blur(8px)}#lvlPick{max-width:200px}#mp-review~*{box-sizing:border-box}@media(max-width:600px){#mp-review{padding:6px 8px;gap:6px;font-size:11px}#mp-review strong{font-size:18px}#mp-review label{font-size:0}#mp-review select{font-size:11px}#mp-motion{display:none}#mp-review button{padding:7px 6px}#mp-review small{font-size:7px;letter-spacing:1px}}
+/* Match the landscape camera's reserved right inset; keep the study bar clear. */
+@media (orientation:landscape) and (max-height:520px){
+ #hud,#chapterCard{left:auto;right:8px;top:76px;bottom:auto;transform:none;margin:0;box-sizing:border-box;max-height:calc(100vh - 88px);max-height:calc(100dvh - 88px);overflow:auto}
+ #hud{width:36vw;max-width:36vw}
+ #chapterCard{width:32vw}
+}
 </style></head>
 <body>
 <canvas id="screen"></canvas>
