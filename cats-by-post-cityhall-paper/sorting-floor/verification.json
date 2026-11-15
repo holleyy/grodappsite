@@ -1,0 +1,19 @@
+{
+  "runtimeSha256": "61322e74397b48c0144efb96383290e8a27d0e81ff5e593bf887506757595269",
+  "runtimeBytes": 25193228,
+  "baselineRuntimeSha256": "e64e10ccfdd0e7ef2b075d3dcc376a5ebdd6de95932ab9e947c4bfb7f94842a4",
+  "focusedTests": 28,
+  "browserChecks": 72,
+  "qualificationChecks": 26,
+  "actualSolutions": 15,
+  "protectedFilesUnchanged": 195,
+  "boardRastersExact": 3,
+  "buildInputsExact": 222,
+  "motionClip": {
+    "seconds": 32.011644,
+    "ambientStart": 16,
+    "ambientEnd": 48,
+    "sha256": "bc77f3790118fbde321b0e22bcbced641d20a7fdcc2ac1144d5b647a02c0d361"
+  },
+  "scope": "Sorting furniture, stair joinery and right palm checkpoint. Whole-room visual acceptance and physical-device qualification remain open."
+}

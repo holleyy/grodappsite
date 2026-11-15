@@ -1,0 +1,9 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/sorting-floor/",
+  "addOnly": true,
+  "purpose": "City Hall sorting floor checkpoint; both previous checkpoints and all other previews preserved",
+  "sourceCommit": "2b05e1caa97d1da3580b0b6074606441ae7dba9a",
+  "sourceBase": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+  "runtimeSha256": "61322e74397b48c0144efb96383290e8a27d0e81ff5e593bf887506757595269",
+  "saveNamespace": "catsByPost.cityhallPaper.study.v1."
+}

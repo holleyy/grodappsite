@@ -1,0 +1,18 @@
+{
+  "assetSha256": "f1cb890641a4070f0a44f2163ce0b7781d5c578509d97abc97b0fe07d3097282",
+  "anchor": [
+    220,
+    28,
+    14
+  ],
+  "height": 30,
+  "opaqueSamples": 615349,
+  "galleryIntersections": {
+    "gallery-deck": 0,
+    "gallery-fascia": 0,
+    "gallery-lip": 0
+  },
+  "minimumProjectedX": 178.41148325358853,
+  "frontPierMaximumProjectedXBelowCanopy": 175,
+  "method": "Alpha>128 pixels mapped onto the upright billboard plane; full authored blade silhouette tested against measured gallery slab, fascia and lip."
+}
