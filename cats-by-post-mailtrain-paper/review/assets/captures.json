@@ -1,0 +1,117 @@
+{
+  "build": {
+    "sha256": "2bf6318b1177aa4e46dd765b3e87b0f72ff6a4bbbf47de72eaa0d2ed72e6f421",
+    "bytes": 21032182,
+    "canonicalInputs": {
+      "sorting_office.html": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
+      "src/data/levels.json": "be1c22ee6456819c200e42d6f8abb48b9c4cc4db9c414928c7fc60ea10cf40a7",
+      "src/sim/10_rules.js": "eaeeff8565f68d32ae6d8489be34664dacf4948a71f2bdf0b0835579454691c4",
+      "src/sim/12_boardanim.js": "5c181265db6570a822ee9fc08400a19cf4eff91beea5e12a6779d46876c88885",
+      "src/app/43e_train_chapter.js": "87d330ddb51a860e020b4e10e11f9fa625a7a2dc542a71ad4f2fc9fb243a1fc4"
+    },
+    "base": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb"
+  },
+  "baseline": "43bd6430",
+  "baselineBuild": "c0af831e74727b133ecb7d3abc066e0a3a1c955beb4f289911c95f0e5fd0d1ef",
+  "captures": [
+    {
+      "file": "desktop-journey.jpg",
+      "sha256": "f557ff431c2b6ac92739d31b9febde73967a06c1b650c5961f1a37e961bf8da6",
+      "source": "current",
+      "method": "Playwright screenshot",
+      "worldFrame": "ambient clock during phone check"
+    },
+    {
+      "file": "desktop-maximum.jpg",
+      "sha256": "6a0b0652d9c54538fe9b41f73e81f31ee6292f35a4ddd7bd7d6f3a70b97debaa",
+      "source": "current",
+      "method": "Playwright screenshot",
+      "worldFrame": "ambient clock during phone check"
+    },
+    {
+      "file": "first-after.jpg",
+      "sha256": "5472769a41937f0481dfcf5df76f5e1b564a5be70a3b1aaa04ce056142f3d58c",
+      "source": "current",
+      "method": "Playwright screenshot",
+      "worldFrame": 300
+    },
+    {
+      "file": "first-before.jpg",
+      "sha256": "039752e892f6806e8c57e1e25463d253007b1d036ce0f69627b8b065cd1853e7",
+      "source": "baseline",
+      "method": "Playwright screenshot",
+      "worldFrame": 300
+    },
+    {
+      "file": "join-after.jpg",
+      "sha256": "2b1b1bf131b0c9f426a90003c1cedd988081bfaf9a442be1ea142735aa2c54b3",
+      "source": "current",
+      "method": "Playwright screenshot",
+      "worldFrame": 300
+    },
+    {
+      "file": "join-before.jpg",
+      "sha256": "45c11b274f90adc0f90217624ebe2945641047c797a3e6b50ac7c59d3fd16273",
+      "source": "baseline",
+      "method": "Playwright screenshot",
+      "worldFrame": 300
+    },
+    {
+      "file": "landscape-journey.jpg",
+      "sha256": "eac38f865fec45b4d1ce86c00f0e840b9cdd31141fe0e15131f2f488f0adbd34",
+      "source": "current",
+      "method": "Playwright screenshot",
+      "worldFrame": "ambient clock during phone check"
+    },
+    {
+      "file": "landscape-maximum.jpg",
+      "sha256": "cae048c34fdbb242e13ecc5547d30330ddafe2c9764179a2d5e01bd6059ca688",
+      "source": "current",
+      "method": "Playwright screenshot",
+      "worldFrame": "ambient clock during phone check"
+    },
+    {
+      "file": "maximum-after.jpg",
+      "sha256": "ef5b3b7f0db3f2c02c7ac3432e478152faa686cb3d471962870846cfde8972ed",
+      "source": "current",
+      "method": "Playwright screenshot",
+      "worldFrame": 300
+    },
+    {
+      "file": "maximum-before.jpg",
+      "sha256": "9f1096061f1f8425f1bc7af1affb9c3df1e9a2444b2645581f9959e7dbee9396",
+      "source": "baseline",
+      "method": "Playwright screenshot",
+      "worldFrame": 300
+    },
+    {
+      "file": "phone-journey.jpg",
+      "sha256": "f6c61b0afbb8212c405188fa36b292f066a1689ff6cf9de7af78fa87c6b3db23",
+      "source": "current",
+      "method": "Playwright screenshot",
+      "worldFrame": "ambient clock during phone check"
+    },
+    {
+      "file": "phone-maximum.jpg",
+      "sha256": "b2f7fd52f3a68b55be668b5ed25176e66408adeee90e9f436a1f8be71533713b",
+      "source": "current",
+      "method": "Playwright screenshot",
+      "worldFrame": "ambient clock during phone check"
+    }
+  ],
+  "video": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "width": 960,
+        "height": 640,
+        "avg_frame_rate": "8/1"
+      }
+    ],
+    "format": {
+      "duration": "48.000000",
+      "size": "2871282"
+    }
+  }
+}

@@ -3,6 +3,11 @@
 [Open the study](https://holleyy.github.io/grodappsite/cats-by-post-mailtrain-paper/)
 
 Standalone papercraft review of all existing Train deliveries, 5-1–5-15.
+
+Latest: [end-wall and atmosphere review](review/) · [room source bundle](source.zip).
+The reported seat-side gap is closed; the cab doorway remains open. This phase
+adds continuous worker routes, architecture lighting, clock and hot-mug details.
+The review includes before/after, phone captures and a sampled48-second clip.
 Use the Delivery selector to inspect any board, Journey view for the complete
 train and landscape, and Review → Fill original solution for a demonstration.
 The maximum board is available with `?level=5-15`.

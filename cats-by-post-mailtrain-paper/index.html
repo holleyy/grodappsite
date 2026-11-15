@@ -26865,6 +26865,21 @@ function seal(p,x,y,z){p.quad(x-.3,y,z-.22,x+.3,y,z-.22,x+.3,y,z+.22,x-.3,y,z+.2
 function lamp(p,x){const y=-.15,z=5.9;p.line(x,-1,6.6,x,y,z+.55,'#cfac61',.035);p.cylinder(x,y,z+.28,.065,.36,'brass');for(let i=0;i<16;i++){const a=i*Math.PI/8,b=(i+1)*Math.PI/8;p.quad(x+Math.cos(a)*.35,y+Math.sin(a)*.35,z,x+Math.cos(b)*.35,y+Math.sin(b)*.35,z,x+Math.cos(b)*.09,y+Math.sin(b)*.09,z+.32,x+Math.cos(a)*.09,y+Math.sin(a)*.09,z+.32,'brass',.08);}p.disk(x,y,z-.015,.29,'#fff2ae');}
 function bag(p,x,y,z){p.line(x,y,z+.9,x-.15,y,z+.62,'#b79254',.03);p.line(x,y,z+.9,x+.15,y,z+.62,'#b79254',.03);for(let i=0;i<12;i++){const a=i*Math.PI/6,b=(i+1)*Math.PI/6;p.quad(x+Math.cos(a)*.2,y+Math.sin(a)*.2,z,x+Math.cos(b)*.2,y+Math.sin(b)*.2,z,x+Math.cos(b)*.29,y+Math.sin(b)*.29,z+.3,x+Math.cos(a)*.29,y+Math.sin(a)*.29,z+.3,'cream',i%3*.04);p.quad(x+Math.cos(a)*.29,y+Math.sin(a)*.29,z+.3,x+Math.cos(b)*.29,y+Math.sin(b)*.29,z+.3,x+Math.cos(b)*.16,y+Math.sin(b)*.16,z+.66,x+Math.cos(a)*.16,y+Math.sin(a)*.16,z+.66,'cream',i%3*.04);}p.disk(x,y,z+.67,.16,'#4b4136','#d1b98d');seal(p,x,y+.28,z+.31);}
 function endRib(p,x){const y=-1.16,r=3.28,base=6.8;for(let i=0;i<18;i++){const a=i*Math.PI/18,b=(i+1)*Math.PI/18;p.quad(x,y+r+r*Math.cos(a),base+.82*Math.sin(a),x,y+r+r*Math.cos(b),base+.82*Math.sin(b),x,y+r+(r-.12)*Math.cos(b),base+.82*Math.sin(b)-.14,x,y+r+(r-.12)*Math.cos(a),base+.82*Math.sin(a)-.14,'cream');}p.box(x-.05,5.25,3.1,.11,.13,3.7,'cream');}
+function bulkhead(p){
+ // The sorting coach is wider than the cab. Close its end shoulders with a
+ // real wall, leaving only the passage aligned to the cab's 1.08–3.32 doorway.
+ p.box(0,-1.25,3.1,.06,2.33,3.7,'teal');
+ p.box(0,3.32,3.1,.06,2.08,3.7,'teal');
+ p.box(0,1.08,5.78,.06,2.24,1.02,'teal');
+ const centre=2.12,r=3.28;
+ for(let i=0;i<20;i++){const a=i*Math.PI/20,b=(i+1)*Math.PI/20,ya=centre+r*Math.cos(a),yb=centre+r*Math.cos(b);
+  p.quad(.06,ya,6.8,.06,yb,6.8,.06,yb,6.8+.82*Math.sin(b),.06,ya,6.8+.82*Math.sin(a),'teal',.18);}
+ // Frame, sill and scored joinery belong to the same end plane as the panel.
+ for(const y of [1.01,3.32])p.box(.06,y,3.1,.07,.07,2.75,'wood');
+ p.box(.06,1.01,5.78,.07,2.38,.10,'wood');
+ p.box(0,1.08,3.07,.21,2.24,.05,'brass');
+ for(const y of [-1.1,-.55,0,.55,3.65,4.2,4.75,5.25])p.line(.064,y,3.16,.064,y,6.72,'#76918a',.012);
+}
 function enclosed(p,x,w,brake){p.box(x,-1.15,2.35,w,6.55,.72,'wood','#734237');p.box(x,-1.15,3.07,w,6.55,3.64,'teal');
  for(let j=0;j<2;j++){const xx=x+.65+j*2.1;p.quad(xx,5.412,4.7,xx+1.25,5.412,4.7,xx+1.25,5.412,5.9,xx,5.412,5.9,'brass');p.quad(xx+.09,5.42,4.78,xx+1.16,5.42,4.78,xx+1.16,5.42,5.82,xx+.09,5.42,5.82,'#f5c36d');p.line(xx+.63,5.44,4.78,xx+.63,5.44,5.82,'#9b6f42',.05);p.line(xx+.1,5.44,5.33,xx+1.15,5.44,5.33,'#9b6f42',.045);}
  for(let j=0;j<4;j++){const yy=-.8+j*1.5;p.line(x+w+.01,yy,3.45,x+w+.01,yy,6.3,'#6c9085',.025);p.line(x+w+.01,yy,3.45,x+w+.01,yy+1.2,3.45,'#c4a66c',.025);}p.line(x+w+.015,-.8,6.3,x+w+.015,4.9,6.3,'#c4a66c',.025);
@@ -26878,6 +26893,7 @@ function draw(p,extra,attachments=true,section='all'){
  // Long scored planks, staggered board joints and bright cut edges.
  for(let row=0;row<13;row++)for(let col=0;col<5;col++){const x=col*3.2; p.plane(x,-1.15+row*.5,3.102,3.19,.487,'wood',row%3*.035);}
  p.box(0,5.35,2.9,16,.1,.2,'cream','#c8a56b');p.line(0,5.46,2.84,16,5.46,2.84,'#e5ad66',.035);
+ bulkhead(p);
  // Rear wall has actual open window apertures; countryside shows through.
  p.box(0,-1.25,3.1,16,.13,1.9,'teal');p.box(0,-1.25,6.2,16,.13,.5,'teal');
  for(let k=0;k<=16;k+=.5)p.box(k,-1.10,3.12,.035,.025,1.78,'teal');
@@ -26894,10 +26910,10 @@ function draw(p,extra,attachments=true,section='all'){
  p.box(12.5,2.25,3.36,1.45,.86,.12,'teal');for(let i=0;i<2;i++)for(let j=0;j<2;j++)p.cylinder(12.66+i*1.1,2.4+j*.56,3.1,.13,.25,'#3c4540','#c8a573');parcel(p,12.85,2.35,3.48,.8,.61,.59);p.line(12.5,2.25,3.45,12.5,2.25,4.25,'#355956',.06);p.line(12.5,3.1,3.45,12.5,3.1,4.25,'#355956',.06);p.line(12.5,2.25,4.25,12.5,3.1,4.25,'#355956',.06);
  for(let i=0;i<3;i++)bag(p,12.3+i*.75,-.7,5.12);for(let i=0;i<5;i++)lamp(p,1.5+i*3.2);
  // Small wall clock is printed in the wall plane, with full rim thickness.
- const c=p.c,x=.5,y=-1.02,z=5.67;c.save();c.translate(p.px(x,y),p.py(x,y,z));c.transform(1,.5,0,1,0,0);c.beginPath();c.arc(0,0,p.cam.scale*.36,0,Math.PI*2);c.fillStyle='#eed5a2';c.fill();c.strokeStyle='#b88742';c.lineWidth=p.cam.scale*.06;c.stroke();c.strokeStyle='#354849';c.lineWidth=p.cam.scale*.025;c.beginPath();c.moveTo(0,0);c.lineTo(p.cam.scale*.17,0);c.moveTo(0,0);c.lineTo(0,-p.cam.scale*.22);c.stroke();c.restore();
+ const c=p.c,x=.5,y=-1.02,z=5.67;c.save();c.translate(p.px(x,y),p.py(x,y,z));c.transform(1,.5,0,1,0,0);c.beginPath();c.arc(0,0,p.cam.scale*.36,0,Math.PI*2);c.fillStyle='#eed5a2';c.fill();c.strokeStyle='#b88742';c.lineWidth=p.cam.scale*.06;c.stroke();c.restore();
  if(attachments){if(section!=='head')for(let i=0;i<(extra?2:1);i++)enclosed(p,16.35+i*5.7,5.35,i===(extra?1:0));const form=formation(extra);for(const j of form.joints){if(section==='head'&&j.a>=16)continue;p.box(j.a,.35,2.4,j.b-j.a,3.8,.15,'#363c38');for(let y=0;y<2;y++)p.box(j.a,.7+y*3,2.15,j.b-j.a,.16,.18,'slate');}}
 }
-return {formation,draw,envelope,parcel,cabinet};
+return {formation,draw,envelope,parcel,cabinet,bulkhead};
 });
 
 /* Read-only adaptation of accepted Office paper acting. No assets, renderer, clocks or rule changes. */
@@ -27147,14 +27163,26 @@ root.MailtrainPieces=Pieces;
 })(globalThis);
 
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.MailtrainLife=factory();})(globalThis,function(){
-'use strict';const state={};const mod=(v,m)=>((v%m)+m)%m;
+'use strict';const state={},lighting={};const mod=(v,m)=>((v%m)+m)%m;
 function sample(frame,motion,o){const f=motion?frame:0,d=f/30,phase=mod(f,2880);o.distance=d;o.sleeper=mod(d,.8);o.arch=mod(d,6);o.wheelAngle=d/.7;o.workerZ=3.1;o.workerY=.35;o.workerX=6.5;o.mirror=false;
  if(phase<900)o.workerPose=phase%180<95?'sort-hold':'sort-place';
- else if(phase<1320){o.workerX=6.5+(12-6.5)*(phase-900)/420;o.workerPose=Math.floor(phase/16)%2?'walk-0':'walk-1';}
+ else if(phase<1320){const u=(phase-900)/420;o.workerX=6.5+(12-6.5)*u;o.workerY=.35-.5*u;o.workerPose=Math.floor(phase/16)%2?'walk-0':'walk-1';}
  else if(phase<1740){o.workerX=12;o.workerY=-.15;o.workerPose=phase%240<150?'tea-rest':'tea-sip';}
  else if(phase<1980){o.workerX=12;o.workerY=-.15;o.workerPose='watch';}
- else if(phase<2400){o.workerX=12-(12-6.5)*(phase-1980)/420;o.workerPose=Math.floor(phase/16)%2?'walk-0':'walk-1';o.mirror=true;}
+ else if(phase<2400){const u=(phase-1980)/420;o.workerX=12-(12-6.5)*u;o.workerY=-.15+.5*u;o.workerPose=Math.floor(phase/16)%2?'walk-0':'walk-1';o.mirror=true;}
  else o.workerPose='sort-hold';return o;}
+function illumination(level,o){const stage=level.board.w<10?0:level.board.h===4?2:1;o.shade=stage===2?.14:stage===1?.065:0;o.warmth=stage===2?.24:stage===1?.16:.07;return o;}
+// Prepared architecture only: live floor colours, coats and targets remain exact.
+function light(p,level,lamps=true){illumination(level,lighting);const c=p.c,s=p.cam.scale;c.save();c.globalCompositeOperation='source-atop';c.fillStyle='#24344c';c.globalAlpha=lighting.shade;c.fillRect(0,0,c.canvas.width,c.canvas.height);c.globalAlpha=1;
+ if(lamps)for(let i=0;i<5;i++){const x=p.px(1.5+i*3.2,-.3),y=p.py(1.5+i*3.2,-.3,4.7),g=c.createRadialGradient(x,y,0,x,y,s*1.35);g.addColorStop(0,'rgba(255,202,112,'+lighting.warmth+')');g.addColorStop(1,'rgba(255,202,112,0)');c.fillStyle=g;c.fillRect(x-s*1.35,y-s*1.35,s*2.7,s*2.7);}c.restore();}
+function details(p,f){
+ const c=p.c,s=p.cam.scale,t=f.worldFrame/60;
+ // Clock hands share the actual printed wall plane; time is independent of puzzles.
+ c.save();c.translate(p.px(.5,-1.02),p.py(.5,-1.02,5.67));c.transform(1,.5,0,1,0,0);c.strokeStyle='#354849';c.lineWidth=s*.025;c.lineCap='round';c.beginPath();c.moveTo(0,0);c.lineTo(Math.cos(t*Math.PI/21600)*s*.17,Math.sin(t*Math.PI/21600)*s*.17);const minute=-Math.PI/2+t*Math.PI/1800;c.moveTo(0,0);c.lineTo(Math.cos(minute)*s*.24,Math.sin(minute)*s*.24);c.stroke();const second=-Math.PI/2+t*Math.PI/30;c.strokeStyle='#a85e3f';c.lineWidth=s*.009;c.beginPath();c.moveTo(0,0);c.lineTo(Math.cos(second)*s*.27,Math.sin(second)*s*.27);c.stroke();c.restore();
+ // A fine curl starts on the hot mug's coffee surface, wholly behind the board.
+ c.save();c.strokeStyle='#fff2d7';c.lineWidth=Math.max(.5,s*.009);
+ for(let i=0;i<3;i++){const age=mod(t*.45+i/3,1);c.globalAlpha=.15*Math.sin(age*Math.PI);c.beginPath();for(let j=0;j<9;j++){const u=j/8,zz=4.56+age*.48+u*.22,xx=1.8+Math.sin(age*5+u*3)*.045*u;p.v(xx,-.37,zz,j===0);}c.stroke();}c.restore();
+}
 function arch(p,x,y){const c=p.c;c.beginPath();p.v(x,y,.3,true);p.v(x+6,y,.3);p.v(x+6,y,-5.7);p.v(x,y,-5.7);c.closePath();p.v(x+.65,y,-5.7,true);p.v(x+.65,y,-2.8);for(let i=0;i<=20;i++){const a=Math.PI-i*Math.PI/20;p.v(x+3+2.35*Math.cos(a),y,-2.8+2.35*Math.sin(a));}p.v(x+5.35,y,-5.7);c.closePath();c.fillStyle=y>0?'#bd8b6c':'#956c5b';c.fill('evenodd');c.save();c.clip('evenodd');c.fillStyle=p.patterns.stone;c.fill();for(let row=0;row<10;row++){const zz=-.25-row*.56;p.line(x,y,zz,x+6,y,zz,'#a1765b60',.018);for(let k=0;k<6;k++){const xx=x+k+(row%2)*.5;p.line(xx,y,zz,xx,y,zz-.56,'#a1765b50',.015);}}c.restore();
  for(let j=0;j<10;j++){const a=j*Math.PI/10,b=(j+1)*Math.PI/10;p.quad(x+3+2.38*Math.cos(a),y,-2.8+2.38*Math.sin(a),x+3+2.38*Math.cos(b),y,-2.8+2.38*Math.sin(b),x+3+2.72*Math.cos(b),y,-2.8+2.72*Math.sin(b),x+3+2.72*Math.cos(a),y,-2.8+2.72*Math.sin(a),'stone',.1);}
  for(let row=0;row<5;row++)for(let col=0;col<3;col++){const xx=x+col*.21,zz=-2.75-row*.58;p.quad(xx,y,zz,xx+.2,y,zz,xx+.2,y,zz-.55,xx,y,zz-.55,'stone',row%2*.04);}
@@ -27179,7 +27207,7 @@ function world(p,f,form){sample(f.chapterMode==='station'?0:f.worldFrame,true,st
 function people(p,f){sample(f.chapterMode==='station'?0:f.worldFrame,true,state);if(f.chapterMode==='exit'){const u=Math.max(0,Math.min(1,(f.chapterFrame-24)/180));state.workerX=6.5+u*8;state.workerPose=u<1?(Math.floor(f.chapterFrame/16)%2?'walk-0':'walk-1'):'sort-hold';state.mirror=false;}
  p.shadow(state.workerX,state.workerY,state.workerZ,.31,.12,.2);p.sprite('worker',state.workerPose,state.workerX,state.workerY,state.workerZ,2.1,state.mirror);
 }
-return {sample,background,foreground,world,people};
+return {sample,illumination,light,details,background,foreground,world,people};
 });
 
 /* The existing chapter clock supplies the shunt; only its visual staging changes. */
@@ -27202,7 +27230,7 @@ function create({canvas,assets,BOARDANIM}){
  const extra=f.level.room==='train'&&f.level.board.w===10;invalid=false;prev.level=f.level;prev.w=f.viewport.width;prev.h=f.viewport.height;prev.d=f.viewport.dpr;prev.bottom=f.insets.bottom;prev.right=f.insets.right;prev.mode=actualMode;prev.chapter=f.chapterMode;
  form=MailtrainArchitecture.formation(extra);shunt=f.chapterMode==='station'&&f.stationStage===2;fitCameras(f,actualMode);
  const d=f.viewport.dpr,w=Math.round(f.viewport.width*d),h=Math.round(f.viewport.height*d);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}layer.width=w;layer.height=h;tail.width=w;tail.height=h;lc.setTransform(d,0,0,d,0,0);lc.clearRect(0,0,w/d,h/d);tc.setTransform(d,0,0,d,0,0);
- MailtrainArchitecture.draw(lp,extra,attachments,'head');MailtrainArchitecture.draw(tp,extra,attachments,'tail');
+ MailtrainArchitecture.draw(lp,extra,attachments,'head');MailtrainArchitecture.draw(tp,extra,attachments,'tail');MailtrainLife.light(lp,f.level);MailtrainLife.light(tp,f.level,false);
  const x=1+(f.level.board.roomX||0),y=.8+(f.level.board.roomY||0),B=f.level.board;lp.plane(x-.055,y-.055,3.115,B.w+.11,B.h+.11,'brass');
  for(let row=0;row<B.h;row++)for(let col=0;col<B.w;col++)lp.plane(x+col+.012,y+row+.012,3.125,.976,.976,'slate',((row+col)&1)?-.04:.02);
  for(let col=0;col<B.w;col++)lp.text(x+col+.5,y+B.h+.14,3.125,String(col+1),.12,'#edd6ad');
@@ -27212,7 +27240,7 @@ function create({canvas,assets,BOARDANIM}){
  if(f.chapterMode==='enter'){const ratio=target.scale/cam.scale,s=1+(ratio-1)*ch.entry,tx=(target.x-cam.x*ratio)*ch.entry,ty=(target.y-cam.y*ratio)*ch.entry;c.transform(s,0,0,s,tx,ty);}
  MailtrainLife.world(p,f,form);c.save();c.setTransform(d,0,0,d,0,0);MailtrainLife.foreground(p,f);c.restore();
  const offset=shunt?ch.headOffset*cam.scale:0;
- c.save();c.translate(offset,offset*.5);c.drawImage(layer,0,0,layer.width,layer.height,0,0,f.viewport.width,f.viewport.height);MailtrainLife.people(p,f);pieces.draw(f);c.restore();
+ c.save();c.translate(offset,offset*.5);c.drawImage(layer,0,0,layer.width,layer.height,0,0,f.viewport.width,f.viewport.height);MailtrainLife.details(p,f);MailtrainLife.people(p,f);pieces.draw(f);c.restore();
  c.drawImage(tail,0,0,tail.width,tail.height,0,0,f.viewport.width,f.viewport.height);if(shunt){if(ch.headOffset===0){const y=2.2,z=2.5;p.box(16,y,z,.35,.2,.16,'#3f4541');for(let k=0;k<=ch.joint;k++)p.line(16+k*.1,y-.15,z,16+k*.1,y+.35,z,'#b4a57c',.035);}}
  c.filter='none';
  }
