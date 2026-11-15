@@ -1,0 +1,35 @@
+{
+  "runtimeSha256": "4e9ae07ef39fab2dfdeab78699f425a456ce7c46af82a1e8ca45e45cc00d8d4b",
+  "bytes": 26597761,
+  "focusedTests": 38,
+  "browserChecks": 72,
+  "qualificationChecks": 26,
+  "phoneChecks": 44,
+  "canonicalWins": 15,
+  "protectedFiles": 195,
+  "buildInputs": 237,
+  "boardRastersExact": 3,
+  "errors": [],
+  "scope": "Cloud Chromium including DPR2 touch and phone viewport/safe-area emulation; no physical-device/Safari performance claim",
+  "warm": {
+    "initial": {
+      "bytes": 74238032,
+      "buffers": 53,
+      "bakes": 11,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    },
+    "final": {
+      "bytes": 74238032,
+      "buffers": 53,
+      "bakes": 11,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    },
+    "newCanvases": 0,
+    "drawCallMs": {
+      "median": 23.30000000447035,
+      "p95": 33.79999999701977,
+      "max": 57
+    },
+    "scope": "120 synchronous Canvas draw calls in cloud Chromium; not presented FPS or physical-device performance"
+  }
+}
