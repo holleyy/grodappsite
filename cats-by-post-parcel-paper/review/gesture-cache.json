@@ -1,0 +1,106 @@
+{
+  "heldGapRebakes": 0,
+  "draftDensity": 0.5,
+  "clockContinues": true,
+  "settledSha256": "55726f4cc51ffdd5f18ef1a42025c53dc621c4358563d83beaa6fb83c9f66767",
+  "freshSha256": "969e0eef914ca2673499a1989e222c1ee785a37c018c4b578c0d7a2ed7ecbb78",
+  "settledPixelsExact": false,
+  "settledMaxChannelDifference": 1,
+  "settledQualityRestored": true,
+  "diff": {
+    "repeat": "55726f4cc51ffdd5f18ef1a42025c53dc621c4358563d83beaa6fb83c9f66767",
+    "changed": 187772,
+    "max": 1,
+    "minX": 0,
+    "minY": 1230,
+    "maxX": 1178,
+    "maxY": 2555,
+    "layerBefore": {
+      "background": {
+        "x": 230.83311944718727,
+        "y": 1496.665394866732,
+        "scale": 0.4371174728529121,
+        "density": 1,
+        "left": -96,
+        "top": -96,
+        "width": 1371,
+        "height": 2748
+      },
+      "walls": {
+        "x": 230.83311944718727,
+        "y": 1496.665394866732,
+        "scale": 0.4371174728529121,
+        "density": 1,
+        "left": 125,
+        "top": 1384,
+        "width": 1010,
+        "height": 655
+      },
+      "foreground": {
+        "x": 230.83311944718727,
+        "y": 1496.665394866732,
+        "scale": 0.4371174728529121,
+        "density": 1,
+        "left": 847,
+        "top": 1598,
+        "width": 106,
+        "height": 93
+      },
+      "near-garden": {
+        "x": 230.83311944718727,
+        "y": 1496.665394866732,
+        "scale": 0.4371174728529121,
+        "density": 1,
+        "left": -88,
+        "top": 1712,
+        "width": 1042,
+        "height": 517
+      }
+    },
+    "layerAfter": {
+      "background": {
+        "x": 230.83311944718727,
+        "y": 1496.665394866732,
+        "scale": 0.4371174728529121,
+        "density": 1,
+        "left": -96,
+        "top": -96,
+        "width": 1371,
+        "height": 2748
+      },
+      "walls": {
+        "x": 230.83311944718727,
+        "y": 1496.665394866732,
+        "scale": 0.4371174728529121,
+        "density": 1,
+        "left": 125,
+        "top": 1384,
+        "width": 1010,
+        "height": 655
+      },
+      "foreground": {
+        "x": 230.83311944718727,
+        "y": 1496.665394866732,
+        "scale": 0.4371174728529121,
+        "density": 1,
+        "left": 847,
+        "top": 1598,
+        "width": 106,
+        "height": 93
+      },
+      "near-garden": {
+        "x": 230.83311944718727,
+        "y": 1496.665394866732,
+        "scale": 0.4371174728529121,
+        "density": 1,
+        "left": -88,
+        "top": 1712,
+        "width": 1042,
+        "height": 517
+      }
+    }
+  },
+  "wheelSettles": true,
+  "outputPixels": 3013524,
+  "devicePixels": 3013524
+}
