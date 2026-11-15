@@ -1,0 +1,43 @@
+{
+  "assetSha256": "f1cb890641a4070f0a44f2163ce0b7781d5c578509d97abc97b0fe07d3097282",
+  "anchor": [
+    17,
+    156,
+    13
+  ],
+  "height": 29,
+  "opaqueSamples": 615349,
+  "maximumWorldZ": 40.65869218500798,
+  "volumes": {
+    "fascia": {
+      "x0": 21.5,
+      "y0": 38,
+      "z0": 37.5,
+      "x1": 23.5,
+      "y1": 192,
+      "z1": 42.5
+    },
+    "lip": {
+      "x0": 21,
+      "y0": 38,
+      "z0": 43.7,
+      "x1": 25,
+      "y1": 192,
+      "z1": 46
+    },
+    "slab": {
+      "x0": 0,
+      "y0": 23,
+      "z0": 42,
+      "x1": 23,
+      "y1": 192,
+      "z1": 46
+    }
+  },
+  "intersections": {
+    "fascia": 0,
+    "lip": 0,
+    "slab": 0
+  },
+  "method": "Every alpha>128 pixel mapped using full retained artwork registration; checked in world space against actual exported fascia/lip and original slab."
+}
