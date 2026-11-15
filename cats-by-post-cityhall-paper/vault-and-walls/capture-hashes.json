@@ -1,0 +1,72 @@
+{
+  "before-detail.png": {
+    "sha256": "5d33a7825ff7b467407c3745fdbfeb1997ba4af28a401543f76b7e4a100a89bb",
+    "width": 1440,
+    "height": 1000
+  },
+  "before-hall.png": {
+    "sha256": "c43b324670e2251e0b3bb610daa3c8070df29d7ecf6406757193441640bda3e0",
+    "width": 1440,
+    "height": 1000
+  },
+  "before-square.png": {
+    "sha256": "bd1de20220e62d9d861588f29d95e27edf7b8fdd7769207277f6af7b67bab603",
+    "width": 1440,
+    "height": 1000
+  },
+  "before-board.png": {
+    "sha256": "5b3579c6c61b6fc1d937e77821006cfb9aebd4bbd7711ec516a913aa8ec07d54",
+    "width": 1440,
+    "height": 1000
+  },
+  "before-gray.png": {
+    "sha256": "75e50fbaeb050a777e0119a51d96b8fdb4058cf5a63c8d7a6f29264dba7e8eb3",
+    "width": 1440,
+    "height": 1000
+  },
+  "before-phone.png": {
+    "sha256": "6a2ea717715830470ba25dd54bb89431abc99b1fb12a4b3d5133748c5dea7186",
+    "width": 390,
+    "height": 844
+  },
+  "before-phone-hall.png": {
+    "sha256": "5a44cea6b2bc65ec1d7256a4e5062b3de6b8263b9e7407c967b7c63d5974430b",
+    "width": 390,
+    "height": 844
+  },
+  "after-detail.png": {
+    "sha256": "b42527400c8a7568a4fd107262a34624e77e45c000ad7f42dd140cc63cb028bf",
+    "width": 1440,
+    "height": 1000
+  },
+  "after-hall.png": {
+    "sha256": "0e57d6e9221e5c8380b09649280f4a9cb1f1af98d9058afdf41c708510b2eb9f",
+    "width": 1440,
+    "height": 1000
+  },
+  "after-square.png": {
+    "sha256": "330a87bb69444049dac4153becfb6110a748840b2fe33de46d93104db3757d3c",
+    "width": 1440,
+    "height": 1000
+  },
+  "after-board.png": {
+    "sha256": "ea4696328acbab15cc7663b4a073fb9bf9ed1b3dfa25117059b24331cbf661df",
+    "width": 1440,
+    "height": 1000
+  },
+  "after-gray.png": {
+    "sha256": "1d51839ff955dbab5c149c8f77b1ab05aece40b6b5cb45b84a440e4ee017614a",
+    "width": 1440,
+    "height": 1000
+  },
+  "after-phone.png": {
+    "sha256": "af0ccb0746a01b97ab2d95c6275f9ae1eb9127f3adcdf385cdcaf4703284e8b4",
+    "width": 390,
+    "height": 844
+  },
+  "after-phone-hall.png": {
+    "sha256": "c42c96e22aca3cfb8e14900ae0d594fc999d74b8a25dae0caf4fdded0a0c8e48",
+    "width": 390,
+    "height": 844
+  }
+}

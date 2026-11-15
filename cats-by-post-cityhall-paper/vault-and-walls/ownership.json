@@ -1,0 +1,9 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/vault-and-walls/",
+  "addOnly": true,
+  "purpose": "City Hall vault, walls and pipework checkpoint; all previous checkpoints and all other previews preserved",
+  "sourceCommit": "371b82a3d8e27aec2d600575eba3658aed07cc67",
+  "sourceBase": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+  "runtimeSha256": "c76abd4cd3674b04188f0efc5f80a2990d046bcab13f6c0c216c8a59d92e1d5c",
+  "saveNamespace": "catsByPost.cityhallPaper.study.v1."
+}

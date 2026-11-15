@@ -1,0 +1,19 @@
+{
+  "protectedFilesUnchanged": 195,
+  "buildInputsExact": 227,
+  "boardRastersExact": [
+    {
+      "id": 117,
+      "sha256": "cf5a3f7f98beaccea1f18eee03b3d6d35e7ce2193e0bcc08cada87d3913dfff5"
+    },
+    {
+      "id": 118,
+      "sha256": "7a0492d72e8184bb520bf450fef54c73ba9cf2b7849183ed18f4930c70e0f672"
+    },
+    {
+      "id": 134,
+      "sha256": "730ca4699dd313f99be9eb7b8afe3d12ed1040bac140f7fce4c2ef89c8620a34"
+    }
+  ],
+  "runtimeSha256": "c76abd4cd3674b04188f0efc5f80a2990d046bcab13f6c0c216c8a59d92e1d5c"
+}
