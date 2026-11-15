@@ -1,0 +1,9 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/clock-bay/",
+  "addOnly": true,
+  "purpose": "One representative City Hall clock bay; previous packet and all other previews preserved",
+  "sourceCommit": "4d846d3ca7551a9de77e1be3b032d716a4781ba9",
+  "sourceBase": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+  "runtimeSha256": "e64e10ccfdd0e7ef2b075d3dcc376a5ebdd6de95932ab9e947c4bfb7f94842a4",
+  "saveNamespace": "catsByPost.cityhallPaper.study.v1."
+}
