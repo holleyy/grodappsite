@@ -1,0 +1,27 @@
+{
+  "checks": [
+    "gallery opens",
+    "comparison detail",
+    "comparison hall",
+    "comparison square",
+    "comparison board",
+    "comparison gray",
+    "comparison phone",
+    "comparison phone-hall",
+    "before control",
+    "after control",
+    "linked file /cats-by-post-cityhall-paper/civic-square/playable.html",
+    "linked file /cats-by-post-cityhall-paper/sorting-floor/",
+    "linked file /cats-by-post-cityhall-paper/civic-square/source.zip",
+    "linked file /cats-by-post-cityhall-paper/civic-square/checkpoint.md",
+    "linked file /cats-by-post-cityhall-paper/civic-square/design-qa.md",
+    "linked file /cats-by-post-cityhall-paper/civic-square/review.md",
+    "linked file /cats-by-post-cityhall-paper/civic-square/verification.json",
+    "actual motion video plays",
+    "gallery fits phone width",
+    "nested playable finale wins",
+    "private saves",
+    "no browser errors"
+  ],
+  "errors": []
+}

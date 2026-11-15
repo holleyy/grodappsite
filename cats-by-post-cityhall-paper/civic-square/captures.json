@@ -1,0 +1,133 @@
+{
+  "runtimeSha256": "5f87ab671f8c4c799e939dbda24d88257d12079366844e6faafdfa720cf4d073",
+  "baselineRuntimeSha256": "61322e74397b48c0144efb96383290e8a27d0e81ff5e593bf887506757595269",
+  "ambientTimeSeconds": 8,
+  "views": {
+    "before-detail.webp": {
+      "rawPngSha256": "0d4fe7d7ad2dbd74eff142637ba9a58ae97e3442be34920a2054e877d31ea34b",
+      "sha256": "f8b6166be009e3be2cda5adc0d39d2ee23b1a1930b045561e749b239b939db2b",
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "before-hall.webp": {
+      "rawPngSha256": "055b8b86ae57655d6f8eaf377c38de2468e8ff08614d0851da14f202cf714e42",
+      "sha256": "4610bbce4abc481d9f3c89b2d4da56743de52d97eedb1b5dfc5b35ecf26a23ae",
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "before-square.webp": {
+      "rawPngSha256": "be4fe352fffcb34f5e736e2176b3bb78a95f886248db2544240552705baab299",
+      "sha256": "9eb182c5e07120dde3e5a2f5b59157c32cb2a666074387b639be1d9accd376d4",
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "before-board.webp": {
+      "rawPngSha256": "26d74bb8f2522dd5f739e48b948d108c21e2cb72f857cfe3fb7894b95023507f",
+      "sha256": "cdd164298e31c9f05b85f7915d7fd954a726dfa3cc074dd8b0c03883efe85582",
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "before-gray.webp": {
+      "rawPngSha256": "c1724e644c228f5c215d139014c6251b309a0855bc45c90365d752846f0bd5b1",
+      "sha256": "cec0f024269a9586db2700da42ef51ee93205f95713101061ce97a9850d41131",
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "before-phone.webp": {
+      "rawPngSha256": "aa10078048dfdd613efae6edf9aaa78c307bbe8af6faaf80f96a497133132348",
+      "sha256": "ef1c1b6b908c7fdddba8135679d32bbb71d9d05c17c2d2805519555a0dff2e59",
+      "dimensions": [
+        390,
+        844
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "before-phone-hall.webp": {
+      "rawPngSha256": "a15d024f57c6b234b4a4f4cbe39ade52c1c4c8dab149f666354a1f0752aface9",
+      "sha256": "23ed020ce1f984db09f8cc86284cc2713dc9448f83bbfb2d352574eca9e7c1f7",
+      "dimensions": [
+        390,
+        844
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "after-detail.webp": {
+      "rawPngSha256": "bc06884c9227d760567c671b78f7b156124f6845306bbeca0fa1172d332227a9",
+      "sha256": "3cf8d63916330fa946ff20eb31b8bb1ad57cb280b97a744f68c9569743034105",
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "after-hall.webp": {
+      "rawPngSha256": "c43b324670e2251e0b3bb610daa3c8070df29d7ecf6406757193441640bda3e0",
+      "sha256": "8ee07811e71719129738dcb80024dcfaab4291c5a4aa644018650dee7592457f",
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "after-square.webp": {
+      "rawPngSha256": "bd1de20220e62d9d861588f29d95e27edf7b8fdd7769207277f6af7b67bab603",
+      "sha256": "0e3b8c49acfebfe3ca270c06c98ec96e03d2598eaf8c263a1f8577a6bf35f4e3",
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "after-board.webp": {
+      "rawPngSha256": "5b3579c6c61b6fc1d937e77821006cfb9aebd4bbd7711ec516a913aa8ec07d54",
+      "sha256": "e4892a2169acb7413c086363123f9ae53f43a7f980f19db89a66e1fd1029e1f1",
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "after-gray.webp": {
+      "rawPngSha256": "75e50fbaeb050a777e0119a51d96b8fdb4058cf5a63c8d7a6f29264dba7e8eb3",
+      "sha256": "c0f564f94b80bc9305040d95e7d8456bdf0a0372f81d131ca11ac030ef9aa9a9",
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "after-phone.webp": {
+      "rawPngSha256": "6a2ea717715830470ba25dd54bb89431abc99b1fb12a4b3d5133748c5dea7186",
+      "sha256": "0f920f40854d645b744fb92ef58f0c38fcd47fac5a5937f2c648a0aaa9959229",
+      "dimensions": [
+        390,
+        844
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    },
+    "after-phone-hall.webp": {
+      "rawPngSha256": "5a44cea6b2bc65ec1d7256a4e5062b3de6b8263b9e7407c967b7c63d5974430b",
+      "sha256": "69a80de42fb23d5c60e2e680eb663795c45313850d349d8ea0cae86b6823745c",
+      "dimensions": [
+        390,
+        844
+      ],
+      "conversion": "Full-image native-dimension WebP quality94; no crop or compositing"
+    }
+  }
+}
