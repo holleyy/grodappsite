@@ -1,0 +1,10 @@
+{
+  "owner": "Mail Train fidelity chat",
+  "prefix": "cats-by-post-mailtrain-paper/",
+  "scope": "Standalone Mail Train study, deliveries 5-1 through 5-15",
+  "authorization": "User explicitly authorised publication to holleyy/grodappsite on 2026-11-15",
+  "sourceBranch": "codex/mailtrain-paper-fidelity",
+  "storageNamespace": "catsByPost.mailtrainPaper.study.v1:",
+  "otherPrefixes": "No ownership claimed; existing pages and live game are unchanged",
+  "integrationStatus": "Standalone review only; no source-main merge or shared integration"
+}

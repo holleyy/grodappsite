@@ -1,0 +1,18 @@
+{
+  "sha256": "0809d559c6cdaabff04735faff34a87c5a86c082971bc61da5c21ef7aadecd72",
+  "bytes": 21028964,
+  "canonicalInputs": {
+    "sorting_office.html": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
+    "src/data/levels.json": "be1c22ee6456819c200e42d6f8abb48b9c4cc4db9c414928c7fc60ea10cf40a7",
+    "src/sim/10_rules.js": "eaeeff8565f68d32ae6d8489be34664dacf4948a71f2bdf0b0835579454691c4",
+    "src/sim/12_boardanim.js": "5c181265db6570a822ee9fc08400a19cf4eff91beea5e12a6779d46876c88885",
+    "src/app/43e_train_chapter.js": "87d330ddb51a860e020b4e10e11f9fa625a7a2dc542a71ad4f2fc9fb243a1fc4"
+  },
+  "base": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+  "sourceRepository": "holleyy/cosysortie",
+  "sourceCommit": "5b3c5ff5dd0eb39f8a026fb0bfe102c2fb392b87",
+  "sourcePath": "studies/mailtrain-paper/playable.html",
+  "entry": "index.html",
+  "publishedPath": "cats-by-post-mailtrain-paper/",
+  "siteBase": "63e8cb87af0f888406c9af15b61475d38cfbdb72"
+}
