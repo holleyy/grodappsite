@@ -1,0 +1,29 @@
+{
+  "siteBase": "256dcc23fbfb25d6ec4a9e5bcec694a1263f5b21",
+  "siteCommit": "6e3144466d573f3735ae8fd524c09d5ffd123605",
+  "otherRootEntriesPreserved": 22,
+  "entries": [
+    "100644 blob dfe0770424b2a19faf507a501ebfc23be8f54e7b\t.gitattributes",
+    "040000 tree 376fd1a7a17e52f2cfa87a28d7c405470798c291\t.impeccable",
+    "100644 blob 2e62e281d9b8df2eab14b69961bd19bdc38ba6b0\tCLAUDE.md",
+    "100644 blob c937b29abd1396f08add9e347f8877951dd22967\tREADME.md",
+    "040000 tree 470fbd4cb385458b269c71d711246aedb9fedb78\tcats-by-post-bonus-study",
+    "040000 tree d6b7e27194c09f60d5ed01365e39e79486d0b30a\tcats-by-post-cityhall-paper",
+    "040000 tree e7d9627db13797bec5c708e4e115385663e0d77a\tcats-by-post-civic-mail-hall",
+    "040000 tree 454c53099da312172ad32ea161a52592be5be1ac\tcats-by-post-depot-paper-concepts",
+    "040000 tree 8d0efc3001bb27b69ec376320a826fafc7cb4bdc\tcats-by-post-depot-paper",
+    "040000 tree 00dbd264bcdbe73916ee206b0b397d130ad830f2\tcats-by-post-interface",
+    "040000 tree 938094fc75030c8ec08d26b862c5355cdeb5f35e\tcats-by-post-lantern-quay",
+    "040000 tree 7b8fc8db5bdd8750ccee702a4252ad8da38b4032\tcats-by-post-parcel-paper",
+    "040000 tree b635de6600da2b4af061579032d38457fbb84723\tcats-by-post-sorting-office-review",
+    "040000 tree 597360a66305561b2ba56e6cdf1199800c09fb8d\tcats-by-post-web",
+    "040000 tree cd79e75dc212b79b833a4405a5d94125d161d183\tcats-by-post",
+    "100644 blob 87ffacac75d96c031c90e77b8690020300352633\tdraft-daybreak.html",
+    "100644 blob 8d18781ed3a59a12496591e1033e2db5534e0e19\tdraft-manual.html",
+    "100644 blob 629819a80ca95c7913395953c54c91cc265e4c8c\tdraft-playback.html",
+    "100644 blob c9670a0854b44fa15d8a08fed021563854aa163b\tdraft-record.html",
+    "100644 blob 854e753b9c25914c958f6c28b631d17bc2870ed7\tindex.html",
+    "040000 tree 4a4a93f953b6f7612073fc87cdf9a9da4a8db181\toffice-fidelity",
+    "040000 tree 5f31feeac20e4abce5f8fe38138d9dd6dbdda7ad\tshots"
+  ]
+}

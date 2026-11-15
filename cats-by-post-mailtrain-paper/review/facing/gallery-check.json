@@ -1,0 +1,47 @@
+{
+  "url": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/",
+  "images": [
+    {
+      "src": "facing/before-tea-return-stride-2224.jpg",
+      "width": 1440
+    },
+    {
+      "src": "facing/after-tea-return-stride-2224.jpg",
+      "width": 1440
+    },
+    {
+      "src": "facing/after-tea-out-1104.jpg",
+      "width": 1440
+    }
+  ],
+  "videos": [
+    {
+      "src": "facing/tea.webm",
+      "duration": 10.5
+    },
+    {
+      "src": "facing/departure.webm",
+      "duration": 5.083
+    }
+  ],
+  "links": [
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/?level=5-15",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/review/polish.html",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/source.zip",
+      "status": 200
+    }
+  ],
+  "overflow": false,
+  "errors": []
+}

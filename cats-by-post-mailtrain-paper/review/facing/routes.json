@@ -1,0 +1,11 @@
+{
+  "samples": 6362,
+  "unchanged": [
+    "workerX",
+    "workerY",
+    "workerZ",
+    "workerPose",
+    "mirror"
+  ],
+  "base": "fd257438"
+}

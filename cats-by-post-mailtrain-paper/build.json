@@ -1,6 +1,6 @@
 {
-  "sha256": "d1752ab292e0c6623a09f96f5d39d205d0a94026da3da208f5a6cb5796c292a3",
-  "bytes": 21036854,
+  "sha256": "8d1f7c6b3283cccf37b4a7b3dd7207a8dce8336beb6b1803fc9b3f15ba3aee3c",
+  "bytes": 21425775,
   "canonicalInputs": {
     "sorting_office.html": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
     "src/data/levels.json": "be1c22ee6456819c200e42d6f8abb48b9c4cc4db9c414928c7fc60ea10cf40a7",
@@ -10,12 +10,12 @@
   },
   "base": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
   "sourceRepository": "holleyy/cosysortie",
-  "sourceCommit": "d6f04ce0eecf910485781a36725249f0dabc63c7",
+  "sourceCommit": "6685614470fd937bab13094c26c403d2e5df9f65",
   "sourcePath": "studies/mailtrain-paper/playable.html",
   "entry": "index.html",
   "publishedPath": "cats-by-post-mailtrain-paper/",
-  "siteBase": "256dcc23fbfb25d6ec4a9e5bcec694a1263f5b21",
+  "siteBase": "8fb9c3109dee254e79ab1f8a1f3be61e5bea734d",
   "review": "review/",
   "sourceArchive": "source.zip",
-  "sourceArchiveSha256": "87dddb0574124de0c35c2b3e7012f73abeeb42dd2ab4611e9130131293643905"
+  "sourceArchiveSha256": "31cc85e696310abc558cfc1673c2e5f51d9fdec4fd8efa92c86d390506ac39ee"
 }

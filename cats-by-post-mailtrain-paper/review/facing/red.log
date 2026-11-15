@@ -1,0 +1,60 @@
+✖ outward and return tea walks face along both projected floor axes (13.406019ms)
+✖ departure selects the correct front/back and mirror at every turn (0.629745ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.674024
+
+✖ failing tests:
+
+test at tests/mailtrain-paper-facing.test.js:7:1
+✖ outward and return tea walks face along both projected floor axes (13.406019ms)
+  AssertionError [ERR_ASSERTION]: wrong front/back view at 1980
+  + actual - expected
+
+  + 'worker'
+  - 'worker-front'
+           ^
+
+      at check (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-facing.test.js:5:542)
+      at TestContext.<anonymous> (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-facing.test.js:7:112)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'worker',
+    expected: 'worker-front',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/mailtrain-paper-facing.test.js:8:1
+✖ departure selects the correct front/back and mirror at every turn (0.629745ms)
+  AssertionError [ERR_ASSERTION]: wrong front/back view at 24
+  + actual - expected
+
+  + 'worker'
+  - 'worker-front'
+           ^
+
+      at check (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-facing.test.js:5:542)
+      at TestContext.<anonymous> (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-facing.test.js:8:81)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'worker',
+    expected: 'worker-front',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,100 @@
+{
+  "checks": [
+    {
+      "face": "sorting-floor",
+      "samples": 1600,
+      "hardwareVisibleThroughFace": 0
+    },
+    {
+      "face": "brake-wall",
+      "samples": 1600,
+      "hardwareVisibleThroughFace": 0
+    }
+  ],
+  "courier": [
+    {
+      "frame": 24,
+      "visiblePixels": 1035
+    },
+    {
+      "frame": 80,
+      "visiblePixels": 826
+    },
+    {
+      "frame": 110,
+      "visiblePixels": 973
+    },
+    {
+      "frame": 130,
+      "visiblePixels": 973
+    },
+    {
+      "frame": 180,
+      "visiblePixels": 26
+    },
+    {
+      "frame": 204,
+      "visiblePixels": 0
+    },
+    {
+      "frame": 300,
+      "visiblePixels": 0
+    }
+  ],
+  "occlusion": [
+    {
+      "frame": 75,
+      "samples": 5611,
+      "leakedPixels": 0
+    },
+    {
+      "frame": 80,
+      "samples": 5611,
+      "leakedPixels": 0
+    },
+    {
+      "frame": 85,
+      "samples": 5611,
+      "leakedPixels": 0
+    },
+    {
+      "frame": 90,
+      "samples": 5611,
+      "leakedPixels": 0
+    },
+    {
+      "frame": 95,
+      "samples": 5611,
+      "leakedPixels": 0
+    },
+    {
+      "frame": 100,
+      "samples": 1410,
+      "leakedPixels": 0
+    },
+    {
+      "frame": 105,
+      "samples": 1410,
+      "leakedPixels": 0
+    },
+    {
+      "frame": 110,
+      "samples": 1410,
+      "leakedPixels": 0
+    }
+  ],
+  "diagnosticModification": null,
+  "errors": [],
+  "build": {
+    "sha256": "8d1f7c6b3283cccf37b4a7b3dd7207a8dce8336beb6b1803fc9b3f15ba3aee3c",
+    "bytes": 21425775,
+    "canonicalInputs": {
+      "sorting_office.html": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
+      "src/data/levels.json": "be1c22ee6456819c200e42d6f8abb48b9c4cc4db9c414928c7fc60ea10cf40a7",
+      "src/sim/10_rules.js": "eaeeff8565f68d32ae6d8489be34664dacf4948a71f2bdf0b0835579454691c4",
+      "src/sim/12_boardanim.js": "5c181265db6570a822ee9fc08400a19cf4eff91beea5e12a6779d46876c88885",
+      "src/app/43e_train_chapter.js": "87d330ddb51a860e020b4e10e11f9fa625a7a2dc542a71ad4f2fc9fb243a1fc4"
+    },
+    "base": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb"
+  }
+}
