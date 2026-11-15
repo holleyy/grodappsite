@@ -1,0 +1,126 @@
+{
+  "sourceCommit": "2b05e1caa97d1da3580b0b6074606441ae7dba9a",
+  "runtimeSha256": "61322e74397b48c0144efb96383290e8a27d0e81ff5e593bf887506757595269",
+  "files": {
+    "after-board.webp": {
+      "bytes": 210714,
+      "sha256": "cdd164298e31c9f05b85f7915d7fd954a726dfa3cc074dd8b0c03883efe85582"
+    },
+    "after-detail.webp": {
+      "bytes": 245374,
+      "sha256": "43331aa3e2725033eb875f4e820b96ac7d98fe81c660e94f296a399b2bfcf635"
+    },
+    "after-gray.webp": {
+      "bytes": 163042,
+      "sha256": "cec0f024269a9586db2700da42ef51ee93205f95713101061ce97a9850d41131"
+    },
+    "after-hall.webp": {
+      "bytes": 265886,
+      "sha256": "4610bbce4abc481d9f3c89b2d4da56743de52d97eedb1b5dfc5b35ecf26a23ae"
+    },
+    "after-phone-hall.webp": {
+      "bytes": 85710,
+      "sha256": "23ed020ce1f984db09f8cc86284cc2713dc9448f83bbfb2d352574eca9e7c1f7"
+    },
+    "after-phone.webp": {
+      "bytes": 82406,
+      "sha256": "ef1c1b6b908c7fdddba8135679d32bbb71d9d05c17c2d2805519555a0dff2e59"
+    },
+    "before-board.webp": {
+      "bytes": 198812,
+      "sha256": "1404897fe3f0e19f9967a501a482208e7f1c30e065d2b69195e6e37b8a6daa65"
+    },
+    "before-build.json": {
+      "bytes": 30264,
+      "sha256": "a19aae98a430b740bf024fb15d79a23cffeaeeb231d48ca2696054c2463bd2e3"
+    },
+    "before-detail.webp": {
+      "bytes": 236856,
+      "sha256": "96bc7c5fcd4620b29ac7110bf49577579aecc120ac9827c8dcf702f569ef9366"
+    },
+    "before-gray.webp": {
+      "bytes": 153910,
+      "sha256": "ea9dbb4061b5bbea7a9a1387d70dc57f38368ab6d7b96328415c0e968b6f7cdf"
+    },
+    "before-hall.webp": {
+      "bytes": 261272,
+      "sha256": "f8e90c41bf027cd6a0fdc4c3acc632a2612ca8e9216a454593247e483fc50176"
+    },
+    "before-phone-hall.webp": {
+      "bytes": 85242,
+      "sha256": "a3f7da81d27468d757e027df5d6ad233b9bba1e3cb9babbaeceb4efe083481bc"
+    },
+    "before-phone.webp": {
+      "bytes": 81698,
+      "sha256": "8bedcf8bd4b89b87eaf58ffccc3971a36d869f10f996e13aa1dc4567a25b3edd"
+    },
+    "board-preservation.json": {
+      "bytes": 377,
+      "sha256": "9837b25d9f2f24dd9483bc011fda87a954038da633d5f83e6f1c567877ea402a"
+    },
+    "browser-report.json": {
+      "bytes": 5964,
+      "sha256": "66906faecd00dc9e1d0f8131a460604392e118ecc652ae2cb529b9db0936c4ba"
+    },
+    "build-manifest.json": {
+      "bytes": 30771,
+      "sha256": "5de5b95faf520939404a22896ee0161e9d355f41b4d996ed6d92b32aa63cd258"
+    },
+    "captures.json": {
+      "bytes": 4483,
+      "sha256": "4cba663efdad4b239102eff37fba182a046ad7fd4c435309260327466d51778a"
+    },
+    "checkpoint.md": {
+      "bytes": 1192,
+      "sha256": "2074b158cfbe0c31f1211917e0dc5a68199f1bd061bbad5837a3216199e9ad17"
+    },
+    "design-qa.md": {
+      "bytes": 2272,
+      "sha256": "0efbc93dbe91064a1e591d44d5716234c50f5511b71ad0255ecb57d98f08a59b"
+    },
+    "index.html": {
+      "bytes": 5863,
+      "sha256": "a87b648d401a311251246cfd34cf285b7c192dca9605652a08200fc3c911282d"
+    },
+    "ownership.json": {
+      "bytes": 457,
+      "sha256": "0269c6e4b8d35010b04b8504e6663b927cb7f77c8c64c765c829b70bc032c0c6"
+    },
+    "packet-report.json": {
+      "bytes": 906,
+      "sha256": "93d24cd09042924560b44656be1c317a75316c7656849b2da4e005c5e6d39e5c"
+    },
+    "palm-clearance.json": {
+      "bytes": 525,
+      "sha256": "261b910868ebbc75da8296b078700619e27bfe8ac7f472b7c7dd230bfe247b71"
+    },
+    "playable.html": {
+      "bytes": 25193228,
+      "sha256": "61322e74397b48c0144efb96383290e8a27d0e81ff5e593bf887506757595269"
+    },
+    "qualification-report.json": {
+      "bytes": 2148,
+      "sha256": "fff36cd2180cd5131c94dff0e9c2249ed7429b6ce157f85b9b6d899d005fe27c"
+    },
+    "review.md": {
+      "bytes": 1779,
+      "sha256": "bf3cf9754ebacf706e1bcfdd37a15d40fc6c8c197a3470c38723ad52516f2b93"
+    },
+    "selected-reference.webp": {
+      "bytes": 492608,
+      "sha256": "0bf2a188ac31cad8b561d3d24402384c8d81d0613fd2733f4ffffd82d5b3803c"
+    },
+    "sorting-life.webm": {
+      "bytes": 2530650,
+      "sha256": "bc77f3790118fbde321b0e22bcbced641d20a7fdcc2ac1144d5b647a02c0d361"
+    },
+    "source.zip": {
+      "bytes": 23136487,
+      "sha256": "caa180bd79e5caa22b9e87e9e584bf02530a340bbb021a11fc5fc2b49505bc01"
+    },
+    "verification.json": {
+      "bytes": 725,
+      "sha256": "7be41618d2620d1dcdc50770fd3274a0ecf0bc5659b993fcf0f64542c0076c66"
+    }
+  }
+}

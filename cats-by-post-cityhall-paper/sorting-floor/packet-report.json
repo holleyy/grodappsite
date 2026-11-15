@@ -1,0 +1,26 @@
+{
+  "checks": [
+    "gallery opens",
+    "comparison detail",
+    "comparison hall",
+    "comparison board",
+    "comparison gray",
+    "comparison phone",
+    "comparison phone-hall",
+    "before control",
+    "after control",
+    "linked file /cats-by-post-cityhall-paper/sorting-floor/playable.html",
+    "linked file /cats-by-post-cityhall-paper/clock-bay/",
+    "linked file /cats-by-post-cityhall-paper/sorting-floor/source.zip",
+    "linked file /cats-by-post-cityhall-paper/sorting-floor/checkpoint.md",
+    "linked file /cats-by-post-cityhall-paper/sorting-floor/design-qa.md",
+    "linked file /cats-by-post-cityhall-paper/sorting-floor/review.md",
+    "linked file /cats-by-post-cityhall-paper/sorting-floor/verification.json",
+    "actual motion video plays",
+    "gallery fits phone width",
+    "nested playable finale wins",
+    "private saves",
+    "no browser errors"
+  ],
+  "errors": []
+}
