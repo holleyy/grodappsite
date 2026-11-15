@@ -1,0 +1,28 @@
+{
+  "samples": 360,
+  "attachmentOverlapSamples": 0,
+  "movingBoardSamples": 0,
+  "stableCamera": true,
+  "stableCache": true,
+  "paused": {
+    "ambientHeld": true,
+    "gameAdvanced": true
+  },
+  "initial": {
+    "surfaces": 17,
+    "surfacePixels": 6858477,
+    "images": 5,
+    "textureBytes": 12582912,
+    "poses": 32,
+    "bakes": 1
+  },
+  "last": {
+    "surfaces": 17,
+    "surfacePixels": 6858477,
+    "images": 5,
+    "textureBytes": 12582912,
+    "poses": 32,
+    "bakes": 24
+  },
+  "errors": []
+}

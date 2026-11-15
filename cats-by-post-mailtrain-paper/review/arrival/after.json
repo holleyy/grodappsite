@@ -1,0 +1,394 @@
+[
+  {
+    "solved": true,
+    "coat": 1,
+    "age": 0.25,
+    "dir": 1,
+    "end": 1,
+    "clip": {
+      "x": 642,
+      "y": 449,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-1-0.25.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 1,
+    "age": 0.4,
+    "dir": 1,
+    "end": 1,
+    "clip": {
+      "x": 642,
+      "y": 449,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-1-0.4.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 1,
+    "age": 0.45,
+    "dir": 1,
+    "end": 1,
+    "clip": {
+      "x": 642,
+      "y": 449,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-1-0.45.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 1,
+    "age": 0.5,
+    "dir": 1,
+    "end": 1,
+    "clip": {
+      "x": 642,
+      "y": 449,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-1-0.5.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 1,
+    "age": 0.55,
+    "dir": 1,
+    "end": 1,
+    "clip": {
+      "x": 642,
+      "y": 449,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-1-0.55.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 1,
+    "age": 0.6,
+    "dir": 1,
+    "end": 1,
+    "clip": {
+      "x": 642,
+      "y": 449,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-1-0.6.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 1,
+    "age": 0.72,
+    "dir": 1,
+    "end": 1,
+    "clip": {
+      "x": 642,
+      "y": 449,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-1-0.72.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 2,
+    "age": 0.25,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 244,
+      "y": 184,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-2-0.25.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 2,
+    "age": 0.4,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 244,
+      "y": 184,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-2-0.4.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 2,
+    "age": 0.45,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 244,
+      "y": 184,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-2-0.45.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 2,
+    "age": 0.5,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 244,
+      "y": 184,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-2-0.5.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 2,
+    "age": 0.55,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 244,
+      "y": 184,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-2-0.55.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 2,
+    "age": 0.6,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 244,
+      "y": 184,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-2-0.6.jpg"
+  },
+  {
+    "solved": true,
+    "coat": 2,
+    "age": 0.72,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 244,
+      "y": 184,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-home-2-0.72.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 1,
+    "age": 0.25,
+    "dir": 2,
+    "end": 2,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-1-0.25.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 1,
+    "age": 0.4,
+    "dir": 2,
+    "end": 2,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-1-0.4.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 1,
+    "age": 0.45,
+    "dir": 2,
+    "end": 2,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-1-0.45.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 1,
+    "age": 0.5,
+    "dir": 2,
+    "end": 2,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-1-0.5.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 1,
+    "age": 0.55,
+    "dir": 2,
+    "end": 2,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-1-0.55.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 1,
+    "age": 0.6,
+    "dir": 2,
+    "end": 2,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-1-0.6.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 1,
+    "age": 0.72,
+    "dir": 2,
+    "end": 2,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-1-0.72.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 2,
+    "age": 0.25,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-2-0.25.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 2,
+    "age": 0.4,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-2-0.4.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 2,
+    "age": 0.45,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-2-0.45.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 2,
+    "age": 0.5,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-2-0.5.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 2,
+    "age": 0.55,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-2-0.55.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 2,
+    "age": 0.6,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-2-0.6.jpg"
+  },
+  {
+    "solved": false,
+    "coat": 2,
+    "age": 0.72,
+    "dir": 2,
+    "end": 1,
+    "clip": {
+      "x": 242,
+      "y": 187,
+      "width": 480,
+      "height": 380
+    },
+    "file": "after-wrong-2-0.72.jpg"
+  }
+]

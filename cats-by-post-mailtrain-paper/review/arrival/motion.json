@@ -1,0 +1,89 @@
+{
+  "build": {
+    "sha256": "c46ea9689d49e68815c7d2777623264a47e9fdc1c8d017530e7feb57452c2caa",
+    "bytes": 21033529,
+    "canonicalInputs": {
+      "sorting_office.html": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
+      "src/data/levels.json": "be1c22ee6456819c200e42d6f8abb48b9c4cc4db9c414928c7fc60ea10cf40a7",
+      "src/sim/10_rules.js": "eaeeff8565f68d32ae6d8489be34664dacf4948a71f2bdf0b0835579454691c4",
+      "src/sim/12_boardanim.js": "5c181265db6570a822ee9fc08400a19cf4eff91beea5e12a6779d46876c88885",
+      "src/app/43e_train_chapter.js": "87d330ddb51a860e020b4e10e11f9fa625a7a2dc542a71ad4f2fc9fb243a1fc4"
+    },
+    "base": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb"
+  },
+  "level": "5-1",
+  "coats": [
+    1,
+    2
+  ],
+  "ages": [
+    0.1,
+    1.1666666666666667
+  ],
+  "sampleHz": 30,
+  "playback": "quarter speed; timing in the playable study is unchanged",
+  "sourceFrames": 66,
+  "fixture": [
+    {
+      "direction": 0,
+      "age": 0.25,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 0,
+      "age": 0.45,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 0,
+      "age": 0.55,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 1,
+      "age": 0.25,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 1,
+      "age": 0.45,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 1,
+      "age": 0.55,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 2,
+      "age": 0.25,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 2,
+      "age": 0.45,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 2,
+      "age": 0.55,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 3,
+      "age": 0.25,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 3,
+      "age": 0.45,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    },
+    {
+      "direction": 3,
+      "age": 0.55,
+      "fixture": "Canonical terminal trace copied and rotated for renderer coverage; not a new level."
+    }
+  ],
+  "errors": []
+}

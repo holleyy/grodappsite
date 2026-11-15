@@ -27096,9 +27096,9 @@ return {formation,draw,envelope,parcel,cabinet,bulkhead};
 });
 
 /* Complete card carriers and registered accepted cat art on the common floor. */
-(function(root){'use strict';const EMPTY=[],DX=[1,0,-1,0],DY=[0,1,0,-1],DIR=['R','D','L','U'],COAT=['','ginger','blue'];
+(function(root){'use strict';const DX=[1,0,-1,0],DY=[0,1,0,-1],COAT=['','ginger','blue'];
 class Pieces{
- constructor(p,BA){this.p=p;this.BA=BA;this.acting=MailtrainActing.create(BA);this.poses=[];this.hatches=[];this.dogs=[];this.order=new Int16Array(32);this.depth=new Float64Array(32);for(let i=0;i<32;i++)this.poses.push(this.acting.makeOut());for(let i=0;i<4;i++)this.hatches.push(this.acting.makeHatchOut());for(let i=0;i<8;i++)this.dogs.push(this.acting.makeDogOut());this.x=1;this.y=.8;this.lid=Array.from({length:4},()=>({x:0,y:0,z:0}));this.hatchOpen=new Float64Array(4);}
+ constructor(p,BA){this.p=p;this.BA=BA;this.acting=MailtrainActing.create(BA);this.poses=[];this.hatches=[];this.dogs=[];this.order=new Int16Array(128);this.depth=new Float64Array(128);this.kind=new Uint8Array(128);this.item=new Int16Array(128);this.count=0;this.flightPose={x:0,y:0,z:0,u:0,v:0,au:0,av:0,rear:false};for(let i=0;i<32;i++)this.poses.push(this.acting.makeOut());for(let i=0;i<4;i++)this.hatches.push(this.acting.makeHatchOut());for(let i=0;i<8;i++)this.dogs.push(this.acting.makeDogOut());this.x=1;this.y=.8;this.lid=Array.from({length:4},()=>({x:0,y:0,z:0}));this.hatchOpen=new Float64Array(4);}
  arrow(x,y,z,d,col,size=.25){const p=this.p,c=p.c;c.beginPath();const dx=DX[d],dy=DY[d];p.v(x+dx*size,y+dy*size,z,true);p.v(x-dx*size*.12-dy*size*.75,y-dy*size*.12+dx*size*.75,z);p.v(x-dx*size*.12-dy*size*.28,y-dy*size*.12+dx*size*.28,z);p.v(x-dx*size-dy*size*.28,y-dy*size+dx*size*.28,z);p.v(x-dx*size+dy*size*.28,y-dy*size-dx*size*.28,z);p.v(x-dx*size*.12+dy*size*.28,y-dy*size*.12-dx*size*.28,z);p.v(x-dx*size*.12+dy*size*.75,y-dy*size*.12-dx*size*.75,z);c.closePath();c.fillStyle=col;c.fill();}
  carrier(x,y,z,front=false,fold=0,fade=0){if(fold<0||fade>=1)return;const p=this.p,c=p.c,h=fold>=4?.025:.34*(1-fold/5),r=.31,t=.018,spread=.065+fold*.032;c.save();c.globalAlpha*=1-fade;
  if(!front){p.shadow(x,y,z,.48,.17,.16);
@@ -27115,16 +27115,21 @@ class Pieces{
  if(!fold){p.quad(x-.09,y+r+.004,z+.06,x+.15,y+r+.004,z+.06,x+.15,y+r+.004,z+.23,x-.09,y+r+.004,z+.23,'#f1d6a8');p.line(x-.07,y+r+.009,z+.20,x+.03,y+r+.009,z+.12,'#ad4b3a',.02);p.line(x+.13,y+r+.009,z+.20,x+.03,y+r+.009,z+.12,'#ad4b3a',.02);}}
  c.restore();}
  boxed(o,tr){const p=this.p,x=this.x+(o.x-tr.ox)/16,y=this.y+(o.y-tr.oy)/16,z=3.125+o.z/16;const c=p.c;c.save();if(o.anim===this.BA.A.POP){const hx=this.x+tr.hx,hy=this.y+tr.hy;c.beginPath();c.moveTo(p.px(hx+.12,hy+.88),p.py(hx+.12,hy+.88,3.125));p.v(hx+.88,hy+.88,3.125);p.v(hx+.88,hy+.12,3.125);c.lineTo(p.px(hx+.88,hy+.12),p.py(hx+.88,hy+.12,3.125)-3*p.cam.scale);c.lineTo(p.px(hx+.12,hy+.88),p.py(hx+.12,hy+.88,3.125)-3*p.cam.scale);c.closePath();c.clip();}this.carrier(x,y,z);const rear=o.head===2||o.head===3,coat=COAT[tr.coat]||'ginger',name=coat+'-'+(o.ears===this.BA.EARS_BACK?(rear?'bump-rear':'bump-front'):(rear?'bust-rear':o.eyes?'blink':'bust-front'));p.sprite('acting',name,x,y,z+.22,.78,o.head===0||o.head===3);this.carrier(x,y,z,true);c.restore();}
+ // Shared world-space trajectory for drawing AND depth. The canonical .4–.6s
+ // flight window stays fixed. Lift clears the .34-tile carton and basket rim;
+ // land at the same cushion sole used by the following canonical settle pose.
+ flight(o,tr,time){const f=this.flightPose,j=tr.n-1,d=tr.d0[j],age=time-(tr.rel+tr.n*tr.tick),u=Math.max(0,Math.min(1,(age-.4)/.2)),v=u*u*(3-2*u),rear=d===2||d===3;
+  const wrong=tr.end===this.BA.END_WRONG,hx=this.x+tr.x1[j]+.5,hy=this.y+tr.y1[j]+.5,bx=hx-DX[d]*14/16,by=hy-DY[d]*14/16;
+  const tx=this.x+(Math.round((tr.ox+tr.x1[j]*16+8+(wrong?3:tr.homeDX))/2)*2-tr.ox)/16,ty=this.y+(Math.round((tr.oy+tr.y1[j]*16+8+(wrong?3:tr.homeDY))/2)*2-tr.oy)/16;
+  const au=rear?.63:o.takeoff===0?.84:.94,av=rear?.90:o.takeoff===0?.88:.75;
+  f.x=bx+(tx-bx)*v;f.y=by+(ty-by)*v;f.z=2/63.33+((wrong?5:3)/16-.12-2/63.33)*v+Math.sin(u*Math.PI)*.82;f.u=u;f.v=v;f.au=au+(.5-au)*v;f.av=av+(1-av)*v;f.rear=rear;return f;
+ }
  loose(o,tr,time){const p=this.p,coat=COAT[tr.coat]||'ginger',A=this.BA.A,x=this.x+(o.x-tr.ox)/16,y=this.y+(o.y-tr.oy)/16,z=3.125+o.z/16;let name=coat+'-puzzled',height=.8,mirror=false;
  if(o.takeoff>=0){
-  // Accepted Office hind-sole registration: hold the carrier root until .4s.
-  const j=tr.n-1,d=tr.d0[j],age=time-(tr.rel+tr.n*tr.tick),u=Math.max(0,Math.min(1,(age-.4)/.2)),v=u*u*(3-2*u),rear=d===2||d===3;
-  const hx=this.x+tr.x1[j]+.5,hy=this.y+tr.y1[j]+.5,bx=hx-DX[d]*14/16,by=hy-DY[d]*14/16,tx=hx+(tr.end===this.BA.END_WRONG?3:tr.homeDX)/16,ty=hy+(tr.end===this.BA.END_WRONG?3:tr.homeDY)/16,k=p.cam.scale/63.33;
-  const sx=p.px(bx,by),sy=p.py(bx,by,3.125)-2*k,ex=p.px(tx,ty),ey=p.py(tx,ty,3.125)-3*k;
-  const au=rear?.63:o.takeoff===0?.84:.94,av=rear?.90:o.takeoff===0?.88:.75;
-  name=coat+'-'+(o.takeoff===0?'crouch-':'push-')+(rear?'rear':'front');
-  p.shadow(bx+(tx-bx)*v,by+(ty-by)*v,3.125,.36,.12,.11);
-  p.anchored('acting',name,sx+(ex-sx)*v,sy+(ey-sy)*v-Math.sin(u*Math.PI)*22*k,67*k,au+(.5-au)*v,av+(1-av)*v,d===0||d===3);
+  const f=this.flight(o,tr,time),d=tr.d0[tr.n-1],k=p.cam.scale/63.33;
+  name=coat+'-'+(o.takeoff===0?'crouch-':'push-')+(f.rear?'rear':'front');
+  p.shadow(f.x,f.y,3.125,.36,.12,.11);
+  p.anchored('acting',name,p.px(f.x,f.y),p.py(f.x,f.y,3.125+f.z),67*k,f.au,f.av,d===0||d===3);
   if(o.takeoffSupported)this.carrier(this.x+(o.boxX-tr.ox)/16,this.y+(o.boxY-tr.oy)/16,3.125,true);
   return;
  }
@@ -27142,20 +27147,34 @@ class Pieces{
   if((!front&&(d<2||!open))||(front&&d>=2&&open)){const q=MailtrainGeometry.hatchLid(x,y,z,d,open,this.lid);p.quad(q[0].x,q[0].y,q[0].z,q[1].x,q[1].y,q[1].z,q[2].x,q[2].y,q[2].z,q[3].x,q[3].y,q[3].z,'cream');if(!open)this.arrow(x+.5,y+.5,z+.045,d,'#355f61',.23);}
   if(front){p.line(x+.12,y+.88,z+.04,x+.88,y+.88,z+.04,'#f5dcaa',.025);p.line(x+.88,y+.88,z+.04,x+.88,y+.12,z+.04,'#f5dcaa',.025);}
  }
- draw(frame){const s=frame.boardSource,p=this.p;this.x=1+(frame.level.board.roomX||0);this.y=.8+(frame.level.board.roomY||0);const z=3.125,time=frame.time;
- for(let i=0;i<s.n;i++){this.acting.sample(s.traces[i],s.times[i],this.poses[i]);this.order[i]=i;this.depth[i]=this.poses[i].x+this.poses[i].y;}
+ enqueue(kind,item,depth){const n=this.count++;this.kind[n]=kind;this.item[n]=item;this.depth[n]=depth;this.order[n]=n;}
+ draw(frame){const s=frame.boardSource,p=this.p;this.x=1+(frame.level.board.roomX||0);this.y=.8+(frame.level.board.roomY||0);const z=3.125;this.count=0;
+ for(let i=0;i<s.n;i++)this.acting.sample(s.traces[i],s.times[i],this.poses[i]);
  for(let i=s.n;i<32;i++){this.poses[i].effects.bumpX=this.poses[i].effects.bumpY=-1;this.poses[i].effects.bumpAge=-1;}
- // Tiny fixed-capacity insertion sort, no temporary records in the frame path.
- for(let i=1;i<s.n;i++){const k=this.order[i];let j=i-1;while(j>=0&&this.depth[this.order[j]]>this.depth[k]){this.order[j+1]=this.order[j];j--;}this.order[j+1]=k;}
  for(let i=0;i<s.hatches.length;i++){const h=s.hatches[i],x=this.x+h.x,y=this.y+h.y;let open=0;for(let k=0;k<s.n;k++){const e=this.poses[k].effects;if(e.hatchX===h.x&&e.hatchY===h.y&&e.hatchOpen>open)open=e.hatchOpen;}this.hatchOpen[i]=open;this.hatch(h,open);
  const q=s.queues[i];if(q&&q.n){for(let k=0;k<q.n;k++){p.plane(x+.13+k*.09,y+.8,z+.07,.075,.12,q.coats[k]===2?'#6489b4':'#d5924e');}if(s.n===0){this.carrier(x+.5,y+.5,z+.04);p.sprite('acting',COAT[q.coats[0]]+'-bust-front',x+.5,y+.5,z+.27,.76);this.carrier(x+.5,y+.5,z+.04,true);}}}
- for(const b of s.baskets)this.basket(b);
+
  for(const g of s.gates){const x=this.x+g.x+.5,y=this.y+g.y+.5;p.shadow(x,y,z,.52,.2,.16);p.cylinder(x,y,z,.36,.075,'brass','#e8ba62');const active=g.pose.state?g.b:g.a,inactive=g.pose.state?g.a:g.b;this.arrow(x+DX[inactive]*.14,y+DY[inactive]*.14,z+.085,inactive,'#a9783b',.15);this.arrow(x+DX[active]*.08,y+DY[active]*.08,z+.09,active,'#fff0ca',.26);p.disk(x,y,z+.098,.045,'#76583b');if(g.pose.frame<2){const size=g.pose.frame===0?.41:.46;const c=p.c;c.save();c.globalAlpha=g.pose.frame===0?.45:.2;p.disk(x,y,z+.035,size,'#f9d984');c.restore();this.arrow(x+DX[active]*.08,y+DY[active]*.08,z+.09,active,'#fff0ca',.26);}}
  for(const t of s.turntables){const x=this.x+t.x+.5,y=this.y+t.y+.5;p.cylinder(x,y,z,.35,.07,'cream',t.kind===1?'#d89751':t.kind===2?'#7094b2':'#427f7b');this.arrow(x,y,z+.08,t.dir,'#fff1cf');if(t.locked)p.disk(x+.24,y+.2,z+.08,.08,'#fff0cb','#9f7f49');}
- for(let i=0;i<s.dogs.length;i++){const d=s.dogs[i];this.acting.dog(d,i,this.poses,frame.motion?frame.worldFrame/60:0,this.dogs[i]);const x=this.x+d.x+.5,y=this.y+d.y+.5;p.shadow(x,y,z,.55,.19);p.sprite('acting','dog-'+this.dogs[i].frame,x,y,z-.2,.96,!!(i&1));}
- for(let j=0;j<s.n;j++){const i=this.order[j],o=this.poses[i],tr=s.traces[i];if(s.times[i]<0||!o.root.visible)continue;if(o.box.visible&&!o.box.occupied){const x=this.x+(o.box.x-tr.ox)/16,y=this.y+(o.box.y-tr.oy)/16;this.carrier(x,y,z,false,o.box.fold,o.box.fade);this.carrier(x,y,z,true,o.box.fold,o.box.fade);}if(o.cat.boxed)this.boxed(o,tr);else this.loose(o,tr,s.times[i]);}
+ // Basket walls, empty carriers and cats share floor depth. A blanket final
+ // basket-rim pass used to slice through cats in a nearer carrier. Split walls
+ // straddle their centre, while the airborne cat uses its actual flight root.
+ for(let i=0;i<s.baskets.length;i++){const b=s.baskets[i],depth=this.x+this.y+b.x+b.y+1;this.enqueue(0,i,depth-.36);this.enqueue(3,i,depth+.36);}
+ for(let i=0;i<s.dogs.length;i++){const d=s.dogs[i];this.enqueue(4,i,this.x+this.y+d.x+d.y+1);}
+ for(let i=0;i<s.n;i++){const o=this.poses[i],tr=s.traces[i];if(s.times[i]<0||!o.root.visible)continue;
+  if(o.box.visible&&!o.box.occupied)this.enqueue(1,i,this.x+this.y+(o.box.x-tr.ox+o.box.y-tr.oy)/16);
+  let depth=this.x+this.y+(o.x-tr.ox+o.y-tr.oy)/16;
+  if(o.takeoff>=0){const f=this.flight(o,tr,s.times[i]);depth=f.x+f.y;}
+  this.enqueue(2,i,depth);
+ }
+ // Fixed-capacity stable insertion sort; no display records allocated per frame.
+ for(let i=1;i<this.count;i++){const k=this.order[i];let j=i-1;while(j>=0&&this.depth[this.order[j]]>this.depth[k]){this.order[j+1]=this.order[j];j--;}this.order[j+1]=k;}
+ for(let j=0;j<this.count;j++){const k=this.order[j],i=this.item[k],kind=this.kind[k];
+  if(kind===0||kind===3)this.basket(s.baskets[i],kind===3);
+  else if(kind===4){const d=s.dogs[i];this.acting.dog(d,i,this.poses,frame.motion?frame.worldFrame/60:0,this.dogs[i]);const x=this.x+d.x+.5,y=this.y+d.y+.5;p.shadow(x,y,z,.55,.19);p.sprite('acting','dog-'+this.dogs[i].frame,x,y,z-.2,.96,!!(i&1));}
+  else{const o=this.poses[i],tr=s.traces[i];if(kind===1){const x=this.x+(o.box.x-tr.ox)/16,y=this.y+(o.box.y-tr.oy)/16;this.carrier(x,y,z,false,o.box.fold,o.box.fade);this.carrier(x,y,z,true,o.box.fold,o.box.fade);}else if(o.cat.boxed)this.boxed(o,tr);else this.loose(o,tr,s.times[i]);}
+ }
  for(let i=0;i<s.hatches.length;i++)this.hatch(s.hatches[i],this.hatchOpen[i],true);
- for(const b of s.baskets)this.basket(b,true);
  if(s.cursor>=0){const x=this.x+s.cursor%s.w,y=this.y+Math.floor(s.cursor/s.w);p.line(x+.04,y+.04,z+.02,x+.96,y+.04,z+.02,'#fff0ab',.045);p.line(x+.96,y+.04,z+.02,x+.96,y+.96,z+.02,'#fff0ab',.045);p.line(x+.96,y+.96,z+.02,x+.04,y+.96,z+.02,'#fff0ab',.045);p.line(x+.04,y+.96,z+.02,x+.04,y+.04,z+.02,'#fff0ab',.045);}
  }
 }
