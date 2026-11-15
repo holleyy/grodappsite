@@ -1,0 +1,14 @@
+{
+  "assetSha256": "f1cb890641a4070f0a44f2163ce0b7781d5c578509d97abc97b0fe07d3097282",
+  "anchor": [
+    17,
+    156,
+    13
+  ],
+  "height": 29,
+  "opaqueSamples": 615349,
+  "maximumWorldZ": 40.65869218500798,
+  "galleryBottomZ": 42,
+  "galleryIntersections": 0,
+  "method": "Every alpha>128 pixel projected onto the upright cutout plane using the full-image registration; tested against left gallery slab."
+}

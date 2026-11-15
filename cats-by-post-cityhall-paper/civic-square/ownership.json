@@ -1,0 +1,9 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/civic-square/",
+  "addOnly": true,
+  "purpose": "City Hall left desk and civic square checkpoint; all previous checkpoints and all other previews preserved",
+  "sourceCommit": "5e3b1fba9424c496238e2227db31f344bada4f70",
+  "sourceBase": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+  "runtimeSha256": "5f87ab671f8c4c799e939dbda24d88257d12079366844e6faafdfa720cf4d073",
+  "saveNamespace": "catsByPost.cityhallPaper.study.v1."
+}

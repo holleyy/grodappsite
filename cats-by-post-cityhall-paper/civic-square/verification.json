@@ -1,0 +1,19 @@
+{
+  "runtimeSha256": "5f87ab671f8c4c799e939dbda24d88257d12079366844e6faafdfa720cf4d073",
+  "runtimeBytes": 25744998,
+  "baselineRuntimeSha256": "61322e74397b48c0144efb96383290e8a27d0e81ff5e593bf887506757595269",
+  "focusedTests": 32,
+  "browserChecks": 72,
+  "qualificationChecks": 26,
+  "actualSolutions": 15,
+  "protectedFilesUnchanged": 195,
+  "boardRastersExact": 3,
+  "buildInputsExact": 225,
+  "motionClip": {
+    "seconds": 31.961171,
+    "ambientStart": 16,
+    "ambientEnd": 48,
+    "sha256": "b60ffb4afc055e8779827347b71defb350364ca7c1b901b2c06cf7f3918000fe"
+  },
+  "scope": "Left station and civic square checkpoint. Whole-room artistic acceptance and physical-device qualification remain open."
+}
