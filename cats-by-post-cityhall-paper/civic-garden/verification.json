@@ -1,0 +1,41 @@
+{
+  "runtimeSha256": "1610cfe14171c5a07d00f3cc88954c0361b826741593327c180758a1853652fe",
+  "bytes": 27295226,
+  "focusedTests": 39,
+  "browserChecks": 72,
+  "qualificationChecks": 26,
+  "phoneChecks": 44,
+  "canonicalWins": 15,
+  "protectedFiles": 195,
+  "buildInputs": 238,
+  "boardRastersExact": 3,
+  "crown": {
+    "samples": 11259,
+    "visible": 11259,
+    "fraction": 1,
+    "scope": "Opaque upper crown in the actual desktop frame, compared with the same complete retained tree artwork"
+  },
+  "errors": [],
+  "warm": {
+    "initial": {
+      "bytes": 74798032,
+      "buffers": 53,
+      "bakes": 11,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    },
+    "final": {
+      "bytes": 74798032,
+      "buffers": 53,
+      "bakes": 11,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    },
+    "newCanvases": 0,
+    "drawCallMs": {
+      "median": 27,
+      "p95": 35.600000001490116,
+      "max": 241.60000000149012
+    },
+    "scope": "120 synchronous Canvas draw calls in cloud Chromium; not presented FPS or physical-device performance"
+  },
+  "scope": "Actual cloud Chromium with phone/DPR2 emulation, not physical-device/Safari performance"
+}
