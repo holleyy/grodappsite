@@ -2315,21 +2315,47 @@ root.ChristmasInteriorStation=InteriorStation;
 const P=CivicProjection,L=ChristmasStationLayout;
 const timber={top:'#d9b98c',left:'#bb946d',right:'#987653'};
 class MaterialStation extends ChristmasInteriorStation {
+ timberPlank(p,w,h,id,base){
+  // Local grain runs along y. Floor callers rotate this small face, keeping
+  // every joint and fibre on the existing horizontal support plane.
+  const c=p.ctx;c.save();c.beginPath();c.rect(0,0,w,h);c.clip();
+  c.fillStyle=base;c.fillRect(0,0,w,h);
+  c.fillStyle=['#f5dfb921','#62492e12','#ecd5ad0c','#7c5b381b','#ffebc52b','#92724e0a','#d6b58220'][(id*5)%7];c.fillRect(0,0,w,h);
+  // Offset the authored stock per board, without changing the shared pattern.
+  const u=(id*43)%173,v=(id*71)%181;
+  c.save();c.translate(-u,-v);this.stock(p,'oak',u,v,w,h,.49);c.restore();
+  for(let k=0;k<7;k++){
+   const x=3+(k*7+id*11)%Math.max(4,Math.floor(w-6)),bend=((id+k*3)%7-3)*.45;
+   c.strokeStyle=k%3?'#7256381c':'#fff0cb32';c.lineWidth=k%3?.52:.8;
+   c.beginPath();c.moveTo(x,2);c.bezierCurveTo(x+bend,h*.24,x-bend,h*.72,x+.25,h-2);c.stroke();
+  }
+  if(id%9===4&&h>65){
+   const x=w*.52,y=h*(.3+(id%3)*.16);
+   c.strokeStyle='#76573924';c.lineWidth=.7;
+   for(let k=0;k<3;k++){c.beginPath();c.ellipse(x,y,1.4+k*1.5,4+k*4,.03,0,Math.PI*2);c.stroke();}
+  }
+  // The paired dark rebate and light card edge are deliberately narrow.
+  c.fillStyle='#57463255';c.fillRect(0,0,.85,h);c.fillStyle='#f8e2b99c';c.fillRect(.85,0,.8,h);
+  const g=c.createLinearGradient(1.6,0,6.5,0);g.addColorStop(0,'#5a49391d');g.addColorStop(1,'#5a493900');c.fillStyle=g;c.fillRect(1.6,0,4.9,h);
+  c.fillStyle='#624a3650';c.fillRect(0,0,w,.7);c.fillStyle='#f9dfb776';c.fillRect(0,.8,w,.65);
+  if(h>45){
+   c.fillStyle='#67543e58';for(const x of[3,w-3])for(const y of[4,h-4]){c.beginPath();c.arc(x,y,.62,0,Math.PI*2);c.fill();}
+  }
+  c.restore();
+ }
  timberWall(p,axis,start,fixed,length,height){
   super.timberWall(p,axis,start,fixed,length,height);
   if(height<350)return;
   p.face(axis,axis==='x'?start:start+length,fixed+.009,height,c=>{
-   const W=length*P.HW,H=height-112,plank=38;
+   const W=length*P.HW,H=height-112,plank=29;
    c.save();c.beginPath();c.rect(0,0,W,H);c.clip();
    c.fillStyle=axis==='y'?'#b89e7b':'#d4b891';c.fillRect(0,0,W,H);
    for(let i=0;i<W/plank;i++){
-    const x=i*plank,w=Math.min(plank,W-x),v=(i*7)%5;
-    c.fillStyle=['#fff0c51c','#62472812','#ffedcd12','#7153370c','#e6c89720'][v];c.fillRect(x+1,0,w-2,H);
-    // Recessed board joints and a narrow exposed paper edge.
-    c.fillStyle='#59463555';c.fillRect(x,0,1.3,H);c.fillStyle='#f0d8ae92';c.fillRect(x+1.3,0,1,H);
-    const g=c.createLinearGradient(x+2,0,x+9,0);g.addColorStop(0,'#5c493826');g.addColorStop(1,'#5c493800');c.fillStyle=g;c.fillRect(x+2,0,7,H);
+    const x=i*plank,w=Math.min(plank,W-x),join=134+(i%4)*43;
+    for(const [y,h]of[[0,join],[join,H-join]]){
+     c.save();c.translate(x,y);this.timberPlank(p,w,h,i*3+(y?1:0)+(axis==='y'?43:0),axis==='y'?'#bba07a':'#d2b58c');c.restore();
+    }
    }
-   this.stock(p,'oak',0,0,W,H,.95);
    // Wide light falloff remains visible at the fitted station view.
    let g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#30433d45');g.addColorStop(.18,'#30433d00');g.addColorStop(.73,'#f9d39109');g.addColorStop(1,'#72573527');c.fillStyle=g;c.fillRect(0,0,W,H);
    for(let x=0;x<W;x+=3.25*P.HW){g=c.createLinearGradient(x,0,x+22,0);g.addColorStop(0,'#263c3b38');g.addColorStop(1,'#263c3b00');c.fillStyle=g;c.fillRect(x,0,22,H);}
@@ -2362,10 +2388,26 @@ class MaterialStation extends ChristmasInteriorStation {
   const c=p.ctx,top=P.project(b.x0,b.y0,z);c.save();c.transform(P.HW,P.HH,-P.HW,P.HH,top.x,top.y);
   const W=b.x1-b.x0,H=b.y1-b.y0,run=.39;
   c.beginPath();c.rect(0,0,W,H);c.clip();
+  c.scale(1/P.HW,1/P.HW);
   for(let row=0;row<H/run;row++){
-   const y=row*run;c.fillStyle=['#ffe0a514','#5f493915','#eed8b009','#845f3910'][row%4];c.fillRect(0,y,W,run);
-   c.fillStyle='#69523961';c.fillRect(0,y,W,.011);c.fillStyle='#fff0cb88';c.fillRect(0,y+.012,W,.009);
-   for(let x=(row%3)*.67-2;x<W;x+=2.2){c.fillStyle='#634c3b59';c.fillRect(x,y,.012,run);c.fillStyle='#f7dcae66';c.fillRect(x+.015,y,.009,run);}
+   const y=row*run,span=2.45+(row%3)*.24;
+   for(let x=-span+(row%4)*.61,col=0;x<W;x+=span,col++){
+    const x0=Math.max(0,x),x1=Math.min(W,x+span),h=Math.min(run,H-y);
+    c.save();c.translate(x0*P.HW,y*P.HW);c.transform(0,1,1,0,0,0);
+    this.timberPlank(p,h*P.HW,(x1-x0)*P.HW,row*17+col*3+5,'#d5b58a');c.restore();
+   }
+  }
+  // Fitted perimeter boards belong only to the two exposed floor edges.
+  // The gallery keeps its existing stair landing and single board direction.
+  if(b===L.floor){
+   const w=W*P.HW,h=H*P.HW,r=10;
+   c.save();c.beginPath();c.moveTo(w-r,0);c.lineTo(w,0);c.lineTo(w,h);c.lineTo(w-r,h-r);c.closePath();c.clip();
+   for(let y=0,i=0;y<h;y+=210,i++){c.save();c.translate(w-r,y);this.timberPlank(p,r,Math.min(210,h-y),i+12,'#c6a77f');c.restore();}c.restore();
+   c.save();c.beginPath();c.moveTo(0,h-r);c.lineTo(w-r,h-r);c.lineTo(w,h);c.lineTo(0,h);c.closePath();c.clip();
+   for(let x=0,i=0;x<w;x+=210,i++){c.save();c.translate(x,h-r);c.transform(0,1,1,0,0,0);this.timberPlank(p,r,Math.min(210,w-x),i+27,'#c6a77f');c.restore();}c.restore();
+   c.fillStyle='#66513b70';c.fillRect(w-r,0,.9,h-r);c.fillRect(0,h-r,w-r,.9);
+   c.fillStyle='#f5ddb37c';c.fillRect(w-r+1,0,1,h-r);c.fillRect(0,h-r+1,w-r,1);
+   c.strokeStyle='#735b3d7a';c.lineWidth=.9;c.beginPath();c.moveTo(w-r,h-r);c.lineTo(w,h);c.stroke();
   }
   c.restore();
  }
