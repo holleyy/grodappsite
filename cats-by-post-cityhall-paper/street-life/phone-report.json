@@ -1,0 +1,501 @@
+{
+  "checks": [
+    "390×844 6-1 full viewport scenery",
+    "390×844 6-1 all board centres usable",
+    "390×844 6-1 ordered vertical hatch lanes",
+    "390×844 6-1 all three hatch rows fit without clipping",
+    "390×844 6-1 controls clear safe areas",
+    "390×844 6-1 minimum 44px action targets",
+    "390×844 6-1 tray content fits",
+    "390×844 6-15 full viewport scenery",
+    "390×844 6-15 all board centres usable",
+    "390×844 6-15 ordered vertical hatch lanes",
+    "390×844 6-15 all three hatch rows fit without clipping",
+    "390×844 6-15 controls clear safe areas",
+    "390×844 6-15 minimum 44px action targets",
+    "390×844 6-15 tray content fits",
+    "320×568 6-15 full viewport scenery",
+    "320×568 6-15 all board centres usable",
+    "320×568 6-15 ordered vertical hatch lanes",
+    "320×568 6-15 all three hatch rows fit without clipping",
+    "320×568 6-15 controls clear safe areas",
+    "320×568 6-15 minimum 44px action targets",
+    "320×568 6-15 tray content fits",
+    "430×932 6-15 full viewport scenery",
+    "430×932 6-15 all board centres usable",
+    "430×932 6-15 ordered vertical hatch lanes",
+    "430×932 6-15 all three hatch rows fit without clipping",
+    "430×932 6-15 controls clear safe areas",
+    "430×932 6-15 minimum 44px action targets",
+    "430×932 6-15 tray content fits",
+    "modal keys do not mutate the puzzle",
+    "modal keeps keyboard focus",
+    "Escape closes tools and restores opener",
+    "trusted phone tap places on canonical board",
+    "phone clear uses canonical reset",
+    "Hint closes tools and uses canonical hint",
+    "story opened from tools receives keyboard focus",
+    "chapter card is included in camera safe region",
+    "closing chapter restores planning safe region",
+    "landscape restores canonical control homes",
+    "rotation restores canonical queue images",
+    "rotation from open tools restores visible selector focus",
+    "minimum zoom has opaque sky and ground at screen edges",
+    "new background buffers are released on disposal",
+    "disposal restores canonical queue images",
+    "no browser errors"
+  ],
+  "failures": [],
+  "profiles": [
+    {
+      "w": 390,
+      "h": 844,
+      "id": "6-1",
+      "safeTop": 0,
+      "safeBottom": 0,
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "header": {
+        "x": 12,
+        "y": 10,
+        "width": 366,
+        "height": 49.984375,
+        "bottom": 59.984375,
+        "right": 378
+      },
+      "dock": {
+        "x": 12,
+        "y": 667,
+        "width": 366,
+        "height": 167,
+        "bottom": 834,
+        "right": 378
+      },
+      "arrivals": {
+        "x": 12,
+        "y": 67.984375,
+        "width": 366,
+        "height": 90,
+        "bottom": 157.984375,
+        "right": 378
+      },
+      "hatches": [
+        {
+          "top": 109.984375,
+          "bottom": 156.984375,
+          "left": 21,
+          "right": 369
+        }
+      ],
+      "clear": true,
+      "insets": {
+        "top": 168,
+        "bottom": 189,
+        "left": 12,
+        "right": 12
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 12.984375,
+          "width": 44,
+          "height": 44,
+          "bottom": 56.984375,
+          "right": 56
+        },
+        {
+          "x": 334,
+          "y": 12.984375,
+          "width": 44,
+          "height": 44,
+          "bottom": 56.984375,
+          "right": 378
+        },
+        {
+          "x": 23,
+          "y": 741,
+          "width": 44,
+          "height": 48,
+          "bottom": 789,
+          "right": 67
+        },
+        {
+          "x": 75,
+          "y": 741,
+          "width": 44,
+          "height": 48,
+          "bottom": 789,
+          "right": 119
+        },
+        {
+          "x": 127,
+          "y": 741,
+          "width": 240,
+          "height": 48,
+          "bottom": 789,
+          "right": 367
+        }
+      ],
+      "tray": [
+        {
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "id": "6-15",
+      "safeTop": 0,
+      "safeBottom": 0,
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "header": {
+        "x": 12,
+        "y": 10,
+        "width": 366,
+        "height": 49.984375,
+        "bottom": 59.984375,
+        "right": 378
+      },
+      "dock": {
+        "x": 12,
+        "y": 667,
+        "width": 366,
+        "height": 167,
+        "bottom": 834,
+        "right": 378
+      },
+      "arrivals": {
+        "x": 12,
+        "y": 67.984375,
+        "width": 366,
+        "height": 184,
+        "bottom": 251.984375,
+        "right": 378
+      },
+      "hatches": [
+        {
+          "top": 109.984375,
+          "bottom": 156.984375,
+          "left": 21,
+          "right": 369
+        },
+        {
+          "top": 156.984375,
+          "bottom": 203.984375,
+          "left": 21,
+          "right": 369
+        },
+        {
+          "top": 203.984375,
+          "bottom": 250.984375,
+          "left": 21,
+          "right": 369
+        }
+      ],
+      "clear": true,
+      "insets": {
+        "top": 262,
+        "bottom": 189,
+        "left": 12,
+        "right": 12
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 12.984375,
+          "width": 44,
+          "height": 44,
+          "bottom": 56.984375,
+          "right": 56
+        },
+        {
+          "x": 334,
+          "y": 12.984375,
+          "width": 44,
+          "height": 44,
+          "bottom": 56.984375,
+          "right": 378
+        },
+        {
+          "x": 23,
+          "y": 741,
+          "width": 44,
+          "height": 48,
+          "bottom": 789,
+          "right": 67
+        },
+        {
+          "x": 75,
+          "y": 741,
+          "width": 44,
+          "height": 48,
+          "bottom": 789,
+          "right": 119
+        },
+        {
+          "x": 127,
+          "y": 741,
+          "width": 240,
+          "height": 48,
+          "bottom": 789,
+          "right": 367
+        }
+      ],
+      "tray": [
+        {
+          "overflow": false
+        },
+        {
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "w": 320,
+      "h": 568,
+      "id": "6-15",
+      "safeTop": 0,
+      "safeBottom": 0,
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 568,
+        "bottom": 568,
+        "right": 320
+      },
+      "header": {
+        "x": 10,
+        "y": 10,
+        "width": 300,
+        "height": 46.84375,
+        "bottom": 56.84375,
+        "right": 310
+      },
+      "dock": {
+        "x": 8,
+        "y": 391,
+        "width": 304,
+        "height": 167,
+        "bottom": 558,
+        "right": 312
+      },
+      "arrivals": {
+        "x": 10,
+        "y": 64.84375,
+        "width": 300,
+        "height": 184,
+        "bottom": 248.84375,
+        "right": 310
+      },
+      "hatches": [
+        {
+          "top": 106.84375,
+          "bottom": 153.84375,
+          "left": 19,
+          "right": 301
+        },
+        {
+          "top": 153.84375,
+          "bottom": 200.84375,
+          "left": 19,
+          "right": 301
+        },
+        {
+          "top": 200.84375,
+          "bottom": 247.84375,
+          "left": 19,
+          "right": 301
+        }
+      ],
+      "clear": true,
+      "insets": {
+        "top": 259,
+        "bottom": 189,
+        "left": 12,
+        "right": 12
+      },
+      "buttons": [
+        {
+          "x": 10,
+          "y": 11.421875,
+          "width": 44,
+          "height": 44,
+          "bottom": 55.421875,
+          "right": 54
+        },
+        {
+          "x": 266,
+          "y": 11.421875,
+          "width": 44,
+          "height": 44,
+          "bottom": 55.421875,
+          "right": 310
+        },
+        {
+          "x": 17,
+          "y": 465,
+          "width": 44,
+          "height": 48,
+          "bottom": 513,
+          "right": 61
+        },
+        {
+          "x": 69,
+          "y": 465,
+          "width": 44,
+          "height": 48,
+          "bottom": 513,
+          "right": 113
+        },
+        {
+          "x": 121,
+          "y": 465,
+          "width": 182,
+          "height": 48,
+          "bottom": 513,
+          "right": 303
+        }
+      ],
+      "tray": [
+        {
+          "overflow": false
+        },
+        {
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "w": 430,
+      "h": 932,
+      "id": "6-15",
+      "safeTop": 47,
+      "safeBottom": 34,
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 430,
+        "height": 932,
+        "bottom": 932,
+        "right": 430
+      },
+      "header": {
+        "x": 12,
+        "y": 57,
+        "width": 406,
+        "height": 49.984375,
+        "bottom": 106.984375,
+        "right": 418
+      },
+      "dock": {
+        "x": 12,
+        "y": 721,
+        "width": 406,
+        "height": 167,
+        "bottom": 888,
+        "right": 418
+      },
+      "arrivals": {
+        "x": 12,
+        "y": 114.984375,
+        "width": 406,
+        "height": 184,
+        "bottom": 298.984375,
+        "right": 418
+      },
+      "hatches": [
+        {
+          "top": 156.984375,
+          "bottom": 203.984375,
+          "left": 21,
+          "right": 409
+        },
+        {
+          "top": 203.984375,
+          "bottom": 250.984375,
+          "left": 21,
+          "right": 409
+        },
+        {
+          "top": 250.984375,
+          "bottom": 297.984375,
+          "left": 21,
+          "right": 409
+        }
+      ],
+      "clear": true,
+      "insets": {
+        "top": 309,
+        "bottom": 223,
+        "left": 12,
+        "right": 12
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 59.984375,
+          "width": 44,
+          "height": 44,
+          "bottom": 103.984375,
+          "right": 56
+        },
+        {
+          "x": 374,
+          "y": 59.984375,
+          "width": 44,
+          "height": 44,
+          "bottom": 103.984375,
+          "right": 418
+        },
+        {
+          "x": 23,
+          "y": 795,
+          "width": 44,
+          "height": 48,
+          "bottom": 843,
+          "right": 67
+        },
+        {
+          "x": 75,
+          "y": 795,
+          "width": 44,
+          "height": 48,
+          "bottom": 843,
+          "right": 119
+        },
+        {
+          "x": 127,
+          "y": 795,
+          "width": 280,
+          "height": 48,
+          "bottom": 843,
+          "right": 407
+        }
+      ],
+      "tray": [
+        {
+          "overflow": false
+        },
+        {
+          "overflow": false
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
