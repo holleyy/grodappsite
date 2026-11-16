@@ -2708,8 +2708,13 @@ class SettlementStation extends ChristmasTrimStation {
   // Mirroring aligns the van with the lane's +y direction. Each native tyre
   // contact gets its own tight shadow on that same paved surface.
   const feet=a.tyres.map(([u,v])=>({x:q.x-(u-a.anchor[0])*s,y:q.y+(v-a.anchor[1])*s}));
-  p.shadow(q.x,q.y,37,12,.2);
-  for(const f of feet)p.shadow(f.x,f.y,7,2.4,.55);
+  // The underbody shade spans the axle footprint. A centred screen ellipse
+  // missed the rear wheel, and its tiny contact shadows hid under the tyres.
+  const rear=feet[0],front=feet[1],far=feet[2];
+  c.save();c.translate((rear.x+far.x)/2,(rear.y+far.y)/2);
+  c.rotate(Math.atan2(rear.y-front.y,rear.x-front.x));
+  p.shadow(0,0,53,18,.48);c.restore();
+  for(const f of feet)p.shadow(f.x,f.y,9,4.5,.78);
   c.save();c.translate(q.x,q.y);c.scale(-1,1);c.drawImage(this.r.images.depotDetails,...r,-a.anchor[0]*s,-a.anchor[1]*s,a.width,r[3]*s);c.restore();
  }
  ground(p){
