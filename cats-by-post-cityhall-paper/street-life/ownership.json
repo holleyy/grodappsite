@@ -1,0 +1,9 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/street-life/",
+  "addOnly": true,
+  "purpose": "City Hall postal arrival and connected neighbouring pavements; all previous checkpoints and other previews preserved",
+  "sourceCommit": "6cce71e100a01627d690b18fc92fd912f92bb3ce",
+  "sourceBase": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+  "runtimeSha256": "c12fb8a00ae1f4cb44cea8eaf74926cc0578e411e2a507fe7072014668deb07e",
+  "saveNamespace": "catsByPost.cityhallPaper.study.v1."
+}
