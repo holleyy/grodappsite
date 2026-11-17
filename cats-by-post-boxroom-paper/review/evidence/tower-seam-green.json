@@ -1,0 +1,30 @@
+[
+  {
+    "scale": 0.126315789,
+    "minAlpha": 254,
+    "rowsBelow250": 0,
+    "bad": [],
+    "cacheBytes": 467200
+  },
+  {
+    "scale": 0.25,
+    "minAlpha": 255,
+    "rowsBelow250": 0,
+    "bad": [],
+    "cacheBytes": 921600
+  },
+  {
+    "scale": 0.371,
+    "minAlpha": 255,
+    "rowsBelow250": 0,
+    "bad": [],
+    "cacheBytes": 1369600
+  },
+  {
+    "scale": 1.17,
+    "minAlpha": 255,
+    "rowsBelow250": 0,
+    "bad": [],
+    "cacheBytes": 1600000
+  }
+]

@@ -1,0 +1,61 @@
+{
+  "build": "boxroom-paper-3d06ed8693a7",
+  "images": [
+    {
+      "src": "roof-before.webp",
+      "width": 800,
+      "height": 520
+    },
+    {
+      "src": "roof-after.webp",
+      "width": 800,
+      "height": 520
+    },
+    {
+      "src": "before-daily.webp",
+      "width": 1440,
+      "height": 1024
+    },
+    {
+      "src": "after-daily.webp",
+      "width": 1440,
+      "height": 1024
+    },
+    {
+      "src": "before-night.webp",
+      "width": 1440,
+      "height": 1024
+    },
+    {
+      "src": "after-night.webp",
+      "width": 1440,
+      "height": 1024
+    },
+    {
+      "src": "after-maximum.webp",
+      "width": 1488,
+      "height": 1116
+    },
+    {
+      "src": "after-phone.webp",
+      "width": 780,
+      "height": 1688
+    },
+    {
+      "src": "lighting-sheet.webp",
+      "width": 2160,
+      "height": 2620
+    },
+    {
+      "src": "residents.webp",
+      "width": 2880,
+      "height": 1300
+    },
+    {
+      "src": "selected-concept.webp",
+      "width": 1448,
+      "height": 1086
+    }
+  ],
+  "errors": []
+}

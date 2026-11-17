@@ -1,0 +1,765 @@
+{
+  "base": "http://127.0.0.1:8781/work/boxroom-tower/final-qa/join-fixed/frozen/",
+  "scope": "Actual root hit targets over editable tile centres; overlay interceptions are reported separately from inverse-picking alignment.",
+  "cases": [
+    {
+      "mode": "daily",
+      "width": 390,
+      "height": 844,
+      "framing": "board",
+      "build": "boxroom-paper-2e79b697b807",
+      "board": {
+        "w": 5,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "camera": {
+        "zoom": 3.893617021276596,
+        "zoomCss": 1.946808510638298,
+        "dpr": 2,
+        "x": 0,
+        "y": 0,
+        "framing": "board",
+        "manual": false
+      },
+      "blocked": [
+        {
+          "x": 1,
+          "y": 2,
+          "sx": 163.53191489361703,
+          "sy": 407.38297872340434,
+          "action": "place",
+          "clear": false,
+          "hit": "hatch-labels",
+          "hatch": true,
+          "sidebar": false,
+          "label": "Hatch 1. Focus this hatch."
+        }
+      ],
+      "hatchBlocked": 1,
+      "sidebarBlocked": 0,
+      "ui": {
+        "insets": {
+          "top": 170,
+          "bottom": 189,
+          "left": 12,
+          "right": 12
+        },
+        "panels": [
+          {
+            "id": "play-head",
+            "rect": {
+              "x": 12,
+              "y": 10,
+              "width": 366,
+              "height": 46.984375,
+              "top": 10,
+              "right": 378,
+              "bottom": 56.984375,
+              "left": 12
+            }
+          },
+          {
+            "id": "arrival-panel",
+            "rect": {
+              "x": 12,
+              "y": 64.984375,
+              "width": 366,
+              "height": 95,
+              "top": 64.984375,
+              "right": 378,
+              "bottom": 159.984375,
+              "left": 12
+            }
+          },
+          {
+            "id": "desk",
+            "rect": {
+              "x": 12,
+              "y": 667,
+              "width": 366,
+              "height": 167,
+              "top": 667,
+              "right": 378,
+              "bottom": 834,
+              "left": 12
+            }
+          }
+        ],
+        "hatches": [
+          {
+            "label": "Hatch 1. Focus this hatch.",
+            "rect": {
+              "x": 141.53125,
+              "y": 389.1312561035156,
+              "width": 44,
+              "height": 44,
+              "top": 389.1312561035156,
+              "right": 185.53125,
+              "bottom": 433.1312561035156,
+              "left": 141.53125
+            }
+          }
+        ]
+      }
+    },
+    {
+      "mode": "daily",
+      "width": 390,
+      "height": 844,
+      "framing": "room",
+      "build": "boxroom-paper-2e79b697b807",
+      "board": {
+        "w": 5,
+        "h": 5,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "camera": {
+        "zoom": 2.2726827926997744,
+        "zoomCss": 1.1363413963498872,
+        "dpr": 2,
+        "x": 0,
+        "y": 0,
+        "framing": "room",
+        "manual": false
+      },
+      "blocked": [
+        {
+          "x": 0,
+          "y": 0,
+          "sx": 196.5870615685305,
+          "sy": 413.628268271359,
+          "action": "place",
+          "clear": false,
+          "hit": "hatch-labels",
+          "hatch": true,
+          "sidebar": false,
+          "label": "Hatch 1. Focus this hatch."
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "sx": 178.40559922693228,
+          "sy": 422.71899944215806,
+          "action": "place",
+          "clear": false,
+          "hit": "hatch-labels",
+          "hatch": true,
+          "sidebar": false,
+          "label": "Hatch 1. Focus this hatch."
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "sx": 196.58706156853046,
+          "sy": 431.80973061295714,
+          "action": "place",
+          "clear": false,
+          "hit": "hatch-labels",
+          "hatch": true,
+          "sidebar": false,
+          "label": "Hatch 1. Focus this hatch."
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "sx": 160.2241368853341,
+          "sy": 431.8097306129572,
+          "action": "place",
+          "clear": false,
+          "hit": "hatch-labels",
+          "hatch": true,
+          "sidebar": false,
+          "label": "Hatch 1. Focus this hatch."
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "sx": 178.40559922693228,
+          "sy": 440.9004617837562,
+          "action": "place",
+          "clear": false,
+          "hit": "hatch-labels",
+          "hatch": true,
+          "sidebar": false,
+          "label": "Hatch 1. Focus this hatch."
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "sx": 196.5870615685305,
+          "sy": 449.99119295455534,
+          "action": "place",
+          "clear": false,
+          "hit": "hatch-labels",
+          "hatch": true,
+          "sidebar": false,
+          "label": "Hatch 1. Focus this hatch."
+        },
+        {
+          "x": 1,
+          "y": 3,
+          "sx": 160.22413688533408,
+          "sy": 449.99119295455534,
+          "action": "place",
+          "clear": false,
+          "hit": "hatch-labels",
+          "hatch": true,
+          "sidebar": false,
+          "label": "Hatch 1. Focus this hatch."
+        }
+      ],
+      "hatchBlocked": 7,
+      "sidebarBlocked": 0,
+      "ui": {
+        "insets": {
+          "top": 170,
+          "bottom": 189,
+          "left": 12,
+          "right": 12
+        },
+        "panels": [
+          {
+            "id": "play-head",
+            "rect": {
+              "x": 12,
+              "y": 10,
+              "width": 366,
+              "height": 46.984375,
+              "top": 10,
+              "right": 378,
+              "bottom": 56.984375,
+              "left": 12
+            }
+          },
+          {
+            "id": "arrival-panel",
+            "rect": {
+              "x": 12,
+              "y": 64.984375,
+              "width": 366,
+              "height": 95,
+              "top": 64.984375,
+              "right": 378,
+              "bottom": 159.984375,
+              "left": 12
+            }
+          },
+          {
+            "id": "desk",
+            "rect": {
+              "x": 12,
+              "y": 667,
+              "width": 366,
+              "height": 167,
+              "top": 667,
+              "right": 378,
+              "bottom": 834,
+              "left": 12
+            }
+          }
+        ],
+        "hatches": [
+          {
+            "label": "Hatch 1. Focus this hatch.",
+            "rect": {
+              "x": 156.390625,
+              "y": 409.6781311035156,
+              "width": 44,
+              "height": 44,
+              "top": 409.6781311035156,
+              "right": 200.390625,
+              "bottom": 453.6781311035156,
+              "left": 156.390625
+            }
+          }
+        ]
+      }
+    },
+    {
+      "mode": "night",
+      "width": 720,
+      "height": 400,
+      "framing": "board",
+      "build": "boxroom-paper-2e79b697b807",
+      "board": {
+        "w": 10,
+        "h": 8
+      },
+      "camera": {
+        "zoom": 2.4683544303797467,
+        "zoomCss": 1.2341772151898733,
+        "dpr": 2,
+        "x": 0,
+        "y": 0,
+        "framing": "board",
+        "manual": false
+      },
+      "blocked": [],
+      "hatchBlocked": 0,
+      "sidebarBlocked": 0,
+      "ui": {
+        "insets": {
+          "top": 69,
+          "bottom": 16,
+          "left": 12,
+          "right": 318
+        },
+        "panels": [
+          {
+            "id": "play-head",
+            "rect": {
+              "x": 12,
+              "y": 8,
+              "width": 696,
+              "height": 46.984375,
+              "top": 8,
+              "right": 708,
+              "bottom": 54.984375,
+              "left": 12
+            }
+          },
+          {
+            "id": "arrival-panel",
+            "rect": {
+              "x": 418,
+              "y": 62.984375,
+              "width": 290,
+              "height": 94,
+              "top": 62.984375,
+              "right": 708,
+              "bottom": 156.984375,
+              "left": 418
+            }
+          },
+          {
+            "id": "desk",
+            "rect": {
+              "x": 418,
+              "y": 239.75,
+              "width": 290,
+              "height": 152.25,
+              "top": 239.75,
+              "right": 708,
+              "bottom": 392,
+              "left": 418
+            }
+          }
+        ],
+        "hatches": [
+          {
+            "label": "Hatch 1. Focus this hatch.",
+            "rect": {
+              "x": 126.09375,
+              "y": 123.3812484741211,
+              "width": 44,
+              "height": 44.00000762939453,
+              "top": 123.3812484741211,
+              "right": 170.09375,
+              "bottom": 167.38125610351562,
+              "left": 126.09375
+            }
+          },
+          {
+            "label": "Hatch 2. Focus this hatch.",
+            "rect": {
+              "x": 106.34375,
+              "y": 133.25625610351562,
+              "width": 44,
+              "height": 44,
+              "top": 133.25625610351562,
+              "right": 150.34375,
+              "bottom": 177.25625610351562,
+              "left": 106.34375
+            }
+          }
+        ]
+      }
+    },
+    {
+      "mode": "night",
+      "width": 720,
+      "height": 400,
+      "framing": "room",
+      "build": "boxroom-paper-2e79b697b807",
+      "board": {
+        "w": 10,
+        "h": 8
+      },
+      "camera": {
+        "zoom": 1.7330009683201673,
+        "zoomCss": 0.8665004841600836,
+        "dpr": 2,
+        "x": 0,
+        "y": 0,
+        "framing": "room",
+        "manual": false
+      },
+      "blocked": [],
+      "hatchBlocked": 0,
+      "sidebarBlocked": 0,
+      "ui": {
+        "insets": {
+          "top": 69,
+          "bottom": 16,
+          "left": 12,
+          "right": 318
+        },
+        "panels": [
+          {
+            "id": "play-head",
+            "rect": {
+              "x": 12,
+              "y": 8,
+              "width": 696,
+              "height": 46.984375,
+              "top": 8,
+              "right": 708,
+              "bottom": 54.984375,
+              "left": 12
+            }
+          },
+          {
+            "id": "arrival-panel",
+            "rect": {
+              "x": 418,
+              "y": 62.984375,
+              "width": 290,
+              "height": 94,
+              "top": 62.984375,
+              "right": 708,
+              "bottom": 156.984375,
+              "left": 418
+            }
+          },
+          {
+            "id": "desk",
+            "rect": {
+              "x": 418,
+              "y": 239.75,
+              "width": 290,
+              "height": 152.25,
+              "top": 239.75,
+              "right": 708,
+              "bottom": 392,
+              "left": 418
+            }
+          }
+        ],
+        "hatches": [
+          {
+            "label": "Hatch 1. Focus this hatch.",
+            "rect": {
+              "x": 144.359375,
+              "y": 167.22500610351562,
+              "width": 44,
+              "height": 44,
+              "top": 167.22500610351562,
+              "right": 188.359375,
+              "bottom": 211.22500610351562,
+              "left": 144.359375
+            }
+          },
+          {
+            "label": "Hatch 2. Focus this hatch.",
+            "rect": {
+              "x": 130.5,
+              "y": 174.14688110351562,
+              "width": 44,
+              "height": 44,
+              "top": 174.14688110351562,
+              "right": 174.5,
+              "bottom": 218.14688110351562,
+              "left": 130.5
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "wrapper": [
+    {
+      "width": 390,
+      "height": 844,
+      "route": "study.html",
+      "controlsPresent": true,
+      "controls": [
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Today’s post",
+          "width": 90,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Practice",
+          "width": 90,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Night Shift",
+          "width": 90,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Explore the room",
+          "width": 90,
+          "height": 46
+        },
+        {
+          "id": "camera",
+          "tag": "BUTTON",
+          "label": "Whole room",
+          "width": 89.25,
+          "height": 44
+        },
+        {
+          "id": "motion",
+          "tag": "BUTTON",
+          "label": "Pause ambience",
+          "width": 89.25,
+          "height": 44
+        },
+        {
+          "id": "greyscale",
+          "tag": "BUTTON",
+          "label": "Greyscale",
+          "width": 89.25,
+          "height": 44
+        },
+        {
+          "id": "controls",
+          "tag": "BUTTON",
+          "label": "Details ⌄",
+          "width": 89.25,
+          "height": 44
+        },
+        {
+          "id": "date",
+          "tag": "INPUT",
+          "label": "",
+          "width": 146,
+          "height": 44
+        },
+        {
+          "id": "weekday",
+          "tag": "SELECT",
+          "label": "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday",
+          "width": 117,
+          "height": 44
+        },
+        {
+          "id": "seed",
+          "tag": "INPUT",
+          "label": "",
+          "width": 130,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Open this room →",
+          "width": 149.546875,
+          "height": 44
+        }
+      ],
+      "undersized": []
+    },
+    {
+      "width": 720,
+      "height": 400,
+      "route": "study.html",
+      "controlsPresent": true,
+      "controls": [
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Today’s post",
+          "width": 85.90625,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Practice",
+          "width": 61.875,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Night Shift",
+          "width": 78.15625,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Explore the room",
+          "width": 110.984375,
+          "height": 44
+        },
+        {
+          "id": "camera",
+          "tag": "BUTTON",
+          "label": "Whole room",
+          "width": 81.28125,
+          "height": 44
+        },
+        {
+          "id": "motion",
+          "tag": "BUTTON",
+          "label": "Pause ambience",
+          "width": 104.1875,
+          "height": 44
+        },
+        {
+          "id": "greyscale",
+          "tag": "BUTTON",
+          "label": "Greyscale",
+          "width": 66.21875,
+          "height": 44
+        },
+        {
+          "id": "controls",
+          "tag": "BUTTON",
+          "label": "Details ⌄",
+          "width": 63.71875,
+          "height": 44
+        },
+        {
+          "id": "date",
+          "tag": "INPUT",
+          "label": "",
+          "width": 146,
+          "height": 44
+        },
+        {
+          "id": "weekday",
+          "tag": "SELECT",
+          "label": "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday",
+          "width": 117,
+          "height": 44
+        },
+        {
+          "id": "seed",
+          "tag": "INPUT",
+          "label": "",
+          "width": 130,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Open this room →",
+          "width": 149.546875,
+          "height": 44
+        }
+      ],
+      "undersized": []
+    },
+    {
+      "width": 1488,
+      "height": 1116,
+      "route": "study.html",
+      "controlsPresent": true,
+      "controls": [
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Today’s post",
+          "width": 111.109375,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Practice",
+          "width": 81.53125,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Night Shift",
+          "width": 101.5625,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Explore the room",
+          "width": 141.96875,
+          "height": 44
+        },
+        {
+          "id": "camera",
+          "tag": "BUTTON",
+          "label": "Whole room",
+          "width": 93.28125,
+          "height": 44
+        },
+        {
+          "id": "motion",
+          "tag": "BUTTON",
+          "label": "Pause ambience",
+          "width": 116.1875,
+          "height": 44
+        },
+        {
+          "id": "greyscale",
+          "tag": "BUTTON",
+          "label": "Greyscale",
+          "width": 78.21875,
+          "height": 44
+        },
+        {
+          "id": "controls",
+          "tag": "BUTTON",
+          "label": "Details ⌄",
+          "width": 75.71875,
+          "height": 44
+        },
+        {
+          "id": "date",
+          "tag": "INPUT",
+          "label": "",
+          "width": 146,
+          "height": 44
+        },
+        {
+          "id": "weekday",
+          "tag": "SELECT",
+          "label": "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday",
+          "width": 117,
+          "height": 44
+        },
+        {
+          "id": "seed",
+          "tag": "INPUT",
+          "label": "",
+          "width": 130,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Open this room →",
+          "width": 149.546875,
+          "height": 44
+        }
+      ],
+      "undersized": []
+    }
+  ],
+  "errors": [],
+  "completed": true
+}

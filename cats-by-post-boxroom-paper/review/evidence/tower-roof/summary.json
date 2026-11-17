@@ -1,0 +1,70 @@
+{
+  "status": "passed-with-focused-selector-retests",
+  "method": "Aggregate of 44 unchanged original Canvas cases plus 16 focused Canvas retests, all on identical production source bytes. This is not a single uninterrupted all-green sweep.",
+  "sourceHashes": {
+    "driver": "6237567d53c6b462a530609901289aff60df880f150ce19d561dc344e9cb187b",
+    "generator": "7e417aa67248a4c3d1d158b1759bb315ce8c302835bd951379f04f01b93098b6",
+    "config": "1dab736cf7fb9faee4b6a2d64f72ceac05e001f10309905f0d8772ff45ac545d",
+    "projection": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+    "materials": "784b343e9288acc140e7d09f28b77a77b03fcd27df4d90aecb71e457754d1bcb",
+    "layout": "e13258b3db8457168455ecc380007e50276fe7d6c6adef3c627493aa66a3c867",
+    "scene": "64c73fd635c90186db882c7739c9079f16b9e7e4ed8dc77c1e182dec2243e53d"
+  },
+  "originalSweep": {
+    "cases": 60,
+    "samples": 624,
+    "failedSamples": 1,
+    "report": "final-all-sizes/roof-depth.json",
+    "note": "One false positive due to identical plain daytime RGB of purlin and wall post; raw evidence retained unchanged."
+  },
+  "selectionComparison": {
+    "unchangedCases": 44,
+    "unchangedSamples": 608,
+    "replacedSamples": 16,
+    "report": "selection-comparison.json"
+  },
+  "focusedRetest": {
+    "cases": 16,
+    "samples": 172,
+    "failedSamples": 0,
+    "report": "final-affected-retest/roof-depth.json"
+  },
+  "finalCoverage": {
+    "cases": 60,
+    "sizes": 30,
+    "samples": 624,
+    "hiddenSamples": 360,
+    "exposedSamples": 264,
+    "failures": 0,
+    "maxHiddenIntactChanged": 0,
+    "minUnroofedChanged": 25,
+    "minExposedIntactChanged": 20,
+    "members": [
+      "far-purlin",
+      "left-collar",
+      "left-tie",
+      "right-far-rafter"
+    ]
+  },
+  "negativeControls": {
+    "front": {
+      "cases": 1,
+      "samples": 10,
+      "failedSamples": 6,
+      "expectedFailure": true,
+      "report": "final-negative-front/roof-depth.json"
+    },
+    "erase": {
+      "cases": 1,
+      "samples": 10,
+      "failedSamples": 10,
+      "expectedFailure": true,
+      "report": "final-negative-erase/roof-depth.json"
+    }
+  },
+  "renderErrors": [],
+  "sourceStable": true,
+  "selectorCorrection": "selector-correction.json",
+  "buildSourceMatch": "release-source-match.json",
+  "runtimeScope": "Static plain-material Canvas roof geometry/occlusion only. Renderer-only periodic-facade rounding is tested separately; camera, picking, gameplay, material artistry, other dates/seeds, and performance are not established by this driver."
+}

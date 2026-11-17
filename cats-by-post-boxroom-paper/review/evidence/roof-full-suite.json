@@ -1,0 +1,12 @@
+{
+  "command": "node --test --test-concurrency=4 tests/*.test.js",
+  "build": "boxroom-paper-3d06ed8693a7",
+  "tests": 1705,
+  "pass": 1705,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "durationMs": 1236578.274667,
+  "logSha256": "2a6163778efe9e10f623eafd7c3acd71f1921afff72a2be84af618869290605f",
+  "layoutSha256": "f6ef72a92c8ce5f754d1eb7454bead3e57677e4d3d7e7b6c0346b2de2cab3a5b"
+}

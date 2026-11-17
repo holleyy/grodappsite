@@ -1,0 +1,70 @@
+{
+  "release": "boxroom-paper-2e79b697b807",
+  "unchangedCameraControllerQualification": {
+    "build": "boxroom-paper-cdeecf69437f",
+    "checks": 72,
+    "passed": 72,
+    "devices": [
+      "390x844 DPR2",
+      "720x400 DPR2",
+      "1488x1116 DPR1"
+    ],
+    "modes": [
+      "Daily 2026-11-17",
+      "genuine earned Night seed303 round14 10x8"
+    ]
+  },
+  "exactRelease": {
+    "continuationScenes": 9,
+    "actualGameCameraStates": 8,
+    "exactPickingAll": true,
+    "trustedPlacements": 3,
+    "occlusionCases": 4,
+    "studyControls": [
+      [
+        390,
+        844,
+        12,
+        0
+      ],
+      [
+        720,
+        400,
+        12,
+        0
+      ],
+      [
+        1488,
+        1116,
+        12,
+        0
+      ]
+    ],
+    "memoryCycles": 5,
+    "ownedBytes": 78233192,
+    "resourcesStable": true,
+    "domStable": true,
+    "heapRetainedSpreadBytes": 498944,
+    "javascriptErrors": []
+  },
+  "provenance": {
+    "build": "boxroom-paper-2e79b697b807",
+    "files": 389,
+    "changed": []
+  },
+  "runtimeComparison": {
+    "from": "boxroom-paper-cdeecf69437f",
+    "to": "boxroom-paper-2e79b697b807",
+    "normalization": "Only build IDs in text files",
+    "sameCount": 300,
+    "different": [
+      "build.json",
+      "rooms/boxroom.js"
+    ]
+  },
+  "limitations": [
+    "Linux Chromium emulation, no physical iOS/Safari/FPS or total process memory claim",
+    "Inherited phone Daily hatch-focus overlay covers one editable centre in Board and seven in Room; precise picking is unaffected",
+    "At extreme zoom-out the tower is a tall narrow shaft over a fixed-scale backdrop; continuation coverage does not itself establish art approval"
+  ]
+}

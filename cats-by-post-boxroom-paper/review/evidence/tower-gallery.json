@@ -1,0 +1,123 @@
+{
+  "errors": [],
+  "views": [
+    {
+      "width": 1440,
+      "overflow": false,
+      "images": [
+        {
+          "src": "tower-before.webp",
+          "loaded": true
+        },
+        {
+          "src": "after-daily.webp",
+          "loaded": true
+        },
+        {
+          "src": "tower-5x4-day.webp",
+          "loaded": true
+        },
+        {
+          "src": "tower-10x8-night.webp",
+          "loaded": true
+        },
+        {
+          "src": "before-daily.webp",
+          "loaded": true
+        },
+        {
+          "src": "after-daily.webp",
+          "loaded": true
+        },
+        {
+          "src": "before-night.webp",
+          "loaded": true
+        },
+        {
+          "src": "after-night.webp",
+          "loaded": true
+        },
+        {
+          "src": "after-maximum.webp",
+          "loaded": true
+        },
+        {
+          "src": "after-phone.webp",
+          "loaded": true
+        },
+        {
+          "src": "lighting-sheet.webp",
+          "loaded": true
+        },
+        {
+          "src": "residents.webp",
+          "loaded": true
+        },
+        {
+          "src": "selected-concept.webp",
+          "loaded": true
+        }
+      ],
+      "tower": true
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "images": [
+        {
+          "src": "tower-before.webp",
+          "loaded": true
+        },
+        {
+          "src": "after-daily.webp",
+          "loaded": true
+        },
+        {
+          "src": "tower-5x4-day.webp",
+          "loaded": true
+        },
+        {
+          "src": "tower-10x8-night.webp",
+          "loaded": true
+        },
+        {
+          "src": "before-daily.webp",
+          "loaded": true
+        },
+        {
+          "src": "after-daily.webp",
+          "loaded": true
+        },
+        {
+          "src": "before-night.webp",
+          "loaded": true
+        },
+        {
+          "src": "after-night.webp",
+          "loaded": true
+        },
+        {
+          "src": "after-maximum.webp",
+          "loaded": true
+        },
+        {
+          "src": "after-phone.webp",
+          "loaded": true
+        },
+        {
+          "src": "lighting-sheet.webp",
+          "loaded": true
+        },
+        {
+          "src": "residents.webp",
+          "loaded": true
+        },
+        {
+          "src": "selected-concept.webp",
+          "loaded": true
+        }
+      ],
+      "tower": true
+    }
+  ]
+}

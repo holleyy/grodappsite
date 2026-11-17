@@ -1,0 +1,21 @@
+{
+  "cause": "Flat daytime purlin and backing wall post have identical RGB over two sampled columns. The purlin fully covers the 5x5 patch and opaque slate correctly hides it.",
+  "aliasRGBA": [
+    162,
+    121,
+    73,
+    255
+  ],
+  "originalPatch": {
+    "intactChanged": 0,
+    "unroofedChanged": 15,
+    "requiredPositive": 20,
+    "memberMarginScenePx": 4.777500477005046
+  },
+  "correction": "Treat every actual back-post-N and side-post-N surface as a projected structural overlap. Select clear of these faces, independent of Canvas colours.",
+  "productionChanged": false,
+  "thresholdChanged": false,
+  "selectionComparison": "selection-comparison.json",
+  "beforeEvidence": "purlin-colour-alias-before.png",
+  "newDriverSHA256": "6237567d53c6b462a530609901289aff60df880f150ce19d561dc344e9cb187b"
+}

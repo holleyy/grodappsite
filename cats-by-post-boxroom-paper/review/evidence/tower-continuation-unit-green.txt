@@ -1,0 +1,13 @@
+✔ common rooms omit special decode; optional preparation waits once and retains art across rounds (42.323455ms)
+✔ whole-room fitting uses the attic focus while the tower continues below it (6.557763ms)
+✔ disposing during deferred special decode cannot publish artwork or a replacement scene (4.383306ms)
+✔ disposal releases a pending refresh even when the browser decoder never settles (43.94461ms)
+✔ tower continuation reaches the viewport bottom at zoom and pan limits with bounded cached tiles (7.471481ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 468.285349

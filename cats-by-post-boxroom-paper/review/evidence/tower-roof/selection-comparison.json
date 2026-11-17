@@ -1,0 +1,367 @@
+{
+  "originalCases": 60,
+  "comparisonCases": 60,
+  "unchangedCases": [
+    "5x4:daily",
+    "5x4:free",
+    "5x5:daily",
+    "5x5:free",
+    "5x8:daily",
+    "5x8:free",
+    "6x4:daily",
+    "6x4:free",
+    "6x5:daily",
+    "6x5:free",
+    "6x6:daily",
+    "6x6:free",
+    "7x4:daily",
+    "7x4:free",
+    "7x5:daily",
+    "7x5:free",
+    "7x6:daily",
+    "7x6:free",
+    "7x7:daily",
+    "7x7:free",
+    "7x8:daily",
+    "7x8:free",
+    "8x4:daily",
+    "8x4:free",
+    "8x6:daily",
+    "8x6:free",
+    "8x7:daily",
+    "8x7:free",
+    "9x4:daily",
+    "9x4:free",
+    "9x5:daily",
+    "9x5:free",
+    "9x6:daily",
+    "9x6:free",
+    "9x7:daily",
+    "9x7:free",
+    "9x8:daily",
+    "9x8:free",
+    "10x4:daily",
+    "10x4:free",
+    "10x5:daily",
+    "10x5:free",
+    "10x7:daily",
+    "10x7:free"
+  ],
+  "affected": [
+    {
+      "case": "5x6:daily",
+      "removed": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1098.1167148400236,
+          302.928932001239
+        ]
+      ],
+      "added": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1223.1167148400236,
+          337.928932001239
+        ]
+      ]
+    },
+    {
+      "case": "5x6:free",
+      "removed": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1098.1167148400236,
+          302.928932001239
+        ]
+      ],
+      "added": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1223.1167148400236,
+          337.928932001239
+        ]
+      ]
+    },
+    {
+      "case": "5x7:daily",
+      "removed": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1100.2833815066906,
+          303.5622653345723
+        ]
+      ],
+      "added": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1143.2833815066906,
+          315.5622653345723
+        ]
+      ]
+    },
+    {
+      "case": "5x7:free",
+      "removed": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1100.2833815066906,
+          303.5622653345723
+        ]
+      ],
+      "added": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1143.2833815066906,
+          315.5622653345723
+        ]
+      ]
+    },
+    {
+      "case": "6x7:daily",
+      "removed": [
+        [
+          "far-purlin",
+          "hidden",
+          759.2833815066905,
+          104.06226533457232
+        ]
+      ],
+      "added": [
+        [
+          "far-purlin",
+          "hidden",
+          706.2833815066905,
+          77.56226533457232
+        ]
+      ]
+    },
+    {
+      "case": "6x7:free",
+      "removed": [
+        [
+          "far-purlin",
+          "hidden",
+          759.2833815066905,
+          104.06226533457232
+        ]
+      ],
+      "added": [
+        [
+          "far-purlin",
+          "hidden",
+          706.2833815066905,
+          77.56226533457232
+        ]
+      ]
+    },
+    {
+      "case": "6x8:daily",
+      "removed": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1141.9500481733571,
+          329.19559866790564
+        ]
+      ],
+      "added": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1104.4500481733571,
+          318.69559866790564
+        ]
+      ]
+    },
+    {
+      "case": "6x8:free",
+      "removed": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1141.9500481733571,
+          329.19559866790564
+        ]
+      ],
+      "added": [
+        [
+          "right-far-rafter",
+          "exposed",
+          1104.4500481733571,
+          318.69559866790564
+        ]
+      ]
+    },
+    {
+      "case": "8x5:daily",
+      "removed": [
+        [
+          "far-purlin",
+          "hidden",
+          1200.4500481733571,
+          335.29559866790555
+        ]
+      ],
+      "added": [
+        [
+          "far-purlin",
+          "hidden",
+          1238.4500481733571,
+          354.29559866790555
+        ]
+      ]
+    },
+    {
+      "case": "8x5:free",
+      "removed": [
+        [
+          "far-purlin",
+          "hidden",
+          1200.4500481733571,
+          335.29559866790555
+        ]
+      ],
+      "added": [
+        [
+          "far-purlin",
+          "hidden",
+          1238.4500481733571,
+          354.29559866790555
+        ]
+      ]
+    },
+    {
+      "case": "8x8:daily",
+      "removed": [
+        [
+          "far-purlin",
+          "hidden",
+          760.4500481733571,
+          104.69559866790564
+        ]
+      ],
+      "added": [
+        [
+          "far-purlin",
+          "hidden",
+          798.4500481733571,
+          123.69559866790564
+        ]
+      ]
+    },
+    {
+      "case": "8x8:free",
+      "removed": [
+        [
+          "far-purlin",
+          "hidden",
+          760.4500481733571,
+          104.69559866790564
+        ]
+      ],
+      "added": [
+        [
+          "far-purlin",
+          "hidden",
+          798.4500481733571,
+          123.69559866790564
+        ]
+      ]
+    },
+    {
+      "case": "10x6:daily",
+      "removed": [
+        [
+          "far-purlin",
+          "hidden",
+          1250.6167148400236,
+          360.428932001239
+        ]
+      ],
+      "added": [
+        [
+          "far-purlin",
+          "hidden",
+          1384.6167148400236,
+          427.428932001239
+        ]
+      ]
+    },
+    {
+      "case": "10x6:free",
+      "removed": [
+        [
+          "far-purlin",
+          "hidden",
+          1250.6167148400236,
+          360.428932001239
+        ]
+      ],
+      "added": [
+        [
+          "far-purlin",
+          "hidden",
+          1384.6167148400236,
+          427.428932001239
+        ]
+      ]
+    },
+    {
+      "case": "10x8:daily",
+      "removed": [
+        [
+          "far-purlin",
+          "hidden",
+          760.4500481733571,
+          104.69559866790564
+        ]
+      ],
+      "added": [
+        [
+          "far-purlin",
+          "hidden",
+          676.4500481733571,
+          62.69559866790564
+        ]
+      ]
+    },
+    {
+      "case": "10x8:free",
+      "removed": [
+        [
+          "far-purlin",
+          "hidden",
+          760.4500481733571,
+          104.69559866790564
+        ]
+      ],
+      "added": [
+        [
+          "far-purlin",
+          "hidden",
+          676.4500481733571,
+          62.69559866790564
+        ]
+      ]
+    }
+  ],
+  "sourceHashes": {
+    "driver": "fceb06d09ab1334854bac21b31110f6afc633ffccdff08d7fdbf0388af52a4b9",
+    "generator": "7e417aa67248a4c3d1d158b1759bb315ce8c302835bd951379f04f01b93098b6",
+    "config": "1dab736cf7fb9faee4b6a2d64f72ceac05e001f10309905f0d8772ff45ac545d",
+    "projection": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+    "materials": "784b343e9288acc140e7d09f28b77a77b03fcd27df4d90aecb71e457754d1bcb",
+    "layout": "e13258b3db8457168455ecc380007e50276fe7d6c6adef3c627493aa66a3c867",
+    "scene": "64c73fd635c90186db882c7739c9079f16b9e7e4ed8dc77c1e182dec2243e53d"
+  },
+  "newGeometryDriver": "462f688d4d8265756b79cfd9dae21751ee42153f9e76f835fdc61edfb198992b",
+  "newGeometrySourceStable": true
+}

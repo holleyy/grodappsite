@@ -1,0 +1,25 @@
+{
+  "fullSuite": {
+    "tests": 1710,
+    "passed": 1709,
+    "failed": 1,
+    "durationMs": 1727306.115822,
+    "failure": "Unchanged native Box Room mean bake142.8ms exceeded120ms while the suite shared the host with browser qualification."
+  },
+  "serialRetest": {
+    "file": "tests/render.test.js",
+    "tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "durationMs": 29803.906815,
+    "unchangedGitBlob": "6275328509e887d6e76d313c630ebf5834d252de"
+  },
+  "finalRenderer": {
+    "unitTests": 5,
+    "passed": 5,
+    "pixelViews": 96,
+    "pixelFailures": 0,
+    "note": "Final strip rounding correction was made after this full-suite process had loaded the renderer unit file; the exact final renderer is independently qualified here."
+  },
+  "build": "boxroom-paper-2e79b697b807"
+}

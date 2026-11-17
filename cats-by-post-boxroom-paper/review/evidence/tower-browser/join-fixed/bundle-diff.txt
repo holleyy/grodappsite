@@ -1,0 +1,16 @@
+--- cdeecf69437f
++++ 2e79b697b807
+@@ -1220,7 +1220,12 @@
+      // A three-storey material period continues the shaft through zoom/pan.
+      // Only the visible part is baked; camera depth never grows a world canvas.
+      const period=layer.period,first=Math.max(0,Math.floor((-ty/s-b.top)/period)),end=(ch-ty)/s;
+-     for(let y=b.top+first*period;y<end;y+=period)c.drawImage(layer.canvas,b.left,y,b.width,period);
++     for(let y=b.top+first*period;y<end;y+=period){
++      // Outward device-pixel rounding gives adjacent strips at most one pixel
++      // of overlap. Fractional drawImage edges otherwise leave alpha hairlines.
++      const paintTop=(Math.floor(y*s+ty)-ty)/s,paintBottom=(Math.ceil((y+period)*s+ty)-ty)/s;
++      c.drawImage(layer.canvas,b.left,paintTop,b.width,paintBottom-paintTop);
++     }
+     }else c.drawImage(layer.canvas,b.left,b.top,b.right-b.left,b.bottom-b.top);
+    }this.bakes++;
+   }

@@ -1,0 +1,1774 @@
+{
+  "method": "Canonical BR.build min/max day/night fixtures; actual Scene.prepare at density1.25 and SceneryCache.draw on real transparent Canvas. Interior alpha must remain at least250 across main-to-tail and tail-to-tail joins. Removing the tail must visibly fail coverage.",
+  "source": "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper",
+  "sourceHashes": {
+    "driver": "e227b3c3b936a92b81e974f294c45c530f43dcf25ca8873f36eee2af988ee4ff",
+    "generator": "7e417aa67248a4c3d1d158b1759bb315ce8c302835bd951379f04f01b93098b6",
+    "config": "1dab736cf7fb9faee4b6a2d64f72ceac05e001f10309905f0d8772ff45ac545d",
+    "projection": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+    "materials": "784b343e9288acc140e7d09f28b77a77b03fcd27df4d90aecb71e457754d1bcb",
+    "layout": "e13258b3db8457168455ecc380007e50276fe7d6c6adef3c627493aa66a3c867",
+    "scene": "64c73fd635c90186db882c7739c9079f16b9e7e4ed8dc77c1e182dec2243e53d",
+    "renderer": "f7b555d260ea88ffdaffd83c2b2e6fdf175ae910ee49f95530e7ca8ec320618c"
+  },
+  "checks": [
+    {
+      "w": 5,
+      "h": 4,
+      "light": "wed",
+      "rows": [
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 467204,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 467784,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": 80,
+          "samples": 11055,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 467200,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 921604,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 922752,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 921600,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1369604,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1371312,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 1369600,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1600004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1602000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 1600000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 1868804,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 1868800,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": 80,
+          "samples": 22125,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 1868800,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 3686404,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 3686400,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 3686400,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 5465604,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 5465600,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 5465600,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 6400004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "h": 4,
+      "light": "night",
+      "rows": [
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 467204,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 467784,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": 80,
+          "samples": 11055,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 467200,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 921604,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 922752,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 921600,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1369604,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1371312,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 1369600,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1600004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1602000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 1600000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 1868804,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 1868800,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": 80,
+          "samples": 22125,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 1868800,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 3686404,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 3686400,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 3686400,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 5465604,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 5465600,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 5465600,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 6400004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 8,
+      "light": "wed",
+      "rows": [
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 697604,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 698472,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": 80,
+          "samples": 11055,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 697600,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1376004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1377720,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 1376000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1600004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 799
+          },
+          "cacheBytes": 1602000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 1600000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1600004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1602000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 1600000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 2790404,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 2790400,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": 80,
+          "samples": 22125,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 2790400,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 5504004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 5504000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 5504000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 6400004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 6400004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 8,
+      "light": "night",
+      "rows": [
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 697604,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 698472,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.126315789,
+          "tailStart": 80,
+          "samples": 11055,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 697600,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1376004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1377720,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.25,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 1376000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1600004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 799
+          },
+          "cacheBytes": 1602000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 0.371,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 1600000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": -100,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1600004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": 0.5,
+          "samples": 12000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 800
+          },
+          "cacheBytes": 1602000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 1,
+          "scale": 1.17,
+          "tailStart": 80,
+          "samples": 11280,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 720
+          },
+          "cacheBytes": 1600000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 2790404,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 2790400,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.126315789,
+          "tailStart": 80,
+          "samples": 22125,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 2790400,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 5504004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 5504000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.25,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 5504000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 6400004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 0.371,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": -100,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": null,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1600
+          },
+          "cacheBytes": 6400004,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": 0.5,
+          "samples": 24000,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1599
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        },
+        {
+          "density": 2,
+          "scale": 1.17,
+          "tailStart": 80,
+          "samples": 22560,
+          "minAlpha": 255,
+          "mainJoinMinimum": 255,
+          "repeatJoinMinimum": 255,
+          "bad": [],
+          "finiteControl": {
+            "minAlpha": 0,
+            "missingRows": 1440
+          },
+          "cacheBytes": 6400000,
+          "bounded": true,
+          "stationaryCacheReused": true,
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "sourceStable": true
+}

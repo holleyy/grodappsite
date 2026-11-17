@@ -1,0 +1,70 @@
+{
+  "base": "0be839a06097fa63754b8a2474cf74e5378b2cd7",
+  "tree": "130c1768fc7ba9d1edfffa123ef91734e1c1af23",
+  "build": "boxroom-paper-3d06ed8693a7",
+  "changedFiles": 30,
+  "allChangesOwned": true,
+  "unownedRootEntriesPreserved": 24,
+  "stagedBytesMatchLocal": true,
+  "qualifiedRuntimeUnchanged": true,
+  "commit": "c4ce9aaa1c2ae2cbc4f94fde8a73e8440f58a62f",
+  "rawVerification": {
+    "commit": "c4ce9aaa1c2ae2cbc4f94fde8a73e8440f58a62f",
+    "build": "boxroom-paper-3d06ed8693a7",
+    "verifiedAt": "2026-11-17T08:21:08.448983+00:00",
+    "files": [
+      {
+        "path": "boxroom-build.json",
+        "bytes": 6654,
+        "sha256": "3bb770231f87752492a9965edc84292b849679b8d34a227ef22293d77923a57d",
+        "matchesQualifiedLocal": true
+      },
+      {
+        "path": "game/engine.html",
+        "bytes": 17405144,
+        "sha256": "ebb43adf905b12ec11482138e5b9c63d27a6f5b10ae3e2c50020b5425fa36536",
+        "matchesQualifiedLocal": true
+      },
+      {
+        "path": "rooms/boxroom.js",
+        "bytes": 647370,
+        "sha256": "a125dfc40ac366e9de6efdac6fecb4177adc2afb019cb732f75d188049ab7457",
+        "matchesQualifiedLocal": true
+      },
+      {
+        "path": "study.html",
+        "bytes": 2789,
+        "sha256": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+        "matchesQualifiedLocal": true
+      },
+      {
+        "path": "regular.html",
+        "bytes": 1544,
+        "sha256": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9",
+        "matchesQualifiedLocal": true
+      },
+      {
+        "path": "review/index.html",
+        "bytes": 6750,
+        "sha256": "7e978556bcbc5406b74d16a66a879b8172f7662db54a0bcdb3d976071e3752b3",
+        "matchesQualifiedLocal": true
+      },
+      {
+        "path": "review/roof-after.webp",
+        "bytes": 66356,
+        "sha256": "dcfbaedaaf13ba8d8a34dbe0dd48a9e5cbc362f943f50f231170acaf22b124ed",
+        "matchesQualifiedLocal": true
+      }
+    ]
+  },
+  "directPagesBrowser": "Blocked by environment proxy; local nested-path browser and exact remote repository bytes verified.",
+  "pages": {
+    "runId": 44045904962,
+    "headSha": "c4ce9aaa1c2ae2cbc4f94fde8a73e8440f58a62f",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/holleyy/grodappsite/actions/runs/44045904962",
+    "updatedAt": "2026-11-17T08:24:19Z",
+    "verifiedAt": "2026-11-17T08:25:06.892Z"
+  }
+}

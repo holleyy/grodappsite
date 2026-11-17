@@ -1,0 +1,26 @@
+{
+  "build": "boxroom-paper-cdeecf69437f",
+  "releaseManifest": "/workspace/work/boxroom-tower/release/boxroom-build.json",
+  "sources": {
+    "projection": {
+      "qaSha256": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+      "releaseSha256": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+      "matches": true
+    },
+    "materials": {
+      "qaSha256": "784b343e9288acc140e7d09f28b77a77b03fcd27df4d90aecb71e457754d1bcb",
+      "releaseSha256": "784b343e9288acc140e7d09f28b77a77b03fcd27df4d90aecb71e457754d1bcb",
+      "matches": true
+    },
+    "layout": {
+      "qaSha256": "e13258b3db8457168455ecc380007e50276fe7d6c6adef3c627493aa66a3c867",
+      "releaseSha256": "e13258b3db8457168455ecc380007e50276fe7d6c6adef3c627493aa66a3c867",
+      "matches": true
+    },
+    "scene": {
+      "qaSha256": "64c73fd635c90186db882c7739c9079f16b9e7e4ed8dc77c1e182dec2243e53d",
+      "releaseSha256": "64c73fd635c90186db882c7739c9079f16b9e7e4ed8dc77c1e182dec2243e53d",
+      "matches": true
+    }
+  }
+}

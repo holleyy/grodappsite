@@ -1,37 +1,37 @@
 {
-  "build": "boxroom-paper-3d06ed8693a7",
+  "build": "boxroom-paper-2e79b697b807",
   "baseCommit": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
   "baseWebBuild": "web-c5662b5f4a0d",
   "baseEngineSha256": "64752532968aec60ae57aa37e2a9aa1f02ff5e84a9cc180cbd3f192134c5765f",
-  "engineSha256": "ebb43adf905b12ec11482138e5b9c63d27a6f5b10ae3e2c50020b5425fa36536",
-  "bundleSha256": "a125dfc40ac366e9de6efdac6fecb4177adc2afb019cb732f75d188049ab7457",
-  "bundleBytes": 647370,
-  "assetBytes": 5429710,
+  "engineSha256": "bf04e229cdee39c134a7fef429a98785b53bf5f226b7ffbf7c7d061116898ea6",
+  "bundleSha256": "a50e136c051165241f687b3000e2b6136d7b0449e56aba6d0cdb58fb86d423f8",
+  "bundleBytes": 654000,
+  "assetBytes": 5394694,
   "inputs": {
-    "src/fidelity/boxroom-paper/README.md": "bc5dae9d44c360589f3d79ee95359c4c3b7eb35cd1d58429eadbadc3b03881ef",
+    "src/fidelity/boxroom-paper/README.md": "185325bb71828a3a3c4bf2ab53672ba6a07502eb603b5627c8fa4bfedf9b47fa",
     "src/fidelity/boxroom-paper/acting.js": "4f230dc204ff341308ee50469e48cface4ad75dcf228dd5833a3b12dd5878d64",
     "src/fidelity/boxroom-paper/adapter.js": "80f2ec18c18643b708dc4df21390c632b29e860d1680235200c32e0183908530",
     "src/fidelity/boxroom-paper/assets/acting-pixel-proof.json": "06c7bbd2082c008db98c6ad7c853b817f1b34cb0500cbbe1382e85db80371a58",
     "src/fidelity/boxroom-paper/assets/acting.json": "c6ea1b8db9eb2caf93003d14227619f093aa73e9d123035eafe3f69957e13481",
     "src/fidelity/boxroom-paper/assets/acting.webp": "9f65b8da1aa8fbf04f2194d0a4447f26d87136e0e5d37c42718d1b2d361983d5",
-    "src/fidelity/boxroom-paper/assets/backdrop.json": "34cf044241c8f708c1df570b0284f08741892453b1b2e3b3181125d087f116ac",
-    "src/fidelity/boxroom-paper/assets/backdrop.webp": "a28f8e1469fb15c31f17cf57af54243b789134f3f51de9fee6242ae67b48f1d9",
+    "src/fidelity/boxroom-paper/assets/backdrop.json": "0fe2f1f162ca520fbd6e3c8e1cbfe1e14a790a02ff5a5efb26b2e67fa694b20f",
+    "src/fidelity/boxroom-paper/assets/backdrop.webp": "285ba589b608be186eebd650944e7ef45bef429678b699c09a5ad36333ad93f7",
     "src/fidelity/boxroom-paper/assets/cartons.json": "7470a42ab113f67ea449d7c9fa58df226a61b24912eef56d0d110e275621b1f2",
     "src/fidelity/boxroom-paper/assets/cartons.webp": "c9d97314bfa2bef6cbf1c76171469a13168d43478f3cbf574707cc8e116bd93b",
     "src/fidelity/boxroom-paper/assets/materials.webp": "86b815a5f6f4f2d81d1741902d8e09dbe1b66d19fb9cce9b9fc5ccb3f6179692",
-    "src/fidelity/boxroom-paper/assets/provenance.json": "265b2010426d07582a2cfe92a254c1ce675d691dfcd4f5164787ae0c7b71611b",
+    "src/fidelity/boxroom-paper/assets/provenance.json": "ac5aafe409cd8c77838f25715ad789c8b9e631a31f0d9694b54ba5783cf70974",
     "src/fidelity/boxroom-paper/assets/residents.json": "054e740e767c7379e7089c69809fe8ad4b1902915e67ae3fed4b4e61d8e0be76",
     "src/fidelity/boxroom-paper/assets/residents.webp": "3b31beef1ac47a3208de0cb872001105eb6d398b56481b098fcc2c5a2302ac1e",
     "src/fidelity/boxroom-paper/assets/special.json": "52f07ec7fb4108ea35b24c23a5cc4dba444c0fb7fb16934aead7627603c07bb6",
     "src/fidelity/boxroom-paper/assets/special.webp": "3dc59fb888050c35466bcd2cd6704e146dee65217b32634bb461d00c996d2bcb",
-    "src/fidelity/boxroom-paper/layout.js": "f6ef72a92c8ce5f754d1eb7454bead3e57677e4d3d7e7b6c0346b2de2cab3a5b",
-    "src/fidelity/boxroom-paper/materials.js": "739aa4b701ddeab82b85b57475bfbd2947ab0c173697e6a5417f4632aae9192a",
+    "src/fidelity/boxroom-paper/layout.js": "e13258b3db8457168455ecc380007e50276fe7d6c6adef3c627493aa66a3c867",
+    "src/fidelity/boxroom-paper/materials.js": "784b343e9288acc140e7d09f28b77a77b03fcd27df4d90aecb71e457754d1bcb",
     "src/fidelity/boxroom-paper/piece-frame.js": "002aa8cf7a7c0f3b26e52a95e6311821128a8f52b952e834c34d4eba52fea19b",
     "src/fidelity/boxroom-paper/pieces.js": "92378a80ca0548833ada29d2991e1bcfb11f3415294a37d8af8bd4984f4f4ccc",
     "src/fidelity/boxroom-paper/projection.js": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
-    "src/fidelity/boxroom-paper/renderer.js": "2bf69139a736aa87f2d0881cef5f59acd51fc47a73ddd4b2c12a81d5cc21b474",
+    "src/fidelity/boxroom-paper/renderer.js": "f7b555d260ea88ffdaffd83c2b2e6fdf175ae910ee49f95530e7ca8ec320618c",
     "src/fidelity/boxroom-paper/residents.js": "5260ae6cb0a8025a22b927ad7922cfd79a10fee2d9b23cee27c10fb956c883e6",
-    "src/fidelity/boxroom-paper/scene.js": "b3d696446c7852f73f7984d3a7292775a90b2da00fa5613aa5ae1231b903c9be",
+    "src/fidelity/boxroom-paper/scene.js": "64c73fd635c90186db882c7739c9079f16b9e7e4ed8dc77c1e182dec2243e53d",
     "studies/boxroom-paper/build.py": "26a815c44e237cd8833f2fb9a05a20077d71bf8dbf8c3b5eeaceb046fbe7981e",
     "studies/boxroom-paper/index.html": "197f9e3507122c41719259f40a956f9708a5a5e62953f5718c0c4db8a1d3cfd4",
     "studies/boxroom-paper/regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9",
@@ -50,11 +50,11 @@
   "changedFiles": {
     "build.json": {
       "before": "7f2079cc5432cf16d0ea806f866b2441f081e9ed487c958544fb82f437db4e3a",
-      "after": "fcda9b8bf68a8032a9727073c15cfa11d041ce2d07905f8c7f71b5902a01aeb4"
+      "after": "382ace52579718bd1b8f06b2bf5f68cad50644fd2ea2d4175f95a69be28c0537"
     },
     "game/engine.html": {
       "before": "f7c260084d1ff6b3e2e0ac3a43af3e5310a4aa7ab5b8b679cd4fc8af95b4b70f",
-      "after": "ebb43adf905b12ec11482138e5b9c63d27a6f5b10ae3e2c50020b5425fa36536"
+      "after": "bf04e229cdee39c134a7fef429a98785b53bf5f226b7ffbf7c7d061116898ea6"
     },
     "index.html": {
       "before": "5820a7a708bfdc9a9bc1f8a512db7db8db6c716bb160c444e13665142bd1e32b",
@@ -66,7 +66,7 @@
     },
     "journey/index.html": {
       "before": "de94e00ed125ec4503866f4252fc1b6d97cec6db517905b11017d6094ebb7a0e",
-      "after": "235d6b54553bfb58d667103491c175f51584f463b1ef5efe4dbe27a92fd85a9d"
+      "after": "6930b97bedd5233204aefe69d0c5f4d5d4f718d549ccc68a00dc08948acf48ef"
     },
     "journey/journey.js": {
       "before": "5f6cb5f9dbb799c98ca388ddae6b337ef9fa59311c7b9f8981e0d5b81e78e22f",
@@ -78,7 +78,7 @@
     },
     "journey/play/index.html": {
       "before": "79f38a8f82512f1e8ddae2ebb0a7853fe2d8f5e074766c6b30cbafe02257b3ff",
-      "after": "6b5ce4ad945617389cee508cb59a28ff361faa20fc4eaf923f14f56a7fed19d4"
+      "after": "a0f6c6040a38894b221bb41cf8b791c1615fdf50b8f6d519320bde25d32c7532"
     },
     "journey/preferences.js": {
       "before": "01c46d0a2ba693f7126b2eacfe84036b26b583dcf38dbf34d3e9f7b773c8aced",
@@ -86,7 +86,7 @@
     },
     "journey/start.html": {
       "before": "62df4ffd65be0a1b8b7a94fa683afead1637658dbde36e567b2956a02951bde1",
-      "after": "7be18ac31b3f5f134f79a65939b6f2be5ece72c9dded583f3690ebb001b8fb61"
+      "after": "599734c87d3a75dd4139ae641c973d7194f12bb4c58f4c3109e049f3255482c4"
     },
     "journey/start.js": {
       "before": "4816d5b3067a85cecffea2ee79b930caf7175ae5c44f7a0f6fc66356e3d73379",

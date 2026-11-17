@@ -1,0 +1,292 @@
+{
+  "scope": "Pinned candidate. Repeated actual controller restart/mode switches and replay of genuine earned growth checkpoint. Heap samples after explicit CDP GC measure settled retained JS heap, not process peak.",
+  "cycles": [
+    {
+      "i": 0,
+      "restart": {
+        "round": 1,
+        "board": {
+          "w": 7,
+          "h": 6
+        }
+      },
+      "state": {
+        "board": {
+          "w": 10,
+          "h": 8
+        },
+        "round": 14,
+        "paper": {
+          "active": true,
+          "ready": true,
+          "ambient": 0.7500000000000007,
+          "motion": true,
+          "density": 2,
+          "room": {
+            "seed": 303,
+            "w": 10,
+            "h": 8,
+            "date": "2026-11-17",
+            "mode": "free"
+          },
+          "resources": {
+            "bytes": 78233192,
+            "decodedBytes": 36085384,
+            "sceneBytes": 27607236,
+            "viewCacheBytes": 5151244,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 2910672,
+            "preparations": 3,
+            "prepareMs": 1724.300000000745,
+            "decodeMs": 311.6000000014901,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          },
+          "performance": {
+            "frames": 15,
+            "renderMsP50": 1.6000000014901161,
+            "renderMsP95": 92.40000000223517
+          }
+        },
+        "foreign": []
+      },
+      "heapUsed": 19508504,
+      "heapTotal": 20545536,
+      "documents": 7,
+      "nodes": 1753,
+      "listeners": 125
+    },
+    {
+      "i": 1,
+      "restart": {
+        "round": 1,
+        "board": {
+          "w": 7,
+          "h": 6
+        }
+      },
+      "state": {
+        "board": {
+          "w": 10,
+          "h": 8
+        },
+        "round": 14,
+        "paper": {
+          "active": true,
+          "ready": true,
+          "ambient": 0.6333333333333336,
+          "motion": true,
+          "density": 2,
+          "room": {
+            "seed": 303,
+            "w": 10,
+            "h": 8,
+            "date": "2026-11-17",
+            "mode": "free"
+          },
+          "resources": {
+            "bytes": 78233192,
+            "decodedBytes": 36085384,
+            "sceneBytes": 27607236,
+            "viewCacheBytes": 5151244,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 2910672,
+            "preparations": 3,
+            "prepareMs": 2282.2000000029802,
+            "decodeMs": 1399.3999999985099,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          },
+          "performance": {
+            "frames": 13,
+            "renderMsP50": 1.699999999254942,
+            "renderMsP95": 42.5
+          }
+        },
+        "foreign": []
+      },
+      "heapUsed": 19520864,
+      "heapTotal": 20807680,
+      "documents": 7,
+      "nodes": 1753,
+      "listeners": 125
+    },
+    {
+      "i": 2,
+      "restart": {
+        "round": 1,
+        "board": {
+          "w": 7,
+          "h": 6
+        }
+      },
+      "state": {
+        "board": {
+          "w": 10,
+          "h": 8
+        },
+        "round": 14,
+        "paper": {
+          "active": true,
+          "ready": true,
+          "ambient": 0.6833333333333338,
+          "motion": true,
+          "density": 2,
+          "room": {
+            "seed": 303,
+            "w": 10,
+            "h": 8,
+            "date": "2026-11-17",
+            "mode": "free"
+          },
+          "resources": {
+            "bytes": 78233192,
+            "decodedBytes": 36085384,
+            "sceneBytes": 27607236,
+            "viewCacheBytes": 5151244,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 2910672,
+            "preparations": 3,
+            "prepareMs": 2305.800000000745,
+            "decodeMs": 1280.8999999985099,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          },
+          "performance": {
+            "frames": 11,
+            "renderMsP50": 1.699999999254942,
+            "renderMsP95": 67.90000000223517
+          }
+        },
+        "foreign": []
+      },
+      "heapUsed": 19714308,
+      "heapTotal": 21069824,
+      "documents": 7,
+      "nodes": 1753,
+      "listeners": 125
+    },
+    {
+      "i": 3,
+      "restart": {
+        "round": 1,
+        "board": {
+          "w": 7,
+          "h": 6
+        }
+      },
+      "state": {
+        "board": {
+          "w": 10,
+          "h": 8
+        },
+        "round": 14,
+        "paper": {
+          "active": true,
+          "ready": true,
+          "ambient": 0.7000000000000005,
+          "motion": true,
+          "density": 2,
+          "room": {
+            "seed": 303,
+            "w": 10,
+            "h": 8,
+            "date": "2026-11-17",
+            "mode": "free"
+          },
+          "resources": {
+            "bytes": 78233192,
+            "decodedBytes": 36085384,
+            "sceneBytes": 27607236,
+            "viewCacheBytes": 5151244,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 2910672,
+            "preparations": 3,
+            "prepareMs": 1805.800000000745,
+            "decodeMs": 1427.6000000014901,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          },
+          "performance": {
+            "frames": 13,
+            "renderMsP50": 1.7000000029802322,
+            "renderMsP95": 360.69999999925494
+          }
+        },
+        "foreign": []
+      },
+      "heapUsed": 19801028,
+      "heapTotal": 21594112,
+      "documents": 7,
+      "nodes": 1753,
+      "listeners": 125
+    },
+    {
+      "i": 4,
+      "restart": {
+        "round": 1,
+        "board": {
+          "w": 7,
+          "h": 6
+        }
+      },
+      "state": {
+        "board": {
+          "w": 10,
+          "h": 8
+        },
+        "round": 14,
+        "paper": {
+          "active": true,
+          "ready": true,
+          "ambient": 0.6000000000000002,
+          "motion": true,
+          "density": 2,
+          "room": {
+            "seed": 303,
+            "w": 10,
+            "h": 8,
+            "date": "2026-11-17",
+            "mode": "free"
+          },
+          "resources": {
+            "bytes": 78233192,
+            "decodedBytes": 36085384,
+            "sceneBytes": 27607236,
+            "viewCacheBytes": 5151244,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 2910672,
+            "preparations": 3,
+            "prepareMs": 2940.599999997765,
+            "decodeMs": 1178,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          },
+          "performance": {
+            "frames": 9,
+            "renderMsP50": 2,
+            "renderMsP95": 81.30000000074506
+          }
+        },
+        "foreign": []
+      },
+      "heapUsed": 20019808,
+      "heapTotal": 21069824,
+      "documents": 7,
+      "nodes": 1753,
+      "listeners": 125
+    }
+  ],
+  "errors": [],
+  "build": "boxroom-paper-2e79b697b807",
+  "resourcesStable": true,
+  "heapAfterWarmup": [
+    19520864,
+    19714308,
+    19801028,
+    20019808
+  ],
+  "heapRetainedSpreadBytes": 498944,
+  "domStable": true,
+  "completed": true
+}

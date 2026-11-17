@@ -1,0 +1,689 @@
+{
+  "method": "Actual centred-gable faces, orthographic camera ray [1,1,1], geometry-only sample selection and four real Canvas renders. Hidden timber must contribute when the roof is removed; exposed timber must contribute with the roof intact.",
+  "mutation": "erase",
+  "sourceHashes": {
+    "driver": "6237567d53c6b462a530609901289aff60df880f150ce19d561dc344e9cb187b",
+    "generator": "7e417aa67248a4c3d1d158b1759bb315ce8c302835bd951379f04f01b93098b6",
+    "config": "1dab736cf7fb9faee4b6a2d64f72ceac05e001f10309905f0d8772ff45ac545d",
+    "projection": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+    "materials": "784b343e9288acc140e7d09f28b77a77b03fcd27df4d90aecb71e457754d1bcb",
+    "layout": "e13258b3db8457168455ecc380007e50276fe7d6c6adef3c627493aa66a3c867",
+    "scene": "64c73fd635c90186db882c7739c9079f16b9e7e4ed8dc77c1e182dec2243e53d"
+  },
+  "checks": [
+    {
+      "w": 5,
+      "h": 4,
+      "mode": "daily",
+      "roof": {
+        "type": "centred-gable",
+        "axis": "x",
+        "x0": 1,
+        "x1": 149,
+        "y0": 3,
+        "y1": 132,
+        "eaveZ": 46,
+        "pitch": 0.78,
+        "minimumEaveZ": 46,
+        "left": 1,
+        "right": 149,
+        "startX": 1,
+        "cutY": 67.5,
+        "ridgeY": 67.5,
+        "ridgeZ": 96.31,
+        "eaves": [
+          {
+            "side": "far",
+            "a": [
+              1,
+              3,
+              46
+            ],
+            "b": [
+              149,
+              3,
+              46
+            ]
+          },
+          {
+            "side": "near",
+            "a": [
+              1,
+              132,
+              46
+            ],
+            "b": [
+              149,
+              132,
+              46
+            ]
+          }
+        ],
+        "retained": [
+          {
+            "key": "complete-far",
+            "x0": 1,
+            "x1": 149,
+            "y0": 3,
+            "y1": 67.5
+          },
+          {
+            "key": "left-near",
+            "x0": 1,
+            "x1": 31,
+            "y0": 67.5,
+            "y1": 132
+          }
+        ],
+        "frame": [
+          {
+            "key": "left-far-verge",
+            "id": "roof-verge-cap-far",
+            "a": [
+              1,
+              3,
+              46
+            ],
+            "b": [
+              1,
+              67.5,
+              96.31
+            ],
+            "width": 4.2,
+            "depth": 4.2
+          },
+          {
+            "key": "left-near-verge",
+            "id": "roof-verge-cap-near",
+            "a": [
+              1,
+              67.5,
+              96.31
+            ],
+            "b": [
+              1,
+              132,
+              46
+            ],
+            "width": 4.2,
+            "depth": 4.2
+          },
+          {
+            "key": "left-tie",
+            "id": "gable-left-tie",
+            "a": [
+              2.200000000000003,
+              3,
+              46
+            ],
+            "b": [
+              2.200000000000003,
+              132,
+              46
+            ],
+            "width": 3.2,
+            "depth": 3.2
+          },
+          {
+            "key": "left-collar",
+            "id": "gable-collar",
+            "a": [
+              2.200000000000003,
+              39.76499999999999,
+              74.6767
+            ],
+            "b": [
+              2.200000000000003,
+              95.23500000000001,
+              74.6767
+            ],
+            "width": 2.7,
+            "depth": 2.7
+          },
+          {
+            "key": "left-king-post",
+            "id": "gable-king-post",
+            "a": [
+              2.200000000000003,
+              67.5,
+              46
+            ],
+            "b": [
+              2.200000000000003,
+              67.5,
+              95.11
+            ],
+            "width": 2.7,
+            "depth": 2.7
+          },
+          {
+            "key": "right-far-rafter",
+            "id": "gable-right-far",
+            "a": [
+              147.5,
+              4.5,
+              45.17
+            ],
+            "b": [
+              147.5,
+              67.5,
+              94.31
+            ],
+            "width": 3.2,
+            "depth": 3.2
+          },
+          {
+            "key": "ridge",
+            "id": "roof-ridge-cap",
+            "a": [
+              1,
+              67.5,
+              96.31
+            ],
+            "b": [
+              147.5,
+              67.5,
+              96.31
+            ],
+            "width": 4.2,
+            "depth": 4.2
+          },
+          {
+            "key": "far-wallplate",
+            "id": "roof-far-wallplate",
+            "a": [
+              2.200000000000003,
+              4.200000000000003,
+              44.6
+            ],
+            "b": [
+              147.5,
+              4.200000000000003,
+              44.6
+            ],
+            "width": 3,
+            "depth": 3
+          },
+          {
+            "key": "far-purlin",
+            "id": "roof-purlin",
+            "a": [
+              2.200000000000003,
+              36,
+              69.74000000000001
+            ],
+            "b": [
+              147.5,
+              36,
+              69.74000000000001
+            ],
+            "width": 2.7,
+            "depth": 2.7
+          }
+        ],
+        "supports": [
+          {
+            "id": "back-post-0",
+            "key": "left-far-eave",
+            "point": [
+              2.200000000000003,
+              4.5,
+              46
+            ]
+          },
+          {
+            "id": "side-post-3",
+            "key": "left-near-eave",
+            "point": [
+              2.200000000000003,
+              131,
+              46
+            ]
+          },
+          {
+            "id": "roof-rear-support",
+            "key": "right-rear-eave",
+            "point": [
+              147.5,
+              4.5,
+              45.17
+            ]
+          }
+        ],
+        "cuts": [
+          {
+            "key": "ridge-section",
+            "vertices": [
+              [
+                31,
+                67.5,
+                96.71000000000001
+              ],
+              [
+                149,
+                67.5,
+                96.71000000000001
+              ],
+              [
+                149,
+                67.5,
+                94.91
+              ],
+              [
+                31,
+                67.5,
+                94.91
+              ]
+            ],
+            "projected": [
+              {
+                "x": 615.5208333333333,
+                "y": 55.4708333333333
+              },
+              {
+                "x": 1082.6041666666667,
+                "y": 289.01250000000005
+              },
+              {
+                "x": 1082.6041666666667,
+                "y": 296.1375000000001
+              },
+              {
+                "x": 615.5208333333333,
+                "y": 62.59583333333336
+              }
+            ]
+          },
+          {
+            "key": "left-near-section",
+            "vertices": [
+              [
+                31,
+                67.5,
+                96.71000000000001
+              ],
+              [
+                31,
+                132,
+                46.4
+              ],
+              [
+                31,
+                132,
+                44.6
+              ],
+              [
+                31,
+                67.5,
+                94.91
+              ]
+            ],
+            "projected": [
+              {
+                "x": 615.5208333333333,
+                "y": 55.4708333333333
+              },
+              {
+                "x": 360.2083333333333,
+                "y": 382.27083333333337
+              },
+              {
+                "x": 360.2083333333333,
+                "y": 389.3958333333333
+              },
+              {
+                "x": 615.5208333333333,
+                "y": 62.59583333333336
+              }
+            ]
+          }
+        ],
+        "removed": [
+          "near-pitch-field",
+          "near-wall",
+          "right-near-rafter"
+        ]
+      },
+      "light": "wed",
+      "coverage": [
+        {
+          "member": "left-tie",
+          "faceCount": 5,
+          "hiddenCandidates": 31,
+          "exposedCandidates": 145,
+          "selected": 4
+        },
+        {
+          "member": "left-collar",
+          "faceCount": 5,
+          "hiddenCandidates": 68,
+          "exposedCandidates": 0,
+          "selected": 2
+        },
+        {
+          "member": "right-far-rafter",
+          "faceCount": 5,
+          "hiddenCandidates": 0,
+          "exposedCandidates": 93,
+          "selected": 2
+        },
+        {
+          "member": "far-purlin",
+          "faceCount": 5,
+          "hiddenCandidates": 170,
+          "exposedCandidates": 0,
+          "selected": 2
+        }
+      ],
+      "samples": [
+        {
+          "member": "left-tie",
+          "type": "hidden",
+          "pixel": {
+            "x": 506,
+            "y": 491
+          },
+          "projected": {
+            "x": 463.2833815066905,
+            "y": 212.16226533457228
+          },
+          "world": [
+            2.2452099590528505,
+            77.20519778894158,
+            47.6
+          ],
+          "memberFace": "gable-left-tiec:3567",
+          "memberMargin": 5.504642351971018,
+          "roofHit": {
+            "t": 70.71232905877842,
+            "margin": 21.63173242011097,
+            "world": [
+              25.35753901783127,
+              100.31752684771999,
+              70.71232905877842
+            ],
+            "id": "roof-underlay:4033"
+          },
+          "score": 5.504642351971018,
+          "intactChanged": 0,
+          "unroofedChanged": 0,
+          "total": 25,
+          "pass": false
+        },
+        {
+          "member": "left-tie",
+          "type": "hidden",
+          "pixel": {
+            "x": 123,
+            "y": 708
+          },
+          "projected": {
+            "x": 271.7833815066905,
+            "y": 320.6622653345723
+          },
+          "world": [
+            3.8000000000000043,
+            127.13893519830978,
+            45.9337374093682
+          ],
+          "memberFace": "gable-left-tied:3568",
+          "memberMargin": 5.430106752721041,
+          "roofHit": {
+            "t": 48.10109310372224,
+            "margin": 16.9757141641055,
+            "world": [
+              5.967355694354048,
+              129.3062908926638,
+              48.10109310372224
+            ],
+            "id": "roof-underlay:4034"
+          },
+          "score": 5.430106752721041,
+          "intactChanged": 0,
+          "unroofedChanged": 0,
+          "total": 25,
+          "pass": false
+        },
+        {
+          "member": "left-tie",
+          "type": "exposed",
+          "pixel": {
+            "x": 876,
+            "y": 331
+          },
+          "projected": {
+            "x": 648.2833815066905,
+            "y": 132.16226533457228
+          },
+          "world": [
+            3.799999999999997,
+            32.023145724625564,
+            45.99689530410504
+          ],
+          "memberFace": "gable-left-tied:3568",
+          "memberMargin": 5.65371355047104,
+          "roofHit": null,
+          "score": 5.65371355047104,
+          "intactChanged": 0,
+          "unroofedChanged": 0,
+          "total": 25,
+          "pass": false
+        },
+        {
+          "member": "left-tie",
+          "type": "exposed",
+          "pixel": {
+            "x": 902,
+            "y": 293
+          },
+          "projected": {
+            "x": 661.2833815066905,
+            "y": 113.16226533457228
+          },
+          "world": [
+            2.2452099590528505,
+            27.184145157362614,
+            47.6
+          ],
+          "memberFace": "gable-left-tiec:3567",
+          "memberMargin": 5.504642351971037,
+          "roofHit": null,
+          "score": 5.504642351971037,
+          "intactChanged": 0,
+          "unroofedChanged": 0,
+          "total": 25,
+          "pass": false
+        },
+        {
+          "member": "left-collar",
+          "type": "hidden",
+          "pixel": {
+            "x": 692,
+            "y": 194
+          },
+          "projected": {
+            "x": 556.2833815066905,
+            "y": 63.66226533457228
+          },
+          "world": [
+            3.549999999999997,
+            55.01525098778346,
+            74.67321109357873
+          ],
+          "memberFace": "gable-collard:3573",
+          "memberMargin": 4.767243034691096,
+          "roofHit": {
+            "t": 92.2995555519777,
+            "margin": 26.74187149313449,
+            "world": [
+              21.176344458398972,
+              72.64159544618244,
+              92.2995555519777
+            ],
+            "id": "roof-underlay:4032"
+          },
+          "score": 4.767243034691096,
+          "intactChanged": 0,
+          "unroofedChanged": 0,
+          "total": 25,
+          "pass": false
+        },
+        {
+          "member": "left-collar",
+          "type": "hidden",
+          "pixel": {
+            "x": 704,
+            "y": 167
+          },
+          "projected": {
+            "x": 562.2833815066905,
+            "y": 50.16226533457228
+          },
+          "world": [
+            2.250857327473895,
+            52.20031884157315,
+            76.02669999999999
+          ],
+          "memberFace": "gable-collarc:3572",
+          "memberMargin": 4.599537936378669,
+          "roofHit": {
+            "t": 94.12616702447919,
+            "margin": 17.64420829753501,
+            "world": [
+              20.35032435195309,
+              70.29978586605235,
+              94.12616702447919
+            ],
+            "id": "roof-underlay:4032"
+          },
+          "score": 4.599537936378669,
+          "intactChanged": 0,
+          "unroofedChanged": 0,
+          "total": 25,
+          "pass": false
+        },
+        {
+          "member": "right-far-rafter",
+          "type": "exposed",
+          "pixel": {
+            "x": 2070,
+            "y": 755
+          },
+          "projected": {
+            "x": 1245.2833815066906,
+            "y": 344.1622653345723
+          },
+          "world": [
+            149.1,
+            26.502093093046575,
+            62.328474251473445
+          ],
+          "memberFace": "gable-right-fard:3586",
+          "memberMargin": 7.722589312441443,
+          "roofHit": null,
+          "score": 7.722589312441443,
+          "intactChanged": 0,
+          "unroofedChanged": 0,
+          "total": 25,
+          "pass": false
+        },
+        {
+          "member": "right-far-rafter",
+          "type": "exposed",
+          "pixel": {
+            "x": 2045,
+            "y": 748
+          },
+          "projected": {
+            "x": 1232.7833815066906,
+            "y": 340.6622653345723
+          },
+          "world": [
+            149.09999999999997,
+            29.659987829888678,
+            64.79163214621028
+          ],
+          "memberFace": "gable-right-fard:3586",
+          "memberMargin": 7.722589312441443,
+          "roofHit": null,
+          "score": 7.722589312441443,
+          "intactChanged": 0,
+          "unroofedChanged": 0,
+          "total": 25,
+          "pass": false
+        },
+        {
+          "member": "far-purlin",
+          "type": "hidden",
+          "pixel": {
+            "x": 1638,
+            "y": 545
+          },
+          "projected": {
+            "x": 1029.2833815066906,
+            "y": 239.16226533457228
+          },
+          "world": [
+            104.05099943273709,
+            36.02151357841524,
+            71.09
+          ],
+          "memberFace": "roof-purlinc:3600",
+          "memberMargin": 4.703427747594145,
+          "roofHit": {
+            "t": 74.12082086892674,
+            "margin": 22.157801701961304,
+            "world": [
+              107.08182030166381,
+              39.05233444734198,
+              74.12082086892674
+            ],
+            "id": "roof-underlay:3603"
+          },
+          "score": 4.703427747594145,
+          "intactChanged": 0,
+          "unroofedChanged": 0,
+          "total": 25,
+          "pass": false
+        },
+        {
+          "member": "far-purlin",
+          "type": "hidden",
+          "pixel": {
+            "x": 1666,
+            "y": 559
+          },
+          "projected": {
+            "x": 1043.2833815066906,
+            "y": 246.16226533457228
+          },
+          "world": [
+            107.58784153800025,
+            36.02151357841524,
+            71.09
+          ],
+          "memberFace": "roof-purlinc:3600",
+          "memberMargin": 4.703427747594145,
+          "roofHit": {
+            "t": 74.12082086892674,
+            "margin": 22.157801701961304,
+            "world": [
+              110.61866240692697,
+              39.05233444734198,
+              74.12082086892674
+            ],
+            "id": "roof-underlay:3603"
+          },
+          "score": 4.703427747594145,
+          "intactChanged": 0,
+          "unroofedChanged": 0,
+          "total": 25,
+          "pass": false
+        }
+      ],
+      "evidence": "roof-depth-5x4-daily.png"
+    }
+  ],
+  "errors": [],
+  "sourceStable": true
+}

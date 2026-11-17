@@ -1,0 +1,96 @@
+{
+  "scope": "Independent visual review of current architecture ridge ends; no resident/gameplay claims from this harness",
+  "errors": [],
+  "cases": [
+    {
+      "key": "5x4-day",
+      "end": "left",
+      "point": [
+        1,
+        67.5,
+        96.31
+      ]
+    },
+    {
+      "key": "5x4-day",
+      "end": "right",
+      "point": [
+        147.5,
+        67.5,
+        96.31
+      ]
+    },
+    {
+      "key": "10x8-day",
+      "end": "left",
+      "point": [
+        1,
+        99.5,
+        121.27
+      ]
+    },
+    {
+      "key": "10x8-day",
+      "end": "right",
+      "point": [
+        227.5,
+        99.5,
+        121.27
+      ]
+    },
+    {
+      "key": "5x4-night",
+      "end": "left",
+      "point": [
+        1,
+        67.5,
+        96.31
+      ]
+    },
+    {
+      "key": "5x4-night",
+      "end": "right",
+      "point": [
+        147.5,
+        67.5,
+        96.31
+      ]
+    },
+    {
+      "key": "10x8-night",
+      "end": "left",
+      "point": [
+        1,
+        99.5,
+        121.27
+      ]
+    },
+    {
+      "key": "10x8-night",
+      "end": "right",
+      "point": [
+        227.5,
+        99.5,
+        121.27
+      ]
+    }
+  ],
+  "inputs": {
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/projection.js": {
+      "sha256": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+      "bytes": 1109
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/materials.js": {
+      "sha256": "784b343e9288acc140e7d09f28b77a77b03fcd27df4d90aecb71e457754d1bcb",
+      "bytes": 7570
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/layout.js": {
+      "sha256": "e13258b3db8457168455ecc380007e50276fe7d6c6adef3c627493aa66a3c867",
+      "bytes": 32820
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/scene.js": {
+      "sha256": "64c73fd635c90186db882c7739c9079f16b9e7e4ed8dc77c1e182dec2243e53d",
+      "bytes": 17844
+    }
+  }
+}
