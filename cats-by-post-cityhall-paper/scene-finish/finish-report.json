@@ -1,0 +1,30 @@
+{
+  "runtimeSha256": "2c5396e4c60d1e3c59ef49600d1d35aade439a4e293bcaa2b575e57585ff0f26",
+  "before": {
+    "assets": 209,
+    "assetsSha256": "901b9f1381db6d590a6e26adc65aa5df267937f87ed2c8b2293a7029b73d15e9",
+    "layoutSha256": "7f17d37970a8b14549c74119247052817fff460ad7254557666ea9895d549747",
+    "pipeGeometrySha256": "a3c073dad3ef4475c4bcac6d540473387628a9a50be0e982528267391763acf6",
+    "pipePainterSha256": "e2a4e8ee6999d7cf92bf94cedf1c0f4cbeaef847ba7d62637cef102d3d88949f",
+    "resources": {
+      "bytes": 77658032,
+      "buffers": 55,
+      "bakes": 13,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    }
+  },
+  "after": {
+    "assets": 209,
+    "assetsSha256": "901b9f1381db6d590a6e26adc65aa5df267937f87ed2c8b2293a7029b73d15e9",
+    "layoutSha256": "7f17d37970a8b14549c74119247052817fff460ad7254557666ea9895d549747",
+    "pipeGeometrySha256": "a3c073dad3ef4475c4bcac6d540473387628a9a50be0e982528267391763acf6",
+    "pipePainterSha256": "e2a4e8ee6999d7cf92bf94cedf1c0f4cbeaef847ba7d62637cef102d3d88949f",
+    "resources": {
+      "bytes": 77658032,
+      "buffers": 55,
+      "bakes": 13,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    }
+  },
+  "scope": "Exact retained artwork/registration, measured room layout/routes and approved pipe mesh/paint; actual board rasters checked separately. Resource count covers owned canvas backing only."
+}

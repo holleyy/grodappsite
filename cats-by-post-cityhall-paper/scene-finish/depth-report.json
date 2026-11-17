@@ -1,0 +1,89 @@
+{
+  "checks": [
+    "baseline reproduces the gallery-over-stair defect",
+    "nearer gold stair rail wins at the overlapping view ray",
+    "neighbouring gallery post stays opaque",
+    "nearer floor-worker route remains ahead of stairs",
+    "gallery-worker lower body remains behind gallery rail",
+    "no browser errors"
+  ],
+  "samples": {
+    "before": {
+      "crossing": [
+        29.3,
+        43.4,
+        53.92666666666667
+      ],
+      "architecture": [
+        237,
+        207,
+        130,
+        255
+      ],
+      "foreground": [
+        21,
+        79,
+        58,
+        255
+      ],
+      "nearbyGallery": [
+        21,
+        80,
+        58,
+        255
+      ],
+      "floorWorker": [
+        255,
+        0,
+        255,
+        255
+      ],
+      "galleryWorker": [
+        22,
+        81,
+        59,
+        255
+      ]
+    },
+    "after": {
+      "crossing": [
+        29.3,
+        43.4,
+        53.92666666666667
+      ],
+      "architecture": [
+        237,
+        207,
+        130,
+        255
+      ],
+      "foreground": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "nearbyGallery": [
+        21,
+        80,
+        58,
+        255
+      ],
+      "floorWorker": [
+        255,
+        0,
+        255,
+        255
+      ],
+      "galleryWorker": [
+        22,
+        81,
+        59,
+        255
+      ]
+    }
+  },
+  "errors": [],
+  "runtimeSha256": "2c5396e4c60d1e3c59ef49600d1d35aade439a4e293bcaa2b575e57585ff0f26",
+  "scope": "Actual baked pixels plus diagnostic actor markers through the actual compositor at measured route coordinates. Native artwork is inspected in ordinary captures; no assets or scene dimensions are changed by these checks."
+}

@@ -1,0 +1,8 @@
+{
+  "runtimeSha256": "2c5396e4c60d1e3c59ef49600d1d35aade439a4e293bcaa2b575e57585ff0f26",
+  "finalArchiveSha256": "71db350dc6668b1f636b4c8ff93641ad43c41eb82aacbf75df0b94faae45397a",
+  "exactRebuild": true,
+  "buildInputCount": 242,
+  "focusedTests": 57,
+  "method": "The final extracted source archive reproduces the runtime and passes every included City Hall paper regression."
+}

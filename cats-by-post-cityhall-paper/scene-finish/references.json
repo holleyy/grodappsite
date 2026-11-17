@@ -1,0 +1,16 @@
+{
+  "depot": {
+    "source": "work/cityhall-paper/black-workers/depot-after.png",
+    "sourceSha256": "893b1b643c53cae77b02d6022ae72ad28a4c3cfd6e18e7713f92db72cecac4f5",
+    "width": 1440,
+    "height": 1000,
+    "purpose": "Retained implemented reference, not an edit to this room"
+  },
+  "office": {
+    "source": "docs/review-images/sorting-office-cat-scale/after-room.jpg",
+    "sourceSha256": "191ed20f22f16ebe11a0ca19b3c51455ce306e1b00b3a687c624a4eb95135aed",
+    "width": 1100,
+    "height": 850,
+    "purpose": "Retained implemented reference, not an edit to this room"
+  }
+}
