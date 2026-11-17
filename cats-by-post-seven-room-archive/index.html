@@ -34,22 +34,41 @@ video{display:block;width:100%;background:#252d2d}
 footer{padding-top:1.6rem;border-top:1px solid #a99c86}
 footer p{max-width:58rem}
 @media(max-width:42rem){.comparison{grid-template-columns:minmax(0,1fr);gap:.75rem}.video-labels{gap:.25rem}}
+
+.history{display:grid;gap:1.4rem 1rem;grid-template-columns:repeat(2,minmax(0,1fr))}
+.history-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.history figure>a{display:block}
+.history figcaption{margin-top:.5rem}
+.history figcaption strong{display:block;font-size:1.08rem}
+.history time{display:block;color:#4a5143}
+details{margin-top:1.3rem}
+summary{cursor:pointer;color:#24594f;text-decoration:underline;text-underline-offset:.2rem}
+summary:focus-visible{outline:3px solid #a14729;outline-offset:3px}
+details p{margin:.35rem 0 .65rem}
+@media(max-width:48rem){.history-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:36rem){.history{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
 <main>
 <header>
 <h1>Cats by Post</h1>
-<p>Seven rooms before and after the web integration in PR #53.</p>
+<p>Seven rooms before and after PR #53, with earlier playable builds and scene studies for the Sorting Office, Civic Mail Hall and Parcel Room.</p>
 <div class="builds"><div><strong>Before</strong><code>web-ed1ccc22b4e9</code><span>Commit <code>24a086d2d0036ba3c8d1dfa408f6c7166fa88cb9</code></span></div><div><strong>After</strong><code>web-2a72996faf2c</code><span>Commit <code>d5a5f5f63953b48c138160183d154371d13a41a0</code></span></div></div>
 <nav aria-label="Jump to a room"><ul><li><a href="#office">Sorting Office</a></li><li><a href="#depot">Town Depot</a></li><li><a href="#train">Valley Mail</a></li><li><a href="#cityhall">Civic Mail Hall</a></li><li><a href="#parcel">Parcel Room</a></li><li><a href="#christmas">Christmas Night Mail</a></li><li><a href="#boxroom">Lantern Loft</a></li></ul></nav>
 </header>
 
 <section id="office" aria-labelledby="office-title">
 <h2 id="office-title">Sorting Office</h2>
-<p class="summary"><strong>Campaign · Delivery 1-4</strong> · The Sorting Office retains its existing paper presentation.</p>
-<div class="comparison"><figure><img src="before-office.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Sorting Office, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>sorting-office-paper-de889dad5105</figcaption></figure><figure><img src="after-office.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Sorting Office, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>sorting-office-paper-de889dad5105</figcaption></figure></div>
-
+<p class="summary">The first Office was a pixel scene with pigeonholes along the wall. Follow the same ginger-and-blue puzzle from the pixel game through early paper to the canalside Office.</p>
+<div class="history history-4">
+<figure><a href="history-office-scene.webp"><img loading="lazy" decoding="async" src="history-office-scene.webp" width="960" height="640" alt="The first pixel Office has a wooden sorting table, stacked mail and rows of red and blue pigeonholes."></a><figcaption><time datetime="2026-09-29">29 Sep 2026</time><strong>Original pixel scene</strong>Scene demo, before campaign levels<br>HTML blob <code>d1845e602ac4</code> · <a href="https://github.com/holleyy/cosysortie/blob/8f15887057c4e39792e06a63e679009844170f0f/sorting_office.html" aria-label="Source for Original pixel scene at commit 8f15887057c4e39792e06a63e679009844170f0f"><code>8f158870</code></a></figcaption></figure>
+<figure><a href="history-office-pixel.webp"><img loading="lazy" decoding="async" src="history-office-pixel.webp" width="960" height="640" alt="The pixel Office has a tiled puzzle board on its timber floor beside red and blue pigeonholes."></a><figcaption><time datetime="2026-10-06">6 Oct 2026</time><strong>Pixel game</strong>Delivery 1-4 · Ginger and blue<br>Build <code>25edea3328</code> · <a href="https://github.com/holleyy/cosysortie/blob/35ea35676a8dcbc8191d9dfdebd5dad72fb666d1/sorting_office.html" aria-label="Source for Pixel game at commit 35ea35676a8dcbc8191d9dfdebd5dad72fb666d1"><code>35ea3567</code></a></figcaption></figure>
+<figure><a href="history-office-paper.webp"><img loading="lazy" decoding="async" src="history-office-paper.webp" width="960" height="640" alt="The early paper Office has layered cutout furniture, coloured pigeonholes and a tiled board."></a><figcaption><time datetime="2026-10-28">28 Oct 2026</time><strong>Early paper game</strong>Delivery 1-4 · Ginger and blue<br>Build <code>b197d8ba6b</code> · <a href="https://github.com/holleyy/cosysortie/blob/7a23fb82b84215b8844a0de3357d31d9449c7d8e/sorting_office.html" aria-label="Source for Early paper game at commit 7a23fb82b84215b8844a0de3357d31d9449c7d8e"><code>7a23fb82</code></a></figcaption></figure>
+<figure><a href="after-office.webp"><img loading="lazy" decoding="async" src="after-office.webp" width="960" height="640" alt="Merged Sorting Office with delivery 1-4 ready to play."></a><figcaption><time datetime="2026-11-17">17 Nov 2026</time><strong>PR #53 merge</strong>Delivery 1-4 · Ginger and blue<br>Build <code>web-2a72996faf2c</code> · <a href="https://github.com/holleyy/cosysortie/commit/d5a5f5f63953b48c138160183d154371d13a41a0" aria-label="PR #53 merge commit"><code>d5a5f5f6</code></a></figcaption></figure>
+</div>
+<details><summary>Compare the two pinned PR #53 builds</summary><p>Both builds show the same Sorting Office artwork on delivery 1-4.</p>
+<div class="comparison"><figure><img src="before-office.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Sorting Office, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>sorting-office-paper-de889dad5105</figcaption></figure><figure><img src="after-office.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Sorting Office, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>sorting-office-paper-de889dad5105</figcaption></figure></div></details>
 </section>
 <section id="depot" aria-labelledby="depot-title">
 <h2 id="depot-title">Town Depot</h2>
@@ -77,15 +96,25 @@ footer p{max-width:58rem}
 </section>
 <section id="cityhall" aria-labelledby="cityhall-title">
 <h2 id="cityhall-title">Civic Mail Hall</h2>
-<p class="summary"><strong>Campaign · Delivery 6-15</strong> · Civic Mail Hall retains its existing structural presentation.</p>
-<div class="comparison"><figure><img src="before-cityhall.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Civic Mail Hall, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>cityhall-fidelity-527093ea02</figcaption></figure><figure><img src="after-cityhall.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Civic Mail Hall, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>cityhall-fidelity-527093ea02</figcaption></figure></div>
-
+<p class="summary">The Hall began with a playable marble-floor study. The next two views show the same tunnel puzzle, first on its original floor and then in the merged hall.</p>
+<div class="history history-3">
+<figure><a href="history-hall-scene.webp"><img loading="lazy" decoding="async" src="history-hall-scene.webp" width="960" height="640" alt="The early Hall has a cream sorting floor with one tunnel pair, a clock and rows of wooden sorting desks."></a><figcaption><time datetime="2026-11-01">1 Nov 2026</time><strong>First playable Hall study</strong>8 × 6 floor study<br>Build <code>8034b0cbf3</code> · <a href="https://github.com/holleyy/cosysortie/blob/8bf4425a964e5e5d509b033f9d6d4e68cdf703b3/docs/rooms/previews/city-hall-scene.html" aria-label="Source for First playable Hall study at commit 8bf4425a964e5e5d509b033f9d6d4e68cdf703b3"><code>8bf4425a</code></a></figcaption></figure>
+<figure><a href="history-hall-level.webp"><img loading="lazy" decoding="async" src="history-hall-level.webp" width="960" height="640" alt="Several tunnel pairs occupy the cream floor of the early Civic Mail Hall."></a><figcaption><time datetime="2026-11-02">2 Nov 2026</time><strong>First build with delivery 6-15</strong>Delivery 6-15 · The great sorting hall<br>Build <code>4d40527a87</code> · <a href="https://github.com/holleyy/cosysortie/blob/ab5d779e0630943278c3ba36a4f450cfb5f46b72/sorting_office.html" aria-label="Source for First build with delivery 6-15 at commit ab5d779e0630943278c3ba36a4f450cfb5f46b72"><code>ab5d779e</code></a></figcaption></figure>
+<figure><a href="after-cityhall.webp"><img loading="lazy" decoding="async" src="after-cityhall.webp" width="960" height="640" alt="Merged Civic Mail Hall with delivery 6-15 ready to play."></a><figcaption><time datetime="2026-11-17">17 Nov 2026</time><strong>PR #53 merge</strong>Delivery 6-15 · The great sorting hall<br>Build <code>web-2a72996faf2c</code> · <a href="https://github.com/holleyy/cosysortie/commit/d5a5f5f63953b48c138160183d154371d13a41a0" aria-label="PR #53 merge commit"><code>d5a5f5f6</code></a></figcaption></figure>
+</div>
+<details><summary>Compare the two pinned PR #53 builds</summary><p>Both builds show the same Civic Mail Hall artwork on delivery 6-15.</p>
+<div class="comparison"><figure><img src="before-cityhall.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Civic Mail Hall, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>cityhall-fidelity-527093ea02</figcaption></figure><figure><img src="after-cityhall.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Civic Mail Hall, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>cityhall-fidelity-527093ea02</figcaption></figure></div></details>
 </section>
 <section id="parcel" aria-labelledby="parcel-title">
 <h2 id="parcel-title">Parcel Room</h2>
-<p class="summary"><strong>Campaign · Delivery 7-15</strong> · The Parcel Room retains its existing atmosphere and puzzle floor.</p>
-<div class="comparison"><figure><img src="before-parcel.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Parcel Room, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>parcel-fidelity-32d74bd062</figcaption></figure><figure><img src="after-parcel.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Parcel Room, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>parcel-fidelity-32d74bd062</figcaption></figure></div>
-
+<p class="summary">The first warehouse laid two delivery lanes across bare timber. Follow the big-cat parade from that wooden floor to the blue sorting grid.</p>
+<div class="history history-3">
+<figure><a href="history-parcel-scene.webp"><img loading="lazy" decoding="async" src="history-parcel-scene.webp" width="960" height="640" alt="Two delivery lanes occupy the wooden warehouse floor beneath open steel framing."></a><figcaption><time datetime="2026-11-02">2 Nov 2026</time><strong>First playable warehouse study</strong>9 × 7 floor study · Two careful queues<br>Build <code>4bc03d69a6</code> · <a href="https://github.com/holleyy/cosysortie/blob/dcd6f1297b0ed4dfd2a857ff54b7eb9524673c4f/docs/rooms/previews/parcel-scene.html" aria-label="Source for First playable warehouse study at commit dcd6f1297b0ed4dfd2a857ff54b7eb9524673c4f"><code>dcd6f129</code></a></figcaption></figure>
+<figure><a href="history-parcel-level.webp"><img loading="lazy" decoding="async" src="history-parcel-level.webp" width="960" height="640" alt="The parcel puzzle sits directly on the timber warehouse floor, beside the loading doors."></a><figcaption><time datetime="2026-11-03">3 Nov 2026</time><strong>First build with delivery 7-15</strong>Delivery 7-15 · The big cat parade<br>Build <code>0aac98ddbb</code> · <a href="https://github.com/holleyy/cosysortie/blob/b33fce38070c7f56f051473e52de4ec71a4f3d9b/sorting_office.html" aria-label="Source for First build with delivery 7-15 at commit b33fce38070c7f56f051473e52de4ec71a4f3d9b"><code>b33fce38</code></a></figcaption></figure>
+<figure><a href="after-parcel.webp"><img loading="lazy" decoding="async" src="after-parcel.webp" width="960" height="640" alt="Merged Parcel Room with delivery 7-15 ready to play."></a><figcaption><time datetime="2026-11-17">17 Nov 2026</time><strong>PR #53 merge</strong>Delivery 7-15 · The big cat parade<br>Build <code>web-2a72996faf2c</code> · <a href="https://github.com/holleyy/cosysortie/commit/d5a5f5f63953b48c138160183d154371d13a41a0" aria-label="PR #53 merge commit"><code>d5a5f5f6</code></a></figcaption></figure>
+</div>
+<details><summary>Compare the two pinned PR #53 builds</summary><p>Both builds show the same Parcel Room artwork on delivery 7-15.</p>
+<div class="comparison"><figure><img src="before-parcel.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Parcel Room, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>parcel-fidelity-32d74bd062</figcaption></figure><figure><img src="after-parcel.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Parcel Room, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>parcel-fidelity-32d74bd062</figcaption></figure></div></details>
 </section>
 <section id="christmas" aria-labelledby="christmas-title">
 <h2 id="christmas-title">Christmas Night Mail</h2>
@@ -100,7 +129,8 @@ footer p{max-width:58rem}
 
 </section>
 <footer>
-<p>Captured in Chromium 151.0.7922.173 at 960 × 640 with the room camera, the same scene-clock position and empty planning boards. Lighting follows the artwork in each build at that clock position. The paired Depot clip is silent and uses stepped playback.</p>
+<p>The pinned PR #53 pairs were captured in Chromium 151.0.7922.173 at 960 × 640 with the room camera, the same scene-clock position and empty planning boards. Lighting follows the artwork in each build at that clock position. The paired Depot clip is silent and uses stepped playback.</p>
+<p>The historical views use each build’s own artwork and light at frame 600. The scene studies predate the campaign deliveries. Historical delivery cards use the same authored level data as the merge. The September demo predates embedded build IDs and is identified by its Git blob.</p>
 <p><a href="capture-evidence.json">Capture settings, exact build identifiers and image hashes</a></p>
 </footer>
 </main>

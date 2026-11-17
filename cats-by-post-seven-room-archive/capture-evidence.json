@@ -1288,5 +1288,808 @@
     "seconds": 4,
     "frames": 24,
     "sha256": "220e2425fda8b19e7b06382d3ca3e72013ddea1916c754ea9936e0d7f5ba8970"
+  },
+  "history": {
+    "chromium": "151.0.7922.173",
+    "results": [
+      {
+        "key": "office-scene",
+        "commit": "8f15887057c4e39792e06a63e679009844170f0f",
+        "date": "2026-09-29",
+        "source": "sorting_office.html",
+        "blob": "d1845e602ac4bab679834e8caaf5873288d83ea6",
+        "buildSha256": "30e1978bcd494cad3cf073053de6f3a3b1bc1897ecbf4a5993e3212a7c5849db",
+        "build": null,
+        "id": null,
+        "title": null,
+        "room": "office",
+        "board": null,
+        "tray": null,
+        "turntables": null,
+        "level": null,
+        "paper": false,
+        "camera": {
+          "scale": 2,
+          "viewport": [
+            960,
+            640
+          ],
+          "dpr": 1,
+          "output": [
+            960,
+            640
+          ],
+          "frame": 600
+        },
+        "still": {
+          "filename": "history-office-scene.webp",
+          "sha256": "edc34491afde1f1105cb7b25a5584ed8aff0a211b2e99d35f5016e5a29d564c6",
+          "bytes": 85766
+        },
+        "errors": []
+      },
+      {
+        "key": "office-pixel",
+        "commit": "35ea35676a8dcbc8191d9dfdebd5dad72fb666d1",
+        "date": "2026-10-06",
+        "source": "sorting_office.html",
+        "blob": "73b718f51ad514f5e979432e1dbb8a1267d83473",
+        "buildSha256": "6cb0da5811944a629393455890f467d1038a629d55a4b80e19dd950e80014252",
+        "build": "25edea3328",
+        "id": "1-4",
+        "title": "Ginger and blue",
+        "room": "office",
+        "board": {
+          "w": 5,
+          "h": 3,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "tray": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 0
+        },
+        "turntables": [],
+        "level": {
+          "id": "1-4",
+          "title": "Ginger and blue",
+          "idea": "Ginger turntables only turn ginger cats",
+          "board": {
+            "w": 5,
+            "h": 3,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 36,
+          "hatches": [
+            {
+              "x": 0,
+              "y": 1,
+              "dir": "R",
+              "cats": [
+                "ginger",
+                "blue"
+              ]
+            }
+          ],
+          "baskets": [
+            {
+              "x": 4,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "coat": "ginger"
+            }
+          ],
+          "dogs": [],
+          "tray": {
+            "plain": 1,
+            "ginger": 1,
+            "blue": 0
+          },
+          "solution": [
+            {
+              "x": 2,
+              "y": 1,
+              "type": "ginger",
+              "dir": "D"
+            }
+          ],
+          "minTurntables": 1
+        },
+        "paper": false,
+        "camera": {
+          "scale": 2,
+          "viewport": [
+            960,
+            640
+          ],
+          "dpr": 1,
+          "output": [
+            960,
+            640
+          ],
+          "frame": 600
+        },
+        "still": {
+          "filename": "history-office-pixel.webp",
+          "sha256": "ce7d3691a16729cd895cf8f7c8a3354f61d4ed7b6c34c7b037fef038cb8ce405",
+          "bytes": 85870
+        },
+        "errors": [],
+        "levelMatchesMerge": true
+      },
+      {
+        "key": "office-paper",
+        "commit": "7a23fb82b84215b8844a0de3357d31d9449c7d8e",
+        "date": "2026-10-28",
+        "source": "sorting_office.html",
+        "blob": "352de9748a67ad463d9b4e3569a143066e20e539",
+        "buildSha256": "aa88b8888b31ddda7421e7cb90022530f0f2e09525873c9372a9d1db28ff6bb1",
+        "build": "b197d8ba6b",
+        "id": "1-4",
+        "title": "Ginger and blue",
+        "room": "office",
+        "board": {
+          "w": 5,
+          "h": 3,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "tray": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 0
+        },
+        "turntables": [],
+        "level": {
+          "id": "1-4",
+          "title": "Ginger and blue",
+          "idea": "Ginger turntables only turn ginger cats",
+          "board": {
+            "w": 5,
+            "h": 3,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 36,
+          "hatches": [
+            {
+              "x": 0,
+              "y": 1,
+              "dir": "R",
+              "cats": [
+                "ginger",
+                "blue"
+              ]
+            }
+          ],
+          "baskets": [
+            {
+              "x": 4,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "coat": "ginger"
+            }
+          ],
+          "dogs": [],
+          "tray": {
+            "plain": 1,
+            "ginger": 1,
+            "blue": 0
+          },
+          "solution": [
+            {
+              "x": 2,
+              "y": 1,
+              "type": "ginger",
+              "dir": "D"
+            }
+          ],
+          "minTurntables": 1
+        },
+        "paper": true,
+        "camera": {
+          "scale": 2,
+          "viewport": [
+            960,
+            640
+          ],
+          "dpr": 1,
+          "output": [
+            960,
+            640
+          ],
+          "frame": 600
+        },
+        "still": {
+          "filename": "history-office-paper.webp",
+          "sha256": "f33057b9620046898dd21903256b8fa3b1be104ff7b409c5f25a697629fe585d",
+          "bytes": 84144
+        },
+        "errors": [],
+        "levelMatchesMerge": true
+      },
+      {
+        "key": "hall-scene",
+        "commit": "8bf4425a964e5e5d509b033f9d6d4e68cdf703b3",
+        "date": "2026-11-01",
+        "source": "docs/rooms/previews/city-hall-scene.html",
+        "blob": "c26e7d90d5e9eed5521a64b14eb68417892bafbe",
+        "buildSha256": "05cee658aebc7f58951e8a9bb457f11dc4e0eb4adddfb737edfb03882e391961",
+        "build": "8034b0cbf3",
+        "id": "cityhall-scene-8x6",
+        "title": "The city sorting hall",
+        "room": "cityhall",
+        "board": {
+          "w": 8,
+          "h": 6,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "tray": {
+          "plain": 1,
+          "ginger": 0,
+          "blue": 0
+        },
+        "turntables": [],
+        "level": {
+          "id": "cityhall-scene-8x6",
+          "title": "The city sorting hall",
+          "room": "cityhall",
+          "board": {
+            "w": 8,
+            "h": 6,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 30,
+          "hatches": [
+            {
+              "x": 0,
+              "y": 2,
+              "dir": "R",
+              "cats": [
+                "ginger",
+                "ginger"
+              ]
+            }
+          ],
+          "baskets": [
+            {
+              "x": 7,
+              "y": 5,
+              "coat": "ginger"
+            }
+          ],
+          "dogs": [],
+          "tunnels": [
+            {
+              "a": {
+                "x": 2,
+                "y": 2
+              },
+              "b": {
+                "x": 6,
+                "y": 4
+              },
+              "symbol": "circle"
+            }
+          ],
+          "tray": {
+            "plain": 1,
+            "ginger": 0,
+            "blue": 0
+          },
+          "solution": [
+            {
+              "x": 7,
+              "y": 4,
+              "type": "plain",
+              "dir": "D"
+            }
+          ],
+          "minTurntables": 1
+        },
+        "paper": true,
+        "camera": {
+          "scale": 2,
+          "viewport": [
+            1098,
+            732
+          ],
+          "dpr": 1,
+          "output": [
+            960,
+            640
+          ],
+          "frame": 600
+        },
+        "still": {
+          "filename": "history-hall-scene.webp",
+          "sha256": "6f7089d73acda761dd3a20ad820b66bbfa9e3258c236bef0c93f9091361cebd6",
+          "bytes": 103012
+        },
+        "errors": []
+      },
+      {
+        "key": "hall-level",
+        "commit": "ab5d779e0630943278c3ba36a4f450cfb5f46b72",
+        "date": "2026-11-02",
+        "source": "sorting_office.html",
+        "blob": "f41809d7c919999eb0aef01006e399a2f1974b5f",
+        "buildSha256": "7523c1049212fbd3aab550f9b605cf1ef9cb76cb6a9498312b802db3a5ebe989",
+        "build": "4d40527a87",
+        "id": "6-15",
+        "title": "The great sorting hall",
+        "room": "cityhall",
+        "board": {
+          "w": 8,
+          "h": 6,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "tray": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 0
+        },
+        "turntables": [],
+        "level": {
+          "id": "6-15",
+          "title": "The great sorting hall",
+          "idea": "Three mixed collections weave through four pairs and the shared junction",
+          "room": "cityhall",
+          "board": {
+            "w": 8,
+            "h": 6,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 64,
+          "hatches": [
+            {
+              "x": 0,
+              "y": 0,
+              "dir": "R",
+              "cats": [
+                "ginger",
+                "blue"
+              ]
+            },
+            {
+              "x": 7,
+              "y": 0,
+              "dir": "L",
+              "cats": [
+                "blue",
+                "ginger"
+              ]
+            },
+            {
+              "x": 6,
+              "y": 0,
+              "dir": "D",
+              "cats": [
+                "ginger",
+                "blue"
+              ]
+            }
+          ],
+          "tunnels": [
+            {
+              "a": {
+                "x": 2,
+                "y": 0
+              },
+              "b": {
+                "x": 1,
+                "y": 3
+              },
+              "symbol": "circle"
+            },
+            {
+              "a": {
+                "x": 5,
+                "y": 0
+              },
+              "b": {
+                "x": 5,
+                "y": 3
+              },
+              "symbol": "square"
+            },
+            {
+              "a": {
+                "x": 6,
+                "y": 2
+              },
+              "b": {
+                "x": 3,
+                "y": 1
+              },
+              "symbol": "triangle"
+            },
+            {
+              "a": {
+                "x": 3,
+                "y": 4
+              },
+              "b": {
+                "x": 6,
+                "y": 4
+              },
+              "symbol": "diamond"
+            }
+          ],
+          "baskets": [
+            {
+              "x": 4,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "x": 0,
+              "y": 5,
+              "coat": "blue"
+            }
+          ],
+          "dogs": [],
+          "gates": [
+            {
+              "x": 3,
+              "y": 3,
+              "exits": [
+                "D",
+                "L"
+              ]
+            }
+          ],
+          "tray": {
+            "plain": 1,
+            "ginger": 1,
+            "blue": 0
+          },
+          "solution": [
+            {
+              "x": 6,
+              "y": 5,
+              "dir": "L",
+              "type": "plain"
+            },
+            {
+              "x": 4,
+              "y": 5,
+              "dir": "U",
+              "type": "ginger"
+            }
+          ],
+          "minTurntables": 2
+        },
+        "paper": true,
+        "camera": {
+          "scale": 2,
+          "viewport": [
+            1098,
+            732
+          ],
+          "dpr": 1,
+          "output": [
+            960,
+            640
+          ],
+          "frame": 600
+        },
+        "still": {
+          "filename": "history-hall-level.webp",
+          "sha256": "11d8eedad689a2485c02c40c1b794b36655dbd0987a0ca65b78871b419bf183a",
+          "bytes": 106862
+        },
+        "errors": [],
+        "levelMatchesMerge": true
+      },
+      {
+        "key": "parcel-scene",
+        "commit": "dcd6f1297b0ed4dfd2a857ff54b7eb9524673c4f",
+        "date": "2026-11-02",
+        "source": "docs/rooms/previews/parcel-scene.html",
+        "blob": "85043a222192b94b677f75f36bb609da4dea6a5d",
+        "buildSha256": "05b37f2c71f095fc88366e2012ec24ce7bd376630cd6f152f86ac457ae45287e",
+        "build": "4bc03d69a6",
+        "id": "parcel-scene-full",
+        "title": "Two careful queues",
+        "room": "parcel",
+        "board": {
+          "w": 9,
+          "h": 7,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "tray": {
+          "plain": 0,
+          "ginger": 0,
+          "blue": 0
+        },
+        "turntables": [],
+        "level": {
+          "id": "parcel-scene-full",
+          "title": "Two careful queues",
+          "room": "parcel",
+          "board": {
+            "w": 9,
+            "h": 7,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 40,
+          "hatches": [
+            {
+              "x": 0,
+              "y": 1,
+              "dir": "R",
+              "cats": [
+                {
+                  "coat": "ginger",
+                  "big": true
+                },
+                "ginger",
+                {
+                  "coat": "ginger",
+                  "big": true
+                }
+              ]
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "dir": "R",
+              "cats": [
+                "blue",
+                {
+                  "coat": "blue",
+                  "big": true
+                },
+                "blue"
+              ]
+            }
+          ],
+          "baskets": [
+            {
+              "x": 8,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "x": 8,
+              "y": 4,
+              "coat": "blue"
+            }
+          ],
+          "dogs": [],
+          "tray": {
+            "plain": 0,
+            "ginger": 0,
+            "blue": 0
+          },
+          "solution": []
+        },
+        "paper": true,
+        "camera": {
+          "scale": 2,
+          "viewport": [
+            1176,
+            784
+          ],
+          "dpr": 1,
+          "output": [
+            960,
+            640
+          ],
+          "frame": 600
+        },
+        "still": {
+          "filename": "history-parcel-scene.webp",
+          "sha256": "0a66ea8bb57e8060932c0af8b19373ed52ae3bfdf1c96bcbd9d007c668c99d2f",
+          "bytes": 101568
+        },
+        "errors": []
+      },
+      {
+        "key": "parcel-level",
+        "commit": "b33fce38070c7f56f051473e52de4ec71a4f3d9b",
+        "date": "2026-11-03",
+        "source": "sorting_office.html",
+        "blob": "a72a7c84066dcd62a4e092711aaeb3c279df1f7d",
+        "buildSha256": "64ffe058f3918f251568fbc49efb7872eb300e060556303d64bc75fb7b3cc237",
+        "build": "0aac98ddbb",
+        "id": "7-15",
+        "title": "The big cat parade",
+        "room": "parcel",
+        "board": {
+          "w": 9,
+          "h": 7,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "tray": {
+          "plain": 0,
+          "ginger": 0,
+          "blue": 1
+        },
+        "turntables": [],
+        "level": {
+          "id": "7-15",
+          "title": "The big cat parade",
+          "idea": "Seven big parcels take their time while the little cats dart through the shortcuts.",
+          "room": "parcel",
+          "board": {
+            "w": 9,
+            "h": 7,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 64,
+          "hatches": [
+            {
+              "x": 0,
+              "y": 1,
+              "dir": "R",
+              "cats": [
+                {
+                  "coat": "ginger",
+                  "big": true
+                },
+                "blue",
+                {
+                  "coat": "ginger",
+                  "big": true
+                },
+                "blue",
+                {
+                  "coat": "ginger",
+                  "big": true
+                },
+                "blue",
+                {
+                  "coat": "ginger",
+                  "big": true
+                },
+                "blue"
+              ]
+            },
+            {
+              "x": 8,
+              "y": 0,
+              "dir": "L",
+              "cats": [
+                {
+                  "coat": "blue",
+                  "big": true
+                },
+                "ginger",
+                {
+                  "coat": "blue",
+                  "big": true
+                },
+                "ginger",
+                {
+                  "coat": "blue",
+                  "big": true
+                },
+                "ginger"
+              ]
+            }
+          ],
+          "baskets": [
+            {
+              "x": 3,
+              "y": 6,
+              "coat": "ginger"
+            },
+            {
+              "x": 7,
+              "y": 6,
+              "coat": "blue"
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "coat": "ginger"
+            },
+            {
+              "x": 1,
+              "y": 6,
+              "coat": "blue"
+            }
+          ],
+          "dogs": [],
+          "gates": [
+            {
+              "x": 3,
+              "y": 1,
+              "exits": [
+                "R",
+                "D"
+              ]
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "exits": [
+                "U",
+                "D"
+              ]
+            }
+          ],
+          "tunnels": [
+            {
+              "a": {
+                "x": 5,
+                "y": 1
+              },
+              "b": {
+                "x": 6,
+                "y": 3
+              },
+              "symbol": "circle"
+            },
+            {
+              "a": {
+                "x": 6,
+                "y": 0
+              },
+              "b": {
+                "x": 2,
+                "y": 4
+              },
+              "symbol": "square"
+            }
+          ],
+          "tray": {
+            "plain": 0,
+            "ginger": 0,
+            "blue": 1
+          },
+          "solution": [
+            {
+              "x": 7,
+              "y": 3,
+              "dir": "D",
+              "type": "blue"
+            }
+          ],
+          "minTurntables": 1
+        },
+        "paper": true,
+        "camera": {
+          "scale": 2,
+          "viewport": [
+            1176,
+            784
+          ],
+          "dpr": 1,
+          "output": [
+            960,
+            640
+          ],
+          "frame": 600
+        },
+        "still": {
+          "filename": "history-parcel-level.webp",
+          "sha256": "f915265b2afbfaea2c67f8759ee2399a56e11c2fb7daaa26cc848c098f2f8b97",
+          "bytes": 107088
+        },
+        "errors": [],
+        "levelMatchesMerge": true
+      }
+    ]
   }
 }
