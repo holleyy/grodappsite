@@ -1,0 +1,14 @@
+{
+  "owner": "holleyy/cosysortie",
+  "pullRequest": 55,
+  "sourceCommit": "f6fd395ce840b7314fd0dc1db6bdc7bc802f0ffa",
+  "build": "valley-preview-fab5933fd438",
+  "sourceWebBuild": "web-fab5933fd438",
+  "savePrefix": "catsByPost.preview.valley.",
+  "sharedStaticPrefix": "cats-by-post-seven-room-integration",
+  "sharedTrees": {
+    "assets/audio/": "817dec708dd82e76518f68c3fde9a23e4f87d848",
+    "assets/music/": "831f5e327ca97ec64ce7a95ad7b06b8f87f93a42",
+    "rooms/": "9c6478f368033e1e2e1b49e349750229c91e4a55"
+  }
+}

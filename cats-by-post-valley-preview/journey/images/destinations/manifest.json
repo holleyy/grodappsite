@@ -1,0 +1,170 @@
+{
+  "sourceCommit": "d5a5f5f63953b48c138160183d154371d13a41a0",
+  "engineSha256": "05a7117d11ada665ed3fc28197fc663b349bb46724376c0b6c71b48f718be5ae",
+  "method": "Pinned room renderer at frame 600, empty arrangement. Capture-only transparency.",
+  "captures": [
+    {
+      "place": "office",
+      "id": "1-1",
+      "room": "office",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 243602,
+      "bounds": [
+        96,
+        83,
+        899,
+        615
+      ],
+      "sourceSize": [
+        960,
+        640
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-2a72996faf2c",
+      "matte": "capture contour",
+      "inset": 12,
+      "zoom": 1,
+      "presentation": "sorting-office-paper-de889dad5105",
+      "bytes": 73912,
+      "sha256": "68d35ae368a057223d73d3f798c1afdc72141da29eb3d95c5aa45a095993ad57"
+    },
+    {
+      "place": "depot",
+      "id": "3-1",
+      "room": "depot",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 269892,
+      "bounds": [
+        117,
+        35,
+        810,
+        577
+      ],
+      "sourceSize": [
+        960,
+        640
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-2a72996faf2c",
+      "matte": "capture contour",
+      "inset": 12,
+      "zoom": 1.2,
+      "presentation": "depot-paper-9ff87b4e29b0",
+      "bytes": 80464,
+      "sha256": "474016a3d0059f935e8909b3c9d386852949608cd90bd191dc7a71f899ddab52"
+    },
+    {
+      "place": "train",
+      "id": "5-1",
+      "room": "train",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 139033,
+      "bounds": [
+        126,
+        137,
+        868,
+        551
+      ],
+      "sourceSize": [
+        960,
+        640
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-2a72996faf2c",
+      "matte": "capture contour",
+      "inset": 90,
+      "zoom": 1,
+      "presentation": "mailtrain-paper-6951f0d59094",
+      "bytes": 82948,
+      "sha256": "da2ae3afbecdadaa2090195349cd9aeefbfd9574c3d0793367d3119e9ed2d3e8"
+    },
+    {
+      "place": "hall",
+      "id": "6-1",
+      "room": "cityhall",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 289381,
+      "bounds": [
+        95,
+        33,
+        858,
+        612
+      ],
+      "sourceSize": [
+        960,
+        640
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-2a72996faf2c",
+      "matte": "renderer depth",
+      "inset": 12,
+      "presentation": "cityhall-fidelity-527093ea02",
+      "bytes": 141588,
+      "sha256": "064757468c1e1689deb1dac442743742f027140efc92e957d830d7833240a44d",
+      "zoom": 1
+    },
+    {
+      "place": "parcel",
+      "id": "7-1",
+      "room": "parcel",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 318841,
+      "bounds": [
+        25,
+        40,
+        933,
+        601
+      ],
+      "sourceSize": [
+        960,
+        640
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-2a72996faf2c",
+      "matte": "renderer depth",
+      "inset": 12,
+      "presentation": "parcel-fidelity-32d74bd062",
+      "bytes": 125392,
+      "sha256": "de918cc85bfd18de62cb07decc766638d05f627cf6ec994765431e9250ae166a",
+      "zoom": 1
+    },
+    {
+      "place": "winter",
+      "id": "8-1",
+      "room": "christmas",
+      "frame": 600,
+      "placements": 0,
+      "pixels": 281850,
+      "bounds": [
+        134,
+        16,
+        887,
+        622
+      ],
+      "sourceSize": [
+        960,
+        640
+      ],
+      "width": 960,
+      "height": 640,
+      "build": "web-2a72996faf2c",
+      "matte": "capture contour",
+      "inset": 12,
+      "presentation": "christmas-station-93f290780861",
+      "bytes": 153530,
+      "sha256": "b2a9250ff99530e080e9f898bea1dba804edf0b8f01aa3166eb75bc71e129f26",
+      "zoom": 1
+    }
+  ],
+  "errors": []
+}

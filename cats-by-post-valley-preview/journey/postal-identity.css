@@ -1,0 +1,40 @@
+/* One impression follows the place from map to packet to correspondence. */
+.postal-mark{display:inline-flex;position:relative;flex-direction:column;align-items:center;justify-content:center;color:#29474b;line-height:1;pointer-events:none;mix-blend-mode:multiply}
+.postal-mark>img{display:block;width:100%;height:auto;object-fit:contain;aspect-ratio:1;max-width:none}
+.postal-reference{font:15px/1.1 Signika,system-ui,sans-serif;white-space:nowrap;letter-spacing:.035em;margin-top:-2px}
+.postal-mark-earned{color:#9d4433}
+.postal-mark-earned>img{filter:brightness(0) saturate(100%) invert(31%) sepia(31%) saturate(1363%) hue-rotate(326deg) brightness(92%) contrast(89%)}
+.map-pin{display:flex;align-items:center;gap:7px;text-align:left}
+.map-pin .pin-mark{width:48px;flex:0 0 48px;opacity:.85;rotate:-7deg}
+.map-pin .pin-copy{display:block}
+.map-pin small{white-space:nowrap}
+.packet-postal-line{display:flex;align-items:center;justify-content:center;gap:13px;margin:5px 0 6px}
+.packet-postal-line .packet-place-mark{width:66px;rotate:-5deg;opacity:.8}
+.packet-postal-line .packet-progress{margin:0}
+.chapter-tabs button{min-width:0;padding-right:7px}
+.chapter-tabs .chapter-name{display:block}
+.chapter-tabs .chapter-caption{display:flex;align-items:center;gap:9px;margin-top:auto;padding-top:8px}
+.chapter-tabs .chapter-caption small{margin:0;padding:0}
+.chapter-tabs .chapter-mark{width:34px;flex:0 0 34px;rotate:-8deg}
+.chapter-postmarks{display:flex;align-items:center;justify-content:center;gap:24px;margin:7px 0 10px}
+.chapter-postmark{display:flex;flex-direction:column;align-items:center;gap:5px;width:116px;min-height:44px;padding:8px 5px;border:0;background:transparent;border-radius:0;box-shadow:none;cursor:zoom-in}
+.chapter-postmark:hover{background:transparent;color:var(--rust);transform:rotate(-2deg)}
+.chapter-postmark .postal-mark{width:92px;rotate:-5deg}
+.chapter-postmark>span:last-child{font:16px/1.15 Balthazar,Georgia,serif;text-align:center;color:var(--rust)}
+.packet-postal-line .chapter-postmarks{margin:0}
+.packet-postal-line .chapter-postmark{width:78px;padding:0}
+.packet-postal-line .chapter-postmark .postal-mark{width:76px}
+.packet-postal-line .chapter-postmark>span:last-child{display:none}
+.packet-postal-line .postal-reference{font-size:12px;margin-top:3px}
+.letter-object .envelope-mark{position:absolute;right:4%;top:2%;width:21%;rotate:-13deg;opacity:.73}
+.letter-object .envelope-mark .postal-reference{font-size:clamp(9px,2.3vw,12px)}
+.next-dock .dock-mark{position:absolute;right:10%;top:11%;width:22%;rotate:-12deg;opacity:.65}
+.next-dock .dock-mark .postal-reference{display:none}
+.primary-letter .entry-mark{position:absolute;right:4%;top:2%;width:21%;rotate:-13deg;opacity:.7}
+.postmark-inspection{text-align:center;max-width:520px;margin:18px auto 24px;padding:28px 16px 34px;background:url(images/print-paper.webp) center/100% 100% no-repeat}
+.postmark-inspection .postal-mark{width:min(76%,300px);rotate:-5deg;margin-bottom:22px}
+.postmark-inspection .postal-reference{font-size:22px;margin-top:9px}
+.postmark-inspection figcaption{font:400 30px/1.1 Balthazar,Georgia,serif;padding:0 12px}
+.postmark-inspection p{font:17px/1.45 Signika,system-ui,sans-serif;margin-top:10px;padding:0 15px;color:var(--muted)}
+@media(max-width:360px){.map-pin .pin-mark{width:39px;flex-basis:39px}.map-pin{gap:4px}.packet-postal-line .packet-place-mark{width:54px}.chapter-tabs button{font-size:22px}.chapter-tabs .chapter-caption{gap:5px}.chapter-tabs .chapter-mark{width:28px;flex-basis:28px}}
+@media(prefers-reduced-motion:reduce){.chapter-postmark:hover{transform:none}}

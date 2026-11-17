@@ -1,0 +1,18 @@
+/* Shared roles. Surface aliases retain the approved postal palette and dimensions. */
+:root{
+ --ui-font-body:Signika,system-ui,sans-serif;
+ --ui-menu-item-size:27px;--ui-menu-heading-size:39px;--ui-menu-caption-size:16px;
+ --ui-menu-item-compact:calc(var(--ui-menu-item-size) * .9259259259);
+ --ui-menu-current-size:calc(var(--ui-menu-item-size) * 1.1481481481);--ui-menu-card-size:calc(var(--ui-menu-item-size) * 1.0740740741);
+ --ui-menu-route-size:calc(var(--ui-menu-item-size) * .962962963);--ui-menu-tab-size:calc(var(--ui-menu-item-size) * .8888888889);
+ --ui-menu-inset:16px;--ui-menu-gap:14px;--ui-menu-rule:#c8b99a;--ui-menu-wash:#eee2c7;--ui-menu-focus:#a14433;
+ --ui-ink:#273f43;--ui-muted:#5f655b;--ui-paper:#f5ecd7;--ui-paper-light:#fff4dc;--ui-accent:#9f4434;--ui-line:#c4b395;
+ --ui-play-ink:#283d44;--ui-play-muted:#5d6865;--ui-play-paper:#f7eed9;--ui-play-cream:#ede3cc;--ui-play-accent:#a63f32;--ui-play-line:#a49578;
+ --ui-start-ink:#294449;--ui-start-cream:#f9e9c5;
+ --ui-chapter-ink:#253e40;--ui-chapter-accent:#a74733;--ui-chapter-muted:#596258;
+ --ui-menu-card-paper:#fdf3dd;--ui-menu-card-hover:#fff7e7;--ui-menu-card-line:#a99877;
+ --ui-menu-hover:#eaddbf88;--ui-menu-current:#eaddbf77;--ui-menu-night:#273f43;--ui-menu-night-hover:#36565b;--ui-menu-night-text:#fff4dc;
+ --ui-material-print:url(images/print-paper.webp);
+ --ui-material-button:url(images/paper-button.webp);
+ --ui-material-box:url(images/observations/box-open-chewed.webp);
+}
