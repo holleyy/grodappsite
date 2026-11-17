@@ -1,7 +1,7 @@
 {
   "build": {
-    "sha256": "bdc3762abfae63dff88ee3fba4e59118049f68708f375cc37ec5c0e95e16ad67",
-    "bytes": 21430313,
+    "sha256": "b8f5e45dedee151d9cd2383cf3b000a3a74a9b121b807b33b4f6a3c15d6cff1e",
+    "bytes": 21430314,
     "canonicalInputs": {
       "sorting_office.html": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
       "src/data/levels.json": "be1c22ee6456819c200e42d6f8abb48b9c4cc4db9c414928c7fc60ea10cf40a7",

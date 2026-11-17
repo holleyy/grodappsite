@@ -27201,7 +27201,7 @@ root.MailtrainPieces=Pieces;
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.MailtrainBridge=factory();})(globalThis,function(){
 'use strict';let model;
 function build(){
- const faces=[],far=-.1,near=4.8,spring=-3.55,radius=3.1,foot=-26.2,N=32;
+ const faces=[],far=-.1,near=4.8,spring=-3.55,radius=3.1,foot=-66.52,N=32;
  function face(A,B,C,D,mat='stone',shade=0,tag='wall'){faces.push({v:[A,B,C,D],mat,shade,tag,priority:faces.length});}
  function rect(x0,x1,y,z0,z1,shade=0,mat='stone',tag='wall'){face([x0,y,z0],[x1,y,z0],[x1,y,z1],[x0,y,z1],mat,shade,tag);}
  function box(x,y,z,w,d,h,shade=0,tag='pier'){
@@ -27264,7 +27264,7 @@ function build(){
  for(const f of faces)f.v=f.v.map(v=>[v[0]*1.6,v[1],v[2]]);
  return {faces,period:12,far,near,foot,radius,spring};
 }
-function prepare(p){if(!model)model=build();p.c.save();p.c.globalAlpha=0;p.solid(model,0,0,0,96);p.c.restore();}
+function prepare(p){if(!model)model=build();p.c.save();p.c.globalAlpha=0;p.solid(model,0,0,0,64);p.c.restore();}
 function draw(p,distance){const shift=((distance%12)+12)%12;for(let i=-5;i<8;i++)p.preparedSolid(model,i*12+shift);}
 return {build,prepare,draw};
 });

@@ -21,7 +21,7 @@ DPR3 phone checks at 1.7× zoom retained 20 surfaces and zero motion/pan rebakes
 
 ## Author correction
 
-Grounding is fixed by connected tall piers descending to -26.2, below the
+Grounding is fixed by connected tall piers descending to -66.52, below the
 review composition. Their longer side faces required broader openings to keep
 the river visible: final spans are 12 units with a 9.92-unit opening and a
 3.1-unit rise. The original travel speed remains frame/30; decorative repeat
@@ -34,11 +34,11 @@ the old footing and passes after the correction.
 
 The grounding regression uses depth-tested diagnostic footing-edge material,
 then the real foreground and nearer geometry. Reinstating short piers fails;
-final first/largest views have zero exposed footing pixels at all 26 sampled
-states across a full repeat. Initial screen-space markers were discarded
+final first/largest views have zero exposed footing pixels at all 78 sampled
+portrait/landscape/desktop states across a full repeat. Initial screen-space markers were discarded
 because they could incorrectly draw a far edge over its own nearer stone.
 
-The bridge bake is capped at 96 raster pixels per world unit. Entry transforms
+The bridge bake is capped at 64 raster pixels per world unit. Entry transforms
 reuse the prepared image, and the long hidden foundations cannot force an
 unbounded high-zoom raster. Final browser evidence records the cap and resources.
 
@@ -53,3 +53,11 @@ unbounded high-zoom raster. Final browser evidence records the cap and resources
 
 No deferred minor remains from this review. The final author regression pass
 does not constitute a second independent visual acceptance.
+
+Final author portrait check: the initial -26.2 grounding fix passed the desktop
+probe but its phone screenshot still exposed a pier base. The test now uses
+actual DPR and all three viewport shapes; the old build fails with 448 exposed
+phone pixels and 3 landscape pixels. The final -66.52 geometry passes all 78
+states. The cap is reduced from 96 to 64 pixels per world unit so extending
+hidden foundations does not increase the maximum raster area substantially.
+See portrait-grounding-red.json and grounding.json. No re-review is claimed.

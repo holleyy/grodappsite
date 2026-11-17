@@ -1,13 +1,13 @@
 {
   "url": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/",
-  "checkedAt": "2026-11-17T03:41:31.290Z",
+  "checkedAt": "2026-11-17T03:51:48.592Z",
   "screens": [
     {
       "name": "phone",
       "width": 390,
       "height": 844,
       "dpr": 3,
-      "hash": "bdc3762abfae63dff88ee3fba4e59118049f68708f375cc37ec5c0e95e16ad67",
+      "hash": "b8f5e45dedee151d9cd2383cf3b000a3a74a9b121b807b33b4f6a3c15d6cff1e",
       "touchWin": true,
       "savedWinReloaded": true,
       "level": "5-15",
@@ -50,7 +50,7 @@
       "width": 720,
       "height": 400,
       "dpr": 2,
-      "hash": "bdc3762abfae63dff88ee3fba4e59118049f68708f375cc37ec5c0e95e16ad67",
+      "hash": "b8f5e45dedee151d9cd2383cf3b000a3a74a9b121b807b33b4f6a3c15d6cff1e",
       "touchWin": true,
       "savedWinReloaded": true,
       "level": "5-15",
@@ -93,7 +93,7 @@
       "width": 1440,
       "height": 1000,
       "dpr": 1,
-      "hash": "bdc3762abfae63dff88ee3fba4e59118049f68708f375cc37ec5c0e95e16ad67",
+      "hash": "b8f5e45dedee151d9cd2383cf3b000a3a74a9b121b807b33b4f6a3c15d6cff1e",
       "touchWin": true,
       "savedWinReloaded": true,
       "level": "5-15",
@@ -132,5 +132,5 @@
       "errors": []
     }
   ],
-  "sha256": "bdc3762abfae63dff88ee3fba4e59118049f68708f375cc37ec5c0e95e16ad67"
+  "sha256": "b8f5e45dedee151d9cd2383cf3b000a3a74a9b121b807b33b4f6a3c15d6cff1e"
 }
