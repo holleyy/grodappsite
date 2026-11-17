@@ -1,0 +1,19 @@
+✔ common rooms omit special decode; optional preparation waits once and retains art across rounds (14.778397ms)
+✔ whole-room fitting uses the attic focus while the tower continues below it (4.179945ms)
+✔ disposing during deferred special decode cannot publish artwork or a replacement scene (4.540367ms)
+✔ disposal releases a pending refresh even when the browser decoder never settles (14.033685ms)
+✔ tower continuation reaches the viewport bottom at zoom and pan limits with bounded cached tiles (3.909378ms)
+✔ seasonal pairs load only on preparation, reuse day/night and December, and evict the preceding pair (2.179344ms)
+✔ canonical seasonal keys and unknown seasons select the expected pair without changing the room (2.49786ms)
+✔ a failed seasonal decode preserves the preceding image and prepared scene and releases the failed image (2.686813ms)
+✔ a pending seasonal replacement does not evict the preceding scene until decode succeeds (2.336728ms)
+✔ disposal releases a seasonal decoder that never settles and cannot publish its eventual result (9.154043ms)
+✔ repeated four-season visits retain only one decoded backdrop alongside common artwork (6.422316ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 223.127125

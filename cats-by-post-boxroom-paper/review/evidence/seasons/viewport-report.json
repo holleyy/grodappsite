@@ -1,0 +1,3278 @@
+{
+  "base": "http://127.0.0.1:8781/work/boxroom-seasons/qualified/",
+  "scope": "Frozen candidate; Linux headless Chromium device emulation, not physical Safari/iOS. Pointer taps use trusted Playwright touchscreen/mouse events. Core game and renderer are unchanged.",
+  "cases": [
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "dpr": 2,
+      "touch": true,
+      "checks": [
+        {
+          "name": "Daily loads",
+          "pass": true
+        },
+        {
+          "name": "HUD panels fit viewport",
+          "pass": true,
+          "details": [
+            {
+              "id": "play-head",
+              "x": 12,
+              "y": 10,
+              "w": 366,
+              "h": 46.984375,
+              "right": 378,
+              "bottom": 56.984375
+            },
+            {
+              "id": "arrival-panel",
+              "x": 12,
+              "y": 64.984375,
+              "w": 366,
+              "h": 95,
+              "right": 378,
+              "bottom": 159.984375
+            },
+            {
+              "id": "desk",
+              "x": 12,
+              "y": 667,
+              "w": 366,
+              "h": 167,
+              "right": 378,
+              "bottom": 834
+            }
+          ]
+        },
+        {
+          "name": "Active HUD targets at least44 CSS px",
+          "pass": true,
+          "details": []
+        },
+        {
+          "name": "No document horizontal overflow",
+          "pass": true
+        },
+        {
+          "name": "HUD control labels nonempty",
+          "pass": true
+        },
+        {
+          "name": "board all tile centres pick their exact tile",
+          "pass": true
+        },
+        {
+          "name": "board has uncovered editable floor tile",
+          "pass": true,
+          "details": [
+            {
+              "x": 0,
+              "y": 0,
+              "sx": 194.6808510638298,
+              "sy": 360.6595744680851,
+              "expected": 0,
+              "pick": 0,
+              "action": "place",
+              "px": 194.6808510638298,
+              "py": 360.6595744680851,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "sx": 225.82978723404256,
+              "sy": 376.23404255319156,
+              "expected": 1,
+              "pick": 1,
+              "action": "place",
+              "px": 225.82978723404256,
+              "py": 376.23404255319156,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "sx": 256.97872340425533,
+              "sy": 391.8085106382979,
+              "expected": 2,
+              "pick": 2,
+              "action": "blocked",
+              "px": 256.97872340425533,
+              "py": 391.8085106382979,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "sx": 288.12765957446805,
+              "sy": 407.3829787234042,
+              "expected": 3,
+              "pick": 3,
+              "action": "place",
+              "px": 288.12765957446805,
+              "py": 407.3829787234042,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "sx": 319.27659574468083,
+              "sy": 422.95744680851067,
+              "expected": 4,
+              "pick": 4,
+              "action": "place",
+              "px": 319.27659574468083,
+              "py": 422.95744680851067,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "sx": 163.53191489361706,
+              "sy": 376.23404255319144,
+              "expected": 5,
+              "pick": 5,
+              "action": "place",
+              "px": 163.53191489361706,
+              "py": 376.23404255319144,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "sx": 194.68085106382978,
+              "sy": 391.8085106382979,
+              "expected": 6,
+              "pick": 6,
+              "action": "place",
+              "px": 194.68085106382978,
+              "py": 391.8085106382979,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "sx": 225.82978723404256,
+              "sy": 407.3829787234042,
+              "expected": 7,
+              "pick": 7,
+              "action": "place",
+              "px": 225.82978723404256,
+              "py": 407.3829787234042,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "sx": 256.9787234042553,
+              "sy": 422.95744680851067,
+              "expected": 8,
+              "pick": 8,
+              "action": "place",
+              "px": 256.9787234042553,
+              "py": 422.95744680851067,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "sx": 288.12765957446805,
+              "sy": 438.531914893617,
+              "expected": 9,
+              "pick": 9,
+              "action": "place",
+              "px": 288.12765957446805,
+              "py": 438.531914893617,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "sx": 132.38297872340428,
+              "sy": 391.8085106382979,
+              "expected": 10,
+              "pick": 10,
+              "action": "place",
+              "px": 132.38297872340428,
+              "py": 391.8085106382979,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "sx": 163.53191489361703,
+              "sy": 407.38297872340434,
+              "expected": 11,
+              "pick": 11,
+              "action": "place",
+              "px": 163.53191489361703,
+              "py": 407.38297872340434,
+              "uncovered": false
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "sx": 194.6808510638298,
+              "sy": 422.95744680851067,
+              "expected": 12,
+              "pick": 12,
+              "action": "place",
+              "px": 194.6808510638298,
+              "py": 422.95744680851067,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "sx": 225.82978723404253,
+              "sy": 438.531914893617,
+              "expected": 13,
+              "pick": 13,
+              "action": "place",
+              "px": 225.82978723404253,
+              "py": 438.531914893617,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "sx": 256.97872340425533,
+              "sy": 454.10638297872345,
+              "expected": 14,
+              "pick": 14,
+              "action": "place",
+              "px": 256.97872340425533,
+              "py": 454.10638297872345,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "sx": 101.2340425531915,
+              "sy": 407.3829787234042,
+              "expected": 15,
+              "pick": 15,
+              "action": "place",
+              "px": 101.2340425531915,
+              "py": 407.3829787234042,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "sx": 132.38297872340425,
+              "sy": 422.95744680851067,
+              "expected": 16,
+              "pick": 16,
+              "action": "place",
+              "px": 132.38297872340425,
+              "py": 422.95744680851067,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "sx": 163.53191489361703,
+              "sy": 438.531914893617,
+              "expected": 17,
+              "pick": 17,
+              "action": "blocked",
+              "px": 163.53191489361703,
+              "py": 438.531914893617,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "sx": 194.68085106382975,
+              "sy": 454.1063829787234,
+              "expected": 18,
+              "pick": 18,
+              "action": "blocked",
+              "px": 194.68085106382975,
+              "py": 454.1063829787234,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "sx": 225.82978723404253,
+              "sy": 469.6808510638298,
+              "expected": 19,
+              "pick": 19,
+              "action": "place",
+              "px": 225.82978723404253,
+              "py": 469.6808510638298,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "sx": 70.08510638297875,
+              "sy": 422.95744680851067,
+              "expected": 20,
+              "pick": 20,
+              "action": "place",
+              "px": 70.08510638297875,
+              "py": 422.95744680851067,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "sx": 101.2340425531915,
+              "sy": 438.5319148936171,
+              "expected": 21,
+              "pick": 21,
+              "action": "place",
+              "px": 101.2340425531915,
+              "py": 438.5319148936171,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "sx": 132.38297872340428,
+              "sy": 454.10638297872345,
+              "expected": 22,
+              "pick": 22,
+              "action": "place",
+              "px": 132.38297872340428,
+              "py": 454.10638297872345,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "sx": 163.531914893617,
+              "sy": 469.6808510638298,
+              "expected": 23,
+              "pick": 23,
+              "action": "place",
+              "px": 163.531914893617,
+              "py": 469.6808510638298,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "sx": 194.68085106382978,
+              "sy": 485.2553191489362,
+              "expected": 24,
+              "pick": 24,
+              "action": "place",
+              "px": 194.68085106382978,
+              "py": 485.2553191489362,
+              "uncovered": true
+            }
+          ]
+        },
+        {
+          "name": "board trusted pointer places intended tile",
+          "pass": true,
+          "details": {
+            "x": 0,
+            "y": 0,
+            "sx": 194.6808510638298,
+            "sy": 360.6595744680851,
+            "expected": 0,
+            "pick": 0,
+            "action": "place",
+            "px": 194.6808510638298,
+            "py": 360.6595744680851,
+            "uncovered": true
+          }
+        },
+        {
+          "name": "room all tile centres pick their exact tile",
+          "pass": true
+        },
+        {
+          "name": "room has uncovered editable floor tile",
+          "pass": true,
+          "details": [
+            {
+              "x": 0,
+              "y": 0,
+              "sx": 196.5870615685305,
+              "sy": 413.628268271359,
+              "expected": 0,
+              "pick": 0,
+              "action": "place",
+              "px": 196.5870615685305,
+              "py": 413.628268271359,
+              "uncovered": false
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "sx": 214.76852391012866,
+              "sy": 422.71899944215806,
+              "expected": 1,
+              "pick": 1,
+              "action": "place",
+              "px": 214.76852391012866,
+              "py": 422.71899944215806,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "sx": 232.94998625172687,
+              "sy": 431.80973061295714,
+              "expected": 2,
+              "pick": 2,
+              "action": "blocked",
+              "px": 232.94998625172687,
+              "py": 431.80973061295714,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "sx": 251.13144859332508,
+              "sy": 440.90046178375627,
+              "expected": 3,
+              "pick": 3,
+              "action": "place",
+              "px": 251.13144859332508,
+              "py": 440.90046178375627,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "sx": 269.3129109349233,
+              "sy": 449.99119295455534,
+              "expected": 4,
+              "pick": 4,
+              "action": "place",
+              "px": 269.3129109349233,
+              "py": 449.99119295455534,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "sx": 178.40559922693228,
+              "sy": 422.71899944215806,
+              "expected": 5,
+              "pick": 5,
+              "action": "place",
+              "px": 178.40559922693228,
+              "py": 422.71899944215806,
+              "uncovered": false
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "sx": 196.58706156853046,
+              "sy": 431.80973061295714,
+              "expected": 6,
+              "pick": 6,
+              "action": "place",
+              "px": 196.58706156853046,
+              "py": 431.80973061295714,
+              "uncovered": false
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "sx": 214.76852391012866,
+              "sy": 440.9004617837562,
+              "expected": 7,
+              "pick": 7,
+              "action": "place",
+              "px": 214.76852391012866,
+              "py": 440.9004617837562,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "sx": 232.94998625172687,
+              "sy": 449.99119295455534,
+              "expected": 8,
+              "pick": 8,
+              "action": "place",
+              "px": 232.94998625172687,
+              "py": 449.99119295455534,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "sx": 251.13144859332508,
+              "sy": 459.0819241253544,
+              "expected": 9,
+              "pick": 9,
+              "action": "place",
+              "px": 251.13144859332508,
+              "py": 459.0819241253544,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "sx": 160.2241368853341,
+              "sy": 431.8097306129572,
+              "expected": 10,
+              "pick": 10,
+              "action": "place",
+              "px": 160.2241368853341,
+              "py": 431.8097306129572,
+              "uncovered": false
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "sx": 178.40559922693228,
+              "sy": 440.9004617837562,
+              "expected": 11,
+              "pick": 11,
+              "action": "place",
+              "px": 178.40559922693228,
+              "py": 440.9004617837562,
+              "uncovered": false
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "sx": 196.5870615685305,
+              "sy": 449.99119295455534,
+              "expected": 12,
+              "pick": 12,
+              "action": "place",
+              "px": 196.5870615685305,
+              "py": 449.99119295455534,
+              "uncovered": false
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "sx": 214.7685239101287,
+              "sy": 459.0819241253545,
+              "expected": 13,
+              "pick": 13,
+              "action": "place",
+              "px": 214.7685239101287,
+              "py": 459.0819241253545,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "sx": 232.9499862517269,
+              "sy": 468.1726552961535,
+              "expected": 14,
+              "pick": 14,
+              "action": "place",
+              "px": 232.9499862517269,
+              "py": 468.1726552961535,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "sx": 142.0426745437359,
+              "sy": 440.90046178375627,
+              "expected": 15,
+              "pick": 15,
+              "action": "place",
+              "px": 142.0426745437359,
+              "py": 440.90046178375627,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "sx": 160.22413688533408,
+              "sy": 449.99119295455534,
+              "expected": 16,
+              "pick": 16,
+              "action": "place",
+              "px": 160.22413688533408,
+              "py": 449.99119295455534,
+              "uncovered": false
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "sx": 178.40559922693228,
+              "sy": 459.0819241253544,
+              "expected": 17,
+              "pick": 17,
+              "action": "blocked",
+              "px": 178.40559922693228,
+              "py": 459.0819241253544,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "sx": 196.5870615685305,
+              "sy": 468.17265529615355,
+              "expected": 18,
+              "pick": 18,
+              "action": "blocked",
+              "px": 196.5870615685305,
+              "py": 468.17265529615355,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "sx": 214.7685239101287,
+              "sy": 477.2633864669526,
+              "expected": 19,
+              "pick": 19,
+              "action": "place",
+              "px": 214.7685239101287,
+              "py": 477.2633864669526,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "sx": 123.86121220213771,
+              "sy": 449.99119295455534,
+              "expected": 20,
+              "pick": 20,
+              "action": "place",
+              "px": 123.86121220213771,
+              "py": 449.99119295455534,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "sx": 142.04267454373587,
+              "sy": 459.0819241253544,
+              "expected": 21,
+              "pick": 21,
+              "action": "place",
+              "px": 142.04267454373587,
+              "py": 459.0819241253544,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "sx": 160.22413688533408,
+              "sy": 468.1726552961535,
+              "expected": 22,
+              "pick": 22,
+              "action": "place",
+              "px": 160.22413688533408,
+              "py": 468.1726552961535,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "sx": 178.40559922693228,
+              "sy": 477.2633864669526,
+              "expected": 23,
+              "pick": 23,
+              "action": "place",
+              "px": 178.40559922693228,
+              "py": 477.2633864669526,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "sx": 196.5870615685305,
+              "sy": 486.3541176377517,
+              "expected": 24,
+              "pick": 24,
+              "action": "place",
+              "px": 196.5870615685305,
+              "py": 486.3541176377517,
+              "uncovered": true
+            }
+          ]
+        },
+        {
+          "name": "room trusted pointer places intended tile",
+          "pass": true,
+          "details": {
+            "x": 1,
+            "y": 0,
+            "sx": 214.76852391012866,
+            "sy": 422.71899944215806,
+            "expected": 1,
+            "pick": 1,
+            "action": "place",
+            "px": 214.76852391012866,
+            "py": 422.71899944215806,
+            "uncovered": true
+          }
+        },
+        {
+          "name": "No JS/resource errors",
+          "pass": true,
+          "details": []
+        }
+      ],
+      "errors": [],
+      "build": "boxroom-paper-08a5a567c57d",
+      "ui": {
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390,
+        "panels": [
+          {
+            "id": "play-head",
+            "x": 12,
+            "y": 10,
+            "w": 366,
+            "h": 46.984375,
+            "right": 378,
+            "bottom": 56.984375
+          },
+          {
+            "id": "arrival-panel",
+            "x": 12,
+            "y": 64.984375,
+            "w": 366,
+            "h": 95,
+            "right": 378,
+            "bottom": 159.984375
+          },
+          {
+            "id": "desk",
+            "x": 12,
+            "y": 667,
+            "w": 366,
+            "h": 167,
+            "right": 378,
+            "bottom": 834
+          }
+        ],
+        "controls": [
+          {
+            "id": "menu",
+            "label": "Open menu",
+            "x": 12,
+            "y": 11.484375,
+            "w": 44,
+            "h": 44,
+            "right": 56,
+            "bottom": 55.484375
+          },
+          {
+            "id": "view-toggle",
+            "label": "View controls",
+            "x": 334,
+            "y": 11.484375,
+            "w": 44,
+            "h": 44,
+            "right": 378,
+            "bottom": 55.484375
+          },
+          {
+            "id": "arrival-peek",
+            "label": "Inspect arrivals, 2 waiting",
+            "x": 22,
+            "y": 65.984375,
+            "w": 85.84375,
+            "h": 44,
+            "right": 107.84375,
+            "bottom": 109.984375
+          },
+          {
+            "id": "focus-hatch",
+            "label": "Find hatch 1",
+            "x": 21,
+            "y": 112.984375,
+            "w": 44,
+            "h": 44,
+            "right": 65,
+            "bottom": 156.984375
+          },
+          {
+            "id": "piece",
+            "label": "plain, 2 turntables available",
+            "x": 23,
+            "y": 678,
+            "w": 110,
+            "h": 54,
+            "right": 133,
+            "bottom": 732
+          },
+          {
+            "id": "more-button",
+            "label": "Choose a precise tile",
+            "x": 75,
+            "y": 741,
+            "w": 44,
+            "h": 48,
+            "right": 119,
+            "bottom": 789
+          },
+          {
+            "id": "send",
+            "label": "Send the post",
+            "x": 127,
+            "y": 741,
+            "w": 240,
+            "h": 48,
+            "right": 367,
+            "bottom": 789
+          },
+          {
+            "id": "cancel-run",
+            "label": "Cancel run and return to setup",
+            "x": 305.546875,
+            "y": 789,
+            "w": 61.453125,
+            "h": 44,
+            "right": 367,
+            "bottom": 833
+          }
+        ],
+        "fonts": [
+          {
+            "text": "Daily #48",
+            "font": 12,
+            "x": 68,
+            "y": 40.1875,
+            "w": 49.796875,
+            "h": 13.796875,
+            "right": 117.796875,
+            "bottom": 53.984375
+          },
+          {
+            "text": "",
+            "font": 16,
+            "x": 74,
+            "y": 112.984375,
+            "w": 57.75,
+            "h": 44,
+            "right": 131.75,
+            "bottom": 156.984375
+          },
+          {
+            "text": "",
+            "font": 16,
+            "x": 136.75,
+            "y": 112.984375,
+            "w": 57.75,
+            "h": 44,
+            "right": 194.5,
+            "bottom": 156.984375
+          },
+          {
+            "text": "Plain",
+            "font": 12.8,
+            "x": 73,
+            "y": 697.96875,
+            "w": 39.359375,
+            "h": 14.0625,
+            "right": 112.359375,
+            "bottom": 712.03125
+          },
+          {
+            "text": "2",
+            "font": 16,
+            "x": 116.359375,
+            "y": 697,
+            "w": 8.640625,
+            "h": 16,
+            "right": 125,
+            "bottom": 713
+          },
+          {
+            "text": "Ginger",
+            "font": 12.8,
+            "x": 190,
+            "y": 697.96875,
+            "w": 39.359375,
+            "h": 14.0625,
+            "right": 229.359375,
+            "bottom": 712.03125
+          },
+          {
+            "text": "0",
+            "font": 16,
+            "x": 233.359375,
+            "y": 697,
+            "w": 8.640625,
+            "h": 16,
+            "right": 242,
+            "bottom": 713
+          },
+          {
+            "text": "Blue",
+            "font": 12.8,
+            "x": 307,
+            "y": 697.96875,
+            "w": 39.359375,
+            "h": 14.0625,
+            "right": 346.359375,
+            "bottom": 712.03125
+          },
+          {
+            "text": "0",
+            "font": 16,
+            "x": 350.359375,
+            "y": 697,
+            "w": 8.640625,
+            "h": 16,
+            "right": 359,
+            "bottom": 713
+          },
+          {
+            "text": "Tap to place · tap again to turn.",
+            "font": 12.16,
+            "x": 23,
+            "y": 803.703125,
+            "w": 160.421875,
+            "h": 14.578125,
+            "right": 183.421875,
+            "bottom": 818.28125
+          }
+        ]
+      },
+      "views": [
+        {
+          "mode": "board",
+          "geometry": [
+            {
+              "x": 194.6808510638298,
+              "y": 345.0851063829787
+            },
+            {
+              "x": 350.4255319148936,
+              "y": 422.95744680851067
+            },
+            {
+              "x": 194.6808510638298,
+              "y": 500.82978723404256
+            },
+            {
+              "x": 38.93617021276596,
+              "y": 422.95744680851067
+            }
+          ],
+          "target": {
+            "x": 0,
+            "y": 0,
+            "sx": 194.6808510638298,
+            "sy": 360.6595744680851,
+            "expected": 0,
+            "pick": 0,
+            "action": "place",
+            "px": 194.6808510638298,
+            "py": 360.6595744680851,
+            "uncovered": true
+          },
+          "placed": true,
+          "uncoveredTiles": 24,
+          "totalTiles": 25,
+          "camera": {
+            "zoom": 3.893617021276596,
+            "zoomCss": 1.946808510638298,
+            "dpr": 2,
+            "x": 0,
+            "y": 0,
+            "framing": "board",
+            "manual": false
+          },
+          "paper": {
+            "active": true,
+            "ready": true,
+            "ambient": 1.1666666666666674,
+            "motion": true,
+            "density": 4,
+            "room": {
+              "seed": 562353078,
+              "w": 5,
+              "h": 5,
+              "date": "2026-11-17",
+              "mode": "daily"
+            },
+            "resources": {
+              "bytes": 75254152,
+              "decodedBytes": 36085384,
+              "sceneBytes": 16686912,
+              "viewCacheBytes": 10460800,
+              "residentBytes": 4792320,
+              "pieceBytes": 1686336,
+              "outputBytes": 5542400,
+              "preparations": 1,
+              "prepareMs": 4725.5,
+              "decodeMs": 563.2999999970198,
+              "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+            },
+            "performance": {
+              "frames": 42,
+              "renderMsP50": 0.3999999985098839,
+              "renderMsP95": 3
+            }
+          }
+        },
+        {
+          "mode": "room",
+          "geometry": [
+            {
+              "x": 196.5870615685305,
+              "y": 404.53753710055986
+            },
+            {
+              "x": 287.49437327652146,
+              "y": 449.99119295455534
+            },
+            {
+              "x": 196.5870615685305,
+              "y": 495.44484880855083
+            },
+            {
+              "x": 105.6797498605395,
+              "y": 449.99119295455534
+            }
+          ],
+          "target": {
+            "x": 1,
+            "y": 0,
+            "sx": 214.76852391012866,
+            "sy": 422.71899944215806,
+            "expected": 1,
+            "pick": 1,
+            "action": "place",
+            "px": 214.76852391012866,
+            "py": 422.71899944215806,
+            "uncovered": true
+          },
+          "placed": true,
+          "uncoveredTiles": 18,
+          "totalTiles": 25,
+          "camera": {
+            "zoom": 2.2726827926997744,
+            "zoomCss": 1.1363413963498872,
+            "dpr": 2,
+            "x": 0,
+            "y": 0,
+            "framing": "room",
+            "manual": false
+          },
+          "paper": {
+            "active": true,
+            "ready": true,
+            "ambient": 2.2166666666666637,
+            "motion": true,
+            "density": 2,
+            "room": {
+              "seed": 562353078,
+              "w": 5,
+              "h": 5,
+              "date": "2026-11-17",
+              "mode": "daily"
+            },
+            "resources": {
+              "bytes": 69918252,
+              "decodedBytes": 36085384,
+              "sceneBytes": 16686912,
+              "viewCacheBytes": 6595204,
+              "residentBytes": 4792320,
+              "pieceBytes": 1686336,
+              "outputBytes": 4072096,
+              "preparations": 1,
+              "prepareMs": 4725.5,
+              "decodeMs": 563.2999999970198,
+              "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+            },
+            "performance": {
+              "frames": 81,
+              "renderMsP50": 0.3999999985098839,
+              "renderMsP95": 2.2999999970197678
+            }
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "short-landscape",
+      "width": 720,
+      "height": 400,
+      "dpr": 2,
+      "touch": true,
+      "checks": [
+        {
+          "name": "Daily loads",
+          "pass": true
+        },
+        {
+          "name": "HUD panels fit viewport",
+          "pass": true,
+          "details": [
+            {
+              "id": "play-head",
+              "x": 12,
+              "y": 8,
+              "w": 696,
+              "h": 46.984375,
+              "right": 708,
+              "bottom": 54.984375
+            },
+            {
+              "id": "arrival-panel",
+              "x": 418,
+              "y": 62.984375,
+              "w": 290,
+              "h": 94,
+              "right": 708,
+              "bottom": 156.984375
+            },
+            {
+              "id": "desk",
+              "x": 418,
+              "y": 239.75,
+              "w": 290,
+              "h": 152.25,
+              "right": 708,
+              "bottom": 392
+            }
+          ]
+        },
+        {
+          "name": "Active HUD targets at least44 CSS px",
+          "pass": true,
+          "details": []
+        },
+        {
+          "name": "No document horizontal overflow",
+          "pass": true
+        },
+        {
+          "name": "HUD control labels nonempty",
+          "pass": true
+        },
+        {
+          "name": "board all tile centres pick their exact tile",
+          "pass": true
+        },
+        {
+          "name": "board has uncovered editable floor tile",
+          "pass": true,
+          "details": [
+            {
+              "x": 0,
+              "y": 0,
+              "sx": 207.44680851063825,
+              "sy": 170.6063829787234,
+              "expected": 0,
+              "pick": 0,
+              "action": "place",
+              "px": 207.44680851063825,
+              "py": 170.6063829787234,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "sx": 240.6382978723404,
+              "sy": 187.20212765957444,
+              "expected": 1,
+              "pick": 1,
+              "action": "place",
+              "px": 240.6382978723404,
+              "py": 187.20212765957444,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "sx": 273.8297872340425,
+              "sy": 203.79787234042553,
+              "expected": 2,
+              "pick": 2,
+              "action": "blocked",
+              "px": 273.8297872340425,
+              "py": 203.79787234042553,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "sx": 307.0212765957446,
+              "sy": 220.39361702127658,
+              "expected": 3,
+              "pick": 3,
+              "action": "place",
+              "px": 307.0212765957446,
+              "py": 220.39361702127658,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "sx": 340.2127659574468,
+              "sy": 236.98936170212764,
+              "expected": 4,
+              "pick": 4,
+              "action": "place",
+              "px": 340.2127659574468,
+              "py": 236.98936170212764,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "sx": 174.2553191489361,
+              "sy": 187.20212765957444,
+              "expected": 5,
+              "pick": 5,
+              "action": "place",
+              "px": 174.2553191489361,
+              "py": 187.20212765957444,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "sx": 207.44680851063828,
+              "sy": 203.7978723404255,
+              "expected": 6,
+              "pick": 6,
+              "action": "place",
+              "px": 207.44680851063828,
+              "py": 203.7978723404255,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "sx": 240.6382978723404,
+              "sy": 220.39361702127658,
+              "expected": 7,
+              "pick": 7,
+              "action": "place",
+              "px": 240.6382978723404,
+              "py": 220.39361702127658,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "sx": 273.8297872340425,
+              "sy": 236.98936170212764,
+              "expected": 8,
+              "pick": 8,
+              "action": "place",
+              "px": 273.8297872340425,
+              "py": 236.98936170212764,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "sx": 307.02127659574467,
+              "sy": 253.5851063829787,
+              "expected": 9,
+              "pick": 9,
+              "action": "place",
+              "px": 307.02127659574467,
+              "py": 253.5851063829787,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "sx": 141.063829787234,
+              "sy": 203.7978723404255,
+              "expected": 10,
+              "pick": 10,
+              "action": "place",
+              "px": 141.063829787234,
+              "py": 203.7978723404255,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "sx": 174.25531914893614,
+              "sy": 220.39361702127655,
+              "expected": 11,
+              "pick": 11,
+              "action": "place",
+              "px": 174.25531914893614,
+              "py": 220.39361702127655,
+              "uncovered": false
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "sx": 207.44680851063825,
+              "sy": 236.98936170212767,
+              "expected": 12,
+              "pick": 12,
+              "action": "place",
+              "px": 207.44680851063825,
+              "py": 236.98936170212767,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "sx": 240.63829787234036,
+              "sy": 253.58510638297872,
+              "expected": 13,
+              "pick": 13,
+              "action": "place",
+              "px": 240.63829787234036,
+              "py": 253.58510638297872,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "sx": 273.82978723404256,
+              "sy": 270.1808510638298,
+              "expected": 14,
+              "pick": 14,
+              "action": "place",
+              "px": 273.82978723404256,
+              "py": 270.1808510638298,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "sx": 107.87234042553189,
+              "sy": 220.39361702127655,
+              "expected": 15,
+              "pick": 15,
+              "action": "place",
+              "px": 107.87234042553189,
+              "py": 220.39361702127655,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "sx": 141.06382978723403,
+              "sy": 236.9893617021276,
+              "expected": 16,
+              "pick": 16,
+              "action": "place",
+              "px": 141.06382978723403,
+              "py": 236.9893617021276,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "sx": 174.25531914893614,
+              "sy": 253.58510638297872,
+              "expected": 17,
+              "pick": 17,
+              "action": "blocked",
+              "px": 174.25531914893614,
+              "py": 253.58510638297872,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "sx": 207.44680851063825,
+              "sy": 270.1808510638298,
+              "expected": 18,
+              "pick": 18,
+              "action": "blocked",
+              "px": 207.44680851063825,
+              "py": 270.1808510638298,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "sx": 240.63829787234042,
+              "sy": 286.77659574468083,
+              "expected": 19,
+              "pick": 19,
+              "action": "place",
+              "px": 240.63829787234042,
+              "py": 286.77659574468083,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "sx": 74.68085106382975,
+              "sy": 236.98936170212764,
+              "expected": 20,
+              "pick": 20,
+              "action": "place",
+              "px": 74.68085106382975,
+              "py": 236.98936170212764,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "sx": 107.87234042553189,
+              "sy": 253.5851063829787,
+              "expected": 21,
+              "pick": 21,
+              "action": "place",
+              "px": 107.87234042553189,
+              "py": 253.5851063829787,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "sx": 141.063829787234,
+              "sy": 270.1808510638298,
+              "expected": 22,
+              "pick": 22,
+              "action": "place",
+              "px": 141.063829787234,
+              "py": 270.1808510638298,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "sx": 174.2553191489361,
+              "sy": 286.77659574468083,
+              "expected": 23,
+              "pick": 23,
+              "action": "place",
+              "px": 174.2553191489361,
+              "py": 286.77659574468083,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "sx": 207.44680851063828,
+              "sy": 303.3723404255319,
+              "expected": 24,
+              "pick": 24,
+              "action": "place",
+              "px": 207.44680851063828,
+              "py": 303.3723404255319,
+              "uncovered": true
+            }
+          ]
+        },
+        {
+          "name": "board trusted pointer places intended tile",
+          "pass": true,
+          "details": {
+            "x": 0,
+            "y": 0,
+            "sx": 207.44680851063825,
+            "sy": 170.6063829787234,
+            "expected": 0,
+            "pick": 0,
+            "action": "place",
+            "px": 207.44680851063825,
+            "py": 170.6063829787234,
+            "uncovered": true
+          }
+        },
+        {
+          "name": "room all tile centres pick their exact tile",
+          "pass": true
+        },
+        {
+          "name": "room has uncovered editable floor tile",
+          "pass": true,
+          "details": [
+            {
+              "x": 0,
+              "y": 0,
+              "sx": 208.49502986932495,
+              "sy": 227.2485510745023,
+              "expected": 0,
+              "pick": 0,
+              "action": "place",
+              "px": 208.49502986932495,
+              "py": 227.2485510745023,
+              "uncovered": false
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "sx": 226.14540276831542,
+              "sy": 236.07373752399755,
+              "expected": 1,
+              "pick": 1,
+              "action": "place",
+              "px": 226.14540276831542,
+              "py": 236.07373752399755,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "sx": 243.7957756673059,
+              "sy": 244.8989239734928,
+              "expected": 2,
+              "pick": 2,
+              "action": "blocked",
+              "px": 243.7957756673059,
+              "py": 244.8989239734928,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "sx": 261.44614856629636,
+              "sy": 253.72411042298805,
+              "expected": 3,
+              "pick": 3,
+              "action": "place",
+              "px": 261.44614856629636,
+              "py": 253.72411042298805,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "sx": 279.0965214652868,
+              "sy": 262.5492968724833,
+              "expected": 4,
+              "pick": 4,
+              "action": "place",
+              "px": 279.0965214652868,
+              "py": 262.5492968724833,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "sx": 190.84465697033448,
+              "sy": 236.07373752399755,
+              "expected": 5,
+              "pick": 5,
+              "action": "place",
+              "px": 190.84465697033448,
+              "py": 236.07373752399755,
+              "uncovered": false
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "sx": 208.49502986932495,
+              "sy": 244.8989239734928,
+              "expected": 6,
+              "pick": 6,
+              "action": "place",
+              "px": 208.49502986932495,
+              "py": 244.8989239734928,
+              "uncovered": false
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "sx": 226.14540276831542,
+              "sy": 253.72411042298805,
+              "expected": 7,
+              "pick": 7,
+              "action": "place",
+              "px": 226.14540276831542,
+              "py": 253.72411042298805,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "sx": 243.7957756673059,
+              "sy": 262.5492968724833,
+              "expected": 8,
+              "pick": 8,
+              "action": "place",
+              "px": 243.7957756673059,
+              "py": 262.5492968724833,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "sx": 261.4461485662963,
+              "sy": 271.3744833219785,
+              "expected": 9,
+              "pick": 9,
+              "action": "place",
+              "px": 261.4461485662963,
+              "py": 271.3744833219785,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "sx": 173.19428407134401,
+              "sy": 244.8989239734928,
+              "expected": 10,
+              "pick": 10,
+              "action": "place",
+              "px": 173.19428407134401,
+              "py": 244.8989239734928,
+              "uncovered": false
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "sx": 190.84465697033448,
+              "sy": 253.72411042298805,
+              "expected": 11,
+              "pick": 11,
+              "action": "place",
+              "px": 190.84465697033448,
+              "py": 253.72411042298805,
+              "uncovered": false
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "sx": 208.49502986932495,
+              "sy": 262.5492968724833,
+              "expected": 12,
+              "pick": 12,
+              "action": "place",
+              "px": 208.49502986932495,
+              "py": 262.5492968724833,
+              "uncovered": false
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "sx": 226.14540276831542,
+              "sy": 271.3744833219786,
+              "expected": 13,
+              "pick": 13,
+              "action": "place",
+              "px": 226.14540276831542,
+              "py": 271.3744833219786,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "sx": 243.79577566730586,
+              "sy": 280.19966977147374,
+              "expected": 14,
+              "pick": 14,
+              "action": "place",
+              "px": 243.79577566730586,
+              "py": 280.19966977147374,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "sx": 155.54391117235355,
+              "sy": 253.72411042298805,
+              "expected": 15,
+              "pick": 15,
+              "action": "place",
+              "px": 155.54391117235355,
+              "py": 253.72411042298805,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "sx": 173.19428407134401,
+              "sy": 262.5492968724833,
+              "expected": 16,
+              "pick": 16,
+              "action": "place",
+              "px": 173.19428407134401,
+              "py": 262.5492968724833,
+              "uncovered": false
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "sx": 190.84465697033448,
+              "sy": 271.3744833219785,
+              "expected": 17,
+              "pick": 17,
+              "action": "blocked",
+              "px": 190.84465697033448,
+              "py": 271.3744833219785,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "sx": 208.49502986932495,
+              "sy": 280.1996697714738,
+              "expected": 18,
+              "pick": 18,
+              "action": "blocked",
+              "px": 208.49502986932495,
+              "py": 280.1996697714738,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "sx": 226.1454027683154,
+              "sy": 289.024856220969,
+              "expected": 19,
+              "pick": 19,
+              "action": "place",
+              "px": 226.1454027683154,
+              "py": 289.024856220969,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "sx": 137.89353827336308,
+              "sy": 262.5492968724833,
+              "expected": 20,
+              "pick": 20,
+              "action": "place",
+              "px": 137.89353827336308,
+              "py": 262.5492968724833,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "sx": 155.54391117235355,
+              "sy": 271.3744833219785,
+              "expected": 21,
+              "pick": 21,
+              "action": "place",
+              "px": 155.54391117235355,
+              "py": 271.3744833219785,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "sx": 173.19428407134401,
+              "sy": 280.1996697714738,
+              "expected": 22,
+              "pick": 22,
+              "action": "place",
+              "px": 173.19428407134401,
+              "py": 280.1996697714738,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "sx": 190.84465697033448,
+              "sy": 289.024856220969,
+              "expected": 23,
+              "pick": 23,
+              "action": "place",
+              "px": 190.84465697033448,
+              "py": 289.024856220969,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "sx": 208.49502986932492,
+              "sy": 297.85004267046423,
+              "expected": 24,
+              "pick": 24,
+              "action": "place",
+              "px": 208.49502986932492,
+              "py": 297.85004267046423,
+              "uncovered": true
+            }
+          ]
+        },
+        {
+          "name": "room trusted pointer places intended tile",
+          "pass": true,
+          "details": {
+            "x": 1,
+            "y": 0,
+            "sx": 226.14540276831542,
+            "sy": 236.07373752399755,
+            "expected": 1,
+            "pick": 1,
+            "action": "place",
+            "px": 226.14540276831542,
+            "py": 236.07373752399755,
+            "uncovered": true
+          }
+        },
+        {
+          "name": "No JS/resource errors",
+          "pass": true,
+          "details": []
+        }
+      ],
+      "errors": [],
+      "build": "boxroom-paper-08a5a567c57d",
+      "ui": {
+        "width": 720,
+        "height": 400,
+        "scrollWidth": 720,
+        "panels": [
+          {
+            "id": "play-head",
+            "x": 12,
+            "y": 8,
+            "w": 696,
+            "h": 46.984375,
+            "right": 708,
+            "bottom": 54.984375
+          },
+          {
+            "id": "arrival-panel",
+            "x": 418,
+            "y": 62.984375,
+            "w": 290,
+            "h": 94,
+            "right": 708,
+            "bottom": 156.984375
+          },
+          {
+            "id": "desk",
+            "x": 418,
+            "y": 239.75,
+            "w": 290,
+            "h": 152.25,
+            "right": 708,
+            "bottom": 392
+          }
+        ],
+        "controls": [
+          {
+            "id": "menu",
+            "label": "Open menu",
+            "x": 12,
+            "y": 9.484375,
+            "w": 44,
+            "h": 44,
+            "right": 56,
+            "bottom": 53.484375
+          },
+          {
+            "id": "view-toggle",
+            "label": "View controls",
+            "x": 664,
+            "y": 9.484375,
+            "w": 44,
+            "h": 44,
+            "right": 708,
+            "bottom": 53.484375
+          },
+          {
+            "id": "arrival-peek",
+            "label": "Inspect arrivals, 2 waiting",
+            "x": 425,
+            "y": 63.984375,
+            "w": 69.828125,
+            "h": 44,
+            "right": 494.828125,
+            "bottom": 107.984375
+          },
+          {
+            "id": "piece",
+            "label": "plain, 2 turntables available",
+            "x": 428,
+            "y": 249.75,
+            "w": 86.65625,
+            "h": 46.25,
+            "right": 514.65625,
+            "bottom": 296
+          },
+          {
+            "id": "more-button",
+            "label": "Choose a precise tile",
+            "x": 478,
+            "y": 302,
+            "w": 44,
+            "h": 45,
+            "right": 522,
+            "bottom": 347
+          },
+          {
+            "id": "send",
+            "label": "Send the post",
+            "x": 528,
+            "y": 302,
+            "w": 170,
+            "h": 45,
+            "right": 698,
+            "bottom": 347
+          },
+          {
+            "id": "cancel-run",
+            "label": "Cancel run and return to setup",
+            "x": 639.375,
+            "y": 347,
+            "w": 58.625,
+            "h": 44,
+            "right": 698,
+            "bottom": 391
+          }
+        ],
+        "fonts": [
+          {
+            "text": "Daily #48",
+            "font": 12,
+            "x": 68,
+            "y": 38.1875,
+            "w": 49.796875,
+            "h": 13.796875,
+            "right": 117.796875,
+            "bottom": 51.984375
+          },
+          {
+            "text": "",
+            "font": 16,
+            "x": 426,
+            "y": 108.984375,
+            "w": 54.25,
+            "h": 44,
+            "right": 480.25,
+            "bottom": 152.984375
+          },
+          {
+            "text": "",
+            "font": 16,
+            "x": 485.25,
+            "y": 108.984375,
+            "w": 54.25,
+            "h": 44,
+            "right": 539.5,
+            "bottom": 152.984375
+          },
+          {
+            "text": "Plain",
+            "font": 11.2,
+            "x": 464,
+            "y": 259.0625,
+            "w": 44.65625,
+            "h": 12.3125,
+            "right": 508.65625,
+            "bottom": 271.375
+          },
+          {
+            "text": "2",
+            "font": 13.6,
+            "x": 464,
+            "y": 274.375,
+            "w": 44.65625,
+            "h": 15.625,
+            "right": 508.65625,
+            "bottom": 290
+          },
+          {
+            "text": "Ginger",
+            "font": 11.2,
+            "x": 555.65625,
+            "y": 259.0625,
+            "w": 44.671875,
+            "h": 12.3125,
+            "right": 600.328125,
+            "bottom": 271.375
+          },
+          {
+            "text": "0",
+            "font": 13.6,
+            "x": 555.65625,
+            "y": 274.375,
+            "w": 44.671875,
+            "h": 15.625,
+            "right": 600.328125,
+            "bottom": 290
+          },
+          {
+            "text": "Blue",
+            "font": 11.2,
+            "x": 647.328125,
+            "y": 259.0625,
+            "w": 44.65625,
+            "h": 12.3125,
+            "right": 691.984375,
+            "bottom": 271.375
+          },
+          {
+            "text": "0",
+            "font": 13.6,
+            "x": 647.328125,
+            "y": 274.375,
+            "w": 44.65625,
+            "h": 15.625,
+            "right": 691.984375,
+            "bottom": 290
+          },
+          {
+            "text": "Tap to place · tap again to turn.",
+            "font": 11.04,
+            "x": 428,
+            "y": 362.375,
+            "w": 145.578125,
+            "h": 13.25,
+            "right": 573.578125,
+            "bottom": 375.625
+          }
+        ]
+      },
+      "views": [
+        {
+          "mode": "board",
+          "geometry": [
+            {
+              "x": 207.44680851063825,
+              "y": 154.01063829787233
+            },
+            {
+              "x": 373.4042553191489,
+              "y": 236.98936170212764
+            },
+            {
+              "x": 207.44680851063825,
+              "y": 319.96808510638294
+            },
+            {
+              "x": 41.48936170212765,
+              "y": 236.98936170212764
+            }
+          ],
+          "target": {
+            "x": 0,
+            "y": 0,
+            "sx": 207.44680851063825,
+            "sy": 170.6063829787234,
+            "expected": 0,
+            "pick": 0,
+            "action": "place",
+            "px": 207.44680851063825,
+            "py": 170.6063829787234,
+            "uncovered": true
+          },
+          "placed": true,
+          "uncoveredTiles": 24,
+          "totalTiles": 25,
+          "camera": {
+            "zoom": 4.148936170212766,
+            "zoomCss": 2.074468085106383,
+            "dpr": 2,
+            "x": 0,
+            "y": 0,
+            "framing": "board",
+            "manual": false
+          },
+          "paper": {
+            "active": true,
+            "ready": true,
+            "ambient": 1.1333333333333342,
+            "motion": true,
+            "density": 4,
+            "room": {
+              "seed": 562353078,
+              "w": 5,
+              "h": 5,
+              "date": "2026-11-17",
+              "mode": "daily"
+            },
+            "resources": {
+              "bytes": 70866188,
+              "decodedBytes": 36085384,
+              "sceneBytes": 16686912,
+              "viewCacheBytes": 7351300,
+              "residentBytes": 4792320,
+              "pieceBytes": 1686336,
+              "outputBytes": 4263936,
+              "preparations": 1,
+              "prepareMs": 4829.89999999851,
+              "decodeMs": 738,
+              "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+            },
+            "performance": {
+              "frames": 45,
+              "renderMsP50": 0.5,
+              "renderMsP95": 1.5
+            }
+          }
+        },
+        {
+          "mode": "room",
+          "geometry": [
+            {
+              "x": 208.49502986932492,
+              "y": 218.42336462500708
+            },
+            {
+              "x": 296.7468943642773,
+              "y": 262.5492968724833
+            },
+            {
+              "x": 208.49502986932492,
+              "y": 306.67522911995945
+            },
+            {
+              "x": 120.2431653743726,
+              "y": 262.5492968724833
+            }
+          ],
+          "target": {
+            "x": 1,
+            "y": 0,
+            "sx": 226.14540276831542,
+            "sy": 236.07373752399755,
+            "expected": 1,
+            "pick": 1,
+            "action": "place",
+            "px": 226.14540276831542,
+            "py": 236.07373752399755,
+            "uncovered": true
+          },
+          "placed": true,
+          "uncoveredTiles": 18,
+          "totalTiles": 25,
+          "camera": {
+            "zoom": 2.206296612373809,
+            "zoomCss": 1.1031483061869045,
+            "dpr": 2,
+            "x": 0,
+            "y": 0,
+            "framing": "room",
+            "manual": false
+          },
+          "paper": {
+            "active": true,
+            "ready": true,
+            "ambient": 2.249999999999997,
+            "motion": true,
+            "density": 2,
+            "room": {
+              "seed": 562353078,
+              "w": 5,
+              "h": 5,
+              "date": "2026-11-17",
+              "mode": "daily"
+            },
+            "resources": {
+              "bytes": 68238144,
+              "decodedBytes": 36085384,
+              "sceneBytes": 16686912,
+              "viewCacheBytes": 5210808,
+              "residentBytes": 4792320,
+              "pieceBytes": 1686336,
+              "outputBytes": 3776384,
+              "preparations": 1,
+              "prepareMs": 4829.89999999851,
+              "decodeMs": 738,
+              "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+            },
+            "performance": {
+              "frames": 83,
+              "renderMsP50": 0.4000000059604645,
+              "renderMsP95": 1.5
+            }
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "desktop",
+      "width": 1488,
+      "height": 1116,
+      "dpr": 1,
+      "touch": false,
+      "checks": [
+        {
+          "name": "Daily loads",
+          "pass": true
+        },
+        {
+          "name": "HUD panels fit viewport",
+          "pass": true,
+          "details": [
+            {
+              "id": "play-head",
+              "x": 18,
+              "y": 10,
+              "w": 1452,
+              "h": 46.984375,
+              "right": 1470,
+              "bottom": 56.984375
+            },
+            {
+              "id": "arrival-panel",
+              "x": 1148,
+              "y": 64.984375,
+              "w": 322,
+              "h": 95,
+              "right": 1470,
+              "bottom": 159.984375
+            },
+            {
+              "id": "desk",
+              "x": 1148,
+              "y": 939,
+              "w": 322,
+              "h": 163,
+              "right": 1470,
+              "bottom": 1102
+            }
+          ]
+        },
+        {
+          "name": "Active HUD targets at least44 CSS px",
+          "pass": true,
+          "details": []
+        },
+        {
+          "name": "No document horizontal overflow",
+          "pass": true
+        },
+        {
+          "name": "HUD control labels nonempty",
+          "pass": true
+        },
+        {
+          "name": "board all tile centres pick their exact tile",
+          "pass": true
+        },
+        {
+          "name": "board has uncovered editable floor tile",
+          "pass": true,
+          "details": [
+            {
+              "x": 0,
+              "y": 0,
+              "sx": 573.9148936170212,
+              "sy": 422.97872340425533,
+              "expected": 0,
+              "pick": 0,
+              "action": "place",
+              "px": 573.9148936170212,
+              "py": 422.97872340425533,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "sx": 669.2340425531913,
+              "sy": 470.63829787234044,
+              "expected": 1,
+              "pick": 1,
+              "action": "place",
+              "px": 669.2340425531913,
+              "py": 470.63829787234044,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "sx": 764.5531914893616,
+              "sy": 518.2978723404254,
+              "expected": 2,
+              "pick": 2,
+              "action": "blocked",
+              "px": 764.5531914893616,
+              "py": 518.2978723404254,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "sx": 859.8723404255318,
+              "sy": 565.9574468085106,
+              "expected": 3,
+              "pick": 3,
+              "action": "place",
+              "px": 859.8723404255318,
+              "py": 565.9574468085106,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "sx": 955.191489361702,
+              "sy": 613.6170212765957,
+              "expected": 4,
+              "pick": 4,
+              "action": "place",
+              "px": 955.191489361702,
+              "py": 613.6170212765957,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "sx": 478.59574468085106,
+              "sy": 470.63829787234044,
+              "expected": 5,
+              "pick": 5,
+              "action": "place",
+              "px": 478.59574468085106,
+              "py": 470.63829787234044,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "sx": 573.9148936170211,
+              "sy": 518.2978723404256,
+              "expected": 6,
+              "pick": 6,
+              "action": "place",
+              "px": 573.9148936170211,
+              "py": 518.2978723404256,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "sx": 669.2340425531913,
+              "sy": 565.9574468085106,
+              "expected": 7,
+              "pick": 7,
+              "action": "place",
+              "px": 669.2340425531913,
+              "py": 565.9574468085106,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "sx": 764.5531914893616,
+              "sy": 613.6170212765957,
+              "expected": 8,
+              "pick": 8,
+              "action": "place",
+              "px": 764.5531914893616,
+              "py": 613.6170212765957,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "sx": 859.8723404255318,
+              "sy": 661.2765957446808,
+              "expected": 9,
+              "pick": 9,
+              "action": "place",
+              "px": 859.8723404255318,
+              "py": 661.2765957446808,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "sx": 383.27659574468083,
+              "sy": 518.2978723404254,
+              "expected": 10,
+              "pick": 10,
+              "action": "place",
+              "px": 383.27659574468083,
+              "py": 518.2978723404254,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "sx": 478.59574468085094,
+              "sy": 565.9574468085106,
+              "expected": 11,
+              "pick": 11,
+              "action": "place",
+              "px": 478.59574468085094,
+              "py": 565.9574468085106,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "sx": 573.9148936170211,
+              "sy": 613.6170212765957,
+              "expected": 12,
+              "pick": 12,
+              "action": "place",
+              "px": 573.9148936170211,
+              "py": 613.6170212765957,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "sx": 669.2340425531913,
+              "sy": 661.2765957446807,
+              "expected": 13,
+              "pick": 13,
+              "action": "place",
+              "px": 669.2340425531913,
+              "py": 661.2765957446807,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "sx": 764.5531914893616,
+              "sy": 708.9361702127658,
+              "expected": 14,
+              "pick": 14,
+              "action": "place",
+              "px": 764.5531914893616,
+              "py": 708.9361702127658,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "sx": 287.95744680851067,
+              "sy": 565.9574468085107,
+              "expected": 15,
+              "pick": 15,
+              "action": "place",
+              "px": 287.95744680851067,
+              "py": 565.9574468085107,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "sx": 383.2765957446808,
+              "sy": 613.6170212765958,
+              "expected": 16,
+              "pick": 16,
+              "action": "place",
+              "px": 383.2765957446808,
+              "py": 613.6170212765958,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "sx": 478.595744680851,
+              "sy": 661.2765957446808,
+              "expected": 17,
+              "pick": 17,
+              "action": "blocked",
+              "px": 478.595744680851,
+              "py": 661.2765957446808,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "sx": 573.9148936170212,
+              "sy": 708.9361702127658,
+              "expected": 18,
+              "pick": 18,
+              "action": "blocked",
+              "px": 573.9148936170212,
+              "py": 708.9361702127658,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "sx": 669.2340425531914,
+              "sy": 756.5957446808509,
+              "expected": 19,
+              "pick": 19,
+              "action": "place",
+              "px": 669.2340425531914,
+              "py": 756.5957446808509,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "sx": 192.63829787234044,
+              "sy": 613.6170212765957,
+              "expected": 20,
+              "pick": 20,
+              "action": "place",
+              "px": 192.63829787234044,
+              "py": 613.6170212765957,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "sx": 287.95744680851055,
+              "sy": 661.2765957446808,
+              "expected": 21,
+              "pick": 21,
+              "action": "place",
+              "px": 287.95744680851055,
+              "py": 661.2765957446808,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "sx": 383.2765957446808,
+              "sy": 708.9361702127658,
+              "expected": 22,
+              "pick": 22,
+              "action": "place",
+              "px": 383.2765957446808,
+              "py": 708.9361702127658,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "sx": 478.595744680851,
+              "sy": 756.5957446808509,
+              "expected": 23,
+              "pick": 23,
+              "action": "place",
+              "px": 478.595744680851,
+              "py": 756.5957446808509,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "sx": 573.9148936170212,
+              "sy": 804.255319148936,
+              "expected": 24,
+              "pick": 24,
+              "action": "place",
+              "px": 573.9148936170212,
+              "py": 804.255319148936,
+              "uncovered": true
+            }
+          ]
+        },
+        {
+          "name": "board trusted pointer places intended tile",
+          "pass": true,
+          "details": {
+            "x": 0,
+            "y": 0,
+            "sx": 573.9148936170212,
+            "sy": 422.97872340425533,
+            "expected": 0,
+            "pick": 0,
+            "action": "place",
+            "px": 573.9148936170212,
+            "py": 422.97872340425533,
+            "uncovered": true
+          }
+        },
+        {
+          "name": "room all tile centres pick their exact tile",
+          "pass": true
+        },
+        {
+          "name": "room has uncovered editable floor tile",
+          "pass": true,
+          "details": [
+            {
+              "x": 0,
+              "y": 0,
+              "sx": 578.2365912824346,
+              "sy": 588.6685778718761,
+              "expected": 0,
+              "pick": 0,
+              "action": "place",
+              "px": 578.2365912824346,
+              "py": 588.6685778718761,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 0,
+              "sx": 633.8738530927898,
+              "sy": 616.4872087770536,
+              "expected": 1,
+              "pick": 1,
+              "action": "place",
+              "px": 633.8738530927898,
+              "py": 616.4872087770536,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 0,
+              "sx": 689.5111149031449,
+              "sy": 644.3058396822312,
+              "expected": 2,
+              "pick": 2,
+              "action": "blocked",
+              "px": 689.5111149031449,
+              "py": 644.3058396822312,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "sx": 745.1483767135,
+              "sy": 672.1244705874088,
+              "expected": 3,
+              "pick": 3,
+              "action": "place",
+              "px": 745.1483767135,
+              "py": 672.1244705874088,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 0,
+              "sx": 800.7856385238551,
+              "sy": 699.9431014925864,
+              "expected": 4,
+              "pick": 4,
+              "action": "place",
+              "px": 800.7856385238551,
+              "py": 699.9431014925864,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 1,
+              "sx": 522.5993294720794,
+              "sy": 616.4872087770536,
+              "expected": 5,
+              "pick": 5,
+              "action": "place",
+              "px": 522.5993294720794,
+              "py": 616.4872087770536,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "sx": 578.2365912824346,
+              "sy": 644.3058396822312,
+              "expected": 6,
+              "pick": 6,
+              "action": "place",
+              "px": 578.2365912824346,
+              "py": 644.3058396822312,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 1,
+              "sx": 633.8738530927897,
+              "sy": 672.1244705874087,
+              "expected": 7,
+              "pick": 7,
+              "action": "place",
+              "px": 633.8738530927897,
+              "py": 672.1244705874087,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 1,
+              "sx": 689.5111149031449,
+              "sy": 699.9431014925864,
+              "expected": 8,
+              "pick": 8,
+              "action": "place",
+              "px": 689.5111149031449,
+              "py": 699.9431014925864,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "sx": 745.1483767134999,
+              "sy": 727.7617323977639,
+              "expected": 9,
+              "pick": 9,
+              "action": "place",
+              "px": 745.1483767134999,
+              "py": 727.7617323977639,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 2,
+              "sx": 466.9620676617243,
+              "sy": 644.3058396822312,
+              "expected": 10,
+              "pick": 10,
+              "action": "place",
+              "px": 466.9620676617243,
+              "py": 644.3058396822312,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 2,
+              "sx": 522.5993294720795,
+              "sy": 672.1244705874087,
+              "expected": 11,
+              "pick": 11,
+              "action": "place",
+              "px": 522.5993294720795,
+              "py": 672.1244705874087,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 2,
+              "sx": 578.2365912824346,
+              "sy": 699.9431014925863,
+              "expected": 12,
+              "pick": 12,
+              "action": "place",
+              "px": 578.2365912824346,
+              "py": 699.9431014925863,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 2,
+              "sx": 633.8738530927898,
+              "sy": 727.761732397764,
+              "expected": 13,
+              "pick": 13,
+              "action": "place",
+              "px": 633.8738530927898,
+              "py": 727.761732397764,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "sx": 689.5111149031449,
+              "sy": 755.5803633029416,
+              "expected": 14,
+              "pick": 14,
+              "action": "place",
+              "px": 689.5111149031449,
+              "py": 755.5803633029416,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 3,
+              "sx": 411.3248058513691,
+              "sy": 672.1244705874088,
+              "expected": 15,
+              "pick": 15,
+              "action": "place",
+              "px": 411.3248058513691,
+              "py": 672.1244705874088,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 3,
+              "sx": 466.9620676617243,
+              "sy": 699.9431014925864,
+              "expected": 16,
+              "pick": 16,
+              "action": "place",
+              "px": 466.9620676617243,
+              "py": 699.9431014925864,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 3,
+              "sx": 522.5993294720794,
+              "sy": 727.7617323977639,
+              "expected": 17,
+              "pick": 17,
+              "action": "blocked",
+              "px": 522.5993294720794,
+              "py": 727.7617323977639,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 3,
+              "sx": 578.2365912824346,
+              "sy": 755.5803633029416,
+              "expected": 18,
+              "pick": 18,
+              "action": "blocked",
+              "px": 578.2365912824346,
+              "py": 755.5803633029416,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 3,
+              "sx": 633.8738530927897,
+              "sy": 783.3989942081191,
+              "expected": 19,
+              "pick": 19,
+              "action": "place",
+              "px": 633.8738530927897,
+              "py": 783.3989942081191,
+              "uncovered": true
+            },
+            {
+              "x": 0,
+              "y": 4,
+              "sx": 355.68754404101395,
+              "sy": 699.9431014925864,
+              "expected": 20,
+              "pick": 20,
+              "action": "place",
+              "px": 355.68754404101395,
+              "py": 699.9431014925864,
+              "uncovered": true
+            },
+            {
+              "x": 1,
+              "y": 4,
+              "sx": 411.32480585136915,
+              "sy": 727.7617323977639,
+              "expected": 21,
+              "pick": 21,
+              "action": "place",
+              "px": 411.32480585136915,
+              "py": 727.7617323977639,
+              "uncovered": true
+            },
+            {
+              "x": 2,
+              "y": 4,
+              "sx": 466.96206766172423,
+              "sy": 755.5803633029415,
+              "expected": 22,
+              "pick": 22,
+              "action": "place",
+              "px": 466.96206766172423,
+              "py": 755.5803633029415,
+              "uncovered": true
+            },
+            {
+              "x": 3,
+              "y": 4,
+              "sx": 522.5993294720795,
+              "sy": 783.3989942081191,
+              "expected": 23,
+              "pick": 23,
+              "action": "place",
+              "px": 522.5993294720795,
+              "py": 783.3989942081191,
+              "uncovered": true
+            },
+            {
+              "x": 4,
+              "y": 4,
+              "sx": 578.2365912824346,
+              "sy": 811.2176251132967,
+              "expected": 24,
+              "pick": 24,
+              "action": "place",
+              "px": 578.2365912824346,
+              "py": 811.2176251132967,
+              "uncovered": true
+            }
+          ]
+        },
+        {
+          "name": "room trusted pointer places intended tile",
+          "pass": true,
+          "details": {
+            "x": 0,
+            "y": 0,
+            "sx": 578.2365912824346,
+            "sy": 588.6685778718761,
+            "expected": 0,
+            "pick": 0,
+            "action": "place",
+            "px": 578.2365912824346,
+            "py": 588.6685778718761,
+            "uncovered": true
+          }
+        },
+        {
+          "name": "No JS/resource errors",
+          "pass": true,
+          "details": []
+        }
+      ],
+      "errors": [],
+      "build": "boxroom-paper-08a5a567c57d",
+      "ui": {
+        "width": 1488,
+        "height": 1116,
+        "scrollWidth": 1488,
+        "panels": [
+          {
+            "id": "play-head",
+            "x": 18,
+            "y": 10,
+            "w": 1452,
+            "h": 46.984375,
+            "right": 1470,
+            "bottom": 56.984375
+          },
+          {
+            "id": "arrival-panel",
+            "x": 1148,
+            "y": 64.984375,
+            "w": 322,
+            "h": 95,
+            "right": 1470,
+            "bottom": 159.984375
+          },
+          {
+            "id": "desk",
+            "x": 1148,
+            "y": 939,
+            "w": 322,
+            "h": 163,
+            "right": 1470,
+            "bottom": 1102
+          }
+        ],
+        "controls": [
+          {
+            "id": "menu",
+            "label": "Open menu",
+            "x": 18,
+            "y": 11.484375,
+            "w": 44,
+            "h": 44,
+            "right": 62,
+            "bottom": 55.484375
+          },
+          {
+            "id": "view-toggle",
+            "label": "View controls",
+            "x": 1426,
+            "y": 11.484375,
+            "w": 44,
+            "h": 44,
+            "right": 1470,
+            "bottom": 55.484375
+          },
+          {
+            "id": "arrival-peek",
+            "label": "Inspect arrivals, 2 waiting",
+            "x": 1158,
+            "y": 65.984375,
+            "w": 85.84375,
+            "h": 44,
+            "right": 1243.84375,
+            "bottom": 109.984375
+          },
+          {
+            "id": "focus-hatch",
+            "label": "Find hatch 1",
+            "x": 1157,
+            "y": 112.984375,
+            "w": 44,
+            "h": 44,
+            "right": 1201,
+            "bottom": 156.984375
+          },
+          {
+            "id": "piece",
+            "label": "plain, 2 turntables available",
+            "x": 1158,
+            "y": 949,
+            "w": 97.328125,
+            "h": 52,
+            "right": 1255.328125,
+            "bottom": 1001
+          },
+          {
+            "id": "more-button",
+            "label": "Choose a precise tile",
+            "x": 1208,
+            "y": 1009,
+            "w": 44,
+            "h": 48,
+            "right": 1252,
+            "bottom": 1057
+          },
+          {
+            "id": "send",
+            "label": "Send the post",
+            "x": 1258,
+            "y": 1009,
+            "w": 202,
+            "h": 48,
+            "right": 1460,
+            "bottom": 1057
+          },
+          {
+            "id": "cancel-run",
+            "label": "Cancel run and return to setup",
+            "x": 1399.953125,
+            "y": 1057,
+            "w": 60.046875,
+            "h": 44,
+            "right": 1460,
+            "bottom": 1101
+          }
+        ],
+        "fonts": [
+          {
+            "text": "Daily #48",
+            "font": 12,
+            "x": 74,
+            "y": 40.1875,
+            "w": 49.796875,
+            "h": 13.796875,
+            "right": 123.796875,
+            "bottom": 53.984375
+          },
+          {
+            "text": "",
+            "font": 16,
+            "x": 1206,
+            "y": 112.984375,
+            "w": 48.75,
+            "h": 44,
+            "right": 1254.75,
+            "bottom": 156.984375
+          },
+          {
+            "text": "",
+            "font": 16,
+            "x": 1259.75,
+            "y": 112.984375,
+            "w": 48.75,
+            "h": 44,
+            "right": 1308.5,
+            "bottom": 156.984375
+          },
+          {
+            "text": "Plain",
+            "font": 12.16,
+            "x": 1197,
+            "y": 968.3125,
+            "w": 40.6875,
+            "h": 13.359375,
+            "right": 1237.6875,
+            "bottom": 981.671875
+          },
+          {
+            "text": "2",
+            "font": 16,
+            "x": 1240.6875,
+            "y": 967,
+            "w": 8.640625,
+            "h": 16,
+            "right": 1249.328125,
+            "bottom": 983
+          },
+          {
+            "text": "Ginger",
+            "font": 12.16,
+            "x": 1299.328125,
+            "y": 968.3125,
+            "w": 40.6875,
+            "h": 13.359375,
+            "right": 1340.015625,
+            "bottom": 981.671875
+          },
+          {
+            "text": "0",
+            "font": 16,
+            "x": 1343.015625,
+            "y": 967,
+            "w": 8.640625,
+            "h": 16,
+            "right": 1351.65625,
+            "bottom": 983
+          },
+          {
+            "text": "Blue",
+            "font": 12.16,
+            "x": 1401.65625,
+            "y": 968.3125,
+            "w": 40.703125,
+            "h": 13.359375,
+            "right": 1442.359375,
+            "bottom": 981.671875
+          },
+          {
+            "text": "0",
+            "font": 16,
+            "x": 1445.359375,
+            "y": 967,
+            "w": 8.640625,
+            "h": 16,
+            "right": 1454,
+            "bottom": 983
+          },
+          {
+            "text": "Tap to place · tap again to turn.",
+            "font": 11.68,
+            "x": 1158,
+            "y": 1071.984375,
+            "w": 154.03125,
+            "h": 14.015625,
+            "right": 1312.03125,
+            "bottom": 1086
+          }
+        ]
+      },
+      "views": [
+        {
+          "mode": "board",
+          "geometry": [
+            {
+              "x": 573.9148936170212,
+              "y": 375.3191489361702
+            },
+            {
+              "x": 1050.5106382978722,
+              "y": 613.6170212765957
+            },
+            {
+              "x": 573.9148936170212,
+              "y": 851.9148936170212
+            },
+            {
+              "x": 97.31914893617021,
+              "y": 613.6170212765957
+            }
+          ],
+          "target": {
+            "x": 0,
+            "y": 0,
+            "sx": 573.9148936170212,
+            "sy": 422.97872340425533,
+            "expected": 0,
+            "pick": 0,
+            "action": "place",
+            "px": 573.9148936170212,
+            "py": 422.97872340425533,
+            "uncovered": true
+          },
+          "placed": true,
+          "uncoveredTiles": 25,
+          "totalTiles": 25,
+          "camera": {
+            "zoom": 5.957446808510638,
+            "zoomCss": 5.957446808510638,
+            "dpr": 1,
+            "x": 0,
+            "y": 0,
+            "framing": "board",
+            "manual": false
+          },
+          "paper": {
+            "active": true,
+            "ready": true,
+            "ambient": 0.966666666666668,
+            "motion": true,
+            "density": 4,
+            "room": {
+              "seed": 562353078,
+              "w": 5,
+              "h": 5,
+              "date": "2026-11-17",
+              "mode": "daily"
+            },
+            "resources": {
+              "bytes": 68170108,
+              "decodedBytes": 36085384,
+              "sceneBytes": 16686912,
+              "viewCacheBytes": 5939124,
+              "residentBytes": 4792320,
+              "pieceBytes": 1686336,
+              "outputBytes": 2980032,
+              "preparations": 1,
+              "prepareMs": 4648.60000000149,
+              "decodeMs": 565,
+              "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+            },
+            "performance": {
+              "frames": 43,
+              "renderMsP50": 0.4000000059604645,
+              "renderMsP95": 1.2999999970197678
+            }
+          }
+        },
+        {
+          "mode": "room",
+          "geometry": [
+            {
+              "x": 578.2365912824346,
+              "y": 560.8499469666986
+            },
+            {
+              "x": 856.4229003342102,
+              "y": 699.9431014925864
+            },
+            {
+              "x": 578.2365912824346,
+              "y": 839.0362560184742
+            },
+            {
+              "x": 300.05028223065887,
+              "y": 699.9431014925864
+            }
+          ],
+          "target": {
+            "x": 0,
+            "y": 0,
+            "sx": 578.2365912824346,
+            "sy": 588.6685778718761,
+            "expected": 0,
+            "pick": 0,
+            "action": "place",
+            "px": 578.2365912824346,
+            "py": 588.6685778718761,
+            "uncovered": true
+          },
+          "placed": true,
+          "uncoveredTiles": 25,
+          "totalTiles": 25,
+          "camera": {
+            "zoom": 3.477328863147196,
+            "zoomCss": 3.477328863147196,
+            "dpr": 1,
+            "x": 0,
+            "y": 0,
+            "framing": "room",
+            "manual": false
+          },
+          "paper": {
+            "active": true,
+            "ready": true,
+            "ambient": 2.5999999999999956,
+            "motion": true,
+            "density": 4,
+            "room": {
+              "seed": 562353078,
+              "w": 5,
+              "h": 5,
+              "date": "2026-11-17",
+              "mode": "daily"
+            },
+            "resources": {
+              "bytes": 82370976,
+              "decodedBytes": 36085384,
+              "sceneBytes": 16686912,
+              "viewCacheBytes": 14375064,
+              "residentBytes": 4792320,
+              "pieceBytes": 1686336,
+              "outputBytes": 8744960,
+              "preparations": 1,
+              "prepareMs": 4648.60000000149,
+              "decodeMs": 565,
+              "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+            },
+            "performance": {
+              "frames": 115,
+              "renderMsP50": 0.3999999985098839,
+              "renderMsP95": 1.2999999970197678
+            }
+          }
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "browser": "151.0.7922.173",
+  "completed": true
+}

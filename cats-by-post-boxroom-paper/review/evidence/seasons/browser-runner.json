@@ -1,0 +1,37 @@
+[
+  {
+    "step": "seasons",
+    "exit": 0,
+    "seconds": 151.86446833610535
+  },
+  {
+    "step": "study",
+    "exit": 0,
+    "seconds": 69.27915549278259
+  },
+  {
+    "step": "daily",
+    "exit": 0,
+    "seconds": 48.86102747917175
+  },
+  {
+    "step": "night",
+    "exit": 0,
+    "seconds": 82.35467004776001
+  },
+  {
+    "step": "memory",
+    "exit": 0,
+    "seconds": 196.75518822669983
+  },
+  {
+    "step": "interactions",
+    "exit": 0,
+    "seconds": 35.092567920684814
+  },
+  {
+    "step": "lighting",
+    "exit": 0,
+    "seconds": 106.14294028282166
+  }
+]

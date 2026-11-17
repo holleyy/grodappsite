@@ -1,0 +1,724 @@
+{
+  "base": "http://127.0.0.1:8781/work/boxroom-seasons/qualified/",
+  "scope": "Isolated study with canonical date-derived seasons; no gameplay/save/weather service changes.",
+  "cases": [
+    {
+      "key": "winter-day",
+      "season": "winter",
+      "light": "day",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop-winter.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-01-02",
+          "mode": "daily"
+        },
+        "resources": {
+          "bytes": 74637720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 6797200,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 5105.39999999851,
+          "decodeMs": 640.9000000059605,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 19,
+          "renderMsP50": 0.29999999701976776,
+          "renderMsP95": 42.600000001490116
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-01-02 · seed 303",
+      "overflow": false,
+      "date": "2026-01-02"
+    },
+    {
+      "key": "winter-night",
+      "season": "winter",
+      "light": "night",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop-winter.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-01-02",
+          "mode": "free"
+        },
+        "resources": {
+          "bytes": 74637720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 6797200,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 5132.5,
+          "decodeMs": 417.79999999701977,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 19,
+          "renderMsP50": 0.20000000298023224,
+          "renderMsP95": 43.79999999701977
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-01-02 · seed 303",
+      "overflow": false,
+      "date": "2026-01-02"
+    },
+    {
+      "key": "spring-day",
+      "season": "spring",
+      "light": "day",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop-spring.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-04-03",
+          "mode": "daily"
+        },
+        "resources": {
+          "bytes": 74637720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 6797200,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 4997,
+          "decodeMs": 509.6000000014901,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 18,
+          "renderMsP50": 0.20000000298023224,
+          "renderMsP95": 49.70000000298023
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-04-03 · seed 303",
+      "overflow": false,
+      "date": "2026-04-03"
+    },
+    {
+      "key": "spring-night",
+      "season": "spring",
+      "light": "night",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop-spring.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-04-03",
+          "mode": "free"
+        },
+        "resources": {
+          "bytes": 74637720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 6797200,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 5012.5999999940395,
+          "decodeMs": 518.3999999985099,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 20,
+          "renderMsP50": 0.20000000298023224,
+          "renderMsP95": 40.79999999701977
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-04-03 · seed 303",
+      "overflow": false,
+      "date": "2026-04-03"
+    },
+    {
+      "key": "summer-day",
+      "season": "summer",
+      "light": "day",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop-summer.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-07-03",
+          "mode": "daily"
+        },
+        "resources": {
+          "bytes": 74637720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 6797200,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 5819.70000000298,
+          "decodeMs": 470.8999999985099,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 19,
+          "renderMsP50": 0.20000000298023224,
+          "renderMsP95": 55.70000000298023
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-07-03 · seed 303",
+      "overflow": false,
+      "date": "2026-07-03"
+    },
+    {
+      "key": "summer-night",
+      "season": "summer",
+      "light": "night",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop-summer.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-07-03",
+          "mode": "free"
+        },
+        "resources": {
+          "bytes": 74637720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 6797200,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 5458.5,
+          "decodeMs": 438.6000000014901,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 19,
+          "renderMsP50": 0.20000000298023224,
+          "renderMsP95": 45.600000001490116
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-07-03 · seed 303",
+      "overflow": false,
+      "date": "2026-07-03"
+    },
+    {
+      "key": "autumn-day",
+      "season": "autumn",
+      "light": "day",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-10-02",
+          "mode": "daily"
+        },
+        "resources": {
+          "bytes": 74637720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 6797200,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 4693.19999999553,
+          "decodeMs": 432,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 19,
+          "renderMsP50": 0.20000000298023224,
+          "renderMsP95": 38.30000000447035
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-10-02 · seed 303",
+      "overflow": false,
+      "date": "2026-10-02"
+    },
+    {
+      "key": "autumn-night",
+      "season": "autumn",
+      "light": "night",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-10-02",
+          "mode": "free"
+        },
+        "resources": {
+          "bytes": 74637720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 6797200,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 5750.89999999851,
+          "decodeMs": 487.40000000596046,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 19,
+          "renderMsP50": 0.20000000298023224,
+          "renderMsP95": 43.80000000447035
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-10-02 · seed 303",
+      "overflow": false,
+      "date": "2026-10-02"
+    },
+    {
+      "key": "winter-phone",
+      "season": "winter",
+      "light": "day",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "requests": [
+        "backdrop-winter.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 1,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-01-02",
+          "mode": "daily"
+        },
+        "resources": {
+          "bytes": 65711720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 1658280,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 993720,
+          "preparations": 1,
+          "prepareMs": 5198.60000000149,
+          "decodeMs": 548.5,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 21,
+          "renderMsP50": 0.29999999701976776,
+          "renderMsP95": 15.600000001490116
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-01-02 · seed 303",
+      "overflow": false,
+      "date": "2026-01-02"
+    },
+    {
+      "key": "summer-landscape",
+      "season": "summer",
+      "light": "night",
+      "viewport": {
+        "width": 720,
+        "height": 400
+      },
+      "requests": [
+        "backdrop-summer.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 1,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-07-03",
+          "mode": "free"
+        },
+        "resources": {
+          "bytes": 65041404,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 1186804,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 794880,
+          "preparations": 1,
+          "prepareMs": 4821.20000000298,
+          "decodeMs": 408.20000000298023,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 24,
+          "renderMsP50": 0.20000000298023224,
+          "renderMsP95": 0.6000000014901161
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-07-03 · seed 303",
+      "overflow": false,
+      "date": "2026-07-03"
+    },
+    {
+      "key": "winter-maximum-grey",
+      "season": "winter",
+      "light": "night",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop-winter.webp",
+        "backdrop-winter.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 10,
+          "h": 8,
+          "date": "2026-01-02",
+          "mode": "free"
+        },
+        "resources": {
+          "bytes": 82360736,
+          "decodedBytes": 36085384,
+          "sceneBytes": 27607236,
+          "viewCacheBytes": 7408660,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 6004,
+          "decodeMs": 205.10000000149012,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 18,
+          "renderMsP50": 0.20000000298023224,
+          "renderMsP95": 49.19999999552965
+        }
+      },
+      "caption": "Room study · 10 × 8 · 2026-01-02 · seed 303",
+      "overflow": false,
+      "date": "2026-01-02"
+    },
+    {
+      "key": "spring-rain",
+      "season": "spring",
+      "light": "day",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop-spring.webp",
+        "backdrop-spring.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2027-04-14",
+          "mode": "daily"
+        },
+        "resources": {
+          "bytes": 74637720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 6797200,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 4534.20000000298,
+          "decodeMs": 185,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 18,
+          "renderMsP50": 0.29999999701976776,
+          "renderMsP95": 43.899999998509884
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2027-04-14 · seed 303",
+      "overflow": false,
+      "date": "2027-04-14"
+    },
+    {
+      "key": "december",
+      "season": "winter",
+      "light": "night",
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "requests": [
+        "backdrop-winter.webp",
+        "backdrop-winter.webp"
+      ],
+      "paper": {
+        "active": true,
+        "ready": true,
+        "ambient": 0,
+        "motion": true,
+        "density": 2,
+        "room": {
+          "seed": 303,
+          "w": 7,
+          "h": 6,
+          "date": "2026-12-18",
+          "mode": "free"
+        },
+        "resources": {
+          "bytes": 74637720,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 6797200,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4780800,
+          "preparations": 1,
+          "prepareMs": 5359.89999999851,
+          "decodeMs": 187.70000000298023,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "performance": {
+          "frames": 18,
+          "renderMsP50": 0.20000000298023224,
+          "renderMsP95": 61.30000000447035
+        }
+      },
+      "caption": "Room study · 7 × 6 · 2026-12-18 · seed 303",
+      "overflow": false,
+      "date": "2026-12-18"
+    }
+  ],
+  "errors": [],
+  "build": {
+    "build": "boxroom-paper-08a5a567c57d",
+    "baseCommit": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+    "baseWebBuild": "web-c5662b5f4a0d",
+    "baseEngineSha256": "64752532968aec60ae57aa37e2a9aa1f02ff5e84a9cc180cbd3f192134c5765f",
+    "engineSha256": "e45f12be54d04e41d90c47916fd96dd3aa40ab514db31802b2165a799df99418",
+    "bundleSha256": "c9a0996176a10d809eb805bfa3b545172dffa1ca7cd6a97761705d8121d5faef",
+    "bundleBytes": 686768,
+    "assetBytes": 7259074,
+    "inputs": {
+      "src/fidelity/boxroom-paper/README.md": "185325bb71828a3a3c4bf2ab53672ba6a07502eb603b5627c8fa4bfedf9b47fa",
+      "src/fidelity/boxroom-paper/acting.js": "4f230dc204ff341308ee50469e48cface4ad75dcf228dd5833a3b12dd5878d64",
+      "src/fidelity/boxroom-paper/adapter.js": "80f2ec18c18643b708dc4df21390c632b29e860d1680235200c32e0183908530",
+      "src/fidelity/boxroom-paper/assets/acting-pixel-proof.json": "06c7bbd2082c008db98c6ad7c853b817f1b34cb0500cbbe1382e85db80371a58",
+      "src/fidelity/boxroom-paper/assets/acting.json": "c6ea1b8db9eb2caf93003d14227619f093aa73e9d123035eafe3f69957e13481",
+      "src/fidelity/boxroom-paper/assets/acting.webp": "9f65b8da1aa8fbf04f2194d0a4447f26d87136e0e5d37c42718d1b2d361983d5",
+      "src/fidelity/boxroom-paper/assets/backdrop-spring.webp": "b82add0e88e01bd3f2e32e5d6e99102af9a752e0a93a33e500a010916ba056e0",
+      "src/fidelity/boxroom-paper/assets/backdrop-summer.webp": "fce7cd885ffd7ae1705d04c09f209bd7bf72a1148f6c61bd02069edac7633232",
+      "src/fidelity/boxroom-paper/assets/backdrop-winter.webp": "f495469b049bceffc6bb8cfc96e7fbbd592c3a57e3dccc0078de890264112bb9",
+      "src/fidelity/boxroom-paper/assets/backdrop.json": "7fa17fdbbaac6ea5b55baafa8030845218b1d3f191507b94e990196f24c3810d",
+      "src/fidelity/boxroom-paper/assets/backdrop.webp": "285ba589b608be186eebd650944e7ef45bef429678b699c09a5ad36333ad93f7",
+      "src/fidelity/boxroom-paper/assets/cartons.json": "7470a42ab113f67ea449d7c9fa58df226a61b24912eef56d0d110e275621b1f2",
+      "src/fidelity/boxroom-paper/assets/cartons.webp": "c9d97314bfa2bef6cbf1c76171469a13168d43478f3cbf574707cc8e116bd93b",
+      "src/fidelity/boxroom-paper/assets/materials.webp": "86b815a5f6f4f2d81d1741902d8e09dbe1b66d19fb9cce9b9fc5ccb3f6179692",
+      "src/fidelity/boxroom-paper/assets/provenance.json": "ac5aafe409cd8c77838f25715ad789c8b9e631a31f0d9694b54ba5783cf70974",
+      "src/fidelity/boxroom-paper/assets/residents.json": "054e740e767c7379e7089c69809fe8ad4b1902915e67ae3fed4b4e61d8e0be76",
+      "src/fidelity/boxroom-paper/assets/residents.webp": "3b31beef1ac47a3208de0cb872001105eb6d398b56481b098fcc2c5a2302ac1e",
+      "src/fidelity/boxroom-paper/assets/special.json": "52f07ec7fb4108ea35b24c23a5cc4dba444c0fb7fb16934aead7627603c07bb6",
+      "src/fidelity/boxroom-paper/assets/special.webp": "3dc59fb888050c35466bcd2cd6704e146dee65217b32634bb461d00c996d2bcb",
+      "src/fidelity/boxroom-paper/cartons.js": "ed974d65e421bb52d226d73b770d3ab4e2a2f981e462a85616975bbe29dc7508",
+      "src/fidelity/boxroom-paper/dressing.js": "3b7be014dc60946ceee54917953a8bf3f2996fa8d7e86e8cca79c2b78334cccb",
+      "src/fidelity/boxroom-paper/layout.js": "53767453b872213eae9f1b7b5e8b28b8115bcec8f18ee944780d7a9a5bdad1db",
+      "src/fidelity/boxroom-paper/materials.js": "9472f4a266a2073ed394a02a219fa1e1c7954cedbf0f72b1c996f0227cecdb57",
+      "src/fidelity/boxroom-paper/piece-frame.js": "002aa8cf7a7c0f3b26e52a95e6311821128a8f52b952e834c34d4eba52fea19b",
+      "src/fidelity/boxroom-paper/pieces.js": "92378a80ca0548833ada29d2991e1bcfb11f3415294a37d8af8bd4984f4f4ccc",
+      "src/fidelity/boxroom-paper/projection.js": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+      "src/fidelity/boxroom-paper/renderer.js": "928f79fce9597b04570812f0827f6125b03595d91333b87fc25045c65885ffe9",
+      "src/fidelity/boxroom-paper/residents.js": "5260ae6cb0a8025a22b927ad7922cfd79a10fee2d9b23cee27c10fb956c883e6",
+      "src/fidelity/boxroom-paper/scene.js": "1a4287153a38d8e24ef3b9661f740626a215bbfd96d4aaea9492db1184a99dae",
+      "studies/boxroom-paper/build.py": "2f6da19a080fb169ae5055e5a42f1023e34235d06f7c98bc129b48b0eddd9f4e",
+      "studies/boxroom-paper/index.html": "197f9e3507122c41719259f40a956f9708a5a5e62953f5718c0c4db8a1d3cfd4",
+      "studies/boxroom-paper/regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9",
+      "studies/boxroom-paper/study.css": "47ab4aeb82d58ec9af6f8e0178f36b0d547201b6282188b9a35619233c71ecb7",
+      "studies/boxroom-paper/study.html": "1141ad619dcc72280e22e49769e685173b9d84b139f4cd5fa155fbb38c1f0595",
+      "studies/boxroom-paper/study.js": "912b320d511a56ef943b386f84c7b797d75af3da6cb9a60dd5c3d942415397f7"
+    },
+    "isolatedPatches": [
+      "Enable existing manager factory lifecycle for Box Room",
+      "Add BoxRoomPaper to native global restoration inventory",
+      "Enable smooth high-resolution output for active Box Room",
+      "Respect horizontal HUD insets in Box Room whole-room framing",
+      "Open the owned study from the isolated review root",
+      "Isolate all catsByPost storage keys and version references"
+    ],
+    "changedFiles": {
+      "build.json": {
+        "before": "7f2079cc5432cf16d0ea806f866b2441f081e9ed487c958544fb82f437db4e3a",
+        "after": "c81e801ad02c1f6344eea3404c392997231c6d14463d5c6243c871b4e77c670f"
+      },
+      "game/engine.html": {
+        "before": "f7c260084d1ff6b3e2e0ac3a43af3e5310a4aa7ab5b8b679cd4fc8af95b4b70f",
+        "after": "e45f12be54d04e41d90c47916fd96dd3aa40ab514db31802b2165a799df99418"
+      },
+      "index.html": {
+        "before": "5820a7a708bfdc9a9bc1f8a512db7db8db6c716bb160c444e13665142bd1e32b",
+        "after": "197f9e3507122c41719259f40a956f9708a5a5e62953f5718c0c4db8a1d3cfd4"
+      },
+      "journey/audio.js": {
+        "before": "a1203c141adfe148cb35b29a167879da6be95c7bc656feb731515115ea4434a5",
+        "after": "6fdcdf72aa6f57e00d6aaf0a297511e855a877116cf70f8bd516dc142743b846"
+      },
+      "journey/index.html": {
+        "before": "de94e00ed125ec4503866f4252fc1b6d97cec6db517905b11017d6094ebb7a0e",
+        "after": "6d4b15e272271320b80390d7fa687a342eaf4f039b093b20435e25adab7c7101"
+      },
+      "journey/journey.js": {
+        "before": "5f6cb5f9dbb799c98ca388ddae6b337ef9fa59311c7b9f8981e0d5b81e78e22f",
+        "after": "e6ffa390a6cc58896bdb2cc680e0935ca5b994e61d4f594d199f89dbfad899bf"
+      },
+      "journey/play/app.js": {
+        "before": "17759412d437d03ac8dbf4e34025cda3bb7976f17350bd4d32eb82f4c41b27c1",
+        "after": "935b69c7274a1fc208767d06cdf4d24184dfb187a6c21d377c04b1fa44b7d66c"
+      },
+      "journey/play/index.html": {
+        "before": "79f38a8f82512f1e8ddae2ebb0a7853fe2d8f5e074766c6b30cbafe02257b3ff",
+        "after": "3c24430a9ca982275f40280eb632c40ed83b1436415fbf355f34dd5f422bebac"
+      },
+      "journey/preferences.js": {
+        "before": "01c46d0a2ba693f7126b2eacfe84036b26b583dcf38dbf34d3e9f7b773c8aced",
+        "after": "29b195ac0f3b0bdb55d88a5c969ee6d5dc4774e22148a39a565c94061db229c1"
+      },
+      "journey/start.html": {
+        "before": "62df4ffd65be0a1b8b7a94fa683afead1637658dbde36e567b2956a02951bde1",
+        "after": "e43f57c86b60260d456c53fd5d8337da5d60fe6456d14c2080080a27663d75e3"
+      },
+      "journey/start.js": {
+        "before": "4816d5b3067a85cecffea2ee79b930caf7175ae5c44f7a0f6fc66356e3d73379",
+        "after": "5500f6d4477b75f78e486e120e6d5c54fd41575e6c35ca5c3eede51aeaa7ce48"
+      }
+    },
+    "savePrefix": "catsByPost.review.boxroomPaper."
+  },
+  "completed": true
+}

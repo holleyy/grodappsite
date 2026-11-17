@@ -1,12 +1,12 @@
 {
-  "build": "boxroom-paper-cd0b9e81960d",
+  "build": "boxroom-paper-08a5a567c57d",
   "baseCommit": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
   "baseWebBuild": "web-c5662b5f4a0d",
   "baseEngineSha256": "64752532968aec60ae57aa37e2a9aa1f02ff5e84a9cc180cbd3f192134c5765f",
-  "engineSha256": "6775b46b1a7909d13c37e0a0fdd1fc6d2f916fe25432e1473c092738171d3abd",
-  "bundleSha256": "dcefc6a54a15c6f264d4583d530d079608cbfd218bc138c270827d0c881f176e",
-  "bundleBytes": 685154,
-  "assetBytes": 5394694,
+  "engineSha256": "e45f12be54d04e41d90c47916fd96dd3aa40ab514db31802b2165a799df99418",
+  "bundleSha256": "c9a0996176a10d809eb805bfa3b545172dffa1ca7cd6a97761705d8121d5faef",
+  "bundleBytes": 686768,
+  "assetBytes": 7259074,
   "inputs": {
     "src/fidelity/boxroom-paper/README.md": "185325bb71828a3a3c4bf2ab53672ba6a07502eb603b5627c8fa4bfedf9b47fa",
     "src/fidelity/boxroom-paper/acting.js": "4f230dc204ff341308ee50469e48cface4ad75dcf228dd5833a3b12dd5878d64",
@@ -14,7 +14,10 @@
     "src/fidelity/boxroom-paper/assets/acting-pixel-proof.json": "06c7bbd2082c008db98c6ad7c853b817f1b34cb0500cbbe1382e85db80371a58",
     "src/fidelity/boxroom-paper/assets/acting.json": "c6ea1b8db9eb2caf93003d14227619f093aa73e9d123035eafe3f69957e13481",
     "src/fidelity/boxroom-paper/assets/acting.webp": "9f65b8da1aa8fbf04f2194d0a4447f26d87136e0e5d37c42718d1b2d361983d5",
-    "src/fidelity/boxroom-paper/assets/backdrop.json": "0fe2f1f162ca520fbd6e3c8e1cbfe1e14a790a02ff5a5efb26b2e67fa694b20f",
+    "src/fidelity/boxroom-paper/assets/backdrop-spring.webp": "b82add0e88e01bd3f2e32e5d6e99102af9a752e0a93a33e500a010916ba056e0",
+    "src/fidelity/boxroom-paper/assets/backdrop-summer.webp": "fce7cd885ffd7ae1705d04c09f209bd7bf72a1148f6c61bd02069edac7633232",
+    "src/fidelity/boxroom-paper/assets/backdrop-winter.webp": "f495469b049bceffc6bb8cfc96e7fbbd592c3a57e3dccc0078de890264112bb9",
+    "src/fidelity/boxroom-paper/assets/backdrop.json": "7fa17fdbbaac6ea5b55baafa8030845218b1d3f191507b94e990196f24c3810d",
     "src/fidelity/boxroom-paper/assets/backdrop.webp": "285ba589b608be186eebd650944e7ef45bef429678b699c09a5ad36333ad93f7",
     "src/fidelity/boxroom-paper/assets/cartons.json": "7470a42ab113f67ea449d7c9fa58df226a61b24912eef56d0d110e275621b1f2",
     "src/fidelity/boxroom-paper/assets/cartons.webp": "c9d97314bfa2bef6cbf1c76171469a13168d43478f3cbf574707cc8e116bd93b",
@@ -31,15 +34,15 @@
     "src/fidelity/boxroom-paper/piece-frame.js": "002aa8cf7a7c0f3b26e52a95e6311821128a8f52b952e834c34d4eba52fea19b",
     "src/fidelity/boxroom-paper/pieces.js": "92378a80ca0548833ada29d2991e1bcfb11f3415294a37d8af8bd4984f4f4ccc",
     "src/fidelity/boxroom-paper/projection.js": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
-    "src/fidelity/boxroom-paper/renderer.js": "f7b555d260ea88ffdaffd83c2b2e6fdf175ae910ee49f95530e7ca8ec320618c",
+    "src/fidelity/boxroom-paper/renderer.js": "928f79fce9597b04570812f0827f6125b03595d91333b87fc25045c65885ffe9",
     "src/fidelity/boxroom-paper/residents.js": "5260ae6cb0a8025a22b927ad7922cfd79a10fee2d9b23cee27c10fb956c883e6",
     "src/fidelity/boxroom-paper/scene.js": "1a4287153a38d8e24ef3b9661f740626a215bbfd96d4aaea9492db1184a99dae",
-    "studies/boxroom-paper/build.py": "2468f52b2f78909c552e36be7954552fb47f9822c6571db062b4d63b9e7bec03",
+    "studies/boxroom-paper/build.py": "2f6da19a080fb169ae5055e5a42f1023e34235d06f7c98bc129b48b0eddd9f4e",
     "studies/boxroom-paper/index.html": "197f9e3507122c41719259f40a956f9708a5a5e62953f5718c0c4db8a1d3cfd4",
     "studies/boxroom-paper/regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9",
     "studies/boxroom-paper/study.css": "47ab4aeb82d58ec9af6f8e0178f36b0d547201b6282188b9a35619233c71ecb7",
-    "studies/boxroom-paper/study.html": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
-    "studies/boxroom-paper/study.js": "6431780b41d14a8b96b05995fcfadb3c627d5410b5adfcbba13a20d05e94752a"
+    "studies/boxroom-paper/study.html": "1141ad619dcc72280e22e49769e685173b9d84b139f4cd5fa155fbb38c1f0595",
+    "studies/boxroom-paper/study.js": "912b320d511a56ef943b386f84c7b797d75af3da6cb9a60dd5c3d942415397f7"
   },
   "isolatedPatches": [
     "Enable existing manager factory lifecycle for Box Room",
@@ -52,11 +55,11 @@
   "changedFiles": {
     "build.json": {
       "before": "7f2079cc5432cf16d0ea806f866b2441f081e9ed487c958544fb82f437db4e3a",
-      "after": "81c9e2808f1d71ae6c569e71e23bcbec9a8040f82c9b4708b69454168c9523bd"
+      "after": "c81e801ad02c1f6344eea3404c392997231c6d14463d5c6243c871b4e77c670f"
     },
     "game/engine.html": {
       "before": "f7c260084d1ff6b3e2e0ac3a43af3e5310a4aa7ab5b8b679cd4fc8af95b4b70f",
-      "after": "6775b46b1a7909d13c37e0a0fdd1fc6d2f916fe25432e1473c092738171d3abd"
+      "after": "e45f12be54d04e41d90c47916fd96dd3aa40ab514db31802b2165a799df99418"
     },
     "index.html": {
       "before": "5820a7a708bfdc9a9bc1f8a512db7db8db6c716bb160c444e13665142bd1e32b",
@@ -68,7 +71,7 @@
     },
     "journey/index.html": {
       "before": "de94e00ed125ec4503866f4252fc1b6d97cec6db517905b11017d6094ebb7a0e",
-      "after": "a343dfb3b84b8767c360f0a61178378de75a75340745d6810e971181e510921a"
+      "after": "6d4b15e272271320b80390d7fa687a342eaf4f039b093b20435e25adab7c7101"
     },
     "journey/journey.js": {
       "before": "5f6cb5f9dbb799c98ca388ddae6b337ef9fa59311c7b9f8981e0d5b81e78e22f",
@@ -80,7 +83,7 @@
     },
     "journey/play/index.html": {
       "before": "79f38a8f82512f1e8ddae2ebb0a7853fe2d8f5e074766c6b30cbafe02257b3ff",
-      "after": "7c1eef1d974c031a4f1d182cc6e9e35b4b4e60678be0f61fef9d5c4f6de47787"
+      "after": "3c24430a9ca982275f40280eb632c40ed83b1436415fbf355f34dd5f422bebac"
     },
     "journey/preferences.js": {
       "before": "01c46d0a2ba693f7126b2eacfe84036b26b583dcf38dbf34d3e9f7b773c8aced",
@@ -88,7 +91,7 @@
     },
     "journey/start.html": {
       "before": "62df4ffd65be0a1b8b7a94fa683afead1637658dbde36e567b2956a02951bde1",
-      "after": "885601b42d4c4255f426babb7c8f04238c72810385a6c0dd8323cc1f1683a4e9"
+      "after": "e43f57c86b60260d456c53fd5d8337da5d60fe6456d14c2080080a27663d75e3"
     },
     "journey/start.js": {
       "before": "4816d5b3067a85cecffea2ee79b930caf7175ae5c44f7a0f6fc66356e3d73379",

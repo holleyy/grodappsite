@@ -1,0 +1,102 @@
+{
+  "parent": "9f04dba5e30d7f8695a2ad4f960b6ca192213997",
+  "commit": "4d06bdb56a5ffdabd5cb8c08d385126f33c62bd8",
+  "tree": "0cd62ce2e853233a4e0522748f3e2256f9b69ea5",
+  "build": "boxroom-paper-cd0b9e81960d",
+  "ownedPrefix": "cats-by-post-boxroom-paper",
+  "changedPaths": 43,
+  "stagedFilesVerified": 511,
+  "unrelatedRootEntriesPreserved": 24,
+  "qualifiedRuntime": {
+    "build": "boxroom-paper-cd0b9e81960d",
+    "qualifiedBytesMatch": true,
+    "runtimeFilesVerified": 307,
+    "galleryLinksVerified": 71,
+    "hashes": {
+      "boxroom-build.json": "5de83a7cec5a51c82b39c264635ef33f02b0fc54586e51d43a59623cce83b103",
+      "game/engine.html": "6775b46b1a7909d13c37e0a0fdd1fc6d2f916fe25432e1473c092738171d3abd",
+      "rooms/boxroom.js": "dcefc6a54a15c6f264d4583d530d079608cbfd218bc138c270827d0c881f176e",
+      "study.html": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+      "regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9"
+    },
+    "inputCount": 32
+  },
+  "sourceImplementationCommit": "f2080ff45c4f6f101835218c92c36d313bf7cce4",
+  "remoteByteChecks": {
+    "commit": "4d06bdb56a5ffdabd5cb8c08d385126f33c62bd8",
+    "build": "boxroom-paper-cd0b9e81960d",
+    "checks": [
+      {
+        "path": "boxroom-build.json",
+        "bytes": 6881,
+        "sha256": "5de83a7cec5a51c82b39c264635ef33f02b0fc54586e51d43a59623cce83b103",
+        "matches": true
+      },
+      {
+        "path": "game/engine.html",
+        "bytes": 17405144,
+        "sha256": "6775b46b1a7909d13c37e0a0fdd1fc6d2f916fe25432e1473c092738171d3abd",
+        "matches": true
+      },
+      {
+        "path": "rooms/boxroom.js",
+        "bytes": 685154,
+        "sha256": "dcefc6a54a15c6f264d4583d530d079608cbfd218bc138c270827d0c881f176e",
+        "matches": true
+      },
+      {
+        "path": "study.html",
+        "bytes": 2789,
+        "sha256": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+        "matches": true
+      },
+      {
+        "path": "regular.html",
+        "bytes": 1544,
+        "sha256": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9",
+        "matches": true
+      },
+      {
+        "path": "review/index.html",
+        "bytes": 14116,
+        "sha256": "75cf68c55e2bfeab57e4d4dbddb1d0801c82a9c52185bf7a433d6ae66e78fc4e",
+        "matches": true
+      },
+      {
+        "path": "review/after-daily.webp",
+        "bytes": 305772,
+        "sha256": "886f33cd370111d45e95c83a2cb623d9dc6b9a165f85806bc4bd7783797c3692",
+        "matches": true
+      },
+      {
+        "path": "review/lived-in-after-day.webp",
+        "bytes": 147724,
+        "sha256": "65e248b75c14ff743a3610b57a1bda61b86627dc09030743c3534cc873e785e6",
+        "matches": true
+      },
+      {
+        "path": "review/lived-in-after-night.webp",
+        "bytes": 117296,
+        "sha256": "6061ad6cb6a9efd4db1d9d674bad772789eafec04677b8c2b6d9d89f22cdf1f4",
+        "matches": true
+      },
+      {
+        "path": "review/lived-in-bench.webp",
+        "bytes": 104750,
+        "sha256": "787065aebd3cdb2fde7a9bdec0a593401a6351f3d13b51033bea3d9ac65655e0",
+        "matches": true
+      }
+    ]
+  },
+  "deployment": {
+    "id": 44098797787,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "4d06bdb56a5ffdabd5cb8c08d385126f33c62bd8",
+    "url": "https://github.com/holleyy/grodappsite/actions/runs/44098797787",
+    "updated_at": "2026-11-17T14:06:10Z"
+  },
+  "draftPR": "https://github.com/holleyy/cosysortie/pull/47",
+  "merged": false,
+  "verificationScope": "Exact local browser qualification, equivalent-render preservation proof, public commit bytes and successful Pages deployment. Direct CDN browsing remains blocked by the environment proxy."
+}

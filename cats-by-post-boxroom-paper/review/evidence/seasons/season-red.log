@@ -1,0 +1,115 @@
+✔ common rooms omit special decode; optional preparation waits once and retains art across rounds (15.289862ms)
+✔ whole-room fitting uses the attic focus while the tower continues below it (2.548978ms)
+✔ disposing during deferred special decode cannot publish artwork or a replacement scene (3.377969ms)
+✔ disposal releases a pending refresh even when the browser decoder never settles (11.556085ms)
+✔ tower continuation reaches the viewport bottom at zoom and pan limits with bounded cached tiles (4.337274ms)
+✖ seasonal pairs load only on preparation, reuse day/night and December, and evict the preceding pair (4.068921ms)
+✖ canonical seasonal keys and unknown seasons select the expected pair without changing the room (2.329678ms)
+✖ a failed seasonal decode preserves the preceding image and prepared scene and releases the failed image (2.749833ms)
+✖ a pending seasonal replacement does not evict the preceding scene until decode succeeds (3.022114ms)
+✖ disposal releases a seasonal decoder that never settles and cannot publish its eventual result (4.040989ms)
+✔ repeated four-season visits retain only one decoded backdrop alongside common artwork (6.531856ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 6
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 252.167661
+
+✖ failing tests:
+
+test at tests/boxroom-paper-renderer.test.js:63:1
+✖ seasonal pairs load only on preparation, reuse day/night and December, and evict the preceding pair (4.068921ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'acting.webp',
+  +   'autumn.webp'
+    ]
+  
+      at TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/boxroom-paper-renderer.test.js:64:88)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'acting.webp', 'autumn.webp' ],
+    expected: [ 'acting.webp' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/boxroom-paper-renderer.test.js:69:1
+✖ canonical seasonal keys and unknown seasons select the expected pair without changing the room (2.329678ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'autumn.webp'
+  - 'spring.webp'
+  
+      at TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/boxroom-paper-renderer.test.js:71:308)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'autumn.webp',
+    expected: 'spring.webp',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/boxroom-paper-renderer.test.js:74:1
+✖ a failed seasonal decode preserves the preceding image and prepared scene and releases the failed image (2.749833ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/boxroom-paper-renderer.test.js:76:53)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Backdrop decode failed/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/boxroom-paper-renderer.test.js:78:1
+✖ a pending seasonal replacement does not evict the preceding scene until decode succeeds (3.022114ms)
+  AssertionError [ERR_ASSERTION]: Values have same structure but are not reference-equal:
+  
+  {
+    bounds: {},
+    dispose: [Function: dispose],
+    lamps: [],
+    slots: [],
+    surfaces: []
+  }
+  
+      at TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/boxroom-paper-renderer.test.js:80:111)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/boxroom-paper-renderer.test.js:83:1
+✖ disposal releases a seasonal decoder that never settles and cannot publish its eventual result (4.040989ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Disposed.*Loft/. Input:
+  
+  'published'
+  
+      at TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/boxroom-paper-renderer.test.js:85:197)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'published',
+    expected: /Disposed.*Loft/,
+    operator: 'match',
+    diff: 'simple'
+  }

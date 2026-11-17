@@ -1,0 +1,15 @@
+{
+  "baseline": "abc577308630336603eaee11a80abce7b1a1b48f",
+  "unchanged": {
+    "projection.js": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+    "layout.js": "53767453b872213eae9f1b7b5e8b28b8115bcec8f18ee944780d7a9a5bdad1db",
+    "scene.js": "1a4287153a38d8e24ef3b9661f740626a215bbfd96d4aaea9492db1184a99dae",
+    "residents.js": "5260ae6cb0a8025a22b927ad7922cfd79a10fee2d9b23cee27c10fb956c883e6",
+    "dressing.js": "3b7be014dc60946ceee54917953a8bf3f2996fa8d7e86e8cca79c2b78334cccb",
+    "materials.js": "9472f4a266a2073ed394a02a219fa1e1c7954cedbf0f72b1c996f0227cecdb57",
+    "cartons.js": "ed974d65e421bb52d226d73b770d3ab4e2a2f981e462a85616975bbe29dc7508",
+    "adapter.js": "80f2ec18c18643b708dc4df21390c632b29e860d1680235200c32e0183908530"
+  },
+  "autumnAtlasSha256": "285ba589b608be186eebd650944e7ef45bef429678b699c09a5ad36333ad93f7",
+  "scope": "Geometry, camera, resident contacts, paper materials, adapters, clocks and accepted autumn pixels are byte-identical. Existing all-size tests cover the preserved geometry."
+}
