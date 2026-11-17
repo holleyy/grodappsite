@@ -1,0 +1,276 @@
+{
+  "checks": [
+    "initial puzzle is unfilled",
+    "private save keys only",
+    "picks 6-1",
+    "solution 6-1",
+    "picks 6-2",
+    "solution 6-2",
+    "picks 6-3",
+    "solution 6-3",
+    "picks 6-4",
+    "solution 6-4",
+    "picks 6-5",
+    "solution 6-5",
+    "picks 6-6",
+    "solution 6-6",
+    "picks 6-7",
+    "solution 6-7",
+    "picks 6-8",
+    "solution 6-8",
+    "picks 6-9",
+    "solution 6-9",
+    "picks 6-10",
+    "solution 6-10",
+    "picks 6-11",
+    "solution 6-11",
+    "picks 6-12",
+    "solution 6-12",
+    "picks 6-13",
+    "solution 6-13",
+    "picks 6-14",
+    "solution 6-14",
+    "picks 6-15",
+    "solution 6-15",
+    "trusted click reaches canonical placement",
+    "keyboard preserves selected partner",
+    "actual three-cat shared demo",
+    "chapter card stays outside the desktop scene",
+    "demo preserves suspended live state",
+    "growth 6-3 is real controller",
+    "growth has no active puzzle pieces",
+    "growth 6-7 is real controller",
+    "growth has no active puzzle pieces",
+    "viewport 1440,1000 6-1",
+    "ordered queues remain available 1440,1000 6-1",
+    "viewport 1440,1000 6-6",
+    "ordered queues remain available 1440,1000 6-6",
+    "viewport 1440,1000 6-15",
+    "ordered queues remain available 1440,1000 6-15",
+    "viewport 390,844 6-1",
+    "ordered queues remain available 390,844 6-1",
+    "viewport 390,844 6-6",
+    "ordered queues remain available 390,844 6-6",
+    "viewport 390,844 6-15",
+    "ordered queues remain available 390,844 6-15",
+    "viewport 402,874 6-1",
+    "ordered queues remain available 402,874 6-1",
+    "viewport 402,874 6-6",
+    "ordered queues remain available 402,874 6-6",
+    "viewport 402,874 6-15",
+    "ordered queues remain available 402,874 6-15",
+    "viewport 844,390 6-1",
+    "ordered queues remain available 844,390 6-1",
+    "viewport 844,390 6-6",
+    "ordered queues remain available 844,390 6-6",
+    "viewport 844,390 6-15",
+    "ordered queues remain available 844,390 6-15",
+    "viewport 1024,600 6-1",
+    "ordered queues remain available 1024,600 6-1",
+    "viewport 1024,600 6-6",
+    "ordered queues remain available 1024,600 6-6",
+    "viewport 1024,600 6-15",
+    "ordered queues remain available 1024,600 6-15",
+    "no browser errors"
+  ],
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "id": "6-1",
+      "ok": true,
+      "tileWidth": 156.9655172413793,
+      "tileHeight": 78.48275862068965
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "id": "6-6",
+      "ok": true,
+      "tileWidth": 146.83870967741936,
+      "tileHeight": 73.41935483870968
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "id": "6-15",
+      "ok": true,
+      "tileWidth": 137.93939393939394,
+      "tileHeight": 68.96969696969697
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "6-1",
+      "ok": true,
+      "tileWidth": 50.48275862068966,
+      "tileHeight": 25.24137931034483
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "6-6",
+      "ok": true,
+      "tileWidth": 47.225806451612904,
+      "tileHeight": 23.612903225806452
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "id": "6-15",
+      "ok": true,
+      "tileWidth": 44.36363636363637,
+      "tileHeight": 22.181818181818183
+    },
+    {
+      "width": 402,
+      "height": 874,
+      "id": "6-1",
+      "ok": true,
+      "tileWidth": 52.13793103448276,
+      "tileHeight": 26.06896551724138
+    },
+    {
+      "width": 402,
+      "height": 874,
+      "id": "6-6",
+      "ok": true,
+      "tileWidth": 48.774193548387096,
+      "tileHeight": 24.387096774193548
+    },
+    {
+      "width": 402,
+      "height": 874,
+      "id": "6-15",
+      "ok": true,
+      "tileWidth": 45.81818181818182,
+      "tileHeight": 22.90909090909091
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "id": "6-1",
+      "ok": true,
+      "tileWidth": 65.49333333333334,
+      "tileHeight": 32.74666666666667
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "id": "6-6",
+      "ok": true,
+      "tileWidth": 62.177215189873415,
+      "tileHeight": 31.088607594936708
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "id": "6-15",
+      "ok": true,
+      "tileWidth": 59.18072289156626,
+      "tileHeight": 29.59036144578313
+    },
+    {
+      "width": 1024,
+      "height": 600,
+      "id": "6-1",
+      "ok": true,
+      "tileWidth": 99.58620689655173,
+      "tileHeight": 49.793103448275865
+    },
+    {
+      "width": 1024,
+      "height": 600,
+      "id": "6-6",
+      "ok": true,
+      "tileWidth": 93.16129032258064,
+      "tileHeight": 46.58064516129032
+    },
+    {
+      "width": 1024,
+      "height": 600,
+      "id": "6-15",
+      "ok": true,
+      "tileWidth": 87.51515151515152,
+      "tileHeight": 43.75757575757576
+    }
+  ],
+  "wins": [
+    {
+      "id": "6-1",
+      "outcome": "won",
+      "ticks": 5
+    },
+    {
+      "id": "6-2",
+      "outcome": "won",
+      "ticks": 8
+    },
+    {
+      "id": "6-3",
+      "outcome": "won",
+      "ticks": 7
+    },
+    {
+      "id": "6-4",
+      "outcome": "won",
+      "ticks": 10
+    },
+    {
+      "id": "6-5",
+      "outcome": "won",
+      "ticks": 7
+    },
+    {
+      "id": "6-6",
+      "outcome": "won",
+      "ticks": 8
+    },
+    {
+      "id": "6-7",
+      "outcome": "won",
+      "ticks": 12
+    },
+    {
+      "id": "6-8",
+      "outcome": "won",
+      "ticks": 7
+    },
+    {
+      "id": "6-9",
+      "outcome": "won",
+      "ticks": 15
+    },
+    {
+      "id": "6-10",
+      "outcome": "won",
+      "ticks": 12
+    },
+    {
+      "id": "6-11",
+      "outcome": "won",
+      "ticks": 16
+    },
+    {
+      "id": "6-12",
+      "outcome": "won",
+      "ticks": 13
+    },
+    {
+      "id": "6-13",
+      "outcome": "won",
+      "ticks": 9
+    },
+    {
+      "id": "6-14",
+      "outcome": "won",
+      "ticks": 11
+    },
+    {
+      "id": "6-15",
+      "outcome": "won",
+      "ticks": 38
+    }
+  ],
+  "errors": []
+}

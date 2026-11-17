@@ -1,0 +1,23 @@
+{
+  "checks": [
+    "sky and ground edges fade out",
+    "town bases remain opaque",
+    "panorama-to-ground join has complete coverage across the wide view",
+    "foreground planting and shadows do not clip at bake edges",
+    "no browser errors"
+  ],
+  "errors": [],
+  "sample": {
+    "top": 1,
+    "bottom": 1,
+    "town": 255
+  },
+  "opaque": true,
+  "clipped": false,
+  "resources": {
+    "bytes": 74964360,
+    "buffers": 55,
+    "bakes": 13,
+    "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+  }
+}
