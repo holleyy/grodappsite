@@ -1,0 +1,6 @@
+{
+  "owner": "holleyy/cosysortie",
+  "integrationBranch": "codex/seven-room-web-integration",
+  "build": "seven-room-preview-2a72996faf2c",
+  "savePrefix": "catsByPost.preview.sevenRooms."
+}

@@ -1,0 +1,47 @@
+/* The print slides out of the pocket; the addressed front stays above it. */
+.mail-preview{position:relative;isolation:isolate;perspective:1000px;aspect-ratio:1/1.2;width:100%;margin:12px auto 14px}
+.envelope-rear,.envelope-flap{position:absolute;z-index:1;left:0;bottom:8.2%;width:100%;height:auto;pointer-events:none}
+.envelope-rear{clip-path:inset(34% 0 0)}
+.envelope-flap{clip-path:polygon(0 34%,50% 0,100% 34%);transform-origin:50% 34%;transform:rotateX(0deg)}
+.preview-print,.inspection-print{position:relative;aspect-ratio:1470/1070;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;isolation:isolate}
+.preview-print{position:absolute;z-index:2;left:6%;top:0;width:88%;transform:rotate(-3deg);cursor:zoom-in;filter:drop-shadow(0 3px 3px #4d39232b)}
+.preview-print:hover{background:transparent;transform:translateY(-5px) rotate(-3deg)}
+.preview-print:active{transform:translateY(-2px) rotate(-3deg)}
+.print-paper{display:block;width:100%;height:100%;pointer-events:none}
+.print-scene{position:absolute;left:7.15%;top:10.5%;width:85.7%;height:74.8%;object-fit:contain;mix-blend-mode:multiply;pointer-events:none}
+.print-reference{position:absolute;left:9%;bottom:3.6%;font:23px/1 PostHand,cursive;color:#6b6555;transform:rotate(-2deg);pointer-events:none}
+.print-loupe{position:absolute;right:4%;top:4%;width:44px;height:44px;display:grid;place-items:center;background:#fbf2dded;border-radius:50%;box-shadow:0 1px 4px #49382122;pointer-events:none}
+.print-loupe img{width:23px;height:23px;opacity:.8}
+.mail-preview .letter-object{position:absolute;z-index:3;left:0;bottom:0;width:100%;max-width:none;margin:0;pointer-events:none;filter:drop-shadow(0 -2px 2px #4d39231a)}
+.print-concept{overflow:hidden;margin:0}
+.print-concept .future-art{width:100%;height:100%}
+.print-detail{position:absolute;left:7.15%;top:10.5%;width:85.7%;height:74.8%;display:grid;place-items:center;pointer-events:none;mix-blend-mode:multiply}
+.print-detail-plane{position:relative;height:100%;aspect-ratio:960/640;max-width:100%}
+.print-detail .trolley-cat{position:absolute;left:18.33%;top:49.69%;width:7.08%;height:auto;max-width:none;image-rendering:pixelated;pointer-events:none}
+.print-dialog{width:min(900px,calc(100% - 24px))}
+.print-dialog .dialog-content{padding:18px 16px 25px}
+.inspection-print{width:100%;margin:auto;transform:rotate(-1deg)}
+.inspection-print .print-reference{font-size:clamp(24px,5vw,36px)}
+@media(max-width:739px){.print-dialog{width:100%;height:auto;max-height:100dvh;margin:auto 0}.print-dialog .dialog-content{padding-bottom:calc(25px + var(--safe-bottom))}}
+@media(prefers-reduced-motion:no-preference){
+ .preview-print{transition:transform .16s ease-out}
+ .inspection-print{animation:print-out .2s ease-out}
+ @keyframes print-out{from{opacity:.6;transform:translateY(12px) rotate(-3deg)}to{opacity:1;transform:rotate(-1deg)}}
+}
+.opening{gap:24px;overflow:auto;padding:max(24px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom))}
+.opening-art{width:min(430px,100%,calc((100dvh - 210px)/1.2));flex-shrink:0;container-type:inline-size}
+.opening-art .mail-preview{margin:0}
+.opening-art .letter-object{width:100%;max-width:none;margin:0}
+.opening-art .return-address{font-size:4.2cqw}
+.opening-art .recipient{font-size:9cqw}
+.opening-art .recipient .letter-place{font-size:6.3cqw;margin-top:1.6cqw}
+.opening-art .print-reference{font-size:5.5cqw}
+.opening-art .preview-print{pointer-events:none;cursor:default}
+.opening-caption{width:min(360px,100%);display:flex;flex-direction:column;align-items:center;gap:20px;flex-shrink:0}
+.opening-caption p{font-size:clamp(26px,3vw,32px);line-height:1.15}
+.opening-actions{display:flex;flex-direction:column;align-items:center;gap:12px}
+.opening-actions button{padding:12px 20px;min-height:44px}
+@media(max-height:450px) and (min-width:600px){
+ .opening{display:grid;grid-template-columns:minmax(0,300px) minmax(0,300px);justify-content:center;align-content:center;gap:32px}
+ .opening-art{width:min(100%,calc((100dvh - 48px)/1.2));justify-self:center}
+}
