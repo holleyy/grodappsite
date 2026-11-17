@@ -161,7 +161,7 @@
         "roomBuild": "depot-contact-3f9fc92684",
         "motion": {
           "frames": 24,
-          "step": 1,
+          "step": 14,
           "ticksPerFrame": 10,
           "viewport": [
             960,
@@ -802,7 +802,7 @@
         "roomBuild": "depot-paper-9ff87b4e29b0",
         "motion": {
           "frames": 24,
-          "step": 1,
+          "step": 14,
           "ticksPerFrame": 10,
           "viewport": [
             960,
@@ -1287,6 +1287,6 @@
     "height": 480,
     "seconds": 4,
     "frames": 24,
-    "sha256": "31d8b2f12ba0a357319436dbec47bb4d61f3b354875ac47ed1fa0a6bceb10c93"
+    "sha256": "220e2425fda8b19e7b06382d3ca3e72013ddea1916c754ea9936e0d7f5ba8970"
   }
 }
