@@ -1,0 +1,38 @@
+{
+  "runtimeSHA256": "11c8449233c5564081a5948e015a571ed9a8b2f746fccbb5c5754c5b3ed27c9e",
+  "reviewer": "depot_arms_slide_review",
+  "readOnly": true,
+  "scope": "Depot-owned source diff, affected tests and actual Chromium frames",
+  "initialFindings": [
+    {
+      "severity": "P2",
+      "issue": "Projected forearm singularity spins the tea palm at1915\u20131916 and2605\u20132606",
+      "disposition": "Fixed with an upright handle-relative grip and matching sleeve wrist endpoint"
+    }
+  ],
+  "finalFindings": [],
+  "finalChecks": [
+    "served runtime SHA exact",
+    "original spin frames and frame1927 discontinuity checked",
+    "tea pickup and return boundaries checked",
+    "quarter-frame whole-workday sweep",
+    "cuffs remain attached",
+    "12 focused rig checks passed",
+    "git diff --check passed"
+  ],
+  "declined": [
+    {
+      "item": "unchanged canonical action/facing snaps",
+      "disposition": "Preserved existing timing and motion; no new regression identified"
+    },
+    {
+      "item": "physical Safari/native performance",
+      "disposition": "Remains manual device review; no device FPS claim"
+    },
+    {
+      "item": "broad suite completion",
+      "disposition": "Owner records its completed run separately in tests.json"
+    }
+  ],
+  "assessment": "Ready within reviewed scope; no remaining findings"
+}

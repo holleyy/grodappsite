@@ -1,0 +1,55 @@
+{
+  "records": [
+    {
+      "file": "round.mp4",
+      "start": 0,
+      "duration": 48,
+      "width": 1280,
+      "height": 810,
+      "bounds": [
+        20,
+        1810,
+        -85,
+        1040
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "dispatch.mp4",
+      "start": 14.5,
+      "duration": 4.5,
+      "width": 900,
+      "height": 800,
+      "bounds": [
+        470,
+        780,
+        220,
+        520
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    },
+    {
+      "file": "tea.mp4",
+      "start": 34.4,
+      "duration": 4.6,
+      "width": 900,
+      "height": 800,
+      "bounds": [
+        280,
+        470,
+        470,
+        670
+      ],
+      "chapter": "",
+      "index": 24,
+      "fps": 24
+    }
+  ],
+  "errors": [],
+  "source": "Actual Canvas renderer, exact seekable ambient/chapter time, 24 fps H.264",
+  "runtimeSHA256": "11c8449233c5564081a5948e015a571ed9a8b2f746fccbb5c5754c5b3ed27c9e"
+}

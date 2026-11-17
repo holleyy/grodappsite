@@ -1,0 +1,10 @@
+{
+  "runtimeSHA256": "11c8449233c5564081a5948e015a571ed9a8b2f746fccbb5c5754c5b3ed27c9e",
+  "command": "node --test tests/depot-paper-*.test.js",
+  "tests": 76,
+  "pass": 76,
+  "fail": 0,
+  "exitCode": 0,
+  "logSHA256": "5041bb300e0614e14c69e1bc52fbd1f947a5cc2f5627805aeb2646df2b679c30",
+  "scope": "Final Depot-owned regressions, rig, all25 deliveries, contacts, chapter and scenery checks. The repository-wide run is recorded separately in source."
+}

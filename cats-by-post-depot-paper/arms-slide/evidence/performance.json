@@ -1,0 +1,54 @@
+{
+  "runtimeSHA256": "11c8449233c5564081a5948e015a571ed9a8b2f746fccbb5c5754c5b3ed27c9e",
+  "rows": [
+    {
+      "source": "before",
+      "readyMs": 16178,
+      "median": 41,
+      "min": 24.900000005960464,
+      "max": 78.70000000298023,
+      "viewport": [
+        1000,
+        900
+      ]
+    },
+    {
+      "source": "after",
+      "readyMs": 13641,
+      "median": 42.20000000298023,
+      "min": 21.19999998807907,
+      "max": 294.5,
+      "viewport": [
+        1000,
+        900
+      ]
+    },
+    {
+      "source": "before",
+      "readyMs": 11911,
+      "median": 28.399999991059303,
+      "min": 23.099999994039536,
+      "max": 131.5,
+      "viewport": [
+        1000,
+        900
+      ]
+    },
+    {
+      "source": "after",
+      "readyMs": 16006,
+      "median": 25.599999994039536,
+      "min": 16.399999991059303,
+      "max": 57.400000005960464,
+      "viewport": [
+        1000,
+        900
+      ]
+    }
+  ],
+  "pairedMedianMeans": {
+    "before": 34.69999999552965,
+    "after": 33.899999998509884
+  },
+  "note": "Headless Chromium software timing on the same1000×900 host. Not physical Safari FPS. Loading includes the original20MB inline page and artwork bakes."
+}

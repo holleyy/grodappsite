@@ -1,0 +1,21 @@
+{
+  "base": "e1d902ee9d1c17585acd254a15e6fa9d40c2529b",
+  "runtimeSHA256": "11c8449233c5564081a5948e015a571ed9a8b2f746fccbb5c5754c5b3ed27c9e",
+  "canonicalInputs": [
+    "src/sim/10_rules.js",
+    "src/sim/12_boardanim.js",
+    "src/sim/19f_depot_chapter.js",
+    "src/sim/19b_depot.js",
+    "src/sim/19c_depot_world.js",
+    "src/data/depot.json",
+    "src/data/levels.json",
+    "src/data/edge_portals.json",
+    "src/render/24a_paper_data.js",
+    "src/data/palette.json"
+  ],
+  "postalFramesCompared": 11520,
+  "postalSampleExact": true,
+  "assetsExact": 27,
+  "sharedBuildID": "dedb812743",
+  "sharedBuildExact": true
+}

@@ -1,0 +1,146 @@
+{
+  "runtimeSHA256": "11c8449233c5564081a5948e015a571ed9a8b2f746fccbb5c5754c5b3ed27c9e",
+  "errors": [],
+  "wins": [
+    {
+      "id": "3-1",
+      "mode": "won"
+    },
+    {
+      "id": "3-2",
+      "mode": "won"
+    },
+    {
+      "id": "3-3",
+      "mode": "won"
+    },
+    {
+      "id": "3-4",
+      "mode": "won"
+    },
+    {
+      "id": "3-5",
+      "mode": "won"
+    },
+    {
+      "id": "3-6",
+      "mode": "won"
+    },
+    {
+      "id": "3-7",
+      "mode": "won"
+    },
+    {
+      "id": "3-8",
+      "mode": "won"
+    },
+    {
+      "id": "3-9",
+      "mode": "won"
+    },
+    {
+      "id": "3-10",
+      "mode": "won"
+    },
+    {
+      "id": "4-1",
+      "mode": "won"
+    },
+    {
+      "id": "4-2",
+      "mode": "won"
+    },
+    {
+      "id": "4-3",
+      "mode": "won"
+    },
+    {
+      "id": "4-4",
+      "mode": "won"
+    },
+    {
+      "id": "4-5",
+      "mode": "won"
+    },
+    {
+      "id": "4-6",
+      "mode": "won"
+    },
+    {
+      "id": "4-7",
+      "mode": "won"
+    },
+    {
+      "id": "4-8",
+      "mode": "won"
+    },
+    {
+      "id": "4-9",
+      "mode": "won"
+    },
+    {
+      "id": "4-10",
+      "mode": "won"
+    },
+    {
+      "id": "4-11",
+      "mode": "won"
+    },
+    {
+      "id": "4-12",
+      "mode": "won"
+    },
+    {
+      "id": "4-13",
+      "mode": "won"
+    },
+    {
+      "id": "4-14",
+      "mode": "won"
+    },
+    {
+      "id": "4-15",
+      "mode": "won"
+    }
+  ],
+  "picks": 721,
+  "rasters": {
+    "before": [
+      {
+        "id": 117,
+        "hash": "9174c11e48df35d395f2469bf02a95cfa16cd0297d69272b36955dbb6fa42e6c"
+      },
+      {
+        "id": 101,
+        "hash": "f03c60bcd23a280ac83f33714e37da3aeb20aadb070a987147b89c4e876eb2e6"
+      },
+      {
+        "id": 84,
+        "hash": "14d0ff6e4072c17fa8fa4d32d9c5aa8bd2ed61307ca55f9280f22a7ef5569060"
+      },
+      {
+        "id": 100,
+        "hash": "7712e40494bcdfaa42ac8009caf136a553ea229fcefeb203e361fa39c0b4786c"
+      }
+    ],
+    "after": [
+      {
+        "id": 117,
+        "hash": "9174c11e48df35d395f2469bf02a95cfa16cd0297d69272b36955dbb6fa42e6c"
+      },
+      {
+        "id": 101,
+        "hash": "f03c60bcd23a280ac83f33714e37da3aeb20aadb070a987147b89c4e876eb2e6"
+      },
+      {
+        "id": 84,
+        "hash": "14d0ff6e4072c17fa8fa4d32d9c5aa8bd2ed61307ca55f9280f22a7ef5569060"
+      },
+      {
+        "id": 100,
+        "hash": "7712e40494bcdfaa42ac8009caf136a553ea229fcefeb203e361fa39c0b4786c"
+      }
+    ]
+  },
+  "reducedMotion": true
+}
