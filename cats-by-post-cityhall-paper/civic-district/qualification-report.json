@@ -1,0 +1,54 @@
+{
+  "checks": [
+    "normal saves unchanged",
+    "resize cancels held pointer",
+    "real keyboard highlights both tunnel ends",
+    "real keyboard places arrow",
+    "mid-run resize preserves trace and placements",
+    "actual finale enters departure",
+    "departure can replay shared demo",
+    "replay returns the same earned finale",
+    "chapter entry restores usable button focus",
+    "Hall → Parcel uses native invitation",
+    "actual solved Train finale opens its departure",
+    "Train → Hall uses native invitation and returns new scene",
+    "growth card and scene fit 6-3 390,844",
+    "growth card and scene fit 6-7 390,844",
+    "growth card and scene fit 6-3 844,390",
+    "growth card and scene fit 6-7 844,390",
+    "four symbol identities survive grayscale",
+    "reduced motion keeps rules clock active and actor feet supported",
+    "reduced-motion finale still wins",
+    "warm draws do not prepare canvases or grow caches",
+    "private progress reloads at completed finale",
+    "real renderer disposal releases owned buffers",
+    "DPR2 touch selects the fourth partner",
+    "two-finger zoom changes camera without placing",
+    "standalone runs offline with no subresource network requests",
+    "no console or page errors"
+  ],
+  "errors": [],
+  "hostLoadAndPrepareMs": 30253,
+  "warm": {
+    "initial": {
+      "bytes": 77658032,
+      "buffers": 55,
+      "bakes": 13,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    },
+    "final": {
+      "bytes": 77658032,
+      "buffers": 55,
+      "bakes": 13,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    },
+    "newCanvases": 0,
+    "drawCallMs": {
+      "median": 34.20000001788139,
+      "p95": 86.19999998807907,
+      "max": 292.59999999403954
+    },
+    "scope": "120 synchronous Canvas draw calls in cloud Chromium; not presented FPS or physical-device performance"
+  },
+  "offlineMethod": "Network-disabled Chromium with only the document supplied in memory. Managed Chromium blocks file URLs; direct file opening remains unqualified."
+}

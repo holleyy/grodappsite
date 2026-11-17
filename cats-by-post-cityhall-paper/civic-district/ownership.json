@@ -1,0 +1,8 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/civic-district/",
+  "addOnly": true,
+  "purpose": "Connected civic district and structural weight for City Hall",
+  "sourceCommit": "77556ed85f7574f80786d7bb4e6d73190e0fea4e",
+  "runtimeSha256": "c772ee9b0a42f8c58635894665aafe48a09888b97069ca234f17e536c7121323",
+  "scope": "Room-owned static scenery. Black worker artwork, board projection, rules, Town Depot, Sorting Office, shared originals and previous previews remain unchanged."
+}
