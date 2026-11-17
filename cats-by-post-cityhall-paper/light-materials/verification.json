@@ -1,0 +1,43 @@
+{
+  "runtimeSha256": "9c54a0ca6b8ed9523ea150d6d148ebdc0d57a10cddccf8619f9b8927175e33f9",
+  "bytes": 28011806,
+  "baselineTests": 1719,
+  "finalTests": 1723,
+  "focusedTests": 56,
+  "browserChecks": 72,
+  "qualificationChecks": 26,
+  "phoneChecks": 44,
+  "coverageChecks": 5,
+  "canonicalWins": 15,
+  "protectedFiles": 195,
+  "boardRastersExact": 3,
+  "errors": [],
+  "warm": {
+    "initial": {
+      "bytes": 77658032,
+      "buffers": 55,
+      "bakes": 13,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    },
+    "final": {
+      "bytes": 77658032,
+      "buffers": 55,
+      "bakes": 13,
+      "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+    },
+    "newCanvases": 0,
+    "drawCallMs": {
+      "median": 30.69999998807907,
+      "p95": 62.29999998211861,
+      "max": 161.09999999403954
+    },
+    "scope": "120 synchronous Canvas draw calls in cloud Chromium; not presented FPS or physical-device performance"
+  },
+  "captureResources": {
+    "bytes": 74374760,
+    "buffers": 55,
+    "bakes": 13,
+    "scope": "owned canvas backing estimate only; excludes decoded images, host, browser/GPU and process peak"
+  },
+  "scope": "Cloud Chromium and phone/DPR2 emulation; not physical-device, Safari or artistic-parity certification"
+}

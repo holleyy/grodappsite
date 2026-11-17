@@ -1,0 +1,8 @@
+{
+  "runtimeSha256": "9c54a0ca6b8ed9523ea150d6d148ebdc0d57a10cddccf8619f9b8927175e33f9",
+  "finalArchiveSha256": "9858155ef54d6e773a1b6c161ce27268bcb29f16c88357ad022a8e6af0902fce",
+  "exactRebuild": true,
+  "buildInputCount": 242,
+  "focusedTests": 56,
+  "method": "Preflight extracted archive passes all 56 focused tests; every final archive build input and focused test matches the tested preflight exactly. The final extracted archive rebuild reproduces the runtime."
+}

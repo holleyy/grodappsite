@@ -1,0 +1,8 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/light-materials/",
+  "addOnly": true,
+  "purpose": "Lighting, material contrast and folded-paper pipes for City Hall",
+  "sourceCommit": "c52630a6a1434d7ca5f64e4e854673621198a5c5",
+  "runtimeSha256": "9c54a0ca6b8ed9523ea150d6d148ebdc0d57a10cddccf8619f9b8927175e33f9",
+  "scope": "Room-owned static scenery. Black worker artwork, board projection, rules, Town Depot, Sorting Office, shared originals and previous previews remain unchanged."
+}
