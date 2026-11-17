@@ -1,0 +1,8 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/scene-finish/",
+  "addOnly": true,
+  "purpose": "Selective architectural edges and grounded civic-square materials for City Hall",
+  "sourceCommit": "01ff72a0b1b112ca38d95efd01820bb0bfa5f674",
+  "runtimeSha256": "2c5396e4c60d1e3c59ef49600d1d35aade439a4e293bcaa2b575e57585ff0f26",
+  "scope": "Room-owned static scenery. Black worker artwork, board projection, rules, Town Depot, Sorting Office, shared originals and previous previews remain unchanged."
+}

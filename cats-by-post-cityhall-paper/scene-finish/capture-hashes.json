@@ -1,0 +1,198 @@
+{
+  "runtimeSha256": "2c5396e4c60d1e3c59ef49600d1d35aade439a4e293bcaa2b575e57585ff0f26",
+  "ambientSeconds": 8,
+  "images": {
+    "before-phone-first.webp": {
+      "width": 390,
+      "height": 844,
+      "sourceSha256": "acae637d0c09f9b9576542cc93fc93816f106ca8c099aa7d7690245abef9a5bd",
+      "sha256": "fdfa7d1346c7caf99fb82ec990474ae39136eb97856f80e414a17ab3f3ebccec"
+    },
+    "before-phone.webp": {
+      "width": 390,
+      "height": 844,
+      "sourceSha256": "4172fd8263646e66adebe16bb3b45753ce21990bab2e6073474a6ef1d3303145",
+      "sha256": "21af7a297b79123f34b9641040caeef7d7dbf62f323659ac172a61ebf45bc562"
+    },
+    "before-phone-tall.webp": {
+      "width": 430,
+      "height": 932,
+      "sourceSha256": "898296568be157f64b0b678c9e0e5a45014045d4561ea9c0dec3753bf9b784f8",
+      "sha256": "8de3f7d0c0c3b2fb73144f5f921dce6e4bd7ade3cf15e56b0e2947ca1a601db7"
+    },
+    "before-phone-short.webp": {
+      "width": 320,
+      "height": 568,
+      "sourceSha256": "514f5a251f9efef702bd1b017b55109f96b6f1b6b2cddd9976875e9622aa07b5",
+      "sha256": "315c585390fa3d345391611a727113f67b24b1456c029c1c0c878f79c3c34673"
+    },
+    "before-phone-hall.webp": {
+      "width": 390,
+      "height": 844,
+      "sourceSha256": "889cf9720ca849dae64b500b0ee19b63608bd47bd9e808e79efed1a678cd1804",
+      "sha256": "7ec5259823d6ce03bb3d284fdd67230434d3769fbf26f71367648242eb3108c8"
+    },
+    "before-hall.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "ab798159f4f843f83cda1f8db9f402e2764c2212c40a526c257606a4fb7d8806",
+      "sha256": "e1ca78dc1a27c1a84449ceacef775a00f89c018e344670a781de05ade515e158"
+    },
+    "before-square.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "3b5fe322ac5803fde75623adcccafa5a8fa1f09bafa4192bd53f4c233c239267",
+      "sha256": "fdc3d1c86648e9099d9e537ff0abd14704901db73a6714553544066981f47bbe"
+    },
+    "before-light.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "b0ea924db3046f5c8c2373b6aacfaeb9c0b6430143c51ec5e99330c2a593dfec",
+      "sha256": "5b33d95380f61873654d277c040ebf987d89ee165f3179fa8e1c5bc6bd6f4c92"
+    },
+    "before-detail.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "f0aee1b0e619096ccd965d5a55671ce8b7d072eca0fa7f81b45f320c54577a24",
+      "sha256": "2e341bad9228e4ba8efdaadae257a5f19e7d9ca0bc92e2d261d512959257d356"
+    },
+    "before-board.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "7c9c7b78435ba8055986cf2b5baae3d28f98aaf82533f16190fef93ed44807ec",
+      "sha256": "8270eb613f7e1e8a8b5850929fa27c31ea7a223a20d48671ce632d62a8719f3f"
+    },
+    "before-gray.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "6250fa272a4d35635e23ff3cd483a95b312d978f92782d75498b134b89760b49",
+      "sha256": "4c2d1a5d084bc654241d87b315ccda1883f77a9971899b6ebeeb984c0efe078b"
+    },
+    "before-architecture.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "d1cbb81db70ba45152feb6b76cf6b2d3a241549b7f95d94f35a0e60ca19c4c47",
+      "sha256": "f56336ec77b05902a5e96239c1d1ebd722a02b9a7b24b9bf57962a03aa96b5bf"
+    },
+    "before-finials.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "1e82f1f07c5738d04c9cfaece248c2e367d9fdb33fa7147de9849d9e8b78374e",
+      "sha256": "b8c0e2bfd0af8263c027c3d6a5f987bba2a2c9be41e0edf564d8f4ef3f28e8cc"
+    },
+    "before-pipes-left.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "fd7a2dc27eed0dbf9b610472a23235503b74b3132a9a38891e3f276b3d6b512d",
+      "sha256": "dcc9c432986ef530a387b5571437c61a49b61147841982d680db50688dff4a81"
+    },
+    "before-pipes-right.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "1e8b613bbaa8f24619cc06f65a7a6bd562392f6708c4b16c974b1e51363608e0",
+      "sha256": "1e09c92234fce20842d168ffa3018ccc1c046912e0dc5e7d88c3c0a7dfebe81a"
+    },
+    "before-foreground.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "c904c8b3c6efada9313a5b5675700398323ee3b0f891efa7ab84729d9e669e22",
+      "sha256": "7f3326fe0bb4815fba82cb44c6eb1cd111d771b8255fe6dad5fd0d8eb5e42a29"
+    },
+    "after-phone-first.webp": {
+      "width": 390,
+      "height": 844,
+      "sourceSha256": "b6254a2e6f9fab662220c8f7160a33180447c1126a49e45268cb02dfbcc59e5e",
+      "sha256": "80062df9b859337d63d826b01dd4ca99b0fe4433843c93135e462c2c3cc4c7bf"
+    },
+    "after-phone.webp": {
+      "width": 390,
+      "height": 844,
+      "sourceSha256": "6ff5615f49c9406c64b9e170316eb88f605530f7342f07c883823e8c05688d46",
+      "sha256": "bda12c42fd9176437a729e0d42431703e1541b47e4226e6b1dc73029a6eb7b0c"
+    },
+    "after-phone-tall.webp": {
+      "width": 430,
+      "height": 932,
+      "sourceSha256": "36922982968a0a0b38f8eaa7a2c277484afcf43da695473413dc623cfedd354d",
+      "sha256": "286248995a6fd3173c6a1647a8b7e4acd7c116d00c0ff94c3f26a503df89d5fe"
+    },
+    "after-phone-short.webp": {
+      "width": 320,
+      "height": 568,
+      "sourceSha256": "7521fd81eedde56ebe7a2b75ba474293a424a1d4369be128886eddd82c27903a",
+      "sha256": "c5ca0a2e5252291574b30b234928a76f64113a542371c39666e847b147859c1a"
+    },
+    "after-phone-hall.webp": {
+      "width": 390,
+      "height": 844,
+      "sourceSha256": "8ff2aca39e00875ddce3e1fe0c66104b192c91030774f0ddf13f348ea8de25ef",
+      "sha256": "df048f942281e960e0752c2d28f9e759b0b27dd2c70e08ee1dad1ff6d10bc02a"
+    },
+    "after-hall.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "926a6f1a313f2d1dc3e58b1fc14846ce48720a500e0677ed42b8d721aecc032c",
+      "sha256": "2d30417fba1697e01805412d60fc24fce37eb9cbfabaf44720623418152142c3"
+    },
+    "after-square.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "5e19d5dbb8947939a710ee60231c8f90c137416a8e0288ae12a98692af48dbbb",
+      "sha256": "14214aa97811c7edaf5773dd464ed3a7a84655a8cb6cb84f1f0f77eaaba6cd46"
+    },
+    "after-light.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "2b1660d33b30c71ca3c8f3c2d9760cea7577a9f26c36c1524ae44d867669b1e2",
+      "sha256": "0e51fb1a5c94ce024a6337f0026619e25c5071d06e0ce952f2ec646cc1ddaa3d"
+    },
+    "after-detail.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "e1ca8fa6ce503af4d9641936cc3ded8542182316697a3c307f2a600de52d2651",
+      "sha256": "08be61c4a5a05f136d519f53474821694562ea3cd007ee4288d4dcd357c6c704"
+    },
+    "after-board.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "155b5f133d58b17911bdf495a44606f9e085a73d689d966d511e95a693fa4b4a",
+      "sha256": "23da69a0a66fe7bd86b9bf3d01f1ab4948b9ef84f4e6d401437de8ef68583342"
+    },
+    "after-gray.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "8baf1e026774153c63bf30f8f56318a1e12e66351bed991d312941969dc8a209",
+      "sha256": "7f84516e8b424f2a3312a63d1eb28228c66660ef7d7fc7549994c86e5c9e0f8b"
+    },
+    "after-architecture.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "f867ce532078226a302cd735a68b2f4bd52614c4c76b09ce2ffa3c67b94728c8",
+      "sha256": "551eb8a8c916ab212a8054d5705ab97319d58b6e173f1ed3a07073cf99f2c909"
+    },
+    "after-finials.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "06fb75988dd233e6fb06f22a3c6c7ace2dbdaee11e2b6ae9c87553621693b63a",
+      "sha256": "825dfe92c955dcf7d55721b4015b17824e19ebbe9c3f0f21dec7389bba38aad8"
+    },
+    "after-pipes-left.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "66a5340c823dd26636888f70916f2a063331e84aa7a98aff047ba380cea8ede0",
+      "sha256": "754fb344ec08f363246cbdd17bf538f79f507997f8d24fa790db90b56c92758d"
+    },
+    "after-pipes-right.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "10ca8c8753d385f95c9f64d98fd36a88a7c9e800f7ba9d2d8a09d7706dc662c3",
+      "sha256": "f905a7decc1878b5d9f80259b7d3e9096d5a40800e84f4e488d68184f6442abb"
+    },
+    "after-foreground.webp": {
+      "width": 1440,
+      "height": 1000,
+      "sourceSha256": "e16743de74e583341d1baf6bf9519400429baa2f901a2a80053b10991d9add6d",
+      "sha256": "7731808c2e602119cb54eee2197413c41447d6e5df4bbd7eae7b2996fb0fa58a"
+    }
+  }
+}
