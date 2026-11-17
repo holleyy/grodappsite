@@ -1,0 +1,23 @@
+{
+  "roomFilesExact": 50,
+  "portalMotionAndAnchorsExact": true,
+  "base": "2dbdaa0f1fc9ce5a884cb12df14468643d4846fa",
+  "runtimeSHA256": "fd7a94ab94ff4ab3cdb0c9999169174271d5c125d7b9b3933b79269aa0c17b1b",
+  "canonicalInputs": [
+    "src/sim/10_rules.js",
+    "src/sim/12_boardanim.js",
+    "src/sim/19f_depot_chapter.js",
+    "src/sim/19b_depot.js",
+    "src/sim/19c_depot_world.js",
+    "src/data/depot.json",
+    "src/data/levels.json",
+    "src/data/edge_portals.json",
+    "src/render/24a_paper_data.js",
+    "src/data/palette.json"
+  ],
+  "postalFramesCompared": 11520,
+  "postalSampleExact": true,
+  "assetsExact": 27,
+  "sharedBuildID": "dedb812743",
+  "sharedBuildExact": true
+}

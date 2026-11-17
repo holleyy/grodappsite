@@ -1,0 +1,20 @@
+{
+  "runtimeSHA256": "fd7a94ab94ff4ab3cdb0c9999169174271d5c125d7b9b3933b79269aa0c17b1b",
+  "reviewer": "depot_flap_depth_review",
+  "disposition": "clean",
+  "independentFocusedTests": 4,
+  "matchingContactRecords": 104,
+  "cacheFrames": 128,
+  "resolved": [
+    "Open leaf/jamb, embedded hinge and sill painter order",
+    "Ginger lintel full-face material coverage",
+    "Antialiased fragment hairlines"
+  ],
+  "finalContactTransitions": [
+    "R .48",
+    "D .56",
+    "L .68",
+    "U 1.1"
+  ],
+  "sourceSHA256": "7922bc18c4f97613e2d0f4aeac41fbd4d4b4827f26ffdc3b0b36a92559132c45"
+}
