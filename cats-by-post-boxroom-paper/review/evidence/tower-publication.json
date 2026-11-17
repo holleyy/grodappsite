@@ -1,0 +1,92 @@
+{
+  "parent": "c4ce9aaa1c2ae2cbc4f94fde8a73e8440f58a62f",
+  "commit": "37a5fc9df19e73409b6a7a9ad0168d4b1bab3216",
+  "tree": "80bf915b257bbd1cb9384006783901f9193cbf59",
+  "build": "boxroom-paper-2e79b697b807",
+  "ownedPrefix": "cats-by-post-boxroom-paper",
+  "changedPaths": 74,
+  "stagedFilesVerified": 429,
+  "unrelatedRootEntriesPreserved": 24,
+  "qualifiedRuntime": {
+    "build": "boxroom-paper-2e79b697b807",
+    "qualifiedBytesMatch": true,
+    "hashes": {
+      "boxroom-build.json": "3c56c3608656c9593771440c8d372f32458c85426f636ef07886f973f26a4f8f",
+      "game/engine.html": "bf04e229cdee39c134a7fef429a98785b53bf5f226b7ffbf7c7d061116898ea6",
+      "rooms/boxroom.js": "a50e136c051165241f687b3000e2b6136d7b0449e56aba6d0cdb58fb86d423f8",
+      "study.html": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+      "regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9"
+    },
+    "inputCount": 30
+  },
+  "deployment": {
+    "id": 44059324266,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "37a5fc9df19e73409b6a7a9ad0168d4b1bab3216",
+    "url": "https://github.com/holleyy/grodappsite/actions/runs/44059324266",
+    "updated_at": "2026-11-17T09:54:41Z"
+  },
+  "pullRequest": {
+    "number": 47,
+    "draft": true,
+    "merged": false,
+    "url": "https://github.com/holleyy/cosysortie/pull/47",
+    "head_sha": "381b9843230db3736f3396638355b9bc524c17df"
+  },
+  "remoteBytes": {
+    "commit": "37a5fc9df19e73409b6a7a9ad0168d4b1bab3216",
+    "records": [
+      {
+        "path": "boxroom-build.json",
+        "bytes": 6654,
+        "sha256": "3c56c3608656c9593771440c8d372f32458c85426f636ef07886f973f26a4f8f",
+        "exactMatch": true
+      },
+      {
+        "path": "game/engine.html",
+        "bytes": 17405144,
+        "sha256": "bf04e229cdee39c134a7fef429a98785b53bf5f226b7ffbf7c7d061116898ea6",
+        "exactMatch": true
+      },
+      {
+        "path": "rooms/boxroom.js",
+        "bytes": 654000,
+        "sha256": "a50e136c051165241f687b3000e2b6136d7b0449e56aba6d0cdb58fb86d423f8",
+        "exactMatch": true
+      },
+      {
+        "path": "study.html",
+        "bytes": 2789,
+        "sha256": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+        "exactMatch": true
+      },
+      {
+        "path": "regular.html",
+        "bytes": 1544,
+        "sha256": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9",
+        "exactMatch": true
+      },
+      {
+        "path": "review/index.html",
+        "bytes": 7656,
+        "sha256": "0664e7735d1b24e056e0f436622db571925688baa6c583067a2f40852781e12b",
+        "exactMatch": true
+      },
+      {
+        "path": "assets/boxroom-paper/backdrop.webp",
+        "bytes": 593830,
+        "sha256": "285ba589b608be186eebd650944e7ef45bef429678b699c09a5ad36333ad93f7",
+        "exactMatch": true
+      },
+      {
+        "path": "review/after-daily.webp",
+        "bytes": 307784,
+        "sha256": "a238c8bf2909ce445da46eb3ca9c404900e1ba14503b701287520978a4646e5b",
+        "exactMatch": true
+      }
+    ]
+  },
+  "sourceImplementationCommit": "381b9843230db3736f3396638355b9bc524c17df",
+  "verificationLimit": "The environment proxy blocks direct holleyy.github.io access with HTTP403. Exact remote commit bytes and successful GitHub Pages deployment were verified; browser qualification used the byte-identical local candidate."
+}

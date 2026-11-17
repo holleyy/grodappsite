@@ -1,0 +1,10 @@
+✔ 5×4: the visible last upper tread stays in front of the well and turning landing (382.725251ms)
+✔ 10×8: the visible last upper tread stays in front of the well and turning landing (399.305254ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2971.896608

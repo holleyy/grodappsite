@@ -1,0 +1,138 @@
+✖ 5×4: the visible last upper tread stays in front of the well and turning landing (222.072077ms)
+✖ 10×8: the visible last upper tread stays in front of the well and turning landing (243.108944ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2113.130612
+
+✖ failing tests:
+
+test at tests/boxroom-paper-stair-paint.test.js:35:34
+✖ 5×4: the visible last upper tread stays in front of the well and turning landing (222.072077ms)
+  AssertionError [ERR_ASSERTION]: renderer ordering must preserve the nearer tread
+  + actual - expected
+  
+    {
+      clip: 'stair-opening',
+  +   grain: undefined,
+  +   id: 'stair-turning-landing-left:4489',
+  -   colour: '#c6a06d',
+  -   id: 'stair-tread-upper-9-top:4568',
+      layer: 'stairs',
+      material: 'oak',
+  +   shade: 0.11,
+      solid: false,
+  +   u: 22,
+  +   v: 1,
+  -   u: 10,
+  -   v: 3,
+      vertices: [
+        [
+          125,
+          16,
+  +       -21
+  -       -20
+        ],
+        [
+  +       147,
+  -       135,
+          16,
+  +       -21
+  -       -20
+        ],
+        [
+  +       147,
+  +       16,
+  -       135,
+  -       19,
+          -20
+        ],
+        [
+          125,
+  +       16,
+  -       19,
+          -20
+        ]
+      ]
+    }
+  
+      at TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/boxroom-paper-stair-paint.test.js:52:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'stair-turning-landing-left:4489', vertices: [ [Array], [Array], [Array], [Array] ], material: 'oak', u: 22, v: 1, layer: 'stairs', solid: false, grain: undefined, shade: 0.11, clip: 'stair-opening' },
+    expected: { id: 'stair-tread-upper-9-top:4568', vertices: [ [Array], [Array], [Array], [Array] ], material: 'oak', u: 10, v: 3, layer: 'stairs', solid: false, colour: '#c6a06d', clip: 'stair-opening' },
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/boxroom-paper-stair-paint.test.js:35:34
+✖ 10×8: the visible last upper tread stays in front of the well and turning landing (243.108944ms)
+  AssertionError [ERR_ASSERTION]: renderer ordering must preserve the nearer tread
+  + actual - expected
+  
+    {
+      clip: 'stair-opening',
+  +   grain: undefined,
+  +   id: 'stair-turning-landing-left:6819',
+  -   colour: '#c6a06d',
+  -   id: 'stair-tread-upper-9-top:6898',
+      layer: 'stairs',
+      material: 'oak',
+  +   shade: 0.11,
+      solid: false,
+  +   u: 22,
+  +   v: 1,
+  -   u: 10,
+  -   v: 3,
+      vertices: [
+        [
+          205,
+          16,
+  +       -21
+  -       -20
+        ],
+        [
+  +       227,
+  -       215,
+          16,
+  +       -21
+  -       -20
+        ],
+        [
+  +       227,
+  +       16,
+  -       215,
+  -       19,
+          -20
+        ],
+        [
+          205,
+  +       16,
+  -       19,
+          -20
+        ]
+      ]
+    }
+  
+      at TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/boxroom-paper-stair-paint.test.js:52:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { id: 'stair-turning-landing-left:6819', vertices: [ [Array], [Array], [Array], [Array] ], material: 'oak', u: 22, v: 1, layer: 'stairs', solid: false, grain: undefined, shade: 0.11, clip: 'stair-opening' },
+    expected: { id: 'stair-tread-upper-9-top:6898', vertices: [ [Array], [Array], [Array], [Array] ], material: 'oak', u: 10, v: 3, layer: 'stairs', solid: false, colour: '#c6a06d', clip: 'stair-opening' },
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

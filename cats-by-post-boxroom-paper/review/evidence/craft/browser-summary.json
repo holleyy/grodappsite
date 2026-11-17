@@ -1,0 +1,162 @@
+{
+  "build": "boxroom-paper-b2e06d02d47b",
+  "viewports": {
+    "daily": {
+      "completed": true,
+      "cases": 3,
+      "checks": 36,
+      "passed": 36,
+      "builds": [
+        "boxroom-paper-b2e06d02d47b"
+      ]
+    },
+    "night": {
+      "completed": true,
+      "cases": 3,
+      "checks": 36,
+      "passed": 36,
+      "builds": [
+        "boxroom-paper-b2e06d02d47b"
+      ]
+    }
+  },
+  "memory": {
+    "build": "boxroom-paper-b2e06d02d47b",
+    "completed": true,
+    "resourcesStable": true,
+    "domStable": true,
+    "heapAfterWarmup": [
+      19634360,
+      19792648,
+      19995892,
+      20064832
+    ],
+    "heapRetainedSpreadBytes": 430472,
+    "errors": [],
+    "cycles": 5,
+    "ownedBackingBytes": [
+      78233192,
+      78233192,
+      78233192,
+      78233192,
+      78233192
+    ],
+    "dom": [
+      {
+        "documents": 7,
+        "nodes": 1753,
+        "listeners": 125
+      },
+      {
+        "documents": 7,
+        "nodes": 1753,
+        "listeners": 125
+      },
+      {
+        "documents": 7,
+        "nodes": 1753,
+        "listeners": 125
+      },
+      {
+        "documents": 7,
+        "nodes": 1753,
+        "listeners": 125
+      },
+      {
+        "documents": 7,
+        "nodes": 1753,
+        "listeners": 125
+      }
+    ]
+  },
+  "study": {
+    "build": "boxroom-paper-b2e06d02d47b",
+    "checks": 9,
+    "errors": []
+  },
+  "lighting": {
+    "syntheticLightingCases": 12,
+    "syntheticResidentCases": 2,
+    "errors": [],
+    "hiddenResidents": [],
+    "scope": "Pinned synthetic visual fixtures. Canonical BOXROOM.build; 5\u00d74, seed303; no player save/progression edits."
+  },
+  "allFailures": [],
+  "runtimeFiles": 302,
+  "changedRuntimeFiles": [],
+  "coveredEditableCentres": [
+    {
+      "mode": "daily",
+      "viewport": "phone",
+      "framing": "board",
+      "editableCentresCovered": 1
+    },
+    {
+      "mode": "daily",
+      "viewport": "phone",
+      "framing": "room",
+      "editableCentresCovered": 7
+    },
+    {
+      "mode": "daily",
+      "viewport": "short-landscape",
+      "framing": "board",
+      "editableCentresCovered": 1
+    },
+    {
+      "mode": "daily",
+      "viewport": "short-landscape",
+      "framing": "room",
+      "editableCentresCovered": 7
+    },
+    {
+      "mode": "daily",
+      "viewport": "desktop",
+      "framing": "board",
+      "editableCentresCovered": 0
+    },
+    {
+      "mode": "daily",
+      "viewport": "desktop",
+      "framing": "room",
+      "editableCentresCovered": 0
+    },
+    {
+      "mode": "night",
+      "viewport": "phone",
+      "framing": "board",
+      "editableCentresCovered": 0
+    },
+    {
+      "mode": "night",
+      "viewport": "phone",
+      "framing": "room",
+      "editableCentresCovered": 0
+    },
+    {
+      "mode": "night",
+      "viewport": "short-landscape",
+      "framing": "board",
+      "editableCentresCovered": 0
+    },
+    {
+      "mode": "night",
+      "viewport": "short-landscape",
+      "framing": "room",
+      "editableCentresCovered": 0
+    },
+    {
+      "mode": "night",
+      "viewport": "desktop",
+      "framing": "board",
+      "editableCentresCovered": 0
+    },
+    {
+      "mode": "night",
+      "viewport": "desktop",
+      "framing": "room",
+      "editableCentresCovered": 0
+    }
+  ],
+  "disclosure": "The inherited Daily hatch-focus overlay intercepts some editable tile centres. Successful trusted pointer checks select uncovered tiles and do not establish that all centres are unobstructed. This is separate from inverse picking, which the drivers check at every centre. Linux Chromium emulation; no physical-device/FPS or total-process-memory claim."
+}

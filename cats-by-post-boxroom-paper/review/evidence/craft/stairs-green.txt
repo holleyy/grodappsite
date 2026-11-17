@@ -1,0 +1,11 @@
+✔ two stair flights and their landings connect the attic to the next 40-unit storey at every size (6889.47633ms)
+✔ the stair aperture preserves roof-post bearing, sill separation and resident carton space (8722.883153ms)
+✔ upper treads remain visible through the real aperture while the lower return stays naturally occluded (549.575485ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18109.396505

@@ -1,0 +1,12 @@
+{
+  "build": "boxroom-paper-2e79b697b807",
+  "qualifiedBytesMatch": true,
+  "hashes": {
+    "boxroom-build.json": "3c56c3608656c9593771440c8d372f32458c85426f636ef07886f973f26a4f8f",
+    "game/engine.html": "bf04e229cdee39c134a7fef429a98785b53bf5f226b7ffbf7c7d061116898ea6",
+    "rooms/boxroom.js": "a50e136c051165241f687b3000e2b6136d7b0449e56aba6d0cdb58fb86d423f8",
+    "study.html": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+    "regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9"
+  },
+  "inputCount": 30
+}

@@ -1,0 +1,73 @@
+{
+  "scope": "Pinned synthetic visual fixtures. Canonical BOXROOM.build; 5×4, seed303; no player save/progression edits.",
+  "inputs": {
+    "layout.js": {
+      "sha256": "d4fd072ae44be3daeb8721283f5a84a8384cc4367204a42a822aa9f07c572fb5",
+      "bytes": 36028
+    },
+    "backdrop.webp": {
+      "sha256": "285ba589b608be186eebd650944e7ef45bef429678b699c09a5ad36333ad93f7",
+      "bytes": 593830
+    },
+    "projection.js": {
+      "sha256": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+      "bytes": 1109
+    },
+    "materials.js": {
+      "sha256": "9afb4dfef5436ddcb1a401d2cfc069bb1cb8356b6fc32c3bbf5bdf5add6ccd7a",
+      "bytes": 9811
+    },
+    "rooms.json": {
+      "sha256": "9a6cf0ba4a5c15ca7a42e5f0d325291aec5f5ce429eeb47a1cb3ab737d39e809",
+      "bytes": 288795
+    },
+    "scene.js": {
+      "sha256": "7023e5ec8277dffc758202c2856215e92f7b55096a264743a151b6f06806ee44",
+      "bytes": 18770
+    },
+    "residents.js": {
+      "sha256": "5260ae6cb0a8025a22b927ad7922cfd79a10fee2d9b23cee27c10fb956c883e6",
+      "bytes": 7135
+    },
+    "residents.json": {
+      "sha256": "054e740e767c7379e7089c69809fe8ad4b1902915e67ae3fed4b4e61d8e0be76",
+      "bytes": 3727
+    },
+    "materials.webp": {
+      "sha256": "86b815a5f6f4f2d81d1741902d8e09dbe1b66d19fb9cce9b9fc5ccb3f6179692",
+      "bytes": 435456
+    },
+    "residents.webp": {
+      "sha256": "3b31beef1ac47a3208de0cb872001105eb6d398b56481b098fcc2c5a2302ac1e",
+      "bytes": 424336
+    },
+    "cartons.webp": {
+      "sha256": "c9d97314bfa2bef6cbf1c76171469a13168d43478f3cbf574707cc8e116bd93b",
+      "bytes": 626222
+    },
+    "snapshot/rooms.json": {
+      "sha256": "9a6cf0ba4a5c15ca7a42e5f0d325291aec5f5ce429eeb47a1cb3ab737d39e809",
+      "bytes": 288795
+    },
+    "cases.json": {
+      "sha256": "cbc37a01623448a1588ff69fa0d43604dfce5b5d68c5e8a2632ad9c4a116f8e4",
+      "bytes": 5796
+    },
+    "index.html": {
+      "sha256": "4a567e410f85848377cb82b4cc01320c813207b529866be8b380f1de31c56127",
+      "bytes": 4222
+    },
+    "capture.cjs": {
+      "sha256": "8db3e275e6354f847d1a76b3b7d0df54c78a9ec89df54c5516c1350fedb4a334",
+      "bytes": 4464
+    },
+    "lighting-sheet.html": {
+      "sha256": "7a226df2372e35cb2b93de38969ca2399d17a3a0879eccb1f6bbeea5fca5e172",
+      "bytes": 3107
+    },
+    "residents.html": {
+      "sha256": "51257517c099791cbb32a8e5cd8676fa1ca1a8e9528cbf8aafe3869d82fe33a2",
+      "bytes": 1028
+    }
+  }
+}
