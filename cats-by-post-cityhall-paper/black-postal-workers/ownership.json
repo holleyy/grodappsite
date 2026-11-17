@@ -1,0 +1,13 @@
+{
+  "prefix": "cats-by-post-cityhall-paper/black-postal-workers/",
+  "addOnly": true,
+  "purpose": "Black postal workers in City Hall and Town Depot; candid City Hall quality assessment",
+  "sourceCommit": "7506fc442246b406d4e75643cdf2a7955f3757d9",
+  "cityhallRuntimeSha256": "5de7d2fed2bac5043771b9a909c7fdeba994f6ec6b4b0b0705df20c6dc539af7",
+  "depotRuntimeSha256": "81f8d2fe5229806012c40f40b90706c985b702acefe73709a4000fe88ed0515f",
+  "depotBaseline": {
+    "publicPath": "cats-by-post-depot-paper/final-review/playable.html",
+    "sha256": "5f0d1e9c2f0094d33b5a6830ae13dbcfa21c8b7814b7ab7cb1a981a918b44240"
+  },
+  "scope": "Sorting Office, shared originals and previous previews untouched; Depot is an additive two-atlas variant of the published final-review runtime"
+}

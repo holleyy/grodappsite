@@ -1,0 +1,85 @@
+{
+  "sourceCommit": "7506fc442246b406d4e75643cdf2a7955f3757d9",
+  "runtimes": {
+    "cityhall": "5de7d2fed2bac5043771b9a909c7fdeba994f6ec6b4b0b0705df20c6dc539af7",
+    "depot": "81f8d2fe5229806012c40f40b90706c985b702acefe73709a4000fe88ed0515f"
+  },
+  "files": {
+    "cityhall-after.png": {
+      "bytes": 1492472,
+      "sha256": "36b6d60f679165cba30e6cc2a8ab974f75002130d9bc1bab9ce94844caa29075"
+    },
+    "cityhall-before.png": {
+      "bytes": 1492816,
+      "sha256": "5101f3edf1d390aae72e1a15ae3da29c907f090456050a7c4acb5587822e9d33"
+    },
+    "cityhall-browser-report.json": {
+      "bytes": 5961,
+      "sha256": "2f5bb086733ff01bf7c297147f4a8e38fd540e7fb5e69a6b19605b1c64eaa821"
+    },
+    "cityhall-phone-report.json": {
+      "bytes": 10764,
+      "sha256": "a4c304129c83d3658d645f684468092191b93cf15f6dc906752ee3247324523f"
+    },
+    "cityhall-phone.png": {
+      "bytes": 353399,
+      "sha256": "d2b886f28eb421c727b13a008c39e1e826ef676f5fd710a3faaf0f592d93ef37"
+    },
+    "cityhall-poses.png": {
+      "bytes": 230856,
+      "sha256": "a20a832ac697b9069bb368ecf22be154676d408b0b3f57ef15b071aa8abc71f0"
+    },
+    "cityhall.html": {
+      "bytes": 28074504,
+      "sha256": "5de7d2fed2bac5043771b9a909c7fdeba994f6ec6b4b0b0705df20c6dc539af7"
+    },
+    "depot-after-phone.png": {
+      "bytes": 417098,
+      "sha256": "3332043754265c4ed304222bc5502330a99d0f5ae910c4dcb83ec462bf321fa7"
+    },
+    "depot-after.png": {
+      "bytes": 1797258,
+      "sha256": "893b1b643c53cae77b02d6022ae72ad28a4c3cfd6e18e7713f92db72cecac4f5"
+    },
+    "depot-before.png": {
+      "bytes": 1797142,
+      "sha256": "4cd0a466186468a01009b094c36cc47e7d2580c35d7ad8bd424cfd3e7ff51623"
+    },
+    "depot-clerk.png": {
+      "bytes": 155904,
+      "sha256": "450429210c1f57328a59c6342d4801e91b37b355f751578e765a79f0539cd393"
+    },
+    "depot-poses.png": {
+      "bytes": 324347,
+      "sha256": "9d82a580f6db53b34f39e87bab7e00e10bd43c97623860684c3155399eebff5c"
+    },
+    "depot-report.json": {
+      "bytes": 2395,
+      "sha256": "3da47b6a94f0e1fa12f3d4f47bfd099f7e9bd12988246998b3e87cf60a8d8866"
+    },
+    "depot.html": {
+      "bytes": 17936117,
+      "sha256": "81f8d2fe5229806012c40f40b90706c985b702acefe73709a4000fe88ed0515f"
+    },
+    "index.html": {
+      "bytes": 7553,
+      "sha256": "4555433902dab6e4f94ab9aff0aa6c622d46167493d8ce5d1464577c8f7f2d8e"
+    },
+    "ownership.json": {
+      "bytes": 775,
+      "sha256": "0ac39191e806866ea1e3fb6d3f5eaab17c031a21f27f671d1f2ee938d7a31efe"
+    },
+    "quality-plan.md": {
+      "bytes": 6462,
+      "sha256": "f029b452b1801fd53d1d4bce15a99a86fef3663387ca8905ea843686f3ab2b53"
+    },
+    "review.md": {
+      "bytes": 1716,
+      "sha256": "e1d8e94dba113962d26538dee9d7c591034ad4de72f3790df4a8817af93ab88c"
+    },
+    "source.zip": {
+      "bytes": 67411887,
+      "sha256": "06c408d21fdf01ca11a9871e495aa3773ebb3218385ce2730ca5ecb17fdd2fcc"
+    }
+  }
+}
