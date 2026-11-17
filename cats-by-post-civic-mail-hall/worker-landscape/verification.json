@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-17",
+  "baseCommit": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+  "build": "web-544ff635bdc3",
+  "studySha256": "2a50dcc544ae6aa6315f60bf6ac6ad6a6f941fb38ebef22313cc1db8ff1b8244",
+  "canonicalSha256": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
+  "artwork": {
+    "frames": 54,
+    "masterSha256": "5ab752e5ed10dc9979ac6165abf5a5f8fc4c149ba39675482fcfc6a5714b1991",
+    "atlasSha256": "45ab446df266af4718a1d6089fcfec8ecc668ac4c225c5d8511655186811fc42",
+    "bytes": 628630,
+    "originalBytes": 82762,
+    "logicalAtlas": [
+      704,
+      812
+    ],
+    "raster": [
+      1167,
+      1347
+    ],
+    "originalFootAnchorsRetained": true
+  },
+  "focusedTests": {
+    "passed": 153,
+    "failed": 0
+  },
+  "landscape": {
+    "records": 122,
+    "deliveryWins": 90,
+    "cellCentrePicks": 1788,
+    "liveRotationWins": 2,
+    "errors": [],
+    "sourceCSSInjected": false
+  },
+  "scope": "Chromium touch emulation; no physical Safari or native/TestFlight qualification."
+}

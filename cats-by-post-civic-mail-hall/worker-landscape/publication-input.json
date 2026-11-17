@@ -1,0 +1,10 @@
+{
+  "sourceCommit": "e6df1c9a078e8cfbe58a1c2a9008b3639daa8db2",
+  "build": "web-544ff635bdc3",
+  "publicBase": "f00f455649c909d331c32c88ebf82a5d8f631f22",
+  "scope": [
+    "cats-by-post-civic-mail-hall/",
+    "cats-by-post-sorting-office-review/"
+  ],
+  "studySha256": "2a50dcc544ae6aa6315f60bf6ac6ad6a6f941fb38ebef22313cc1db8ff1b8244"
+}

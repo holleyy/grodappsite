@@ -1,3 +1,9 @@
+# Sorting Office — worker and landscape, 17 November 2026
+
+Updated Black postwoman and compact landscape controls. Source commit `e6df1c9a078e8cfbe58a1c2a9008b3639daa8db2`, build `web-544ff635bdc3`. [Review gallery](https://holleyy.github.io/grodappsite/cats-by-post-civic-mail-hall/worker-landscape/). All 15 Office deliveries pass at three landscape sizes in both interfaces. The normal-interface preview keeps isolated review saves; this is not the live main-game deployment. Physical Safari and native/TestFlight orientation remain unqualified.
+
+Earlier documentation follows.
+
 # Cats by Post web game
 
 The accepted independent interface over the canonical 100-level game and six approved fidelity presentations. Start at `index.html` through a local server or the published review URL. For local use, run `python3 -m http.server 8790` at the repository root, then open `http://127.0.0.1:8790/web/`.

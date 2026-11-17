@@ -1,0 +1,22 @@
+{
+  "prefix": "http://127.0.0.1:8897/work/office-paper/worker-landscape/review-site/",
+  "requestCount": 51,
+  "forbidden": [],
+  "errors": [],
+  "liveKeysPreserved": [
+    "catsByPost.progress",
+    "catsByPost.nightShiftBest",
+    "catsByPost.web.session.v1",
+    "catsByPost.web.preferences.v1"
+  ],
+  "liveKeyAccess": [],
+  "proof": {
+    "build": "web-544ff635bdc3",
+    "levels": 100,
+    "active": true,
+    "motion": false,
+    "reviewWin": true,
+    "reviewSession": true,
+    "reviewPreferences": true
+  }
+}
