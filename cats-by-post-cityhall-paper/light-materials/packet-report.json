@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "hall before/after control",
+    "square before/after control",
+    "architecture before/after control",
+    "pipes-left before/after control",
+    "pipes-right before/after control",
+    "all review links resolve",
+    "desktop and phone review layout",
+    "packaged playable starts",
+    "no page errors"
+  ],
+  "errors": []
+}

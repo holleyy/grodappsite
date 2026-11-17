@@ -1,0 +1,18 @@
+{
+  "before": {
+    "timberLuma": 174.47524444444443,
+    "boardLuma": 231.0992,
+    "separation": 56.62395555555557,
+    "assetsSha256": "901b9f1381db6d590a6e26adc65aa5df267937f87ed2c8b2293a7029b73d15e9",
+    "assets": 209,
+    "scope": "Rec.709 weighted sRGB luma proxy, fixed exposed timber points and one clear board-tile sample; not an artistic-parity score"
+  },
+  "after": {
+    "timberLuma": 158.9422888888889,
+    "boardLuma": 231.0992,
+    "separation": 72.1569111111111,
+    "assetsSha256": "901b9f1381db6d590a6e26adc65aa5df267937f87ed2c8b2293a7029b73d15e9",
+    "assets": 209,
+    "scope": "Rec.709 weighted sRGB luma proxy, fixed exposed timber points and one clear board-tile sample; not an artistic-parity score"
+  }
+}
