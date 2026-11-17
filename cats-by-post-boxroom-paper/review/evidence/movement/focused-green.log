@@ -1,0 +1,33 @@
+✔ native start cues provide four correctly pointing indexed arrows and separate shadows (6.707299ms)
+✔ every room shows the cue while planning and fades on release, then restores on Stop and Retry (7262.221424ms)
+✔ native cues alter only composed colour and preserve world index/depth and cached records (206.764535ms)
+✔ editor trials and returns reset cues without touching queue data (3431.284794ms)
+✔ Night Shift cues use each actual release and return for paused queues, then fade on resume (1748.633155ms)
+✔ cue blending cannot cover nearer world art or re-enable the renderer after paper data is removed (2311.68671ms)
+✔ an unreleased Night Shift hatch retains its cue until its own release clock (768.749063ms)
+✔ chapter modals, ambient demos and ended shifts cannot retain planning cues (4195.029701ms)
+✔ opposing neighbouring hatch arrows have separate native silhouettes (1059.913381ms)
+✔ empty Night Shift hatches stay uncued after pause and resume, including a last-cat fade (996.562656ms)
+✔ live Night Shift glides through consecutive straight tiles instead of holding then jumping (138.546822ms)
+✔ pause freezes the drawn route and fast-forward resumes the same continuous glide (121.855554ms)
+✔ the final sleeping cat completes its tile at tea before becoming a resting extra (67.84875ms)
+✔ tea carries the last cat only after its drawn move reaches the final tile (51.29069ms)
+✔ actual mixed study draws dedicated native big cats alongside unchanged ordinary cats (2619.691469ms)
+✔ both coats use real rear poses and mirror only the cat within a consistently lit box (0.518539ms)
+✔ new native silhouettes fit existing buffers and leave adjacent mechanism centres exposed (70.595827ms)
+✔ empty big parcels have physical side depth so they cannot hide the doorway or climbing cat (1.768002ms)
+✔ every big flap direction has an authored fixed mouth and low crouch, with a vanishing tail (14.957731ms)
+✔ big entry art uses the real small-door aperture and compresses only the fur at its mouth (2.850585ms)
+✔ Night Shift persistent big sleepers retain their size and native breathing art (1290.686106ms)
+✔ Night Shift exposes fixed points and records the same flips that drive its board (91.748324ms)
+✔ a final points flip finishes visually when the round settles at tea (62.547036ms)
+✔ applying a larger travel limit preserves earlier flips and records beyond the old capacity (49.745563ms)
+✔ replay reservation also covers settings increases after a later round starts (43.141428ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26774.00262

@@ -1,0 +1,29 @@
+✔ live Night Shift glides through consecutive straight tiles instead of holding then jumping (168.115028ms)
+✔ pause freezes the drawn route and fast-forward resumes the same continuous glide (115.391127ms)
+✔ the final sleeping cat completes its tile at tea before becoming a resting extra (105.360248ms)
+✔ tea carries the last cat only after its drawn move reaches the final tile (94.431002ms)
+✔ basket arrival continues after the final rule tick at tea or the last strike (226.824026ms)
+✔ Night Shift exposes fixed points and records the same flips that drive its board (107.040245ms)
+✔ a final points flip finishes visually when the round settles at tea (54.140548ms)
+✔ applying a larger travel limit preserves earlier flips and records beyond the old capacity (59.399448ms)
+✔ replay reservation also covers settings increases after a later round starts (39.674464ms)
+✔ real Send/Pause/Resume/Cancel intents emit once and idle frames emit no stale sounds (18.395858ms)
+✔ real native win sounds settle once, preserve the outcome and remain silent during restoration (26.062646ms)
+✔ precision pause freezes scheduled carrier audio until native time resumes (9.288749ms)
+✔ the real Christmas route emits heavy parcels, points, tunnels, dog and flap cues (403.681515ms)
+✔ real Night Shift transport emits once and freezes carrier timing during pause (161.955593ms)
+✔ rule capture is once per tick and playback follows the frozen game clock (7.014977ms)
+✔ tunnel exit and settled flap closure have independent animation-clock moments (1.310761ms)
+✔ big releases, actual dog hits and points actuations use their matching cues (1.308366ms)
+✔ a new run or a new Night Shift simulation discards stale scheduled sounds (3.316271ms)
+✔ a real won outcome resolves once after the existing settling interval (0.351247ms)
+✔ live Night points and dog cues follow the drawn interval, not the already completed rule tick (0.405679ms)
+✔ live Night basket sounds wait through the final drawn move and supported arrival (6.148157ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3438.150699

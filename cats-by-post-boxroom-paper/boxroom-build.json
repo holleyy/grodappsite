@@ -1,10 +1,11 @@
 {
-  "build": "boxroom-paper-08a5a567c57d",
-  "baseCommit": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
-  "baseWebBuild": "web-c5662b5f4a0d",
-  "baseEngineSha256": "64752532968aec60ae57aa37e2a9aa1f02ff5e84a9cc180cbd3f192134c5765f",
-  "engineSha256": "e45f12be54d04e41d90c47916fd96dd3aa40ab514db31802b2165a799df99418",
-  "bundleSha256": "c9a0996176a10d809eb805bfa3b545172dffa1ca7cd6a97761705d8121d5faef",
+  "build": "boxroom-paper-fbbb3fbd5289",
+  "baseCommit": "e1d902ee9d1c17585acd254a15e6fa9d40c2529b",
+  "canonicalCommit": "5e3aa2d6cf8325b1f2dc04c95ae27e948f230032",
+  "baseWebBuild": "web-ed1ccc22b4e9",
+  "baseEngineSha256": "207392c309bd8b5eeb6f53fa497f4d72003c15673eafddcc233f292fd846bb22",
+  "engineSha256": "7e751e3bedf475a4783c61f1e25f062dddc72f0fedbfb77ca3eb083ee62bf80a",
+  "bundleSha256": "aa7b0b597232a390a073786ce13873ef748df61f38d88ac95aa2c94f3d8c2ae9",
   "bundleBytes": 686768,
   "assetBytes": 7259074,
   "inputs": {
@@ -37,7 +38,7 @@
     "src/fidelity/boxroom-paper/renderer.js": "928f79fce9597b04570812f0827f6125b03595d91333b87fc25045c65885ffe9",
     "src/fidelity/boxroom-paper/residents.js": "5260ae6cb0a8025a22b927ad7922cfd79a10fee2d9b23cee27c10fb956c883e6",
     "src/fidelity/boxroom-paper/scene.js": "1a4287153a38d8e24ef3b9661f740626a215bbfd96d4aaea9492db1184a99dae",
-    "studies/boxroom-paper/build.py": "2f6da19a080fb169ae5055e5a42f1023e34235d06f7c98bc129b48b0eddd9f4e",
+    "studies/boxroom-paper/build.py": "2e787dfcc3c873ec9d7e680ef604f5c55388f48a85cdf51b289a005ffa36c996",
     "studies/boxroom-paper/index.html": "197f9e3507122c41719259f40a956f9708a5a5e62953f5718c0c4db8a1d3cfd4",
     "studies/boxroom-paper/regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9",
     "studies/boxroom-paper/study.css": "47ab4aeb82d58ec9af6f8e0178f36b0d547201b6282188b9a35619233c71ecb7",
@@ -54,15 +55,15 @@
   ],
   "changedFiles": {
     "build.json": {
-      "before": "7f2079cc5432cf16d0ea806f866b2441f081e9ed487c958544fb82f437db4e3a",
-      "after": "c81e801ad02c1f6344eea3404c392997231c6d14463d5c6243c871b4e77c670f"
+      "before": "49e95ec2c9dc6c5a2e8b48075152ac308b9e6d054a30409d0046e2d0b3315aaa",
+      "after": "27050eee39f015911573f1ba72385b688ef7899aed778b8f95cc42e878cb6764"
     },
     "game/engine.html": {
-      "before": "f7c260084d1ff6b3e2e0ac3a43af3e5310a4aa7ab5b8b679cd4fc8af95b4b70f",
-      "after": "e45f12be54d04e41d90c47916fd96dd3aa40ab514db31802b2165a799df99418"
+      "before": "27d16e5f00c6c87db7fa6b86ea955f263d0ab92ae74dd3cd74e6a80511da710b",
+      "after": "7e751e3bedf475a4783c61f1e25f062dddc72f0fedbfb77ca3eb083ee62bf80a"
     },
     "index.html": {
-      "before": "5820a7a708bfdc9a9bc1f8a512db7db8db6c716bb160c444e13665142bd1e32b",
+      "before": "219df1e27b5a1a883bfd2b427c2bbad550b38826547724fdc181b994309e45c9",
       "after": "197f9e3507122c41719259f40a956f9708a5a5e62953f5718c0c4db8a1d3cfd4"
     },
     "journey/audio.js": {
@@ -70,8 +71,8 @@
       "after": "6fdcdf72aa6f57e00d6aaf0a297511e855a877116cf70f8bd516dc142743b846"
     },
     "journey/index.html": {
-      "before": "de94e00ed125ec4503866f4252fc1b6d97cec6db517905b11017d6094ebb7a0e",
-      "after": "6d4b15e272271320b80390d7fa687a342eaf4f039b093b20435e25adab7c7101"
+      "before": "5aad4cca8045bf932db575cc8dc41502a54e0b1558b4dc96809b9499445c2134",
+      "after": "642589c628c608be0cc0cec7aafc054dd1fff7b35bb74de87382471c84f1abef"
     },
     "journey/journey.js": {
       "before": "5f6cb5f9dbb799c98ca388ddae6b337ef9fa59311c7b9f8981e0d5b81e78e22f",
@@ -82,16 +83,16 @@
       "after": "935b69c7274a1fc208767d06cdf4d24184dfb187a6c21d377c04b1fa44b7d66c"
     },
     "journey/play/index.html": {
-      "before": "79f38a8f82512f1e8ddae2ebb0a7853fe2d8f5e074766c6b30cbafe02257b3ff",
-      "after": "3c24430a9ca982275f40280eb632c40ed83b1436415fbf355f34dd5f422bebac"
+      "before": "e69dfac6a8a6a8d2512e0cee405b88bf5316f172d13ff40df1a545772ee4a736",
+      "after": "d61ef4de4b265c353e6fb2f4989c74c519f148c092ac34d484c0a54ae70fa77b"
     },
     "journey/preferences.js": {
       "before": "01c46d0a2ba693f7126b2eacfe84036b26b583dcf38dbf34d3e9f7b773c8aced",
       "after": "29b195ac0f3b0bdb55d88a5c969ee6d5dc4774e22148a39a565c94061db229c1"
     },
     "journey/start.html": {
-      "before": "62df4ffd65be0a1b8b7a94fa683afead1637658dbde36e567b2956a02951bde1",
-      "after": "e43f57c86b60260d456c53fd5d8337da5d60fe6456d14c2080080a27663d75e3"
+      "before": "73227b02a5253b8438d73eb701537b9f868b7b2ab02fcd126999787b13ebbbda",
+      "after": "c55ea9cc47ad11b889103ee80b57c5429d367536f60d5c68d15e39221f199437"
     },
     "journey/start.js": {
       "before": "4816d5b3067a85cecffea2ee79b930caf7175ae5c44f7a0f6fc66356e3d73379",

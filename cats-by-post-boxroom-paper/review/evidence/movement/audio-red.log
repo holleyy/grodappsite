@@ -1,0 +1,72 @@
+✔ rule capture is once per tick and playback follows the frozen game clock (1.949525ms)
+✔ tunnel exit and settled flap closure have independent animation-clock moments (1.24118ms)
+✔ big releases, actual dog hits and points actuations use their matching cues (0.569655ms)
+✔ a new run or a new Night Shift simulation discards stale scheduled sounds (0.62595ms)
+✔ a real won outcome resolves once after the existing settling interval (0.755112ms)
+✖ live Night points and dog cues follow the drawn interval, not the already completed rule tick (6.919945ms)
+✖ live Night basket sounds wait through the final drawn move and supported arrival (0.714135ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.802745
+
+✖ failing tests:
+
+test at tests/web-audio-events.test.js:12:1
+✖ live Night points and dog cues follow the drawn interval, not the already completed rule tick (6.919945ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     event: 'points_lever',
+  +     id: 'run:1',
+  +     time: 0.6
+  +   },
+  +   {
+  +     event: 'dog_woof',
+  +     id: 'run:2',
+  +     time: 0.36
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/web-audio-events.test.js:15:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { event: 'points_lever', time: 0.6, id: 'run:1' }, { event: 'dog_woof', time: 0.36, id: 'run:2' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/web-audio-events.test.js:20:1
+✖ live Night basket sounds wait through the final drawn move and supported arrival (0.714135ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/web-audio-events.test.js:23:21)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

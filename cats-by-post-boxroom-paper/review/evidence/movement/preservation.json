@@ -1,0 +1,222 @@
+{
+  "base": "e1d902ee9d1c17585acd254a15e6fa9d40c2529b",
+  "canonicalImplementation": "5e3aa2d6cf8325b1f2dc04c95ae27e948f230032",
+  "unchangedScopes": [
+    "src/sim",
+    "src/data",
+    "src/render",
+    "src/fidelity",
+    "daily",
+    "web/assets",
+    "web/rooms/office.js",
+    "web/rooms/depot.js",
+    "web/rooms/train.js",
+    "web/rooms/cityhall.js",
+    "web/rooms/parcel.js",
+    "web/rooms/christmas.js"
+  ],
+  "changedPathsInScopes": [],
+  "canonicalBuild": "85080f8980",
+  "canonicalSha256": "231e454a7e8f0786f09b05d36ce4270f9c9ae51cf219bfa1c945befab8572db3",
+  "web": {
+    "build": "web-95eca856b2bb",
+    "canonicalCommit": "5e3aa2d6cf8325b1f2dc04c95ae27e948f230032",
+    "canonicalBuild": "85080f8980",
+    "canonicalSha256": "231e454a7e8f0786f09b05d36ce4270f9c9ae51cf219bfa1c945befab8572db3",
+    "engineSha256": "94694bc321172b6f6c6de65ccf6ea7a89194a770e3e7c73375f9ec2d051bd744",
+    "engineBytes": 17405136,
+    "levels": 100,
+    "rooms": {
+      "office": {
+        "build": "sorting-office-paper-de889dad5105",
+        "source": "src/fidelity/office-paper",
+        "sourceSha256": "c98415e1165b50202ba8c05a329fd56e588d10c7224c40d283e2814aaad4cd2e",
+        "inputs": {
+          "README.md": "9c8138b3968c83c9feacf6b8d47b9b44e0faff60b7b4923321348b48613b49ab",
+          "acting.js": "276b11b61f3c3cece4044a627d1237dd22832b736186d256d9cc2d1524c316aa",
+          "adapter.js": "6b11f3e90d4dc2a4ff0fd2c055d8906cdbbc2f57905e24d462f1b549787897fd",
+          "architecture.js": "fe01d8dba9ea4cc1dacb4c97614df620eb53609db8717b849412610726207d4b",
+          "assets/acting.json": "00f82b101b6c915c4e800d89ec07475e0554573ae4046b24858cfe268467ac03",
+          "assets/acting.webp": "f8df5d9eae05ef115ee20f0ce6c348b861a8f4b061a0e678c3f7b540f2268e5b",
+          "assets/backdrop.webp": "ddad2ed88fef9c2ef749f4012f187126abed45b39698e8b3fcc930d1be10779b",
+          "assets/cats.webp": "0ddc08248fb1d0db0097f53da762c59abb6286ee13f268f45917937bbb9c5c0b",
+          "assets/decor.json": "92161eafed04d5f7d0a2ac96da623d260fe289b22fb4febefc4e8ee0e0e6f178",
+          "assets/decor.webp": "a464615f65b66aa0ebe8778c7f1b706bddba166626dfa9cf22ebc94f7b6e0bfb",
+          "assets/fronts.json": "1b5c236427aa057e400e98add513d55136a880b9bd0db15169fa682e46b4c0e2",
+          "assets/fronts.webp": "3156e16738ddf961ad55161dc938077e212a6ae6df2d7d945a81407f8a19d24b",
+          "assets/house-front.webp": "b4c77a57a7fe20daf18817145bd656630643fe9d6e66e4efecce2267d8949313",
+          "assets/materials.json": "4e821f864cd9a8911e9edbc8c8d7eee46fefac372ef2ddd957ca337c8c2b1016",
+          "assets/materials.webp": "fd4d2525434a99dd96ab5e0f50d2d60d18b66cc660587bc8c8039d25b8e76e19",
+          "assets/neighbourhood-provenance.json": "278a45b6bad0139e8f85e0dd40c6a65207860d95d108c0f312e6843e0bdf6923",
+          "assets/pieces.webp": "f7f21cdab5a8daf6b95f5798669b9d3124fac84d16a0eb7d419ef89246a115de",
+          "assets/postwoman-README.md": "872a55081551489bc2f960cbe66c1e4ca138264814d8fd3f7e55d6b0972baace",
+          "assets/postwoman.json": "b6c1477df78ba71f6713a3136341d225a902929ffc9d086872a1eafef096c14d",
+          "assets/postwoman.webp": "45ab446df266af4718a1d6089fcfec8ecc668ac4c225c5d8511655186811fc42",
+          "assets/rects.json": "e863c3b89f22b7d83cab50af2f5b909a107093e8cd91175036b915d0c72de559",
+          "backdrop.js": "96eb3ac511da2f3753ed7341f2935acd4bd021fa01dc8d2e65eed722ca656aba",
+          "canal-life.js": "30e3602e39ab774fdc3813cab78aad86dc1caaa8537b1af27a24a26cb9fe99c7",
+          "exterior.js": "0738ae9c3612cadc0c105d45c8ae7d3bd710bedb3ffa108fde48045d703b169e",
+          "office-details.js": "e3e393635f439bdf27c8cbfd56eb897b9284bca5b84bc5573f83f4d134176337",
+          "pieces.js": "6431f93b7619fa56cdd734f108fed9a06420e6fd1f0733410fb040756515bfb9",
+          "postal-life.js": "b0db0c1130ab6c17eea23eb531c255fd9e3d00e287419c96ed39a3a5a3b2edfe",
+          "postal-work-cycle.js": "3ec327111b1d3d7de66ff0613520c44749b6926bbfb4a6b7d909bfee7d95a2f4",
+          "postal-work-layout.js": "fc6d9dbc24d89e7910326017e8e8f5ccc6cfe1db2cccad5990876d9b0620fc2d",
+          "postal-work-rig.js": "bc9e5dfcacad30efe9408f9f8db36ac3211f12d30f05ef009ed52d90e060898e",
+          "postwoman-life.js": "c4e2b8b50c0b2db2fc00612b84bd73a255c210d7a2d4df5b49a7d25fdbc6973e",
+          "projection.js": "8df78b72e37b95f692e14edd60e5b63e53ce70f582d439f72182ea06e260a6da",
+          "renderer.js": "f52baf7c3d2e80ef8a3b3990b50474e0e4528698da65a653b2339081d1d58482",
+          "room-life.js": "5c7946616248fb4278e61475ca50c8c24c3c72133c32e69b34cfbd8a3de03b6b",
+          "scenery-cache.js": "a8ec57860dbb1a21c30d82b6431e475c3952f14ccc2af539d74eb85520c8bccb",
+          "ticket-rack.js": "5ca015aa1dde7fca6c81ccc34b32c30774f043c8a4d9580e5a9ca4689304bb09"
+        },
+        "scope": "15 original Office deliveries; canonical game state and room-manager lifecycle",
+        "bundleSha256": "de889dad51053f109c763fc35305039017fecae774afbe3b672b1b5bd1fd6277",
+        "bundleBytes": 8068064
+      },
+      "depot": {
+        "build": "depot-contact-3f9fc92684",
+        "frozenPath": "docs/experiments/office-fidelity/depot/bespoke/refinement/interactions/playable.html",
+        "frozenSha256": "6d671e3c1637ff66ebbd4d61177cc7d185cd1da2a0a82c6c533850a80392d5cb",
+        "extensionSha256": "a7162555b6115c50380b4350d66feb6b98587cda5f774fbcb1c90bc90c7d30f9",
+        "bundleSha256": "932be65a2e42e232b07455d4ad66ac4c431793cdb12a48dc4625d0383c02d12d",
+        "bundleBytes": 3337408
+      },
+      "train": {
+        "build": "train-craft-f20d6f0108",
+        "frozenPath": "docs/experiments/office-fidelity/train/craft/playable.html",
+        "frozenSha256": "6b3b21fa3c1153f6980332f29fd83f272c08102f9a4621a02d3d2fa4625e6dd2",
+        "extensionSha256": "02f85fac85ec34f5bc388629c6768ce9472d419188fae15522c582e0cbf4a52c",
+        "bundleSha256": "86503428820e453c85ba15731cd802242b426acf2ab12fad9cfd17cd19c40f76",
+        "bundleBytes": 2986746
+      },
+      "cityhall": {
+        "build": "cityhall-fidelity-527093ea02",
+        "frozenPath": "docs/experiments/office-fidelity/cityhall/playable.html",
+        "frozenSha256": "3bc6f63cf43905af4f706f2b148902297f38ba8bd0fcaf42297ffb055d684236",
+        "extensionSha256": "d2caa78e5d88502c44596ac1f71fa3c7a197fd1b8947a254442e3d1f9595a80a",
+        "bundleSha256": "571dcff6cc895f170af49cf4909d960bdcc088857fa51ac928165722a6cc373d",
+        "bundleBytes": 2970220
+      },
+      "parcel": {
+        "build": "parcel-fidelity-32d74bd062",
+        "frozenPath": "docs/experiments/office-fidelity/parcel/playable.html",
+        "frozenSha256": "ada08b962671475c240d3ced2243e7a8f51b036290e5e7771ada3ca2cbd5e39c",
+        "extensionSha256": "7f2af02e4a46e1b612c619d76d4b2ebc6164f77dbbcc76b271765c41dd9f2f4a",
+        "bundleSha256": "d40ffba890ec4e387ee193b1d94844b5783b3e6853645a9a797dbb7a008bbc26",
+        "bundleBytes": 6211884
+      },
+      "christmas": {
+        "build": "christmas-polish-6fe82d9bab",
+        "frozenPath": "docs/experiments/office-fidelity/christmas/polish/playable.html",
+        "frozenSha256": "6ec5a758a60193371326278e7242ae84fc09a90af3b1283820cecf7c015582d7",
+        "extensionSha256": "9df7b58139ad72a939d0eaa5018e15c89bebd16447a3f0b226469aa07cc52a94",
+        "bundleSha256": "266fa6ff4e69021ca9e6e69a3772d866ddf8cd53d95a8ad09d7ca4cb715410f3",
+        "bundleBytes": 2605154
+      }
+    },
+    "limits": "Physical Safari, total peak memory, thermal behaviour and frame pacing require actual device qualification."
+  },
+  "candidate": {
+    "build": "boxroom-paper-5857902ee1a6",
+    "baseCommit": "e1d902ee9d1c17585acd254a15e6fa9d40c2529b",
+    "canonicalCommit": "5e3aa2d6cf8325b1f2dc04c95ae27e948f230032",
+    "baseWebBuild": "web-95eca856b2bb",
+    "baseEngineSha256": "94694bc321172b6f6c6de65ccf6ea7a89194a770e3e7c73375f9ec2d051bd744",
+    "engineSha256": "27f41eda7428a52a38a9e4f1b0e3070b5e0dd335c0d2749b8d787b6861c9c364",
+    "bundleSha256": "a4938a003313883859cd08cdda8f4605c225e861286b4cc11b964a917fbc7578",
+    "bundleBytes": 686768,
+    "assetBytes": 7259074,
+    "inputs": {
+      "src/fidelity/boxroom-paper/README.md": "185325bb71828a3a3c4bf2ab53672ba6a07502eb603b5627c8fa4bfedf9b47fa",
+      "src/fidelity/boxroom-paper/acting.js": "4f230dc204ff341308ee50469e48cface4ad75dcf228dd5833a3b12dd5878d64",
+      "src/fidelity/boxroom-paper/adapter.js": "80f2ec18c18643b708dc4df21390c632b29e860d1680235200c32e0183908530",
+      "src/fidelity/boxroom-paper/assets/acting-pixel-proof.json": "06c7bbd2082c008db98c6ad7c853b817f1b34cb0500cbbe1382e85db80371a58",
+      "src/fidelity/boxroom-paper/assets/acting.json": "c6ea1b8db9eb2caf93003d14227619f093aa73e9d123035eafe3f69957e13481",
+      "src/fidelity/boxroom-paper/assets/acting.webp": "9f65b8da1aa8fbf04f2194d0a4447f26d87136e0e5d37c42718d1b2d361983d5",
+      "src/fidelity/boxroom-paper/assets/backdrop-spring.webp": "b82add0e88e01bd3f2e32e5d6e99102af9a752e0a93a33e500a010916ba056e0",
+      "src/fidelity/boxroom-paper/assets/backdrop-summer.webp": "fce7cd885ffd7ae1705d04c09f209bd7bf72a1148f6c61bd02069edac7633232",
+      "src/fidelity/boxroom-paper/assets/backdrop-winter.webp": "f495469b049bceffc6bb8cfc96e7fbbd592c3a57e3dccc0078de890264112bb9",
+      "src/fidelity/boxroom-paper/assets/backdrop.json": "7fa17fdbbaac6ea5b55baafa8030845218b1d3f191507b94e990196f24c3810d",
+      "src/fidelity/boxroom-paper/assets/backdrop.webp": "285ba589b608be186eebd650944e7ef45bef429678b699c09a5ad36333ad93f7",
+      "src/fidelity/boxroom-paper/assets/cartons.json": "7470a42ab113f67ea449d7c9fa58df226a61b24912eef56d0d110e275621b1f2",
+      "src/fidelity/boxroom-paper/assets/cartons.webp": "c9d97314bfa2bef6cbf1c76171469a13168d43478f3cbf574707cc8e116bd93b",
+      "src/fidelity/boxroom-paper/assets/materials.webp": "86b815a5f6f4f2d81d1741902d8e09dbe1b66d19fb9cce9b9fc5ccb3f6179692",
+      "src/fidelity/boxroom-paper/assets/provenance.json": "ac5aafe409cd8c77838f25715ad789c8b9e631a31f0d9694b54ba5783cf70974",
+      "src/fidelity/boxroom-paper/assets/residents.json": "054e740e767c7379e7089c69809fe8ad4b1902915e67ae3fed4b4e61d8e0be76",
+      "src/fidelity/boxroom-paper/assets/residents.webp": "3b31beef1ac47a3208de0cb872001105eb6d398b56481b098fcc2c5a2302ac1e",
+      "src/fidelity/boxroom-paper/assets/special.json": "52f07ec7fb4108ea35b24c23a5cc4dba444c0fb7fb16934aead7627603c07bb6",
+      "src/fidelity/boxroom-paper/assets/special.webp": "3dc59fb888050c35466bcd2cd6704e146dee65217b32634bb461d00c996d2bcb",
+      "src/fidelity/boxroom-paper/cartons.js": "ed974d65e421bb52d226d73b770d3ab4e2a2f981e462a85616975bbe29dc7508",
+      "src/fidelity/boxroom-paper/dressing.js": "3b7be014dc60946ceee54917953a8bf3f2996fa8d7e86e8cca79c2b78334cccb",
+      "src/fidelity/boxroom-paper/layout.js": "53767453b872213eae9f1b7b5e8b28b8115bcec8f18ee944780d7a9a5bdad1db",
+      "src/fidelity/boxroom-paper/materials.js": "9472f4a266a2073ed394a02a219fa1e1c7954cedbf0f72b1c996f0227cecdb57",
+      "src/fidelity/boxroom-paper/piece-frame.js": "002aa8cf7a7c0f3b26e52a95e6311821128a8f52b952e834c34d4eba52fea19b",
+      "src/fidelity/boxroom-paper/pieces.js": "92378a80ca0548833ada29d2991e1bcfb11f3415294a37d8af8bd4984f4f4ccc",
+      "src/fidelity/boxroom-paper/projection.js": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+      "src/fidelity/boxroom-paper/renderer.js": "928f79fce9597b04570812f0827f6125b03595d91333b87fc25045c65885ffe9",
+      "src/fidelity/boxroom-paper/residents.js": "5260ae6cb0a8025a22b927ad7922cfd79a10fee2d9b23cee27c10fb956c883e6",
+      "src/fidelity/boxroom-paper/scene.js": "1a4287153a38d8e24ef3b9661f740626a215bbfd96d4aaea9492db1184a99dae",
+      "studies/boxroom-paper/build.py": "2e787dfcc3c873ec9d7e680ef604f5c55388f48a85cdf51b289a005ffa36c996",
+      "studies/boxroom-paper/index.html": "197f9e3507122c41719259f40a956f9708a5a5e62953f5718c0c4db8a1d3cfd4",
+      "studies/boxroom-paper/regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9",
+      "studies/boxroom-paper/study.css": "47ab4aeb82d58ec9af6f8e0178f36b0d547201b6282188b9a35619233c71ecb7",
+      "studies/boxroom-paper/study.html": "1141ad619dcc72280e22e49769e685173b9d84b139f4cd5fa155fbb38c1f0595",
+      "studies/boxroom-paper/study.js": "912b320d511a56ef943b386f84c7b797d75af3da6cb9a60dd5c3d942415397f7"
+    },
+    "isolatedPatches": [
+      "Enable existing manager factory lifecycle for Box Room",
+      "Add BoxRoomPaper to native global restoration inventory",
+      "Enable smooth high-resolution output for active Box Room",
+      "Respect horizontal HUD insets in Box Room whole-room framing",
+      "Open the owned study from the isolated review root",
+      "Isolate all catsByPost storage keys and version references"
+    ],
+    "changedFiles": {
+      "build.json": {
+        "before": "ace5abbd858647adc0212ba971ece6cc2dbbcaa71b85a107e52306d4731f5b46",
+        "after": "a06af4d257ff1c2a0b487e6208127d9d98bd1c2970bf5c7045de561494f2d1b8"
+      },
+      "game/engine.html": {
+        "before": "e23a1482e0b0d8a688f959cb9fd3e56165049712ae895d9fa83f6bbe43ea135d",
+        "after": "27f41eda7428a52a38a9e4f1b0e3070b5e0dd335c0d2749b8d787b6861c9c364"
+      },
+      "index.html": {
+        "before": "cd6b40c32f72a72092c98c24824cbc8cd146cd4b21fbeb30b4b69c5f5c923d9d",
+        "after": "197f9e3507122c41719259f40a956f9708a5a5e62953f5718c0c4db8a1d3cfd4"
+      },
+      "journey/audio.js": {
+        "before": "a1203c141adfe148cb35b29a167879da6be95c7bc656feb731515115ea4434a5",
+        "after": "6fdcdf72aa6f57e00d6aaf0a297511e855a877116cf70f8bd516dc142743b846"
+      },
+      "journey/index.html": {
+        "before": "e700d3ee89b3dfceadff5974aab41f1c0ad0f89f526ce7d363b722e4b359f112",
+        "after": "4548c292b6b08d176a88c1125568c0f7ee20799e1ca56b1ed12ebc84ebf904d7"
+      },
+      "journey/journey.js": {
+        "before": "5f6cb5f9dbb799c98ca388ddae6b337ef9fa59311c7b9f8981e0d5b81e78e22f",
+        "after": "e6ffa390a6cc58896bdb2cc680e0935ca5b994e61d4f594d199f89dbfad899bf"
+      },
+      "journey/play/app.js": {
+        "before": "17759412d437d03ac8dbf4e34025cda3bb7976f17350bd4d32eb82f4c41b27c1",
+        "after": "935b69c7274a1fc208767d06cdf4d24184dfb187a6c21d377c04b1fa44b7d66c"
+      },
+      "journey/play/index.html": {
+        "before": "92838bc8a8b83360cfe6a52bbfa5fa9466a8ea3356cfecf386c690bda9adf3c2",
+        "after": "d8b7fe08c5c5ff551e5d1b2f84d41512ee8c6507e1b91b93c683aa7483ece297"
+      },
+      "journey/preferences.js": {
+        "before": "01c46d0a2ba693f7126b2eacfe84036b26b583dcf38dbf34d3e9f7b773c8aced",
+        "after": "29b195ac0f3b0bdb55d88a5c969ee6d5dc4774e22148a39a565c94061db229c1"
+      },
+      "journey/start.html": {
+        "before": "6861c3688f41a12aab0e9805fd23f64607624ea4cd42da96dae29017bee0677d",
+        "after": "e088c20e91fb17c1d670216d46fb2271d9422b09824523da7014f8a1e9f6ce40"
+      },
+      "journey/start.js": {
+        "before": "4816d5b3067a85cecffea2ee79b930caf7175ae5c44f7a0f6fc66356e3d73379",
+        "after": "5500f6d4477b75f78e486e120e6d5c54fd41575e6c35ca5c3eede51aeaa7ce48"
+      }
+    },
+    "savePrefix": "catsByPost.review.boxroomPaper."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "previousGameplayBuild": "boxroom-paper-5857902ee1a6",
+  "finalBuild": "boxroom-paper-fbbb3fbd5289",
+  "changedRuntimePaths": [
+    "boxroom-build.json",
+    "build.json",
+    "journey/index.html",
+    "journey/start.html",
+    "game/engine.html",
+    "rooms/boxroom.js",
+    "journey/play/index.html"
+  ],
+  "allNonMetadataChangesAreAudioTimelineAndBuildReferences": true,
+  "previousGameplayChecks": 37,
+  "finalAudioChecks": 21
+}

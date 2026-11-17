@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "videos": [
+    {
+      "src": "movement-before.webm",
+      "width": 961,
+      "height": 676,
+      "duration": 4.12,
+      "playing": true
+    },
+    {
+      "src": "movement-after.webm",
+      "width": 961,
+      "height": 676,
+      "duration": 4.12,
+      "playing": true
+    }
+  ],
+  "errors": []
+}

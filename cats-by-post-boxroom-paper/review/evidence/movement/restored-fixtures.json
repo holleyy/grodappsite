@@ -1,0 +1,20 @@
+[
+  {
+    "path": "docs/review-images/depot/baseline/palette.json",
+    "blob": "a743ddca1f7470aa799c071d47074cdb954af688",
+    "bytes": 103267,
+    "restoredExactCommittedBytes": true
+  },
+  {
+    "path": "docs/review-images/rooms/baseline/practice-seeds.json",
+    "blob": "db7920aa56c7e0fc6ec0f630a0d7e7c9778a8342",
+    "bytes": 385,
+    "restoredExactCommittedBytes": true
+  },
+  {
+    "path": "docs/paper-cutout/arrival/accepted-records.json",
+    "blob": "f749117b89af01ac8290902ba6079c55392bb826",
+    "bytes": 147441,
+    "restoredExactCommittedBytes": true
+  }
+]

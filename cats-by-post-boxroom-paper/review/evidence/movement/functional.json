@@ -1,0 +1,5156 @@
+{
+  "capturedAt": "2026-11-17T18:34:14.442Z",
+  "base": "http://127.0.0.1:8781/work/boxroom-motion/candidate/",
+  "scope": "Real APP/controller actions in a fresh isolated browser store; canonical solution placements through bridge taps; accelerated native update frames, no replacement rule state, fabricated wins, round seeks, or maximum-board review hooks.",
+  "checks": [
+    {
+      "name": "daily start accepted",
+      "pass": true
+    },
+    {
+      "name": "Frozen final build is running",
+      "pass": true,
+      "details": "boxroom-paper-5857902ee1a6"
+    },
+    {
+      "name": "saved route Continue accepted",
+      "pass": true
+    },
+    {
+      "name": "Daily arrangement survives real reload",
+      "pass": true,
+      "details": {
+        "before": [
+          {
+            "x": 1,
+            "y": 3,
+            "type": "plain",
+            "dir": "U"
+          }
+        ],
+        "after": [
+          {
+            "x": 1,
+            "y": 3,
+            "type": "plain",
+            "dir": "U"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Daily completes through real controller",
+      "pass": true,
+      "details": {
+        "mode": "won",
+        "home": 2,
+        "total": 2,
+        "frames": 139,
+        "attempts": 1,
+        "record": {
+          "attempts": [
+            true
+          ],
+          "hinted": false,
+          "done": true,
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 2,
+          "ticks": 7
+        },
+        "fidelity": {
+          "room": "boxroom",
+          "loading": false,
+          "error": null,
+          "generation": 1,
+          "resources": {
+            "bytes": 59430952,
+            "decodedBytes": 36085384,
+            "sceneBytes": 16686912,
+            "viewCacheBytes": 0,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 180000,
+            "preparations": 1,
+            "prepareMs": 9094.89999999851,
+            "decodeMs": 414.3999999985099,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          }
+        }
+      }
+    },
+    {
+      "name": "practice start accepted",
+      "pass": true
+    },
+    {
+      "name": "Practice completes through real worker and controller",
+      "pass": true,
+      "details": {
+        "mode": "won",
+        "home": 2,
+        "total": 2,
+        "frames": 127,
+        "attempts": 1,
+        "record": {
+          "seed": 0,
+          "weekday": 0,
+          "date": "2026-11-17",
+          "attempts": [
+            true
+          ],
+          "hinted": false,
+          "done": true,
+          "level": {
+            "id": "practice-0-0",
+            "title": "Practice · Monday",
+            "board": {
+              "w": 5,
+              "h": 4,
+              "roomX": 0,
+              "roomY": 0
+            },
+            "timeLimit": 36,
+            "hatches": [
+              {
+                "x": 3,
+                "y": 1,
+                "dir": "D",
+                "cats": [
+                  "blue",
+                  "ginger"
+                ]
+              }
+            ],
+            "baskets": [
+              {
+                "x": 2,
+                "y": 0,
+                "coat": "blue"
+              },
+              {
+                "x": 0,
+                "y": 2,
+                "coat": "ginger"
+              }
+            ],
+            "dogs": [],
+            "solution": [
+              {
+                "x": 3,
+                "y": 2,
+                "type": "plain",
+                "dir": "L"
+              },
+              {
+                "x": 2,
+                "y": 2,
+                "type": "blue",
+                "dir": "U"
+              }
+            ],
+            "tray": {
+              "plain": 1,
+              "ginger": 0,
+              "blue": 1
+            },
+            "minTurntables": 2
+          },
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 2,
+          "ticks": 6
+        },
+        "fidelity": {
+          "room": "boxroom",
+          "loading": false,
+          "error": null,
+          "generation": 1,
+          "resources": {
+            "bytes": 61109560,
+            "decodedBytes": 36085384,
+            "sceneBytes": 15431600,
+            "viewCacheBytes": 0,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 3113920,
+            "preparations": 2,
+            "prepareMs": 6182.70000000298,
+            "decodeMs": 414.3999999985099,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          }
+        }
+      }
+    },
+    {
+      "name": "story start accepted",
+      "pass": true
+    },
+    {
+      "name": "Box Room to Office tears down adapter",
+      "pass": true,
+      "details": {
+        "room": "office",
+        "loading": false,
+        "error": null,
+        "generation": 3,
+        "resources": {
+          "bytes": 126788492,
+          "buffers": 0,
+          "scope": "architecture, exterior, backdrop, foreground, canal, board and carrier canvas backing estimate, plus ticket and live scenery view caches; excludes decoded images, other caches, live output and process peak"
+        }
+      }
+    },
+    {
+      "name": "Office campaign still completes",
+      "pass": true,
+      "details": {
+        "mode": "won",
+        "home": 1,
+        "total": 1,
+        "frames": 86,
+        "attempts": 1,
+        "record": {
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 1,
+          "ticks": 4
+        },
+        "fidelity": {
+          "room": "office",
+          "loading": false,
+          "error": null,
+          "generation": 3,
+          "resources": {
+            "bytes": 117009120,
+            "buffers": 0,
+            "scope": "architecture, exterior, backdrop, foreground, canal, board and carrier canvas backing estimate, plus ticket and live scenery view caches; excludes decoded images, other caches, live output and process peak"
+          }
+        }
+      }
+    },
+    {
+      "name": "daily start accepted",
+      "pass": true
+    },
+    {
+      "name": "Office to Daily restores Box Room adapter",
+      "pass": true,
+      "details": {
+        "room": "boxroom",
+        "loading": false,
+        "error": null,
+        "generation": 5,
+        "resources": {
+          "bytes": 59430952,
+          "decodedBytes": 36085384,
+          "sceneBytes": 16686912,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 180000,
+          "preparations": 1,
+          "prepareMs": 5372.19999999553,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        }
+      }
+    },
+    {
+      "name": "night start accepted",
+      "pass": true
+    },
+    {
+      "name": "Night begins at native 7x6 round one",
+      "pass": true
+    },
+    {
+      "name": "Night round 1 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 1,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 6
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 5,
+        "offers": [
+          "blue",
+          "wake",
+          "extra"
+        ],
+        "frames": 1116,
+        "resources": {
+          "bytes": 66173640,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 3113920,
+          "preparations": 2,
+          "prepareMs": 6372.39999999851,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [],
+        "selectedCard": "wake"
+      }
+    },
+    {
+      "name": "Night round 2 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 2,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 6
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 6,
+        "offers": [
+          "extra",
+          "blue",
+          "wake"
+        ],
+        "frames": 1184,
+        "resources": {
+          "bytes": 66173640,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 3113920,
+          "preparations": 2,
+          "prepareMs": 6372.39999999851,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 2,
+            "type": "basket",
+            "x": 3,
+            "y": 4,
+            "coat": "ginger"
+          }
+        ],
+        "selectedCard": "wake"
+      }
+    },
+    {
+      "name": "Night round 3 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 3,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 6
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 9,
+        "offers": [
+          "floor",
+          "blue",
+          "ginger"
+        ],
+        "frames": 1244,
+        "resources": {
+          "bytes": 66173640,
+          "decodedBytes": 36085384,
+          "sceneBytes": 20495680,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 3113920,
+          "preparations": 2,
+          "prepareMs": 6372.39999999851,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 3,
+            "type": "hatch",
+            "x": 0,
+            "y": 3,
+            "dir": "D"
+          }
+        ],
+        "selectedCard": "floor"
+      }
+    },
+    {
+      "name": "Night round 4 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 4,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 7
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 9,
+        "offers": [
+          "ginger",
+          "blue",
+          "wake"
+        ],
+        "frames": 1102,
+        "resources": {
+          "bytes": 69388840,
+          "decodedBytes": 36085384,
+          "sceneBytes": 21910112,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4914688,
+          "preparations": 3,
+          "prepareMs": 6062.79999999702,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 4,
+            "type": "skipped",
+            "event": "basket",
+            "coat": "blue"
+          }
+        ],
+        "selectedCard": "wake"
+      }
+    },
+    {
+      "name": "Night round 5 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 5,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 7
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 11,
+        "offers": [
+          "slow",
+          "floor",
+          "extra"
+        ],
+        "frames": 1124,
+        "resources": {
+          "bytes": 69388840,
+          "decodedBytes": 36085384,
+          "sceneBytes": 21910112,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 4914688,
+          "preparations": 3,
+          "prepareMs": 6062.79999999702,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 5,
+            "type": "dog",
+            "x": 6,
+            "y": 1
+          }
+        ],
+        "selectedCard": "floor"
+      }
+    },
+    {
+      "name": "Night round 6 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 6,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 8
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 10,
+        "offers": [
+          "ginger",
+          "extra",
+          "blue"
+        ],
+        "frames": 1141,
+        "resources": {
+          "bytes": 71534920,
+          "decodedBytes": 36085384,
+          "sceneBytes": 23368064,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 5602816,
+          "preparations": 4,
+          "prepareMs": 6810.79999999702,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 6,
+            "type": "skipped",
+            "event": "hatch",
+            "coat": null
+          },
+          {
+            "round": 6,
+            "type": "skipped",
+            "event": "basket",
+            "coat": "ginger"
+          }
+        ],
+        "selectedCard": "extra"
+      }
+    },
+    {
+      "name": "Night round 7 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 7,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 8
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 9,
+        "offers": [
+          "wake",
+          "blue",
+          "extra"
+        ],
+        "frames": 879,
+        "resources": {
+          "bytes": 71534920,
+          "decodedBytes": 36085384,
+          "sceneBytes": 23368064,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 5602816,
+          "preparations": 4,
+          "prepareMs": 6810.79999999702,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [],
+        "selectedCard": "wake"
+      }
+    },
+    {
+      "name": "Night round 8 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 8,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 8
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 14,
+        "offers": [
+          "blue",
+          "extra",
+          "slow"
+        ],
+        "frames": 856,
+        "resources": {
+          "bytes": 71534920,
+          "decodedBytes": 36085384,
+          "sceneBytes": 23368064,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 5602816,
+          "preparations": 4,
+          "prepareMs": 6810.79999999702,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 8,
+            "type": "moveBasket",
+            "x": 2,
+            "y": 1,
+            "coat": "blue",
+            "fromX": 6,
+            "fromY": 5
+          },
+          {
+            "round": 8,
+            "type": "basket",
+            "x": 3,
+            "y": 3,
+            "coat": "blue"
+          }
+        ],
+        "selectedCard": "extra"
+      }
+    },
+    {
+      "name": "Night round 9 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 9,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 8
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 13,
+        "offers": [
+          "extra",
+          "blue",
+          "wake"
+        ],
+        "frames": 859,
+        "resources": {
+          "bytes": 71534920,
+          "decodedBytes": 36085384,
+          "sceneBytes": 23368064,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 5602816,
+          "preparations": 4,
+          "prepareMs": 6810.79999999702,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 9,
+            "type": "skipped",
+            "event": "hatch",
+            "coat": null
+          }
+        ],
+        "selectedCard": "wake"
+      }
+    },
+    {
+      "name": "Night round 10 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 10,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 8
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 17,
+        "offers": [
+          "wake",
+          "ginger",
+          "slow"
+        ],
+        "frames": 845,
+        "resources": {
+          "bytes": 71534920,
+          "decodedBytes": 36085384,
+          "sceneBytes": 23368064,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 5602816,
+          "preparations": 4,
+          "prepareMs": 6810.79999999702,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 10,
+            "type": "basket",
+            "x": 6,
+            "y": 5,
+            "coat": "ginger"
+          },
+          {
+            "round": 10,
+            "type": "dog",
+            "x": 4,
+            "y": 4
+          }
+        ],
+        "selectedCard": "wake"
+      }
+    },
+    {
+      "name": "Night round 11 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 11,
+        "phase": "tea",
+        "board": {
+          "w": 7,
+          "h": 8
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 19,
+        "offers": [
+          "wake",
+          "blue",
+          "floor"
+        ],
+        "frames": 817,
+        "resources": {
+          "bytes": 71534920,
+          "decodedBytes": 36085384,
+          "sceneBytes": 23368064,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 5602816,
+          "preparations": 4,
+          "prepareMs": 6810.79999999702,
+          "decodeMs": 190.80000000447035,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [],
+        "selectedCard": "floor"
+      }
+    },
+    {
+      "name": "saved route Continue accepted",
+      "pass": true
+    },
+    {
+      "name": "Night tea/growth choice survives real reload",
+      "pass": true,
+      "details": {
+        "before": {
+          "seed": 303,
+          "roomMode": "free",
+          "round": 11,
+          "phase": "tea",
+          "endReason": "",
+          "catsHome": 0,
+          "strikes": 0,
+          "board": {
+            "w": 7,
+            "h": 8,
+            "hatches": [
+              {
+                "x": 0,
+                "y": 2,
+                "dir": "R"
+              },
+              {
+                "x": 0,
+                "y": 3,
+                "dir": "D"
+              }
+            ],
+            "baskets": [
+              {
+                "x": 6,
+                "y": 0,
+                "coat": "ginger"
+              },
+              {
+                "x": 2,
+                "y": 1,
+                "coat": "blue"
+              },
+              {
+                "x": 3,
+                "y": 4,
+                "coat": "ginger"
+              },
+              {
+                "x": 3,
+                "y": 3,
+                "coat": "blue"
+              },
+              {
+                "x": 6,
+                "y": 5,
+                "coat": "ginger"
+              }
+            ],
+            "dogs": [
+              {
+                "x": 6,
+                "y": 1
+              },
+              {
+                "x": 4,
+                "y": 4
+              }
+            ]
+          },
+          "tray": {
+            "plain": 7,
+            "ginger": 0,
+            "blue": 0
+          },
+          "turntables": [],
+          "sleepers": [
+            {
+              "round": 11,
+              "index": 1,
+              "x": 2,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 15,
+              "x": 0,
+              "y": 5,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 4,
+              "x": 6,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 18,
+              "x": 0,
+              "y": 7,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 5,
+              "x": 5,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 19,
+              "x": 0,
+              "y": 6,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 7,
+              "x": 3,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 20,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 21,
+              "x": 0,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 22,
+              "x": 0,
+              "y": 0,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 23,
+              "x": 0,
+              "y": 0,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 10,
+              "x": 5,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 24,
+              "x": 0,
+              "y": 0,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 11,
+              "x": 5,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 25,
+              "x": 0,
+              "y": 6,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 12,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 26,
+              "x": 0,
+              "y": 6,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 13,
+              "x": 3,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 27,
+              "x": 0,
+              "y": 0,
+              "coat": "blue"
+            }
+          ],
+          "puzzled": [],
+          "teaCarried": [
+            {
+              "round": 11,
+              "index": 0,
+              "x": 4,
+              "y": 2,
+              "coat": "ginger"
+            }
+          ],
+          "emergencyCarried": [
+            {
+              "round": 1,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 1,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 2,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 2,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 2,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 3,
+              "index": 6,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 3,
+              "index": 8,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 3,
+              "index": 7,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 7,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 4,
+              "index": 0,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 8,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 1,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 9,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 4,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 4,
+              "index": 10,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 4,
+              "index": 11,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 12,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 5,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 5,
+              "index": 10,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 5,
+              "index": 12,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 5,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 5,
+              "index": 13,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 5,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 5,
+              "index": 15,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 0,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 9,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 1,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 10,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 11,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 12,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 13,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 5,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 14,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 15,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 7,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 16,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 17,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 0,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 10,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 1,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 11,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 12,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 13,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 14,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 5,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 15,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 16,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 7,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 17,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 18,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 11,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 8,
+              "index": 13,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 8,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 14,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 8,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 9,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 17,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 0,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 12,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 1,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 13,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 14,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 15,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 16,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 5,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 17,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 18,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 7,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 19,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 20,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 9,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 21,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 10,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 22,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 10,
+              "index": 13,
+              "x": 0,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "round": 10,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 10,
+              "index": 15,
+              "x": 0,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "round": 10,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 10,
+              "index": 16,
+              "x": 0,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "round": 10,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 10,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 10,
+              "index": 9,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 14,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 16,
+              "x": 0,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 17,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 9,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            }
+          ],
+          "roundEvents": [],
+          "cardOffers": [
+            "wake",
+            "blue",
+            "floor"
+          ],
+          "cardChoice": "floor",
+          "pendingWalkies": false,
+          "pendingGrowth": "w",
+          "rngState": 1940050407,
+          "paused": false,
+          "fastForward": false,
+          "clockUnits": 0,
+          "elapsedShiftMs": 185990,
+          "current": {
+            "tick": 68,
+            "released": 28,
+            "total": 28,
+            "releaseOrder": [
+              0,
+              14,
+              1,
+              15,
+              2,
+              16,
+              3,
+              17,
+              4,
+              18,
+              5,
+              19,
+              6,
+              20,
+              7,
+              21,
+              8,
+              22,
+              9,
+              23,
+              10,
+              24,
+              11,
+              25,
+              12,
+              26,
+              13,
+              27
+            ],
+            "releaseHatches": [
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1
+            ],
+            "params": {
+              "cats": 28,
+              "releaseGap": 1,
+              "tickMs": 200
+            },
+            "cats": [
+              {
+                "coat": "ginger",
+                "state": 5,
+                "x": 4,
+                "y": 2,
+                "dir": "R",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 2,
+                "y": 2,
+                "dir": "L",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 5,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 5,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 6,
+                "y": 2,
+                "dir": "R",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 5,
+                "y": 2,
+                "dir": "R",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 5,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 3,
+                "y": 2,
+                "dir": "L",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 5,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 5,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 5,
+                "y": 2,
+                "dir": "R",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 5,
+                "y": 2,
+                "dir": "R",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 3,
+                "y": 2,
+                "dir": "L",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 5,
+                "x": 0,
+                "y": 1,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 5,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 5,
+                "x": 0,
+                "y": 1,
+                "dir": "U",
+                "travel": 42
+              },
+              {
+                "coat": "blue",
+                "state": 5,
+                "x": 0,
+                "y": 1,
+                "dir": "U",
+                "travel": 42
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 0,
+                "y": 7,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 6,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 4,
+                "dir": "D",
+                "travel": 41
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 0,
+                "y": 1,
+                "dir": "U",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 0,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 0,
+                "y": 0,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 0,
+                "y": 0,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 0,
+                "y": 6,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 6,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 0,
+                "dir": "D",
+                "travel": 40
+              }
+            ]
+          }
+        },
+        "after": {
+          "seed": 303,
+          "roomMode": "free",
+          "round": 11,
+          "phase": "tea",
+          "endReason": "",
+          "catsHome": 0,
+          "strikes": 0,
+          "board": {
+            "w": 7,
+            "h": 8,
+            "hatches": [
+              {
+                "x": 0,
+                "y": 2,
+                "dir": "R"
+              },
+              {
+                "x": 0,
+                "y": 3,
+                "dir": "D"
+              }
+            ],
+            "baskets": [
+              {
+                "x": 6,
+                "y": 0,
+                "coat": "ginger"
+              },
+              {
+                "x": 2,
+                "y": 1,
+                "coat": "blue"
+              },
+              {
+                "x": 3,
+                "y": 4,
+                "coat": "ginger"
+              },
+              {
+                "x": 3,
+                "y": 3,
+                "coat": "blue"
+              },
+              {
+                "x": 6,
+                "y": 5,
+                "coat": "ginger"
+              }
+            ],
+            "dogs": [
+              {
+                "x": 6,
+                "y": 1
+              },
+              {
+                "x": 4,
+                "y": 4
+              }
+            ]
+          },
+          "tray": {
+            "plain": 7,
+            "ginger": 0,
+            "blue": 0
+          },
+          "turntables": [],
+          "sleepers": [
+            {
+              "round": 11,
+              "index": 1,
+              "x": 2,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 15,
+              "x": 0,
+              "y": 5,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 4,
+              "x": 6,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 18,
+              "x": 0,
+              "y": 7,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 5,
+              "x": 5,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 19,
+              "x": 0,
+              "y": 6,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 7,
+              "x": 3,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 20,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 21,
+              "x": 0,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 22,
+              "x": 0,
+              "y": 0,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 23,
+              "x": 0,
+              "y": 0,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 10,
+              "x": 5,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 24,
+              "x": 0,
+              "y": 0,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 11,
+              "x": 5,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 25,
+              "x": 0,
+              "y": 6,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 12,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 26,
+              "x": 0,
+              "y": 6,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 13,
+              "x": 3,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 27,
+              "x": 0,
+              "y": 0,
+              "coat": "blue"
+            }
+          ],
+          "puzzled": [],
+          "teaCarried": [
+            {
+              "round": 11,
+              "index": 0,
+              "x": 4,
+              "y": 2,
+              "coat": "ginger"
+            }
+          ],
+          "emergencyCarried": [
+            {
+              "round": 1,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 1,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 2,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 2,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 2,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 3,
+              "index": 6,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 3,
+              "index": 8,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 3,
+              "index": 7,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 7,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 4,
+              "index": 0,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 8,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 1,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 9,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 4,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 4,
+              "index": 10,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 4,
+              "index": 11,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 12,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 4,
+              "index": 5,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 5,
+              "index": 10,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 5,
+              "index": 12,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 5,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 5,
+              "index": 13,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 5,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 5,
+              "index": 15,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 0,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 9,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 1,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 10,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 11,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 12,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 13,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 5,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 14,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 6,
+              "index": 15,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 7,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 16,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 6,
+              "index": 17,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 0,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 10,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 1,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 11,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 12,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 13,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 14,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 5,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 15,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 7,
+              "index": 16,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 7,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 17,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 7,
+              "index": 18,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 11,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 8,
+              "index": 13,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 8,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 14,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 8,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 9,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 8,
+              "index": 17,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 0,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 12,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 1,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 13,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 14,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 15,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 4,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 16,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 5,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 17,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 18,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 9,
+              "index": 7,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 19,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 20,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 9,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 21,
+              "x": 0,
+              "y": 4,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 10,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 9,
+              "index": 22,
+              "x": 0,
+              "y": 4,
+              "coat": "blue"
+            },
+            {
+              "round": 10,
+              "index": 13,
+              "x": 0,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "round": 10,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 10,
+              "index": 15,
+              "x": 0,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "round": 10,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 10,
+              "index": 16,
+              "x": 0,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "round": 10,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 10,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 10,
+              "index": 9,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 2,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 14,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 16,
+              "x": 0,
+              "y": 1,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 3,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 17,
+              "x": 0,
+              "y": 1,
+              "coat": "blue"
+            },
+            {
+              "round": 11,
+              "index": 6,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 8,
+              "x": 1,
+              "y": 2,
+              "coat": "ginger"
+            },
+            {
+              "round": 11,
+              "index": 9,
+              "x": 1,
+              "y": 2,
+              "coat": "blue"
+            }
+          ],
+          "roundEvents": [],
+          "cardOffers": [
+            "wake",
+            "blue",
+            "floor"
+          ],
+          "cardChoice": "floor",
+          "pendingWalkies": false,
+          "pendingGrowth": "w",
+          "rngState": 1940050407,
+          "paused": false,
+          "fastForward": false,
+          "clockUnits": 0,
+          "elapsedShiftMs": 185990,
+          "current": {
+            "tick": 68,
+            "released": 28,
+            "total": 28,
+            "releaseOrder": [
+              0,
+              14,
+              1,
+              15,
+              2,
+              16,
+              3,
+              17,
+              4,
+              18,
+              5,
+              19,
+              6,
+              20,
+              7,
+              21,
+              8,
+              22,
+              9,
+              23,
+              10,
+              24,
+              11,
+              25,
+              12,
+              26,
+              13,
+              27
+            ],
+            "releaseHatches": [
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1,
+              0,
+              1
+            ],
+            "params": {
+              "cats": 28,
+              "releaseGap": 1,
+              "tickMs": 200
+            },
+            "cats": [
+              {
+                "coat": "ginger",
+                "state": 5,
+                "x": 4,
+                "y": 2,
+                "dir": "R",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 2,
+                "y": 2,
+                "dir": "L",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 5,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 5,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 6,
+                "y": 2,
+                "dir": "R",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 5,
+                "y": 2,
+                "dir": "R",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 5,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 3,
+                "y": 2,
+                "dir": "L",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 5,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 5,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 5,
+                "y": 2,
+                "dir": "R",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 5,
+                "y": 2,
+                "dir": "R",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 1,
+                "y": 2,
+                "dir": "R",
+                "travel": 41
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 3,
+                "y": 2,
+                "dir": "L",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 5,
+                "x": 0,
+                "y": 1,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 5,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 5,
+                "x": 0,
+                "y": 1,
+                "dir": "U",
+                "travel": 42
+              },
+              {
+                "coat": "blue",
+                "state": 5,
+                "x": 0,
+                "y": 1,
+                "dir": "U",
+                "travel": 42
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 0,
+                "y": 7,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 6,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 4,
+                "dir": "D",
+                "travel": 41
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 0,
+                "y": 1,
+                "dir": "U",
+                "travel": 41
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 0,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 0,
+                "y": 0,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 0,
+                "y": 0,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "ginger",
+                "state": 4,
+                "x": 0,
+                "y": 6,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 6,
+                "dir": "D",
+                "travel": 40
+              },
+              {
+                "coat": "blue",
+                "state": 4,
+                "x": 0,
+                "y": 0,
+                "dir": "D",
+                "travel": 40
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Night round 12 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 12,
+        "phase": "tea",
+        "board": {
+          "w": 8,
+          "h": 8
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 18,
+        "offers": [
+          "floor",
+          "extra",
+          "ginger"
+        ],
+        "frames": 853,
+        "resources": {
+          "bytes": 73662276,
+          "decodedBytes": 36085384,
+          "sceneBytes": 24745340,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 6352896,
+          "preparations": 3,
+          "prepareMs": 6425.39999999851,
+          "decodeMs": 422.70000000298023,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 12,
+            "type": "skipped",
+            "event": "hatch",
+            "coat": null
+          },
+          {
+            "round": 12,
+            "type": "skipped",
+            "event": "moveBasket",
+            "coat": null
+          },
+          {
+            "round": 12,
+            "type": "skipped",
+            "event": "basket",
+            "coat": "blue"
+          }
+        ],
+        "selectedCard": "floor"
+      }
+    },
+    {
+      "name": "Night round 13 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 13,
+        "phase": "tea",
+        "board": {
+          "w": 9,
+          "h": 8
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 32,
+        "offers": [
+          "floor",
+          "blue",
+          "slow"
+        ],
+        "frames": 877,
+        "resources": {
+          "bytes": 75855976,
+          "decodedBytes": 36085384,
+          "sceneBytes": 26159776,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 7132160,
+          "preparations": 4,
+          "prepareMs": 6741.5,
+          "decodeMs": 422.70000000298023,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [],
+        "selectedCard": "floor"
+      }
+    },
+    {
+      "name": "Night round 14 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 14,
+        "phase": "tea",
+        "board": {
+          "w": 10,
+          "h": 8
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 31,
+        "offers": [
+          "extra",
+          "ginger",
+          "slow"
+        ],
+        "frames": 901,
+        "resources": {
+          "bytes": 78146700,
+          "decodedBytes": 36085384,
+          "sceneBytes": 27607236,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 7975424,
+          "preparations": 5,
+          "prepareMs": 6221.79999999702,
+          "decodeMs": 422.70000000298023,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 14,
+            "type": "skipped",
+            "event": "basket",
+            "coat": "ginger"
+          }
+        ],
+        "selectedCard": "extra"
+      }
+    },
+    {
+      "name": "Night round 15 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 15,
+        "phase": "tea",
+        "board": {
+          "w": 10,
+          "h": 8
+        },
+        "home": 0,
+        "strikes": 0,
+        "sleepers": 30,
+        "offers": [
+          "wake",
+          "slow",
+          "ginger"
+        ],
+        "frames": 925,
+        "resources": {
+          "bytes": 78146700,
+          "decodedBytes": 36085384,
+          "sceneBytes": 27607236,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 7975424,
+          "preparations": 5,
+          "prepareMs": 6221.79999999702,
+          "decodeMs": 422.70000000298023,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 15,
+            "type": "skipped",
+            "event": "hatch",
+            "coat": null
+          },
+          {
+            "round": 15,
+            "type": "skipped",
+            "event": "dog",
+            "coat": null
+          }
+        ],
+        "selectedCard": "wake"
+      }
+    },
+    {
+      "name": "Night round 16 settles by native simulation",
+      "pass": true,
+      "details": {
+        "round": 16,
+        "phase": "ended",
+        "board": {
+          "w": 10,
+          "h": 8
+        },
+        "home": 2,
+        "strikes": 3,
+        "sleepers": 2,
+        "offers": [],
+        "frames": 529,
+        "resources": {
+          "bytes": 78146700,
+          "decodedBytes": 36085384,
+          "sceneBytes": 27607236,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 7975424,
+          "preparations": 5,
+          "prepareMs": 6221.79999999702,
+          "decodeMs": 422.70000000298023,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "events": [
+          {
+            "round": 16,
+            "type": "moveBasket",
+            "x": 8,
+            "y": 2,
+            "coat": "blue",
+            "fromX": 3,
+            "fromY": 3
+          },
+          {
+            "round": 16,
+            "type": "basket",
+            "x": 5,
+            "y": 0,
+            "coat": "blue"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Night reaches actual 10x8 via earned floor cards",
+      "pass": true,
+      "details": {
+        "round": 14,
+        "board": {
+          "w": 10,
+          "h": 8
+        }
+      }
+    },
+    {
+      "name": "Night reaches real three-strike ending",
+      "pass": true,
+      "details": {
+        "build": "boxroom-paper-5857902ee1a6",
+        "room": "boxroom",
+        "id": "nightshift",
+        "board": {
+          "w": 10,
+          "h": 8
+        },
+        "mode": "lost",
+        "phase": "ended",
+        "round": 16,
+        "home": 2,
+        "strikes": 3,
+        "turntables": [],
+        "tray": {
+          "plain": 9,
+          "ginger": 0,
+          "blue": 0
+        },
+        "collection": [
+          "greyTabby",
+          "black",
+          "white",
+          "cream"
+        ],
+        "fidelity": {
+          "room": "boxroom",
+          "loading": false,
+          "error": null,
+          "generation": 1,
+          "resources": {
+            "bytes": 78146700,
+            "decodedBytes": 36085384,
+            "sceneBytes": 27607236,
+            "viewCacheBytes": 0,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 7975424,
+            "preparations": 5,
+            "prepareMs": 6221.79999999702,
+            "decodeMs": 422.70000000298023,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          }
+        },
+        "progress": {
+          "version": 5,
+          "levels": {
+            "1-1": {
+              "stars": {
+                "delivered": true,
+                "tidy": true,
+                "firstPost": true
+              },
+              "turntables": 1,
+              "ticks": 4
+            }
+          },
+          "unlocked": [
+            "1-1",
+            "1-2"
+          ],
+          "current": "1-1",
+          "daily": {
+            "2026-11-17": {
+              "attempts": [
+                true
+              ],
+              "hinted": false,
+              "done": true,
+              "stars": {
+                "delivered": true,
+                "tidy": true,
+                "firstPost": true
+              },
+              "turntables": 2,
+              "ticks": 7
+            }
+          },
+          "practice": {
+            "current": "0:0",
+            "records": {
+              "0:0": {
+                "seed": 0,
+                "weekday": 0,
+                "date": "2026-11-17",
+                "attempts": [
+                  true
+                ],
+                "hinted": false,
+                "done": true,
+                "stars": {
+                  "delivered": true,
+                  "tidy": true,
+                  "firstPost": true
+                },
+                "turntables": 2,
+                "ticks": 6
+              }
+            },
+            "order": [
+              "0:0"
+            ]
+          },
+          "nightShift": {
+            "weeklyBest": {},
+            "allTimeBest": 2,
+            "totalCatsHome": 2
+          }
+        }
+      }
+    },
+    {
+      "name": "No JavaScript errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "No failed HTTP requests",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "Default Daily, Practice and Night never request optional special atlas",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "specialRequests": [],
+  "expectedBuild": "boxroom-paper-5857902ee1a6",
+  "browser": "151.0.7922.173",
+  "storageKeys": [
+    "catsByPost.review.boxroomPaper.progress"
+  ],
+  "dailyInitial": {
+    "build": "boxroom-paper-5857902ee1a6",
+    "room": "boxroom",
+    "id": "daily-2026-11-17",
+    "board": {
+      "w": 5,
+      "h": 5,
+      "roomX": 0,
+      "roomY": 0
+    },
+    "mode": "edit",
+    "home": 0,
+    "turntables": [],
+    "tray": {
+      "plain": 2,
+      "ginger": 0,
+      "blue": 0
+    },
+    "daily": "2026-11-17",
+    "collection": [
+      "greyTabby",
+      "black",
+      "white",
+      "cream"
+    ],
+    "fidelity": {
+      "room": "boxroom",
+      "loading": false,
+      "error": null,
+      "generation": 1,
+      "resources": {
+        "bytes": 59430952,
+        "decodedBytes": 36085384,
+        "sceneBytes": 16686912,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 180000,
+        "preparations": 1,
+        "prepareMs": 6839.29999999702,
+        "decodeMs": 727.6000000014901,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      }
+    },
+    "solution": [
+      {
+        "x": 1,
+        "y": 3,
+        "type": "plain",
+        "dir": "U"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "type": "plain",
+        "dir": "R"
+      }
+    ],
+    "progress": {
+      "version": 5,
+      "levels": {},
+      "unlocked": [],
+      "current": "1-1",
+      "daily": {},
+      "practice": {
+        "current": "",
+        "records": {},
+        "order": []
+      },
+      "nightShift": {
+        "weeklyBest": {},
+        "allTimeBest": 0,
+        "totalCatsHome": 0
+      }
+    }
+  },
+  "dailyWon": {
+    "mode": "won",
+    "home": 2,
+    "total": 2,
+    "frames": 139,
+    "attempts": 1,
+    "record": {
+      "attempts": [
+        true
+      ],
+      "hinted": false,
+      "done": true,
+      "stars": {
+        "delivered": true,
+        "tidy": true,
+        "firstPost": true
+      },
+      "turntables": 2,
+      "ticks": 7
+    },
+    "fidelity": {
+      "room": "boxroom",
+      "loading": false,
+      "error": null,
+      "generation": 1,
+      "resources": {
+        "bytes": 59430952,
+        "decodedBytes": 36085384,
+        "sceneBytes": 16686912,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 180000,
+        "preparations": 1,
+        "prepareMs": 9094.89999999851,
+        "decodeMs": 414.3999999985099,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      }
+    }
+  },
+  "practiceInitial": {
+    "build": "boxroom-paper-5857902ee1a6",
+    "room": "boxroom",
+    "id": "practice-0-0",
+    "board": {
+      "w": 5,
+      "h": 4,
+      "roomX": 0,
+      "roomY": 0
+    },
+    "mode": "edit",
+    "home": 0,
+    "turntables": [],
+    "tray": {
+      "plain": 1,
+      "ginger": 0,
+      "blue": 1
+    },
+    "practice": "0:0",
+    "collection": [
+      "greyTabby",
+      "black",
+      "white",
+      "cream"
+    ],
+    "fidelity": {
+      "room": "boxroom",
+      "loading": false,
+      "error": null,
+      "generation": 1,
+      "resources": {
+        "bytes": 61109560,
+        "decodedBytes": 36085384,
+        "sceneBytes": 15431600,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 3113920,
+        "preparations": 2,
+        "prepareMs": 6182.70000000298,
+        "decodeMs": 414.3999999985099,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      }
+    },
+    "solution": [
+      {
+        "x": 3,
+        "y": 2,
+        "type": "plain",
+        "dir": "L"
+      },
+      {
+        "x": 2,
+        "y": 2,
+        "type": "blue",
+        "dir": "U"
+      }
+    ],
+    "progress": {
+      "version": 5,
+      "levels": {},
+      "unlocked": [],
+      "current": "1-1",
+      "daily": {
+        "2026-11-17": {
+          "attempts": [
+            true
+          ],
+          "hinted": false,
+          "done": true,
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 2,
+          "ticks": 7
+        }
+      },
+      "practice": {
+        "current": "0:0",
+        "records": {
+          "0:0": {
+            "seed": 0,
+            "weekday": 0,
+            "date": "2026-11-17",
+            "attempts": [],
+            "hinted": false,
+            "done": false
+          }
+        },
+        "order": [
+          "0:0"
+        ]
+      },
+      "nightShift": {
+        "weeklyBest": {},
+        "allTimeBest": 0,
+        "totalCatsHome": 0
+      }
+    }
+  },
+  "practiceWon": {
+    "mode": "won",
+    "home": 2,
+    "total": 2,
+    "frames": 127,
+    "attempts": 1,
+    "record": {
+      "seed": 0,
+      "weekday": 0,
+      "date": "2026-11-17",
+      "attempts": [
+        true
+      ],
+      "hinted": false,
+      "done": true,
+      "level": {
+        "id": "practice-0-0",
+        "title": "Practice · Monday",
+        "board": {
+          "w": 5,
+          "h": 4,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "timeLimit": 36,
+        "hatches": [
+          {
+            "x": 3,
+            "y": 1,
+            "dir": "D",
+            "cats": [
+              "blue",
+              "ginger"
+            ]
+          }
+        ],
+        "baskets": [
+          {
+            "x": 2,
+            "y": 0,
+            "coat": "blue"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "coat": "ginger"
+          }
+        ],
+        "dogs": [],
+        "solution": [
+          {
+            "x": 3,
+            "y": 2,
+            "type": "plain",
+            "dir": "L"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "type": "blue",
+            "dir": "U"
+          }
+        ],
+        "tray": {
+          "plain": 1,
+          "ginger": 0,
+          "blue": 1
+        },
+        "minTurntables": 2
+      },
+      "stars": {
+        "delivered": true,
+        "tidy": true,
+        "firstPost": true
+      },
+      "turntables": 2,
+      "ticks": 6
+    },
+    "fidelity": {
+      "room": "boxroom",
+      "loading": false,
+      "error": null,
+      "generation": 1,
+      "resources": {
+        "bytes": 61109560,
+        "decodedBytes": 36085384,
+        "sceneBytes": 15431600,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 3113920,
+        "preparations": 2,
+        "prepareMs": 6182.70000000298,
+        "decodeMs": 414.3999999985099,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      }
+    }
+  },
+  "office": {
+    "build": "boxroom-paper-5857902ee1a6",
+    "room": "office",
+    "id": "1-1",
+    "board": {
+      "w": 5,
+      "h": 3,
+      "roomX": 0,
+      "roomY": 0
+    },
+    "mode": "edit",
+    "home": 0,
+    "turntables": [],
+    "tray": {
+      "plain": 1,
+      "ginger": 0,
+      "blue": 0
+    },
+    "collection": [
+      "greyTabby",
+      "black",
+      "white",
+      "cream"
+    ],
+    "fidelity": {
+      "room": "office",
+      "loading": false,
+      "error": null,
+      "generation": 3,
+      "resources": {
+        "bytes": 126788492,
+        "buffers": 0,
+        "scope": "architecture, exterior, backdrop, foreground, canal, board and carrier canvas backing estimate, plus ticket and live scenery view caches; excludes decoded images, other caches, live output and process peak"
+      }
+    },
+    "solution": [
+      {
+        "x": 3,
+        "y": 1,
+        "type": "plain",
+        "dir": "D"
+      }
+    ],
+    "progress": {
+      "version": 5,
+      "levels": {},
+      "unlocked": [],
+      "current": "1-1",
+      "daily": {
+        "2026-11-17": {
+          "attempts": [
+            true
+          ],
+          "hinted": false,
+          "done": true,
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 2,
+          "ticks": 7
+        }
+      },
+      "practice": {
+        "current": "0:0",
+        "records": {
+          "0:0": {
+            "seed": 0,
+            "weekday": 0,
+            "date": "2026-11-17",
+            "attempts": [
+              true
+            ],
+            "hinted": false,
+            "done": true,
+            "stars": {
+              "delivered": true,
+              "tidy": true,
+              "firstPost": true
+            },
+            "turntables": 2,
+            "ticks": 6
+          }
+        },
+        "order": [
+          "0:0"
+        ]
+      },
+      "nightShift": {
+        "weeklyBest": {},
+        "allTimeBest": 0,
+        "totalCatsHome": 0
+      }
+    }
+  },
+  "officeWon": {
+    "mode": "won",
+    "home": 1,
+    "total": 1,
+    "frames": 86,
+    "attempts": 1,
+    "record": {
+      "stars": {
+        "delivered": true,
+        "tidy": true,
+        "firstPost": true
+      },
+      "turntables": 1,
+      "ticks": 4
+    },
+    "fidelity": {
+      "room": "office",
+      "loading": false,
+      "error": null,
+      "generation": 3,
+      "resources": {
+        "bytes": 117009120,
+        "buffers": 0,
+        "scope": "architecture, exterior, backdrop, foreground, canal, board and carrier canvas backing estimate, plus ticket and live scenery view caches; excludes decoded images, other caches, live output and process peak"
+      }
+    }
+  },
+  "returnDaily": {
+    "build": "boxroom-paper-5857902ee1a6",
+    "room": "boxroom",
+    "id": "daily-2026-11-17",
+    "board": {
+      "w": 5,
+      "h": 5,
+      "roomX": 0,
+      "roomY": 0
+    },
+    "mode": "edit",
+    "home": 0,
+    "turntables": [],
+    "tray": {
+      "plain": 2,
+      "ginger": 0,
+      "blue": 0
+    },
+    "daily": "2026-11-17",
+    "collection": [
+      "greyTabby",
+      "black",
+      "white",
+      "cream"
+    ],
+    "fidelity": {
+      "room": "boxroom",
+      "loading": false,
+      "error": null,
+      "generation": 5,
+      "resources": {
+        "bytes": 59430952,
+        "decodedBytes": 36085384,
+        "sceneBytes": 16686912,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 180000,
+        "preparations": 1,
+        "prepareMs": 5372.19999999553,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      }
+    },
+    "solution": [
+      {
+        "x": 1,
+        "y": 3,
+        "type": "plain",
+        "dir": "U"
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "type": "plain",
+        "dir": "R"
+      }
+    ],
+    "progress": {
+      "version": 5,
+      "levels": {
+        "1-1": {
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 1,
+          "ticks": 4
+        }
+      },
+      "unlocked": [
+        "1-1",
+        "1-2"
+      ],
+      "current": "1-1",
+      "daily": {
+        "2026-11-17": {
+          "attempts": [
+            true
+          ],
+          "hinted": false,
+          "done": true,
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 2,
+          "ticks": 7
+        }
+      },
+      "practice": {
+        "current": "0:0",
+        "records": {
+          "0:0": {
+            "seed": 0,
+            "weekday": 0,
+            "date": "2026-11-17",
+            "attempts": [
+              true
+            ],
+            "hinted": false,
+            "done": true,
+            "stars": {
+              "delivered": true,
+              "tidy": true,
+              "firstPost": true
+            },
+            "turntables": 2,
+            "ticks": 6
+          }
+        },
+        "order": [
+          "0:0"
+        ]
+      },
+      "nightShift": {
+        "weeklyBest": {},
+        "allTimeBest": 0,
+        "totalCatsHome": 0
+      }
+    }
+  },
+  "nightInitial": {
+    "build": "boxroom-paper-5857902ee1a6",
+    "room": "boxroom",
+    "id": "nightshift",
+    "board": {
+      "w": 7,
+      "h": 6
+    },
+    "mode": "running",
+    "phase": "running",
+    "round": 1,
+    "home": 0,
+    "strikes": 0,
+    "turntables": [],
+    "tray": {
+      "plain": 3,
+      "ginger": 0,
+      "blue": 0
+    },
+    "collection": [
+      "greyTabby",
+      "black",
+      "white",
+      "cream"
+    ],
+    "fidelity": {
+      "room": "boxroom",
+      "loading": false,
+      "error": null,
+      "generation": 5,
+      "resources": {
+        "bytes": 66173640,
+        "decodedBytes": 36085384,
+        "sceneBytes": 20495680,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 3113920,
+        "preparations": 2,
+        "prepareMs": 6372.39999999851,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      }
+    },
+    "progress": {
+      "version": 5,
+      "levels": {
+        "1-1": {
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 1,
+          "ticks": 4
+        }
+      },
+      "unlocked": [
+        "1-1",
+        "1-2"
+      ],
+      "current": "1-1",
+      "daily": {
+        "2026-11-17": {
+          "attempts": [
+            true
+          ],
+          "hinted": false,
+          "done": true,
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 2,
+          "ticks": 7
+        }
+      },
+      "practice": {
+        "current": "0:0",
+        "records": {
+          "0:0": {
+            "seed": 0,
+            "weekday": 0,
+            "date": "2026-11-17",
+            "attempts": [
+              true
+            ],
+            "hinted": false,
+            "done": true,
+            "stars": {
+              "delivered": true,
+              "tidy": true,
+              "firstPost": true
+            },
+            "turntables": 2,
+            "ticks": 6
+          }
+        },
+        "order": [
+          "0:0"
+        ]
+      },
+      "nightShift": {
+        "weeklyBest": {},
+        "allTimeBest": 0,
+        "totalCatsHome": 0
+      }
+    }
+  },
+  "nightRounds": [
+    {
+      "round": 1,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 6
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 5,
+      "offers": [
+        "blue",
+        "wake",
+        "extra"
+      ],
+      "frames": 1116,
+      "resources": {
+        "bytes": 66173640,
+        "decodedBytes": 36085384,
+        "sceneBytes": 20495680,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 3113920,
+        "preparations": 2,
+        "prepareMs": 6372.39999999851,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [],
+      "selectedCard": "wake"
+    },
+    {
+      "round": 2,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 6
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 6,
+      "offers": [
+        "extra",
+        "blue",
+        "wake"
+      ],
+      "frames": 1184,
+      "resources": {
+        "bytes": 66173640,
+        "decodedBytes": 36085384,
+        "sceneBytes": 20495680,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 3113920,
+        "preparations": 2,
+        "prepareMs": 6372.39999999851,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 2,
+          "type": "basket",
+          "x": 3,
+          "y": 4,
+          "coat": "ginger"
+        }
+      ],
+      "selectedCard": "wake"
+    },
+    {
+      "round": 3,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 6
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 9,
+      "offers": [
+        "floor",
+        "blue",
+        "ginger"
+      ],
+      "frames": 1244,
+      "resources": {
+        "bytes": 66173640,
+        "decodedBytes": 36085384,
+        "sceneBytes": 20495680,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 3113920,
+        "preparations": 2,
+        "prepareMs": 6372.39999999851,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 3,
+          "type": "hatch",
+          "x": 0,
+          "y": 3,
+          "dir": "D"
+        }
+      ],
+      "selectedCard": "floor"
+    },
+    {
+      "round": 4,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 7
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 9,
+      "offers": [
+        "ginger",
+        "blue",
+        "wake"
+      ],
+      "frames": 1102,
+      "resources": {
+        "bytes": 69388840,
+        "decodedBytes": 36085384,
+        "sceneBytes": 21910112,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 4914688,
+        "preparations": 3,
+        "prepareMs": 6062.79999999702,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 4,
+          "type": "skipped",
+          "event": "basket",
+          "coat": "blue"
+        }
+      ],
+      "selectedCard": "wake"
+    },
+    {
+      "round": 5,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 7
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 11,
+      "offers": [
+        "slow",
+        "floor",
+        "extra"
+      ],
+      "frames": 1124,
+      "resources": {
+        "bytes": 69388840,
+        "decodedBytes": 36085384,
+        "sceneBytes": 21910112,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 4914688,
+        "preparations": 3,
+        "prepareMs": 6062.79999999702,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 5,
+          "type": "dog",
+          "x": 6,
+          "y": 1
+        }
+      ],
+      "selectedCard": "floor"
+    },
+    {
+      "round": 6,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 8
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 10,
+      "offers": [
+        "ginger",
+        "extra",
+        "blue"
+      ],
+      "frames": 1141,
+      "resources": {
+        "bytes": 71534920,
+        "decodedBytes": 36085384,
+        "sceneBytes": 23368064,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 5602816,
+        "preparations": 4,
+        "prepareMs": 6810.79999999702,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 6,
+          "type": "skipped",
+          "event": "hatch",
+          "coat": null
+        },
+        {
+          "round": 6,
+          "type": "skipped",
+          "event": "basket",
+          "coat": "ginger"
+        }
+      ],
+      "selectedCard": "extra"
+    },
+    {
+      "round": 7,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 8
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 9,
+      "offers": [
+        "wake",
+        "blue",
+        "extra"
+      ],
+      "frames": 879,
+      "resources": {
+        "bytes": 71534920,
+        "decodedBytes": 36085384,
+        "sceneBytes": 23368064,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 5602816,
+        "preparations": 4,
+        "prepareMs": 6810.79999999702,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [],
+      "selectedCard": "wake"
+    },
+    {
+      "round": 8,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 8
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 14,
+      "offers": [
+        "blue",
+        "extra",
+        "slow"
+      ],
+      "frames": 856,
+      "resources": {
+        "bytes": 71534920,
+        "decodedBytes": 36085384,
+        "sceneBytes": 23368064,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 5602816,
+        "preparations": 4,
+        "prepareMs": 6810.79999999702,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 8,
+          "type": "moveBasket",
+          "x": 2,
+          "y": 1,
+          "coat": "blue",
+          "fromX": 6,
+          "fromY": 5
+        },
+        {
+          "round": 8,
+          "type": "basket",
+          "x": 3,
+          "y": 3,
+          "coat": "blue"
+        }
+      ],
+      "selectedCard": "extra"
+    },
+    {
+      "round": 9,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 8
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 13,
+      "offers": [
+        "extra",
+        "blue",
+        "wake"
+      ],
+      "frames": 859,
+      "resources": {
+        "bytes": 71534920,
+        "decodedBytes": 36085384,
+        "sceneBytes": 23368064,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 5602816,
+        "preparations": 4,
+        "prepareMs": 6810.79999999702,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 9,
+          "type": "skipped",
+          "event": "hatch",
+          "coat": null
+        }
+      ],
+      "selectedCard": "wake"
+    },
+    {
+      "round": 10,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 8
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 17,
+      "offers": [
+        "wake",
+        "ginger",
+        "slow"
+      ],
+      "frames": 845,
+      "resources": {
+        "bytes": 71534920,
+        "decodedBytes": 36085384,
+        "sceneBytes": 23368064,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 5602816,
+        "preparations": 4,
+        "prepareMs": 6810.79999999702,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 10,
+          "type": "basket",
+          "x": 6,
+          "y": 5,
+          "coat": "ginger"
+        },
+        {
+          "round": 10,
+          "type": "dog",
+          "x": 4,
+          "y": 4
+        }
+      ],
+      "selectedCard": "wake"
+    },
+    {
+      "round": 11,
+      "phase": "tea",
+      "board": {
+        "w": 7,
+        "h": 8
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 19,
+      "offers": [
+        "wake",
+        "blue",
+        "floor"
+      ],
+      "frames": 817,
+      "resources": {
+        "bytes": 71534920,
+        "decodedBytes": 36085384,
+        "sceneBytes": 23368064,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 5602816,
+        "preparations": 4,
+        "prepareMs": 6810.79999999702,
+        "decodeMs": 190.80000000447035,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [],
+      "selectedCard": "floor"
+    },
+    {
+      "round": 12,
+      "phase": "tea",
+      "board": {
+        "w": 8,
+        "h": 8
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 18,
+      "offers": [
+        "floor",
+        "extra",
+        "ginger"
+      ],
+      "frames": 853,
+      "resources": {
+        "bytes": 73662276,
+        "decodedBytes": 36085384,
+        "sceneBytes": 24745340,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 6352896,
+        "preparations": 3,
+        "prepareMs": 6425.39999999851,
+        "decodeMs": 422.70000000298023,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 12,
+          "type": "skipped",
+          "event": "hatch",
+          "coat": null
+        },
+        {
+          "round": 12,
+          "type": "skipped",
+          "event": "moveBasket",
+          "coat": null
+        },
+        {
+          "round": 12,
+          "type": "skipped",
+          "event": "basket",
+          "coat": "blue"
+        }
+      ],
+      "selectedCard": "floor"
+    },
+    {
+      "round": 13,
+      "phase": "tea",
+      "board": {
+        "w": 9,
+        "h": 8
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 32,
+      "offers": [
+        "floor",
+        "blue",
+        "slow"
+      ],
+      "frames": 877,
+      "resources": {
+        "bytes": 75855976,
+        "decodedBytes": 36085384,
+        "sceneBytes": 26159776,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 7132160,
+        "preparations": 4,
+        "prepareMs": 6741.5,
+        "decodeMs": 422.70000000298023,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [],
+      "selectedCard": "floor"
+    },
+    {
+      "round": 14,
+      "phase": "tea",
+      "board": {
+        "w": 10,
+        "h": 8
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 31,
+      "offers": [
+        "extra",
+        "ginger",
+        "slow"
+      ],
+      "frames": 901,
+      "resources": {
+        "bytes": 78146700,
+        "decodedBytes": 36085384,
+        "sceneBytes": 27607236,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 7975424,
+        "preparations": 5,
+        "prepareMs": 6221.79999999702,
+        "decodeMs": 422.70000000298023,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 14,
+          "type": "skipped",
+          "event": "basket",
+          "coat": "ginger"
+        }
+      ],
+      "selectedCard": "extra"
+    },
+    {
+      "round": 15,
+      "phase": "tea",
+      "board": {
+        "w": 10,
+        "h": 8
+      },
+      "home": 0,
+      "strikes": 0,
+      "sleepers": 30,
+      "offers": [
+        "wake",
+        "slow",
+        "ginger"
+      ],
+      "frames": 925,
+      "resources": {
+        "bytes": 78146700,
+        "decodedBytes": 36085384,
+        "sceneBytes": 27607236,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 7975424,
+        "preparations": 5,
+        "prepareMs": 6221.79999999702,
+        "decodeMs": 422.70000000298023,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 15,
+          "type": "skipped",
+          "event": "hatch",
+          "coat": null
+        },
+        {
+          "round": 15,
+          "type": "skipped",
+          "event": "dog",
+          "coat": null
+        }
+      ],
+      "selectedCard": "wake"
+    },
+    {
+      "round": 16,
+      "phase": "ended",
+      "board": {
+        "w": 10,
+        "h": 8
+      },
+      "home": 2,
+      "strikes": 3,
+      "sleepers": 2,
+      "offers": [],
+      "frames": 529,
+      "resources": {
+        "bytes": 78146700,
+        "decodedBytes": 36085384,
+        "sceneBytes": 27607236,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 7975424,
+        "preparations": 5,
+        "prepareMs": 6221.79999999702,
+        "decodeMs": 422.70000000298023,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "events": [
+        {
+          "round": 16,
+          "type": "moveBasket",
+          "x": 8,
+          "y": 2,
+          "coat": "blue",
+          "fromX": 3,
+          "fromY": 3
+        },
+        {
+          "round": 16,
+          "type": "basket",
+          "x": 5,
+          "y": 0,
+          "coat": "blue"
+        }
+      ]
+    }
+  ],
+  "maximumReached": {
+    "round": 14,
+    "board": {
+      "w": 10,
+      "h": 8
+    }
+  },
+  "nightEnd": {
+    "build": "boxroom-paper-5857902ee1a6",
+    "room": "boxroom",
+    "id": "nightshift",
+    "board": {
+      "w": 10,
+      "h": 8
+    },
+    "mode": "lost",
+    "phase": "ended",
+    "round": 16,
+    "home": 2,
+    "strikes": 3,
+    "turntables": [],
+    "tray": {
+      "plain": 9,
+      "ginger": 0,
+      "blue": 0
+    },
+    "collection": [
+      "greyTabby",
+      "black",
+      "white",
+      "cream"
+    ],
+    "fidelity": {
+      "room": "boxroom",
+      "loading": false,
+      "error": null,
+      "generation": 1,
+      "resources": {
+        "bytes": 78146700,
+        "decodedBytes": 36085384,
+        "sceneBytes": 27607236,
+        "viewCacheBytes": 0,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 7975424,
+        "preparations": 5,
+        "prepareMs": 6221.79999999702,
+        "decodeMs": 422.70000000298023,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      }
+    },
+    "progress": {
+      "version": 5,
+      "levels": {
+        "1-1": {
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 1,
+          "ticks": 4
+        }
+      },
+      "unlocked": [
+        "1-1",
+        "1-2"
+      ],
+      "current": "1-1",
+      "daily": {
+        "2026-11-17": {
+          "attempts": [
+            true
+          ],
+          "hinted": false,
+          "done": true,
+          "stars": {
+            "delivered": true,
+            "tidy": true,
+            "firstPost": true
+          },
+          "turntables": 2,
+          "ticks": 7
+        }
+      },
+      "practice": {
+        "current": "0:0",
+        "records": {
+          "0:0": {
+            "seed": 0,
+            "weekday": 0,
+            "date": "2026-11-17",
+            "attempts": [
+              true
+            ],
+            "hinted": false,
+            "done": true,
+            "stars": {
+              "delivered": true,
+              "tidy": true,
+              "firstPost": true
+            },
+            "turntables": 2,
+            "ticks": 6
+          }
+        },
+        "order": [
+          "0:0"
+        ]
+      },
+      "nightShift": {
+        "weeklyBest": {},
+        "allTimeBest": 2,
+        "totalCatsHome": 2
+      }
+    }
+  },
+  "completed": true
+}

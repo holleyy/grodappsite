@@ -1,0 +1,13 @@
+✔ the paper palette keeps old indexed identities and the recovered light tables (3950.3226ms)
+✔ default and explicitly disabled permissions preserve the original seeded puzzles exactly (212.950431ms)
+✔ room artwork survives embedding without replacing accepted old records, and conflicting hashes fail (857.10888ms)
+✔ an explicit guarded sprite replacement updates pixels while retaining source identity (290.960072ms)
+✔ stale prior-pixel and source-identity guards reject an unintended replacement (540.079567ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5984.31728

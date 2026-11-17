@@ -147,16 +147,16 @@
   #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
-<link rel="icon" href="../journey/icons/envelope-open.svg?v=boxroom-paper-08a5a567c57d" type="image/svg+xml">
+<link rel="icon" href="../journey/icons/envelope-open.svg?v=boxroom-paper-fbbb3fbd5289" type="image/svg+xml">
 <style id="web-host-style">
-@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=boxroom-paper-08a5a567c57d);font-weight:400;font-display:swap}
-@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=boxroom-paper-08a5a567c57d);font-weight:500;font-display:swap}
+@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=boxroom-paper-fbbb3fbd5289);font-weight:400;font-display:swap}
+@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=boxroom-paper-fbbb3fbd5289);font-weight:500;font-display:swap}
 #hud,#shiftCards,#shiftEnding,#shiftDebug,#chapterKicker,#debug,#controls,#atlasPanel{display:none!important}
 html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterScene{font-family:Signika,sans-serif;color:#253e40}
 
 </style>
-<link rel="stylesheet" href="../journey/theme.css?v=boxroom-paper-08a5a567c57d"><script src="../journey/theme.js?v=boxroom-paper-08a5a567c57d"></script><link rel="stylesheet" href="../journey/preferences.css?v=boxroom-paper-08a5a567c57d"><script src="../journey/preferences.js?v=boxroom-paper-08a5a567c57d"></script><script src="../journey/music.js?v=boxroom-paper-08a5a567c57d"></script><script src="../journey/audio.js?v=boxroom-paper-08a5a567c57d"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=boxroom-paper-08a5a567c57d"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=boxroom-paper-08a5a567c57d"></head>
+<link rel="stylesheet" href="../journey/theme.css?v=boxroom-paper-fbbb3fbd5289"><script src="../journey/theme.js?v=boxroom-paper-fbbb3fbd5289"></script><link rel="stylesheet" href="../journey/preferences.css?v=boxroom-paper-fbbb3fbd5289"><script src="../journey/preferences.js?v=boxroom-paper-fbbb3fbd5289"></script><script src="../journey/music.js?v=boxroom-paper-fbbb3fbd5289"></script><script src="../journey/audio.js?v=boxroom-paper-fbbb3fbd5289"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=boxroom-paper-fbbb3fbd5289"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=boxroom-paper-fbbb3fbd5289"></head>
 <body>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
@@ -256,7 +256,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "boxroom-paper-08a5a567c57d";
+const BUILD_ID = "boxroom-paper-fbbb3fbd5289";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -25225,11 +25225,13 @@ function nsSkipTo(round) {
 }
 function nsCaptureTick(shift) {
   const sim = shift.current.sim, t = sim.tick - 1, tickSec = shift.current.params.tickMs / 1000;
-  if(gm.gateTrace)BOARDANIM.recordGates(gm.gateTrace,sim,(t+1)*tickSec);
+  // Live rules publish a move at the end of their tick. Draw that completed
+  // record over the following interval; its arrival also times points flips.
+  if(gm.gateTrace)BOARDANIM.recordGates(gm.gateTrace,sim,(t+2)*tickSec);
   for (let i = 0; i < sim.n; i++) {
     const ev = sim.ev[i], tr = NS_TRACES[i];
     if (ev === GE_RELEASED) {
-      tr.big = !!sim.big[i]; tr.rel = (t + 1) * tickSec; tr.tick = tickSec; tr.pop = tickSec;
+      tr.big = !!sim.big[i]; tr.rel = (t + 2) * tickSec; tr.tick = tickSec; tr.pop = tickSec;
       tr.hx = sim.x[i]; tr.hy = sim.y[i]; tr.hatchDir = sim.dir[i];
       tr.ox = gTX(0); tr.oy = gTY(0); tr.bw = sim.W; tr.bh = sim.H;
       tr.coat = sim.coat[i] === GR_GINGER ? COAT_GINGER : COAT_BLUE;
@@ -25279,8 +25281,8 @@ function nsGrowTrace(tr, max = tr.max * 2) {
 }
 function nsUpdate() {
   const shift = gm.shift;
-  // Settled rules stay stopped while opt-in doors and points finish their poses.
-  if(shift.phase!=='running'&&shift.current&&(shift.current.sim.flaps.length||shift.current.sim.gates.length))nsui.time+=DT;
+  // Settled rules stay stopped while the last travel/arrival finishes drawing.
+  if(shift.phase!=='running'&&shift.current)nsui.time+=DT;
   if (nsui.eventFrames > 0) {
     nsui.eventFrames--;
     if (!nsui.eventFrames && shift.phase === 'running' && !shift.paused) gStatus('Round ' + shift.round + ' is under way.');
@@ -25327,10 +25329,13 @@ function nsPrepareSrc() {
   if (s.times.length < s.n) { s.times = new Float64Array(s.n); }
   for (let i = 0; i < s.n; i++) {
     s.traces[i] = NS_TRACES[i]; s.poses[i] = NS_POSES[i];
-    s.times[i] = NS_TRACES[i].rel === Infinity || sim.st[i] === NIGHTSHIFT.ASLEEP || sim.st[i] === NIGHTSHIFT.CARRIED || sim.st[i] === NIGHTSHIFT.LIFTED ? -1 : nsui.time;
+    const tr = NS_TRACES[i], arrived = nsui.time + 1e-9 >= tr.rel + tr.n * tr.tick;
+    s.times[i] = tr.rel === Infinity || ((sim.st[i] === NIGHTSHIFT.ASLEEP || sim.st[i] === NIGHTSHIFT.CARRIED) && arrived) || sim.st[i] === NIGHTSHIFT.LIFTED ? -1 : nsui.time;
   }
   s.extras.length = 0;
   for (const cat of shift.sleepers) {
+    const tr = cat.round === shift.round ? NS_TRACES[cat.index] : null;
+    if(tr && tr.n && nsui.time + 1e-9 < tr.rel + tr.n * tr.tick)continue;
     let sprite = nsui.sleepSprites.get(cat);
     if (!sprite) {
       const o = BOARDANIM.makeOut(); o.anim = BOARDANIM.A.NAP; o.x = gCX(cat.x); o.y = gCY(cat.y);
@@ -27218,11 +27223,13 @@ function webDrawBoardFeedback(mark){
     const begin=tr.rel+Math.max(0,tr.n-1)*tr.tick,home=tr.rel+tr.n*tr.tick,ev=sim.ev[i];end=Math.max(end,night?time:home+(tr.homeKind==='flap'?.44:1.2));
     if(ev===1)at(sim.big[i]?'parcel_heavy_arrive':'cat_arrive',tr.rel-tr.pop*.2);
     if(ev===6){at('tunnel_enter',begin);at('tunnel_exit',begin+tr.tick*.65);}
-    if(ev===3){if(sim.homeFlap[i]>=0){at('flap_open',home);at('flap_close',home+.44);}else at('cat_settle',night?time:home+.3);}
+    if(ev===3){if(sim.homeFlap[i]>=0){at('flap_open',home);at('flap_close',home+.44);}else at('cat_settle',home+.3);}
     if(ev===4||ev===5)at('ui_unavailable',home);
    }
-   if(sim.flipCount)at('points_lever',sim.tick*tick);
-   if(sim.dogHits>dogHits)at('dog_woof',Math.max(0,(sim.tick-1)*tick)+tick*.2);dogHits=sim.dogHits;
+   // Live Night records draw over the interval after the completed rule tick.
+   const delay=night?tick:0;
+   if(sim.flipCount)at('points_lever',sim.tick*tick+delay);
+   if(sim.dogHits>dogHits)at('dog_woof',Math.max(0,(sim.tick-1)*tick)+tick*.2+delay);dogHits=sim.dogHits;
    // Terminal outcome comes from the shared rules. Replays are filtered by the bridge.
    if(sim.outcome==='won'&&!finished){finished=true;at('delivery_complete',end);}
   }
@@ -27518,5 +27525,5 @@ function webDrawBoardFeedback(mark){
 
 boot();
 </script>
-<script src="../journey/postal-identity.js?v=boxroom-paper-08a5a567c57d"></script><script src="../journey/chapter-presentation.js?v=boxroom-paper-08a5a567c57d"></script></body>
+<script src="../journey/postal-identity.js?v=boxroom-paper-fbbb3fbd5289"></script><script src="../journey/chapter-presentation.js?v=boxroom-paper-fbbb3fbd5289"></script></body>
 </html>

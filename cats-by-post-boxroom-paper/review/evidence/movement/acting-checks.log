@@ -1,0 +1,41 @@
+✔ Night Shift reserves hold and movement beats before running and preserves them on growth (478.642089ms)
+✔ real generated frame data, per-cat clocks and sleepers reach presentation without mutation (17.241863ms)
+✔ all30 board sizes retain native picking coordinates under fractional camera movement (5.932003ms)
+✔ reduced motion freezes only ambient time while original update continues (5.088467ms)
+✔ same-size room changes prepare fresh scenery and disposal removes owned globals (4.387928ms)
+✔ a superseded asynchronous mount cannot install output hooks (4.559359ms)
+✔ fractional room fitting is limited to the active paper Box Room (6.914899ms)
+✔ active room drawing prepares canonical source once without the discarded native drawing pass (2.513987ms)
+✔ pending refresh delegates to native drawing until the replacement scene is ready (2.645222ms)
+✔ the canonical manager restores the original Box Room draw descriptor on departure (4.368773ms)
+✔ Night per-trace clocks, hidden slots, explicit sleepers and source records remain independent (12.713393ms)
+✔ gallery takes precedence and explicit rest poses need no fabricated route (1.758456ms)
+✔ scene preparation reserves later arrivals without creating new frame records (8.154669ms)
+✔ four directions retain canonical travel actions and continuous native-world positions (5.933216ms)
+✔ supported big arrivals keep their separate canonical timing and pose bank (1.990108ms)
+✔ points preserve both exits and the canonical three needle positions in all ordered direction pairs (1.125372ms)
+✔ tunnel endpoints keep independent phase, focus, puff and wall signal from actual trace time (0.498752ms)
+✔ continuous tunnel drawing retains canonical hidden intervals and headings for normal and large cats (5.075272ms)
+✔ edge portal matching uses destination, coat, side and canonical contact/clear clocks (2.042165ms)
+✔ normal, big and portal boundaries match the current canonical paper action oracle, including reverse seek (47.042274ms)
+✔ optional artwork can be prepared and released without changing common pieces or frame records (112.861685ms)
+✔ the actual draw path resolves every optional action without mutating source or allocating new pose records (95.811011ms)
+✔ live Night Shift glides through consecutive straight tiles instead of holding then jumping (97.405717ms)
+✔ pause freezes the drawn route and fast-forward resumes the same continuous glide (58.575207ms)
+✔ the final sleeping cat completes its tile at tea before becoming a resting extra (72.96852ms)
+✔ tea carries the last cat only after its drawn move reaches the final tile (31.800554ms)
+✔ basket arrival continues after the final rule tick at tea or the last strike (168.259274ms)
+✔ canonical straight traces move on every 60Hz sample without a tile-end pause (7.078084ms)
+✔ all original Office routes retain canonical action and arrival clocks (146.118552ms)
+✔ adapter trace facades preserve source origins and reuse all acting records (1.025917ms)
+✔ Night Shift exposes both independent endpoints and records local entry/exit without stale identities (89.541893ms)
+✔ extending travel reserves tunnel trace storage before updates and preserves previous local events (46.662297ms)
+✔ growing a trace retains all tunnel buffers and starts unused identities at minus one (0.515034ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3880.941085
