@@ -1,0 +1,27 @@
+[
+  {
+    "step": "study",
+    "exit": 0,
+    "elapsedSeconds": 77.49982142448425
+  },
+  {
+    "step": "daily",
+    "exit": 0,
+    "elapsedSeconds": 56.213040828704834
+  },
+  {
+    "step": "night",
+    "exit": 0,
+    "elapsedSeconds": 99.55571985244751
+  },
+  {
+    "step": "memory",
+    "exit": 0,
+    "elapsedSeconds": 258.7236797809601
+  },
+  {
+    "step": "lighting",
+    "exit": 0,
+    "elapsedSeconds": 95.57961702346802
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "baseline": "93a4c1f2707bc8f4ecf2dc395a97ff852024ee75",
+  "cases": 60,
+  "unchanged": [
+    "board",
+    "centred roof",
+    "tower",
+    "bounds",
+    "viewBounds",
+    "13 resident slots and feet",
+    "lamps",
+    "floor",
+    "all support/furniture solids"
+  ],
+  "runtimeImagesChanged": false
+}

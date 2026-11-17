@@ -1,0 +1,44 @@
+✔ a fitted throw rests on the carton top and hangs continuously from its front edge (28.261366ms)
+✔ cloth triangles share the same UV at every physical seam (5.471327ms)
+✔ nest folds rise outside the existing resident sole area (5.187216ms)
+✔ handwritten strokes are stable, bounded and distinct for the actual labels (1.488552ms)
+✔ the unfinished parcel and tools stay supported within the clear worktop area (2.001852ms)
+✔ supported cloth and work papers paint after their own supporting surface (1085.182632ms)
+✖ small marks follow a parcel supported by a broad tabletop, in nested support order (1.971094ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1296.992035
+
+✖ failing tests:
+
+test at tests/boxroom-paper-dressing.test.js:25:1
+✖ small marks follow a parcel supported by a broad tabletop, in nested support order (1.971094ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   'ink',
+      'table',
+      'parcel',
+  -   'ink'
+    ]
+  
+      at TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/boxroom-paper-dressing.test.js:28:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'ink', 'table', 'parcel' ],
+    expected: [ 'table', 'parcel', 'ink' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

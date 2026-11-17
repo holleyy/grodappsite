@@ -1,0 +1,27 @@
+✔ a fitted throw rests on the carton top and hangs continuously from its front edge (30.51537ms)
+✔ cloth triangles share the same UV at every physical seam (7.402707ms)
+✔ nest folds rise outside the existing resident sole area (6.359999ms)
+✔ handwritten strokes are stable, bounded and distinct for the actual labels (2.807133ms)
+✔ the unfinished parcel and tools stay supported within the clear worktop area (1.363907ms)
+✖ supported cloth and work papers paint after their own supporting surface (286.664773ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 503.921521
+
+✖ failing tests:
+
+test at tests/boxroom-paper-dressing.test.js:21:1
+✖ supported cloth and work papers paint after their own supporting surface (286.664773ms)
+  TypeError: S.roomPaintOrder is not a function
+      at TestContext.<anonymous> (/workspace/cosysortie-boxroom-paper/tests/boxroom-paper-dressing.test.js:23:121)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

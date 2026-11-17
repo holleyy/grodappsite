@@ -1,0 +1,77 @@
+{
+  "scope": "Pinned synthetic visual fixtures. Canonical BOXROOM.build; 5×4, seed303; no player save/progression edits.",
+  "inputs": {
+    "snapshot/layout.js": {
+      "sha256": "53767453b872213eae9f1b7b5e8b28b8115bcec8f18ee944780d7a9a5bdad1db",
+      "bytes": 34893
+    },
+    "snapshot/dressing.js": {
+      "sha256": "3b7be014dc60946ceee54917953a8bf3f2996fa8d7e86e8cca79c2b78334cccb",
+      "bytes": 8057
+    },
+    "snapshot/cartons.js": {
+      "sha256": "ed974d65e421bb52d226d73b770d3ab4e2a2f981e462a85616975bbe29dc7508",
+      "bytes": 7282
+    },
+    "snapshot/backdrop.webp": {
+      "sha256": "285ba589b608be186eebd650944e7ef45bef429678b699c09a5ad36333ad93f7",
+      "bytes": 593830
+    },
+    "snapshot/projection.js": {
+      "sha256": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+      "bytes": 1109
+    },
+    "snapshot/materials.js": {
+      "sha256": "9472f4a266a2073ed394a02a219fa1e1c7954cedbf0f72b1c996f0227cecdb57",
+      "bytes": 19213
+    },
+    "snapshot/rooms.json": {
+      "sha256": "9a6cf0ba4a5c15ca7a42e5f0d325291aec5f5ce429eeb47a1cb3ab737d39e809",
+      "bytes": 288795
+    },
+    "snapshot/scene.js": {
+      "sha256": "1a4287153a38d8e24ef3b9661f740626a215bbfd96d4aaea9492db1184a99dae",
+      "bytes": 19843
+    },
+    "snapshot/residents.js": {
+      "sha256": "5260ae6cb0a8025a22b927ad7922cfd79a10fee2d9b23cee27c10fb956c883e6",
+      "bytes": 7135
+    },
+    "snapshot/residents.json": {
+      "sha256": "054e740e767c7379e7089c69809fe8ad4b1902915e67ae3fed4b4e61d8e0be76",
+      "bytes": 3727
+    },
+    "snapshot/materials.webp": {
+      "sha256": "86b815a5f6f4f2d81d1741902d8e09dbe1b66d19fb9cce9b9fc5ccb3f6179692",
+      "bytes": 435456
+    },
+    "snapshot/residents.webp": {
+      "sha256": "3b31beef1ac47a3208de0cb872001105eb6d398b56481b098fcc2c5a2302ac1e",
+      "bytes": 424336
+    },
+    "snapshot/cartons.webp": {
+      "sha256": "c9d97314bfa2bef6cbf1c76171469a13168d43478f3cbf574707cc8e116bd93b",
+      "bytes": 626222
+    },
+    "cases.json": {
+      "sha256": "cbc37a01623448a1588ff69fa0d43604dfce5b5d68c5e8a2632ad9c4a116f8e4",
+      "bytes": 5796
+    },
+    "index.html": {
+      "sha256": "be47f4911d90f0fcfffd051ac2fdd0865671201e2e95408420e621b4e12b3150",
+      "bytes": 4309
+    },
+    "capture.cjs": {
+      "sha256": "791c7dd1ff59d7a60c7583ae3a90271d96f533fbdf946af77e70b69533a31d78",
+      "bytes": 4470
+    },
+    "lighting-sheet.html": {
+      "sha256": "7a226df2372e35cb2b93de38969ca2399d17a3a0879eccb1f6bbeea5fca5e172",
+      "bytes": 3107
+    },
+    "residents.html": {
+      "sha256": "51257517c099791cbb32a8e5cd8676fa1ca1a8e9528cbf8aafe3869d82fe33a2",
+      "bytes": 1028
+    }
+  }
+}

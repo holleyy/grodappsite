@@ -1,0 +1,9 @@
+{
+  "auditedBuild": "boxroom-paper-526d7ac10aee",
+  "finalBuild": "boxroom-paper-cd0b9e81960d",
+  "cases": 60,
+  "allRenderedLayoutDataIdentical": true,
+  "changedInput": "src/fidelity/boxroom-paper/dressing.js",
+  "change": "Only unused bench contact metadata now derives from actual mesh vertices. All geometry/material instructions, source images and renderers are identical.",
+  "finalStudyAndInteractionsRunSeparately": true
+}

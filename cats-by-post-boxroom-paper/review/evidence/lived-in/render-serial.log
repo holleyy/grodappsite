@@ -1,0 +1,15 @@
+✔ the sorting office bakes exactly as before, and its 40 board sprites are unchanged in the atlas (1668.465895ms)
+✔ Box Rooms bake at every size, by day and at night: inside the layer, every tile core clear (5144.330137ms)
+✔ switching back to the office restores it exactly (115.147198ms)
+✔ time of day: the room takes its light set, lamps pool light at night, stars in the night sky; the office gets its ramps back (500.142059ms)
+✔ what moves each frame (the napping cats, fan blades, the flat cat, the drip, rain, leaves) never touches a tile core (14325.308536ms)
+✔ the napping cats: drawn from the collection on their stack tops, breathing and flicking on the 48 s loop (3734.757171ms)
+✔ the board takes the board light: its pixels are flagged, the office's never are; by day a lamp doesn't brighten the board past the sun (527.240592ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27710.672249

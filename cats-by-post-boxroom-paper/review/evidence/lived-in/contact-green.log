@@ -1,0 +1,15 @@
+✔ a fitted throw rests on the carton top and hangs continuously from its front edge (42.54611ms)
+✔ cloth triangles share the same UV at every physical seam (6.360892ms)
+✔ nest folds rise outside the existing resident sole area (4.340836ms)
+✔ handwritten strokes are stable, bounded and distinct for the actual labels (3.100397ms)
+✔ the unfinished parcel and tools stay supported within the clear worktop area (1.400129ms)
+✔ supported cloth and work papers paint after their own supporting surface (1434.134908ms)
+✔ small marks follow a parcel supported by a broad tabletop, in nested support order (1.118761ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1710.918117

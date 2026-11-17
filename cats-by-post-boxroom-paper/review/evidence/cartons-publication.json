@@ -1,0 +1,105 @@
+{
+  "parent": "3b9f0904d26274ee06f53646040f74140e3e1944",
+  "commit": "9f04dba5e30d7f8695a2ad4f960b6ca192213997",
+  "tree": "c7760699f7304f29f67b7b040facfecb5fce0c6b",
+  "build": "boxroom-paper-e06d30a15624",
+  "ownedPrefix": "cats-by-post-boxroom-paper",
+  "changedPaths": 40,
+  "stagedFilesVerified": 482,
+  "unrelatedRootEntriesPreserved": 24,
+  "qualifiedRuntime": {
+    "build": "boxroom-paper-e06d30a15624",
+    "qualifiedBytesMatch": true,
+    "runtimeFilesVerified": 307,
+    "galleryLinksVerified": 58,
+    "hashes": {
+      "boxroom-build.json": "ea9056aa55b0060994bf49fb3a99c30ba78525e7e61f23b883da37826a26f9c4",
+      "game/engine.html": "acfbcfdbfb96dcd5fb5748dbd0352c45a40a148e8cabe86ba762f80095428d3c",
+      "rooms/boxroom.js": "7906f51b37cfe98521cf4aca65b3533f9a5a8d845e151fe06cb13406421d28c8",
+      "study.html": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+      "regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9"
+    },
+    "inputCount": 31
+  },
+  "sourceCommit": "e9bc38912250d14837883acb7b1a2b28d5eb2e42",
+  "deployment": {
+    "runId": 44088750261,
+    "status": "completed",
+    "conclusion": "success",
+    "head": "9f04dba5e30d7f8695a2ad4f960b6ca192213997",
+    "url": "https://github.com/holleyy/grodappsite/actions/runs/44088750261"
+  },
+  "remoteFiles": {
+    "commit": "9f04dba5e30d7f8695a2ad4f960b6ca192213997",
+    "build": "boxroom-paper-e06d30a15624",
+    "checks": [
+      {
+        "path": "boxroom-build.json",
+        "bytes": 6767,
+        "sha256": "ea9056aa55b0060994bf49fb3a99c30ba78525e7e61f23b883da37826a26f9c4",
+        "matches": true
+      },
+      {
+        "path": "game/engine.html",
+        "bytes": 17405144,
+        "sha256": "acfbcfdbfb96dcd5fb5748dbd0352c45a40a148e8cabe86ba762f80095428d3c",
+        "matches": true
+      },
+      {
+        "path": "rooms/boxroom.js",
+        "bytes": 671595,
+        "sha256": "7906f51b37cfe98521cf4aca65b3533f9a5a8d845e151fe06cb13406421d28c8",
+        "matches": true
+      },
+      {
+        "path": "study.html",
+        "bytes": 2789,
+        "sha256": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+        "matches": true
+      },
+      {
+        "path": "regular.html",
+        "bytes": 1544,
+        "sha256": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9",
+        "matches": true
+      },
+      {
+        "path": "review/index.html",
+        "bytes": 11765,
+        "sha256": "48e012ac289e22e70d06f4a1cf5ab857e12ccb39f5a3d732507b80769e649bfd",
+        "matches": true
+      },
+      {
+        "path": "review/after-daily.webp",
+        "bytes": 305154,
+        "sha256": "37f91c43583900f5d07894d283a825b3514de28c29b589f6f6ff19a3cfda6c45",
+        "matches": true
+      },
+      {
+        "path": "review/cartons-after-day.webp",
+        "bytes": 146612,
+        "sha256": "b72dfbe35d77d3c9a18e4cb4bc50acccfba3168c8b60e5173f8468cd2c73f6c1",
+        "matches": true
+      },
+      {
+        "path": "review/cartons-after-night.webp",
+        "bytes": 116010,
+        "sha256": "9de843621267b3b0a33aec71b801208e453b4f214a211e46e26dc67f6d40cbf7",
+        "matches": true
+      },
+      {
+        "path": "review/cartons-after-bench.webp",
+        "bytes": 104968,
+        "sha256": "2aab2c26219464f7459278801662b887356a2ee44b34f7a75295eacc05c89b0e",
+        "matches": true
+      }
+    ]
+  },
+  "directPages": {
+    "url": "https://holleyy.github.io/grodappsite/cats-by-post-boxroom-paper/boxroom-build.json?v=e06d30a15624",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  "tests": 1721,
+  "draftPR": "https://github.com/holleyy/cosysortie/pull/47",
+  "merged": false
+}
