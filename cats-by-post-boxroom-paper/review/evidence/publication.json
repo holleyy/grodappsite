@@ -1,0 +1,46 @@
+{
+  "baseCommit": "5d3bb29e6bcd14dc4bd716d7289e2971f93b4940",
+  "prefix": "cats-by-post-boxroom-paper",
+  "build": "boxroom-paper-125075d25277",
+  "sourceCommit": "3b34bb8c3a95a0d9030c62fd1342ece837961d2e",
+  "fileCount": 354,
+  "bytes": 166838638,
+  "tree": "81cdabff63a89cd4a58203c7182942ce2dd2e860",
+  "existingRootEntriesPreserved": 24,
+  "allStagedBytesMatchQualifiedFiles": true,
+  "prefixSmoke": {
+    "checks": 9,
+    "errors": []
+  },
+  "whitespaceNote": "Canonical font licences retain original whitespace; generated bundle retains its trailing newline.",
+  "commit": "be4fa3933f0f64ab7190813301172ebe537d00b5",
+  "rawRemoteVerification": {
+    "boxroom-build.json": {
+      "bytes": 6654,
+      "sha256": "c4108912a7598729cc0f6748f22859862b4b244182646d534bdbe61a4590b8a9"
+    },
+    "rooms/boxroom.js": {
+      "bytes": 647360,
+      "sha256": "8bf76e4858ce6ce6e2951163d507203384e2ce3cfb89717b317cd9e6a6421ba7"
+    },
+    "game/engine.html": {
+      "bytes": 17405144,
+      "sha256": "a9bddcfb5b796a4de2f84804939fa4a4ddcad498cf2a0146eb6160acf5e06843"
+    },
+    "study.html": {
+      "bytes": 2789,
+      "sha256": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728"
+    },
+    "regular.html": {
+      "bytes": 1544,
+      "sha256": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9"
+    }
+  },
+  "pr": "https://github.com/holleyy/cosysortie/pull/47",
+  "pagesDeployment": {
+    "run": 44017673157,
+    "status": "completed",
+    "conclusion": "success",
+    "verifiedAt": "2026-11-17T04:34:22Z"
+  }
+}

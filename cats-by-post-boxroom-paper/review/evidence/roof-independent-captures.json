@@ -1,0 +1,150 @@
+{
+  "scope": "Synthetic roof-apex visibility fixtures only",
+  "errors": [],
+  "cases": [
+    {
+      "key": "5x4-day",
+      "roof": {
+        "left": 1,
+        "right": 149,
+        "ridgeY": 3,
+        "ridgeZ": 90,
+        "eaveY": 132,
+        "eaveZ": 46,
+        "farEaveY": -32,
+        "farCutY": -13,
+        "startX": 1,
+        "cutY": 42
+      },
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1544
+    },
+    {
+      "key": "10x8-day",
+      "roof": {
+        "left": 1,
+        "right": 229,
+        "ridgeY": 3,
+        "ridgeZ": 90,
+        "eaveY": 196,
+        "eaveZ": 46,
+        "farEaveY": -32,
+        "farCutY": -13,
+        "startX": 1,
+        "cutY": 42
+      },
+      "bounds": {
+        "left": -49.66666666666674,
+        "top": -135.76562500000003,
+        "right": 1688.4166666666667,
+        "bottom": 1255.4291666666666,
+        "width": 1738.0833333333335,
+        "height": 1391.1947916666666
+      },
+      "surfaces": 2083
+    },
+    {
+      "key": "5x4-night",
+      "roof": {
+        "left": 1,
+        "right": 149,
+        "ridgeY": 3,
+        "ridgeZ": 90,
+        "eaveY": 132,
+        "eaveZ": 46,
+        "farEaveY": -32,
+        "farCutY": -13,
+        "startX": 1,
+        "cutY": 42
+      },
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1544
+    },
+    {
+      "key": "10x8-night",
+      "roof": {
+        "left": 1,
+        "right": 229,
+        "ridgeY": 3,
+        "ridgeZ": 90,
+        "eaveY": 196,
+        "eaveZ": 46,
+        "farEaveY": -32,
+        "farCutY": -13,
+        "startX": 1,
+        "cutY": 42
+      },
+      "bounds": {
+        "left": -49.66666666666674,
+        "top": -135.76562500000003,
+        "right": 1688.4166666666667,
+        "bottom": 1255.4291666666666,
+        "width": 1738.0833333333335,
+        "height": 1391.1947916666666
+      },
+      "surfaces": 2083
+    },
+    {
+      "key": "5x4-summer",
+      "roof": {
+        "left": 1,
+        "right": 149,
+        "ridgeY": 3,
+        "ridgeZ": 90,
+        "eaveY": 132,
+        "eaveZ": 46,
+        "farEaveY": -32,
+        "farCutY": -13,
+        "startX": 1,
+        "cutY": 42
+      },
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1532
+    },
+    {
+      "key": "10x8-summer",
+      "roof": {
+        "left": 1,
+        "right": 229,
+        "ridgeY": 3,
+        "ridgeZ": 90,
+        "eaveY": 196,
+        "eaveZ": 46,
+        "farEaveY": -32,
+        "farCutY": -13,
+        "startX": 1,
+        "cutY": 42
+      },
+      "bounds": {
+        "left": -49.66666666666674,
+        "top": -135.76562500000003,
+        "right": 1688.4166666666667,
+        "bottom": 1255.4291666666666,
+        "width": 1738.0833333333335,
+        "height": 1391.1947916666666
+      },
+      "surfaces": 2069
+    }
+  ]
+}

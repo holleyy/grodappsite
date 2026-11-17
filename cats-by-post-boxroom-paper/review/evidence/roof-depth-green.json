@@ -1,0 +1,2015 @@
+{
+  "sourceHashes": {
+    "projection": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+    "materials": "739aa4b701ddeab82b85b57475bfbd2947ab0c173697e6a5417f4632aae9192a",
+    "layout": "f6ef72a92c8ce5f754d1eb7454bead3e57677e4d3d7e7b6c0346b2de2cab3a5b",
+    "scene": "b3d696446c7852f73f7984d3a7292775a90b2da00fa5613aa5ae1231b903c9be"
+  },
+  "checks": [
+    {
+      "w": 5,
+      "h": 4,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "h": 4,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "h": 5,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "h": 5,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "h": 6,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "h": 6,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "h": 7,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "h": 7,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "h": 8,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "h": 8,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "h": 4,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "h": 4,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "h": 5,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "h": 5,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "h": 6,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "h": 6,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "h": 7,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "h": 7,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "h": 8,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "h": 8,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "h": 4,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "h": 4,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "h": 5,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "h": 5,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "h": 6,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "h": 6,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "h": 7,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "h": 7,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "h": 8,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "h": 8,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "h": 4,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "h": 4,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "h": 5,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "h": 5,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "h": 6,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "h": 6,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "h": 7,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "h": 7,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "h": 8,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "h": 8,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "h": 4,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "h": 4,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "h": 5,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "h": 5,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "h": 6,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "h": 6,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "h": 7,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "h": 7,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "h": 8,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "h": 8,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 4,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 4,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 5,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 5,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 6,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 6,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 7,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 7,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 8,
+      "mode": "daily",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "h": 8,
+      "mode": "free",
+      "samples": [
+        {
+          "name": "collar behind intact slate",
+          "local": [
+            -54,
+            -42,
+            76
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "far rafter behind intact slate",
+          "local": [
+            -55,
+            -68,
+            71.14285714285714
+          ],
+          "wantHidden": true,
+          "changed": 0,
+          "total": 25,
+          "pass": true
+        },
+        {
+          "name": "collar visible below section cut",
+          "local": [
+            -53.5,
+            -5,
+            76
+          ],
+          "wantHidden": false,
+          "changed": 21,
+          "total": 25,
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

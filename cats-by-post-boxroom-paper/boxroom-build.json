@@ -1,11 +1,11 @@
 {
-  "build": "boxroom-paper-125075d25277",
+  "build": "boxroom-paper-3d06ed8693a7",
   "baseCommit": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
   "baseWebBuild": "web-c5662b5f4a0d",
   "baseEngineSha256": "64752532968aec60ae57aa37e2a9aa1f02ff5e84a9cc180cbd3f192134c5765f",
-  "engineSha256": "a9bddcfb5b796a4de2f84804939fa4a4ddcad498cf2a0146eb6160acf5e06843",
-  "bundleSha256": "8bf76e4858ce6ce6e2951163d507203384e2ce3cfb89717b317cd9e6a6421ba7",
-  "bundleBytes": 647360,
+  "engineSha256": "ebb43adf905b12ec11482138e5b9c63d27a6f5b10ae3e2c50020b5425fa36536",
+  "bundleSha256": "a125dfc40ac366e9de6efdac6fecb4177adc2afb019cb732f75d188049ab7457",
+  "bundleBytes": 647370,
   "assetBytes": 5429710,
   "inputs": {
     "src/fidelity/boxroom-paper/README.md": "bc5dae9d44c360589f3d79ee95359c4c3b7eb35cd1d58429eadbadc3b03881ef",
@@ -24,7 +24,7 @@
     "src/fidelity/boxroom-paper/assets/residents.webp": "3b31beef1ac47a3208de0cb872001105eb6d398b56481b098fcc2c5a2302ac1e",
     "src/fidelity/boxroom-paper/assets/special.json": "52f07ec7fb4108ea35b24c23a5cc4dba444c0fb7fb16934aead7627603c07bb6",
     "src/fidelity/boxroom-paper/assets/special.webp": "3dc59fb888050c35466bcd2cd6704e146dee65217b32634bb461d00c996d2bcb",
-    "src/fidelity/boxroom-paper/layout.js": "6f83f8a584cbe40bf4d557113e1ef44a2cf1fb612b7cd5fbdaaf47ebee2eb9f9",
+    "src/fidelity/boxroom-paper/layout.js": "f6ef72a92c8ce5f754d1eb7454bead3e57677e4d3d7e7b6c0346b2de2cab3a5b",
     "src/fidelity/boxroom-paper/materials.js": "739aa4b701ddeab82b85b57475bfbd2947ab0c173697e6a5417f4632aae9192a",
     "src/fidelity/boxroom-paper/piece-frame.js": "002aa8cf7a7c0f3b26e52a95e6311821128a8f52b952e834c34d4eba52fea19b",
     "src/fidelity/boxroom-paper/pieces.js": "92378a80ca0548833ada29d2991e1bcfb11f3415294a37d8af8bd4984f4f4ccc",
@@ -50,11 +50,11 @@
   "changedFiles": {
     "build.json": {
       "before": "7f2079cc5432cf16d0ea806f866b2441f081e9ed487c958544fb82f437db4e3a",
-      "after": "34c5649f5a6a6df6c8f42b5563c86569fada322c834d50ea83c1b2304a3f8bcd"
+      "after": "fcda9b8bf68a8032a9727073c15cfa11d041ce2d07905f8c7f71b5902a01aeb4"
     },
     "game/engine.html": {
       "before": "f7c260084d1ff6b3e2e0ac3a43af3e5310a4aa7ab5b8b679cd4fc8af95b4b70f",
-      "after": "a9bddcfb5b796a4de2f84804939fa4a4ddcad498cf2a0146eb6160acf5e06843"
+      "after": "ebb43adf905b12ec11482138e5b9c63d27a6f5b10ae3e2c50020b5425fa36536"
     },
     "index.html": {
       "before": "5820a7a708bfdc9a9bc1f8a512db7db8db6c716bb160c444e13665142bd1e32b",
@@ -66,7 +66,7 @@
     },
     "journey/index.html": {
       "before": "de94e00ed125ec4503866f4252fc1b6d97cec6db517905b11017d6094ebb7a0e",
-      "after": "dff80de503c33afe186c0face0210580c5af1d3d7bca0812eaa977a0ebdea621"
+      "after": "235d6b54553bfb58d667103491c175f51584f463b1ef5efe4dbe27a92fd85a9d"
     },
     "journey/journey.js": {
       "before": "5f6cb5f9dbb799c98ca388ddae6b337ef9fa59311c7b9f8981e0d5b81e78e22f",
@@ -78,7 +78,7 @@
     },
     "journey/play/index.html": {
       "before": "79f38a8f82512f1e8ddae2ebb0a7853fe2d8f5e074766c6b30cbafe02257b3ff",
-      "after": "fb121032b0a180a3b947f473ec64b483b0b31143fa4a3fa208b9ebfbe91737eb"
+      "after": "6b5ce4ad945617389cee508cb59a28ff361faa20fc4eaf923f14f56a7fed19d4"
     },
     "journey/preferences.js": {
       "before": "01c46d0a2ba693f7126b2eacfe84036b26b583dcf38dbf34d3e9f7b773c8aced",
@@ -86,7 +86,7 @@
     },
     "journey/start.html": {
       "before": "62df4ffd65be0a1b8b7a94fa683afead1637658dbde36e567b2956a02951bde1",
-      "after": "5d34957d54d08d09d0284b148be5db7fd3138bb7c40670853a764331c92a9ae0"
+      "after": "7be18ac31b3f5f134f79a65939b6f2be5ece72c9dded583f3690ebb001b8fb61"
     },
     "journey/start.js": {
       "before": "4816d5b3067a85cecffea2ee79b930caf7175ae5c44f7a0f6fc66356e3d73379",

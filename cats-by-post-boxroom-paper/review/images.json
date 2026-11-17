@@ -16,44 +16,49 @@
     "encoding": "WebP quality92, original resolution, no visual retouching"
   },
   "after-daily.webp": {
-    "sourceCaptureSha256": "0c322273421374f61ac463704aa125b70bfe1c2c8255c7ca71eb8468e89ca9d0",
-    "sha256": "2d7af10179212785375993f888945d3b17116567060cccb8bc8fadaa3ad72ca7",
+    "sourceCaptureSha256": "40cb7860888396249082f20211cf35610059ab40607c913a38fc128bf61e2791",
+    "sha256": "0d2b690b80ee3066dc6a3eb94a4e11433f5c70dc411593f16a522e3b82b1daf7",
     "width": 1440,
     "height": 1024,
-    "bytes": 186056,
-    "encoding": "WebP quality92, original resolution, no visual retouching"
+    "bytes": 185664,
+    "encoding": "WebP quality92, original resolution, no visual retouching",
+    "build": "boxroom-paper-3d06ed8693a7"
   },
   "after-night.webp": {
-    "sourceCaptureSha256": "4b4d38b734359f5f9ac7c4fb59cb4b8057a3f3114dc3d73394491de80010c605",
-    "sha256": "56c1f0a281d02fddf7ac5e096ca9fcb46e1cecd19ccd268b47380289d0dd532a",
+    "sourceCaptureSha256": "aa4e58a3e59c33343dc68dd35bfd1976a2e1bd0ed58f8ff4fcb8c963bf7ba1b8",
+    "sha256": "9bc3b967f693e4181f3895200e16bd36d55b0ababed3b4761449b518c49a7d1a",
     "width": 1440,
     "height": 1024,
-    "bytes": 139268,
-    "encoding": "WebP quality92, original resolution, no visual retouching"
+    "bytes": 139178,
+    "encoding": "WebP quality92, original resolution, no visual retouching",
+    "build": "boxroom-paper-3d06ed8693a7"
   },
   "after-maximum.webp": {
-    "sourceCaptureSha256": "3068323ad55bc8b15cfc9a5d23b4eea2696be261cc2cfcc3999ebcfff599b519",
-    "sha256": "d24d4345dff02b9ffb4afdf434ea7abe2475caa0b6d88abe531153499eec54f2",
+    "sourceCaptureSha256": "65a6240198806c8e804ecd3d59a847b2fca2838765daa54c6a42d2ec1eec9553",
+    "sha256": "65f220ce31f32c5d12f05d135991a9783580bd3ca265a975695d73056981c52f",
     "width": 1488,
     "height": 1116,
-    "bytes": 169526,
-    "encoding": "WebP quality92, original resolution, no visual retouching"
+    "bytes": 169326,
+    "encoding": "WebP quality92, original resolution, no visual retouching",
+    "build": "boxroom-paper-3d06ed8693a7"
   },
   "after-phone.webp": {
-    "sourceCaptureSha256": "a6ec66a450ccaa1b94b6b8d538044cad66de070b718a5508639cdf144de86b8c",
-    "sha256": "23d17954e1e9e5bcfda2786d484e6f9b4e371b7a2abd9adb58f7e759e85d1d20",
+    "sourceCaptureSha256": "8a2fd63c5d45c53a599f1adba2d44abd7528331b6adf0ba1ff43655e2bf1198b",
+    "sha256": "a85e182bcf56918156fa27d2305b1a85a2c03f0e4183dc4b9c60bcc4db453341",
     "width": 780,
     "height": 1688,
-    "bytes": 149172,
-    "encoding": "WebP quality92, original resolution, no visual retouching"
+    "bytes": 115606,
+    "encoding": "WebP quality92, original resolution, no visual retouching",
+    "build": "boxroom-paper-3d06ed8693a7"
   },
   "lighting-sheet.webp": {
-    "sourceCaptureSha256": "4973ed7fcebfd0b2d68a0f5a9dbda129a98c62d5eaaae4fd87e20e0776cd5504",
-    "sha256": "ed116f270bc6d211f48592b3bb9e7208e104d2a74dd728d518944973536d4855",
+    "sourceCaptureSha256": "d46e9b3409c0317a14c7a6dad4bfb5de7ae8d107aa9a25f978a8e4d7d592e7e4",
+    "sha256": "7143896e310e997a7a11d98e5a7c97341b5ac7595888b5d9ff95b955bfa3c17c",
     "width": 2160,
     "height": 2620,
-    "bytes": 738676,
-    "encoding": "WebP quality92, original resolution, no visual retouching"
+    "bytes": 738008,
+    "encoding": "WebP quality92, original resolution, no visual retouching",
+    "build": "boxroom-paper-3d06ed8693a7"
   },
   "residents.webp": {
     "sourceCaptureSha256": "5c6befcba818710911a2a7172a9747ead5f3439e8268ec9d7957101ed80bd5e3",
@@ -61,7 +66,8 @@
     "width": 2880,
     "height": 1300,
     "bytes": 402832,
-    "encoding": "WebP quality92, original resolution, no visual retouching"
+    "encoding": "WebP quality92, original resolution, no visual retouching",
+    "build": "boxroom-paper-3d06ed8693a7"
   },
   "selected-concept.webp": {
     "sourceCaptureSha256": "6b9e28d7377c164d72480a86feb71ea3fee17e4e70ca9791b9deb407dda00cf5",
@@ -70,5 +76,41 @@
     "height": 1086,
     "bytes": 465396,
     "encoding": "WebP quality92, original resolution, no visual retouching"
+  },
+  "roof-before.webp": {
+    "sourceCaptureSha256": "1defa6827cdbb609114b91369b9e67e14ba32c093c85f1de14f5cb7df81814a6",
+    "sha256": "1348e0f66ec6428f3de578dcbf8c5b3c2699bca9e9e7e3011adb8c13a3d8da44",
+    "width": 800,
+    "height": 520,
+    "bytes": 66834,
+    "encoding": "WebP quality92, original resolution, no visual retouching",
+    "build": "boxroom-paper-125075d25277"
+  },
+  "roof-after.webp": {
+    "sourceCaptureSha256": "334fa5bbca7643d8ced7a72fd6d14b5e9a1a1e217e9c2e5205e20e56ffcbed72",
+    "sha256": "dcfbaedaaf13ba8d8a34dbe0dd48a9e5cbc362f943f50f231170acaf22b124ed",
+    "width": 800,
+    "height": 520,
+    "bytes": 66356,
+    "encoding": "WebP quality92, original resolution, no visual retouching",
+    "build": "boxroom-paper-3d06ed8693a7"
+  },
+  "roof-extrema.webp": {
+    "sourceCaptureSha256": "39702c4d68df4dda8fc709d4bccb3c1e6abb4a3fa591124e2dd6d58242431292",
+    "sha256": "758091115da9d9a2955d381a1eae0d9199eac1638896cb66ce1edff645a04987",
+    "width": 1600,
+    "height": 1769,
+    "bytes": 426240,
+    "encoding": "WebP quality92, original resolution, no visual retouching",
+    "build": "boxroom-paper-3d06ed8693a7"
+  },
+  "roof-right-end.webp": {
+    "sourceCaptureSha256": "5864897efab4ba389336a3a33d444e460a2c01f18dcc8da36986746e9a4ab589",
+    "sha256": "4268a4f5c6d0266fa7ac3e555d1f892de5512364e421d11b3a6b1b81ff582756",
+    "width": 1600,
+    "height": 1250,
+    "bytes": 152740,
+    "encoding": "WebP quality92, original resolution, no visual retouching",
+    "build": "boxroom-paper-3d06ed8693a7"
   }
 }
