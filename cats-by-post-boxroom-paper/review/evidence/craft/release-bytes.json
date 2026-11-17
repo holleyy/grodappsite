@@ -1,0 +1,14 @@
+{
+  "build": "boxroom-paper-b2e06d02d47b",
+  "qualifiedBytesMatch": true,
+  "runtimeFilesVerified": 307,
+  "galleryLinksVerified": 45,
+  "hashes": {
+    "boxroom-build.json": "82f4da6908c6b552f5654a1fcc33e6f887957e4bdeb4bab6847aa70639ae98c1",
+    "game/engine.html": "5f2468d9efd0333adcbf6d074639020047f5d470a59f843a9a105d0cdd1adb9d",
+    "rooms/boxroom.js": "fcba4d88430f1d49acfc88d4453cc3adcde05f1424b9dbb4ffdcfca1d53efcd2",
+    "study.html": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+    "regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9"
+  },
+  "inputCount": 30
+}

@@ -1,0 +1,54 @@
+{
+  "results": [
+    {
+      "density": 0.5,
+      "light": "wed",
+      "maxDelta": 1,
+      "minAlpha": 254
+    },
+    {
+      "density": 0.5,
+      "light": "night",
+      "maxDelta": 1,
+      "minAlpha": 254
+    },
+    {
+      "density": 1,
+      "light": "wed",
+      "maxDelta": 0,
+      "minAlpha": 255
+    },
+    {
+      "density": 1,
+      "light": "night",
+      "maxDelta": 0,
+      "minAlpha": 255
+    },
+    {
+      "density": 1.5,
+      "light": "wed",
+      "maxDelta": 0,
+      "minAlpha": 255
+    },
+    {
+      "density": 1.5,
+      "light": "night",
+      "maxDelta": 0,
+      "minAlpha": 255
+    },
+    {
+      "density": 2,
+      "light": "wed",
+      "maxDelta": 0,
+      "minAlpha": 255
+    },
+    {
+      "density": 2,
+      "light": "night",
+      "maxDelta": 0,
+      "minAlpha": 255
+    }
+  ],
+  "build": "boxroom-paper-e06d30a15624",
+  "scope": "Textured opaque panel raster, day/night at four densities; interior seam scan, synthetic atlas."
+}

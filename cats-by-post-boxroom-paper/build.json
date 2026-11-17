@@ -1,9 +1,9 @@
 {
-  "build": "boxroom-paper-b2e06d02d47b",
+  "build": "boxroom-paper-e06d30a15624",
   "canonicalCommit": "4461168aad3c192fa2e3666e2b8619da503db869",
   "canonicalBuild": "dedb812743",
   "canonicalSha256": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
-  "engineSha256": "5f2468d9efd0333adcbf6d074639020047f5d470a59f843a9a105d0cdd1adb9d",
+  "engineSha256": "acfbcfdbfb96dcd5fb5748dbd0352c45a40a148e8cabe86ba762f80095428d3c",
   "engineBytes": 17405144,
   "levels": 100,
   "rooms": {
@@ -94,10 +94,10 @@
       "bundleBytes": 2605154
     },
     "boxroom": {
-      "build": "boxroom-paper-b2e06d02d47b",
+      "build": "boxroom-paper-e06d30a15624",
       "source": "src/fidelity/boxroom-paper",
-      "bundleSha256": "fcba4d88430f1d49acfc88d4453cc3adcde05f1424b9dbb4ffdcfca1d53efcd2",
-      "bundleBytes": 660375,
+      "bundleSha256": "7906f51b37cfe98521cf4aca65b3533f9a5a8d845e151fe06cb13406421d28c8",
+      "bundleBytes": 671595,
       "scope": "Daily, Practice and Night Shift; isolated review candidate"
     }
   },

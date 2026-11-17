@@ -1,0 +1,10 @@
+[{"density":0.5,"light":"wed","maxDelta":2,"minAlpha":255},{"density":0.5,"light":"night","maxDelta":16,"minAlpha":255},{"density":1,"light":"wed","maxDelta":2,"minAlpha":255},{"density":1,"light":"night","maxDelta":15,"minAlpha":255},{"density":1.5,"light":"wed","maxDelta":2,"minAlpha":255},{"density":1.5,"light":"night","maxDelta":11,"minAlpha":255},{"density":2,"light":"wed","maxDelta":2,"minAlpha":255},{"density":2,"light":"night","maxDelta":8,"minAlpha":255}]
+AssertionError [ERR_ASSERTION]: {"density":0.5,"light":"night","maxDelta":16,"minAlpha":255}
+    at /workspace/cosysortie-boxroom-paper/studies/boxroom-paper/tools/qa/cartons.cjs:13:230 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

@@ -1,0 +1,105 @@
+{
+  "parent": "37a5fc9df19e73409b6a7a9ad0168d4b1bab3216",
+  "commit": "3b9f0904d26274ee06f53646040f74140e3e1944",
+  "tree": "5c7adda9ba515fb666397e0d0e56e4fdff6e2abc",
+  "build": "boxroom-paper-b2e06d02d47b",
+  "ownedPrefix": "cats-by-post-boxroom-paper",
+  "changedPaths": 41,
+  "stagedFilesVerified": 456,
+  "unrelatedRootEntriesPreserved": 24,
+  "qualifiedRuntime": {
+    "build": "boxroom-paper-b2e06d02d47b",
+    "qualifiedBytesMatch": true,
+    "runtimeFilesVerified": 307,
+    "galleryLinksVerified": 45,
+    "hashes": {
+      "boxroom-build.json": "82f4da6908c6b552f5654a1fcc33e6f887957e4bdeb4bab6847aa70639ae98c1",
+      "game/engine.html": "5f2468d9efd0333adcbf6d074639020047f5d470a59f843a9a105d0cdd1adb9d",
+      "rooms/boxroom.js": "fcba4d88430f1d49acfc88d4453cc3adcde05f1424b9dbb4ffdcfca1d53efcd2",
+      "study.html": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+      "regular.html": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9"
+    },
+    "inputCount": 30
+  },
+  "sourceImplementationCommit": "0d23211",
+  "sourceGalleryCommit": "c696042a3848404958071aaea4d3eba63cec5042",
+  "rawVerification": {
+    "commit": "3b9f0904d26274ee06f53646040f74140e3e1944",
+    "build": "boxroom-paper-b2e06d02d47b",
+    "checks": [
+      {
+        "path": "boxroom-build.json",
+        "bytes": 6654,
+        "sha256": "82f4da6908c6b552f5654a1fcc33e6f887957e4bdeb4bab6847aa70639ae98c1",
+        "matches": true
+      },
+      {
+        "path": "game/engine.html",
+        "bytes": 17405144,
+        "sha256": "5f2468d9efd0333adcbf6d074639020047f5d470a59f843a9a105d0cdd1adb9d",
+        "matches": true
+      },
+      {
+        "path": "rooms/boxroom.js",
+        "bytes": 660375,
+        "sha256": "fcba4d88430f1d49acfc88d4453cc3adcde05f1424b9dbb4ffdcfca1d53efcd2",
+        "matches": true
+      },
+      {
+        "path": "study.html",
+        "bytes": 2789,
+        "sha256": "d894abe4496b2e3d81d8e7cca800a5547e50079f8051f3220756498170379728",
+        "matches": true
+      },
+      {
+        "path": "regular.html",
+        "bytes": 1544,
+        "sha256": "f559502fffda9c34d6f586b47295776d431722258f48780e8be77df3c914e4e9",
+        "matches": true
+      },
+      {
+        "path": "review/index.html",
+        "bytes": 9639,
+        "sha256": "4616bb6c1e54adc29c6e53fda804b49c3a87d22ea6391e58f8c0613f8e9df402",
+        "matches": true
+      },
+      {
+        "path": "review/after-daily.webp",
+        "bytes": 311808,
+        "sha256": "2cec066df0193da20a56905cf4b20664a3846920433b5a49ed45c3b4c0f0b9fa",
+        "matches": true
+      },
+      {
+        "path": "review/craft-after-stair.webp",
+        "bytes": 103646,
+        "sha256": "fdc74ddc9fb5e8ef066c8dd9b6ab1c263433a0bba2518fbddd3a96220faabbac",
+        "matches": true
+      },
+      {
+        "path": "review/craft-after-cartons.webp",
+        "bytes": 157760,
+        "sha256": "064a35479670ef02c54a8bd187a6f77ac77a924424a0bebdb74afab15b4ee9ce",
+        "matches": true
+      }
+    ]
+  },
+  "pages": {
+    "id": 44071812983,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "3b9f0904d26274ee06f53646040f74140e3e1944",
+    "url": "https://github.com/holleyy/grodappsite/actions/runs/44071812983",
+    "created_at": "2026-11-17T11:11:54Z",
+    "updated_at": "2026-11-17T11:17:23Z",
+    "directPagesCheck": {
+      "status": 403,
+      "layer": "environment CONNECT proxy",
+      "scope": "Direct Pages browser verification was unavailable. Exact local runtime was browser-tested; GitHub deployment and nine remote commit files were verified."
+    }
+  },
+  "pullRequest": {
+    "url": "https://github.com/holleyy/cosysortie/pull/47",
+    "draft": true,
+    "merged": false
+  }
+}

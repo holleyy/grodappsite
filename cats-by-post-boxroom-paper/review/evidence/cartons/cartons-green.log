@@ -1,0 +1,14 @@
+✔ carton construction is stable and varies by identity without exceeding its support envelope (48.797195ms)
+✔ softened carton panels join along identical boundaries and carry continuous UVs (0.644574ms)
+✔ a fitted lid retains a full flat contact plane and an open carton has a recessed interior (2.559762ms)
+✔ face-local ink maps continuously across a bent panel and at the top-to-front tape fold (2.967945ms)
+✔ each occupied closed carton retains the actual flat polygon beneath the resident sole (1958.377639ms)
+✔ every bench drawer closes onto its carcass below the worktop (194.419418ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3400.30307
