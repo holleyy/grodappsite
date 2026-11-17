@@ -1,0 +1,2092 @@
+{
+  "scope": "Pinned synthetic visual fixtures. Canonical BOXROOM.build; 5\u00d74, seed303; no player save/progression edits.",
+  "errors": [],
+  "cases": [
+    {
+      "key": "monday",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-16",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "mon",
+        "a": 4,
+        "b": 7,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 596,
+        "lamps": 0,
+        "string": false
+      },
+      "season": "autumn",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1545,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "tuesday",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-17",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "tue",
+        "a": 7,
+        "b": 7,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 610,
+        "lamps": 0,
+        "string": false
+      },
+      "season": "autumn",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1545,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "wednesday",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-18",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "wed",
+        "a": 9,
+        "b": 6,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 613,
+        "lamps": 0,
+        "string": false
+      },
+      "season": "autumn",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1545,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "thursday",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-19",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "thu",
+        "a": 11,
+        "b": 6,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 628,
+        "lamps": 0,
+        "string": false
+      },
+      "season": "autumn",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1545,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "friday",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-20",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "fri",
+        "a": 14,
+        "b": 7,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 614,
+        "lamps": 0,
+        "string": false
+      },
+      "season": "autumn",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1545,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "saturday",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-21",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "sat",
+        "a": 19,
+        "b": 8,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 586,
+        "lamps": 1,
+        "string": false
+      },
+      "season": "autumn",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1545,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "sunday",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-22",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "sun",
+        "a": 25,
+        "b": 9,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 613,
+        "lamps": 1,
+        "string": true
+      },
+      "season": "autumn",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1545,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "night",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-17",
+        "mode": "free"
+      },
+      "light": {
+        "set": "night",
+        "a": 14,
+        "b": 7,
+        "den": 16,
+        "sun": false,
+        "virtualZ": 48,
+        "sunlit": 0,
+        "lamps": 1,
+        "string": true
+      },
+      "season": "autumn",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1545,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "summer",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-07-17",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "fri",
+        "a": 14,
+        "b": 7,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 614,
+        "lamps": 0,
+        "string": false
+      },
+      "season": "summer",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1533,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "winter",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2027-01-15",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "fri",
+        "a": 14,
+        "b": 7,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 614,
+        "lamps": 0,
+        "string": false
+      },
+      "season": "winter",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1523,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "december",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-12-20",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "sun",
+        "a": 25,
+        "b": 9,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 611,
+        "lamps": 1,
+        "string": true
+      },
+      "season": "december",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1528,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    },
+    {
+      "key": "spring",
+      "count": 8,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2027-04-14",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "wed",
+        "a": 9,
+        "b": 6,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 613,
+        "lamps": 0,
+        "string": false
+      },
+      "season": "spring",
+      "rain": true,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1517,
+      "sceneBytes": 14193016,
+      "residentBytes": 9584640,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        }
+      ]
+    }
+  ],
+  "residentCases": [
+    {
+      "key": "wednesday",
+      "count": 12,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-18",
+        "mode": "daily"
+      },
+      "light": {
+        "set": "wed",
+        "a": 9,
+        "b": 6,
+        "den": 16,
+        "sun": true,
+        "virtualZ": 48,
+        "sunlit": 613,
+        "lamps": 0,
+        "string": false
+      },
+      "season": "autumn",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1545,
+      "sceneBytes": 14193016,
+      "residentBytes": 14376960,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        },
+        {
+          "id": "black#1",
+          "coat": "black",
+          "pose": "loaf",
+          "mirror": true,
+          "slot": "shelf-1",
+          "feet": {
+            "x": 39,
+            "y": 58.58,
+            "z": 15.1
+          },
+          "opaquePixels": 8695
+        },
+        {
+          "id": "white#1",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "chair",
+          "feet": {
+            "x": 21,
+            "y": 85.8,
+            "z": 9.3
+          },
+          "opaquePixels": 7563
+        },
+        {
+          "id": "greyTabby#1",
+          "coat": "greyTabby",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-2",
+          "feet": {
+            "x": 39,
+            "y": 77.58,
+            "z": 9.1
+          },
+          "opaquePixels": 5040
+        },
+        {
+          "id": "cream#1",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-2",
+          "feet": {
+            "x": 89,
+            "y": 40.36,
+            "z": 23.2
+          },
+          "opaquePixels": 9704
+        }
+      ]
+    },
+    {
+      "key": "night",
+      "count": 12,
+      "inputs": {
+        "seed": 303,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-17",
+        "mode": "free"
+      },
+      "light": {
+        "set": "night",
+        "a": 14,
+        "b": 7,
+        "den": 16,
+        "sun": false,
+        "virtualZ": 48,
+        "sunlit": 0,
+        "lamps": 1,
+        "string": true
+      },
+      "season": "autumn",
+      "rain": false,
+      "bounds": {
+        "left": 203.66666666666663,
+        "top": -135.76562500000003,
+        "right": 1371.75,
+        "bottom": 971.8541666666667,
+        "width": 1168.0833333333335,
+        "height": 1107.6197916666667
+      },
+      "surfaces": 1545,
+      "sceneBytes": 14193016,
+      "residentBytes": 14376960,
+      "residents": [
+        {
+          "id": "greyTabby#0",
+          "coat": "greyTabby",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-5",
+          "feet": {
+            "x": 11.5,
+            "y": 125.58,
+            "z": 16.1
+          },
+          "opaquePixels": 8678
+        },
+        {
+          "id": "black#0",
+          "coat": "black",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-3",
+          "feet": {
+            "x": 39,
+            "y": 93.58,
+            "z": 23
+          },
+          "opaquePixels": 9633
+        },
+        {
+          "id": "white#0",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-4",
+          "feet": {
+            "x": 30,
+            "y": 109.8,
+            "z": 21.2
+          },
+          "opaquePixels": 9605
+        },
+        {
+          "id": "calico#0",
+          "coat": "calico",
+          "pose": "loaf",
+          "mirror": false,
+          "slot": "shelf-0",
+          "feet": {
+            "x": 39,
+            "y": 19.58,
+            "z": 26
+          },
+          "opaquePixels": 9382
+        },
+        {
+          "id": "tortie#0",
+          "coat": "tortie",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-1",
+          "feet": {
+            "x": 68,
+            "y": 40.36,
+            "z": 28.2
+          },
+          "opaquePixels": 9751
+        },
+        {
+          "id": "cream#0",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-5",
+          "feet": {
+            "x": 31,
+            "y": 126.58,
+            "z": 27.2
+          },
+          "opaquePixels": 9704
+        },
+        {
+          "id": "siamese#0",
+          "coat": "siamese",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "terrace-3",
+          "feet": {
+            "x": 111,
+            "y": 40.36,
+            "z": 29.2
+          },
+          "opaquePixels": 9575
+        },
+        {
+          "id": "smoke#0",
+          "coat": "smoke",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-0",
+          "feet": {
+            "x": 47,
+            "y": 40.36,
+            "z": 22.2
+          },
+          "opaquePixels": 9656
+        },
+        {
+          "id": "black#1",
+          "coat": "black",
+          "pose": "loaf",
+          "mirror": true,
+          "slot": "shelf-1",
+          "feet": {
+            "x": 39,
+            "y": 58.58,
+            "z": 15.1
+          },
+          "opaquePixels": 8695
+        },
+        {
+          "id": "white#1",
+          "coat": "white",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "chair",
+          "feet": {
+            "x": 21,
+            "y": 85.8,
+            "z": 9.3
+          },
+          "opaquePixels": 7563
+        },
+        {
+          "id": "greyTabby#1",
+          "coat": "greyTabby",
+          "pose": "curl",
+          "mirror": true,
+          "slot": "shelf-2",
+          "feet": {
+            "x": 39,
+            "y": 77.58,
+            "z": 9.1
+          },
+          "opaquePixels": 5040
+        },
+        {
+          "id": "cream#1",
+          "coat": "cream",
+          "pose": "curl",
+          "mirror": false,
+          "slot": "terrace-2",
+          "feet": {
+            "x": 89,
+            "y": 40.36,
+            "z": 23.2
+          },
+          "opaquePixels": 9704
+        }
+      ]
+    }
+  ],
+  "browser": "Chromium /usr/bin/chromium; Playwright; DPR1",
+  "browserClosed": true,
+  "coordinateInvariance": {
+    "allTwelveDatesEightResidents": true,
+    "dayNightTwelveResidents": true
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "baseCommit": "923b40d7c3ef2b9e4fab49d290267f0094a1a9bb",
+  "canonicalEngineSha256": "64752532968aec60ae57aa37e2a9aa1f02ff5e84a9cc180cbd3f192134c5765f",
+  "canonicalSortingOfficeSha256": "b2dd563faa7e8ae40e14169c7f626de0454ae3cb4fc4befbb20e050444c89c66",
+  "releaseBuild": "boxroom-paper-125075d25277",
+  "runtimeImageBytes": 5429710,
+  "bundleBytes": 647360
+}

@@ -1,0 +1,41 @@
+--- geometry-freeze
++++ fixed-release
+@@ -1181,12 +1181,19 @@
+   this.canvas=canvas;this.ctx=canvas.getContext('2d');this.assets=assets;this.dependencies=dependencies;this.images={};this.scene=null;this.bounds=null;this.ambient=0;this.disposed=false;this.preparations=0;this.prepareMs=0;this.decodeMs=0;this.decodedBytes=0;
+   this.scenery=new SceneryCache();this.residents=new BoxRoomResidents();this.pieces=null;this.particles=new Float32Array(32*4);this.frameCosts=new Float64Array(240);this.frameCount=0;this.pieceOptions={ambient:0,motion:true,light:null};
+   this.backdropView={scale:1,tx:0,ty:0,density:1};
++  this.cancelDecode=null;this.disposal=new Promise(resolve=>{this.cancelDecode=resolve;});
+   this.report={bytes:0,decodedBytes:0,sceneBytes:0,viewCacheBytes:0,residentBytes:0,pieceBytes:0,outputBytes:0,preparations:0,prepareMs:0,decodeMs:0,scope:'Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak'};
++ }
++ async decode(image){
++  // A browser may leave image.decode pending after its src is cleared. Owner
++  // disposal must still release the manager's serial load/refresh operation.
++  const decoded=await Promise.race([this.api.decode(image).then(()=>true),this.disposal]);
++  if(!decoded||this.disposed)throw Error('Disposed Loft decode');
+  }
+  async load(api){
+   const start=performance.now();this.api=api;
+   await Promise.all(Object.entries(this.assets).filter(([name,v])=>name!=='special'&&v&&v.src).map(async([name,record])=>{
+-   const image=new Image();this.images[name]=image;image.src=record.src;await api.decode(image);if(this.disposed)throw Error('Disposed Loft load');this.decodedBytes+=image.naturalWidth*image.naturalHeight*4;
++   const image=new Image();this.images[name]=image;image.src=record.src;await this.decode(image);if(this.disposed)throw Error('Disposed Loft load');this.decodedBytes+=image.naturalWidth*image.naturalHeight*4;
+   }));api.check();if(this.disposed)throw Error('Disposed Loft load');
+   this.pieces=new BoxRoomPieces(this.ctx,this.images,this.assets,{BOARDANIM:this.dependencies.BOARDANIM,projection:BoxRoomProjection,selectors:this.dependencies.selectors});this.decodeMs=performance.now()-start;
+  }
+@@ -1198,7 +1205,7 @@
+   // and repeated optional rounds never lose their art or trigger frame loads.
+   if(source&&(source.largeBaskets||source.edgeFlaps?.length)&&!this.images.special){
+    const image=new Image();this.images.special=image;image.src=this.assets.special.src;
+-   await this.api.decode(image);this.api.check();if(this.disposed)throw Error('Disposed optional Loft load');
++   await this.decode(image);this.api.check();if(this.disposed)throw Error('Disposed optional Loft load');
+    this.decodedBytes+=image.naturalWidth*image.naturalHeight*4;this.pieces.prepareSpecial();
+   }
+   const next=BoxRoomScene.prepare(room,{materialsImage:this.images.materials,backdropImage:this.images.backdrop,cartonsImage:this.images.cartons,density:1.25});
+@@ -1239,7 +1246,7 @@
+   const p=this.pieces?.resources?.();r.pieceBytes=typeof p==='number'?p:p?.bytes||p?.carrierBytes||0;r.outputBytes=this.canvas.width*this.canvas.height*4;r.bytes=r.decodedBytes+r.sceneBytes+r.viewCacheBytes+r.residentBytes+r.pieceBytes+r.outputBytes;r.preparations=this.preparations;r.prepareMs=this.prepareMs;r.decodeMs=this.decodeMs;return r;
+  }
+  performance(){const values=Array.from(this.frameCosts.subarray(0,Math.min(this.frameCount,this.frameCosts.length))).sort((a,b)=>a-b);return{frames:this.frameCount,renderMsP50:values[Math.floor(values.length*.5)]||0,renderMsP95:values[Math.floor(values.length*.95)]||0};}
+- dispose(){if(this.disposed)return;this.disposed=true;this.scene?.dispose?.();this.scene=null;this.bounds=null;this.scenery.clear();this.residents.dispose();this.pieces?.dispose?.();this.pieces=null;for(const im of Object.values(this.images))im.src='';this.images={};this.decodedBytes=0;this.frameCosts.fill(0);}
++ dispose(){if(this.disposed)return;this.disposed=true;this.cancelDecode(false);this.scene?.dispose?.();this.scene=null;this.bounds=null;this.scenery.clear();this.residents.dispose();this.pieces?.dispose?.();this.pieces=null;for(const im of Object.values(this.images))im.src='';this.images={};this.decodedBytes=0;this.frameCosts.fill(0);}
+ }
+ root.BoxRoomPaperRenderer=Renderer;
+ })(typeof globalThis!=='undefined'?globalThis:this);

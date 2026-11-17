@@ -1,0 +1,74 @@
+{
+  "before-daily.webp": {
+    "sourceCaptureSha256": "0060e34129bba40c39b1da41c5fd395370976ab1ba8e04b6c4f46dc7a3aa50b9",
+    "sha256": "8b94d84915ad2cb527f195bbc52e9393e832f151008b73441cf41fda68780348",
+    "width": 1440,
+    "height": 1024,
+    "bytes": 160210,
+    "encoding": "WebP quality92, original resolution, no visual retouching"
+  },
+  "before-night.webp": {
+    "sourceCaptureSha256": "232b611ec18c1c62b77e585d01a1ac1bbf36841521794884c1bdae03bfc564bd",
+    "sha256": "5ada7331895a1990b3259140c5ca3822b589cef604380454aa3d97d8cdeb1c70",
+    "width": 1440,
+    "height": 1024,
+    "bytes": 136088,
+    "encoding": "WebP quality92, original resolution, no visual retouching"
+  },
+  "after-daily.webp": {
+    "sourceCaptureSha256": "0c322273421374f61ac463704aa125b70bfe1c2c8255c7ca71eb8468e89ca9d0",
+    "sha256": "2d7af10179212785375993f888945d3b17116567060cccb8bc8fadaa3ad72ca7",
+    "width": 1440,
+    "height": 1024,
+    "bytes": 186056,
+    "encoding": "WebP quality92, original resolution, no visual retouching"
+  },
+  "after-night.webp": {
+    "sourceCaptureSha256": "4b4d38b734359f5f9ac7c4fb59cb4b8057a3f3114dc3d73394491de80010c605",
+    "sha256": "56c1f0a281d02fddf7ac5e096ca9fcb46e1cecd19ccd268b47380289d0dd532a",
+    "width": 1440,
+    "height": 1024,
+    "bytes": 139268,
+    "encoding": "WebP quality92, original resolution, no visual retouching"
+  },
+  "after-maximum.webp": {
+    "sourceCaptureSha256": "3068323ad55bc8b15cfc9a5d23b4eea2696be261cc2cfcc3999ebcfff599b519",
+    "sha256": "d24d4345dff02b9ffb4afdf434ea7abe2475caa0b6d88abe531153499eec54f2",
+    "width": 1488,
+    "height": 1116,
+    "bytes": 169526,
+    "encoding": "WebP quality92, original resolution, no visual retouching"
+  },
+  "after-phone.webp": {
+    "sourceCaptureSha256": "a6ec66a450ccaa1b94b6b8d538044cad66de070b718a5508639cdf144de86b8c",
+    "sha256": "23d17954e1e9e5bcfda2786d484e6f9b4e371b7a2abd9adb58f7e759e85d1d20",
+    "width": 780,
+    "height": 1688,
+    "bytes": 149172,
+    "encoding": "WebP quality92, original resolution, no visual retouching"
+  },
+  "lighting-sheet.webp": {
+    "sourceCaptureSha256": "4973ed7fcebfd0b2d68a0f5a9dbda129a98c62d5eaaae4fd87e20e0776cd5504",
+    "sha256": "ed116f270bc6d211f48592b3bb9e7208e104d2a74dd728d518944973536d4855",
+    "width": 2160,
+    "height": 2620,
+    "bytes": 738676,
+    "encoding": "WebP quality92, original resolution, no visual retouching"
+  },
+  "residents.webp": {
+    "sourceCaptureSha256": "5c6befcba818710911a2a7172a9747ead5f3439e8268ec9d7957101ed80bd5e3",
+    "sha256": "3664ecd96a923e6e78f43c2b519582a22d3437907acf3e9a88bc8453396b55a0",
+    "width": 2880,
+    "height": 1300,
+    "bytes": 402832,
+    "encoding": "WebP quality92, original resolution, no visual retouching"
+  },
+  "selected-concept.webp": {
+    "sourceCaptureSha256": "6b9e28d7377c164d72480a86feb71ea3fee17e4e70ca9791b9deb407dda00cf5",
+    "sha256": "cc2ae1d839cc16a9bce31e222ab12f3b37f5e91ce9bf210540895af5d27be23c",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 465396,
+    "encoding": "WebP quality92, original resolution, no visual retouching"
+  }
+}

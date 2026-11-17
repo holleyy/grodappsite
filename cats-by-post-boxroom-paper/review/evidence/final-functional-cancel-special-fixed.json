@@ -1,0 +1,156 @@
+{
+  "build": "boxroom-paper-125075d25277",
+  "base": "http://127.0.0.1:8775/",
+  "errors": [],
+  "specialRequests": [
+    "http://127.0.0.1:8775/assets/boxroom-paper/special.webp?v=boxroom-paper-125075d25277"
+  ],
+  "common": {
+    "build": "boxroom-paper-125075d25277",
+    "paper": {
+      "active": true,
+      "ready": true,
+      "ambient": 0.13333333333333333,
+      "motion": true,
+      "density": 4,
+      "room": {
+        "seed": 562353078,
+        "w": 5,
+        "h": 5,
+        "date": "2026-11-17",
+        "mode": "daily"
+      },
+      "resources": {
+        "bytes": 63271800,
+        "decodedBytes": 36082688,
+        "sceneBytes": 11513736,
+        "viewCacheBytes": 6082800,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 3113920,
+        "preparations": 1,
+        "prepareMs": 660.8000000007451,
+        "decodeMs": 970.5,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "performance": {
+        "frames": 2,
+        "renderMsP50": 125.90000000037253,
+        "renderMsP95": 125.90000000037253
+      }
+    },
+    "specialRequests": 0
+  },
+  "stage": "complete",
+  "during": {
+    "room": "boxroom",
+    "loftActive": false,
+    "fidelity": {
+      "room": "boxroom",
+      "loading": true,
+      "error": null,
+      "generation": 1,
+      "resources": {
+        "bytes": 63271800,
+        "decodedBytes": 36082688,
+        "sceneBytes": 11513736,
+        "viewCacheBytes": 6082800,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 3113920,
+        "preparations": 1,
+        "prepareMs": 660.8000000007451,
+        "decodeMs": 970.5,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      }
+    }
+  },
+  "next": true,
+  "officeTransitionMs": 3351,
+  "after": {
+    "build": "boxroom-paper-125075d25277",
+    "room": "office",
+    "loft": "undefined",
+    "office": "object",
+    "fidelity": {
+      "room": "office",
+      "loading": false,
+      "error": null,
+      "generation": 3,
+      "resources": {
+        "bytes": 118237312,
+        "buffers": 0,
+        "scope": "architecture, exterior, backdrop, foreground, canal, board and carrier canvas backing estimate, plus ticket and live scenery view caches; excludes decoded images, other caches, live output and process peak"
+      }
+    }
+  },
+  "state": {
+    "room": "office",
+    "pending": false,
+    "id": "1-1"
+  },
+  "optional": {
+    "id": "practice-0-123456",
+    "big": true,
+    "paper": {
+      "active": true,
+      "ready": true,
+      "ambient": 0,
+      "motion": true,
+      "density": 4,
+      "room": {
+        "seed": 123456,
+        "w": 5,
+        "h": 4,
+        "date": "2026-11-17",
+        "mode": "daily"
+      },
+      "resources": {
+        "bytes": 74405156,
+        "decodedBytes": 49419264,
+        "sceneBytes": 10633012,
+        "viewCacheBytes": 5145712,
+        "residentBytes": 4792320,
+        "pieceBytes": 1808192,
+        "outputBytes": 2606656,
+        "preparations": 1,
+        "prepareMs": 701,
+        "decodeMs": 1204.5999999996275,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "performance": {
+        "frames": 2,
+        "renderMsP50": 33.5,
+        "renderMsP95": 33.5
+      }
+    }
+  },
+  "optionalResult": {
+    "mode": "won",
+    "home": 2,
+    "total": 2,
+    "big": 1,
+    "frames": 195,
+    "fidelity": {
+      "room": "boxroom",
+      "loading": false,
+      "error": null,
+      "generation": 5,
+      "resources": {
+        "bytes": 74405156,
+        "decodedBytes": 49419264,
+        "sceneBytes": 10633012,
+        "viewCacheBytes": 5145712,
+        "residentBytes": 4792320,
+        "pieceBytes": 1808192,
+        "outputBytes": 2606656,
+        "preparations": 1,
+        "prepareMs": 701,
+        "decodeMs": 1204.5999999996275,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      }
+    }
+  },
+  "completed": true,
+  "browserClosed": true
+}

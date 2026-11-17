@@ -1,0 +1,444 @@
+{
+  "scope": "Trusted Chromium touch/pinch/resize on frozen build; no Safari device claim. Native clock uses real elapsed time; no simulation state replacement.",
+  "checks": [
+    {
+      "name": "Daily starts",
+      "pass": true
+    },
+    {
+      "name": "Delivery running before gesture",
+      "pass": true
+    },
+    {
+      "name": "Trusted pinch zoom changes camera during delivery",
+      "pass": true,
+      "details": {
+        "before": {
+          "zoom": 3.893617021276596,
+          "zoomCss": 1.946808510638298,
+          "dpr": 2,
+          "x": 0,
+          "y": 0,
+          "framing": "board",
+          "manual": false
+        },
+        "after": {
+          "zoom": 5.451063829787234,
+          "zoomCss": 2.725531914893617,
+          "dpr": 2,
+          "x": 0.11709544697743013,
+          "y": -10.577671977154097,
+          "framing": "board",
+          "manual": true
+        }
+      }
+    },
+    {
+      "name": "Trusted pinch pan changes camera during delivery",
+      "pass": true,
+      "details": {
+        "before": {
+          "zoom": 3.893617021276596,
+          "zoomCss": 1.946808510638298,
+          "dpr": 2,
+          "x": 0,
+          "y": 0,
+          "framing": "board",
+          "manual": false
+        },
+        "after": {
+          "zoom": 5.451063829787234,
+          "zoomCss": 2.725531914893617,
+          "dpr": 2,
+          "x": 0.11709544697743013,
+          "y": -10.577671977154097,
+          "framing": "board",
+          "manual": true
+        }
+      }
+    },
+    {
+      "name": "Rotation retains original placed route",
+      "pass": true
+    },
+    {
+      "name": "Rotation retains active delivery",
+      "pass": true,
+      "details": {
+        "mode": "running",
+        "tick": 3,
+        "camera": {
+          "zoom": 5.451063829787234,
+          "zoomCss": 2.725531914893617,
+          "dpr": 2,
+          "x": 0.11709544697743013,
+          "y": -10.577671977154097,
+          "framing": "board",
+          "manual": true
+        }
+      }
+    },
+    {
+      "name": "Gesture and rotation delivery genuinely wins",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion disables ambient motion",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion keeps native game clock moving",
+      "pass": true,
+      "details": {
+        "before": 0,
+        "after": 3
+      }
+    },
+    {
+      "name": "Reduced motion freezes ambient clock",
+      "pass": true,
+      "details": {
+        "before": 3.5499999999999923,
+        "after": 3.5499999999999923
+      }
+    },
+    {
+      "name": "Grayscale applied without changing board identity",
+      "pass": true
+    },
+    {
+      "name": "No JS errors",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "errors": [],
+  "build": "boxroom-paper-1ec3cf1ba541",
+  "gestureTarget": {
+    "x": 194.6808510638298,
+    "y": 362.95744680851067
+  },
+  "afterGestureState": {
+    "mode": "running",
+    "tick": 2,
+    "suspensions": []
+  },
+  "grayscale": {
+    "flag": true,
+    "state": {
+      "version": 1,
+      "sample": false,
+      "feedback": null,
+      "runID": "web-1794888300786-3",
+      "revision": 51,
+      "lifecycle": {
+        "version": 1,
+        "levelId": "nightshift",
+        "mode": "nightShift",
+        "gamePhase": "running",
+        "presentation": "none",
+        "hasSavedWin": false,
+        "winRecorded": false,
+        "currentWinRecorded": false,
+        "homeState": "not-applicable",
+        "storageStatus": "unknown",
+        "endingSeen": false,
+        "canAdvance": false,
+        "resultReady": false,
+        "canSend": true,
+        "canEdit": true,
+        "canNavigate": true,
+        "actions": {
+          "advance": false,
+          "continue": false,
+          "watchDemo": false,
+          "skip": false,
+          "showCredits": false,
+          "replayEnding": false,
+          "back": false,
+          "send": true,
+          "chapterStory": false,
+          "cancelPresentation": false
+        }
+      },
+      "presentation": "none",
+      "resultReady": false,
+      "canAdvance": false,
+      "canSend": true,
+      "canEdit": true,
+      "resultStars": null,
+      "id": "nightshift",
+      "title": "Night Shift",
+      "li": 0,
+      "room": "boxroom",
+      "board": {
+        "w": 7,
+        "h": 6
+      },
+      "mode": "running",
+      "phase": "running",
+      "paused": true,
+      "tacticalPaused": true,
+      "frozen": false,
+      "suspensions": [],
+      "tray": {
+        "plain": 3,
+        "ginger": 0,
+        "blue": 0
+      },
+      "sel": "plain",
+      "chutes": [],
+      "hinted": false,
+      "attempts": 1,
+      "tickMs": 300,
+      "releaseEvery": 3,
+      "tick": 3,
+      "home": 0,
+      "shift": {
+        "run": {
+          "kind": "random",
+          "seed": 303
+        },
+        "round": 1,
+        "strikes": 0,
+        "phase": "running",
+        "paused": true,
+        "fast": false,
+        "offers": [],
+        "choice": null,
+        "walkies": false,
+        "walkiesFrom": null,
+        "best": 0,
+        "sleepers": 0
+      },
+      "status": "The cats are on their way.",
+      "pending": false,
+      "queue": [
+        {
+          "order": 1,
+          "hatch": 1,
+          "coat": "ginger",
+          "big": false,
+          "size": "small",
+          "status": "travelling",
+          "released": true,
+          "releaseTick": 0,
+          "releasedAt": 0,
+          "releaseEvery": 3,
+          "moveEvery": 1,
+          "tickMs": 300
+        },
+        {
+          "order": 2,
+          "hatch": 1,
+          "coat": "blue",
+          "big": false,
+          "size": "small",
+          "status": "waiting",
+          "released": false,
+          "releaseTick": 3,
+          "releasedAt": null,
+          "releaseEvery": 3,
+          "moveEvery": 1,
+          "tickMs": 300
+        },
+        {
+          "order": 3,
+          "hatch": 1,
+          "coat": "ginger",
+          "big": false,
+          "size": "small",
+          "status": "waiting",
+          "released": false,
+          "releaseTick": 6,
+          "releasedAt": null,
+          "releaseEvery": 3,
+          "moveEvery": 1,
+          "tickMs": 300
+        },
+        {
+          "order": 4,
+          "hatch": 1,
+          "coat": "ginger",
+          "big": false,
+          "size": "small",
+          "status": "waiting",
+          "released": false,
+          "releaseTick": 9,
+          "releasedAt": null,
+          "releaseEvery": 3,
+          "moveEvery": 1,
+          "tickMs": 300
+        },
+        {
+          "order": 5,
+          "hatch": 1,
+          "coat": "ginger",
+          "big": false,
+          "size": "small",
+          "status": "waiting",
+          "released": false,
+          "releaseTick": 12,
+          "releasedAt": null,
+          "releaseEvery": 3,
+          "moveEvery": 1,
+          "tickMs": 300
+        },
+        {
+          "order": 6,
+          "hatch": 1,
+          "coat": "blue",
+          "big": false,
+          "size": "small",
+          "status": "waiting",
+          "released": false,
+          "releaseTick": 15,
+          "releasedAt": null,
+          "releaseEvery": 3,
+          "moveEvery": 1,
+          "tickMs": 300
+        },
+        {
+          "order": 7,
+          "hatch": 1,
+          "coat": "blue",
+          "big": false,
+          "size": "small",
+          "status": "waiting",
+          "released": false,
+          "releaseTick": 18,
+          "releasedAt": null,
+          "releaseEvery": 3,
+          "moveEvery": 1,
+          "tickMs": 300
+        },
+        {
+          "order": 8,
+          "hatch": 1,
+          "coat": "blue",
+          "big": false,
+          "size": "small",
+          "status": "waiting",
+          "released": false,
+          "releaseTick": 21,
+          "releasedAt": null,
+          "releaseEvery": 3,
+          "moveEvery": 1,
+          "tickMs": 300
+        }
+      ],
+      "undo": false,
+      "editable": true,
+      "hatches": [
+        {
+          "x": 193.91975308641975,
+          "y": 178.85802469135803,
+          "dir": "R",
+          "cats": [
+            "ginger",
+            "blue",
+            "ginger",
+            "ginger",
+            "ginger",
+            "blue",
+            "blue",
+            "blue"
+          ],
+          "number": 1
+        }
+      ],
+      "progress": {
+        "version": 5,
+        "levels": {},
+        "unlocked": [],
+        "current": "1-1",
+        "daily": {
+          "2026-11-17": {
+            "attempts": [
+              true
+            ],
+            "hinted": false,
+            "done": true,
+            "stars": {
+              "delivered": true,
+              "tidy": true,
+              "firstPost": true
+            },
+            "turntables": 2,
+            "ticks": 7
+          }
+        },
+        "practice": {
+          "current": "",
+          "records": {},
+          "order": []
+        },
+        "nightShift": {
+          "weeklyBest": {},
+          "allTimeBest": 0,
+          "totalCatsHome": 0
+        }
+      },
+      "collection": [
+        "greyTabby",
+        "black",
+        "white",
+        "cream"
+      ],
+      "daily": null,
+      "practice": null,
+      "camera": {
+        "zoom": 3.765432098765432,
+        "zoomCss": 1.882716049382716,
+        "dpr": 2,
+        "x": 0,
+        "y": 0,
+        "framing": "board",
+        "manual": false
+      },
+      "cursor": {
+        "x": 1,
+        "y": 0,
+        "visible": false,
+        "action": "place",
+        "reason": "Place facing up.",
+        "type": "plain",
+        "dir": "U",
+        "locked": false
+      }
+    },
+    "paper": {
+      "active": true,
+      "ready": true,
+      "ambient": 3.5499999999999923,
+      "motion": false,
+      "density": 4,
+      "room": {
+        "seed": 303,
+        "w": 7,
+        "h": 6,
+        "date": "2026-11-17",
+        "mode": "free"
+      },
+      "resources": {
+        "bytes": 73093352,
+        "decodedBytes": 36082688,
+        "sceneBytes": 14399256,
+        "viewCacheBytes": 10197648,
+        "residentBytes": 4792320,
+        "pieceBytes": 1686336,
+        "outputBytes": 5935104,
+        "preparations": 2,
+        "prepareMs": 322,
+        "decodeMs": 1196.5,
+        "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+      },
+      "performance": {
+        "frames": 156,
+        "renderMsP50": 0.599999999627471,
+        "renderMsP95": 6.300000000745058
+      }
+    }
+  },
+  "completed": true
+}

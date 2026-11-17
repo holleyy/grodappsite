@@ -1,0 +1,288 @@
+{
+  "base": "http://127.0.0.1:8773/",
+  "scope": "Actual root hit targets over editable tile centres; overlay interceptions are reported separately from inverse-picking alignment.",
+  "cases": [],
+  "wrapper": [
+    {
+      "width": 390,
+      "height": 844,
+      "route": "study.html",
+      "controlsPresent": true,
+      "controls": [
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Today’s post",
+          "width": 90,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Practice",
+          "width": 90,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Night Shift",
+          "width": 90,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Explore the room",
+          "width": 90,
+          "height": 46
+        },
+        {
+          "id": "camera",
+          "tag": "BUTTON",
+          "label": "Whole room",
+          "width": 89.25,
+          "height": 44
+        },
+        {
+          "id": "motion",
+          "tag": "BUTTON",
+          "label": "Pause ambience",
+          "width": 89.25,
+          "height": 44
+        },
+        {
+          "id": "greyscale",
+          "tag": "BUTTON",
+          "label": "Greyscale",
+          "width": 89.25,
+          "height": 44
+        },
+        {
+          "id": "controls",
+          "tag": "BUTTON",
+          "label": "Details ⌄",
+          "width": 89.25,
+          "height": 44
+        },
+        {
+          "id": "date",
+          "tag": "INPUT",
+          "label": "",
+          "width": 146,
+          "height": 44
+        },
+        {
+          "id": "weekday",
+          "tag": "SELECT",
+          "label": "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday",
+          "width": 117,
+          "height": 44
+        },
+        {
+          "id": "seed",
+          "tag": "INPUT",
+          "label": "",
+          "width": 130,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Open this room →",
+          "width": 149.546875,
+          "height": 44
+        }
+      ],
+      "undersized": []
+    },
+    {
+      "width": 720,
+      "height": 400,
+      "route": "study.html",
+      "controlsPresent": true,
+      "controls": [
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Today’s post",
+          "width": 85.90625,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Practice",
+          "width": 61.875,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Night Shift",
+          "width": 78.15625,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Explore the room",
+          "width": 110.984375,
+          "height": 44
+        },
+        {
+          "id": "camera",
+          "tag": "BUTTON",
+          "label": "Whole room",
+          "width": 81.28125,
+          "height": 44
+        },
+        {
+          "id": "motion",
+          "tag": "BUTTON",
+          "label": "Pause ambience",
+          "width": 104.1875,
+          "height": 44
+        },
+        {
+          "id": "greyscale",
+          "tag": "BUTTON",
+          "label": "Greyscale",
+          "width": 66.21875,
+          "height": 44
+        },
+        {
+          "id": "controls",
+          "tag": "BUTTON",
+          "label": "Details ⌄",
+          "width": 63.71875,
+          "height": 44
+        },
+        {
+          "id": "date",
+          "tag": "INPUT",
+          "label": "",
+          "width": 146,
+          "height": 44
+        },
+        {
+          "id": "weekday",
+          "tag": "SELECT",
+          "label": "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday",
+          "width": 117,
+          "height": 44
+        },
+        {
+          "id": "seed",
+          "tag": "INPUT",
+          "label": "",
+          "width": 130,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Open this room →",
+          "width": 149.546875,
+          "height": 44
+        }
+      ],
+      "undersized": []
+    },
+    {
+      "width": 1488,
+      "height": 1116,
+      "route": "study.html",
+      "controlsPresent": true,
+      "controls": [
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Today’s post",
+          "width": 111.109375,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Practice",
+          "width": 81.53125,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Night Shift",
+          "width": 101.5625,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Explore the room",
+          "width": 141.96875,
+          "height": 44
+        },
+        {
+          "id": "camera",
+          "tag": "BUTTON",
+          "label": "Whole room",
+          "width": 93.28125,
+          "height": 44
+        },
+        {
+          "id": "motion",
+          "tag": "BUTTON",
+          "label": "Pause ambience",
+          "width": 116.1875,
+          "height": 44
+        },
+        {
+          "id": "greyscale",
+          "tag": "BUTTON",
+          "label": "Greyscale",
+          "width": 78.21875,
+          "height": 44
+        },
+        {
+          "id": "controls",
+          "tag": "BUTTON",
+          "label": "Details ⌄",
+          "width": 75.71875,
+          "height": 44
+        },
+        {
+          "id": "date",
+          "tag": "INPUT",
+          "label": "",
+          "width": 146,
+          "height": 44
+        },
+        {
+          "id": "weekday",
+          "tag": "SELECT",
+          "label": "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday",
+          "width": 117,
+          "height": 44
+        },
+        {
+          "id": "seed",
+          "tag": "INPUT",
+          "label": "",
+          "width": 130,
+          "height": 44
+        },
+        {
+          "id": "",
+          "tag": "BUTTON",
+          "label": "Open this room →",
+          "width": 149.546875,
+          "height": 44
+        }
+      ],
+      "undersized": []
+    }
+  ],
+  "errors": [],
+  "completed": true
+}

@@ -1,0 +1,81 @@
+{
+  "scope": "Pinned synthetic visual fixtures. Canonical BOXROOM.build; 5×4, seed303; no player save/progression edits.",
+  "inputs": {
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/projection.js": {
+      "sha256": "383d2c23f297e849cbc7a6f93fbaa7d46883af2ed9ee5f374489958fba7efe6e",
+      "bytes": 1109
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/layout.js": {
+      "sha256": "6f83f8a584cbe40bf4d557113e1ef44a2cf1fb612b7cd5fbdaaf47ebee2eb9f9",
+      "bytes": 29103
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/materials.js": {
+      "sha256": "739aa4b701ddeab82b85b57475bfbd2947ab0c173697e6a5417f4632aae9192a",
+      "bytes": 7435
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/scene.js": {
+      "sha256": "b3d696446c7852f73f7984d3a7292775a90b2da00fa5613aa5ae1231b903c9be",
+      "bytes": 15880
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/residents.js": {
+      "sha256": "5260ae6cb0a8025a22b927ad7922cfd79a10fee2d9b23cee27c10fb956c883e6",
+      "bytes": 7135
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/assets/materials.webp": {
+      "sha256": "86b815a5f6f4f2d81d1741902d8e09dbe1b66d19fb9cce9b9fc5ccb3f6179692",
+      "bytes": 435456
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/assets/backdrop.webp": {
+      "sha256": "a28f8e1469fb15c31f17cf57af54243b789134f3f51de9fee6242ae67b48f1d9",
+      "bytes": 628846
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/assets/cartons.webp": {
+      "sha256": "c9d97314bfa2bef6cbf1c76171469a13168d43478f3cbf574707cc8e116bd93b",
+      "bytes": 626222
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/assets/residents.webp": {
+      "sha256": "3b31beef1ac47a3208de0cb872001105eb6d398b56481b098fcc2c5a2302ac1e",
+      "bytes": 424336
+    },
+    "/workspace/cosysortie-boxroom-paper/src/fidelity/boxroom-paper/assets/residents.json": {
+      "sha256": "054e740e767c7379e7089c69809fe8ad4b1902915e67ae3fed4b4e61d8e0be76",
+      "bytes": 3727
+    },
+    "/workspace/cosysortie-boxroom-paper/src/sim/18_boxroom.js": {
+      "sha256": "7e417aa67248a4c3d1d158b1759bb315ce8c302835bd951379f04f01b93098b6",
+      "bytes": 47264
+    },
+    "/workspace/cosysortie-boxroom-paper/src/sim/17_daily.js": {
+      "sha256": "f1fa5f0ce2924a28a83150f9343484b6eb8021077b1eead32863a252f6930113",
+      "bytes": 3804
+    },
+    "/workspace/cosysortie-boxroom-paper/src/data/boxroom.json": {
+      "sha256": "1dab736cf7fb9faee4b6a2d64f72ceac05e001f10309905f0d8772ff45ac545d",
+      "bytes": 3757
+    },
+    "snapshot/rooms.json": {
+      "sha256": "9a6cf0ba4a5c15ca7a42e5f0d325291aec5f5ce429eeb47a1cb3ab737d39e809",
+      "bytes": 288795
+    },
+    "cases.json": {
+      "sha256": "cbc37a01623448a1588ff69fa0d43604dfce5b5d68c5e8a2632ad9c4a116f8e4",
+      "bytes": 5796
+    },
+    "index.html": {
+      "sha256": "81124fda17aab55b9c61ffa46c1d7eef91b637822dc3468b82578792fd5ef4d5",
+      "bytes": 4039
+    },
+    "capture.cjs": {
+      "sha256": "8e66203a58cba0cbdfdeaa84519ca405d637a26e42bd670aa917f4c4c01f6cb2",
+      "bytes": 4476
+    },
+    "lighting-sheet.html": {
+      "sha256": "7a226df2372e35cb2b93de38969ca2399d17a3a0879eccb1f6bbeea5fca5e172",
+      "bytes": 3107
+    },
+    "residents.html": {
+      "sha256": "51257517c099791cbb32a8e5cd8676fa1ca1a8e9528cbf8aafe3869d82fe33a2",
+      "bytes": 1028
+    }
+  }
+}

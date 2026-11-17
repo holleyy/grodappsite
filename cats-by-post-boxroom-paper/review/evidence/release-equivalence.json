@@ -1,0 +1,9 @@
+{
+  "qualifiedBuild": "boxroom-paper-1ec3cf1ba541",
+  "publishedBuild": "boxroom-paper-276319cc2c73",
+  "byteIdenticalRuntimeFilesAfterBuildLabelNormalisation": 304,
+  "functionalDifferences": [
+    "study.js"
+  ],
+  "change": "Study defaults Practice to Monday, forwards the selected date and gives an actionable no-route message; engine, room bundle, other room/interface code and runtime artwork have no functional changes."
+}

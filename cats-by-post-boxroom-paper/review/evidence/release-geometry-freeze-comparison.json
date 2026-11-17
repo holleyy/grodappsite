@@ -1,0 +1,11 @@
+{
+  "from": "boxroom-paper-1ec3cf1ba541",
+  "to": "boxroom-paper-125075d25277",
+  "normalization": "Only boxroom-paper build IDs in textual runtime files",
+  "sameCount": 297,
+  "different": [
+    "rooms/boxroom.js",
+    "build.json"
+  ],
+  "missing": []
+}

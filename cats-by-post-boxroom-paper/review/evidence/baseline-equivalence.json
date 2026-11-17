@@ -1,0 +1,392 @@
+[
+  {
+    "path": "game/engine.html",
+    "mainBlob": "8d30239511dfb7f0a8dc7c86aa4b5792b37bf9e1",
+    "normalisedBlob": "8d30239511dfb7f0a8dc7c86aa4b5792b37bf9e1",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/audio.js",
+    "mainBlob": "e7a5953bb1f33912f22b7ad5d990fdd47abec823",
+    "normalisedBlob": "e7a5953bb1f33912f22b7ad5d990fdd47abec823",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/catalogue.js",
+    "mainBlob": "92eeeec1a21c0ee92196bc96b16d904ae36b08de",
+    "normalisedBlob": "92eeeec1a21c0ee92196bc96b16d904ae36b08de",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/chapter-presentation.css",
+    "mainBlob": "ac21b531c84e5ba3b20c6dfcf4c5450e4d980180",
+    "normalisedBlob": "12b87030787876afc6ccf887173381cbaf712319",
+    "sameAfterNamespaceAndBuildLabelOnly": false
+  },
+  {
+    "path": "journey/chapter-presentation.js",
+    "mainBlob": "81051967ef74053c52e669a6c8fba989eebd7167",
+    "normalisedBlob": "81051967ef74053c52e669a6c8fba989eebd7167",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/company-box.css",
+    "mainBlob": "54b9cee03d80ca4139199da7915590ec890f585b",
+    "normalisedBlob": "54b9cee03d80ca4139199da7915590ec890f585b",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/company-box.js",
+    "mainBlob": "b3b421483f4993cea38d212e1d6e5004af5f7165",
+    "normalisedBlob": "b3b421483f4993cea38d212e1d6e5004af5f7165",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/company-model.js",
+    "mainBlob": "b9d4b87b90505de7689f74275860ea5cfe14daa4",
+    "normalisedBlob": "b9d4b87b90505de7689f74275860ea5cfe14daa4",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/LICENSE.txt",
+    "mainBlob": "78c9810819776e135d314adc0ff26eda7bec8b38",
+    "normalisedBlob": "78c9810819776e135d314adc0ff26eda7bec8b38",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/arrow-counter-clockwise.svg",
+    "mainBlob": "5c6b67d9c870c0499f940eb0b0cbb548dda9e4d1",
+    "normalisedBlob": "5c6b67d9c870c0499f940eb0b0cbb548dda9e4d1",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/arrow-down.svg",
+    "mainBlob": "0e7629b6de2322580e8a3712e217b2160aaf9029",
+    "normalisedBlob": "0e7629b6de2322580e8a3712e217b2160aaf9029",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/arrow-left.svg",
+    "mainBlob": "0d0558ab264327028be5cc2443d27f50ef9f4b38",
+    "normalisedBlob": "0d0558ab264327028be5cc2443d27f50ef9f4b38",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/arrow-right-route.svg",
+    "mainBlob": "c54cc2dfea151d6ef68540bf88e7aac781e61bc3",
+    "normalisedBlob": "c54cc2dfea151d6ef68540bf88e7aac781e61bc3",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/arrow-right.svg",
+    "mainBlob": "7ef927ee191294774c75c796cb85311c4a0c01a1",
+    "normalisedBlob": "7ef927ee191294774c75c796cb85311c4a0c01a1",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/arrow-up.svg",
+    "mainBlob": "a8ba45ec7d0a4cd540e226b02d56e3991db23edb",
+    "normalisedBlob": "a8ba45ec7d0a4cd540e226b02d56e3991db23edb",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/book-open.svg",
+    "mainBlob": "2909321dc830018ab3e026b0b7304862e143796e",
+    "normalisedBlob": "2909321dc830018ab3e026b0b7304862e143796e",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/calendar-blank.svg",
+    "mainBlob": "355d17d9dcdb6048f1d17df251e58e55bf8688d8",
+    "normalisedBlob": "355d17d9dcdb6048f1d17df251e58e55bf8688d8",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/caret-right.svg",
+    "mainBlob": "d73dd5d9de441ed68d05ce97f3a714e9f3f69323",
+    "normalisedBlob": "d73dd5d9de441ed68d05ce97f3a714e9f3f69323",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/check.svg",
+    "mainBlob": "04b2e24229662362e380d5b08ed7e5e0498f105c",
+    "normalisedBlob": "04b2e24229662362e380d5b08ed7e5e0498f105c",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/crosshair-simple.svg",
+    "mainBlob": "031709ed095d7555e5c971b07fb25e3017570a2d",
+    "normalisedBlob": "031709ed095d7555e5c971b07fb25e3017570a2d",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/cursor-click.svg",
+    "mainBlob": "d1a5c4558951a9eae688346f482efb153f567283",
+    "normalisedBlob": "d1a5c4558951a9eae688346f482efb153f567283",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/envelope-open.svg",
+    "mainBlob": "4362cfe9cdfd220cfd097bacfa7d8327ea75dc39",
+    "normalisedBlob": "4362cfe9cdfd220cfd097bacfa7d8327ea75dc39",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/gear-six.svg",
+    "mainBlob": "2f6e0ca0de7906c9a6f0a8dbca41821fbe8e65ca",
+    "normalisedBlob": "2f6e0ca0de7906c9a6f0a8dbca41821fbe8e65ca",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/house.svg",
+    "mainBlob": "c31e653e30a4bdf76210d8dfeb2c1fe0a0a80a38",
+    "normalisedBlob": "c31e653e30a4bdf76210d8dfeb2c1fe0a0a80a38",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/images.svg",
+    "mainBlob": "03179c80a91315c3a3096688016f046a1a95741c",
+    "normalisedBlob": "03179c80a91315c3a3096688016f046a1a95741c",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/info.svg",
+    "mainBlob": "96369e212e83162dbeec73592b8220fb709fc980",
+    "normalisedBlob": "96369e212e83162dbeec73592b8220fb709fc980",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/list.svg",
+    "mainBlob": "069628e49456ad482fa8331a31e6e56da613e7be",
+    "normalisedBlob": "069628e49456ad482fa8331a31e6e56da613e7be",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/lock-simple.svg",
+    "mainBlob": "ae560e2bf1d1916197077b7fe5b26a16de713576",
+    "normalisedBlob": "ae560e2bf1d1916197077b7fe5b26a16de713576",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/magnifying-glass-minus.svg",
+    "mainBlob": "89a0d60d591f3b18119d10d62f4c6166d37cd409",
+    "normalisedBlob": "89a0d60d591f3b18119d10d62f4c6166d37cd409",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/magnifying-glass-plus.svg",
+    "mainBlob": "66ed19944c68246ead7fb5c9e6687c33531819c2",
+    "normalisedBlob": "66ed19944c68246ead7fb5c9e6687c33531819c2",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/map-trifold.svg",
+    "mainBlob": "ebbd49cfc8c05086d5a24bf023f43a34cd5a92d0",
+    "normalisedBlob": "ebbd49cfc8c05086d5a24bf023f43a34cd5a92d0",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/moon-stars.svg",
+    "mainBlob": "505c112c3a3c690b23248f5e4bea9517b43bc0b3",
+    "normalisedBlob": "505c112c3a3c690b23248f5e4bea9517b43bc0b3",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/icons/x.svg",
+    "mainBlob": "2ee41d11cce14289f3b444174694acee017a4f9a",
+    "normalisedBlob": "2ee41d11cce14289f3b444174694acee017a4f9a",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/index.html",
+    "mainBlob": "d50d10b72cd1a650d7e5d6cf1717b9a0a2597531",
+    "normalisedBlob": "d50d10b72cd1a650d7e5d6cf1717b9a0a2597531",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/journey-flow.js",
+    "mainBlob": "091908a86d9ee75b7fe42cdd4fe68983aca94bbc",
+    "normalisedBlob": "091908a86d9ee75b7fe42cdd4fe68983aca94bbc",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/journey.css",
+    "mainBlob": "3ebe83d4d6e965a748246848e3cabe0c88b1d8a3",
+    "normalisedBlob": "3ebe83d4d6e965a748246848e3cabe0c88b1d8a3",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/journey.js",
+    "mainBlob": "bdde11f234d6a816d78802080190d4db4f11de13",
+    "normalisedBlob": "bdde11f234d6a816d78802080190d4db4f11de13",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/letter-insert.css",
+    "mainBlob": "aabbbacde2449e253a87e604c2f5afd3f4ac658f",
+    "normalisedBlob": "aabbbacde2449e253a87e604c2f5afd3f4ac658f",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/levels.json",
+    "mainBlob": "fb236213bdcc97784f53bda5c5126698b9cd50f6",
+    "normalisedBlob": "fb236213bdcc97784f53bda5c5126698b9cd50f6",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/map-surface.css",
+    "mainBlob": "277919d8ccda8437855b7427f39f94da9bd31620",
+    "normalisedBlob": "277919d8ccda8437855b7427f39f94da9bd31620",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/menu-system.css",
+    "mainBlob": "862ab70e3ec3c9da977123c551fea3253b9768bc",
+    "normalisedBlob": "862ab70e3ec3c9da977123c551fea3253b9768bc",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/model.js",
+    "mainBlob": "5773d1bb11ea19b4fa7306df50e8f2f506432add",
+    "normalisedBlob": "5773d1bb11ea19b4fa7306df50e8f2f506432add",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/music.js",
+    "mainBlob": "582c019f181f3ed2065f19da7ed253cea091a34f",
+    "normalisedBlob": "582c019f181f3ed2065f19da7ed253cea091a34f",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/office-cat.js",
+    "mainBlob": "be4dbfcbd3bf2fbed94fa2acf0b46713c9dce6cc",
+    "normalisedBlob": "be4dbfcbd3bf2fbed94fa2acf0b46713c9dce6cc",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/paper-motion.js",
+    "mainBlob": "397bbd52a606ec03d868a7eb63413c996475c4d8",
+    "normalisedBlob": "397bbd52a606ec03d868a7eb63413c996475c4d8",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/photo-handling.js",
+    "mainBlob": "f236365eccb766bcfe2973b8ba5561a0dc457519",
+    "normalisedBlob": "f236365eccb766bcfe2973b8ba5561a0dc457519",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/play/app.css",
+    "mainBlob": "ddbde5f7be7fb050b61400fe60f520ffd2ec4a03",
+    "normalisedBlob": "ddbde5f7be7fb050b61400fe60f520ffd2ec4a03",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/play/app.js",
+    "mainBlob": "be71c54967a17760dd7c65cebf4005c456abc4d8",
+    "normalisedBlob": "be71c54967a17760dd7c65cebf4005c456abc4d8",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/play/completion.css",
+    "mainBlob": "c6a8cdfe85ac566c0ea02538f5af42a0ecb6dc5a",
+    "normalisedBlob": "c6a8cdfe85ac566c0ea02538f5af42a0ecb6dc5a",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/play/completion.js",
+    "mainBlob": "445da5d5738f3f7c80981b9362ba8f873a7c62df",
+    "normalisedBlob": "445da5d5738f3f7c80981b9362ba8f873a7c62df",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/play/handoff.js",
+    "mainBlob": "372fd9364f93db790d43ca6c3b71fd905a9fba55",
+    "normalisedBlob": "372fd9364f93db790d43ca6c3b71fd905a9fba55",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/play/hud-model.js",
+    "mainBlob": "0306e120c52d992b5f64ac5aefbcb02ffd8f7c49",
+    "normalisedBlob": "0306e120c52d992b5f64ac5aefbcb02ffd8f7c49",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/play/hud.css",
+    "mainBlob": "f62dc5fb8a528f297ec00472f65ed069a0e8d1b8",
+    "normalisedBlob": "f62dc5fb8a528f297ec00472f65ed069a0e8d1b8",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/play/hud.js",
+    "mainBlob": "cd9aee3c800946a70b2f5bb036344220b6a95d0f",
+    "normalisedBlob": "cd9aee3c800946a70b2f5bb036344220b6a95d0f",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/play/index.html",
+    "mainBlob": "6a1fc063c18319b20dc7a6bd0cae1336b6ce0288",
+    "normalisedBlob": "6a1fc063c18319b20dc7a6bd0cae1336b6ce0288",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/play/model.js",
+    "mainBlob": "00e38ca805415a07c43efdbc75713ab0437a11e5",
+    "normalisedBlob": "00e38ca805415a07c43efdbc75713ab0437a11e5",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/postal-identity.css",
+    "mainBlob": "d520c5426b1197918f376f5b46348ce4e0d88e1e",
+    "normalisedBlob": "d520c5426b1197918f376f5b46348ce4e0d88e1e",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/postal-identity.js",
+    "mainBlob": "ab517d6d1388a35c25438c2ca0b388e2cb7d146f",
+    "normalisedBlob": "ab517d6d1388a35c25438c2ca0b388e2cb7d146f",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/preferences.css",
+    "mainBlob": "19af2243218ebcb1208f1a3575be68a5b9089688",
+    "normalisedBlob": "19af2243218ebcb1208f1a3575be68a5b9089688",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/preferences.js",
+    "mainBlob": "289495d4fdb7272fc49f14397aa3254ef22ea5c4",
+    "normalisedBlob": "289495d4fdb7272fc49f14397aa3254ef22ea5c4",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/start.css",
+    "mainBlob": "689632d23f7c39a0d3e5eddb3e7dd78376545e06",
+    "normalisedBlob": "689632d23f7c39a0d3e5eddb3e7dd78376545e06",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/start.html",
+    "mainBlob": "1736e821b8da820ec69bd11cf4b3aeb61a926afd",
+    "normalisedBlob": "1736e821b8da820ec69bd11cf4b3aeb61a926afd",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/start.js",
+    "mainBlob": "1d1f0c8637b8340c965c768380b72f816d842854",
+    "normalisedBlob": "1d1f0c8637b8340c965c768380b72f816d842854",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/theme.css",
+    "mainBlob": "4ff26367d9b17a89598995629000cce88b52ce84",
+    "normalisedBlob": "4ff26367d9b17a89598995629000cce88b52ce84",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  },
+  {
+    "path": "journey/theme.js",
+    "mainBlob": "024c4a21bd0b4dfb6576aca0174776cdf5af8ebb",
+    "normalisedBlob": "024c4a21bd0b4dfb6576aca0174776cdf5af8ebb",
+    "sameAfterNamespaceAndBuildLabelOnly": true
+  }
+]

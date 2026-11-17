@@ -1,0 +1,30 @@
+{
+  "app": {
+    "pending": true,
+    "engine": "office"
+  },
+  "engine": {
+    "build": "boxroom-paper-1ec3cf1ba541",
+    "elapsedMs": 355798.5,
+    "fidelity": {
+      "room": null,
+      "loading": true,
+      "error": null,
+      "generation": 3,
+      "resources": {
+        "bytes": 0,
+        "buffers": 0
+      }
+    },
+    "loft": "undefined",
+    "office": "undefined",
+    "specialRequests": [
+      {
+        "name": "http://127.0.0.1:8773/assets/boxroom-paper/special.webp?v=boxroom-paper-1ec3cf1ba541",
+        "startTime": 17698.799999998882,
+        "duration": 2126.60000000149,
+        "responseEnd": 19825.400000000373
+      }
+    ]
+  }
+}

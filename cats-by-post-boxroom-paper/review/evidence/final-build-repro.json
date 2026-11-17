@@ -1,0 +1,10 @@
+{
+  "build": "boxroom-paper-1ec3cf1ba541",
+  "files": 314,
+  "repeatedBuildByteIdentical": true,
+  "frozenRuntimeFiles": 307,
+  "frozenRuntimeByteIdentical": true,
+  "manifestSha256": "05d203a4164540861b90a47e49b5571808eaf25cb2f4e6ca2724fe7f323ea0bd",
+  "engineSha256": "bc1df7eee448927b53bcb9a94ad0fd4228b1748438497c27fb8b2a88ed1d545a",
+  "bundleSha256": "6bdd5e071a04f004bc872de1e114009a7d4d6e0b38639a72f7f16fc45155a82a"
+}

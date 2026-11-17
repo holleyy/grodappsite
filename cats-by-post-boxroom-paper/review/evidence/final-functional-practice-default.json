@@ -1,0 +1,108 @@
+{
+  "base": "http://127.0.0.1:8773/",
+  "build": "boxroom-paper-1ec3cf1ba541",
+  "checks": [
+    {
+      "seed": 303,
+      "weekday": 0,
+      "accepted": true,
+      "state": {
+        "build": "boxroom-paper-1ec3cf1ba541",
+        "mode": "edit",
+        "id": "practice-0-303",
+        "practice": {
+          "key": "0:303",
+          "entry": {
+            "seed": 303,
+            "weekday": 0,
+            "tries": 22,
+            "difficulty": 35.5,
+            "stats": {
+              "turntables": 2,
+              "bounces": 0,
+              "cats": 2,
+              "dogs": 1,
+              "solutions": 1,
+              "area": 20,
+              "hatches": 1
+            },
+            "level": {
+              "id": "practice-0-303",
+              "title": "Practice · Monday",
+              "board": {
+                "w": 5,
+                "h": 4,
+                "roomX": 0,
+                "roomY": 0
+              },
+              "timeLimit": 36,
+              "hatches": [
+                {
+                  "x": 2,
+                  "y": 0,
+                  "dir": "D",
+                  "cats": [
+                    "ginger",
+                    "ginger"
+                  ]
+                }
+              ],
+              "baskets": [
+                {
+                  "x": 1,
+                  "y": 3,
+                  "coat": "ginger"
+                }
+              ],
+              "dogs": [
+                {
+                  "x": 2,
+                  "y": 2
+                }
+              ],
+              "solution": [
+                {
+                  "x": 2,
+                  "y": 1,
+                  "type": "plain",
+                  "dir": "L"
+                },
+                {
+                  "x": 1,
+                  "y": 1,
+                  "type": "plain",
+                  "dir": "D"
+                }
+              ],
+              "tray": {
+                "plain": 2,
+                "ginger": 0,
+                "blue": 0
+              },
+              "minTurntables": 2
+            }
+          },
+          "date": "2026-11-17"
+        },
+        "solution": [
+          {
+            "x": 2,
+            "y": 1,
+            "type": "plain",
+            "dir": "L"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "type": "plain",
+            "dir": "D"
+          }
+        ],
+        "room": "boxroom",
+        "pending": false
+      }
+    }
+  ],
+  "errors": [],
+  "completed": true
+}

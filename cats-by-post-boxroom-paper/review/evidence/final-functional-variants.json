@@ -1,0 +1,823 @@
+{
+  "scope": "Explicit opt-in fixture permissions in disposable browser memory only. All level generation uses real bundled Practice worker; all solutions enter through GameBridge select/tap/send. No source, canonical defaults, or saved puzzle state fabricated.",
+  "cases": [
+    {
+      "flags": {
+        "flaps": true
+      },
+      "seed": 123456,
+      "weekday": 0,
+      "errors": [],
+      "specialRequests": [
+        "http://127.0.0.1:8773/assets/boxroom-paper/special.webp?v=boxroom-paper-1ec3cf1ba541"
+      ],
+      "initial": {
+        "build": "boxroom-paper-1ec3cf1ba541",
+        "level": {
+          "id": "practice-0-123456",
+          "title": "Practice · Monday",
+          "board": {
+            "w": 5,
+            "h": 4,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 36,
+          "hatches": [
+            {
+              "x": 3,
+              "y": 0,
+              "dir": "D",
+              "cats": [
+                "blue",
+                "blue"
+              ]
+            }
+          ],
+          "baskets": [],
+          "dogs": [],
+          "solution": [
+            {
+              "x": 3,
+              "y": 1,
+              "type": "plain",
+              "dir": "R"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "type": "plain",
+              "dir": "D"
+            }
+          ],
+          "tray": {
+            "plain": 2,
+            "ginger": 0,
+            "blue": 0
+          },
+          "flaps": [
+            {
+              "x": 4,
+              "y": 3,
+              "side": "D",
+              "coat": "blue"
+            }
+          ],
+          "minTurntables": 2
+        },
+        "room": "boxroom",
+        "fidelity": {
+          "room": "boxroom",
+          "loading": false,
+          "error": null,
+          "generation": 1,
+          "resources": {
+            "bytes": 74405156,
+            "decodedBytes": 49419264,
+            "sceneBytes": 10633012,
+            "viewCacheBytes": 5145712,
+            "residentBytes": 4792320,
+            "pieceBytes": 1808192,
+            "outputBytes": 2606656,
+            "preparations": 1,
+            "prepareMs": 807.7999999988824,
+            "decodeMs": 1620.4000000003725,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          }
+        },
+        "paper": {
+          "active": true,
+          "ready": true,
+          "ambient": 0.18333333333333332,
+          "motion": true,
+          "density": 4,
+          "room": {
+            "seed": 123456,
+            "w": 5,
+            "h": 4,
+            "date": "2026-11-17",
+            "mode": "daily"
+          },
+          "resources": {
+            "bytes": 74405156,
+            "decodedBytes": 49419264,
+            "sceneBytes": 10633012,
+            "viewCacheBytes": 5145712,
+            "residentBytes": 4792320,
+            "pieceBytes": 1808192,
+            "outputBytes": 2606656,
+            "preparations": 1,
+            "prepareMs": 807.7999999988824,
+            "decodeMs": 1620.4000000003725,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          },
+          "performance": {
+            "frames": 4,
+            "renderMsP50": 1.299999998882413,
+            "renderMsP95": 45.59999999962747
+          }
+        }
+      },
+      "result": {
+        "mode": "won",
+        "home": 2,
+        "total": 2,
+        "frames": 139,
+        "flapDelivered": 2,
+        "tunnelUses": [],
+        "big": 0,
+        "gateTrace": 0,
+        "resources": {
+          "bytes": 74405156,
+          "decodedBytes": 49419264,
+          "sceneBytes": 10633012,
+          "viewCacheBytes": 5145712,
+          "residentBytes": 4792320,
+          "pieceBytes": 1808192,
+          "outputBytes": 2606656,
+          "preparations": 1,
+          "prepareMs": 807.7999999988824,
+          "decodeMs": 1620.4000000003725,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "errors": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        }
+      },
+      "pass": true
+    },
+    {
+      "flags": {
+        "points": true
+      },
+      "seed": 123456,
+      "weekday": 0,
+      "errors": [],
+      "specialRequests": [],
+      "initial": {
+        "build": "boxroom-paper-1ec3cf1ba541",
+        "level": {
+          "id": "practice-0-123456",
+          "title": "Practice · Monday",
+          "board": {
+            "w": 5,
+            "h": 4,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 36,
+          "hatches": [
+            {
+              "x": 3,
+              "y": 0,
+              "dir": "D",
+              "cats": [
+                "blue",
+                "blue"
+              ]
+            }
+          ],
+          "baskets": [
+            {
+              "x": 4,
+              "y": 3,
+              "coat": "blue"
+            }
+          ],
+          "dogs": [
+            {
+              "x": 3,
+              "y": 2
+            }
+          ],
+          "solution": [
+            {
+              "x": 3,
+              "y": 1,
+              "type": "plain",
+              "dir": "R"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "type": "plain",
+              "dir": "D"
+            }
+          ],
+          "tray": {
+            "plain": 2,
+            "ginger": 0,
+            "blue": 0
+          },
+          "gates": [
+            {
+              "x": 4,
+              "y": 2,
+              "exits": [
+                "D",
+                "U"
+              ]
+            }
+          ],
+          "minTurntables": 2
+        },
+        "room": "boxroom",
+        "fidelity": {
+          "room": "boxroom",
+          "loading": false,
+          "error": null,
+          "generation": 1,
+          "resources": {
+            "bytes": 60946724,
+            "decodedBytes": 36082688,
+            "sceneBytes": 10633012,
+            "viewCacheBytes": 5145712,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 2606656,
+            "preparations": 1,
+            "prepareMs": 479.09999999962747,
+            "decodeMs": 1500.2999999988824,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          }
+        },
+        "paper": {
+          "active": true,
+          "ready": true,
+          "ambient": 0.16666666666666666,
+          "motion": true,
+          "density": 4,
+          "room": {
+            "seed": 123456,
+            "w": 5,
+            "h": 4,
+            "date": "2026-11-17",
+            "mode": "daily"
+          },
+          "resources": {
+            "bytes": 60946724,
+            "decodedBytes": 36082688,
+            "sceneBytes": 10633012,
+            "viewCacheBytes": 5145712,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 2606656,
+            "preparations": 1,
+            "prepareMs": 479.09999999962747,
+            "decodeMs": 1500.2999999988824,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          },
+          "performance": {
+            "frames": 4,
+            "renderMsP50": 0.7000000011175871,
+            "renderMsP95": 39
+          }
+        }
+      },
+      "result": {
+        "mode": "won",
+        "home": 2,
+        "total": 2,
+        "frames": 159,
+        "flapDelivered": 0,
+        "tunnelUses": [],
+        "big": 0,
+        "gateTrace": 3,
+        "resources": {
+          "bytes": 60946724,
+          "decodedBytes": 36082688,
+          "sceneBytes": 10633012,
+          "viewCacheBytes": 5145712,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 2606656,
+          "preparations": 1,
+          "prepareMs": 479.09999999962747,
+          "decodeMs": 1500.2999999988824,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "errors": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        }
+      },
+      "pass": true
+    },
+    {
+      "flags": {
+        "tunnels": true
+      },
+      "seed": 123456,
+      "weekday": 0,
+      "errors": [],
+      "specialRequests": [],
+      "initial": {
+        "build": "boxroom-paper-1ec3cf1ba541",
+        "level": {
+          "id": "practice-0-123456",
+          "title": "Practice · Monday",
+          "board": {
+            "w": 5,
+            "h": 4,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 36,
+          "hatches": [
+            {
+              "x": 3,
+              "y": 0,
+              "dir": "D",
+              "cats": [
+                "blue",
+                "blue"
+              ]
+            }
+          ],
+          "baskets": [
+            {
+              "x": 4,
+              "y": 3,
+              "coat": "blue"
+            }
+          ],
+          "dogs": [
+            {
+              "x": 3,
+              "y": 2
+            }
+          ],
+          "solution": [
+            {
+              "x": 3,
+              "y": 1,
+              "type": "plain",
+              "dir": "R"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "type": "plain",
+              "dir": "D"
+            }
+          ],
+          "tray": {
+            "plain": 2,
+            "ginger": 0,
+            "blue": 0
+          },
+          "tunnels": [
+            {
+              "a": {
+                "x": 4,
+                "y": 2
+              },
+              "b": {
+                "x": 1,
+                "y": 3
+              },
+              "symbol": "circle"
+            }
+          ],
+          "minTurntables": 2
+        },
+        "room": "boxroom",
+        "fidelity": {
+          "room": "boxroom",
+          "loading": false,
+          "error": null,
+          "generation": 1,
+          "resources": {
+            "bytes": 60946724,
+            "decodedBytes": 36082688,
+            "sceneBytes": 10633012,
+            "viewCacheBytes": 5145712,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 2606656,
+            "preparations": 1,
+            "prepareMs": 526.8000000007451,
+            "decodeMs": 692.1999999992549,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          }
+        },
+        "paper": {
+          "active": true,
+          "ready": true,
+          "ambient": 0.21666666666666665,
+          "motion": true,
+          "density": 4,
+          "room": {
+            "seed": 123456,
+            "w": 5,
+            "h": 4,
+            "date": "2026-11-17",
+            "mode": "daily"
+          },
+          "resources": {
+            "bytes": 60946724,
+            "decodedBytes": 36082688,
+            "sceneBytes": 10633012,
+            "viewCacheBytes": 5145712,
+            "residentBytes": 4792320,
+            "pieceBytes": 1686336,
+            "outputBytes": 2606656,
+            "preparations": 1,
+            "prepareMs": 526.8000000007451,
+            "decodeMs": 692.1999999992549,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          },
+          "performance": {
+            "frames": 4,
+            "renderMsP50": 7,
+            "renderMsP95": 56.79999999888241
+          }
+        }
+      },
+      "result": {
+        "mode": "won",
+        "home": 2,
+        "total": 2,
+        "frames": 231,
+        "flapDelivered": 0,
+        "tunnelUses": [
+          4
+        ],
+        "big": 0,
+        "gateTrace": 0,
+        "resources": {
+          "bytes": 60946724,
+          "decodedBytes": 36082688,
+          "sceneBytes": 10633012,
+          "viewCacheBytes": 5145712,
+          "residentBytes": 4792320,
+          "pieceBytes": 1686336,
+          "outputBytes": 2606656,
+          "preparations": 1,
+          "prepareMs": 526.8000000007451,
+          "decodeMs": 692.1999999992549,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "errors": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        }
+      },
+      "pass": true
+    },
+    {
+      "flags": {
+        "bigCats": true
+      },
+      "seed": 123456,
+      "weekday": 0,
+      "errors": [],
+      "specialRequests": [
+        "http://127.0.0.1:8773/assets/boxroom-paper/special.webp?v=boxroom-paper-1ec3cf1ba541"
+      ],
+      "initial": {
+        "build": "boxroom-paper-1ec3cf1ba541",
+        "level": {
+          "id": "practice-0-123456",
+          "title": "Practice · Monday",
+          "board": {
+            "w": 5,
+            "h": 4,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 36,
+          "hatches": [
+            {
+              "x": 3,
+              "y": 0,
+              "dir": "D",
+              "cats": [
+                "blue",
+                {
+                  "coat": "blue",
+                  "big": true
+                }
+              ]
+            }
+          ],
+          "baskets": [
+            {
+              "x": 4,
+              "y": 3,
+              "coat": "blue"
+            }
+          ],
+          "dogs": [
+            {
+              "x": 3,
+              "y": 2
+            }
+          ],
+          "solution": [
+            {
+              "x": 3,
+              "y": 1,
+              "type": "plain",
+              "dir": "R"
+            },
+            {
+              "x": 4,
+              "y": 1,
+              "type": "plain",
+              "dir": "D"
+            }
+          ],
+          "tray": {
+            "plain": 2,
+            "ginger": 0,
+            "blue": 0
+          },
+          "minTurntables": 2
+        },
+        "room": "boxroom",
+        "fidelity": {
+          "room": "boxroom",
+          "loading": false,
+          "error": null,
+          "generation": 1,
+          "resources": {
+            "bytes": 74405156,
+            "decodedBytes": 49419264,
+            "sceneBytes": 10633012,
+            "viewCacheBytes": 5145712,
+            "residentBytes": 4792320,
+            "pieceBytes": 1808192,
+            "outputBytes": 2606656,
+            "preparations": 1,
+            "prepareMs": 947.0999999996275,
+            "decodeMs": 894.4000000003725,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          }
+        },
+        "paper": {
+          "active": true,
+          "ready": true,
+          "ambient": 0.19999999999999998,
+          "motion": true,
+          "density": 4,
+          "room": {
+            "seed": 123456,
+            "w": 5,
+            "h": 4,
+            "date": "2026-11-17",
+            "mode": "daily"
+          },
+          "resources": {
+            "bytes": 74405156,
+            "decodedBytes": 49419264,
+            "sceneBytes": 10633012,
+            "viewCacheBytes": 5145712,
+            "residentBytes": 4792320,
+            "pieceBytes": 1808192,
+            "outputBytes": 2606656,
+            "preparations": 1,
+            "prepareMs": 947.0999999996275,
+            "decodeMs": 894.4000000003725,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          },
+          "performance": {
+            "frames": 4,
+            "renderMsP50": 0.900000000372529,
+            "renderMsP95": 55.19999999925494
+          }
+        }
+      },
+      "result": {
+        "mode": "won",
+        "home": 2,
+        "total": 2,
+        "frames": 191,
+        "flapDelivered": 0,
+        "tunnelUses": [],
+        "big": 1,
+        "gateTrace": 0,
+        "resources": {
+          "bytes": 74405156,
+          "decodedBytes": 49419264,
+          "sceneBytes": 10633012,
+          "viewCacheBytes": 5145712,
+          "residentBytes": 4792320,
+          "pieceBytes": 1808192,
+          "outputBytes": 2606656,
+          "preparations": 1,
+          "prepareMs": 947.0999999996275,
+          "decodeMs": 894.4000000003725,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "errors": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        }
+      },
+      "pass": true
+    },
+    {
+      "flags": {
+        "flaps": true,
+        "points": true,
+        "tunnels": true,
+        "bigCats": true
+      },
+      "seed": 123456,
+      "weekday": 0,
+      "errors": [],
+      "specialRequests": [
+        "http://127.0.0.1:8773/assets/boxroom-paper/special.webp?v=boxroom-paper-1ec3cf1ba541",
+        "http://127.0.0.1:8773/assets/boxroom-paper/special.webp?v=boxroom-paper-1ec3cf1ba541"
+      ],
+      "initial": {
+        "build": "boxroom-paper-1ec3cf1ba541",
+        "level": {
+          "id": "practice-0-123456",
+          "title": "Practice · Monday",
+          "board": {
+            "w": 5,
+            "h": 4,
+            "roomX": 0,
+            "roomY": 0
+          },
+          "timeLimit": 36,
+          "hatches": [
+            {
+              "x": 2,
+              "y": 0,
+              "dir": "D",
+              "cats": [
+                "ginger",
+                {
+                  "coat": "ginger",
+                  "big": true
+                }
+              ]
+            }
+          ],
+          "baskets": [],
+          "dogs": [
+            {
+              "x": 2,
+              "y": 3
+            }
+          ],
+          "solution": [
+            {
+              "x": 2,
+              "y": 2,
+              "type": "plain",
+              "dir": "R"
+            },
+            {
+              "x": 4,
+              "y": 2,
+              "type": "plain",
+              "dir": "D"
+            }
+          ],
+          "tray": {
+            "plain": 2,
+            "ginger": 0,
+            "blue": 0
+          },
+          "flaps": [
+            {
+              "x": 4,
+              "y": 3,
+              "side": "D",
+              "coat": "ginger"
+            }
+          ],
+          "gates": [
+            {
+              "x": 2,
+              "y": 1,
+              "exits": [
+                "D",
+                "U"
+              ]
+            }
+          ],
+          "tunnels": [
+            {
+              "a": {
+                "x": 3,
+                "y": 2
+              },
+              "b": {
+                "x": 4,
+                "y": 0
+              },
+              "symbol": "circle"
+            }
+          ],
+          "minTurntables": 2
+        },
+        "room": "boxroom",
+        "fidelity": {
+          "room": "boxroom",
+          "loading": false,
+          "error": null,
+          "generation": 1,
+          "resources": {
+            "bytes": 74405156,
+            "decodedBytes": 49419264,
+            "sceneBytes": 10633012,
+            "viewCacheBytes": 5145712,
+            "residentBytes": 4792320,
+            "pieceBytes": 1808192,
+            "outputBytes": 2606656,
+            "preparations": 1,
+            "prepareMs": 640.3999999985099,
+            "decodeMs": 2099.4000000003725,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          }
+        },
+        "paper": {
+          "active": true,
+          "ready": true,
+          "ambient": 0.26666666666666666,
+          "motion": true,
+          "density": 4,
+          "room": {
+            "seed": 123456,
+            "w": 5,
+            "h": 4,
+            "date": "2026-11-17",
+            "mode": "daily"
+          },
+          "resources": {
+            "bytes": 74405156,
+            "decodedBytes": 49419264,
+            "sceneBytes": 10633012,
+            "viewCacheBytes": 5145712,
+            "residentBytes": 4792320,
+            "pieceBytes": 1808192,
+            "outputBytes": 2606656,
+            "preparations": 1,
+            "prepareMs": 640.3999999985099,
+            "decodeMs": 2099.4000000003725,
+            "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+          },
+          "performance": {
+            "frames": 4,
+            "renderMsP50": 21.59999999962747,
+            "renderMsP95": 84
+          }
+        }
+      },
+      "savedReplayIdentical": true,
+      "result": {
+        "mode": "won",
+        "home": 2,
+        "total": 2,
+        "frames": 629,
+        "flapDelivered": 2,
+        "tunnelUses": [
+          4
+        ],
+        "big": 1,
+        "gateTrace": 3,
+        "resources": {
+          "bytes": 66832788,
+          "decodedBytes": 49419264,
+          "sceneBytes": 10633012,
+          "viewCacheBytes": 0,
+          "residentBytes": 4792320,
+          "pieceBytes": 1808192,
+          "outputBytes": 180000,
+          "preparations": 1,
+          "prepareMs": 781.9000000003725,
+          "decodeMs": 945.4000000003725,
+          "scope": "Owned decoded images and canvas backing estimates; excludes canonical engine, JS heap and process peak"
+        },
+        "errors": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        }
+      },
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "completed": true
+}
