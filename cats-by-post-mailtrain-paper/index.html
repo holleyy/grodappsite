@@ -26707,10 +26707,11 @@ return{profile,prepare};
 (function(root){'use strict';
 class Painter{
  constructor(ctx,camera,assets){this.c=ctx;this.cam=camera;this.assets=assets;this.stroke='#65432b40';this.meshMode=false;this.patterns={};this.solids=new Map();if(assets.stockTiles)for(const name of Object.keys(assets.stockTiles))this.patterns[name]=ctx.createPattern(assets.stockTiles[name],'repeat');}
- solid(model,x=0,y=0,z=0){const density=Math.min(3,Math.max(1,this.c.getTransform().a)),scale=this.cam.scale*density;let entry=this.solids.get(model);
+ solid(model,x=0,y=0,z=0,maxScale=Infinity){const density=Math.min(3,Math.max(1,this.c.getTransform().a),maxScale/this.cam.scale),scale=this.cam.scale*density;let entry=this.solids.get(model);
  if(!entry||entry.scale!==scale){const r=MailtrainEngine.raster(model,scale,this.assets),surface=entry?entry.surface:document.createElement('canvas');surface.width=r.width;surface.height=r.height;surface.getContext('2d').putImageData(new ImageData(r.pixels,r.width,r.height),0,0);entry={surface,scale,left:r.left,top:r.top};this.solids.set(model,entry);}
  this.c.drawImage(entry.surface,this.px(x,y)+entry.left/density,this.py(x,y,z)+entry.top/density,entry.surface.width/density,entry.surface.height/density);
  }
+ preparedSolid(model,x=0,y=0,z=0){const e=this.solids.get(model),density=e.scale/this.cam.scale;this.c.drawImage(e.surface,this.px(x,y)+e.left/density,this.py(x,y,z)+e.top/density,e.surface.width/density,e.surface.height/density);}
  px(x,y){return this.cam.x+(x-y)*this.cam.scale;}py(x,y,z){return this.cam.y+((x+y)*.5-z)*this.cam.scale;}
  v(x,y,z,first){if(first)this.c.moveTo(this.px(x,y),this.py(x,y,z));else this.c.lineTo(this.px(x,y),this.py(x,y,z));}
  quad(x,y,z,a,b,d,e,f,g,h,i,j,mat,shade=0){
@@ -27195,6 +27196,79 @@ class Pieces{
 root.MailtrainPieces=Pieces;
 })(globalThis);
 
+/* One solid arch section, translated at the original scenery speed. Its curved
+   soffit and pier reveals connect both facades; a depth bake resolves the vault. */
+(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.MailtrainBridge=factory();})(globalThis,function(){
+'use strict';let model;
+function build(){
+ const faces=[],far=-.1,near=4.8,spring=-3.55,radius=3.1,foot=-26.2,N=32;
+ function face(A,B,C,D,mat='stone',shade=0,tag='wall'){faces.push({v:[A,B,C,D],mat,shade,tag,priority:faces.length});}
+ function rect(x0,x1,y,z0,z1,shade=0,mat='stone',tag='wall'){face([x0,y,z0],[x1,y,z0],[x1,y,z1],[x0,y,z1],mat,shade,tag);}
+ function box(x,y,z,w,d,h,shade=0,tag='pier'){
+  face([x+w,y,z],[x+w,y+d,z],[x+w,y+d,z+h],[x+w,y,z+h],'stone',shade+.13,tag);
+  rect(x,x+w,y+d,z,z+h,shade,'stone',tag);
+  face([x,y,z+h],[x+w,y,z+h],[x+w,y+d,z+h],[x,y+d,z+h],'stone',shade-.08,tag);
+ }
+ // Both facades bound the same opening. The top strips follow the arch exactly.
+ for(const y of [far,near]){
+  const shade=y===far?.24:.035;
+  rect(0,.65,y,foot,.3,shade);rect(6.85,7.5,y,foot,.3,shade);
+  for(let i=0;i<N;i++){const a=Math.PI-i*Math.PI/N,b=Math.PI-(i+1)*Math.PI/N,x0=3.75+radius*Math.cos(a),x1=3.75+radius*Math.cos(b),z0=spring+radius*Math.sin(a),z1=spring+radius*Math.sin(b);
+   face([x0,y,z0],[x1,y,z1],[x1,y,.3],[x0,y,.3],'stone',shade);
+  }
+ }
+ // The tunnel is genuinely 4.9 units deep; darker material sits under the vault.
+ for(let i=0;i<N;i++){const a=Math.PI-i*Math.PI/N,b=Math.PI-(i+1)*Math.PI/N,x0=3.75+radius*Math.cos(a),x1=3.75+radius*Math.cos(b),z0=spring+radius*Math.sin(a),z1=spring+radius*Math.sin(b);
+  face([x0,far,z0],[x1,far,z1],[x1,near,z1],[x0,near,z0],'stone',.65,'soffit');
+  for(let course=0;course<7;course++){const y0=far+course*.7+.012,y1=y0+.676,u=.014,v=.986;
+   face([x0+(x1-x0)*u,y0,z0+(z1-z0)*u],[x0+(x1-x0)*v,y0,z0+(z1-z0)*v],[x0+(x1-x0)*v,y1,z0+(z1-z0)*v],[x0+(x1-x0)*u,y1,z0+(z1-z0)*u],'stone',.32+.18*Math.sin((a+b)/2)+(course%2)*.025,'vault-course');
+  }
+ }
+ face([.65,far,foot],[.65,near,foot],[.65,near,spring],[.65,far,spring],'stone',.38,'reveal');
+ face([6.85,near,foot],[6.85,far,foot],[6.85,far,spring],[6.85,near,spring],'stone',.46,'reveal');
+ // Scored reveal courses give the inner pier wall a scale and a clear receding axis.
+ for(let row=0;row<Math.ceil((spring-foot-.42)/.48);row++)for(let col=0;col<7;col++){
+  const z0=foot+.42+row*.48+.012,z1=Math.min(spring,z0+.456),y0=far+col*.7+.012,y1=y0+.676;if(z1<=z0)continue;
+  face([.65,y0,z0],[.65,y1,z0],[.65,y1,z1],[.65,y0,z1],'stone',.31+(row%3)*.025,'reveal-course');
+ }
+ // Recessed scored joints follow the masonry, stopping at the curved opening.
+ const mortar='#997660',joint=.018;
+ function opening(z){return z<spring?radius:z>spring+radius?0:Math.sqrt(radius*radius-(z-spring)*(z-spring));}
+ for(let row=0;row<Math.ceil((.16-foot-.58)/.46);row++){
+  const z=.16-row*.46,hole=opening(z),lo=hole?3.75-hole:7.5,hi=hole?3.75+hole:7.5;
+  rect(0,lo,near+.003,z,z+joint,0,mortar,'joint');if(hole)rect(hi,7.5,near+.003,z,z+joint,0,mortar,'joint');
+  for(let col=0;col<10;col++){const x=col*.83+(row%2)*.415;if(x>=7.5)continue;const arc=Math.abs(x-3.75)<radius?spring+Math.sqrt(radius*radius-(x-3.75)*(x-3.75)):foot;
+   const bottom=Math.max(foot+.58,z-.46+joint,arc);if(bottom<z)rect(x,x+joint,near+.004,bottom,z,0,mortar,'joint');
+  }
+ }
+ // Individually cut facing stones: extruded wedges with lit card edges.
+ const inner=3.1,outer=3.47,front=near+.23,count=17;
+ for(let i=0;i<count;i++){
+  const a=i*Math.PI/count+.005,b=(i+1)*Math.PI/count-.005,shade=(i%4)*.026-.2;
+  const A=[3.75+inner*Math.cos(a),front,spring+inner*Math.sin(a)],B=[3.75+inner*Math.cos(b),front,spring+inner*Math.sin(b)],C=[3.75+outer*Math.cos(b),front,spring+outer*Math.sin(b)],D=[3.75+outer*Math.cos(a),front,spring+outer*Math.sin(a)];
+  face(A,B,C,D,'stone',shade,'arch-stone');
+  face([A[0],near,A[2]],[B[0],near,B[2]],B,A,'stone',.24,'arch-edge');
+  face(D,C,[C[0],near,C[2]],[D[0],near,D[2]],'stone',-.14,'arch-edge');
+  face(B,[B[0],near,B[2]],[C[0],near,C[2]],C,'stone',.19,'arch-edge');
+ }
+ // Tall connected piers descend behind the existing near bank and lower crop.
+ // Their foundations never hang in front of the distant trees or upper riverbank.
+ for(let row=0;row<Math.ceil((spring-foot-.42)/.48);row++){const z=Math.max(foot+.42,spring-.48*(row+1)),top=spring-.48*row-.025;if(top<=z)continue;for(const x of [0,6.85])box(x,near,z,.65,.09,top-z,(row%3)*.025-.035,'pier-course');}
+ for(const x of [0,6.85]){box(x,far-.16,foot,.65,5.22,.42,.12,'footing');box(x,near-.02,foot+.42,.65,.24,.16,.06,'footing');}
+ // A two-layer cap carries the unchanged sleepers; the lower edge casts a narrow shadow.
+ box(0,far-.14,.02,7.5,5.18,.15,.2,'ledge-shadow');
+ box(0,far-.2,.17,7.5,5.3,.15,-.09,'cap');
+ face([0,far-.2,.32],[7.5,far-.2,.32],[7.5,near+.2,.32],[0,near+.2,.32],'cream',.13,'cap-top');
+ rect(0,7.5,near+.2,.17,.32,.09,'cream','cap-edge');
+ for(let x=0;x<7.5;x+=.75)rect(x,x+.014,near+.2,.175,.32,.05,mortar,'cap-joint');
+ for(const f of faces)f.v=f.v.map(v=>[v[0]*1.6,v[1],v[2]]);
+ return {faces,period:12,far,near,foot,radius,spring};
+}
+function prepare(p){if(!model)model=build();p.c.save();p.c.globalAlpha=0;p.solid(model,0,0,0,96);p.c.restore();}
+function draw(p,distance){const shift=((distance%12)+12)%12;for(let i=-5;i<8;i++)p.preparedSolid(model,i*12+shift);}
+return {build,prepare,draw};
+});
+
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.MailtrainLife=factory();})(globalThis,function(){
 'use strict';const state={},lighting={};const mod=(v,m)=>((v%m)+m)%m;
 function sample(frame,motion,o){const f=motion?frame:0,d=f/30,phase=mod(f,2880);o.distance=d;o.sleeper=mod(d,.8);o.arch=mod(d,6);o.wheelAngle=d/.7;o.workerZ=3.1;o.workerY=.35;o.workerX=6.5;o.mirror=false;o.workerSheet='worker';
@@ -27216,10 +27290,6 @@ function details(p,f){
  c.save();c.strokeStyle='#fff2d7';c.lineWidth=Math.max(.5,s*.009);
  for(let i=0;i<3;i++){const age=mod(t*.45+i/3,1);c.globalAlpha=.15*Math.sin(age*Math.PI);c.beginPath();for(let j=0;j<9;j++){const u=j/8,zz=4.56+age*.48+u*.22,xx=1.8+Math.sin(age*5+u*3)*.045*u;p.v(xx,-.37,zz,j===0);}c.stroke();}c.restore();
 }
-function arch(p,x,y){const c=p.c;c.beginPath();p.v(x,y,.3,true);p.v(x+6,y,.3);p.v(x+6,y,-5.7);p.v(x,y,-5.7);c.closePath();p.v(x+.65,y,-5.7,true);p.v(x+.65,y,-2.8);for(let i=0;i<=20;i++){const a=Math.PI-i*Math.PI/20;p.v(x+3+2.35*Math.cos(a),y,-2.8+2.35*Math.sin(a));}p.v(x+5.35,y,-5.7);c.closePath();c.fillStyle=y>0?'#bd8b6c':'#956c5b';c.fill('evenodd');c.save();c.clip('evenodd');c.fillStyle=p.patterns.stone;c.fill();for(let row=0;row<10;row++){const zz=-.25-row*.56;p.line(x,y,zz,x+6,y,zz,'#a1765b60',.018);for(let k=0;k<6;k++){const xx=x+k+(row%2)*.5;p.line(xx,y,zz,xx,y,zz-.56,'#a1765b50',.015);}}c.restore();
- for(let j=0;j<10;j++){const a=j*Math.PI/10,b=(j+1)*Math.PI/10;p.quad(x+3+2.38*Math.cos(a),y,-2.8+2.38*Math.sin(a),x+3+2.38*Math.cos(b),y,-2.8+2.38*Math.sin(b),x+3+2.72*Math.cos(b),y,-2.8+2.72*Math.sin(b),x+3+2.72*Math.cos(a),y,-2.8+2.72*Math.sin(a),'stone',.1);}
- for(let row=0;row<5;row++)for(let col=0;col<3;col++){const xx=x+col*.21,zz=-2.75-row*.58;p.quad(xx,y,zz,xx+.2,y,zz,xx+.2,y,zz-.55,xx,y,zz-.55,'stone',row%2*.04);}
- for(let j=0;j<6;j++)p.quad(x+j,y,.3,x+j+.98,y,.3,x+j+.98,y,-.2,x+j,y,-.2,'stone');}
 function wheel(p,x,y,angle,r=.7,z=1.4){const c=p.c;c.beginPath();for(let i=0;i<=24;i++){const a=i*Math.PI/12;p.v(x+Math.cos(a)*r,y,z+Math.sin(a)*r,i===0);}c.closePath();c.fillStyle='#293c3e';c.fill();c.strokeStyle='#b19c75';c.lineWidth=p.cam.scale*.10;c.stroke();for(let i=0;i<6;i++){const a=angle+i*Math.PI/3;p.line(x,y,z,x+Math.cos(a)*r*.83,y,z+Math.sin(a)*r*.83,'#a6a38b',.045);}p.line(x-.08,y,z,x+.08,y,z,'#e9ca90',.15);}
 function background(p,f){sample(f.chapterMode==='station'?0:f.worldFrame,true,state);const c=p.c,W=f.viewport.width,H=f.viewport.height,im=p.assets.countryside.image,iw=Math.max(W,H*1.5),shift=mod(state.distance*1.7,iw);c.drawImage(im,shift-iw,-H*.18,iw,H*1.18);c.drawImage(im,shift,-H*.18,iw,H*1.18);
  if(f.level.board.w>=10){c.fillStyle='#27345a';c.globalAlpha=f.level.board.h===4?.52:.24;c.fillRect(0,0,W,H);c.globalAlpha=1;}}
@@ -27237,10 +27307,8 @@ function couplings(p,f,form){const shunt=f.chapterMode==='station'&&f.stationSta
 }
 function world(p,f,form){sample(f.chapterMode==='station'?0:f.worldFrame,true,state);
  if(f.chapterMode==='station')station(p);
- // Both bridge edges repeat continuously; the camera follows the train, not the masonry.
- for(let i=-5;i<8;i++)arch(p,i*6+state.arch,-.1);
- p.plane(-35,-.1,.32,90,4.9,'#bba08a');
- for(let i=-5;i<8;i++)arch(p,i*6+state.arch,4.8);
+ // The prepared solid vault repeats beneath the train without changing its cadence.
+ MailtrainBridge.draw(p,state.distance);
  for(let i=-40;i<80;i++){const x=i*.8+state.sleeper;p.box(x,.05,.34,.23,4.3,.14,'#7b6552');}
  p.box(-35,.665,.48,90,.07,.22,'#c9c6ab','#5e6b65');p.box(-35,3.665,.48,90,.07,.22,'#c9c6ab','#5e6b65');
  couplings(p,f,form);
@@ -27293,7 +27361,7 @@ function create({canvas,assets,BOARDANIM}){
  const extra=f.level.room==='train'&&f.level.board.w===10;invalid=false;prev.level=f.level;prev.w=f.viewport.width;prev.h=f.viewport.height;prev.d=f.viewport.dpr;prev.bottom=f.insets.bottom;prev.right=f.insets.right;prev.mode=actualMode;prev.chapter=f.chapterMode;
  form=MailtrainArchitecture.formation(extra);shunt=f.chapterMode==='station'&&f.stationStage===2;fitCameras(f,actualMode);
  const d=f.viewport.dpr,w=Math.round(f.viewport.width*d),h=Math.round(f.viewport.height*d);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}layer.width=w;layer.height=h;tail.width=w;tail.height=h;lc.setTransform(d,0,0,d,0,0);lc.clearRect(0,0,w/d,h/d);tc.setTransform(d,0,0,d,0,0);
- MailtrainArchitecture.draw(lp,extra,attachments,'head');MailtrainArchitecture.draw(tp,extra,attachments,'tail');MailtrainLife.light(lp,f.level);MailtrainLife.light(tp,f.level,false);prepareProps(f);
+ MailtrainArchitecture.draw(lp,extra,attachments,'head');MailtrainArchitecture.draw(tp,extra,attachments,'tail');MailtrainLife.light(lp,f.level);MailtrainLife.light(tp,f.level,false);prepareProps(f);c.setTransform(d,0,0,d,0,0);MailtrainBridge.prepare(p);
  const x=1+(f.level.board.roomX||0),y=.8+(f.level.board.roomY||0),B=f.level.board;lp.plane(x-.055,y-.055,3.115,B.w+.11,B.h+.11,'brass');
  for(let row=0;row<B.h;row++)for(let col=0;col<B.w;col++)lp.plane(x+col+.012,y+row+.012,3.125,.976,.976,'slate',((row+col)&1)?-.04:.02);
  for(let col=0;col<B.w;col++)lp.text(x+col+.5,y+B.h+.14,3.125,String(col+1),.12,'#edd6ad');

@@ -1,0 +1,55 @@
+{
+  "url": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/",
+  "images": [
+    {
+      "src": "viaduct/before-arch-close.jpg",
+      "width": 1440
+    },
+    {
+      "src": "viaduct/after-arch-close.jpg",
+      "width": 1440
+    },
+    {
+      "src": "viaduct/after-5-4-journey.jpg",
+      "width": 1440
+    },
+    {
+      "src": "viaduct/after-5-8-journey.jpg",
+      "width": 1440
+    }
+  ],
+  "videos": [
+    {
+      "src": "viaduct/5-1-journey.webm",
+      "duration": 6.083
+    },
+    {
+      "src": "viaduct/5-15-journey.webm",
+      "duration": 6.083
+    }
+  ],
+  "links": [
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/?level=5-15",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/review/facing.html",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/review/polish.html",
+      "status": 200
+    },
+    {
+      "href": "http://127.0.0.1:8804/cats-by-post-mailtrain-paper/source.zip",
+      "status": 200
+    }
+  ],
+  "overflow": false,
+  "errors": []
+}

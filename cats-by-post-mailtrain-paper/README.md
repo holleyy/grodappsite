@@ -4,14 +4,14 @@
 · [Latest review](review/) · [Room source and integration handover](source.zip).
 
 All 15 existing deliveries, their four board sizes and chapter presentations.
-The latest correction supplies front-facing walking steps for the worker.
+The latest refinement gives the viaduct solid vaults and layered paper masonry.
 The prior visual sweep includes 89 desktop/portrait/landscape views, rigid card
 folding, foreground furniture depth, a complete courier departure and the full
 tea routine. Previous arrival and atmosphere galleries remain linked.
 
 Use Delivery to select any board, Journey view for the complete train, and
 Review → Fill original solution for a demonstration. Maximum board: `?level=5-15`.
-This correction passes 42 room regressions and exact-package phone-size
+This correction passes 47 room regressions and exact-package phone-size
 touch/save/HUD checks. The previous whole-journey checkpoint passed all 15
 canonical wins and 1,380 cell picks. This study retains original
 rules, levels, timing and save serialization in a private study namespace.

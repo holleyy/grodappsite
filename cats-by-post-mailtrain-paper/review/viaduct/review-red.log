@@ -1,0 +1,33 @@
+✔ viaduct openings have a vaulted underside spanning the full track width (23.29495ms)
+✔ arch facing stones have real projected thickness and piers have deeper footings (11.058946ms)
+✔ bridge sections join at eight units while keeping original travel speed (208.18162ms)
+✔ facing wedges stay inside their arch bay without extending across the next opening (13.596081ms)
+✖ masonry joints stop at the pier footing instead of floating over the river (14.453654ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 402.776441
+
+✖ failing tests:
+
+test at tests/mailtrain-paper-viaduct.test.js:31:1
+✖ masonry joints stop at the pier footing instead of floating over the river (14.453654ms)
+  AssertionError [ERR_ASSERTION]: unsupported joint below footing: -6.74
+      at TestContext.<anonymous> (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-viaduct.test.js:33:48)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

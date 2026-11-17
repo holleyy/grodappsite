@@ -1,0 +1,47 @@
+✖ viaduct openings have a vaulted underside spanning the full track width (15.912705ms)
+✖ arch facing stones have real projected thickness and piers have deeper footings (7.359473ms)
+✔ bridge geometry repeats exactly after its original six-unit travel period (18.687399ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 164.666916
+
+✖ failing tests:
+
+test at tests/mailtrain-paper-viaduct.test.js:12:1
+✖ viaduct openings have a vaulted underside spanning the full track width (15.912705ms)
+  AssertionError [ERR_ASSERTION]: the arch has no recessed curved underside
+      at TestContext.<anonymous> (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-viaduct.test.js:14:2)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/mailtrain-paper-viaduct.test.js:16:1
+✖ arch facing stones have real projected thickness and piers have deeper footings (7.359473ms)
+  AssertionError [ERR_ASSERTION]: arch ring is still painted on the wall plane
+      at TestContext.<anonymous> (/workspace/cosysortie-mailtrain/tests/mailtrain-paper-viaduct.test.js:18:2)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
