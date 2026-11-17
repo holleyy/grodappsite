@@ -1,0 +1,1292 @@
+{
+  "before": {
+    "pin": {
+      "label": "before",
+      "commit": "24a086d2d0036ba3c8d1dfa408f6c7166fa88cb9",
+      "build": "web-ed1ccc22b4e9",
+      "engineSha256": "207392c309bd8b5eeb6f53fa497f4d72003c15673eafddcc233f292fd846bb22",
+      "rooms": {
+        "office": "sorting-office-paper-de889dad5105",
+        "depot": "depot-contact-3f9fc92684",
+        "train": "train-craft-f20d6f0108",
+        "cityhall": "cityhall-fidelity-527093ea02",
+        "parcel": "parcel-fidelity-32d74bd062",
+        "christmas": "christmas-polish-6fe82d9bab"
+      }
+    },
+    "chromiumVersion": "151.0.7922.173",
+    "results": [
+      {
+        "room": "office",
+        "title": "Sorting Office",
+        "id": "1-4",
+        "build": "web-ed1ccc22b4e9",
+        "time": 600,
+        "tray": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 0
+        },
+        "chutes": [],
+        "board": {
+          "w": 5,
+          "h": 3,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 473.48672566371675,
+            "y": 342.16814159292034,
+            "dir": "R",
+            "cats": [
+              "ginger",
+              "blue"
+            ],
+            "number": 1
+          }
+        ],
+        "camera": {
+          "zoom": 1.8495575221238936,
+          "zoomCss": 1.8495575221238936,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "office",
+        "night": false,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "before-office.webp",
+          "bytes": 98554,
+          "sha256": "540e5ec22251baa936850a495a94e5637c2bad7043ed6f33ca0e0ef85590b1a7"
+        },
+        "roomBuild": "sorting-office-paper-de889dad5105"
+      },
+      {
+        "room": "depot",
+        "title": "Town Depot",
+        "id": "4-15",
+        "build": "web-ed1ccc22b4e9",
+        "time": 600,
+        "tray": {
+          "plain": 1,
+          "ginger": 0,
+          "blue": 0
+        },
+        "chutes": [],
+        "board": {
+          "w": 7,
+          "h": 5,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 543.9148936170213,
+            "y": 371.8936170212766,
+            "dir": "D",
+            "cats": [
+              "ginger",
+              "blue",
+              "ginger",
+              "blue"
+            ],
+            "number": 1
+          },
+          {
+            "x": 386.63829787234044,
+            "y": 398.1063829787234,
+            "dir": "U",
+            "cats": [
+              "ginger",
+              "blue",
+              "ginger",
+              "blue"
+            ],
+            "number": 2
+          },
+          {
+            "x": 334.21276595744683,
+            "y": 371.8936170212766,
+            "dir": "U",
+            "cats": [
+              "ginger",
+              "blue",
+              "ginger",
+              "blue"
+            ],
+            "number": 3
+          }
+        ],
+        "camera": {
+          "zoom": 1.6382978723404256,
+          "zoomCss": 1.6382978723404256,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "depot",
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "before-depot.webp",
+          "bytes": 218422,
+          "sha256": "fa35a4a1713ec4f5b65c1f90d5b2d8383bcd47ec4347c4adb757331ee3a19ca3"
+        },
+        "roomBuild": "depot-contact-3f9fc92684",
+        "motion": {
+          "frames": 24,
+          "step": 1,
+          "ticksPerFrame": 10,
+          "viewport": [
+            960,
+            640
+          ],
+          "chutes": 1
+        }
+      },
+      {
+        "room": "train",
+        "title": "Valley Mail",
+        "id": "5-11",
+        "build": "web-ed1ccc22b4e9",
+        "time": 600,
+        "tray": {
+          "plain": 0,
+          "ginger": 1,
+          "blue": 1
+        },
+        "chutes": [],
+        "board": {
+          "w": 10,
+          "h": 3,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 513.3333333333333,
+            "y": 337.08888888888885,
+            "dir": "D",
+            "cats": [
+              "ginger",
+              "blue",
+              "ginger"
+            ],
+            "number": 1
+          },
+          {
+            "x": 458.5777777777778,
+            "y": 364.46666666666664,
+            "dir": "U",
+            "cats": [
+              "blue",
+              "ginger"
+            ],
+            "number": 2
+          }
+        ],
+        "camera": {
+          "zoom": 1.711111111111111,
+          "zoomCss": 1.711111111111111,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "train",
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "before-train.webp",
+          "bytes": 134344,
+          "sha256": "7c9a07a4c146e8426fa08202073b424a14f7f72efc84abbe49acd526dab1a7f2"
+        },
+        "roomBuild": "train-craft-f20d6f0108"
+      },
+      {
+        "room": "cityhall",
+        "title": "Civic Mail Hall",
+        "id": "6-15",
+        "build": "web-ed1ccc22b4e9",
+        "time": 600,
+        "tray": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 0
+        },
+        "chutes": [],
+        "board": {
+          "w": 8,
+          "h": 6,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 449.41971830985915,
+            "y": 350.512676056338,
+            "dir": "R",
+            "cats": [
+              "ginger",
+              "blue"
+            ],
+            "number": 1
+          },
+          {
+            "x": 643.7633802816902,
+            "y": 447.6845070422534,
+            "dir": "L",
+            "cats": [
+              "blue",
+              "ginger"
+            ],
+            "number": 2
+          },
+          {
+            "x": 616,
+            "y": 433.80281690140845,
+            "dir": "D",
+            "cats": [
+              "ginger",
+              "blue"
+            ],
+            "number": 3
+          }
+        ],
+        "camera": {
+          "zoom": 1.7352112676056337,
+          "zoomCss": 1.7352112676056337,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "cityhall",
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "before-cityhall.webp",
+          "bytes": 137656,
+          "sha256": "a6325c174f7229273e2e7ab86232d6d4aec8c50fc773d93321c1c0f9975ee889"
+        },
+        "roomBuild": "cityhall-fidelity-527093ea02"
+      },
+      {
+        "room": "parcel",
+        "title": "Parcel Room",
+        "id": "7-15",
+        "build": "web-ed1ccc22b4e9",
+        "time": 600,
+        "tray": {
+          "plain": 0,
+          "ginger": 0,
+          "blue": 1
+        },
+        "chutes": [],
+        "board": {
+          "w": 9,
+          "h": 7,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 388.6219081272085,
+            "y": 339.0106007067138,
+            "dir": "R",
+            "cats": [
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "blue",
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "blue",
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "blue",
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "blue"
+            ],
+            "number": 1
+          },
+          {
+            "x": 626.756183745583,
+            "y": 431.6183745583038,
+            "dir": "L",
+            "cats": [
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "ginger",
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "ginger",
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "ginger"
+            ],
+            "number": 2
+          }
+        ],
+        "camera": {
+          "zoom": 1.6537102473498233,
+          "zoomCss": 1.6537102473498233,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "parcel",
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "before-parcel.webp",
+          "bytes": 142286,
+          "sha256": "0cdfe44429cebf688b5c0827e79fa2e6a674be2d58446563d0986577d10ff509"
+        },
+        "roomBuild": "parcel-fidelity-32d74bd062"
+      },
+      {
+        "room": "christmas",
+        "title": "Christmas Night Mail",
+        "id": "8-15",
+        "build": "web-ed1ccc22b4e9",
+        "time": 600,
+        "tray": {
+          "plain": 3,
+          "ginger": 0,
+          "blue": 0
+        },
+        "chutes": [],
+        "board": {
+          "w": 10,
+          "h": 8,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 555.8251928020566,
+            "y": 368.9665809768638,
+            "dir": "D",
+            "cats": [
+              "ginger",
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "blue",
+              "ginger",
+              "blue",
+              {
+                "coat": "blue",
+                "big": true
+              },
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "ginger"
+            ],
+            "number": 1
+          },
+          {
+            "x": 530.4884318766067,
+            "y": 381.6349614395887,
+            "dir": "D",
+            "cats": [
+              "blue",
+              "ginger",
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "ginger",
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "blue",
+              {
+                "coat": "blue",
+                "big": true
+              }
+            ],
+            "number": 2
+          },
+          {
+            "x": 505.15167095115686,
+            "y": 394.30334190231366,
+            "dir": "D",
+            "cats": [
+              {
+                "coat": "blue",
+                "big": true
+              },
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "ginger",
+              "ginger",
+              "blue",
+              "ginger",
+              "ginger",
+              {
+                "coat": "ginger",
+                "big": true
+              }
+            ],
+            "number": 3
+          },
+          {
+            "x": 378.46786632390746,
+            "y": 356.29820051413884,
+            "dir": "R",
+            "cats": [
+              "blue",
+              "blue",
+              "blue",
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              {
+                "coat": "blue",
+                "big": true
+              },
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "blue"
+            ],
+            "number": 4
+          }
+        ],
+        "camera": {
+          "zoom": 1.583547557840617,
+          "zoomCss": 1.583547557840617,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "christmas",
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "before-christmas.webp",
+          "bytes": 147964,
+          "sha256": "ce4e09719ff510dd72a605dcf0b886446e2e8213080f7a79c2207488198b35c9"
+        },
+        "roomBuild": "christmas-polish-6fe82d9bab"
+      },
+      {
+        "room": "boxroom",
+        "title": "Lantern Loft",
+        "daily": "2026-11-06",
+        "build": "web-ed1ccc22b4e9",
+        "id": "daily-2026-11-06",
+        "time": 600,
+        "tray": {
+          "plain": 3,
+          "ginger": 1,
+          "blue": 0
+        },
+        "chutes": [],
+        "board": {
+          "w": 6,
+          "h": 5,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 560,
+            "y": 436,
+            "dir": "R",
+            "cats": [
+              "ginger",
+              "blue",
+              "ginger",
+              "blue"
+            ],
+            "number": 1
+          }
+        ],
+        "camera": {
+          "zoom": 2,
+          "zoomCss": 2,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": null,
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "before-boxroom.webp",
+          "bytes": 96840,
+          "sha256": "5fcfddfa0ac3117fdc3fb214a7fd61d90a79b0bf8de0c263b648c987e486a019"
+        },
+        "roomBuild": "Canonical Box Room"
+      }
+    ],
+    "errors": []
+  },
+  "after": {
+    "pin": {
+      "label": "after",
+      "commit": "d5a5f5f63953b48c138160183d154371d13a41a0",
+      "build": "web-2a72996faf2c",
+      "engineSha256": "05a7117d11ada665ed3fc28197fc663b349bb46724376c0b6c71b48f718be5ae",
+      "rooms": {
+        "office": "sorting-office-paper-de889dad5105",
+        "depot": "depot-paper-9ff87b4e29b0",
+        "train": "mailtrain-paper-6951f0d59094",
+        "cityhall": "cityhall-fidelity-527093ea02",
+        "parcel": "parcel-fidelity-32d74bd062",
+        "christmas": "christmas-station-93f290780861",
+        "boxroom": "boxroom-paper-ce2d616a5110"
+      }
+    },
+    "chromiumVersion": "151.0.7922.173",
+    "results": [
+      {
+        "room": "office",
+        "title": "Sorting Office",
+        "id": "1-4",
+        "build": "web-2a72996faf2c",
+        "time": 600,
+        "tray": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 0
+        },
+        "chutes": [],
+        "board": {
+          "w": 5,
+          "h": 3,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 473.48672566371675,
+            "y": 342.16814159292034,
+            "dir": "R",
+            "cats": [
+              "ginger",
+              "blue"
+            ],
+            "number": 1
+          }
+        ],
+        "camera": {
+          "zoom": 1.8495575221238936,
+          "zoomCss": 1.8495575221238936,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "office",
+        "night": false,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "after-office.webp",
+          "bytes": 98554,
+          "sha256": "540e5ec22251baa936850a495a94e5637c2bad7043ed6f33ca0e0ef85590b1a7"
+        },
+        "roomBuild": "sorting-office-paper-de889dad5105"
+      },
+      {
+        "room": "depot",
+        "title": "Town Depot",
+        "id": "4-15",
+        "build": "web-2a72996faf2c",
+        "time": 600,
+        "tray": {
+          "plain": 1,
+          "ginger": 0,
+          "blue": 0
+        },
+        "chutes": [],
+        "board": {
+          "w": 7,
+          "h": 5,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 543.9148936170213,
+            "y": 371.8936170212766,
+            "dir": "D",
+            "cats": [
+              "ginger",
+              "blue",
+              "ginger",
+              "blue"
+            ],
+            "number": 1
+          },
+          {
+            "x": 386.63829787234044,
+            "y": 398.1063829787234,
+            "dir": "U",
+            "cats": [
+              "ginger",
+              "blue",
+              "ginger",
+              "blue"
+            ],
+            "number": 2
+          },
+          {
+            "x": 334.21276595744683,
+            "y": 371.8936170212766,
+            "dir": "U",
+            "cats": [
+              "ginger",
+              "blue",
+              "ginger",
+              "blue"
+            ],
+            "number": 3
+          }
+        ],
+        "camera": {
+          "zoom": 1.6382978723404256,
+          "zoomCss": 1.6382978723404256,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "depot",
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "after-depot.webp",
+          "bytes": 146142,
+          "sha256": "3b332a737f4bd3460cc32640944d5e3771370ba2bb58a15ceca9c4e56ad243dc"
+        },
+        "roomBuild": "depot-paper-9ff87b4e29b0",
+        "motion": {
+          "frames": 24,
+          "step": 1,
+          "ticksPerFrame": 10,
+          "viewport": [
+            960,
+            640
+          ],
+          "chutes": 1
+        }
+      },
+      {
+        "room": "train",
+        "title": "Valley Mail",
+        "id": "5-11",
+        "build": "web-2a72996faf2c",
+        "time": 600,
+        "tray": {
+          "plain": 0,
+          "ginger": 1,
+          "blue": 1
+        },
+        "chutes": [],
+        "board": {
+          "w": 10,
+          "h": 3,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 513.3333333333333,
+            "y": 337.08888888888885,
+            "dir": "D",
+            "cats": [
+              "ginger",
+              "blue",
+              "ginger"
+            ],
+            "number": 1
+          },
+          {
+            "x": 458.5777777777778,
+            "y": 364.46666666666664,
+            "dir": "U",
+            "cats": [
+              "blue",
+              "ginger"
+            ],
+            "number": 2
+          }
+        ],
+        "camera": {
+          "zoom": 1.711111111111111,
+          "zoomCss": 1.711111111111111,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "train",
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "after-train.webp",
+          "bytes": 214426,
+          "sha256": "720b06b88a1fac71561c592a04ceed976efc6316a1cbcf77820edf8bb0a603a0"
+        },
+        "roomBuild": "mailtrain-paper-6951f0d59094"
+      },
+      {
+        "room": "cityhall",
+        "title": "Civic Mail Hall",
+        "id": "6-15",
+        "build": "web-2a72996faf2c",
+        "time": 600,
+        "tray": {
+          "plain": 1,
+          "ginger": 1,
+          "blue": 0
+        },
+        "chutes": [],
+        "board": {
+          "w": 8,
+          "h": 6,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 449.41971830985915,
+            "y": 350.512676056338,
+            "dir": "R",
+            "cats": [
+              "ginger",
+              "blue"
+            ],
+            "number": 1
+          },
+          {
+            "x": 643.7633802816902,
+            "y": 447.6845070422534,
+            "dir": "L",
+            "cats": [
+              "blue",
+              "ginger"
+            ],
+            "number": 2
+          },
+          {
+            "x": 616,
+            "y": 433.80281690140845,
+            "dir": "D",
+            "cats": [
+              "ginger",
+              "blue"
+            ],
+            "number": 3
+          }
+        ],
+        "camera": {
+          "zoom": 1.7352112676056337,
+          "zoomCss": 1.7352112676056337,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "cityhall",
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "after-cityhall.webp",
+          "bytes": 137656,
+          "sha256": "a6325c174f7229273e2e7ab86232d6d4aec8c50fc773d93321c1c0f9975ee889"
+        },
+        "roomBuild": "cityhall-fidelity-527093ea02"
+      },
+      {
+        "room": "parcel",
+        "title": "Parcel Room",
+        "id": "7-15",
+        "build": "web-2a72996faf2c",
+        "time": 600,
+        "tray": {
+          "plain": 0,
+          "ginger": 0,
+          "blue": 1
+        },
+        "chutes": [],
+        "board": {
+          "w": 9,
+          "h": 7,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 388.6219081272085,
+            "y": 339.0106007067138,
+            "dir": "R",
+            "cats": [
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "blue",
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "blue",
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "blue",
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "blue"
+            ],
+            "number": 1
+          },
+          {
+            "x": 626.756183745583,
+            "y": 431.6183745583038,
+            "dir": "L",
+            "cats": [
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "ginger",
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "ginger",
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "ginger"
+            ],
+            "number": 2
+          }
+        ],
+        "camera": {
+          "zoom": 1.6537102473498233,
+          "zoomCss": 1.6537102473498233,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "parcel",
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "after-parcel.webp",
+          "bytes": 142286,
+          "sha256": "0cdfe44429cebf688b5c0827e79fa2e6a674be2d58446563d0986577d10ff509"
+        },
+        "roomBuild": "parcel-fidelity-32d74bd062"
+      },
+      {
+        "room": "christmas",
+        "title": "Christmas Night Mail",
+        "id": "8-15",
+        "build": "web-2a72996faf2c",
+        "time": 600,
+        "tray": {
+          "plain": 3,
+          "ginger": 0,
+          "blue": 0
+        },
+        "chutes": [],
+        "board": {
+          "w": 10,
+          "h": 8,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 555.8251928020566,
+            "y": 368.9665809768638,
+            "dir": "D",
+            "cats": [
+              "ginger",
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "blue",
+              "ginger",
+              "blue",
+              {
+                "coat": "blue",
+                "big": true
+              },
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "ginger"
+            ],
+            "number": 1
+          },
+          {
+            "x": 530.4884318766067,
+            "y": 381.6349614395887,
+            "dir": "D",
+            "cats": [
+              "blue",
+              "ginger",
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "ginger",
+              {
+                "coat": "blue",
+                "big": true
+              },
+              "blue",
+              {
+                "coat": "blue",
+                "big": true
+              }
+            ],
+            "number": 2
+          },
+          {
+            "x": 505.15167095115686,
+            "y": 394.30334190231366,
+            "dir": "D",
+            "cats": [
+              {
+                "coat": "blue",
+                "big": true
+              },
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "ginger",
+              "ginger",
+              "blue",
+              "ginger",
+              "ginger",
+              {
+                "coat": "ginger",
+                "big": true
+              }
+            ],
+            "number": 3
+          },
+          {
+            "x": 378.46786632390746,
+            "y": 356.29820051413884,
+            "dir": "R",
+            "cats": [
+              "blue",
+              "blue",
+              "blue",
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              {
+                "coat": "blue",
+                "big": true
+              },
+              {
+                "coat": "ginger",
+                "big": true
+              },
+              "blue"
+            ],
+            "number": 4
+          }
+        ],
+        "camera": {
+          "zoom": 1.583547557840617,
+          "zoomCss": 1.583547557840617,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "christmas",
+        "night": null,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "after-christmas.webp",
+          "bytes": 234980,
+          "sha256": "79f39182cd79288c02612dcf810eaf3b4096278ccc48c6fb0c8bfe3b09b27366"
+        },
+        "roomBuild": "christmas-station-93f290780861"
+      },
+      {
+        "room": "boxroom",
+        "title": "Lantern Loft",
+        "daily": "2026-11-06",
+        "build": "web-2a72996faf2c",
+        "id": "daily-2026-11-06",
+        "time": 600,
+        "tray": {
+          "plain": 3,
+          "ginger": 1,
+          "blue": 0
+        },
+        "chutes": [],
+        "board": {
+          "w": 6,
+          "h": 5,
+          "roomX": 0,
+          "roomY": 0
+        },
+        "canvas": [
+          960,
+          640
+        ],
+        "hatches": [
+          {
+            "x": 566.5884988647148,
+            "y": 397.6119492053004,
+            "dir": "R",
+            "cats": [
+              "ginger",
+              "blue",
+              "ginger",
+              "blue"
+            ],
+            "number": 1
+          }
+        ],
+        "camera": {
+          "zoom": 2.098475921721166,
+          "zoomCss": 2.098475921721166,
+          "dpr": 1,
+          "x": 0,
+          "y": 0,
+          "framing": "room",
+          "manual": false
+        },
+        "manager": "boxroom",
+        "night": false,
+        "missing": {
+          "sprites": [],
+          "pieces": [],
+          "naps": [],
+          "fades": [],
+          "overflow": 0
+        },
+        "still": {
+          "filename": "after-boxroom.webp",
+          "bytes": 155238,
+          "sha256": "0489e5b73245d961480f9da2fd437491dc3c876f5a3f6739334d512121f96a4f"
+        },
+        "roomBuild": "boxroom-paper-ce2d616a5110"
+      }
+    ],
+    "errors": []
+  },
+  "motion": {
+    "path": "depot-motion.mp4",
+    "codec": "H.264",
+    "width": 1440,
+    "height": 480,
+    "seconds": 4,
+    "frames": 24,
+    "sha256": "31d8b2f12ba0a357319436dbec47bb4d61f3b354875ac47ed1fa0a6bceb10c93"
+  }
+}

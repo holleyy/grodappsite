@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cats by Post · Seven-room comparison</title>
+<style>
+:root{color-scheme:light;background:#eee5d5;color:#243b38;font:100%/1.55 Georgia,serif}
+*{box-sizing:border-box}
+body{margin:0}
+main{width:min(100% - 2rem,76rem);margin:0 auto;padding:clamp(2rem,6vw,5rem) 0}
+header{max-width:55rem;margin-bottom:2.5rem}
+h1,h2,p{margin:0}
+h1{font-size:clamp(2.3rem,6vw,5.25rem);line-height:1;letter-spacing:-.04em}
+h1+p{font-size:clamp(1.1rem,2vw,1.3rem);margin-top:1rem}
+h2{font-size:clamp(1.55rem,3vw,2.2rem);line-height:1.15}
+a{color:#24594f;text-underline-offset:.2em}
+a:focus-visible{outline:3px solid #a14729;outline-offset:3px}
+.builds{display:grid;gap:.75rem;margin-top:1.5rem}
+.builds div{display:grid;gap:0 .6rem;grid-template-columns:6ch minmax(0,1fr);align-items:baseline}
+.builds code{overflow-wrap:anywhere}
+.builds span{grid-column:2}
+nav ul{display:flex;flex-wrap:wrap;gap:.3rem 1rem;list-style:none;padding:0;margin:1.5rem 0}
+section{padding:1.6rem 0;border-top:1px solid #a99c86;scroll-margin-top:1rem}
+.summary{margin:.35rem 0 1rem}
+.comparison,.video-labels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+figure{margin:0}
+figure img{display:block;width:100%;height:auto;background:#252d2d;border:1px solid #7d7968}
+figcaption,.video-labels{font-size:.85rem;overflow-wrap:anywhere;margin:.3rem 0 .15rem}
+video{display:block;width:100%;background:#252d2d}
+.motion{margin-top:1.25rem}
+.motion h3{margin:0 0 .35rem}
+.motion p{max-width:54rem;margin-bottom:.5rem}
+footer{padding-top:1.6rem;border-top:1px solid #a99c86}
+footer p{max-width:58rem}
+@media(max-width:42rem){.comparison{grid-template-columns:minmax(0,1fr);gap:.75rem}.video-labels{gap:.25rem}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Cats by Post</h1>
+<p>Seven rooms before and after the web integration in PR #53.</p>
+<div class="builds"><div><strong>Before</strong><code>web-ed1ccc22b4e9</code><span>Commit <code>24a086d2d0036ba3c8d1dfa408f6c7166fa88cb9</code></span></div><div><strong>After</strong><code>web-2a72996faf2c</code><span>Commit <code>d5a5f5f63953b48c138160183d154371d13a41a0</code></span></div></div>
+<nav aria-label="Jump to a room"><ul><li><a href="#office">Sorting Office</a></li><li><a href="#depot">Town Depot</a></li><li><a href="#train">Valley Mail</a></li><li><a href="#cityhall">Civic Mail Hall</a></li><li><a href="#parcel">Parcel Room</a></li><li><a href="#christmas">Christmas Night Mail</a></li><li><a href="#boxroom">Lantern Loft</a></li></ul></nav>
+</header>
+
+<section id="office" aria-labelledby="office-title">
+<h2 id="office-title">Sorting Office</h2>
+<p class="summary"><strong>Campaign · Delivery 1-4</strong> · The Sorting Office retains its existing paper presentation.</p>
+<div class="comparison"><figure><img src="before-office.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Sorting Office, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>sorting-office-paper-de889dad5105</figcaption></figure><figure><img src="after-office.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Sorting Office, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>sorting-office-paper-de889dad5105</figcaption></figure></div>
+
+</section>
+<section id="depot" aria-labelledby="depot-title">
+<h2 id="depot-title">Town Depot</h2>
+<p class="summary"><strong>Campaign · Delivery 4-15</strong> · The integrated Depot adds the accepted courier, working slide and dimensional flaps.</p>
+<div class="comparison"><figure><img src="before-depot.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Town Depot, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>depot-contact-3f9fc92684</figcaption></figure><figure><img src="after-depot.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Town Depot, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>depot-paper-9ff87b4e29b0</figcaption></figure></div>
+
+<div class="motion">
+<h3>Town Depot in motion</h3>
+<p>Delivery 4-15 runs the same certified arrangement on both sides. The paired clip steps both engines together so you can follow the courier and the flaps.</p>
+<div class="video-labels">
+<span><strong>Before</strong> · <code>web-ed1ccc22b4e9</code></span>
+<span><strong>After</strong> · <code>web-2a72996faf2c</code></span>
+</div>
+<video aria-label="Town Depot delivery 4-15, before at left and after at right" controls playsinline preload="none" poster="depot-motion-poster.webp">
+<source src="depot-motion.mp4" type="video/mp4">
+<a href="depot-motion.mp4">Download the silent Town Depot comparison</a>
+</video>
+</div>
+</section>
+<section id="train" aria-labelledby="train-title">
+<h2 id="train-title">Valley Mail</h2>
+<p class="summary"><strong>Campaign · Delivery 5-11</strong> · Valley Mail now uses the accepted carriage renderer with the board projected into the carriage floor.</p>
+<div class="comparison"><figure><img src="before-train.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Valley Mail, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>train-craft-f20d6f0108</figcaption></figure><figure><img src="after-train.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Valley Mail, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>mailtrain-paper-6951f0d59094</figcaption></figure></div>
+
+</section>
+<section id="cityhall" aria-labelledby="cityhall-title">
+<h2 id="cityhall-title">Civic Mail Hall</h2>
+<p class="summary"><strong>Campaign · Delivery 6-15</strong> · Civic Mail Hall retains its existing structural presentation.</p>
+<div class="comparison"><figure><img src="before-cityhall.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Civic Mail Hall, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>cityhall-fidelity-527093ea02</figcaption></figure><figure><img src="after-cityhall.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Civic Mail Hall, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>cityhall-fidelity-527093ea02</figcaption></figure></div>
+
+</section>
+<section id="parcel" aria-labelledby="parcel-title">
+<h2 id="parcel-title">Parcel Room</h2>
+<p class="summary"><strong>Campaign · Delivery 7-15</strong> · The Parcel Room retains its existing atmosphere and puzzle floor.</p>
+<div class="comparison"><figure><img src="before-parcel.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Parcel Room, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>parcel-fidelity-32d74bd062</figcaption></figure><figure><img src="after-parcel.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Parcel Room, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>parcel-fidelity-32d74bd062</figcaption></figure></div>
+
+</section>
+<section id="christmas" aria-labelledby="christmas-title">
+<h2 id="christmas-title">Christmas Night Mail</h2>
+<p class="summary"><strong>Campaign · Delivery 8-15</strong> · The after build puts the accepted winter station and workers around the canonical puzzle board.</p>
+<div class="comparison"><figure><img src="before-christmas.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Christmas Night Mail, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>christmas-polish-6fe82d9bab</figcaption></figure><figure><img src="after-christmas.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Christmas Night Mail, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>christmas-station-93f290780861</figcaption></figure></div>
+
+</section>
+<section id="boxroom" aria-labelledby="boxroom-title">
+<h2 id="boxroom-title">Lantern Loft</h2>
+<p class="summary"><strong>Daily · 2026-11-06</strong> · The before build draws the Daily in the canonical Box Room. The after build uses the Lantern Loft paper renderer.</p>
+<div class="comparison"><figure><img src="before-boxroom.webp" width="960" height="640" loading="lazy" decoding="async" alt="Before view of Lantern Loft, showing the empty puzzle board and room around it."><figcaption><strong>Before</strong> · <code>web-ed1ccc22b4e9</code><br>Canonical Box Room</figcaption></figure><figure><img src="after-boxroom.webp" width="960" height="640" loading="lazy" decoding="async" alt="After view of Lantern Loft, showing the empty puzzle board and room around it."><figcaption><strong>After</strong> · <code>web-2a72996faf2c</code><br>boxroom-paper-ce2d616a5110</figcaption></figure></div>
+
+</section>
+<footer>
+<p>Captured in Chromium 151.0.7922.173 at 960 × 640 with the room camera, the same scene-clock position and empty planning boards. Lighting follows the artwork in each build at that clock position. The paired Depot clip is silent and uses stepped playback.</p>
+<p><a href="capture-evidence.json">Capture settings, exact build identifiers and image hashes</a></p>
+</footer>
+</main>
+</body>
+</html>
