@@ -105,10 +105,10 @@
       "height": 640,
       "matte": "registered architecture and gallery alpha",
       "inset": 12,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 148066,
-      "sha256": "4e4841e36e65cb7a2bca53b05a2e7c2c0a492257ffc88e1e5ec9af421397e842"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 148048,
+      "sha256": "9a235cc8e3cc72426ccfbdca87d0806127050bafadb1c3c28ddecd73d63353b6"
     },
     {
       "place": "parcel",
@@ -180,10 +180,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 202894,
-      "sha256": "2685f6614d956aac0630379565cdfd3c11a971a21add042272af51fdbadcb5fe"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 202956,
+      "sha256": "c99df10d593d8b3284a44e073dedc80243f8e0130b60442962836bc2cb5d0fdb"
     },
     {
       "id": "6-2",
@@ -197,10 +197,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 207754,
-      "sha256": "dc288491d78eda88a0a92761c963c72929d7d96362ff96381ad595505a459837"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 207782,
+      "sha256": "0256cd70681bc8789ce5439280c5485838b5844afba36da6a5111b35b3840604"
     },
     {
       "id": "6-3",
@@ -214,10 +214,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 207628,
-      "sha256": "b8aac7a7615683729a86caae9811d3ad878bfbc1bf136f42d507803c13574efa"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 207650,
+      "sha256": "56226264e8c33a027c789728ac0023530fcea73851292a246582dfbf0fd3b2fe"
     },
     {
       "id": "6-4",
@@ -231,10 +231,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 208060,
-      "sha256": "d4aea8324d76af07ede905af39ee49d4e2af7fb490dff88d8c940716248bcb89"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 208072,
+      "sha256": "908fa4e616550ef9a8d4b9e6c613c7376c274dc98193efa1fda03668d4b82275"
     },
     {
       "id": "6-5",
@@ -248,10 +248,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 203864,
-      "sha256": "17d8aa8a6688bd0b06d0fc4e14965bcc7ef4fcb08446bd1e2a2884879952514b"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 208324,
+      "sha256": "3544476b816ba846fe5b37eb51a51467d4962eef5c38ead09cfa2808aef13d73"
     },
     {
       "id": "6-6",
@@ -265,10 +265,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 203186,
-      "sha256": "395bc548b576a03e72b530d7ee2dd58bff234aee5796fd10fb24c1285f614f9e"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 203260,
+      "sha256": "323138aa3076ef656c8f8de13c3d39d5084cd07a884550005bffa65fe5b3c0bb"
     },
     {
       "id": "6-7",
@@ -282,10 +282,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 203602,
-      "sha256": "3b4650aa7832ffa528ffa663ef0ac72e7b7832dc6f067b0bfb8ec0f258772647"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 208168,
+      "sha256": "2874822ab47c797fc622cbbc7286e7b1e59bd570dac378b892c9589146c9545a"
     },
     {
       "id": "6-8",
@@ -299,10 +299,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 203282,
-      "sha256": "dc9e8db18b541b53a609c5cc5991b0e991167ca3c234a8983ebb81624fa99c49"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 203798,
+      "sha256": "629f7fb20de3e98c3a3c7126da0a652c5ca0fa260abdc1b67f9d22d76a3ba534"
     },
     {
       "id": "6-9",
@@ -316,10 +316,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 204106,
-      "sha256": "deafcc5df0b157e8457dfcb88f48f6c88129fc12a63466c3a5ec00bd8e7e9e70"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 208362,
+      "sha256": "d40bb01c382e5a790fa830f2d6f9a26c8dd3a821246ebc8b2e9d7eacac0eecd3"
     },
     {
       "id": "6-10",
@@ -333,10 +333,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 208574,
-      "sha256": "a40ad483f14a72e5962211af54c7f8b8a9cbe79bd048fadb45e073039ac1385d"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 208696,
+      "sha256": "c91871680773fa252f7e0efaca20a5e472002bb64429a30e6816acdfbd1e9ea8"
     },
     {
       "id": "6-11",
@@ -350,10 +350,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 208828,
-      "sha256": "3a2fd408564f56d80eee6b3c39c02972fc84519c3af7e2b72be95ab92f1283a6"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 204412,
+      "sha256": "c11a183e35a44a842bf90f9984a900225a434514eb846ee646cce4fe890b69a3"
     },
     {
       "id": "6-12",
@@ -367,10 +367,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 209252,
-      "sha256": "41594f80184c92c4eb90e9e2105d12eec59fb48fa7ebbb549ca1e4ec2f87a5d4"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 209274,
+      "sha256": "a52c4bf57e7a184337513302fff569c3011d7c13889e2e96ce1800c7b6ce4e69"
     },
     {
       "id": "6-13",
@@ -384,10 +384,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 208872,
-      "sha256": "0c7cce182733dc37ab94b6d91cc57b3adac1066c3dfe8b5a026c92972a41b71e"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 208924,
+      "sha256": "56054b78eee740ca1597ea9b143ce7ce826f828737c9b0c5cab02863e696ce4a"
     },
     {
       "id": "6-14",
@@ -401,10 +401,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 209442,
-      "sha256": "cb4746da56187d4388ca17d130809d5049d8c5bf11022ea4fe7a427c4ac2f040"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 209452,
+      "sha256": "49ad62ef725cc203ad9f63ec019c96a37328779690a5caeaa95b4e29bc396095"
     },
     {
       "id": "6-15",
@@ -418,10 +418,10 @@
       },
       "width": 960,
       "height": 640,
-      "presentation": "cityhall-paper-1de0131828f9",
-      "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bytes": 210350,
-      "sha256": "92cdb233748185e6b85ee805b26edd5e1cc39ab5f0dd834e6a3c1966b82397b8"
+      "presentation": "cityhall-paper-fe1fa05bd0a2",
+      "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bytes": 210294,
+      "sha256": "bb617d2df7d4ae51ba2b4117e67887921896ce402cbc2dadc5725dea71d96ae3"
     }
   ]
 }

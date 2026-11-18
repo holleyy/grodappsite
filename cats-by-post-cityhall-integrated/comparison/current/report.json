@@ -1,0 +1,627 @@
+{
+  "integratedBuild": "web-679617856f1e",
+  "factory": "cityhall-paper-fe1fa05bd0a2",
+  "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+  "approvedRuntimeSha256": "2c5396e4c60d1e3c59ef49600d1d35aade439a4e293bcaa2b575e57585ff0f26",
+  "comparisonScope": "Scene Finish compared with the real game. Worker/held-parcel changes are measured with an additional rendered pass on each side. All other visible pixels, board geometry, worker soles and layer ordering remain independently checked.",
+  "captures": [
+    {
+      "label": "desktop-6-1-room",
+      "screenPose": {
+        "scale": 2.18421052631579,
+        "tx": 515.2368421052631,
+        "ty": 477.26315789473676
+      },
+      "integrated": {
+        "id": "6-1",
+        "placements": 0,
+        "sceneTime": 8,
+        "cursor": null,
+        "gray": false,
+        "motion": true,
+        "viewport": {
+          "width": 1440,
+          "height": 1000,
+          "dpr": 1
+        },
+        "backing": [
+          1440,
+          1000
+        ],
+        "camera": {
+          "scale": 2.1842105263157894,
+          "tx": 515.2368421052631,
+          "ty": 477.2631578947368
+        },
+        "screen": [
+          1440,
+          1000
+        ],
+        "css": [
+          1440,
+          1000
+        ],
+        "workers": [
+          [
+            58,
+            60.61538461538461,
+            0
+          ],
+          [
+            164.57142857142856,
+            15.75,
+            46
+          ],
+          [
+            15.75,
+            72,
+            46
+          ]
+        ]
+      },
+      "approved": {
+        "camera": {
+          "scale": 2.1076555023923444,
+          "tx": 537.3851674641148,
+          "ty": 392.02392344497605
+        },
+        "viewport": {
+          "width": 1138,
+          "height": 881,
+          "dpr": 1,
+          "view": "hall",
+          "zoom": 1,
+          "panX": 0,
+          "panY": 0,
+          "insets": null
+        }
+      },
+      "registered": {
+        "gameSha256": "037705415847b81b6da64ea6561a4b42e6075c6a2f0dcef2bff509601b334491",
+        "approvedSha256": "0bccb1dfd1b6f8bb09f3b84b50405714d80a7ddf2cbb56e720bf0b141ef2daba",
+        "gameWithoutWorkersSha256": "77701ff17b399ba1e0fd7f64d50449ffe1ef39cc6cd5c75e57917bd8791ed03a",
+        "approvedWithoutWorkersSha256": "a4ba556bb92d94be9f92d6c0b282e94c3e8cd41c817ccf4ab66fb0bd7b3ed586",
+        "pixels": 1440000,
+        "different": 4315,
+        "meanAbsoluteError": 0.041687673611111115,
+        "workerPixels": 4714,
+        "differencesOnWorkers": 1974,
+        "differencesOutsideWorkers": 2341,
+        "meanAbsoluteErrorOutsideWorkers": 0.002702423071081304,
+        "withoutWorkers": {
+          "different": 2341,
+          "meanAbsoluteError": 0.002693576388888889
+        }
+      },
+      "depth": {
+        "game": {
+          "crossing": [
+            29.3,
+            43.4,
+            53.92666666666667
+          ],
+          "compositedCrossing": [
+            236,
+            206,
+            129,
+            255
+          ],
+          "architecture": [
+            237,
+            207,
+            130,
+            255
+          ],
+          "foreground": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "neighbouringGallery": [
+            21,
+            80,
+            58,
+            255
+          ],
+          "floorWorker": [
+            255,
+            0,
+            255,
+            255
+          ],
+          "galleryWorker": [
+            23,
+            76,
+            57,
+            255
+          ]
+        },
+        "approved": {
+          "crossing": [
+            29.3,
+            43.4,
+            53.92666666666667
+          ],
+          "compositedCrossing": [
+            236,
+            206,
+            129,
+            255
+          ],
+          "architecture": [
+            237,
+            207,
+            130,
+            255
+          ],
+          "foreground": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "neighbouringGallery": [
+            21,
+            80,
+            58,
+            255
+          ],
+          "floorWorker": [
+            255,
+            0,
+            255,
+            255
+          ],
+          "galleryWorker": [
+            23,
+            76,
+            57,
+            255
+          ]
+        }
+      },
+      "workerDetails": [
+        {
+          "name": "stair-and-far-rail",
+          "world": [
+            29.3,
+            43.4,
+            53.92666666666667
+          ],
+          "frame": 480,
+          "position": [
+            29.3,
+            43.4,
+            53.92666666666667
+          ],
+          "action": null,
+          "sourceSize": [
+            175,
+            149
+          ],
+          "gameSha256": "deb7d8b3d47be31577a2db67f7e7bd8b6f27203e23dba0c890e9db5de4a49440",
+          "approvedSha256": "deb7d8b3d47be31577a2db67f7e7bd8b6f27203e23dba0c890e9db5de4a49440",
+          "withoutWorkersSha256": "147417289a9a9a98d4cdecbf9fa55f5f5278a2ee12551797f3211bb36ba8df36",
+          "approvedAndGameSha256": "deb7d8b3d47be31577a2db67f7e7bd8b6f27203e23dba0c890e9db5de4a49440"
+        },
+        {
+          "name": "floor-worker-and-stair",
+          "worker": 0,
+          "world": [
+            58,
+            96,
+            19
+          ],
+          "frame": 2612,
+          "position": [
+            58,
+            95.97619047619048,
+            0
+          ],
+          "action": "walk",
+          "sourceSize": [
+            175,
+            149
+          ],
+          "gameSha256": "01993237d2f49926137b47356a815185b5e3fb93e7604f9b30d5aa190c55dd50",
+          "approvedSha256": "5c4857f75d7ea40a2887e8628f80f0a46f7aab1d8c2caa0776cb7f019aafd201",
+          "withoutWorkersSha256": "11c3eb536f65480615a398bf166564dc88353e6065451d330a5ce474ace80788"
+        },
+        {
+          "name": "gallery-worker-and-rail",
+          "worker": 2,
+          "world": [
+            15.75,
+            89.75,
+            58
+          ],
+          "frame": 52,
+          "position": [
+            15.75,
+            89.75438596491227,
+            46
+          ],
+          "action": "walk",
+          "sourceSize": [
+            175,
+            149
+          ],
+          "gameSha256": "7295787f7afc9838da46a258f5bedca255520bf63899d7c3f692a87ead768801",
+          "approvedSha256": "19ea6f2ba4388cf6f8f161b16f64feaa1f782354cac69f77b61dedf7bf2221eb",
+          "withoutWorkersSha256": "e9769cee2bbb80224b5d8cce8b6d8c36ebcebaa2b1883a1877c311000be92a94"
+        }
+      ]
+    },
+    {
+      "label": "desktop-6-15-board",
+      "screenPose": {
+        "scale": 4.0606060606060606,
+        "tx": 483.0303030303031,
+        "ty": 76.77272727272725
+      },
+      "integrated": {
+        "id": "6-15",
+        "placements": 0,
+        "sceneTime": 8,
+        "cursor": null,
+        "gray": false,
+        "motion": true,
+        "viewport": {
+          "width": 1440,
+          "height": 1000,
+          "dpr": 1
+        },
+        "backing": [
+          1440,
+          1000
+        ],
+        "camera": {
+          "scale": 4.0606060606060606,
+          "tx": 483.0303030303031,
+          "ty": 76.77272727272727
+        },
+        "screen": [
+          1440,
+          1000
+        ],
+        "css": [
+          1440,
+          1000
+        ],
+        "workers": [
+          [
+            58,
+            60.61538461538461,
+            0
+          ],
+          [
+            164.57142857142856,
+            15.75,
+            46
+          ],
+          [
+            15.75,
+            72,
+            46
+          ]
+        ]
+      },
+      "approved": {
+        "camera": {
+          "scale": 4.3106060606060606,
+          "tx": 500.030303030303,
+          "ty": -37.97727272727275
+        },
+        "viewport": {
+          "width": 1138,
+          "height": 881,
+          "dpr": 1,
+          "view": "play",
+          "zoom": 1,
+          "panX": 0,
+          "panY": 0,
+          "insets": null
+        }
+      },
+      "registered": {
+        "gameSha256": "22bc2fc8bbfae35422497c05597b5ca7bfe7ea649c4d9968b6beb01156e91301",
+        "approvedSha256": "9fab8ad11522f0025a136a19234b1827a1771d78e46b394a50b8f7c8eb2896e7",
+        "gameWithoutWorkersSha256": "e04ad40ae68d45cfec506c90a84d6fc8c0708aa91fcd445b4a96df79af29db86",
+        "approvedWithoutWorkersSha256": "e04ad40ae68d45cfec506c90a84d6fc8c0708aa91fcd445b4a96df79af29db86",
+        "pixels": 1440000,
+        "different": 6819,
+        "meanAbsoluteError": 0.1351059027777778,
+        "workerPixels": 13947,
+        "differencesOnWorkers": 6819,
+        "differencesOutsideWorkers": 0,
+        "meanAbsoluteErrorOutsideWorkers": 0,
+        "withoutWorkers": {
+          "different": 0,
+          "meanAbsoluteError": 0
+        }
+      }
+    },
+    {
+      "label": "phone-6-1-room",
+      "screenPose": {
+        "scale": 1.5708154506437764,
+        "tx": 366.43776824034336,
+        "ty": 788.8712446351932
+      },
+      "integrated": {
+        "id": "6-1",
+        "placements": 0,
+        "sceneTime": 8,
+        "cursor": null,
+        "gray": false,
+        "motion": true,
+        "viewport": {
+          "width": 780,
+          "height": 1688,
+          "dpr": 1
+        },
+        "backing": [
+          780,
+          1688
+        ],
+        "camera": {
+          "scale": 1.5708154506437768,
+          "tx": 366.43776824034336,
+          "ty": 788.8712446351931
+        },
+        "screen": [
+          780,
+          1688
+        ],
+        "css": [
+          390,
+          844
+        ],
+        "workers": [
+          [
+            58,
+            60.61538461538461,
+            0
+          ],
+          [
+            164.57142857142856,
+            15.75,
+            46
+          ],
+          [
+            15.75,
+            72,
+            46
+          ]
+        ]
+      },
+      "approved": {
+        "camera": {
+          "scale": 0.7854077253218884,
+          "tx": 183.21888412017168,
+          "ty": 390.43562231759654
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 2,
+          "view": "hall",
+          "zoom": 1,
+          "panX": 0,
+          "panY": 0,
+          "insets": {
+            "top": 162,
+            "bottom": 189,
+            "left": 12,
+            "right": 12
+          }
+        }
+      },
+      "registered": {
+        "gameSha256": "791798547b2ea6a714d5f3757d5b964e072d32069d045cc86fe9c7677252c394",
+        "approvedSha256": "b44aae7c4f5471a84ec1defa1cbae77fcabdf571c3d766f4b0680fc5e2bbf14e",
+        "gameWithoutWorkersSha256": "9a32cdb5ebd067fd4fa9d7ac258e7e2dd433a08d2becba3a480b74712e1d27ef",
+        "approvedWithoutWorkersSha256": "c13c3ede56b04480621d3d29403f1b72e8e6a10394108a501e0254eaffa911f9",
+        "pixels": 1316640,
+        "different": 3214,
+        "meanAbsoluteError": 0.03911148833394094,
+        "workerPixels": 3500,
+        "differencesOnWorkers": 1975,
+        "differencesOutsideWorkers": 1239,
+        "meanAbsoluteErrorOutsideWorkers": 0.001503076595031756,
+        "withoutWorkers": {
+          "different": 1239,
+          "meanAbsoluteError": 0.0014990809940454491
+        }
+      },
+      "depth": {
+        "game": {
+          "crossing": [
+            29.3,
+            43.4,
+            53.92666666666667
+          ],
+          "compositedCrossing": [
+            237,
+            207,
+            130,
+            255
+          ],
+          "architecture": [
+            237,
+            207,
+            130,
+            255
+          ],
+          "foreground": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "neighbouringGallery": [
+            21,
+            80,
+            58,
+            255
+          ],
+          "floorWorker": [
+            255,
+            0,
+            255,
+            255
+          ],
+          "galleryWorker": [
+            22,
+            80,
+            58,
+            255
+          ]
+        },
+        "approved": {
+          "crossing": [
+            29.3,
+            43.4,
+            53.92666666666667
+          ],
+          "compositedCrossing": [
+            237,
+            207,
+            130,
+            255
+          ],
+          "architecture": [
+            237,
+            207,
+            130,
+            255
+          ],
+          "foreground": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "neighbouringGallery": [
+            21,
+            80,
+            58,
+            255
+          ],
+          "floorWorker": [
+            255,
+            0,
+            255,
+            255
+          ],
+          "galleryWorker": [
+            22,
+            80,
+            58,
+            255
+          ]
+        }
+      }
+    },
+    {
+      "label": "phone-6-15-board",
+      "screenPose": {
+        "scale": 2.7727272727272725,
+        "tx": 345.6363636363636,
+        "ty": 607.2272727272727
+      },
+      "integrated": {
+        "id": "6-15",
+        "placements": 0,
+        "sceneTime": 8,
+        "cursor": null,
+        "gray": false,
+        "motion": true,
+        "viewport": {
+          "width": 780,
+          "height": 1688,
+          "dpr": 1
+        },
+        "backing": [
+          780,
+          1688
+        ],
+        "camera": {
+          "scale": 2.772727272727273,
+          "tx": 345.6363636363636,
+          "ty": 607.2272727272726
+        },
+        "screen": [
+          780,
+          1688
+        ],
+        "css": [
+          390,
+          844
+        ],
+        "workers": [
+          [
+            58,
+            60.61538461538461,
+            0
+          ],
+          [
+            164.57142857142856,
+            15.75,
+            46
+          ],
+          [
+            15.75,
+            72,
+            46
+          ]
+        ]
+      },
+      "approved": {
+        "camera": {
+          "scale": 1.3863636363636365,
+          "tx": 172.8181818181818,
+          "ty": 257.6136363636364
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 2,
+          "view": "play",
+          "zoom": 1,
+          "panX": 0,
+          "panY": 0,
+          "insets": {
+            "top": 168,
+            "bottom": 189,
+            "left": 12,
+            "right": 12
+          }
+        }
+      },
+      "registered": {
+        "gameSha256": "2dccf54a8307bab7d76bfa2f3d237e8b4b8c900e54bb823ca786ff343fddea7d",
+        "approvedSha256": "ae6bb46ad7c07d2c9143944a895da5e15e79d9554c1cf46f45989cc2bec1bf76",
+        "gameWithoutWorkersSha256": "078f221dd6118069d7d889f7d7ed4c65d1bea3c9a62b19fecb2e8383b4fdb8de",
+        "approvedWithoutWorkersSha256": "078f221dd6118069d7d889f7d7ed4c65d1bea3c9a62b19fecb2e8383b4fdb8de",
+        "pixels": 1316640,
+        "different": 5855,
+        "meanAbsoluteError": 0.12186227822335642,
+        "workerPixels": 10440,
+        "differencesOnWorkers": 5855,
+        "differencesOutsideWorkers": 0,
+        "meanAbsoluteErrorOutsideWorkers": 0,
+        "withoutWorkers": {
+          "different": 0,
+          "meanAbsoluteError": 0
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "checkpoint": {
+    "integratedBuild": "web-3e6dd53f459e",
+    "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f"
+  }
+}

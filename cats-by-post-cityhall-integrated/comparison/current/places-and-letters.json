@@ -1,0 +1,165 @@
+{
+  "snapshots": [
+    {
+      "name": "Places · City Hall",
+      "src": "http://127.0.0.1:8898/web/journey/images/destinations/hall.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "9a235cc8e3cc72426ccfbdca87d0806127050bafadb1c3c28ddecd73d63353b6"
+    },
+    {
+      "name": "6-1",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-1.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "c99df10d593d8b3284a44e073dedc80243f8e0130b60442962836bc2cb5d0fdb"
+    },
+    {
+      "name": "6-2",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-2.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "0256cd70681bc8789ce5439280c5485838b5844afba36da6a5111b35b3840604"
+    },
+    {
+      "name": "6-3",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-3.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "56226264e8c33a027c789728ac0023530fcea73851292a246582dfbf0fd3b2fe"
+    },
+    {
+      "name": "6-4",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-4.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "908fa4e616550ef9a8d4b9e6c613c7376c274dc98193efa1fda03668d4b82275"
+    },
+    {
+      "name": "6-5",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-5.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "3544476b816ba846fe5b37eb51a51467d4962eef5c38ead09cfa2808aef13d73"
+    },
+    {
+      "name": "6-6",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-6.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "323138aa3076ef656c8f8de13c3d39d5084cd07a884550005bffa65fe5b3c0bb"
+    },
+    {
+      "name": "6-7",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-7.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "2874822ab47c797fc622cbbc7286e7b1e59bd570dac378b892c9589146c9545a"
+    },
+    {
+      "name": "6-8",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-8.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "629f7fb20de3e98c3a3c7126da0a652c5ca0fa260abdc1b67f9d22d76a3ba534"
+    },
+    {
+      "name": "6-9",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-9.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "d40bb01c382e5a790fa830f2d6f9a26c8dd3a821246ebc8b2e9d7eacac0eecd3"
+    },
+    {
+      "name": "6-10",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-10.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "c91871680773fa252f7e0efaca20a5e472002bb64429a30e6816acdfbd1e9ea8"
+    },
+    {
+      "name": "6-11",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-11.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "c11a183e35a44a842bf90f9984a900225a434514eb846ee646cce4fe890b69a3"
+    },
+    {
+      "name": "6-12",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-12.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "a52c4bf57e7a184337513302fff569c3011d7c13889e2e96ce1800c7b6ce4e69"
+    },
+    {
+      "name": "6-13",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-13.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "56054b78eee740ca1597ea9b143ce7ce826f828737c9b0c5cab02863e696ce4a"
+    },
+    {
+      "name": "6-14",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-14.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "49ad62ef725cc203ad9f63ec019c96a37328779690a5caeaa95b4e29bc396095"
+    },
+    {
+      "name": "6-15",
+      "src": "http://127.0.0.1:8898/web/journey/images/level-prints/6-15.webp?v=web-679617856f1e",
+      "size": [
+        960,
+        640
+      ],
+      "visible": true,
+      "hash": "bb617d2df7d4ae51ba2b4117e67887921896ce402cbc2dadc5725dea71d96ae3"
+    }
+  ],
+  "errors": []
+}

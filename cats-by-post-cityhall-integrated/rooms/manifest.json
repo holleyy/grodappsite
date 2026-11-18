@@ -128,7 +128,7 @@
       "bundleBytes": 4113215
     },
     "cityhall": {
-      "build": "cityhall-paper-1de0131828f9",
+      "build": "cityhall-paper-fe1fa05bd0a2",
       "source": "src/fidelity/cityhall-paper",
       "archiveSha256": "71db350dc6668b1f636b4c8ff93641ad43c41eb82aacbf75df0b94faae45397a",
       "approvedRuntimeSha256": "2c5396e4c60d1e3c59ef49600d1d35aade439a4e293bcaa2b575e57585ff0f26",
@@ -362,12 +362,13 @@
         "src/fidelity/cityhall-paper/flaps.js": "5036140f59cb614afd4545204be038f52fea4bf75d01989ab3f0f625acaf2b74",
         "src/fidelity/cityhall-paper/motion.js": "f301f334b943a81226f4cc614dbfa2374bb3d8ec903843ac1d85faaee364ba3f",
         "src/fidelity/cityhall-paper/actors.js": "0cd11b8bc43b6fdb202db1f9649e21ffe995f37ab264d235d4b588ca8a9652da",
+        "src/fidelity/cityhall-worker.js": "52a09c14fe9d055fb6989ee45af1adb3f0707a5e2104a0a15a6ec34ca12f0e76",
         "src/fidelity/cityhall-paper/renderer.js": "4b7d6b0ab37ea8e10873a930a7b2e4599707b9b207d940c9982ff7ffaa1591bc",
         "src/fidelity/cityhall-paper/adapter.js": "6412b48387067cb28844d4b220064a0f35414457c1ad53b1b80514b93ffbcd0c",
         "src/fidelity/cityhall-adapter.js": "87bd178b642eadae2c06adb8d251d32a5570a5c49ac72ea7a9a894d32ce235cb"
       },
-      "bundleSha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
-      "bundleBytes": 804291
+      "bundleSha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+      "bundleBytes": 810194
     },
     "parcel": {
       "build": "parcel-fidelity-32d74bd062",

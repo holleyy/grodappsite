@@ -1,14 +1,14 @@
 {
   "owner": "holleyy/cosysortie",
   "sitePrefix": "cats-by-post-cityhall-integrated",
-  "sourceCommit": "21bf24d3792a53bdef90e55a08f59117dc6bb2fd",
-  "sourceWebBuild": "web-3e6dd53f459e",
-  "build": "cityhall-integrated-3e6dd53f459e",
+  "sourceCommit": "e21909a0cfbfc4c103344f6e44e89c29f3ff4b62",
+  "sourceWebBuild": "web-679617856f1e",
+  "build": "cityhall-integrated-679617856f1e",
   "savePrefix": "catsByPost.preview.cityhall.",
   "pullRequest": 59,
   "pullRequestUrl": "https://github.com/holleyy/cosysortie/pull/59",
   "sharedStaticPrefix": "cats-by-post-seven-room-integration",
-  "sharedAtSiteCommit": "c41f601295b1bbe9c31edb62df6c518d5dcf9afa",
+  "sharedAtSiteCommit": "7497154005ec9e84654388c621a719b9d39d3bdc",
   "sharedTrees": {
     "assets/audio": "817dec708dd82e76518f68c3fde9a23e4f87d848",
     "assets/music": "831f5e327ca97ec64ce7a95ad7b06b8f87f93a42"
@@ -22,13 +22,38 @@
     "rooms/train.js": "6688765a61b31347e323a81a50c997bc867f9aaf"
   },
   "localRoom": "rooms/cityhall.js",
-  "cityhallBundleSha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
+  "cityhallBundleSha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
   "reviewDelivery": "6-15",
   "reviewStorage": "memory only",
   "journey": "journey/start.html",
+  "previousSourceCommit": "21bf24d3792a53bdef90e55a08f59117dc6bb2fd",
+  "previousSiteCommit": "7497154005ec9e84654388c621a719b9d39d3bdc",
   "comparison": {
     "path": "comparison/",
     "pairs": 7,
-    "captureReportSha256": "fae5ff6fcd147e016ba3cf3c10425eafd056eac50c206408c9ebc51f2fe680c3"
+    "captureReport": "comparison/current/report.json",
+    "captureReportSha256": "75ee59d1479c9a80c7f30f94ec531538b387e16d42bec4c2fc693006088a2209",
+    "placesReport": "comparison/current/places-and-letters.json",
+    "placesReportSha256": "0e42968b716e0e2548c7dbb4a811f99c1a6259af98912c2c5ca849ddc6da9ee9",
+    "previous": {
+      "sourceCommit": "21bf24d3792a53bdef90e55a08f59117dc6bb2fd",
+      "sourceWebBuild": "web-3e6dd53f459e",
+      "captureReport": "comparison/report.json",
+      "captureReportSha256": "fae5ff6fcd147e016ba3cf3c10425eafd056eac50c206408c9ebc51f2fe680c3",
+      "pairs": 7
+    },
+    "workerReview": {
+      "path": "comparison/#floor-worker",
+      "report": "comparison/worker/worker-review.json",
+      "clip": "comparison/worker/floor-worker-comparison.webm",
+      "sha256": "0b37bc6eb9fd85113e9528bed0bbc8e35cc8afae8e902ee6a35c937cace76ecd",
+      "mp4": "comparison/worker/floor-worker-comparison.mp4",
+      "mp4Sha256": "fc7ffbf195a4c29e232ade066d3410c8d64828800167fc339a87ced7e58e4720",
+      "poster": "comparison/worker/floor-worker-comparison-poster.png",
+      "posterSha256": "a28752031c88895e0099829d59d8d077798d8c2035d5811120ada7086d6a16de",
+      "duration": 17.25,
+      "captureReportSha256": "5c639f1328bdbecd620cb656fd1f346910d3723af38f159ce3b27711875850f0",
+      "files": 27
+    }
   }
 }

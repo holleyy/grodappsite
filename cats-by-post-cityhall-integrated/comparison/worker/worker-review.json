@@ -1,0 +1,2185 @@
+{
+  "level": "6-1",
+  "approvedRuntimeSha256": "2c5396e4c60d1e3c59ef49600d1d35aade439a4e293bcaa2b575e57585ff0f26",
+  "routeSamples": 2880,
+  "sampledRouteMatches": true,
+  "before": {
+    "build": "web-3e6dd53f459e",
+    "factorySha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
+    "headDirections": {
+      "carry-right-away": {
+        "screenDisplacement": [
+          121.28205128205127,
+          -60.641025641025635
+        ],
+        "motionDirection": "right",
+        "matchesTravel": 0,
+        "samples": [
+          {
+            "frame": 280,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.331,
+              "right": 21.602
+            }
+          },
+          {
+            "frame": 285,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.518,
+              "right": 21.345
+            }
+          },
+          {
+            "frame": 290,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.809,
+              "right": 22.616
+            }
+          },
+          {
+            "frame": 295,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.153,
+              "right": 23.206
+            }
+          },
+          {
+            "frame": 300,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.406,
+              "right": 23.812
+            }
+          },
+          {
+            "frame": 305,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.807,
+              "right": 22.48
+            }
+          },
+          {
+            "frame": 310,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.906,
+              "right": 22.342
+            }
+          },
+          {
+            "frame": 315,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.065,
+              "right": 22.074
+            }
+          },
+          {
+            "frame": 320,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.512,
+              "right": 22.998
+            }
+          },
+          {
+            "frame": 325,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.865,
+              "right": 23.052
+            }
+          },
+          {
+            "frame": 330,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.055,
+              "right": 23.13
+            }
+          },
+          {
+            "frame": 335,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.137,
+              "right": 22.427
+            }
+          },
+          {
+            "frame": 340,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.003,
+              "right": 21.895
+            }
+          },
+          {
+            "frame": 345,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.098,
+              "right": 22.071
+            }
+          },
+          {
+            "frame": 350,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.619,
+              "right": 20.548
+            }
+          },
+          {
+            "frame": 355,
+            "heading": "left",
+            "templateErrors": {
+              "left": 0.942,
+              "right": 21.569
+            }
+          },
+          {
+            "frame": 360,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.955,
+              "right": 20.991
+            }
+          },
+          {
+            "frame": 365,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.42,
+              "right": 22.417
+            }
+          },
+          {
+            "frame": 370,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.741,
+              "right": 21.741
+            }
+          },
+          {
+            "frame": 375,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.161,
+              "right": 22.144
+            }
+          },
+          {
+            "frame": 380,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.953,
+              "right": 19.471
+            }
+          },
+          {
+            "frame": 385,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.18,
+              "right": 21.785
+            }
+          },
+          {
+            "frame": 390,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.858,
+              "right": 22.113
+            }
+          }
+        ]
+      },
+      "carry-right-front": {
+        "screenDisplacement": [
+          117.33333333333331,
+          55.73333333333335
+        ],
+        "motionDirection": "right",
+        "matchesTravel": 23,
+        "samples": [
+          {
+            "frame": 660,
+            "heading": "right",
+            "templateErrors": {
+              "left": 29.273,
+              "right": 4.294
+            }
+          },
+          {
+            "frame": 665,
+            "heading": "right",
+            "templateErrors": {
+              "left": 26.775,
+              "right": 5.486
+            }
+          },
+          {
+            "frame": 670,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.022,
+              "right": 3.166
+            }
+          },
+          {
+            "frame": 675,
+            "heading": "right",
+            "templateErrors": {
+              "left": 26.819,
+              "right": 4.526
+            }
+          },
+          {
+            "frame": 680,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.076,
+              "right": 5.544
+            }
+          },
+          {
+            "frame": 685,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.287,
+              "right": 2.415
+            }
+          },
+          {
+            "frame": 690,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.083,
+              "right": 6.082
+            }
+          },
+          {
+            "frame": 695,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.101,
+              "right": 4.074
+            }
+          },
+          {
+            "frame": 700,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.382,
+              "right": 5.359
+            }
+          },
+          {
+            "frame": 705,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.136,
+              "right": 3.192
+            }
+          },
+          {
+            "frame": 710,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.132,
+              "right": 7.22
+            }
+          },
+          {
+            "frame": 715,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.577,
+              "right": 0.494
+            }
+          },
+          {
+            "frame": 720,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.529,
+              "right": 6.23
+            }
+          },
+          {
+            "frame": 725,
+            "heading": "right",
+            "templateErrors": {
+              "left": 26.719,
+              "right": 3.97
+            }
+          },
+          {
+            "frame": 730,
+            "heading": "right",
+            "templateErrors": {
+              "left": 26.832,
+              "right": 4.514
+            }
+          },
+          {
+            "frame": 735,
+            "heading": "right",
+            "templateErrors": {
+              "left": 26.787,
+              "right": 4.235
+            }
+          },
+          {
+            "frame": 740,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.985,
+              "right": 5.587
+            }
+          },
+          {
+            "frame": 745,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.337,
+              "right": 3.237
+            }
+          },
+          {
+            "frame": 750,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.926,
+              "right": 4.568
+            }
+          },
+          {
+            "frame": 755,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.088,
+              "right": 5.423
+            }
+          },
+          {
+            "frame": 760,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.346,
+              "right": 2.399
+            }
+          },
+          {
+            "frame": 765,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.058,
+              "right": 5.878
+            }
+          },
+          {
+            "frame": 770,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.597,
+              "right": 4.147
+            }
+          }
+        ]
+      },
+      "carry-left-away": {
+        "screenDisplacement": [
+          -118.14814814814815,
+          -57.03703703703707
+        ],
+        "motionDirection": "left",
+        "matchesTravel": 0,
+        "samples": [
+          {
+            "frame": 2095,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.616,
+              "right": 2.795
+            }
+          },
+          {
+            "frame": 2100,
+            "heading": "right",
+            "templateErrors": {
+              "left": 20.114,
+              "right": 1.875
+            }
+          },
+          {
+            "frame": 2105,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.081,
+              "right": 3.079
+            }
+          },
+          {
+            "frame": 2110,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.589,
+              "right": 1.877
+            }
+          },
+          {
+            "frame": 2115,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.59,
+              "right": 2.409
+            }
+          },
+          {
+            "frame": 2120,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.547,
+              "right": 2.932
+            }
+          },
+          {
+            "frame": 2125,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.42,
+              "right": 1.29
+            }
+          },
+          {
+            "frame": 2130,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.245,
+              "right": 3.406
+            }
+          },
+          {
+            "frame": 2135,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.596,
+              "right": 1.625
+            }
+          },
+          {
+            "frame": 2140,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.125,
+              "right": 2.058
+            }
+          },
+          {
+            "frame": 2145,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.795,
+              "right": 2.806
+            }
+          },
+          {
+            "frame": 2150,
+            "heading": "right",
+            "templateErrors": {
+              "left": 20.423,
+              "right": 0.583
+            }
+          },
+          {
+            "frame": 2155,
+            "heading": "right",
+            "templateErrors": {
+              "left": 20.373,
+              "right": 3.155
+            }
+          },
+          {
+            "frame": 2160,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.402,
+              "right": 1.825
+            }
+          },
+          {
+            "frame": 2165,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.615,
+              "right": 1.862
+            }
+          },
+          {
+            "frame": 2170,
+            "heading": "right",
+            "templateErrors": {
+              "left": 17.373,
+              "right": 2.917
+            }
+          },
+          {
+            "frame": 2175,
+            "heading": "right",
+            "templateErrors": {
+              "left": 17.495,
+              "right": 1.216
+            }
+          },
+          {
+            "frame": 2180,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.644,
+              "right": 3.259
+            }
+          },
+          {
+            "frame": 2185,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.551,
+              "right": 2.172
+            }
+          },
+          {
+            "frame": 2190,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.915,
+              "right": 2.036
+            }
+          },
+          {
+            "frame": 2195,
+            "heading": "right",
+            "templateErrors": {
+              "left": 20.1,
+              "right": 2.855
+            }
+          },
+          {
+            "frame": 2200,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.399,
+              "right": 1.824
+            }
+          },
+          {
+            "frame": 2205,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.585,
+              "right": 3.046
+            }
+          }
+        ]
+      },
+      "carry-left-front": {
+        "screenDisplacement": [
+          -112.61904761904765,
+          56.30952380952385
+        ],
+        "motionDirection": "left",
+        "matchesTravel": 23,
+        "samples": [
+          {
+            "frame": 2555,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.942,
+              "right": 30.474
+            }
+          },
+          {
+            "frame": 2560,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.473,
+              "right": 31.155
+            }
+          },
+          {
+            "frame": 2565,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.716,
+              "right": 32.754
+            }
+          },
+          {
+            "frame": 2570,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.609,
+              "right": 32.607
+            }
+          },
+          {
+            "frame": 2575,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.76,
+              "right": 34.432
+            }
+          },
+          {
+            "frame": 2580,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.051,
+              "right": 32.004
+            }
+          },
+          {
+            "frame": 2585,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.583,
+              "right": 32.649
+            }
+          },
+          {
+            "frame": 2590,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.718,
+              "right": 33.213
+            }
+          },
+          {
+            "frame": 2595,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.524,
+              "right": 32.608
+            }
+          },
+          {
+            "frame": 2600,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.028,
+              "right": 31.881
+            }
+          },
+          {
+            "frame": 2605,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.456,
+              "right": 31.159
+            }
+          },
+          {
+            "frame": 2610,
+            "heading": "left",
+            "templateErrors": {
+              "left": 0.967,
+              "right": 33.858
+            }
+          },
+          {
+            "frame": 2615,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.539,
+              "right": 33.055
+            }
+          },
+          {
+            "frame": 2620,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.082,
+              "right": 33.943
+            }
+          },
+          {
+            "frame": 2625,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.235,
+              "right": 32.24
+            }
+          },
+          {
+            "frame": 2630,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.075,
+              "right": 31.496
+            }
+          },
+          {
+            "frame": 2635,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.35,
+              "right": 32.092
+            }
+          },
+          {
+            "frame": 2640,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.233,
+              "right": 32.835
+            }
+          },
+          {
+            "frame": 2645,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.606,
+              "right": 34.329
+            }
+          },
+          {
+            "frame": 2650,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.4,
+              "right": 34.198
+            }
+          },
+          {
+            "frame": 2655,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.773,
+              "right": 34.234
+            }
+          },
+          {
+            "frame": 2660,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.317,
+              "right": 32.517
+            }
+          },
+          {
+            "frame": 2665,
+            "heading": "left",
+            "templateErrors": {
+              "left": 4.041,
+              "right": 32.947
+            }
+          }
+        ]
+      }
+    }
+  },
+  "after": {
+    "build": "web-679617856f1e",
+    "factorySha256": "fe1fa05bd0a2a94a4b622e431074ad8ab777bd66c6c80395f3a2b834926f0f9c",
+    "headDirections": {
+      "carry-right-away": {
+        "screenDisplacement": [
+          121.28205128205127,
+          -60.641025641025635
+        ],
+        "motionDirection": "right",
+        "matchesTravel": 23,
+        "samples": [
+          {
+            "frame": 280,
+            "heading": "right",
+            "templateErrors": {
+              "left": 21.593,
+              "right": 3.322
+            }
+          },
+          {
+            "frame": 285,
+            "heading": "right",
+            "templateErrors": {
+              "left": 22.388,
+              "right": 2.765
+            }
+          },
+          {
+            "frame": 290,
+            "heading": "right",
+            "templateErrors": {
+              "left": 21.162,
+              "right": 2.404
+            }
+          },
+          {
+            "frame": 295,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.599,
+              "right": 1.435
+            }
+          },
+          {
+            "frame": 300,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.085,
+              "right": 3.357
+            }
+          },
+          {
+            "frame": 305,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.675,
+              "right": 3.082
+            }
+          },
+          {
+            "frame": 310,
+            "heading": "right",
+            "templateErrors": {
+              "left": 21.146,
+              "right": 2.395
+            }
+          },
+          {
+            "frame": 315,
+            "heading": "right",
+            "templateErrors": {
+              "left": 22.161,
+              "right": 1.184
+            }
+          },
+          {
+            "frame": 320,
+            "heading": "right",
+            "templateErrors": {
+              "left": 20.386,
+              "right": 3.505
+            }
+          },
+          {
+            "frame": 325,
+            "heading": "right",
+            "templateErrors": {
+              "left": 22.509,
+              "right": 2.944
+            }
+          },
+          {
+            "frame": 330,
+            "heading": "right",
+            "templateErrors": {
+              "left": 22.141,
+              "right": 2.771
+            }
+          },
+          {
+            "frame": 335,
+            "heading": "right",
+            "templateErrors": {
+              "left": 23.235,
+              "right": 1.101
+            }
+          },
+          {
+            "frame": 340,
+            "heading": "right",
+            "templateErrors": {
+              "left": 22.5,
+              "right": 3.367
+            }
+          },
+          {
+            "frame": 345,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.611,
+              "right": 3.069
+            }
+          },
+          {
+            "frame": 350,
+            "heading": "right",
+            "templateErrors": {
+              "left": 18.526,
+              "right": 2.965
+            }
+          },
+          {
+            "frame": 355,
+            "heading": "right",
+            "templateErrors": {
+              "left": 19.429,
+              "right": 1.011
+            }
+          },
+          {
+            "frame": 360,
+            "heading": "right",
+            "templateErrors": {
+              "left": 21.005,
+              "right": 3.036
+            }
+          },
+          {
+            "frame": 365,
+            "heading": "right",
+            "templateErrors": {
+              "left": 21.362,
+              "right": 3.229
+            }
+          },
+          {
+            "frame": 370,
+            "heading": "right",
+            "templateErrors": {
+              "left": 23.176,
+              "right": 3.022
+            }
+          },
+          {
+            "frame": 375,
+            "heading": "right",
+            "templateErrors": {
+              "left": 21.736,
+              "right": 0.945
+            }
+          },
+          {
+            "frame": 380,
+            "heading": "right",
+            "templateErrors": {
+              "left": 22.324,
+              "right": 2.937
+            }
+          },
+          {
+            "frame": 385,
+            "heading": "right",
+            "templateErrors": {
+              "left": 21.204,
+              "right": 3.068
+            }
+          },
+          {
+            "frame": 390,
+            "heading": "right",
+            "templateErrors": {
+              "left": 23.113,
+              "right": 3.171
+            }
+          }
+        ]
+      },
+      "carry-right-front": {
+        "screenDisplacement": [
+          117.33333333333331,
+          55.73333333333335
+        ],
+        "motionDirection": "right",
+        "matchesTravel": 23,
+        "samples": [
+          {
+            "frame": 660,
+            "heading": "right",
+            "templateErrors": {
+              "left": 29.273,
+              "right": 4.294
+            }
+          },
+          {
+            "frame": 665,
+            "heading": "right",
+            "templateErrors": {
+              "left": 26.775,
+              "right": 5.486
+            }
+          },
+          {
+            "frame": 670,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.022,
+              "right": 3.166
+            }
+          },
+          {
+            "frame": 675,
+            "heading": "right",
+            "templateErrors": {
+              "left": 26.819,
+              "right": 4.526
+            }
+          },
+          {
+            "frame": 680,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.076,
+              "right": 5.544
+            }
+          },
+          {
+            "frame": 685,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.287,
+              "right": 2.415
+            }
+          },
+          {
+            "frame": 690,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.083,
+              "right": 6.082
+            }
+          },
+          {
+            "frame": 695,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.101,
+              "right": 4.074
+            }
+          },
+          {
+            "frame": 700,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.382,
+              "right": 5.359
+            }
+          },
+          {
+            "frame": 705,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.136,
+              "right": 3.192
+            }
+          },
+          {
+            "frame": 710,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.132,
+              "right": 7.22
+            }
+          },
+          {
+            "frame": 715,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.577,
+              "right": 0.494
+            }
+          },
+          {
+            "frame": 720,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.529,
+              "right": 6.23
+            }
+          },
+          {
+            "frame": 725,
+            "heading": "right",
+            "templateErrors": {
+              "left": 26.719,
+              "right": 3.97
+            }
+          },
+          {
+            "frame": 730,
+            "heading": "right",
+            "templateErrors": {
+              "left": 26.832,
+              "right": 4.514
+            }
+          },
+          {
+            "frame": 735,
+            "heading": "right",
+            "templateErrors": {
+              "left": 26.787,
+              "right": 4.235
+            }
+          },
+          {
+            "frame": 740,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.985,
+              "right": 5.587
+            }
+          },
+          {
+            "frame": 745,
+            "heading": "right",
+            "templateErrors": {
+              "left": 28.337,
+              "right": 3.237
+            }
+          },
+          {
+            "frame": 750,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.926,
+              "right": 4.568
+            }
+          },
+          {
+            "frame": 755,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.088,
+              "right": 5.423
+            }
+          },
+          {
+            "frame": 760,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.346,
+              "right": 2.399
+            }
+          },
+          {
+            "frame": 765,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.058,
+              "right": 5.878
+            }
+          },
+          {
+            "frame": 770,
+            "heading": "right",
+            "templateErrors": {
+              "left": 27.597,
+              "right": 4.147
+            }
+          }
+        ]
+      },
+      "carry-left-away": {
+        "screenDisplacement": [
+          -118.14814814814815,
+          -57.03703703703707
+        ],
+        "motionDirection": "left",
+        "matchesTravel": 23,
+        "samples": [
+          {
+            "frame": 2095,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.878,
+              "right": 18.724
+            }
+          },
+          {
+            "frame": 2100,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.638,
+              "right": 18.858
+            }
+          },
+          {
+            "frame": 2105,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.838,
+              "right": 17.665
+            }
+          },
+          {
+            "frame": 2110,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.739,
+              "right": 17.82
+            }
+          },
+          {
+            "frame": 2115,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.571,
+              "right": 17.599
+            }
+          },
+          {
+            "frame": 2120,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.12,
+              "right": 18.86
+            }
+          },
+          {
+            "frame": 2125,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.146,
+              "right": 18.83
+            }
+          },
+          {
+            "frame": 2130,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.252,
+              "right": 18.773
+            }
+          },
+          {
+            "frame": 2135,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.725,
+              "right": 17.643
+            }
+          },
+          {
+            "frame": 2140,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.192,
+              "right": 17.497
+            }
+          },
+          {
+            "frame": 2145,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.035,
+              "right": 18.378
+            }
+          },
+          {
+            "frame": 2150,
+            "heading": "left",
+            "templateErrors": {
+              "left": 0.604,
+              "right": 20.095
+            }
+          },
+          {
+            "frame": 2155,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.421,
+              "right": 19.379
+            }
+          },
+          {
+            "frame": 2160,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.019,
+              "right": 20.138
+            }
+          },
+          {
+            "frame": 2165,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.881,
+              "right": 18.462
+            }
+          },
+          {
+            "frame": 2170,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.743,
+              "right": 18.008
+            }
+          },
+          {
+            "frame": 2175,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.312,
+              "right": 18.667
+            }
+          },
+          {
+            "frame": 2180,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.16,
+              "right": 19.531
+            }
+          },
+          {
+            "frame": 2185,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.43,
+              "right": 20.007
+            }
+          },
+          {
+            "frame": 2190,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.109,
+              "right": 19.754
+            }
+          },
+          {
+            "frame": 2195,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.584,
+              "right": 19.268
+            }
+          },
+          {
+            "frame": 2200,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.846,
+              "right": 18.704
+            }
+          },
+          {
+            "frame": 2205,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.957,
+              "right": 18.446
+            }
+          }
+        ]
+      },
+      "carry-left-front": {
+        "screenDisplacement": [
+          -112.61904761904765,
+          56.30952380952385
+        ],
+        "motionDirection": "left",
+        "matchesTravel": 23,
+        "samples": [
+          {
+            "frame": 2555,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.942,
+              "right": 30.474
+            }
+          },
+          {
+            "frame": 2560,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.473,
+              "right": 31.155
+            }
+          },
+          {
+            "frame": 2565,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.716,
+              "right": 32.754
+            }
+          },
+          {
+            "frame": 2570,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.609,
+              "right": 32.607
+            }
+          },
+          {
+            "frame": 2575,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.76,
+              "right": 34.432
+            }
+          },
+          {
+            "frame": 2580,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.051,
+              "right": 32.004
+            }
+          },
+          {
+            "frame": 2585,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.583,
+              "right": 32.649
+            }
+          },
+          {
+            "frame": 2590,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.718,
+              "right": 33.213
+            }
+          },
+          {
+            "frame": 2595,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.524,
+              "right": 32.608
+            }
+          },
+          {
+            "frame": 2600,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.028,
+              "right": 31.881
+            }
+          },
+          {
+            "frame": 2605,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.456,
+              "right": 31.159
+            }
+          },
+          {
+            "frame": 2610,
+            "heading": "left",
+            "templateErrors": {
+              "left": 0.967,
+              "right": 33.858
+            }
+          },
+          {
+            "frame": 2615,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.539,
+              "right": 33.055
+            }
+          },
+          {
+            "frame": 2620,
+            "heading": "left",
+            "templateErrors": {
+              "left": 3.082,
+              "right": 33.943
+            }
+          },
+          {
+            "frame": 2625,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.235,
+              "right": 32.24
+            }
+          },
+          {
+            "frame": 2630,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.075,
+              "right": 31.496
+            }
+          },
+          {
+            "frame": 2635,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.35,
+              "right": 32.092
+            }
+          },
+          {
+            "frame": 2640,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.233,
+              "right": 32.835
+            }
+          },
+          {
+            "frame": 2645,
+            "heading": "left",
+            "templateErrors": {
+              "left": 2.606,
+              "right": 34.329
+            }
+          },
+          {
+            "frame": 2650,
+            "heading": "left",
+            "templateErrors": {
+              "left": 6.4,
+              "right": 34.198
+            }
+          },
+          {
+            "frame": 2655,
+            "heading": "left",
+            "templateErrors": {
+              "left": 1.773,
+              "right": 34.234
+            }
+          },
+          {
+            "frame": 2660,
+            "heading": "left",
+            "templateErrors": {
+              "left": 5.317,
+              "right": 32.517
+            }
+          },
+          {
+            "frame": 2665,
+            "heading": "left",
+            "templateErrors": {
+              "left": 4.041,
+              "right": 32.947
+            }
+          }
+        ]
+      }
+    }
+  },
+  "poses": [
+    {
+      "id": "pickup",
+      "frame": 60,
+      "beforeSha256": "7d1a0157bac0d5a0c1230a55983f738c9b6df47c9fce848fc200a501684a9fb5",
+      "afterSha256": "f84c9322c5a52868bb72ffeffc69369543fe784f6bb05e0f33195add534f4c33",
+      "pairSha256": "5173e6523f851e42474f72c9f5b3591063c984f10143737d3c8f04e67cc81258"
+    },
+    {
+      "id": "carry-right-away",
+      "frame": 350,
+      "beforeSha256": "8fe124c564bb31c37bc24e6df56f3d218275a97eb3149a04b67f04a8ef611285",
+      "afterSha256": "ac443333ef6863fb1d80494d40641495faff2270465a2030163532bb34ad374b",
+      "pairSha256": "a28752031c88895e0099829d59d8d077798d8c2035d5811120ada7086d6a16de"
+    },
+    {
+      "id": "turn",
+      "frame": 535,
+      "beforeSha256": "ea946e75dee94f3eaa5bbeb0d619e6cf4ea8be0d9c65653f8c81c378b894aee1",
+      "afterSha256": "6b984fdd174c2b2ff2f22b68241da65588be63b082b190541edcf24adf6bea21",
+      "pairSha256": "2cdc778495e63ccc0766544967c1d185d33629ad2f8fb4927f60ce065483721c"
+    },
+    {
+      "id": "carry-right-front",
+      "frame": 715,
+      "beforeSha256": "d0a4272793d239cce69641e280cf342b4c6032e133b363b0e99188899c1c7cf7",
+      "afterSha256": "1560db061f0152a0ee31b100c9993d9fee5c6b41c54798e244ba0844506e3d2d",
+      "pairSha256": "618afd90967babf644009722838fc7d1ff7a5c5f404731505b34ecdcc1c59440"
+    },
+    {
+      "id": "drop",
+      "frame": 1480,
+      "beforeSha256": "861cc77367d9012663ce0d0b4b53a3346ee76af8ff30173f90ca52c96c745020",
+      "afterSha256": "2f7e9a0fd182376a6cb625b3640fc65ad2d7bec68226d190e8b5bba7c61ff9ed",
+      "pairSha256": "ed6c7b58cfcb795b506bcc12ce148ff9cdf7d44c76d9e5ce28893e6b2a606d7a"
+    },
+    {
+      "id": "push",
+      "frame": 1690,
+      "beforeSha256": "83f8af2e0935dae1eb2f4941e1c048f2635352bc374021ebbea80a719cffdacb",
+      "afterSha256": "035f33f62708f6d669e1834d4d8727d524b9d168e8183c0b6b3fd9b176f13754",
+      "pairSha256": "a20b3917856abadaf624c7ae1c89e2df30f080900f1c2baecd348a8e22c64142"
+    },
+    {
+      "id": "pickup-right",
+      "frame": 1925,
+      "beforeSha256": "18cddb50d4fa6eef6d3d795a1151a4cc1a393b290ca6e2f8195ef598401620e0",
+      "afterSha256": "e5ec3999e839f66240805f5512301afbc1bdf2a64d85cc5253b38ab50a6b01a7",
+      "pairSha256": "ffec9c80d74a163ec5ba12b5dd12328af419bf4f718cc532d7b4d0bfd328c0a1"
+    },
+    {
+      "id": "carry-left-away",
+      "frame": 2150,
+      "beforeSha256": "6ac67921628d0638b30f0638e8881131c7553bc710adbd7f7d9045f978aa262f",
+      "afterSha256": "7e318324e1b26b95c71ffb9898149d4cd96cddef66cb83bf7893b251468a03a5",
+      "pairSha256": "69c5b1cee55d13696b9b806f604a17071277c76c3ba5bc48fb7fad19e6e23d68"
+    },
+    {
+      "id": "carry-left-front",
+      "frame": 2610,
+      "beforeSha256": "99f557419c00ee8df5b469939d7434af4bf5bec32036851d318e4d912890a6de",
+      "afterSha256": "8955988293b7bbd459c71987b9a8bcfa866afd0705c716c5b5a3a02a4c969cdc",
+      "pairSha256": "26b7684ded961b253f6c92c22af56b6a81c4aacd39b3c43fd216d38e191d6069"
+    },
+    {
+      "id": "drop-left",
+      "frame": 2830,
+      "beforeSha256": "ba72c34ce33f3cfc951a2b9f5c52de8287eb621c8d61769e47cf1c30e79b073d",
+      "afterSha256": "7f1c30e2f1315018b5b8be4ebc2b73264fdaf88ccaa42ab2123713e8e8f991ed",
+      "pairSha256": "6348487e3354b926ff2427f71328e79d6ed93096a79ba5a14a864a0281a56da5"
+    }
+  ],
+  "clips": [
+    {
+      "id": "pickup",
+      "title": "Lift from the first trolley",
+      "startSeconds": 0.0,
+      "endSeconds": 1.3333333333333333,
+      "firstGameFrame": 15,
+      "lastGameFrame": 90,
+      "stillGameFrame": 60,
+      "fixedCamera": {
+        "scale": 4,
+        "tx": 808,
+        "ty": -4
+      },
+      "stationStep": []
+    },
+    {
+      "id": "carry-right-away",
+      "title": "Carry up and to the right beside the stairs",
+      "startSeconds": 1.3333333333333333,
+      "endSeconds": 3.25,
+      "firstGameFrame": 280,
+      "lastGameFrame": 390,
+      "stillGameFrame": 350,
+      "fixedCamera": {
+        "scale": 4,
+        "tx": 650.3333333333335,
+        "ty": 74.83333333333326
+      },
+      "stationStep": []
+    },
+    {
+      "id": "turn",
+      "title": "Turn at the foot of the sorting counter",
+      "startSeconds": 3.25,
+      "endSeconds": 4.5,
+      "firstGameFrame": 500,
+      "lastGameFrame": 570,
+      "stillGameFrame": 535,
+      "fixedCamera": {
+        "scale": 4,
+        "tx": 464,
+        "ty": 168
+      },
+      "stationStep": []
+    },
+    {
+      "id": "carry-right-front",
+      "title": "Carry down and to the right along the counter",
+      "startSeconds": 4.5,
+      "endSeconds": 6.416666666666667,
+      "firstGameFrame": 660,
+      "lastGameFrame": 770,
+      "stillGameFrame": 715,
+      "fixedCamera": {
+        "scale": 4,
+        "tx": 302.9333333333334,
+        "ty": 91.49333333333334
+      },
+      "stationStep": []
+    },
+    {
+      "id": "drop",
+      "title": "Set the parcel on the second trolley",
+      "startSeconds": 6.416666666666667,
+      "endSeconds": 8.166666666666666,
+      "firstGameFrame": 1420,
+      "lastGameFrame": 1520,
+      "stillGameFrame": 1480,
+      "fixedCamera": {
+        "scale": 4,
+        "tx": 0,
+        "ty": -56
+      },
+      "stationStep": [
+        {
+          "frame": 1455,
+          "screenOffset": [
+            -0.359375,
+            0.1796875
+          ]
+        },
+        {
+          "frame": 1460,
+          "screenOffset": [
+            -2.370370370370381,
+            1.1851851851852189
+          ]
+        },
+        {
+          "frame": 1465,
+          "screenOffset": [
+            -5.770254629629619,
+            2.885127314814781
+          ]
+        },
+        {
+          "frame": 1470,
+          "screenOffset": [
+            -10.125,
+            5.0625
+          ]
+        },
+        {
+          "frame": 1475,
+          "screenOffset": [
+            -15.000578703703695,
+            7.500289351851848
+          ]
+        },
+        {
+          "frame": 1480,
+          "screenOffset": [
+            -19.962962962962933,
+            9.981481481481467
+          ]
+        },
+        {
+          "frame": 1485,
+          "screenOffset": [
+            -24.578125,
+            12.2890625
+          ]
+        },
+        {
+          "frame": 1490,
+          "screenOffset": [
+            -28.412037037037067,
+            14.206018518518533
+          ]
+        },
+        {
+          "frame": 1495,
+          "screenOffset": [
+            -31.030671296296305,
+            15.515335648148152
+          ]
+        },
+        {
+          "frame": 1500,
+          "screenOffset": [
+            -32,
+            16
+          ]
+        },
+        {
+          "frame": 1505,
+          "screenOffset": [
+            -32,
+            16
+          ]
+        },
+        {
+          "frame": 1510,
+          "screenOffset": [
+            -32,
+            16
+          ]
+        },
+        {
+          "frame": 1515,
+          "screenOffset": [
+            -32,
+            16
+          ]
+        },
+        {
+          "frame": 1520,
+          "screenOffset": [
+            -32,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "id": "push",
+      "title": "Push the loaded trolley, then pull it back",
+      "startSeconds": 8.166666666666666,
+      "endSeconds": 10.25,
+      "firstGameFrame": 1630,
+      "lastGameFrame": 1750,
+      "stillGameFrame": 1690,
+      "fixedCamera": {
+        "scale": 4,
+        "tx": -47.978947922372754,
+        "ty": -79.98947396118638
+      },
+      "stationStep": [
+        {
+          "frame": 1630,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1635,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1640,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1645,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1650,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1655,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1660,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1665,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1670,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1675,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1680,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1685,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1690,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1695,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1700,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1705,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1710,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1715,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1720,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1725,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1730,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1735,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1740,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1745,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        },
+        {
+          "frame": 1750,
+          "screenOffset": [
+            -32.0,
+            16.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pickup-right",
+      "title": "Collect the parcel and turn for the return journey",
+      "startSeconds": 10.25,
+      "endSeconds": 11.916666666666666,
+      "firstGameFrame": 1880,
+      "lastGameFrame": 1975,
+      "stillGameFrame": 1925,
+      "fixedCamera": {
+        "scale": 4,
+        "tx": 0,
+        "ty": -56
+      },
+      "stationStep": [
+        {
+          "frame": 1880,
+          "screenOffset": [
+            -32,
+            16
+          ]
+        },
+        {
+          "frame": 1885,
+          "screenOffset": [
+            -32,
+            16
+          ]
+        },
+        {
+          "frame": 1890,
+          "screenOffset": [
+            -32,
+            16
+          ]
+        },
+        {
+          "frame": 1895,
+          "screenOffset": [
+            -32,
+            16
+          ]
+        },
+        {
+          "frame": 1900,
+          "screenOffset": [
+            -32,
+            16
+          ]
+        },
+        {
+          "frame": 1905,
+          "screenOffset": [
+            -31.533527696792987,
+            15.766763848396522
+          ]
+        },
+        {
+          "frame": 1910,
+          "screenOffset": [
+            -28.959291653169203,
+            14.479645826584601
+          ]
+        },
+        {
+          "frame": 1915,
+          "screenOffset": [
+            -24.700572292408992,
+            12.350286146204496
+          ]
+        },
+        {
+          "frame": 1920,
+          "screenOffset": [
+            -19.40524781341105,
+            9.702623906705526
+          ]
+        },
+        {
+          "frame": 1925,
+          "screenOffset": [
+            -13.721196415073962,
+            6.860598207537009
+          ]
+        },
+        {
+          "frame": 1930,
+          "screenOffset": [
+            -8.296296296296305,
+            4.148148148148152
+          ]
+        },
+        {
+          "frame": 1935,
+          "screenOffset": [
+            -3.778425655976662,
+            1.889212827988331
+          ]
+        },
+        {
+          "frame": 1940,
+          "screenOffset": [
+            -0.8154626930137283,
+            0.40773134650686416
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carry-left-away",
+      "title": "Carry up and to the left along the counter",
+      "startSeconds": 11.916666666666666,
+      "endSeconds": 13.833333333333334,
+      "firstGameFrame": 2095,
+      "lastGameFrame": 2205,
+      "stillGameFrame": 2150,
+      "fixedCamera": {
+        "scale": 4,
+        "tx": 208.37037037037044,
+        "ty": 44.59259259259261
+      },
+      "stationStep": []
+    },
+    {
+      "id": "carry-left-front",
+      "title": "Carry down and to the left beside the stairs",
+      "startSeconds": 13.833333333333334,
+      "endSeconds": 15.75,
+      "firstGameFrame": 2555,
+      "lastGameFrame": 2665,
+      "stillGameFrame": 2610,
+      "fixedCamera": {
+        "scale": 4,
+        "tx": 629.8571428571429,
+        "ty": 85.07142857142856
+      },
+      "stationStep": []
+    },
+    {
+      "id": "drop-left",
+      "title": "Return the parcel to the first trolley",
+      "startSeconds": 15.75,
+      "endSeconds": 17.25,
+      "firstGameFrame": 2785,
+      "lastGameFrame": 2870,
+      "stillGameFrame": 2830,
+      "fixedCamera": {
+        "scale": 4,
+        "tx": 808,
+        "ty": -4
+      },
+      "stationStep": []
+    }
+  ],
+  "movie": {
+    "name": "floor-worker-comparison.webm",
+    "sha256": "0b37bc6eb9fd85113e9528bed0bbc8e35cc8afae8e902ee6a35c937cace76ecd",
+    "codec": "vp9",
+    "pixelFormat": "yuv420p",
+    "mp4": {
+      "name": "floor-worker-comparison.mp4",
+      "sha256": "fc7ffbf195a4c29e232ade066d3410c8d64828800167fc339a87ced7e58e4720",
+      "codec": "h264",
+      "pixelFormat": "yuv420p"
+    },
+    "poster": {
+      "name": "floor-worker-comparison-poster.png",
+      "sha256": "a28752031c88895e0099829d59d8d077798d8c2035d5811120ada7086d6a16de"
+    },
+    "frames": 207,
+    "fps": 12,
+    "width": 768,
+    "height": 256,
+    "durationSeconds": 17.25,
+    "captions": "floor-worker-comparison.vtt",
+    "captionSha256": "c5b31ab05a69e0c249ec2a3d8fd7aa808f2baa942fa036501aa8d73cf28d333b",
+    "composition": "Original game on the left, corrected game on the right. Each excerpt uses one fixed camera."
+  }
+}

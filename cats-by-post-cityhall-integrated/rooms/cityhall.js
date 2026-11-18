@@ -177,7 +177,7 @@ const CityHallCivicDistrict=globalThis.CityHallCivicDistrict;
   const t=motion&&!chapter?.mode?((time%48)+48)%48:0;
   out.x=320;out.y=228;out.z=-12;out.face=3;out.action='check';out.walk=-1;
   if(t>=21&&t<29){out.x=319;out.y=194;out.action='read';}
-  for(let i=0;i<segments.length;i++){const s=segments[i];if(t<s[0]||t>=s[1])continue;const a=points[s[2]],b=points[s[3]],v=(t-s[0])/(s[1]-s[0]),u=v*v*(3-2*v);out.x=a[0]+(b[0]-a[0])*u;out.y=a[1]+(b[1]-a[1])*u;out.face=s[4];out.action='walk';out.walk=Math.floor(u*Math.hypot(b[0]-a[0],b[1]-a[1])/4)%4;break;}
+  for(let i=0;i<segments.length;i++){const s=segments[i];if(t<s[0]||t>=s[1])continue;const a=points[s[2]],b=points[s[3]],v=(t-s[0])/(s[1]-s[0]),u=v*v*(3-2*v);out.x=a[0]+(b[0]-a[0])*u;out.y=a[1]+(b[1]-a[1])*u;out.face=CityHallWorker.heading(b[0]-a[0],b[1]-a[1]);out.action='walk';out.walk=Math.floor(u*Math.hypot(b[0]-a[0],b[1]-a[1])/4)%4;break;}
   return out;
  }
  function registration(source,target){const a=source[0],b=source[1],q=target[0],r=target[1],sx=(r[0]-q[0])/(b[0]-a[0]),sy=sx,shear=(r[1]-q[1]-sy*(b[1]-a[1]))/(b[0]-a[0]);return [sx,shear,0,sy,q[0]-sx*a[0],q[1]-shear*a[0]-sy*a[1]];}
@@ -1440,6 +1440,137 @@ const CityHallFlaps=globalThis.CityHallFlaps;
 });
 
 const CityHallMotion=globalThis.CityHallMotion;
+/* Paper construction for the Hall porter. Shoe roots, stride frames, trolley
+   stops and transfer times are supplied by the original Hall performance. */
+const CityHallWorker = (() => {
+  const towardX = [-4.4,4.4,-5.5,5.5], towardY = [-8.3,-8.3,-13.3,-13.3];
+  // Stationary turns in CITYHALL.step. Bring the parcel around the chest while
+  // both shoes are planted, including the turn from the sorting counter.
+  const turns = [[156,0,3],[534,3,1],[894,1,3],[1278,3,1],[1470,1,3],[1937,3,2],[2418,2,0]];
+  const mirror = face => face === 1 || face === 3;
+  const heading = (dx,dy) => Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 1 : 2) : (dy > 0 ? 0 : 3);
+  const ease = t => { t = Math.min(1,Math.max(0,t)); return t*t*(3-2*t); };
+  function armRecord() { return {sx:0,sy:0,ex:0,ey:0,wx:0,wy:0,px:0,py:0,angle:0,side:0}; }
+  function create() { return {near:armRecord(),far:armRecord()}; }
+
+  function inHands(frame) {
+    if (frame < 1512) return ease((frame-30)/60)*ease((1512-frame)/60);
+    return ease((frame-1908)/36)*ease((2856-frame)/60);
+  }
+  function carry(parcel,worker,frame,t) {
+    let x = towardX[worker.face], y = towardY[worker.face];
+    for (const turn of turns) {
+      if (Math.abs(frame-turn[0]) >= 12) continue;
+      const u = ease((frame-turn[0]+12)/24), from = turn[1], to = turn[2];
+      x = towardX[from]+(towardX[to]-towardX[from])*u;
+      y = towardY[from]+(towardY[to]-towardY[from])*u;
+      break;
+    }
+    // Correct the held endpoint in the sampler's own interpolation. This is
+    // exactly zero on a resting trolley and keeps one constant-size carton.
+    const dx = x+1, dy = y+10.5;
+    parcel.x += t*(dy+dx*.5); parcel.y += t*(dy-dx*.5);
+  }
+
+  function poseArm(a,side,rig,flip,lean,grip,x,y,near) {
+    a.side = side;
+    a.sy = rig.shoulder[1]-.75;
+    // Both roots lie inside the opaque coat. Lean is a shear about its sole.
+    a.sx = side*2.65+lean*a.sy;
+    const sourceArm = side === (flip ? 1 : -1);
+    const restX = (sourceArm ? rig.wrist[0] : 4.3)*(flip ? -1 : 1);
+    const restY = (sourceArm ? rig.wrist[1] : rig.shoulder[1]+9)-.1;
+    a.px = restX+(x-restX)*grip; a.py = restY+(y-restY)*grip;
+    const dx = a.px-a.sx, dy = a.py-a.sy, dist = Math.max(.01,Math.hypot(dx,dy));
+    // Bend down and out from the coat. Each cut sleeve has one upper arm and
+    // one forearm, joined at its original stitched elbow.
+    const bend = Math.min(near ? 4.1 : 1.7, Math.sqrt(Math.max(.12,4.7*4.7-dist*dist*.25)));
+    const direction = Math.abs(dx) < .7 ? -side : Math.sign(dx);
+    a.ex = a.sx+dx*.5-direction*dy*bend/dist;
+    a.ey = a.sy+dy*.5+direction*dx*bend/dist;
+    const ex = a.px-a.ex, ey = a.py-a.ey, length = Math.max(.01,Math.hypot(ex,ey));
+    a.wx = a.px-.95*ex/length; a.wy = a.py-.95*ey/length;
+    a.angle = Math.atan2(ey,ex)-Math.PI/2;
+  }
+  function sleevePart(c,image,ax,ay,bx,by,top,height,sx,sy,ex,ey,width,side) {
+    const dx = ex-sx, dy = ey-sy, sourceX = bx-ax, sourceY = by-ay;
+    const length = Math.hypot(dx,dy);
+    c.save(); c.translate(sx,sy); c.rotate(Math.atan2(dy,dx));
+    c.beginPath(); c.roundRect(-width*.45,-width*.55,length+width*.9,width*1.1,width*.5); c.clip();
+    c.scale(length/Math.hypot(sourceX,sourceY),width/21*(side<0?1:-1));
+    c.rotate(-Math.atan2(sourceY,sourceX));
+    c.drawImage(image,0,top,28,height,-ax,top-ay,28,height); c.restore();
+  }
+  function arm(c,images,a) {
+    const s = images['joint-sleeve'];
+    sleevePart(c,s,19,5,11,28,0,31,a.sx,a.sy,a.ex,a.ey,2.9,a.side);
+    sleevePart(c,s,11,28,13,52,25,31,a.ex,a.ey,a.wx,a.wy,2.55,a.side);
+    c.save(); c.translate(a.px,a.py); c.rotate(a.angle);
+    if (a.side>0) c.scale(-1,1);
+    c.drawImage(images['joint-hand'],-1.45,-1.45,2.9,3.25); c.restore();
+  }
+  function body(c,image,flip,lean) {
+    c.save(); c.transform(flip?-1:1,0,lean,1,0,0);
+    c.drawImage(image,-16,-35.5,32,36); c.restore();
+  }
+  function draw(actors,f,o,front,back) {
+    const worker = o.workers[0], parcel = o.parcel, rig = actors.floorRig;
+    const t = ((f.sceneTime*60)%2880+2880)%2880;
+    const held = f.motion && !f.chapter?.mode ? inHands(t) : 0;
+    if (f.motion && !f.chapter?.mode && t>=1452 && t<1944) {
+      // Stand on the floor outside the front of the cart. Step into this
+      // stance during the first set-down and out again on the return pickup.
+      const stance = ease((t-1452)/48)*ease((1944-t)/42);
+      worker.y += 8*stance; parcel.y += 8*stance*held;
+      if (stance>0 && stance<1) { worker.action='walk'; worker.walk=Math.floor(stance*5)%4; }
+      // The return shove pulls from the same bar. At pickup he first looks
+      // at the parcel, then pivots to walk back along the counter.
+      if (t>=1470 && t<1937) worker.face=3;
+    }
+    if (held) carry(parcel,worker,t,held);
+    if (!worker.gripWeight) {
+      actors.at(actors.parcel,parcel.x,parcel.y,parcel.z); actors.worker(worker); return;
+    }
+    const c = actors.c, r = actors.r, W = worker.x-worker.y, H = (worker.x+worker.y)/2-worker.z;
+    const flip = mirror(worker.face), away = worker.face>=2;
+    const nearSide = (flip ? 1 : -1)*(away ? 1 : -1);
+    const bx = parcel.x-parcel.y-W, by = (parcel.x+parcel.y)/2-parcel.z-H;
+    const table = away ? back : front;
+    const hash = worker.action==='walk' ? table.walk[Math.max(0,worker.walk)] : table.check[0];
+    const source = actors.rigs[hash], grip = worker.gripWeight;
+    const transfer = (1-held)*grip;
+    // Reach from the hips on the long shelf pickup. The shoe registration
+    // remains fixed as the head and shoulders lean towards the actual load.
+    const lean = worker.push ? -.09*grip : -Math.max(-.26,Math.min(.26,bx*.022))*transfer;
+    let nearX, nearY, farX, farY;
+    if (worker.push) {
+      const cart = o.trolley, barX = cart.x-cart.y-7-W-2, barY = (cart.x+cart.y+7)/2-16-H-1;
+      nearX = barX+nearSide*2.5; nearY = barY+nearSide*1.25;
+      farX = barX-nearSide*2.5; farY = barY-nearSide*1.25;
+    } else {
+      // The inner hand bears the opposite face. On a trolley both hands reach
+      // the accessible side first, then spread to its corners as it lifts.
+      const reach = Math.sign(-bx), nearPark = reach===nearSide ? 4.7 : 1.1, farPark = 5.8-nearPark;
+      const near = nearSide*4.8*held+reach*nearPark*(1-held);
+      const far = -nearSide*5.5*held+reach*farPark*(1-held);
+      nearX = bx+near; nearY = by-.5;
+      farX = bx+far; farY = by-2.2;
+    }
+    poseArm(rig.near,nearSide,source,flip,lean,grip,nearX,nearY,true);
+    poseArm(rig.far,-nearSide,source,flip,lean,grip,farX,farY,false);
+    r.shadow(W,H,5,2,.16);
+    c.save(); c.translate(W,H);
+    arm(c,r.images,rig.far);
+    const box = actors.parcel;
+    if (away || worker.push) c.drawImage(box.canvas,bx+box.left,by+box.top,box.width,box.height);
+    body(c,actors.baseImages[hash],flip,lean);
+    if (!away && !worker.push) c.drawImage(box.canvas,bx+box.left,by+box.top,box.width,box.height);
+    arm(c,r.images,rig.near);
+    c.restore();
+  }
+  return {create,mirror,heading,draw};
+})();
+
 /* Original human workers and Postmistress artwork. Prepared names and source
    contacts keep all live draws allocation-free and registered to one floor. */
 (function(root){
@@ -1451,27 +1582,19 @@ const CityHallMotion=globalThis.CityHallMotion;
  // rather than forcing long tails and stretched legs into one crop width.
  const catWidths={'ginger-nap':42,'ginger-puzzled':41.8,'ginger-push-front':46,'ginger-walk-front-0':48,'ginger-walk-front-1':49};
  class Actors{
-  constructor(r){this.streetWorker=this.worker.bind(this);this.r=r;this.c=r.ctx;this.motion=CityHallMotion.create(CITYHALL,r.layout);this.out=this.motion.makeOut();this.point={x:0,y:0};this.pigeon=this.bakePigeon();this.carriers=r.carriers;this.workerImages={};this.rigs={};this.baseImages={};this.gripPoint={x:0,y:0};this.armPoint={x:0,y:0};this.cart=r.layer({left:-22,right:22,top:-26,bottom:18},p=>CityHallArchitecture.trolley(p,0,0));this.parcel=r.layer({left:-8,right:8,top:-7,bottom:5},p=>{p.box(-3.5,-2.5,0,7,5,5,'wood');p.line([0,-2.5,5.1],[0,2.5,5.1],'#efddba',.65);p.planeImage('letters',1,-1,5.2,1.6,1.4);});for(const table of [front,back])for(const action of Object.keys(table))for(const hash of table[action])if(!this.workerImages[hash])this.workerImages[hash]=[r.images['worker-'+hash],r.images['worker-carry-'+hash+'-plain'],r.images['worker-carry-'+hash+'-mirrored']];for(const key of Object.keys(r.assets.registration))if(key.startsWith('worker-base-')){const hash=key.slice(12);this.baseImages[hash]=r.images[key];this.rigs[hash]=r.assets.registration[key].rig;}}
+  constructor(r){this.floorRig=CityHallWorker.create();this.streetWorker=this.worker.bind(this);this.r=r;this.c=r.ctx;this.motion=CityHallMotion.create(CITYHALL,r.layout);this.out=this.motion.makeOut();this.point={x:0,y:0};this.pigeon=this.bakePigeon();this.carriers=r.carriers;this.workerImages={};this.rigs={};this.baseImages={};this.cart=r.layer({left:-22,right:22,top:-26,bottom:18},p=>CityHallArchitecture.trolley(p,0,0));this.parcel=r.layer({left:-8,right:8,top:-7,bottom:5},p=>{p.box(-3.5,-2.5,0,7,5,5,'wood');p.line([0,-2.5,5.1],[0,2.5,5.1],'#efddba',.65);p.planeImage('letters',1,-1,5.2,1.6,1.4);});for(const table of [front,back])for(const action of Object.keys(table))for(const hash of table[action])if(!this.workerImages[hash])this.workerImages[hash]=[r.images['worker-'+hash],r.images['worker-carry-'+hash+'-plain'],r.images['worker-carry-'+hash+'-mirrored']];for(const key of Object.keys(r.assets.registration))if(key.startsWith('worker-base-')){const hash=key.slice(12);this.baseImages[hash]=r.images[key];this.rigs[hash]=r.assets.registration[key].rig;}}
   bakePigeon(){const canvas=document.createElement('canvas');canvas.width=128;canvas.height=96;const c=canvas.getContext('2d');c.scale(4,4);c.fillStyle='#646b76';c.beginPath();c.ellipse(14,12,6,4,-.4,0,Math.PI*2);c.fill();c.fillStyle='#858b90';c.beginPath();c.ellipse(17,8,3,4,0,0,Math.PI*2);c.fill();c.fillStyle='#adb3af';c.beginPath();c.ellipse(11,12,5,2.4,-.4,0,Math.PI*2);c.fill();c.fillStyle='#c4ae77';c.beginPath();c.moveTo(19,7);c.lineTo(22,8);c.lineTo(19,9);c.fill();c.fillStyle='#283c3e';c.beginPath();c.arc(18,6.8,.55,0,Math.PI*2);c.fill();c.strokeStyle='#b69b73';c.lineWidth=.7;for(const x of [12,16]){c.beginPath();c.moveTo(x,15);c.lineTo(x,18);c.lineTo(x+2,18);c.stroke();}return canvas;}
   worker(a){
-   const c=this.c,r=this.r,p=P.project(a.x,a.y,a.z,this.point),away=a.face===2||a.face===3,table=away?back:front,action=a.action in table?a.action:'check',hash=table[action][action==='walk'?Math.max(0,a.walk):0],mirror=CITYHALL.staffMirror(a.face);
-   const images=this.workerImages[hash],im=a.gripWeight>0?this.baseImages[hash]:images[a.carry?mirror?2:1:0]||images[0];if(a.gripWeight>0){this.activeRig=this.rigs[hash];this.activeMirror=mirror;}
+   const c=this.c,r=this.r,p=P.project(a.x,a.y,a.z,this.point),away=a.face===2||a.face===3,table=away?back:front,action=a.action in table?a.action:'check',hash=table[action][action==='walk'?Math.max(0,a.walk):0],mirror=CityHallWorker.mirror(a.face);
+   const images=this.workerImages[hash],im=images[a.carry?mirror?2:1:0]||images[0];
    r.shadow(p.x,p.y,5,2,.16);c.save();c.translate(p.x,p.y);if(mirror)c.scale(-1,1);c.drawImage(im,-16,-35.5,32,36);c.restore();
   }
   at(layer,x,y,z){const p=P.project(x,y,z,this.point);this.c.drawImage(layer.canvas,p.x+layer.left,p.y+layer.top,layer.width,layer.height);}
   wheels(t){const c=this.c;for(let i=0;i<4;i++){const x=t.x+(i&1?6:-6),y=t.y+(i&2?7:-7),p=P.project(x,y,2,this.point),dx=1.5*Math.cos(t.angle),dy=1.5*Math.sin(t.angle);c.beginPath();c.moveTo(p.x-dx,p.y-dy);c.lineTo(p.x+dx,p.y+dy);c.strokeStyle='#c5aa61';c.lineWidth=.5;c.stroke();}}
-  limb(x0,y0,x1,y1,width){const c=this.c,dx=x1-x0,dy=y1-y0,length=Math.hypot(dx,dy);c.save();c.translate(x0,y0);c.rotate(Math.atan2(dy,dx)-Math.PI/2);c.drawImage(this.r.images['joint-sleeve'],-width/2,-.4,width,length+.8);c.restore();}
-  arm(sx,sy,wx,wy,side){const c=this.c,ex=sx+(wx-sx)*.5+side*.8,ey=sy+(wy-sy)*.5+.8;this.limb(sx,sy,ex,ey,2.8);this.limb(ex,ey,wx,wy,2.5);c.drawImage(this.r.images['joint-hand'],wx-1.5,wy-1.5,3,3.25);}
-  grip(a){const c=this.c,rig=this.activeRig,mirror=this.activeMirror,p=P.project(a.x,a.y,a.z,this.point),g=P.project(a.grip.x,a.grip.y,a.grip.z,this.gripPoint),gx=g.x-p.x,gy=g.y-p.y,side=gx<0?-1:1;
-   c.save();c.translate(p.x,p.y);
-   for(let i=0;i<2;i++){const source=i?1:-1,sign=source*(mirror?-1:1),sx=sign*4,sy=rig.shoulder[1]-1.5;let wx=i?4.3:rig.wrist[0],wy=(i?rig.shoulder[1]+9:rig.wrist[1])-1.5;if(mirror)wx=-wx;
-    if(sign===side){wx+=(gx-wx)*a.gripWeight;wy+=(gy-wy)*a.gripWeight;}this.arm(sx,sy,wx,wy,sign);
-   }c.restore();
-  }
+  floorWorker(f,o){CityHallWorker.draw(this,f,o,front,back);}
   draw(f){
    const r=this.r,c=this.c,o=this.motion.sample(f.sceneTime,f.chapter,this.out,f.motion);
-   this.at(this.cart,o.trolley.x,o.trolley.y,0);this.wheels(o.trolley);for(let i=0;i<3;i++)this.worker(o.workers[i]);
-   this.at(this.parcel,o.parcel.x,o.parcel.y,o.parcel.z);if(o.workers[0].gripWeight>0)this.grip(o.workers[0]);
+   this.at(this.cart,o.trolley.x,o.trolley.y,0);this.wheels(o.trolley);this.floorWorker(f,o);for(let i=1;i<3;i++)this.worker(o.workers[i]);
    const p=P.project(o.pm.x,o.pm.y,o.pm.z,this.point);r.shadow(p.x,p.y,4.4,1.7,.13);c.drawImage(r.images[pmNames[o.pm.pose]],p.x-16,p.y-35.5,32,36);
    const cat=o.cat,at=P.project(cat.x,cat.y,cat.z,this.point);r.shadow(at.x,at.y+1,6,2,.11);const sprites=r.assets.acting.sprites;
    const name=cat.pose==='nap'?'ginger-nap':cat.pose==='sit'?'ginger-puzzled':cat.pose==='jump'?'ginger-push-front':Math.floor(cat.phase*7)%2?'ginger-walk-front-1':'ginger-walk-front-0',s=sprites[name],rect=s.rect,width=catWidths[name]*17/42,height=width*rect[3]/rect[2];
