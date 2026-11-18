@@ -117,12 +117,12 @@
       "room": "parcel",
       "frame": 600,
       "placements": 0,
-      "pixels": 318841,
+      "pixels": 295640,
       "bounds": [
-        25,
-        40,
-        933,
-        601
+        42,
+        37,
+        844,
+        606
       ],
       "sourceSize": [
         960,
@@ -130,13 +130,13 @@
       ],
       "width": 960,
       "height": 640,
-      "build": "web-2a72996faf2c",
-      "matte": "renderer depth",
+      "matte": "exterior silhouette from registered floor and wall alpha",
       "inset": 12,
-      "presentation": "parcel-fidelity-32d74bd062",
-      "bytes": 125392,
-      "sha256": "de918cc85bfd18de62cb07decc766638d05f627cf6ec994765431e9250ae166a",
-      "zoom": 1
+      "framing": "warehouse",
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 135922,
+      "sha256": "110ab977c7c102bd3b812622050acbc9821efac91323e53bd7800ff2c3ae738c"
     },
     {
       "place": "winter",
@@ -166,5 +166,263 @@
       "zoom": 1
     }
   ],
-  "errors": []
+  "errors": [],
+  "historicalScope": "sourceCommit and engineSha256 identify the captures with a web build ID.",
+  "parcelPrints": [
+    {
+      "id": "7-1",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 7,
+        "h": 6,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 209692,
+      "sha256": "ab3e4901a55df8c04a20e02a18d7086a7994be617c6a747a23df5804a238e74e"
+    },
+    {
+      "id": "7-2",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 7,
+        "h": 6,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 210514,
+      "sha256": "aaa567c2d90fe54344aee79282ab2db738410f05614ebc91a7cd9d62f772b4ea"
+    },
+    {
+      "id": "7-3",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 7,
+        "h": 6,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 210518,
+      "sha256": "459386f34797798442afbbaf40b3d13bd47ab05b9711953dffcc5668e23c85f0"
+    },
+    {
+      "id": "7-4",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 7,
+        "h": 6,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 210030,
+      "sha256": "f5e9b45cb3c84e9d2eec267c57502f2152a52ce45a0a4f3c6479c49b0083eb94"
+    },
+    {
+      "id": "7-5",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 7,
+        "h": 6,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 210464,
+      "sha256": "89443bd5aa2b1238c7ee373bf19a19666c673dcbd39870136eb37008482ebe8f"
+    },
+    {
+      "id": "7-6",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 8,
+        "h": 6,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 211224,
+      "sha256": "807504f221193a56818bbe492b65d8c8cc3fec65951023d32ddb9af14145cce3"
+    },
+    {
+      "id": "7-7",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 8,
+        "h": 6,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 211200,
+      "sha256": "6caaa2297c11177f370db41dbaf54a99de34c42c932ae788053dcdce10c33b15"
+    },
+    {
+      "id": "7-8",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 8,
+        "h": 6,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 208752,
+      "sha256": "289d42b6ddc8935bf0b15c703b60a679e50221d2f2f0b52fbefe51491a0f0d1e"
+    },
+    {
+      "id": "7-9",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 8,
+        "h": 7,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 209710,
+      "sha256": "0ee85f31c10237554f206a06340b657fe61c92c4815502b8ca32a5dee4974252"
+    },
+    {
+      "id": "7-10",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 8,
+        "h": 7,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 210136,
+      "sha256": "986c4427935306abd57f34ab824540306e72153797bbd767c527da9eed19de37"
+    },
+    {
+      "id": "7-11",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 9,
+        "h": 7,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 210652,
+      "sha256": "8aade59e3a5dbee7790100746458c48506921e7167ceac84cc4c0604773f4133"
+    },
+    {
+      "id": "7-12",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 9,
+        "h": 7,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 211164,
+      "sha256": "c73088a1ca7ea19f73acb66d10d7750a4b0f24210ce4d8257f4f4e03de7647ba"
+    },
+    {
+      "id": "7-13",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 9,
+        "h": 7,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 211594,
+      "sha256": "ed992aef30ba08c75494be26d381e7852f0ae47bda34db279677cbe4c5a66c8e"
+    },
+    {
+      "id": "7-14",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 9,
+        "h": 7,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 211290,
+      "sha256": "8244f6f8f363d8480c8f757c21a9568d227629ba91b25a91a759bba9eb569e81"
+    },
+    {
+      "id": "7-15",
+      "frame": 600,
+      "placements": 0,
+      "board": {
+        "w": 9,
+        "h": 7,
+        "roomX": 0,
+        "roomY": 0
+      },
+      "width": 960,
+      "height": 640,
+      "presentation": "parcel-paper-f449b238f8ea",
+      "factorySha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+      "bytes": 211568,
+      "sha256": "9f377d4cddfb0bbebf6b05e0d266f4ff02d3588df63da089cb3a8b6768bacf6b"
+    }
+  ]
 }

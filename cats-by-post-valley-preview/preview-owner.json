@@ -1,14 +1,36 @@
 {
   "owner": "holleyy/cosysortie",
-  "pullRequest": 55,
-  "sourceCommit": "5503b3af3e2fcee261219a3a2afbe19c49b07adb",
-  "build": "valley-preview-e12696132df8",
-  "sourceWebBuild": "web-e12696132df8",
+  "pullRequest": 57,
+  "sourceCommit": "2525fec1561703b1870c14c1e7a5fa5eb08c9e1e",
+  "build": "valley-preview-b662dcf62cdc",
+  "sourceWebBuild": "web-b662dcf62cdc",
   "savePrefix": "catsByPost.preview.valley.",
   "sharedStaticPrefix": "cats-by-post-seven-room-integration",
   "sharedTrees": {
     "assets/audio/": "817dec708dd82e76518f68c3fde9a23e4f87d848",
-    "assets/music/": "831f5e327ca97ec64ce7a95ad7b06b8f87f93a42",
-    "rooms/": "9c6478f368033e1e2e1b49e349750229c91e4a55"
+    "assets/music/": "831f5e327ca97ec64ce7a95ad7b06b8f87f93a42"
+  },
+  "sharedRoomBlobs": {
+    "rooms/boxroom.js": "c3089f79d457d66d33dd0fe4e7c82f0cdf781b73",
+    "rooms/christmas.js": "d3e6256c63b76544d126faf20433e5dab6b4367a",
+    "rooms/cityhall.js": "386d4cecbdc1560216e60bd7812e74a5b7a0539e",
+    "rooms/depot.js": "7852d36e575f604cce7862442ce9ee95b742708d",
+    "rooms/office.js": "14082782ce8026e5b7750615d502b6b15409bbc6",
+    "rooms/train.js": "6688765a61b31347e323a81a50c997bc867f9aaf"
+  },
+  "localRoom": "rooms/parcel.js",
+  "parcelBundleSha256": "f449b238f8ea21534803a077fafa25452e83be2f55df980e2f62555490190d7a",
+  "reviewDelivery": "7-15",
+  "reviewStorage": "memory only",
+  "parcelAssetTree": "ffa56ae6ae2f0d11197525e5e012b0dced33ec8c",
+  "parcelAssetCount": 230,
+  "comparisonStill": {
+    "file": "parcel-7-15.webp",
+    "level": "7-15",
+    "width": 960,
+    "height": 640,
+    "camera": "room",
+    "frame": 600,
+    "sha256": "542defea95698dc57ce5422d918df5ae748db467b18f3cf9986ceec09d7ecbea"
   }
 }

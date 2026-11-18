@@ -28,6 +28,8 @@ function updateAddress() {
   url.searchParams.set('room', room);
   if (view === 'both') url.searchParams.delete('view');
   else url.searchParams.set('view', view);
+  if (frame) url.searchParams.set('live', '1');
+  else url.searchParams.delete('live');
   history.replaceState(null, '', url);
 }
 function stopLive() {
@@ -62,13 +64,15 @@ function selectRoom(key) {
   document.querySelector('#map-name').textContent = name;
   document.querySelector('#level').textContent = place.level ? 'Delivery ' + place.level : 'Daily · 6 Nov 2026';
   still.alt = 'Inside ' + name + ', with the sorting floor ready for play';
-  still.src = '../cats-by-post-seven-room-archive/after-' + room + '.webp';
+  document.querySelector('#play-parcel').hidden = room !== 'parcel';
+  still.src = room === 'parcel' ? 'parcel-7-15.webp?v=valley-preview-b662dcf62cdc' : '../cats-by-post-seven-room-archive/after-' + room + '.webp';
 }
 function failed(current) {
   if (current !== frame) return;
   stopLive();
   status.textContent = 'The live room could not open. The room photograph is shown.';
   watch.textContent = 'Retry live room';
+  updateAddress();
 }
 function startLive() {
   if (view === 'map') {
@@ -99,7 +103,7 @@ function startLive() {
       if (place.level) {
         const level = bridge.levels.find(entry => entry.id === place.level);
         if (!level || level.room !== key) throw Error('Unknown delivery');
-        game.gLoad(level.i);
+        if (bridge.state().id !== level.id) game.gLoad(level.i);
         game.cpCancel();
       } else if (!await bridge.load('daily', place.date)) throw Error('Daily unavailable');
       if (current !== frame) return;
@@ -113,14 +117,16 @@ function startLive() {
       game.pReset();
       game.__so.seek(600);
       if (game.FidelityRooms.state().room !== key || !bridge.drawFirstFrame()) throw Error('Room frame unavailable');
+      if (key === 'parcel' && !game.FidelityRooms.state().resources?.images) throw Error('Parcel artwork unavailable');
       clearTimeout(timer);
       current.classList.add('ready');
       roomCaption.textContent = 'In the game · live';
       status.textContent = '';
     } catch { failed(current); }
   }, { once: true });
-  current.src = 'game/engine.html?roomCamera=1&v=valley-preview-e12696132df8';
+  current.src = 'game/engine.html?roomCamera=1&v=valley-preview-b662dcf62cdc' + (key === 'parcel' ? '&review=7-15' : '');
   roomFrame.append(current);
+  updateAddress();
   scaleFrame();
   timer = setTimeout(() => failed(current), 90000);
 }
@@ -135,9 +141,13 @@ modeButtons.forEach(button => button.addEventListener('click', () => {
   setView(button.dataset.view);
   updateAddress();
 }));
-watch.addEventListener('click', () => frame ? stopLive() : startLive());
+watch.addEventListener('click', () => {
+  if (frame) { stopLive(); updateAddress(); }
+  else startLive();
+});
 new ResizeObserver(scaleFrame).observe(roomFrame);
 const params = new URL(location.href).searchParams;
 selectRoom(params.get('room'));
 setView(params.get('view'));
 watch.hidden = false;
+if (params.get('live') === '1' && view !== 'map') startLive();

@@ -147,16 +147,16 @@
   #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:christmasThanksIn .6s ease both; }
   @media (prefers-reduced-motion: reduce) { #chapterScene[data-chapter-mode="thanks"] #chapterCard { animation:none; } }
 </style>
-<link rel="icon" href="../journey/icons/envelope-open.svg?v=valley-preview-e12696132df8" type="image/svg+xml">
+<link rel="icon" href="../journey/icons/envelope-open.svg?v=valley-preview-b662dcf62cdc" type="image/svg+xml">
 <style id="web-host-style">
-@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=valley-preview-e12696132df8);font-weight:400;font-display:swap}
-@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=valley-preview-e12696132df8);font-weight:500;font-display:swap}
+@font-face{font-family:Balthazar;src:url(../assets/balthazar.ttf?v=valley-preview-b662dcf62cdc);font-weight:400;font-display:swap}
+@font-face{font-family:Signika;src:url(../assets/signika.ttf?v=valley-preview-b662dcf62cdc);font-weight:500;font-display:swap}
 #hud,#shiftCards,#shiftEnding,#shiftDebug,#chapterKicker,#debug,#controls,#atlasPanel{display:none!important}
 html,body{overflow:hidden!important}#screen{touch-action:none}
 #chapterScene{font-family:Signika,sans-serif;color:#253e40}
 
 </style>
-<link rel="stylesheet" href="../journey/theme.css?v=valley-preview-e12696132df8"><script src="../journey/theme.js?v=valley-preview-e12696132df8"></script><link rel="stylesheet" href="../journey/preferences.css?v=valley-preview-e12696132df8"><script src="../journey/preferences.js?v=valley-preview-e12696132df8"></script><script src="../journey/music.js?v=valley-preview-e12696132df8"></script><script src="../journey/audio.js?v=valley-preview-e12696132df8"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=valley-preview-e12696132df8"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=valley-preview-e12696132df8"></head>
+<link rel="stylesheet" href="../journey/theme.css?v=valley-preview-b662dcf62cdc"><script src="../journey/theme.js?v=valley-preview-b662dcf62cdc"></script><link rel="stylesheet" href="../journey/preferences.css?v=valley-preview-b662dcf62cdc"><script src="../journey/preferences.js?v=valley-preview-b662dcf62cdc"></script><script src="../journey/music.js?v=valley-preview-b662dcf62cdc"></script><script src="../journey/audio.js?v=valley-preview-b662dcf62cdc"></script><link rel="stylesheet" href="../journey/postal-identity.css?v=valley-preview-b662dcf62cdc"><link rel="stylesheet" href="../journey/chapter-presentation.css?v=valley-preview-b662dcf62cdc"></head>
 <body>
 <canvas id="screen"></canvas>
 <div id="hud" aria-label="Cats by Post">
@@ -256,7 +256,7 @@ html,body{overflow:hidden!important}#screen{touch-action:none}
 </div></div>
 <script>
 'use strict';
-const BUILD_ID = "valley-preview-e12696132df8";
+const BUILD_ID = "valley-preview-b662dcf62cdc";
 const PALETTE_DATA = {
   "levels": 5,
   "neutral": 2,
@@ -24180,7 +24180,7 @@ function pointerStill(p,x,y){return Math.hypot(x-p.cx0,y-p.cy0)<=TAP_SLOP_CSS;}
   screen.addEventListener('pointercancel',e=>end(e,true));
   screen.addEventListener('lostpointercapture',e=>{if(PTR.has(e.pointerId))cancel();});
   function wheelEnd(){timer=0;hasAnchor=false;WebCamera.end();}
-  function later(){stopTimer();timer=setTimeout(wheelEnd,140);}
+  function later(){stopTimer();timer=setTimeout(wheelEnd,150);}
   screen.addEventListener('wheel',e=>{
     e.preventDefault();if(!WebCamera.enabled()||safari||PTR.size)return;
     const unit=e.deltaMode===1?33:e.deltaMode===2?400:1,delta=e.deltaY*unit;
@@ -24232,13 +24232,16 @@ function onHover(clientX, clientY) { if (GAME_MODE) gHover(clientX, clientY); }
 // If storage is unavailable (private browsing, a full disk), progress just
 // isn't kept between visits.
 // ============================================================================
-const ROOM_CAMERA = new URLSearchParams(location.search).has('roomCamera');
-const LOCAL_STORE = ROOM_CAMERA ? { get() { return null; }, set() {} } : {
+const previewParams = new URLSearchParams(location.search);
+const ROOM_CAMERA = previewParams.has('roomCamera');
+const PARCEL_REVIEW = previewParams.get('review') === '7-15';
+const LOCAL_STORE = ROOM_CAMERA || PARCEL_REVIEW ? { get() { return null; }, set() {} } : {
   get(key) { try { return window.localStorage.getItem(key); } catch (e) { return null; } },
   set(key, value) { try { window.localStorage.setItem(key, value); } catch (e) { /* not kept */ } },
 };
 let progressStore = LOCAL_STORE;
 let progress = PROGRESS.parse(progressStore.get(PROGRESS.KEY));
+if (PARCEL_REVIEW) { progress.unlocked.push('7-15'); progress.current = '7-15'; }
 function progressSave() { progressStore.set(PROGRESS.KEY, PROGRESS.serialize(progress)); }
 const migratedNightShift = PROGRESS.importLegacyNightBest(progress, Number(progressStore.get('catsByPost.preview.valley.nightShiftBest')));
 if (migratedNightShift !== progress) { progress = migratedNightShift; progressSave(); }
@@ -24260,7 +24263,7 @@ function progressNightShiftFinished(kind, weekKey, catsHome) { progress = PROGRE
 const GAME_MODE = !/[?&](demo|boxroom|depot)\b/.test(location.search);   // ?boxroom: a Box Room on its own (47_boxroom)
 window.__chapterReady=false;
 const LEVELS = LEVELS_DATA.levels;
-const G_KEEP_PROGRESS = GAME_MODE && !ROOM_CAMERA && !/[?&]edit\b/.test(location.search);   // the editor's trial runs aren't progress
+const G_KEEP_PROGRESS = GAME_MODE && (!ROOM_CAMERA || PARCEL_REVIEW) && !/[?&]edit\b/.test(location.search);   // the editor's trial runs aren't progress
 // Null for the office, immutable depot data for chapter 3, generated Box Room data for dailies.
 let G_ROOM = null;
 let gDepotRoom = null, gDepotFlapRoom = null, gDepotFlapKey = '';
@@ -24973,7 +24976,7 @@ function gPrepareSrc() {
   s.cursor = gm.cursor && gm.mode !== 'running' ? gm.cy * gm.L.board.w + gm.cx : -1;
 }
 if (GAME_MODE) {
-  gLoad(G_KEEP_PROGRESS ? PROGRESS.startIndex(progress, LEVELS) : 0);
+  gLoad(G_KEEP_PROGRESS || PARCEL_REVIEW ? PROGRESS.startIndex(progress, LEVELS) : 0);
   if (G_KEEP_PROGRESS && (/[?&]daily\b/.test(location.search) || G_DATE_ARG)) gLoadDaily();   // ?daily, or ?date= to check any day
   if (G_KEEP_PROGRESS && /[?&]practice\b/.test(location.search)) {
     const seedArg = (/[?&]seed=(\d+)\b/.exec(location.search) || [])[1];
@@ -26764,14 +26767,14 @@ function makeFidelityRoomManager(options){
 // This file is inserted after canonical declarations. The generated bindings are explicit
 // lexical getters/setters; no proxy or copied game session sits between rules and rendering.
 var FH=null;
-const fidelityNativeBindings=[[()=>activateParcel,value=>activateParcel=value],[()=>blitSprite,value=>blitSprite=value],[()=>box,value=>box=value],[()=>buildBox,value=>buildBox=value],[()=>buildCat,value=>buildCat=value],[()=>buildCatBox,value=>buildCatBox=value],[()=>buildChristmasPM,value=>buildChristmasPM=value],[()=>buildChristmasSeated,value=>buildChristmasSeated=value],[()=>buildChristmasStaff,value=>buildChristmasStaff=value],[()=>buildDog,value=>buildDog=value],[()=>buildDriver,value=>buildDriver=value],[()=>buildLoose,value=>buildLoose=value],[()=>buildPaperTakeoff,value=>buildPaperTakeoff=value],[()=>buildParcelHandler,value=>buildParcelHandler=value],[()=>buildTrainProp,value=>buildTrainProp=value],[()=>christmasCacheCell,value=>christmasCacheCell=value],[()=>christmasDecoration,value=>christmasDecoration=value],[()=>christmasEvergreen,value=>christmasEvergreen=value],[()=>christmasFace,value=>christmasFace=value],[()=>christmasFrame,value=>christmasFrame=value],[()=>christmasGift,value=>christmasGift=value],[()=>christmasGramophone,value=>christmasGramophone=value],[()=>christmasTea,value=>christmasTea=value],[()=>cityFace,value=>cityFace=value],[()=>cityHallActors,value=>cityHallActors=value],[()=>cityHallBuildBat,value=>cityHallBuildBat=value],[()=>cityHallFurniture,value=>cityHallFurniture=value],[()=>cityHallGallery,value=>cityHallGallery=value],[()=>cityHallHands,value=>cityHallHands=value],[()=>cityHallPalm,value=>cityHallPalm=value],[()=>cityHallPipes,value=>cityHallPipes=value],[()=>cityHallStairs,value=>cityHallStairs=value],[()=>cityHallTrolley,value=>cityHallTrolley=value],[()=>cityHallTubeSegment,value=>cityHallTubeSegment=value],[()=>cityHallWall,value=>cityHallWall=value],[()=>cityMaterial,value=>cityMaterial=value],[()=>cpBegin,value=>cpBegin=value],[()=>cpCard,value=>cpCard=value],[()=>defaultScale,value=>defaultScale=value],[()=>disc,value=>disc=value],[()=>dot3,value=>dot3=value],[()=>drawBoardBox,value=>drawBoardBox=value],[()=>drawBoardCat,value=>drawBoardCat=value],[()=>drawBoardRails,value=>drawBoardRails=value],[()=>drawHatchQueue,value=>drawHatchQueue=value],[()=>emit,value=>emit=value],[()=>gCamera,value=>gCamera=value],[()=>gLoad,value=>gLoad=value],[()=>gLoadLevel,value=>gLoadLevel=value],[()=>hatchCueBlend,value=>hatchCueBlend=value],[()=>paperBeginFrame,value=>paperBeginFrame=value],[()=>paperCapturePiece,value=>paperCapturePiece=value],[()=>paperCaptureSprite,value=>paperCaptureSprite=value],[()=>paperOutputCanvas,value=>paperOutputCanvas=value],[()=>paperOutputScale,value=>paperOutputScale=value],[()=>paperPropCachedTexture,value=>paperPropCachedTexture=value],[()=>paperPropCapture,value=>paperPropCapture=value],[()=>paperPropShader,value=>paperPropShader=value],[()=>paperPropStaticPoints,value=>paperPropStaticPoints=value],[()=>paperResolveFrame,value=>paperResolveFrame=value],[()=>paperSetViewScale,value=>paperSetViewScale=value],[()=>paperStaticAtlasBegin,value=>paperStaticAtlasBegin=value],[()=>paperStaticCopyPixel,value=>paperStaticCopyPixel=value],[()=>paperStaticCylinder,value=>paperStaticCylinder=value],[()=>paperStaticEmit,value=>paperStaticEmit=value],[()=>paperStaticFace,value=>paperStaticFace=value],[()=>paperStaticReset,value=>paperStaticReset=value],[()=>parcelBlit,value=>parcelBlit=value],[()=>parcelFace,value=>parcelFace=value],[()=>parcelMaterial,value=>parcelMaterial=value],[()=>parcelYard,value=>parcelYard=value],[()=>resolve,value=>resolve=value],[()=>scaleLimits,value=>scaleLimits=value],[()=>update,value=>update=value],[()=>xcDaily,value=>xcDaily=value],[()=>xcNightShift,value=>xcNightShift=value]];
+const fidelityNativeBindings=[[()=>blitSprite,value=>blitSprite=value],[()=>box,value=>box=value],[()=>buildBox,value=>buildBox=value],[()=>buildCatBox,value=>buildCatBox=value],[()=>buildChristmasPM,value=>buildChristmasPM=value],[()=>buildChristmasSeated,value=>buildChristmasSeated=value],[()=>buildChristmasStaff,value=>buildChristmasStaff=value],[()=>buildDog,value=>buildDog=value],[()=>buildDriver,value=>buildDriver=value],[()=>buildLoose,value=>buildLoose=value],[()=>buildPaperTakeoff,value=>buildPaperTakeoff=value],[()=>buildTrainProp,value=>buildTrainProp=value],[()=>christmasCacheCell,value=>christmasCacheCell=value],[()=>christmasDecoration,value=>christmasDecoration=value],[()=>christmasEvergreen,value=>christmasEvergreen=value],[()=>christmasFace,value=>christmasFace=value],[()=>christmasFrame,value=>christmasFrame=value],[()=>christmasGift,value=>christmasGift=value],[()=>christmasGramophone,value=>christmasGramophone=value],[()=>christmasTea,value=>christmasTea=value],[()=>cityFace,value=>cityFace=value],[()=>cityHallActors,value=>cityHallActors=value],[()=>cityHallBuildBat,value=>cityHallBuildBat=value],[()=>cityHallFurniture,value=>cityHallFurniture=value],[()=>cityHallGallery,value=>cityHallGallery=value],[()=>cityHallHands,value=>cityHallHands=value],[()=>cityHallPalm,value=>cityHallPalm=value],[()=>cityHallPipes,value=>cityHallPipes=value],[()=>cityHallStairs,value=>cityHallStairs=value],[()=>cityHallTrolley,value=>cityHallTrolley=value],[()=>cityHallTubeSegment,value=>cityHallTubeSegment=value],[()=>cityHallWall,value=>cityHallWall=value],[()=>cityMaterial,value=>cityMaterial=value],[()=>cpBegin,value=>cpBegin=value],[()=>cpCard,value=>cpCard=value],[()=>defaultScale,value=>defaultScale=value],[()=>disc,value=>disc=value],[()=>dot3,value=>dot3=value],[()=>drawBoardBox,value=>drawBoardBox=value],[()=>drawBoardCat,value=>drawBoardCat=value],[()=>drawBoardRails,value=>drawBoardRails=value],[()=>drawHatchQueue,value=>drawHatchQueue=value],[()=>emit,value=>emit=value],[()=>gCamera,value=>gCamera=value],[()=>gLoad,value=>gLoad=value],[()=>gLoadLevel,value=>gLoadLevel=value],[()=>hatchCueBlend,value=>hatchCueBlend=value],[()=>paperBeginFrame,value=>paperBeginFrame=value],[()=>paperCapturePiece,value=>paperCapturePiece=value],[()=>paperCaptureSprite,value=>paperCaptureSprite=value],[()=>paperOutputCanvas,value=>paperOutputCanvas=value],[()=>paperOutputScale,value=>paperOutputScale=value],[()=>paperPropCapture,value=>paperPropCapture=value],[()=>paperPropShader,value=>paperPropShader=value],[()=>paperPropStaticPoints,value=>paperPropStaticPoints=value],[()=>paperResolveFrame,value=>paperResolveFrame=value],[()=>paperSetViewScale,value=>paperSetViewScale=value],[()=>paperStaticCopyPixel,value=>paperStaticCopyPixel=value],[()=>paperStaticEmit,value=>paperStaticEmit=value],[()=>paperStaticFace,value=>paperStaticFace=value],[()=>paperStaticReset,value=>paperStaticReset=value],[()=>parcelBlit,value=>parcelBlit=value],[()=>parcelMaterial,value=>parcelMaterial=value],[()=>resolve,value=>resolve=value],[()=>scaleLimits,value=>scaleLimits=value],[()=>update,value=>update=value],[()=>xcDaily,value=>xcDaily=value],[()=>xcNightShift,value=>xcNightShift=value]];
 function fidelityCaptureNative(){
   const functions=fidelityNativeBindings.map(binding=>binding[0]());
   const methods=Object.values(ROOMS).map(value=>[value,Object.getOwnPropertyDescriptors(value)]);
   const rows=paperPieceLookup.map(row=>row.slice()),records=new Map();
   for(const row of rows)for(const record of row)if(record&&!records.has(record))records.set(record,Object.getOwnPropertyDescriptors(record));
   const slots=[];for(const list of [paperSlots,paperPropSlots])if(list)for(const slot of list)slots.push([slot,Object.getOwnPropertyDescriptors(slot)]);
-  const globals=new Map();for(const key of ["BoxRoomPaper", "CHRISTMAS_FIDELITY", "HALL_FIDELITY", "OfficePaper", "PARCEL_FIDELITY", "__officeFidelityCat", "fidelityRim"])globals.set(key,Object.getOwnPropertyDescriptor(window,key));
+  const globals=new Map();for(const key of ["BoxRoomPaper", "CHRISTMAS_FIDELITY", "HALL_FIDELITY", "OfficePaper", "__officeFidelityCat", "fidelityRim"])globals.set(key,Object.getOwnPropertyDescriptor(window,key));
   return {functions,methods,rows,records,slots,globals,DP_CACHE,PARCEL_CACHE,XMAS_CACHE,RES32,GRAY32};
 }
 function fidelityRestoreObject(value,descriptors){for(const key of Object.keys(value))if(!Object.hasOwn(descriptors,key))delete value[key];Object.defineProperties(value,descriptors);}
@@ -26810,7 +26813,7 @@ function fidelityVariant(){
 const FidelityRooms=makeFidelityRoomManager({
   capture:fidelityCaptureNative,restore:fidelityRestoreNative,variant:fidelityVariant,activeRoom:()=>ACTIVE_ROOM.id,
   async load(room,request){
-    const response=await fetch('../../cats-by-post-seven-room-integration/rooms/'+room+'.js?v='+encodeURIComponent(BUILD_ID));if(!response.ok)throw Error('Fidelity room '+room+' could not load ('+response.status+')');
+    const response=await fetch((room==='parcel'?'../rooms/':'../../cats-by-post-seven-room-integration/rooms/')+room+'.js?v='+encodeURIComponent(BUILD_ID));if(!response.ok)throw Error('Fidelity room '+room+' could not load ('+response.status+')');
     const source=await response.text();if(!request.isCurrent())return null;
     const api={rebake:fidelityRebake,resources:fidelityResources,
       check(){if(!request.isCurrent())throw Error('Superseded fidelity load');},
@@ -27012,17 +27015,27 @@ window.OfficeChapter={active,available,invalidate,connect(value){bridge=value;},
   const math=WebCameraMath;
   const native={apply:applyScale,zoom:zoomStep,pan:panBy,render:renderFrame,present,pick:gPick,resize:onResize,card:cpCard};
   let active=false,gesturing=false,inputEnabled=true,plan=null,minimum=1;
+  let quietUntil=0;
   let vigScale=-1,vigX=NaN,vigY=NaN;
   const point={x:0,y:0},pan={x:0,y:0},nextPlan={};
   const centreX=()=>VIEW_CX+WS.camX+view.panX,centreY=()=>VIEW_CY+WS.camY+view.panY;
+  // Direct room artwork has a fixed physical backing store. Its camera has no
+  // indexed overscan or rounded raster origin, even in the automatic fit.
+  function rasterRoom(){return typeof FH!=='undefined'&&FH?.viewportRaster?FH:null;}
+  function rasterView(){
+    LW=Math.ceil(devW/scale);LH=Math.ceil(devH/scale);dstX=dstY=0;
+    viewX=centreX()-devW/(2*scale);viewY=centreY()-devH/(2*scale);
+    viewX0=Math.round(VIEW_CX-LW/2);viewY0=Math.round(VIEW_CY-LH/2);
+  }
   function transform(){
+    if(rasterRoom()){rasterView();return;}
     const x=centreX()-LW/2,y=centreY()-LH/2;
     dstX=(devW-LW*scale)/2+(Math.round(x)-x)*scale;
     dstY=(devH-LH*scale)/2+(Math.round(y)-y)*scale;
   }
   function activate(preserve=true){
     if(active||cpActive())return;
-    if(preserve){
+    if(preserve&&!rasterRoom()){
       // Start from the image actually shown, including the native integer remainder.
       const x=centreX()-LW/2,y=centreY()-LH/2;
       view.panX=clamp(view.panX+Math.round(x)+(devW/2-dstX)/scale-centreX(),-PAN_MAX_X,PAN_MAX_X);
@@ -27057,13 +27070,19 @@ window.OfficeChapter={active,available,invalidate,connect(value){bridge=value;},
     }
   }
   function world(x,y,out){
-    if(active&&!cpActive())return math.world(x,y,centreX(),centreY(),scale,devW,devH,out);
+    if((active||rasterRoom())&&!cpActive())return math.world(x,y,centreX(),centreY(),scale,devW,devH,out);
     out.x=Math.round(centreX()-LW/2)+(x-dstX)/scale;
     out.y=Math.round(centreY()-LH/2)+(y-dstY)/scale;return out;
   }
+  function panLimits(){
+    const r=rasterRoom(),b=r&&r.roomBounds('room');
+    pan.maxX=b?Math.max(PAN_MAX_X,Math.abs(b.x0-VIEW_CX-WS.camX),Math.abs(b.x1-VIEW_CX-WS.camX)):PAN_MAX_X;
+    pan.maxY=b?Math.max(PAN_MAX_Y,Math.abs(b.y0-VIEW_CY-WS.camY),Math.abs(b.y1-VIEW_CY-WS.camY)):PAN_MAX_Y;
+    return pan;
+  }
   function anchor(wx,wy,mx,my){
     gCamera();
-    math.anchor(wx,wy,mx,my,VIEW_CX+WS.camX,VIEW_CY+WS.camY,scale,devW,devH,PAN_MAX_X,PAN_MAX_Y,pan);
+    panLimits();math.anchor(wx,wy,mx,my,VIEW_CX+WS.camX,VIEW_CY+WS.camY,scale,devW,devH,pan.maxX,pan.maxY,pan);
     panBy(pan.x-view.panX,pan.y-view.panY);transform();dirty=true;
   }
   function gesture(ratio,x0,y0,x1,y1){
@@ -27072,33 +27091,50 @@ window.OfficeChapter={active,available,invalidate,connect(value){bridge=value;},
     view.scale=view.zoom=scale=math.scaleBy(scale,ratio,limits[0],limits[1]);
     anchor(wx,wy,x1,y1);
   }
-  function cancelInput(){if(window.WebCameraInput)WebCameraInput.cancel();gesturing=false;}
+  function cancelInput(){if(window.WebCameraInput)WebCameraInput.cancel();gesturing=false;quietUntil=0;}
   function reset(){cancelInput();active=false;plan=null;vigScale=-1;}
   function nativeView(){
-    const was=active;reset();if(was)native.apply();
+    const was=active;reset();if(was)applyScale();
   }
   applyScale=function(){
+    if(rasterRoom()){
+      const limits=scaleLimits(devW,devH);
+      view.scale=scale=clamp(view.zoom??defaultScale(devW,devH,devDpr),limits[0],limits[1]);
+      rasterView();dirty=true;return;
+    }
     if(!active||cpActive())return native.apply();
     const limits=scaleLimits(devW,devH);minimum=limits[0];view.scale=scale=clamp(view.zoom===null?scale:view.zoom,limits[0],limits[1]);
     configure();dirty=true;
   };
   zoomStep=function(dir,mx,my){
     if(cpActive())return;activate();world(mx,my,point);const wx=point.x,wy=point.y,limits=scaleLimits(devW,devH);
-    view.scale=view.zoom=scale=clamp(scale+dir,limits[0],limits[1]);anchor(wx,wy,mx,my);
+    view.scale=view.zoom=scale=clamp(scale+dir,limits[0],limits[1]);quietUntil=performance.now()+150;anchor(wx,wy,mx,my);
   };
-  panBy=function(dx,dy){if(cpActive())return;activate();return native.pan(dx,dy);};
+  panBy=function(dx,dy){
+    if(cpActive())return;activate();
+    if(!rasterRoom())return native.pan(dx,dy);
+    panLimits();view.panX=clamp(view.panX+dx,-pan.maxX,pan.maxX);view.panY=clamp(view.panY+dy,-pan.maxY,pan.maxY);dirty=true;
+  };
   renderFrame=function(){
+    const room=rasterRoom();
+    if(room){rasterView();return room.render();}
     if(active&&!cpActive()){configure();vignette();}
     return native.render();
   };
   present=function(){
+    if(rasterRoom()){
+      const ratio=paperOutputScale()/scale;
+      sctx.save();sctx.imageSmoothingEnabled=true;sctx.imageSmoothingQuality=WebCamera.moving()?'low':'high';
+      sctx.drawImage(paperOutputCanvas(),0,0,devW*ratio,devH*ratio,0,0,devW,devH);
+      sctx.restore();syncBackdropCSS();return;
+    }
     if(!active||cpActive())return native.present();
     transform();const resolution=paperOutputScale();sctx.imageSmoothingEnabled=!!(FH?.smooth||(window.OfficePaper&&OfficePaper.active())||(window.BoxRoomPaper&&BoxRoomPaper.active()));
     sctx.drawImage(paperOutputCanvas(),0,0,LW*resolution,LH*resolution,dstX,dstY,LW*scale,LH*scale);
     syncBackdropCSS();
   };
   gPick=function(clientX,clientY){
-    if(!active||cpActive())return native.pick(clientX,clientY);
+    if((!active&&!rasterRoom())||cpActive())return native.pick(clientX,clientY);
     const r=screen.getBoundingClientRect();if(r.width<=0||r.height<=0)return -1;
     world(clientDeviceX(clientX,r),clientDeviceY(clientY,r),point);
     const a=(point.x-OX)*.5,b=point.y-OY,B=gm.L.board;
@@ -27112,9 +27148,10 @@ window.OfficeChapter={active,available,invalidate,connect(value){bridge=value;},
   };
   cpCard=function(...args){nativeView();return native.card(...args);};
   window.WebCamera=Object.freeze({
-    world,gesture,anchor,reset,nativeView,
+    world,gesture,anchor,reset,nativeView,rasterRoom,
+    moving(){return inputEnabled&&!cpActive()&&(gesturing||PTR.size>0||performance.now()<quietUntil);},
     restore(){activate(false);},
-    project(x,y,out){if(!active||cpActive())return false;math.project(x,y,centreX(),centreY(),scale,devW,devH,out);return true;},
+    project(x,y,out){if((!active&&!rasterRoom())||cpActive())return false;math.project(x,y,centreX(),centreY(),scale,devW,devH,out);return true;},
     begin(){if(inputEnabled&&!cpActive()){gesturing=true;activate();panBy(0,0);}},
     end(){gesturing=false;if(active)dirty=true;},
     enabled(){return inputEnabled&&!cpActive();},
@@ -27174,9 +27211,9 @@ function webMarkVisible(px,py){
   const depth=paperEnabled&&paperReady?paperDepth[iy*LW*S+ix]:fDep[Math.floor(ly)*LW+Math.floor(lx)];
   return depth!==DEPTH_EMPTY&&depth<=(ly+viewY-OY)*8+16;
 }
-function webMarkLine(x0,y0,x1,y1){
-  sctx.moveTo(webMarkPointX(x0,y0),webMarkPointY(x0,y0));
-  sctx.lineTo(webMarkPointX(x1,y1),webMarkPointY(x1,y1));
+function webMarkLine(ctx,x0,y0,x1,y1){
+  ctx.moveTo(webMarkPointX(x0,y0),webMarkPointY(x0,y0));
+  ctx.lineTo(webMarkPointX(x1,y1),webMarkPointY(x1,y1));
 }
 function webMarkClip(x,y){
   // Clip the entire antialiased stroke, including its round caps. Only visit the
@@ -27195,24 +27232,27 @@ function webMarkClip(x,y){
   }
   sctx.clip();
 }
-function webDrawBoardFeedback(mark){
+function webDrawBoardFeedback(mark,ctx=sctx,rasterScale=0){
   const x=gTX(mark.x),y=gTY(mark.y),a=1,b=TILE-1;
-  sctx.save();sctx.lineCap='round';sctx.lineJoin='round';
-  webMarkClip(x,y);
-  sctx.beginPath();
-  webMarkLine(x+a,y+a,x+b,y+a);webMarkLine(x+b,y+a,x+b,y+b);
-  webMarkLine(x+b,y+b,x+a,y+b);webMarkLine(x+a,y+b,x+a,y+a);
-  sctx.setLineDash(mark.action==='blocked'?WEB_MARK_DASH:WEB_MARK_SOLID);
-  sctx.strokeStyle=mark.action==='blocked'?'#914533':'#253e40';sctx.lineWidth=3.5*devDpr;sctx.stroke();
-  sctx.strokeStyle='#fff0cd';sctx.lineWidth=1.25*devDpr;sctx.stroke();
-  sctx.setLineDash(WEB_MARK_SOLID);
+  ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
+  // A direct room draws after its floor and before its pieces. The room paint
+  // order supplies occlusion, while both paths use the same device-space ink.
+  if(rasterScale)ctx.setTransform(rasterScale,0,0,rasterScale,0,0);
+  else webMarkClip(x,y);
+  ctx.beginPath();
+  webMarkLine(ctx,x+a,y+a,x+b,y+a);webMarkLine(ctx,x+b,y+a,x+b,y+b);
+  webMarkLine(ctx,x+b,y+b,x+a,y+b);webMarkLine(ctx,x+a,y+b,x+a,y+a);
+  ctx.setLineDash(mark.action==='blocked'?WEB_MARK_DASH:WEB_MARK_SOLID);
+  ctx.strokeStyle=mark.action==='blocked'?'#914533':'#253e40';ctx.lineWidth=3.5*devDpr;ctx.stroke();
+  ctx.strokeStyle='#fff0cd';ctx.lineWidth=1.25*devDpr;ctx.stroke();
+  ctx.setLineDash(WEB_MARK_SOLID);
   if(mark.action==='place'){
     const cx=x+TILE*.5,cy=y+TILE*.5;
-    sctx.beginPath();webMarkLine(cx,cy+3,cx,cy-3);webMarkLine(cx,cy-3,cx-2,cy-1);webMarkLine(cx,cy-3,cx+2,cy-1);
-    sctx.strokeStyle='#fff0cd';sctx.lineWidth=4*devDpr;sctx.stroke();
-    sctx.strokeStyle='#253e40';sctx.lineWidth=1.75*devDpr;sctx.stroke();
+    ctx.beginPath();webMarkLine(ctx,cx,cy+3,cx,cy-3);webMarkLine(ctx,cx,cy-3,cx-2,cy-1);webMarkLine(ctx,cx,cy-3,cx+2,cy-1);
+    ctx.strokeStyle='#fff0cd';ctx.lineWidth=4*devDpr;ctx.stroke();
+    ctx.strokeStyle='#253e40';ctx.lineWidth=1.75*devDpr;ctx.stroke();
   }
-  sctx.restore();
+  ctx.restore();
 }
 
 /* Read-only sound timing from native rule events and their existing animation traces. */
@@ -27353,7 +27393,16 @@ function webDrawBoardFeedback(mark){
     return {version:1,levelId:gm.L.id,mode:gm.shift?'nightShift':gm.daily?'daily':gm.practice?'practice':gm.custom?'custom':'campaign',gamePhase:gm.mode,presentation:p,hasSavedWin,winRecorded,currentWinRecorded:winRecorded,homeState:homeState(),storageStatus:'unknown',endingSeen:!!XC.seen,canAdvance,resultReady,canSend:inputAvailable(),canEdit:editable(),canNavigate:!loading,actions:{advance:canAdvance,continue:presentationAvailable()&&['intro','demo','growth','exit','station'].includes(p),watchDemo:presentationAvailable()&&['intro','demo'].includes(p),skip:presentationAvailable()&&p==='finale',showCredits:presentationAvailable()&&p==='thanks',replayEnding:replay,back:presentationAvailable()&&['thanks','credits','finale'].includes(p),send:inputAvailable(),chapterStory:chapterStoryAvailable(),cancelPresentation:p!=='none'}};
   }
   const nativePrepare=gPrepareSrc,displayFeedback=typeof webDrawBoardFeedback==='function',marker={};
-  gPrepareSrc=function(){const result=nativePrepare();if(displayFeedback)G_SRC.cursor=-1;else if(precision()&&gm.cursor)G_SRC.cursor=gm.cy*gm.L.board.w+gm.cx;return result;};
+  gPrepareSrc=function(){
+    const result=nativePrepare();
+    if(continuousCamera?.rasterRoom()){
+      const visible=displayFeedback&&gm.cursor&&editable()&&!mouseDrag&&!multiTouch;
+      G_SRC.cursor=-1;
+      G_SRC.cursorMark=visible?target(gm.cx,gm.cy,marker,true):null;
+    }else if(displayFeedback)G_SRC.cursor=-1;
+    else if(precision()&&gm.cursor)G_SRC.cursor=gm.cy*gm.L.board.w+gm.cx;
+    return result;
+  };
   const nativePresent=present,nativeHover=gHover;
   const presentedView={x:NaN,y:NaN,dx:NaN,dy:NaN,scale:NaN,w:NaN,h:NaN,dpr:NaN};
   function viewPresented(){
@@ -27363,7 +27412,7 @@ function webDrawBoardFeedback(mark){
     v.x=viewX;v.y=viewY;v.dx=dstX;v.dy=dstY;v.scale=scale;v.w=devW;v.h=devH;v.dpr=devDpr;
     for(const fn of viewListeners)try{fn();}catch(error){console.error(error);}
   }
-  present=function(){nativePresent();if(displayFeedback&&gm.L&&gm.cursor&&editable()&&!mouseDrag&&!multiTouch){target(gm.cx,gm.cy,marker,true);webDrawBoardFeedback(marker);}viewPresented();acknowledgeFrame();};
+  present=function(){nativePresent();if(displayFeedback&&!continuousCamera?.rasterRoom()&&gm.L&&gm.cursor&&editable()&&!mouseDrag&&!multiTouch){target(gm.cx,gm.cy,marker,true);webDrawBoardFeedback(marker);}viewPresented();acknowledgeFrame();};
   function canPresentRoom(){
     if(!presentationAttached||replaying||loading||gPracticePending||reasons.has('fidelity'))return false;
     return !roomOwner||(!roomOwner.loading&&!roomOwner.error&&roomOwner.room===ACTIVE_ROOM.id);
@@ -27374,7 +27423,7 @@ function webDrawBoardFeedback(mark){
   // Paint behind the host's opening paper, even when its hidden iframe has no display tick.
   function drawFirstFrame(){
     if(!canPresentRoom())return false;
-    try{renderFrame();present();dirty=false;}catch(error){frameReady=false;frameError=error.message;changed();throw error;}
+    try{if(cpActive()&&continuousCamera?.rasterRoom())cpWorld();renderFrame();present();dirty=false;}catch(error){frameReady=false;frameError=error.message;changed();throw error;}
     return frameReady;
   }
   async function prepareFirstFrame(){
@@ -27404,9 +27453,71 @@ function webDrawBoardFeedback(mark){
   function project(x,y,out={x:0,y:0}){const wx=OX+gTX(x)-gTY(y),wy=OY+(gTX(x)+gTY(y))*.5;if(!continuousCamera||!continuousCamera.project(wx,wy,out)){out.x=dstX+(wx-Math.round(VIEW_CX+WS.camX+view.panX-LW/2))*scale;out.y=dstY+(wy-Math.round(VIEW_CY+WS.camY+view.panY-LH/2))*scale;}const r=screen.getBoundingClientRect();out.x=r.left+out.x*r.width/screen.width;out.y=r.top+out.y*r.height/screen.height;return out;}
   function viewState(){return{zoom:view.zoom,zoomCss:scale/devDpr,dpr:devDpr,x:view.panX,y:view.panY,framing,manual};}
   const boardBox={x0:0,x1:0,y0:0,y1:0};
-  function boardBounds(){const B=gm.L.board,x=gBoardX(B)*TILE,y=gBoardY(B)*TILE;boardBox.x0=OX+x-y-B.h*TILE-14;boardBox.x1=OX+x+B.w*TILE-y+14;boardBox.y0=OY+(x+y)/2-34;boardBox.y1=OY+(x+y+(B.w+B.h)*TILE)/2+24;return boardBox;}
-  gCamera=function(atScale=scale){if(cpActive()||!gm.L)return native.camera(atScale);const b=boardBounds();if(framing==='room'){WS.camX=(G_ROOM?0:G_CAM_X)+(window.BoxRoomPaper&&BoxRoomPaper.active()?(insets.right-insets.left)*devDpr/(2*scale):0);WS.camY=(G_ROOM?0:G_CAM_Y)+(insets.bottom-insets.top)*devDpr/(2*scale);}else{WS.camX=(b.x0+b.x1)/2-VIEW_CX+(insets.right-insets.left)*devDpr/(2*scale);WS.camY=(b.y0+b.y1)/2-VIEW_CY+(insets.bottom-insets.top)*devDpr/(2*scale);}};
-  function camera(mode='board'){if(cpActive())return viewState();if(continuousCamera)continuousCamera.reset();framing=mode;manual=false;const b=boardBounds(),w=Math.max(60,innerWidth-insets.left-insets.right),h=Math.max(80,innerHeight-insets.top-insets.bottom);view.zoom=Math.max(.5,mode==='room'?Math.min(w*devDpr/ROOM_FIT_W,h*devDpr/ROOM_FIT_H):Math.min(w*devDpr/(b.x1-b.x0),h*devDpr/(b.y1-b.y0)));view.panX=view.panY=0;applyScale();gCamera();dirty=true;return viewState();}
+  function boardBounds(B=gm.L.board){const x=gBoardX(B)*TILE,y=gBoardY(B)*TILE;boardBox.x0=OX+x-y-B.h*TILE-14;boardBox.x1=OX+x+B.w*TILE-y+14;boardBox.y0=OY+(x+y)/2-34;boardBox.y1=OY+(x+y+(B.w+B.h)*TILE)/2+24;return boardBox;}
+  const rasterRoom=()=>continuousCamera?.rasterRoom();
+  const cardInsets={top:12,bottom:12,left:12,right:12};
+  function fitScale(bounds,area){
+    const width=Math.max(60*devDpr,devW-(area.left+area.right)*devDpr);
+    const height=Math.max(80*devDpr,devH-(area.top+area.bottom)*devDpr);
+    return Math.min(width/(bounds.x1-bounds.x0),height/(bounds.y1-bounds.y0));
+  }
+  function centreOn(bounds,area,zoom){
+    WS.camX=(bounds.x0+bounds.x1)/2-VIEW_CX+(area.right-area.left)*devDpr/(2*zoom);
+    WS.camY=(bounds.y0+bounds.y1)/2-VIEW_CY+(area.bottom-area.top)*devDpr/(2*zoom);
+  }
+  const oldLimits=scaleLimits;
+  scaleLimits=function(w,h){
+    const limits=oldLimits(w,h),room=rasterRoom();
+    if(room)limits[0]=Math.min(.3*devDpr,fitScale(room.roomBounds('room'),insets));
+    return limits;
+  };
+  gCamera=function(atScale=scale){
+    const room=rasterRoom();
+    if(room&&gm.L&&!cpActive()){
+      centreOn(framing==='room'?room.roomBounds('room'):boardBounds(),insets,atScale);return;
+    }
+    if(cpActive()||!gm.L)return native.camera(atScale);const b=boardBounds();if(framing==='room'){WS.camX=(G_ROOM?0:G_CAM_X)+(window.BoxRoomPaper&&BoxRoomPaper.active()?(insets.right-insets.left)*devDpr/(2*scale):0);WS.camY=(G_ROOM?0:G_CAM_Y)+(insets.bottom-insets.top)*devDpr/(2*scale);}else{WS.camX=(b.x0+b.x1)/2-VIEW_CX+(insets.right-insets.left)*devDpr/(2*scale);WS.camY=(b.y0+b.y1)/2-VIEW_CY+(insets.bottom-insets.top)*devDpr/(2*scale);}};
+  function camera(mode='board'){if(cpActive())return viewState();if(continuousCamera)continuousCamera.reset();framing=mode;manual=false;
+    const room=rasterRoom();
+    if(room){
+      room.setFraming(mode);view.zoom=fitScale(mode==='room'?room.roomBounds('room'):boardBounds(),insets);
+      view.panX=view.panY=0;applyScale();gCamera();return viewState();
+    }
+    const b=boardBounds(),w=Math.max(60,innerWidth-insets.left-insets.right),h=Math.max(80,innerHeight-insets.top-insets.bottom);view.zoom=Math.max(.5,mode==='room'?Math.min(w*devDpr/ROOM_FIT_W,h*devDpr/ROOM_FIT_H):Math.min(w*devDpr/(b.x1-b.x0),h*devDpr/(b.y1-b.y0)));view.panX=view.panY=0;applyScale();gCamera();dirty=true;return viewState();}
+  // Use the chapter's own world and clock. Its card occupies a different
+  // rectangle from the play HUD. Choose the better fitting clear rectangle.
+  const chapterWorld=cpWorld,prepareEntry=cpPrepareEntry,finishEntry=cpFinishEntry;
+  function chapterArea(bounds){
+    cardInsets.right=12;cardInsets.bottom=Math.max(12,innerHeight-CP.card.offsetTop+12);
+    const above=fitScale(bounds,cardInsets),bottom=cardInsets.bottom;
+    cardInsets.bottom=12;cardInsets.right=Math.max(12,innerWidth-CP.card.offsetLeft+12);
+    if(above>=fitScale(bounds,cardInsets)){cardInsets.right=12;cardInsets.bottom=bottom;}
+    return cardInsets;
+  }
+  cpPrepareEntry=function(){
+    const room=rasterRoom();if(!room?.chapterWorld)return prepareEntry();
+    CP.sourceView=CP.targetView=null;CP.visualScale=CP.enterScale;
+    CP.targetScale=clamp(fitScale(boardBounds(),insets),...scaleLimits(devW,devH));
+  };
+  cpWorld=function(){
+    const room=rasterRoom();if(!room?.chapterWorld)return chapterWorld();
+    room.chapterWorld();
+    if(CP.mode==='enter'){
+      const u=Math.min(1,CP.frame/72),t=u*u*(3-2*u);
+      CP.visualScale=CP.enterScale+(CP.targetScale-CP.enterScale)*t;
+      centreOn(boardBounds(),insets,CP.targetScale);
+      WS.camX=CP.enterX+(WS.camX-CP.enterX)*t;WS.camY=CP.enterY+(WS.camY-CP.enterY)*t;
+      scale=view.scale=view.zoom=CP.visualScale;
+    }else{
+      const bounds=CP.mode==='demo'?boardBounds(CP.demo.level.board):room.roomBounds('chapter');
+      const area=chapterArea(bounds),zoom=Math.min(fitScale(bounds,area),VIEWPORT.maxScale(devW,devH));
+      centreOn(bounds,area,zoom);scale=view.scale=view.zoom=zoom;
+    }
+    dirty=true;
+  };
+  cpFinishEntry=function(){
+    const direct=!!rasterRoom()?.chapterWorld;finishEntry();if(direct)camera('board');
+  };
   if(continuousCamera)resetView=()=>camera('board');
   // Puzzle view checkpoints are captured on actions/save/resize, never on animation frames.
   function cameraCheckpoint(){return{room:ACTIVE_ROOM.id,framing,manual,zoomCss:scale/devDpr,x:view.panX,y:view.panY};}
@@ -27417,8 +27528,8 @@ function webDrawBoardFeedback(mark){
     if(point.room!==ACTIVE_ROOM.id)throw Error('Session camera does not match the active room.');
     const v={levelId:gm.L.id,camera:clone(point)};roomViews[point.room]=v;
     if(cpActive()){pendingView=v;return;}
-    framing=point.framing;manual=point.manual;
-    if(manual){if(continuousCamera)continuousCamera.restore();view.zoom=point.zoomCss*devDpr;applyScale();view.zoom=scale;view.panX=clamp(point.x,-PAN_MAX_X,PAN_MAX_X);view.panY=clamp(point.y,-PAN_MAX_Y,PAN_MAX_Y);gCamera();dirty=true;}
+    framing=point.framing;manual=point.manual;const room=rasterRoom();room?.setFraming(framing);
+    if(manual){if(continuousCamera)continuousCamera.restore();view.zoom=point.zoomCss*devDpr;applyScale();view.zoom=scale;gCamera();panBy(point.x-view.panX,point.y-view.panY);dirty=true;}
     else camera(framing);
   }
   function restorePendingView(){const v=pendingView;if(!v||cpActive())return;pendingView=null;if(v.levelId===gm.L.id&&v.camera.room===ACTIVE_ROOM.id)restoreCamera(v.camera);}
@@ -27465,7 +27576,7 @@ function webDrawBoardFeedback(mark){
       case 'unsuspend':if(!['menu','navigation','background','fidelity'].includes(a.reason))return false;reasons.delete(a.reason);return true;
       case 'freeze':softFrozen=!!a.value;return true;
       case 'camera':return camera(a.mode);
-      case 'layout':for(const key of ['top','bottom','left','right'])if(Number.isFinite(a[key])&&a[key]>=0)insets[key]=a[key];if(!cpActive()){if(manual)gCamera();else camera(framing);if(continuousCamera)continuousCamera.layoutChanged();}return true;
+      case 'layout':if(cpActive()&&rasterRoom())return true;for(const key of ['top','bottom','left','right'])if(Number.isFinite(a[key])&&a[key]>=0)insets[key]=a[key];if(!cpActive()){if(manual)gCamera();else camera(framing);if(continuousCamera)continuousCamera.layoutChanged();}return true;
       case 'focus':if(cpActive())return false;camera('board');{const p=gm.L.hatches[a.hatch-1];if(p){const pos=project(p.x+.5,p.y+.5);manual=true;panBy((pos.x-(insets.left+innerWidth-insets.right)/2)*devDpr/scale,(pos.y-(insets.top+innerHeight-insets.bottom)/2)*devDpr/scale);}}return true;
       case 'zoom':if(cpActive())return false;manual=true;zoomStep(a.dir,(insets.left+innerWidth-insets.right)*devDpr/2,(insets.top+innerHeight-insets.bottom)*devDpr/2);return true;
       case 'pan':if(cpActive())return false;manual=true;panBy(a.x*12,a.y*12);return true;
@@ -27554,5 +27665,5 @@ function webDrawBoardFeedback(mark){
 
 boot();
 </script>
-<script src="../journey/postal-identity.js?v=valley-preview-e12696132df8"></script><script src="../journey/chapter-presentation.js?v=valley-preview-e12696132df8"></script></body>
+<script src="../journey/postal-identity.js?v=valley-preview-b662dcf62cdc"></script><script src="../journey/chapter-presentation.js?v=valley-preview-b662dcf62cdc"></script></body>
 </html>

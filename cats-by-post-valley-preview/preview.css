@@ -43,3 +43,5 @@ figcaption small{font:normal 14px/1.2 Signika,system-ui,sans-serif;color:var(--s
 footer{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--edge);margin-top:30px;padding-top:14px;color:var(--soft);font-size:14px}
 @media(max-width:650px){header{align-items:start;flex-direction:column;gap:15px}.brand{margin-bottom:8px}.controls{flex-wrap:wrap;gap:10px;margin-top:16px}.pair figcaption{flex-direction:column;gap:3px}.modes button{min-width:44px;padding:6px 10px}}
 @media(max-width:380px){main{padding:14px}.controls{gap:6px}.modes button{min-width:44px;padding:6px}.controls select{font-size:15px;padding:4px}.pair{gap:6px}footer{margin-top:20px}}
+
+#play-parcel[hidden]{display:none}
