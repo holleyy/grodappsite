@@ -12,7 +12,11 @@
  const gamePromise=new Promise((resolve,reject)=>{gamePromiseResolve=resolve;gamePromiseReject=reject});gamePromise.catch(()=>{});
  const frame=$('game'),vp=$('map-window'),world=$('map-world'),wide=matchMedia('(min-width:740px)');
  const art=$('map-art'),mat=$('map-mat');
- const mapWidth=Number(art.getAttribute('width')),mapHeight=Number(art.getAttribute('height'));
+ // Landmarks use the original route rectangle within the larger valley painting.
+ const [routeLeft,routeTop,mapWidth,mapHeight]=art.dataset.routeRect.split(' ').map(Number);
+ const artWidth=Number(art.getAttribute('width')),artHeight=Number(art.getAttribute('height'));
+ art.style.left=(-routeLeft/mapWidth*100)+'%';art.style.top=(-routeTop/mapHeight*100)+'%';
+ art.style.width=(artWidth/mapWidth*100)+'%';art.style.height=(artHeight/mapHeight*100)+'%';
  const progressListeners=new Set();
  const company=CompanyBox.create({dialog:$('cats-dialog'),getProgress:async()=>{const app=gameIsReady?frame.contentWindow.APP:await gamePromise;const s=app.engine.state();return{...s.progress,collection:s.collection}},getSeenKey:()=> 'catsByPost.preview.valley.web.photographs.seen.v1',onNight:()=>service('night'),getReturnFocus:()=>$('cats-button')});
  const allLevels=()=>levels;
@@ -48,18 +52,30 @@
  }
  function minZoom(){
   const {top,bottom}=mapInsets();
-  return Math.min(vp.clientWidth/mapWidth,(vp.clientHeight-top-bottom)/mapHeight,1);
+  const overview=Math.min(vp.clientWidth/mapWidth,(vp.clientHeight-top-bottom)/mapHeight,1);
+  return Math.max(overview,vp.clientWidth/artWidth,vp.clientHeight/artHeight);
+ }
+ // Include enough countryside to fill the viewport and clear the controls. The
+ // scroll limits lie inside the painting even when the route occupies only its middle.
+ function mapAxis(viewport,route,before,after,lead,trail){
+  const length=Math.max(viewport,route+Math.min(lead,before)+Math.min(trail,after));
+  const extra=length-route;
+  const origin=Math.max(0,extra-after,Math.min(before,(extra+lead-trail)/2));
+  return {length,origin};
  }
  function changeZoom(value,point=camera()){
-  const minimum=minZoom();
-  zoom=Math.min(1.9,Math.max(minimum,value));
+  const minimum=minZoom(),maximum=Math.max(1.9,minimum);
+  zoom=Math.min(maximum,Math.max(minimum,value));
   const w=mapWidth*zoom,h=mapHeight*zoom,{top,bottom}=mapInsets();
+  const side=Math.min(128*zoom,vp.clientWidth*.2);
+  const x=mapAxis(vp.clientWidth,w,routeLeft*zoom,(artWidth-routeLeft-mapWidth)*zoom,side,side);
+  const y=mapAxis(vp.clientHeight,h,routeTop*zoom,(artHeight-routeTop-mapHeight)*zoom,top,bottom);
+  mat.style.width=x.length+'px';mat.style.height=y.length+'px';
+  world.style.left=x.origin+'px';world.style.top=y.origin+'px';
   world.style.width=w+'px';world.style.height=h+'px';
   world.classList.toggle('compact',w<840);
-  // The map can slide beneath the fixed tools and the next-letter envelope at either end.
-  mat.style.paddingBlock=top+'px '+bottom+'px';
-  centreAt(point);
-  $('zoom-out').disabled=zoom<=minimum+.001;$('zoom-in').disabled=zoom>=1.9;
+  centreAt(zoom<=minimum+.001?[.5,.5]:point);
+  $('zoom-out').disabled=zoom<=minimum+.001;$('zoom-in').disabled=zoom>=maximum-.001;
  }
  function detailZoom(){return Math.max(.86,vp.clientWidth/mapWidth,vp.clientHeight/mapHeight)}
  function recenter(){

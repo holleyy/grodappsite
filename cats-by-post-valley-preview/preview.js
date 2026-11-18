@@ -3,7 +3,7 @@
 const places = {
   office:    { crop: [6, 444, 520], level: '1-4', outside: 'open riverside sorting office with a green roof' },
   depot:     { crop: [80, 115, 640], level: '4-15', outside: 'red brick depot on the canal quay' },
-  train:     { crop: [514, 365, 350], level: '5-11', outside: 'green mail train crossing a brick viaduct' },
+  train:     { crop: [480, 315, 968], level: '5-11', outside: 'green mail train crossing the viaduct, with its line curving across the meadow behind Lantern Loft' },
   cityhall:  { crop: [775, 128, 369], level: '6-15', outside: 'clock above the columned entrance to the civic hall' },
   parcel:    { crop: [939, 353, 426], level: '7-15', outside: 'parcel warehouse with crates at the loading bays' },
   christmas: { crop: [1158, 127, 378], level: '8-15', outside: 'illuminated station among snow-covered firs' },
@@ -119,7 +119,7 @@ function startLive() {
       status.textContent = '';
     } catch { failed(current); }
   }, { once: true });
-  current.src = 'game/engine.html?roomCamera=1&v=valley-preview-fab5933fd438';
+  current.src = 'game/engine.html?roomCamera=1&v=valley-preview-e12696132df8';
   roomFrame.append(current);
   scaleFrame();
   timer = setTimeout(() => failed(current), 90000);
