@@ -1,0 +1,34 @@
+{
+  "owner": "holleyy/cosysortie",
+  "sitePrefix": "cats-by-post-cityhall-integrated",
+  "sourceCommit": "21bf24d3792a53bdef90e55a08f59117dc6bb2fd",
+  "sourceWebBuild": "web-3e6dd53f459e",
+  "build": "cityhall-integrated-3e6dd53f459e",
+  "savePrefix": "catsByPost.preview.cityhall.",
+  "pullRequest": 59,
+  "pullRequestUrl": "https://github.com/holleyy/cosysortie/pull/59",
+  "sharedStaticPrefix": "cats-by-post-seven-room-integration",
+  "sharedAtSiteCommit": "c41f601295b1bbe9c31edb62df6c518d5dcf9afa",
+  "sharedTrees": {
+    "assets/audio": "817dec708dd82e76518f68c3fde9a23e4f87d848",
+    "assets/music": "831f5e327ca97ec64ce7a95ad7b06b8f87f93a42"
+  },
+  "sharedRoomBlobs": {
+    "rooms/boxroom.js": "c3089f79d457d66d33dd0fe4e7c82f0cdf781b73",
+    "rooms/christmas.js": "d3e6256c63b76544d126faf20433e5dab6b4367a",
+    "rooms/depot.js": "7852d36e575f604cce7862442ce9ee95b742708d",
+    "rooms/office.js": "14082782ce8026e5b7750615d502b6b15409bbc6",
+    "rooms/parcel.js": "059dadb8a954534c9753e709b4017b449bb53e45",
+    "rooms/train.js": "6688765a61b31347e323a81a50c997bc867f9aaf"
+  },
+  "localRoom": "rooms/cityhall.js",
+  "cityhallBundleSha256": "1de0131828f934f7171bf3b8f53c77f32baa0785a281c8ed76fdf995bef3486f",
+  "reviewDelivery": "6-15",
+  "reviewStorage": "memory only",
+  "journey": "journey/start.html",
+  "comparison": {
+    "path": "comparison/",
+    "pairs": 7,
+    "captureReportSha256": "fae5ff6fcd147e016ba3cf3c10425eafd056eac50c206408c9ebc51f2fe680c3"
+  }
+}

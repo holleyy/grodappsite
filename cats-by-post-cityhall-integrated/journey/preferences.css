@@ -1,0 +1,20 @@
+@font-face{font-family:Della;src:url(../assets/della.ttf);font-weight:500;font-display:swap}
+@font-face{font-family:Grenze;src:url(../assets/grenze.ttf);font-weight:600;font-display:swap}
+.font-della h1,.font-della h2,.font-della h3{font-family:Della,Georgia,serif;font-weight:500}
+.font-grenze h1,.font-grenze h2,.font-grenze h3{font-family:Grenze,Georgia,serif;font-weight:600}
+body.contrast{--ink:#182d34;--muted:#344740;--line:#70634b;--paper:#fff4d9}
+/* Functional type shares a scale; handwritten artwork keeps its physical geometry. */
+html.big,body.big{font-size:calc(var(--post-base,16px) * 1.15)}
+body.contrast{--menu-rule:#70634b}
+body.contrast .box-tally,body.contrast .photo-position,body.contrast .next-coat-note>p,body.contrast .coat-progress{color:var(--muted)}
+body.big .letter-facts,body.big .packet-progress{font-size:calc(16px * var(--post-scale))}
+body.big .company-back,body.big .company-night{font-size:calc(17px * var(--post-scale))}
+body.big .box-tally,body.big .photo-actions button{font-size:calc(16px * var(--post-scale))}
+body.big .photo-position,body.big .next-coat-note>p{font-size:calc(15px * var(--post-scale))}
+body.reduced *,body.reduced *::before,body.reduced *::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+
+/* Each sound channel has a separate, touch-sized level control. */
+.mix-channel{border-bottom:1px solid var(--line);padding-bottom:.6rem;margin-bottom:.6rem}
+.preference-group .mix-channel>label{border:0}
+.preference-group label.mix-level{display:grid;grid-template-columns:minmax(0,1fr) minmax(100px,45%);gap:12px;align-items:center;font-size:.9em}
+.preference-group .mix-level input[type=range]{width:100%;min-width:0;min-height:44px;accent-color:var(--ink);touch-action:pan-y}
